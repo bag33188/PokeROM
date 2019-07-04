@@ -18,8 +18,8 @@ export class GameDescriptionComponent implements OnInit {
   }
 
   applyUrlChange(e: Event): void {
-    const key: string = 'readyState';
-    if (e.target[key] === 'complete') {
+    const readyState: string = 'readyState';
+    if (e.target[readyState] === 'complete') {
       this.rom.description = this.changeUrlToLink(this.rom.description);
     }
   }
@@ -27,7 +27,9 @@ export class GameDescriptionComponent implements OnInit {
   changeUrlToLink(description: string): string {
     const urlRegex: RegExp = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
     const url: string = description.match(urlRegex)[0];
-    return description.replace(url, `<a href="${url}" target="_blank">${url}</a>`);
+    return description.replace(
+      url,
+      `<a href="${url}" target="_blank">${url}</a>`
+    );
   }
-  //
 }
