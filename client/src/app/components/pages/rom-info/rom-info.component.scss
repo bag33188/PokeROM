@@ -7,7 +7,7 @@
   margin: 30px;
   @media only all and (max-width: 938px) {
     grid-template-columns: 1fr;
-    grid-template-rows: .5fr 2fr repeat(2, 255px) 55px;
+    grid-template-rows: .5fr fit-content(2fr) repeat(2, 255px) 55px;
     margin: 0 auto;
     text-align: center;
   }
