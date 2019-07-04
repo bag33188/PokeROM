@@ -6,7 +6,8 @@
 #description {
   background: $white;
   border: 1px solid $light-gray;
+  height: 530px;
+  overflow-y: scroll;
   padding: 1em 20px 20px;
-  // border-radius: 20px;
   word-wrap: break-word;
 }
