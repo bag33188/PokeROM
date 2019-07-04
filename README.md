@@ -13,13 +13,19 @@ there's a problem when you don't know why it is working.
 <!-- TOC -->
 
 - [Pok&eacute;ROM](#pokeacuterom)
+  - [Setup Information](#setup-information)
+  - [Commands](#commands)
   - [Visual Studio Code](#visual-studio-code)
     - [Code Workspace File](#code-workspace-file)
     - [Extensions](#extensions)
 
 <!-- /TOC -->
 
+## Setup Information
+
 > See [PokeROM-Setup](https://github.com/bag33188/PokeROM-Setup "PokeROM-Setup Github Repository") for more information on how to run this app on your machine.
+
+## Commands
 
 ```bash
 # Windows
