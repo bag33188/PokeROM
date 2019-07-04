@@ -25,22 +25,22 @@ there's a problem when you don't know why it is working.
 # Windows
 cd C:/MongoDB/bin && ./mongod.exe --dbpath=../data
 cd C:/MongoDB/bin && ./mongo.exe
-cd ~/Projects/Pokemon-ROMs-Project && npm run app
-cd ~/Projects/Pokemon-ROMs-Project/client && ng serve
+cd ~/Projects/PokeROM && npm run app
+cd ~/Projects/PokeROM/client && ng serve
 
-C:/MongoDB/bin/mongo.exe ~/Projects/Pokemon-ROMs-Project/database/pkmn-roms.js
+C:/MongoDB/bin/mongo.exe ~/Projects/PokeROM/database/pkmn-roms.js
 
-C:/MongoDB/bin/mongo "mongodb+srv://pokemon-roms-cluster-6kvo6.gcp.mongodb.net/pkmn-roms" --username bag33188
+C:/MongoDB/bin/mongo "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188
 
 # OSX
 ~/mongodb/bin/mongod
 ~/mongodb/bin/mongo
-cd ~/Projects/Pokemon-ROMs-Project && npm run app
-cd ~/Projects/Pokemon-ROMs-Project/client && ng serve
+cd ~/Projects/PokeROM && npm run app
+cd ~/Projects/PokeROM/client && ng serve
 
-~/mongodb/bin/mongo ~/Projects/Pokemon-ROMs-Project/database/pkmn-roms.js
+~/mongodb/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
 
-~/mongodb/bin/mongo "mongodb+srv://pokemon-roms-cluster-6kvo6.gcp.mongodb.net/pkmn-roms" --username bag33188
+~/mongodb/bin/mongo "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188
 ```
 
 ## Visual Studio Code
@@ -49,7 +49,7 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 
 ### Code Workspace File
 
-**File Name**: `pokemon-roms-project.code-workspace`
+**File Name**: `PokeROM.code-workspace`
 
 **Data**:
 ```json
@@ -79,7 +79,7 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
     "editor.fontFamily": "Source Code Pro", // Consolas, 'Courier New', monospace
     "workbench.colorTheme": "Default Dark+",
     "workbench.iconTheme": "material-icon-theme",
-    "sasslint.configFile": "C:\\Users\\bglat\\Projects\\Pokemon-ROMs-Project\\client\\.sass-lint.yml",
+    "sasslint.configFile": "C:\\Users\\bglat\\Projects\\PokeROM\\client\\.sass-lint.yml",
     "sasslint.enable": true,
     "sasslint.resolvePathsRelativeToConfig": true,
     "prettier.endOfLine": "lf",
