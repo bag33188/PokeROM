@@ -56,7 +56,7 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 {
   "folders": [
     {
-      "name": "Pokemon ROMs Project",
+      "name": "PokeROM",
       "path": "."
     }
   ],
