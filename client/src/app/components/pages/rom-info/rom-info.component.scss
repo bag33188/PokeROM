@@ -23,10 +23,6 @@
 #game-logo {
   grid-column: 1;
   grid-row: 1;
-  @media only all and (max-width: 938px) {
-    grid-column: 1;
-    grid-row: 1;
-  }
 }
 
 #game-description {
