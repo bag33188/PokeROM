@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@charset 'UTF-8';
+
+@import './assets/scss/variables';
+@import './assets/scss/modules/font-faces';
+@import './assets/scss/modules/scrollbar';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box !important;
+}
+
+html {
+  overflow-x: hidden;
+
+  body {
+    background: $white url($bg-img);
+    font-family: 'Roboto', arial, sans-serif !important;
+  }
+}
+
+*:disabled {
+  cursor: not-allowed;
+}

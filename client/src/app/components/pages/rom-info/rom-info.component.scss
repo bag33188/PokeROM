@@ -1,0 +1,32 @@
+@charset 'UTF-8';
+
+#rom-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  margin: 30px;
+  @media only all and (max-width: 938px) {
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+#rom-info-container {
+  margin-bottom: 2.5em;
+}
+
+#specs-flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#back-btn-container {
+  float: left;
+  margin-left: 2%;
+  @media only all and (max-width: 530px) {
+    float: none;
+    margin-bottom: 2rem;
+    margin-left: 1%;
+  }
+}

@@ -1,0 +1,13 @@
+@charset 'UTF-8';
+
+@import '../../../../../assets/scss/variables';
+@import '../../../../../assets/scss/mixins';
+
+#list-container {
+  @include list-container(0, 2.5rem, .75rem, 938px, .75rem 0 0 !important);
+}
+
+.bg-red {
+  background-color: $light-crimson;
+  border: $dark-red;
+}

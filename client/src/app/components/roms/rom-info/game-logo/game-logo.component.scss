@@ -1,0 +1,12 @@
+@charset 'UTF-8';
+@import '../../../../../assets/scss/variables';
+
+#logo {
+  background-color: $white;
+  // border: 1px solid $very-light-gray;
+  height: 20vh;
+  margin-bottom: 2em;
+  @media only all and (max-width: 547px) {
+    height: 15vh;
+  }
+}

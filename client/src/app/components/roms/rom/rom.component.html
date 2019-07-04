@@ -1,0 +1,32 @@
+<div class="rom">
+  <div class="img-container">
+    <img
+      [alt]="imgAlt(rom.gameName) | lowercase"
+      [src]="rom.boxArtUrl"
+      class="card-img-top box-art-img"
+   />
+  </div>
+
+  <div class="card-body">
+    <h5 class="card-title text-center">
+      {{ rom.gameName }}
+    </h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item font-weight-bold list-grid">
+        <span>File Type</span><span class="text-right">{{ rom.fileType }}</span>
+      </li>
+      <li class="list-group-item font-weight-bold list-grid">
+        <span>File Size</span
+        ><span class="text-right">{{ rom.fileSize }}KB</span>
+      </li>
+      <li class="list-group-item font-weight-bold list-grid">
+        <span>Platform</span><span class="text-right">{{ rom.platform }}</span>
+      </li>
+    </ul>
+    <div class="card-body card-body-container">
+      <a class="btn btn-info" [routerLink]="['info', rom._id]"
+        >Information</a
+      >
+    </div>
+  </div>
+</div>

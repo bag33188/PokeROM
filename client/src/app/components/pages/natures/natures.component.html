@@ -1,0 +1,20 @@
+<div class="container mt-4" id="natures-container">
+  <h1>Natures</h1>
+  <hr />
+  <table id="natures" class="table border rounded">
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers">{{header}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let nature of natures">
+        <td>{{nature.name}}</td>
+        <td>{{nature.up}}</td>
+        <td>{{nature.down}}</td>
+        <td>{{nature.flavor}}</td>
+        <td>{{nature.usage}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

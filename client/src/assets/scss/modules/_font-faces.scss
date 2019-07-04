@@ -1,0 +1,133 @@
+// _font-faces.scss
+
+@charset 'UTF-8';
+
+@import '../variables';
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: bold;
+  src: url($roboto-bold2) format('woff2'), url($roboto-bold) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  src: url($roboto-regular2) format('woff2'), url($roboto-regular) format('woff');
+}
+
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 300;
+  src: url($roboto-condensed-light-italic2) format('woff2'), url($roboto-condensed-light-italic) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: bold;
+  src: url($roboto-bold-italic2) format('woff2'), url($roboto-bold-italic) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: bold;
+  src: url($roboto-condensed-bold2) format('woff2'), url($roboto-condensed-bold) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 100;
+  src: url($roboto-thin-italic2) format('woff2'), url($roboto-thin-italic2) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: normal;
+  src: url($roboto-condensed-regular2) format('woff2'), url($roboto-condensed-regular) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: url($roboto-thin2) format('woff2'), url($roboto-thin) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 300;
+  src: url($roboto-light-italic2) format('woff2'), url($roboto-light-italic) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: normal;
+  src: url($roboto-condensed-italic2) format('woff2'), url($roboto-condensed-italic) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url($roboto-light2) format('woff2'), url($roboto-light) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: url($roboto-condensed2) format('woff2'), url($roboto-condensed) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: url($roboto-black2) format('woff2'), url($roboto-black) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url($roboto-medium2) format('woff2'), url($roboto-medium) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 500;
+  src: url($roboto-medium-italic2) format('woff2'), url($roboto-medium-italic) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: bold;
+  src: url($roboto-condensed-bold-italic2) format('woff2'), url($roboto-condensed-bold-italic) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 900;
+  src: url($roboto-black-italic2) format('woff2'), url($roboto-black-italic) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: normal;
+  src: url($roboto-italic2) format('woff2'), url($roboto-italic) format('woff');
+}
+

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/* Define global styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Styles for html and body */
+html, body {
+  /* Use Verdana as main font */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Main container and wrapper styles */
+#container-wrapper {
+  display: block;
+  margin: auto;
+  padding: auto;
+}
+
+/* Pre-tag element styles */
+#asciiTextArt {
+  font-weight: bold;
+  line-height: 1rem;
+}
+
+/* Class for making things bold (in text/font) */
+.bold {
+  font-weight: bold;
+}
+
+/* Class for centering content */
+.center {
+  margin: 0.8em auto;
+  text-align: center;
+}

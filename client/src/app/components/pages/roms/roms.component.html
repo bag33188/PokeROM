@@ -1,0 +1,15 @@
+<div class="justify-content-center mt-4 roms-flex">
+  <div class="container-grid">
+    <app-rom
+      *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
+      class="card card-container border rounded"
+      [rom]="rom"
+    ></app-rom>
+  </div>
+  <app-roms-pagination
+    [romsData]="romsData"
+    [currentPage]="currentPage"
+    [itemsPerPage]="itemsPerPage"
+    (paginate)="onPageChange($event)"
+  ></app-roms-pagination>
+</div>

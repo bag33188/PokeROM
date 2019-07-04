@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+
+@import '../../../../assets/scss/variables';
+
+#header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+.navbar-brand {
+  @media only all and (max-width: 992px) {
+    display: none;
+  }
+}
+
+.white {
+  color: $white !important;
+}
+
+.yellow {
+  color: $scrollbar-bg-color-dark !important;
+}

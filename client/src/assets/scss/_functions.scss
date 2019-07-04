@@ -1,0 +1,13 @@
+// _functions.scss
+
+@charset 'UTF-8';
+
+@function set-text-color($bg-color) {
+  @if (lightness($bg-color) > 50) {
+    @return #000;
+  } @else if (lightness($bg-color) < 50) {
+    @return #fff;
+  } @else {
+    @return #808080;
+  }
+}

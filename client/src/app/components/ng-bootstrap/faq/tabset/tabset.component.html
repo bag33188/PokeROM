@@ -1,0 +1,72 @@
+<div id="tabset-container" class="border rounded">
+  <ngb-tabset>
+    <ngb-tab [title]="browsers[0].browser">
+      <ng-template ngbTabContent>
+        <p class="pt-2">
+          Status: <span class="compatible">{{ browsers[0].status }}</span
+          >.
+          <br />
+          Details: This app works on
+          <span class="underline">Chrome</span> browsers released
+          <span class="font-weight-bold">from early 2017 to now</span>.
+        </p>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab [title]="browsers[1].browser">
+      <ng-template ngbTabContent>
+        <p class="pt-2">
+          Status: <span class="compatible">{{ browsers[1].status }}</span
+          >.<br />Details: This app works on
+          <span class="underline">Opera</span> versions
+          <span class="font-weight-bold">from late 2017 to now</span>.
+        </p>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab [title]="browsers[2].browser">
+      <ng-template ngbTabContent>
+        <p class="pt-2">
+          Status: <span class="compatible">{{ browsers[2].status }}</span
+          >.
+          <br />
+          Details: This app works on
+          <span class="underline">Safari</span> versions
+          <span class="font-weight-bold">from mid-2017 to now</span>.
+        </p>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab [title]="browsers[3].browser">
+      <ng-template ngbTabContent>
+        <p class="pt-2">
+          Status: <span class="compatible">{{ browsers[3].status }}</span
+          >.
+          <br />
+          Details: This app works on
+          <span class="underline">Firefox</span> versions from
+          <span class="font-weight-bold">from early 2017 to now</span>.
+        </p>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab [title]="browsers[4].browser">
+      <ng-template ngbTabContent
+        ><p class="pt-2">
+          Status: <span class="compatible">{{ browsers[4].status }}</span
+          >.<br />Details: This app works on
+          <span class="underline">Edge</span> versions
+          <span class="font-weight-bold">from late 2017 to now</span>.
+        </p></ng-template
+      >
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>{{ browsers[5].browser }}</ng-template>
+      <ng-template ngbTabContent>
+        <p class="pt-2">
+          Status: <span class="incompatible">{{ browsers[5].status }}</span
+          >.<br />Details: This app is
+          <span class="font-weight-bold">NOT</span> compatible with
+          <span class="underline">Internet Explorer</span>. Please use another
+          browser.
+        </p></ng-template
+      >
+    </ngb-tab>
+  </ngb-tabset>
+</div>

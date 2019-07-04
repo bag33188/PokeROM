@@ -1,0 +1,11 @@
+@charset 'UTF-8';
+
+@import '../../../../assets/scss/variables';
+
+.bg-pkmn {
+  background: $bg-pkmn url($bg-carousel);
+}
+
+#carousel-container {
+  height: 88vh;
+}

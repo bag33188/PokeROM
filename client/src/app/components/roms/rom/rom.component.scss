@@ -1,0 +1,40 @@
+@charset 'UTF-8';
+
+@import '../../../../assets/scss/variables';
+
+.list-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.card-body-container {
+  margin: 0 auto;
+  // padding-top: 15px;
+  text-align: center;
+}
+
+.img-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.box-art-img {
+  width: 29.9vw;
+}
+
+.card-container {
+  margin: 10px;
+  width: 30vw;
+  @media only all and (max-width: 916px) {
+    margin: 0;
+    width: 70vw !important;
+  }
+}
+
+.img-container {
+  @media only all and (max-width: 916px) {
+    margin: 0 auto;
+    padding-top: 20px;
+    text-align: center;
+  }
+}

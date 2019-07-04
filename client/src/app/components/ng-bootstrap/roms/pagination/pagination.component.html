@@ -1,0 +1,14 @@
+<div class="pt-4" style="margin: 0 auto;">
+  <ngb-pagination
+    aria-label="Custom pagination"
+    [boundaryLinks]="true"
+    [collectionSize]="romsData.length"
+    #numPages
+    [pageSize]="itemsPerPage"
+    [(page)]="currentPage"
+    (pageChange)="onPageChange(currentPage)"
+  >
+    <ng-template ngbPaginationPrevious>Prev</ng-template>
+    <ng-template ngbPaginationNext>Next</ng-template></ngb-pagination
+  >
+</div>

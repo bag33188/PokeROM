@@ -1,0 +1,11 @@
+---
+paths:
+  '/options':
+    options:
+      tags:
+        - Options
+      name: Get Backend Options
+      summary: Get All Supported Backend Options
+      responses:
+        '204':
+          description: 'No content, just supported options headers.'

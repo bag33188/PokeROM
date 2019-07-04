@@ -1,0 +1,11 @@
+@charset 'UTF-8';
+
+@import '../../../../../assets/scss/variables';
+
+#download-link {
+  width: 100%;
+  @media only all and (max-width: 938px) {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+}

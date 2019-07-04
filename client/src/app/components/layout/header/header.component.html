@@ -1,0 +1,59 @@
+<header class="mt-4 pt-4">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="header">
+    <a class="navbar-brand" [routerLink]="['/']">Pok&eacute;ROM</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a
+          class="nav-item nav-link {{ this.isUrl('/home') ? 'yellow' : 'white' }}"
+          [routerLink]="['/home']"
+          >Home</a
+        >
+        <a
+          class="nav-item nav-link {{ this.isUrl('/roms') ? 'yellow' : 'white' }}"
+          [routerLink]="['/roms']"
+          >ROMs</a
+        >
+        <a
+          class="nav-item nav-link {{ this.isUrl('/faq') ? 'yellow' : 'white' }}"
+          [routerLink]="['/faq']"
+          >FAQ</a
+        >
+        <a
+          class="nav-item nav-link {{ this.isUrl('/natures') ? 'yellow' : 'white' }}"
+          [routerLink]="['/natures']"
+          >Natures</a
+        >
+        <a
+          class="disabled nav-item nav-link"
+          [routerLink]="['/sandbox']"
+          >Sandbox</a
+        > <!-- {{ this.isUrl('/sandbox') ? 'yellow' : 'white' }} -->
+      </div>
+    </div>
+    <div class="my-2 my-lg-0">
+      <a
+        class="btn btn-primary nav-item"
+        [routerLink]="['/login']"
+        *ngIf="(isUrl('/home') || isUrl('/faq') || isUrl('/natures')) && isLoggedOut()"
+        >Login</a
+      >
+      <button
+        class="btn btn-primary nav-item"
+        (click)="logout()"
+        *ngIf="!isUrl('/login') && !isLoggedOut()"
+      >
+        Logout
+      </button>
+    </div>
+  </nav>
+</header>

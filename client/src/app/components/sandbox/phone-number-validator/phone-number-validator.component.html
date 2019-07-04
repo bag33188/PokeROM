@@ -1,0 +1,58 @@
+<div class="mt-4">
+  <form
+    class="form"
+    #phoneNumberForm="ngForm"
+    (ngSubmit)="submitPhoneNumber()"
+    *ngIf="!isSubmitted"
+  >
+    <fieldset>
+      <legend>Phone Number Validator</legend>
+      <div class="form-group">
+        <label for="phone-number">Phone Number</label>
+        <input
+          type="text"
+          id="phone-number"
+          class="form-control"
+          name="phoneNumber"
+          required
+          minlength="3"
+          maxlength="42"
+          [pattern]="phoneNumberPattern"
+          #phoneNumber="ngModel"
+          [(ngModel)]="phoneNumberValue"
+          placeholder="Enter phone number"
+        />
+        <div
+          class="alert alert-danger"
+          [hidden]="!(phoneNumber.touched && phoneNumber.invalid)"
+        >
+          <div [hidden]="!phoneNumber.errors?.required">
+            &#x2022; Phone number is required.
+          </div>
+          <div [hidden]="!phoneNumber.errors?.minlength">
+            &#x2022; Phone number must be at least 3 characters. Current length:
+            {{ phoneNumberValue.length }}.
+          </div>
+          <div [hidden]="!phoneNumber.errors?.maxlength">
+            &#x2022; Phone number can only be 20 characters at max. Current
+            length:
+            {{ phoneNumberValue.length }}.
+          </div>
+          <div [hidden]="!phoneNumber.errors?.pattern">
+            &#x2022; Not a valid phone number.
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="!phoneNumberForm.form.valid"
+    >
+      Submit
+    </button>
+  </form>
+  <p id="success" class="green text-center" *ngIf="isSubmitted">
+    Success!<br />{{ phoneNumberValue }} is a valid phone number.
+  </p>
+</div>

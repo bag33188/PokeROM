@@ -1,0 +1,29 @@
+@charset 'UTF-8';
+
+@import '../../../../assets/scss/variables';
+@import '../../../../assets/scss/mixins';
+
+#login-fail {
+  color: $red;
+  font-size: 2rem;
+}
+
+#form-container {
+  // mixins
+  @include responsive-width(100px, 992px, 45vw);
+  @include responsive-width(991px, 762px, 55vw);
+  @include responsive-width(761px, 626px, 63vw);
+  @include responsive-width(0, 555px, 70vw);
+  margin: 0 auto;
+  padding-top: 5rem;
+  width: 32vw;
+}
+
+#border-container {
+  background-color: $white;
+  padding: 14px;
+}
+
+.large-top-margin {
+  margin-top: 4rem !important;
+}

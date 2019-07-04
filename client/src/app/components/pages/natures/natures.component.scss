@@ -1,0 +1,11 @@
+@charset 'UTF-8';
+
+@import '../../../../assets/scss/variables';
+
+#natures-container {
+  overflow-x: scroll !important;
+}
+
+#natures {
+  background-color: $white;
+}

@@ -1,0 +1,12 @@
+<div *ngFor="let alert of alerts">
+  <ngb-alert
+    *ngIf="isBeta"
+    [dismissible]="true"
+    [type]="alert.type"
+    class="text-center font-weight-bold"
+    id="beta-version-alert"
+    (close)="closeAlert(alert)"
+  >
+    {{ alert.message }}
+  </ngb-alert>
+</div>

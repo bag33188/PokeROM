@@ -1,0 +1,28 @@
+@charset 'UTF-8';
+
+@import '../../../../../assets/scss/variables';
+@import '../../../../../assets/scss/functions';
+
+.white {
+  color: set-text-color($carousel-bg);
+}
+
+h3 {
+  .white {
+    padding: 0 .5em;
+  }
+}
+
+img {
+  filter: brightness(55%);
+  object-fit: cover;
+  position: static;
+  width: 100%;
+  @media screen {
+    height: 88vh !important;
+  }
+}
+
+.img-container {
+  height: 88vh !important;
+}

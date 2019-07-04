@@ -1,0 +1,68 @@
+// _variables.scss
+
+@charset 'UTF-8';
+
+// colors
+$red: #f00;
+$gray: #808080;
+$almost-black: #333;
+$light-gray: #d3d3d3;
+$very-light-gray: #ccc;
+$light-crimson: #d6300a;
+$dark-red: #8b0000;
+$white: #fff;
+$black: #000;
+$success-green: #006400;
+$dark-gray: #343a40;
+$bg-pkmn: #424242;
+$carousel-bg: #343940;
+$scrollbar-bg-color-light: #ffd700;
+$scrollbar-bg-color-dark: #dbb800;
+$scrollbar-thumb-bg-color: #daa520;
+$fav-color: #148b42;
+$ufo-green: #8fff00;
+$proton-purple: #8a2be2;
+// opacity colors
+$scollbar-thumb-shadow-gray: rgba(0, 0, 0, .5);
+$scrollbar-track-shadow-color: rgba(0, 0, 0, .3);
+
+// urls
+$bg-img: '/assets/images/background.png';
+$bg-carousel: '/assets/images/carousel_bg.png';
+// font urls (Roboto)
+$roboto-regular: '/assets/fonts/Roboto-Regular.woff';
+$roboto-regular2: '/assets/fonts/Roboto-Regular.woff2';
+$roboto-bold: '/assets/fonts/Roboto-Bold.woff';
+$roboto-bold2: '/assets/fonts/Roboto-Bold.woff2';
+$roboto-condensed-light-italic: '/assets/fonts/RobotoCondensed-LightItalic.woff';
+$roboto-condensed-light-italic2: '/assets/fonts/RobotoCondensed-LightItalic.woff2';
+$roboto-bold-italic: '/assets/fonts/Roboto-BoldItalic.woff';
+$roboto-bold-italic2: '/assets/fonts/Roboto-BoldItalic.woff2';
+$roboto-condensed-bold: '/assets/fonts/RobotoCondensed-Bold.woff';
+$roboto-condensed-bold2: '/assets/fonts/RobotoCondensed-Bold.woff2';
+$roboto-thin-italic: '/assets/fonts/Roboto-ThinItalic.woff';
+$roboto-thin-italic2: '/assets/fonts/Roboto-ThinItalic.woff2';
+$roboto-condensed-regular: '/assets/fonts/RobotoCondensed-Regular.woff';
+$roboto-condensed-regular2: '/assets/fonts/RobotoCondensed-Regular.woff2';
+$roboto-thin: '/assets/fonts/Roboto-Thin.woff';
+$roboto-thin2: '/assets/fonts/Roboto-Thin.woff2';
+$roboto-light-italic: '/assets/fonts/Roboto-LightItalic.woff';
+$roboto-light-italic2: '/assets/fonts/Roboto-LightItalic.woff2';
+$roboto-condensed-italic: '/assets/fonts/RobotoCondensed-Italic.woff';
+$roboto-condensed-italic2: '/assets/fonts/RobotoCondensed-Italic.woff2';
+$roboto-light: '/assets/fonts/Roboto-Light.woff';
+$roboto-light2: '/assets/fonts/Roboto-Light.woff2';
+$roboto-condensed: '/assets/fonts/RobotoCondensed-Light.woff';
+$roboto-condensed2: '/assets/fonts/RobotoCondensed-Light.woff2';
+$roboto-black: '/assets/fonts/Roboto-Black.woff';
+$roboto-black2: '/assets/fonts/Roboto-Black.woff2';
+$roboto-medium: '/assets/fonts/Roboto-Medium.woff';
+$roboto-medium2: '/assets/fonts/Roboto-Medium.woff2';
+$roboto-medium-italic: '/assets/fonts/Roboto-MediumItalic.woff';
+$roboto-medium-italic2: '/assets/fonts/Roboto-MediumItalic.woff2';
+$roboto-condensed-bold-italic: '/assets/fonts/RobotoCondensed-BoldItalic.woff';
+$roboto-condensed-bold-italic2: '/assets/fonts/RobotoCondensed-BoldItalic.woff2';
+$roboto-black-italic: '/assets/fonts/Roboto-BlackItalic.woff';
+$roboto-black-italic2: '/assets/fonts/Roboto-BlackItalic.woff2';
+$roboto-italic: '/assets/fonts/Roboto-Italic.woff';
+$roboto-italic2: '/assets/fonts/Roboto-Italic.woff2';

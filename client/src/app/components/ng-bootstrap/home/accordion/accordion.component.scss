@@ -1,0 +1,13 @@
+@charset 'UTF-8';
+
+@import '../../../../../assets/scss/variables';
+
+#acc-container {
+  display: block;
+  margin: auto;
+  padding: auto;
+
+  .black {
+    color: $black !important;
+  }
+}

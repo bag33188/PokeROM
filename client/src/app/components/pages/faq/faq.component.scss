@@ -1,0 +1,13 @@
+@charset 'UTF-8';
+
+@import '../../../../assets/scss/variables';
+
+.question {
+  color: $gray;
+  font-size: 2rem;
+}
+
+.answer {
+  color: $almost-black;
+  font-size: 1.1rem;
+}

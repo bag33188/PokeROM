@@ -1,0 +1,12 @@
+@charset 'UTF-8';
+
+
+@import '../../../../../assets/scss/variables';
+
+#description {
+  background: $white;
+  border: 1px solid $light-gray;
+  padding: 1em 20px 20px;
+  // border-radius: 20px;
+  word-wrap: break-word;
+}
