@@ -1,4 +1,4 @@
-<div>
+<div (document:readystatechange)="applyUrlChange($event)">
   <h4>{{ isRomHack(rom.gameName) ? '' : 'Pokemon.com ' }}Description</h4>
-  <p id="description" class="rounded">{{ rom.description }}</p>
+  <p id="description" class="rounded" [innerHTML]="rom.description"></p>
 </div>

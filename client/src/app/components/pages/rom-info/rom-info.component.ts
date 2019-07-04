@@ -12,20 +12,20 @@ import Rom from '../../../models/Rom';
 })
 export class RomInfoComponent implements OnInit, AfterContentInit {
   rom: Rom = {
-    orderNumber: null,
-    gameName: null,
-    fileSize: null,
-    generation: null,
-    dateReleased: null,
-    fileType: null,
-    genre: null,
-    description: null,
-    downloadLink: null,
-    region: null,
-    logoUrl: null,
-    boxArtUrl: null,
-    fileName: null,
-    platform: null
+    orderNumber: 0,
+    gameName: '',
+    fileSize: 0,
+    generation: 0,
+    dateReleased: new Date(),
+    fileType: '',
+    genre: '',
+    description: '',
+    downloadLink: '',
+    region: '',
+    logoUrl: '',
+    boxArtUrl: '',
+    fileName: '',
+    platform: ''
   };
   id: string = this.activatedRoute.snapshot.url[2].path;
 
