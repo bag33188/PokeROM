@@ -1,5 +1,7 @@
 @charset 'UTF-8';
 
+@import '../../../../assets/scss/variables';
+
 #rom-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -14,9 +16,39 @@
 }
 
 #rom-info-container {
-  margin-bottom: 2.5em;
-  @media only all and (max-width: 991px) {
-    margin-top: 2.5rem !important;
+  display: flex;
+  flex-direction: row;
+}
+
+#back-btn-container {
+  align-self: auto;
+  flex: 2 0 auto;
+  margin-left: 2%;
+  order: 1;
+}
+
+#title-container {
+  align-self: auto;
+  flex: 2 0 auto;
+  order: 2;
+  text-align: center;
+}
+
+#dummy-container {
+  align-self: auto;
+  flex: 2 0 auto;
+  margin-right: 2%;
+  order: 3;
+
+  button {
+    background-color: $clear !important;
+    border: 0 $clear;
+    color: $clear !important;
+    cursor: auto;
+
+    &:focus {
+      box-shadow: none !important;
+    }
   }
 }
 
@@ -60,15 +92,5 @@
   @media only all and (max-width: 938px) {
     grid-column: 1;
     grid-row: 4;
-  }
-}
-
-#back-btn-container {
-  float: left;
-  margin-left: 2%;
-  @media only all and (max-width: 530px) {
-    float: none;
-    margin-bottom: 2rem;
-    margin-left: 1%;
   }
 }
