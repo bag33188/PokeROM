@@ -49,7 +49,7 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 
 ### Code Workspace File
 
-**File Name**: `PokeROM.code-workspace`
+**File Name**: `pokerom.code-workspace`
 
 **Data**:
 ```json
