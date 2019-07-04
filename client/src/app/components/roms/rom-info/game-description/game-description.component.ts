@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import Rom from '../../../../models/Rom';
 
 @Component({
@@ -11,17 +11,14 @@ export class GameDescriptionComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout((): void => {
+      this.rom.description = this.changeUrlToLink(this.rom.description);
+    }, 1000);
+  }
 
   isRomHack(gameName: string): boolean {
     return /ROM Hack/g.test(gameName) ? true : false;
-  }
-
-  applyUrlChange(e: Event): void {
-    const readyState: string = 'readyState';
-    if (e.target[readyState] === 'complete') {
-      this.rom.description = this.changeUrlToLink(this.rom.description);
-    }
   }
 
   changeUrlToLink(description: string): string {
