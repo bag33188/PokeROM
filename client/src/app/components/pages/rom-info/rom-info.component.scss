@@ -15,6 +15,9 @@
 
 #rom-info-container {
   margin-bottom: 2.5em;
+  @media only all and (max-width: 991px) {
+    margin-top: 2.5rem !important;
+  }
 }
 
 #game-logo {
