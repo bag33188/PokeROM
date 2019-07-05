@@ -19,7 +19,12 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const betaVerAlertId: string = this.elRef.nativeElement.offsetParent.attributes[1].nodeValue;
+    let betaVerAlertId: string;
+    if (/Edge/.test(navigator.userAgent)) {
+      betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[0].nodeValue;
+    } else {
+      betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[1].nodeValue;
+    }
     if (this.isBeta) {
       // close alert after 3 seconds
       setTimeout((): void => {
