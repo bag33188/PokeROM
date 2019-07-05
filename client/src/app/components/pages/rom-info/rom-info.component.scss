@@ -62,17 +62,65 @@
   }
 }
 
-#rom-info-container {
-  display: flex;
-  flex-direction: row;
+#game-logo {
+  grid-area: 'game-logo';
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#game-description {
+  grid-area: 'game-description';
+  grid-column: 1;
+  grid-row: 2 / 4;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+
+#game-download {
+  grid-area: 'game-download';
+  grid-column: 1;
+  grid-row: 4;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 5;
+  }
+}
+
+#game-specs {
+  grid-area: 'game-specs';
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 34px;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 0;
+  }
+}
+
+#rom-specs {
+  grid-area: 'rom-specs';
+  grid-column: 2;
+  grid-row: 3;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 4;
+  }
 }
 
 /*
- * CSS Flexbox Layout:
+ * CSS Flexbox Alignment:
  * |==================================================|
  * | back-btn-ctnr  | heading-ctnr   | dummy-ctnr     |
  * |==================================================|
  */
+
+#rom-info-container {
+  display: flex;
+  flex-direction: row;
+}
 
 #back-btn-container {
   align-self: auto;
@@ -98,53 +146,5 @@
   order: 3;
   @media only all and (max-width: 938px) {
     margin-right: 0;
-  }
-}
-
-#game-logo {
-  grid-area: game-logo;
-  grid-column: 1;
-  grid-row: 1;
-}
-
-#game-description {
-  grid-area: game-description;
-  grid-column: 1;
-  grid-row: 2 / 4;
-  @media only all and (max-width: 938px) {
-    grid-column: 1;
-    grid-row: 2;
-  }
-}
-
-#game-download {
-  grid-area: game-download;
-  grid-column: 1;
-  grid-row: 4;
-  @media only all and (max-width: 938px) {
-    grid-column: 1;
-    grid-row: 5;
-  }
-}
-
-#game-specs {
-  grid-area: game-specs;
-  grid-column: 2;
-  grid-row: 2;
-  margin-top: 34px;
-  @media only all and (max-width: 938px) {
-    grid-column: 1;
-    grid-row: 3;
-    margin-top: 0;
-  }
-}
-
-#rom-specs {
-  grid-area: rom-specs;
-  grid-column: 2;
-  grid-row: 3;
-  @media only all and (max-width: 938px) {
-    grid-column: 1;
-    grid-row: 4;
   }
 }
