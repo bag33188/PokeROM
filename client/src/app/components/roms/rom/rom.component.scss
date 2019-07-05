@@ -19,7 +19,9 @@
 }
 
 .box-art-img {
-  width: 29.9vw;
+  height: 51vh; // 23.86%
+  object-fit: cover;
+  width: 29.9vw; // 100%
 }
 
 .card-container {
