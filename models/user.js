@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const uuid = require('uuid');
-
-const id = uuid.v4();
 
 // create schema
 const UserSchema = mongoose.Schema({
