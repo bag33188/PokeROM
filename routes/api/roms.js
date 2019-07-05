@@ -599,12 +599,13 @@ router.options('/', async (req, res, next) => {
  */
 router.post('/core', auth, async (req, res, next) => {
   try {
-    await Rom.postCore(romsData, req.user);
-    Rom.getAllRoms({ userId: req.user['_id'] }, (err, roms) => {
-      if (err) {
-        return res.status(500).json({ success: false, ...err });
-      }
-      return res.status(201).json(roms);
+    await Rom.postCore(romsData, req.user, () => {
+      Rom.getAllRoms({ userId: req.user['_id'] }, (err, roms) => {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        return res.status(201).json(roms);
+      });
     });
   } catch (err) {
     next(err);

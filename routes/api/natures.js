@@ -4,6 +4,7 @@ const { sanitizeBody } = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const moment = require('moment');
 const url = require('url');
+const natureData = require('../../database/data.json')[1];
 
 const router = express.Router();
 
@@ -331,6 +332,23 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 /**
+ * @summary Delete All Natures
+ * @description Deletes all natures in the database.
+ */
+router.delete('/', async (req, res, next) => {
+  try {
+    Nature.deleteAllNatures((err, status) => {
+      if (err) {
+        return res.status(500).json({ success: false, ...err });
+      }
+      return res.status(200).json({ success: true, message: 'All Natures successfuly deleted!', ...status });
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
  * @summary Get Head Info.
  * @description Get's header info for entire /api/natures route.
  */
@@ -350,6 +368,25 @@ router.head('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
     await res.status(200);
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * @summary Add All Natures
+ * @description Adds all natures to the database.
+ */
+router.post('/all', async (req, res, next) => {
+  try {
+    await Nature.postAll(natureData, () => {
+      Nature.getNatures((err, natures) => {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        return res.status(201).json(natures);
+      });
+    });
   } catch (err) {
     next(err);
   }
