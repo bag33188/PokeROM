@@ -69,14 +69,16 @@
   'rom-1 rom-2'
   'rom-3 rom-4';
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: minmax(1fr) minmax(1fr);
   padding: 20px 0 2rem;
   width: 70vw;
   @media only all and (max-width: 916px) {
     grid-row-gap: 50px;
     grid-template-areas:
-    'rom-1' 'rom-2'
-    'rom-3' 'rom-4';
+    'rom-1'
+    'rom-2'
+    'rom-3'
+    'rom-4';
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, 1fr);
     margin: 0 auto !important;
