@@ -45,6 +45,18 @@ paths:
           description: The specified nature doesn't exist.
         '500':
           description: Internal server error on back-end occured.
+    delete:
+      tags:
+        - Natures
+      name: Delete Natures
+      summary: Delete all Natures
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successfully deleted all natures.
+        '500':
+          description: Internal server error on back-end occured.
     head:
       tags:
         - Natures
@@ -53,6 +65,8 @@ paths:
       responses:
         '200':
           description: No body, just headers.
+        '500':
+          description: Internal server error on back-end occured.
   '/api/natures/{id}':
     get:
       tags:
@@ -181,3 +195,23 @@ paths:
           description: No body, just headers.
         '404':
           description: Nature not found.
+        '500':
+          description: Internal server error on back-end occured.
+  '/api/natures/all':
+    post:
+      tags:
+        - Natures
+      name: Post Natures
+      summary: Add All Natures
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: A natures array (containing all natures).
+          schema:
+            type: array
+            items:
+              '$ref': '#/definitions/Nature'
+              type: object
+        '500':
+          description: Internal server error on back-end occured.

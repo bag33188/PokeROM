@@ -9,3 +9,5 @@ paths:
       responses:
         '204':
           description: 'No content, just supported options headers.'
+        '500':
+          description: Internal server error on back-end occured.

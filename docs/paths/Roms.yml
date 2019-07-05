@@ -96,6 +96,8 @@ paths:
           description: No auth token / no user found in database with that name.
         '403':
           description: JWT token and username from client don't match.
+        '500':
+          description: Internal server error on back-end occured.
     head:
       tags:
         - Roms
@@ -110,6 +112,8 @@ paths:
           description: No auth token / no user found in database with that name.
         '403':
           description: JWT token and username from client don't match.
+        '500':
+          description: Internal server error on back-end occured.
     options:
       tags:
         - Roms
@@ -118,30 +122,6 @@ paths:
       responses:
         '204':
           description: No body.
-  '/api/roms/core':
-    post:
-      tags:
-        - Roms
-      name: Post Core ROMs
-      summary: Adds the Core ROMs to the database
-      security:
-        - bearerAuth: []
-      produces:
-        - application/json
-      responses:
-        '201':
-          description: A ROMs array.
-          schema:
-            type: array
-            items:
-              '$ref': '#/definitions/Rom'
-              type: object
-        '401':
-          description: No auth token / no user found in database with that name.
-        '403':
-          description: JWT token and username from client don't match.
-        '500':
-          description: Internal server error on back-end occured.
   '/api/roms/{id}':
     get:
       tags:
@@ -285,6 +265,8 @@ paths:
           description: JWT token and username from client don't match.
         '404':
           description: Requested ROM not found.
+        '500':
+          description: Internal server error on back-end occured.
     head:
       tags:
         - Roms
@@ -307,3 +289,29 @@ paths:
           description: JWT token and username from client don't match.
         '404':
           description: ROM not found.
+        '500':
+          description: Internal server error on back-end occured.
+  '/api/roms/core':
+    post:
+      tags:
+        - Roms
+      name: Post Core ROMs
+      summary: Adds the Core ROMs to the database
+      security:
+        - bearerAuth: []
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: A ROMs array.
+          schema:
+            type: array
+            items:
+              '$ref': '#/definitions/Rom'
+              type: object
+        '401':
+          description: No auth token / no user found in database with that name.
+        '403':
+          description: JWT token and username from client don't match.
+        '500':
+          description: Internal server error on back-end occured.
