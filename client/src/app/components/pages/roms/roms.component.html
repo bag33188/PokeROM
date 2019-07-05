@@ -2,6 +2,18 @@
   <h2 *ngIf="romsData.length === 0" class="text-center" id="no-roms-heading">
     No ROMs to Show
   </h2>
+  <form class="form" #paginateForm="ngForm">
+    <div class="form-group">
+      <label for="itemsPerPage">ROMs Per Page</label>
+      <input
+        type="number"
+        name="itemsPerPage"
+        id="itemsPerPage"
+        class="form-control"
+        [(ngModel)]="itemsPerPage"
+      />
+    </div>
+  </form>
   <div class="container-grid">
     <app-rom
       *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"

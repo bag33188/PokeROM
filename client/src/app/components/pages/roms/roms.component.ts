@@ -12,6 +12,7 @@ export class RomsComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 4;
   pageSize: number;
+  a: string;
 
   constructor(private romsService: RomsService) {}
 
