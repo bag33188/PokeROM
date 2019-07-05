@@ -18,9 +18,11 @@ import { environment } from 'src/environments/environment';
     `,
     `
       #container-wrapper {
+        /* margin and padding property value variable */
+        --mp-prop-val: auto;
         display: block;
-        margin: auto;
-        padding: auto;
+        margin: var(--mp-prop-val);
+        padding: var(--mp-prop-val);
       }
     `
   ]
