@@ -531,18 +531,6 @@
   ],
   [
     {
-      "name": "Broccolini",
-      "email": "bglatman@outlook.com",
-      "username": "bag33188",
-      "password": "12345678"
-    },
-    {
-      "username": "bag33188",
-      "password": "12345678"
-    }
-  ],
-  [
-    {
       "name": "Adamant",
       "up": "Attack",
       "down": "Special Attack",
@@ -716,6 +704,18 @@
       "down": "Speed",
       "flavor": "Sweet (Pink)",
       "usage": "Neutral (useless)"
+    }
+  ],
+  [
+    {
+      "name": "Broccolini",
+      "email": "bglatman@outlook.com",
+      "username": "bag33188",
+      "password": "12345678"
+    },
+    {
+      "username": "bag33188",
+      "password": "12345678"
     }
   ]
 ]
