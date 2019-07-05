@@ -55,7 +55,7 @@ module.exports.getNatures = function (callback) {
  * @param {object} query The query to grab the nature with (usually the ID query).
  * @param {Response} callback The callback function.
  */
-module.exports.getNature = function(query, callback) {
+module.exports.getNature = function (query, callback) {
   Nature.findById(query, callback);
 };
 
@@ -66,7 +66,7 @@ module.exports.getNature = function(query, callback) {
  * @param {object} query The data to update the nature with.
  * @param {Response} callback The callback function.
  */
-module.exports.patchNature = function(idQuery, query, callback) {
+module.exports.patchNature = function (idQuery, query, callback) {
   Nature.updateOne(idQuery, query, callback);
 };
 
@@ -76,9 +76,19 @@ module.exports.patchNature = function(idQuery, query, callback) {
  * @param {object} query The id query for locating which nature to delete.
  * @param {Response} callback The callback functio
  */
-module.exports.deleteNature = function(query, callback) {
+module.exports.deleteNature = function (query, callback) {
   Nature.deleteOne(query, callback);
 };
+
+/**
+ * @summary Delete All Natures
+ * @description Deletes all natures in the database.
+ * @param {any} callback The callback function.
+ */
+module.exports.deleteAllNatures = function(callback) {
+  Nature.deleteMany(callback);
+};
+
 
 /**
  * @summary Add Nature
@@ -86,11 +96,19 @@ module.exports.deleteNature = function(query, callback) {
  * @param {Nature} newNature The new nature to add.
  * @param {Response} callback The callback function.
  */
-module.exports.addNature = function(newNature, callback) {
+module.exports.addNature = function (newNature, callback) {
   Nature.create(newNature, callback);
 };
 
-module.exports.updateNature = function(query, natureData, options, callback) {
+/**
+ * @summary Update Nature
+ * @description Updates a nature in the database.
+ * @param {object} query The query to find the nature.
+ * @param {Nature} natureData The data to update the nature with.
+ * @param {object} options Any options (none in this case).
+ * @param {any} callback The callback function.  
+ */
+module.exports.updateNature = function (query, natureData, options, callback) {
   const natureQuery = {
     name: natureData.name,
     up: natureData.up,
@@ -99,4 +117,22 @@ module.exports.updateNature = function(query, natureData, options, callback) {
     usage: natureData.usage
   };
   Nature.findOneAndUpdate(query, natureQuery, options, callback);
+};
+
+/**
+ * @summary Post All Natures
+ * @description Adds all natures to the database.
+ * @param {Array<Nature>} allNatures The natures array containing all natures.
+ */
+module.exports.postAll = function (allNatures, callback) {
+  const naturesAsync = new Promise((resolve, reject) => {
+    allNatures.forEach((nature) => {
+      Nature.create(nature);
+    });
+    resolve('Done!');
+    reject(new Error('Error!'));
+  });
+  naturesAsync
+    .then(() => callback())
+    .catch(err => console.log(err));
 };

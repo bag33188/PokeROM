@@ -211,9 +211,16 @@ module.exports.patchRom = function (idQuery, query, callback) {
  * @param {Array<Rom>} coreRoms The core ROMs array.
  * @param {User} user The user object.
  */
-module.exports.postCore = function (coreRoms, user) {
-  coreRoms.forEach(rom => {
-    rom.userId = user['_id'];
-    Rom.create(rom);
-  });
+module.exports.postCore = function (coreRoms, user, callback) {
+  const romsAsync = new Promise((resolve, reject) => {
+    coreRoms.forEach(rom => {
+      rom.userId = user['_id'];
+      Rom.create(rom);
+    });
+    resolve('Done!');
+    reject(new Error("Error!"));
+  })
+  romsAsync
+    .then(() => callback())
+    .catch(err => console.log(err));
 };
