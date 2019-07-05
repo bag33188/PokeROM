@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import he from 'he';
 import { ApiService } from './services/api.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',

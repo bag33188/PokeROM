@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import he from 'he';
-import LoggedUser from 'src/app/models/LoggedUser';
+import LoggedUser from '../../../models/LoggedUser';
 
 @Component({
   selector: 'app-faq',

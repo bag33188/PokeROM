@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
-import Nature from 'src/app/models/Nature';
-import { NaturesService } from 'src/app/services/natures.service';
+import Nature from '../../../models/Nature';
+import { NaturesService } from '../../../services/natures.service';
 
 @Component({
   selector: 'app-natures',
