@@ -14,11 +14,11 @@ import { environment } from 'src/environments/environment';
   `,
   styles: [
     `
+      /* CSS charset */
       @charset 'UTF-8';
     `,
     `
       #container-wrapper {
-        /* margin and padding property value variable */
         --mp-prop-val: auto;
         display: block;
         margin: var(--mp-prop-val);
@@ -45,10 +45,12 @@ export class AppComponent {
     if (!environment.production) {
       this.apiService
         .getApiVersion()
-        .then((res: Response): void => {
-          const keys: string[] = ['data', 'apiVersion'];
-          console.log(`API Version: ${res[keys[0]][keys[1]]}`);
-        })
+        .then(
+          (res: Response): void => {
+            const keys: string[] = ['data', 'apiVersion'];
+            console.log(`API Version: ${res[keys[0]][keys[1]]}`);
+          }
+        )
         .catch((excptn: any): void => console.error(excptn));
     }
   }
