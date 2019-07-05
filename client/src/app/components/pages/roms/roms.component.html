@@ -1,5 +1,7 @@
 <div class="justify-content-center mt-4 roms-flex">
-  <h2 *ngIf="romsData.length === 0" class="text-center" id="no-roms-heading">No ROMs to Show</h2>
+  <h2 *ngIf="romsData.length === 0" class="text-center" id="no-roms-heading">
+    No ROMs to Show
+  </h2>
   <div class="container-grid">
     <app-rom
       *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
