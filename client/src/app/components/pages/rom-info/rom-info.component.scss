@@ -67,6 +67,13 @@
   flex-direction: row;
 }
 
+/*
+CSS Flexbox Layout:
+|==================================================|
+| back-btn-ctnr  | heading-ctnr   | dummy-ctnr     |
+|==================================================|
+*/
+
 #back-btn-container {
   align-self: auto;
   flex: 2 0 auto;
