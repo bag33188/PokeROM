@@ -3,8 +3,8 @@
     <li class="list-group-item active bg-red">ROM Info</li>
     <li class="list-group-item">File Type: {{ rom.fileType }}</li>
     <li class="list-group-item">
-      File Size: {{ convertSize(rom.fileSize)[0]
-      }}{{ convertSize(rom.fileSize)[1] }}
+      File Size: {{ sizeConverter.convertSize(rom.fileSize)[0]
+      }}{{ sizeConverter.convertSize(rom.fileSize)[1] }}
     </li>
     <li class="list-group-item">Platform: {{ rom.platform }}</li>
     <li class="list-group-item">File Name: {{ rom.fileName }}</li>
