@@ -11,6 +11,7 @@
   margin: 0 auto;
   // padding-top: 15px;
   text-align: center;
+  z-index: 104;
 }
 
 .img-grid {
@@ -19,9 +20,9 @@
 }
 
 .box-art-img {
-  height: 51vh; // 23.86%
+  height: 48.5vh;
   object-fit: cover;
-  width: 29.9vw; // 100%
+  width: 29.9vw;
 }
 
 .card-container {
@@ -34,6 +35,7 @@
 }
 
 .img-container {
+  height: 50.86%;
   @media only all and (max-width: 916px) {
     margin: 0 auto;
     padding-top: 20px;
