@@ -23,7 +23,7 @@ romTests() {
     echo -e "What would you like to test?\r\n\r\n1: GET /api/roms\r\n2: GET /api/roms/:id\r\n3: POST /api/roms\r\n4: PUT /api/roms/:id\r\n5: PATCH /api/roms/:id\r\n6: DELETE /api/roms/:id\r\n7: DELETE /api/roms\r\n8: HEAD /api/roms\r\n9: HEAD /api/roms/:id\r\n10: OPTIONS /api/roms\r\n11: POST /api/roms/core\r\n12: Exit\r\n\r\n"
     read -p 'Enter option here: ' rqst
     printf "\r\n"
-    if [[ $rqst == 11 ]]; then 
+    if [[ $rqst == '12' ]]; then 
       break
     fi
     read -p "Enter JSON Web Token: " jwt
