@@ -2,6 +2,11 @@
 
 #rom-container {
   display: grid;
+  grid-template-areas:
+  'game-logo . '
+  'game-description game-specs'
+  'game-description rom-specs'
+  'game-download . ';
   grid-template-columns: 2fr 1fr;
   grid-template-rows: .5fr repeat(2, fit-conent(1fr)) 42px;
   margin: 30px;
@@ -40,11 +45,13 @@
 }
 
 #game-logo {
+  grid-area: game-logo;
   grid-column: 1;
   grid-row: 1;
 }
 
 #game-description {
+  grid-area: game-description;
   grid-column: 1;
   grid-row: 2 / 4;
   @media only all and (max-width: 938px) {
@@ -54,6 +61,7 @@
 }
 
 #game-download {
+  grid-area: game-download;
   grid-column: 1;
   grid-row: 4;
   @media only all and (max-width: 938px) {
@@ -63,6 +71,7 @@
 }
 
 #game-specs {
+  grid-area: game-specs;
   grid-column: 2;
   grid-row: 2;
   margin-top: 34px;
@@ -74,6 +83,7 @@
 }
 
 #rom-specs {
+  grid-area: rom-specs;
   grid-column: 2;
   grid-row: 3;
   @media only all and (max-width: 938px) {
