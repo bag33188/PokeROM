@@ -5,5 +5,7 @@ definitions:
     properties:
       _id:
         type: string
+      versionId:
+        type: string
       apiVersion:
         type: string
