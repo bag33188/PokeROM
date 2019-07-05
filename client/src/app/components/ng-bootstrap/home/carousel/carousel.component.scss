@@ -3,14 +3,13 @@
 @import '../../../../../assets/scss/variables';
 @import '../../../../../assets/scss/functions';
 
-.white {
+%white {
   color: set-text-color($carousel-bg);
 }
 
 h3 {
-  .white {
-    padding: 0 .5em;
-  }
+  @extend %white;
+  padding: 0 .5em;
 }
 
 img {
