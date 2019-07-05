@@ -20,10 +20,10 @@ natureTests() {
   printf "\r\n"
   while [ true ]
   do
-    echo -e "What would you like to test?\r\n\r\n1: GET /api/natures\r\n2: GET /api/natures/:id\r\n3: POST /api/natures\r\n4: PUT /api/natures/:id\r\n5: PATCH /api/natures/:id\r\n6: DELETE /api/natures/:id\r\n7: DELETE /api/natures\r\n8: HEAD /api/natures\r\n9: HEAD /api/natures/:id\r\n10: Exit\r\n\r\n"
+    echo -e "What would you like to test?\r\n\r\n1: GET /api/natures\r\n2: GET /api/natures/:id\r\n3: POST /api/natures\r\n4: PUT /api/natures/:id\r\n5: PATCH /api/natures/:id\r\n6: DELETE /api/natures/:id\r\n7: DELETE /api/natures\r\n8: HEAD /api/natures\r\n9: HEAD /api/natures/:id\r\n10: POST /api/natures/all\r\n11: Exit\r\n\r\n"
     read -p 'Enter option here: ' rqst
     printf "\r\n"
-    if [[ $rqst == '10' ]]; then
+    if [[ $rqst == '11' ]]; then
       break
     fi
     get() {
@@ -137,6 +137,15 @@ natureTests() {
     }
     if [[ $rqst == '8' || $rqst == '9' ]]; then
       head
+    fi
+    postAll() {
+      echo "Testing POST: /api/natures/all"
+      printf "\r\n"
+      curl -i -X POST "http://localhost:5000/api/natures" -H  "accept: application/json"
+      printf "\r\n\r\n"
+    }
+    if [[ $rqst == '10' ]]; then
+      postAll
     fi
     read -p 'Press enter to continue'
     printf "\r\n"
