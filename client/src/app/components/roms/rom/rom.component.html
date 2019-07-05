@@ -3,7 +3,7 @@
     <img
       [alt]="imgAlt(rom.gameName) | lowercase"
       [src]="rom.boxArtUrl"
-      class="card-img-top box-art-img"
+      [class]="checkGame(imgAlt(rom.gameName))"
    />
   </div>
 

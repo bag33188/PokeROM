@@ -21,8 +21,11 @@
 
 .box-art-img {
   height: 29.9vw;
-  object-fit: cover;
   width: 29.9vw;
+}
+
+.oversized-img {
+  object-fit: cover;
 }
 
 .card-container {
