@@ -11,16 +11,16 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        200:
           description: A single Users array.
           schema:
-            '$ref': '#/definitions/User'
+            $ref: '#/definitions/User'
             type: object
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     delete:
       tags:
@@ -32,7 +32,7 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        200:
           description: A success object.
           schema:
             properties:
@@ -43,13 +43,13 @@ paths:
                 type: string
               status:
                 type: object
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '404':
+        404:
           description: Specified User not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     head:
       tags:
@@ -59,9 +59,9 @@ paths:
       security:
         - bearerAuth: []
       responses:
-        '200':
+        200:
           description: No body, just headers.
-        '500':
+        500:
           description: Internal server error on back-end occured.
   '/api/users/{id}':
     get:
@@ -80,18 +80,18 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        200:
           description: A single Users object.
           schema:
-            '$ref': '#/definitions/User'
+            $ref: '#/definitions/User'
             type: object
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '404':
+        404:
           description: User not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     put:
       tags:
@@ -115,10 +115,10 @@ paths:
           description: The User data to update with.
           required: true
           schema:
-            '$ref': '#/definitions/User'
+            $ref: '#/definitions/User'
             type: object
       responses:
-        '201':
+        201:
           description: A single user object.
           schema:
             type: object
@@ -136,13 +136,13 @@ paths:
                     type: string
                   username:
                     type: string
-        '400':
+        400:
           description: Bad JSON input.
-        '401':
+        401:
           description: Unauthorized.
-        '404':
+        404:
           description: User not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     patch:
       tags:
@@ -166,10 +166,10 @@ paths:
           description: The User data to partially update with.
           required: true
           schema:
-            '$ref': '#/definitions/User'
+            $ref: '#/definitions/User'
             type: object
       responses:
-        '201':
+        201:
           description: A single user object.
           schema:
             type: object
@@ -187,13 +187,13 @@ paths:
                     type: string
                   username:
                     type: string
-        '400':
+        400:
           description: Bad JSON input.
-        '401':
+        401:
           description: Unauthorized.
-        '404':
+        404:
           description: User not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     delete:
       tags:
@@ -211,7 +211,7 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        200:
           description: A success object.
           schema:
             type: object
@@ -222,13 +222,13 @@ paths:
                 type: string
               status:
                 type: object
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '404':
+        404:
           description: Specified User not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     head:
       tags:
@@ -244,11 +244,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        200:
           description: No body, just headers.
-        '404':
+        404:
           description: User not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
   '/api/users/register':
     post:
@@ -266,17 +266,17 @@ paths:
           description: The User data to add to the database.
           required: true
           schema:
-            '$ref': '#/definitions/User'
+            $ref: '#/definitions/User'
             type: object
       responses:
-        '201':
+        201:
           description: A single user object.
           schema:
-            '$ref': '#/definitions/User'
+            $ref: '#/definitions/User'
             type: object
-        '400':
+        400:
           description: Bad JSON input.
-        '500':
+        500:
           description: User with email already registered or user with username already exists.
   '/api/users/authenticate':
     post:
@@ -303,7 +303,7 @@ paths:
                 type: string
                 required: true
       responses:
-        '200':
+        200:
           description: A success object.
           schema:
             type: object
@@ -323,13 +323,13 @@ paths:
                     type: string
                   username:
                     type: string
-        '400':
+        400:
           description: Bad JSON input.
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '404':
+        404:
           description: Specified User not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.

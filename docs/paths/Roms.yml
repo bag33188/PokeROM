@@ -27,16 +27,16 @@ paths:
           description: '(Optional) For pagination: the number of ROMs per page.'
           type: number
       responses:
-        '200':
+        200:
           description: A single ROMs array.
           schema:
-            '$ref': '#/definitions/Rom'
+            $ref: '#/definitions/Rom'
             type: object
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     post:
       tags:
@@ -55,21 +55,21 @@ paths:
           description: TThe ROM data to add to the database.
           required: true
           schema:
-            '$ref': '#/definitions/Rom'
+            $ref: '#/definitions/Rom'
             type: object
       responses:
-        '201':
+        201:
           description: A single rom object.
           schema:
-            '$ref': '#/definitions/Rom'
+            $ref: '#/definitions/Rom'
             type: object
-        '400':
+        400:
           description: Bad JSON input.
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     delete:
       tags:
@@ -81,7 +81,7 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        200:
           description: A success object.
           schema:
             type: object
@@ -92,11 +92,11 @@ paths:
                 type: string
               status:
                 type: object
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     head:
       tags:
@@ -106,13 +106,13 @@ paths:
       security:
         - bearerAuth: []
       responses:
-        '200':
+        200:
           description: No body, just headers.
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     options:
       tags:
@@ -139,18 +139,18 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        200:
           description: A single rom object.
           schema:
-            '$ref': '#/definitions/Rom'
+            $ref: '#/definitions/Rom'
             type: object
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
         '404':
           description: Requested ROM is not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     put:
       tags:
@@ -174,23 +174,23 @@ paths:
           description: TThe ROM data you want to update in the database.
           required: true
           schema:
-            '$ref': '#/definitions/Rom'
+            $ref: '#/definitions/Rom'
             type: object
       responses:
-        '200':
+        200:
           description: A single rom object.
           schema:
-            '$ref': '#/definitions/Rom'
+            $ref: '#/definitions/Rom'
             type: object
-        '400':
+        400:
           description: Bad JSON input.
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
         '404':
           description: Specified ROM doesn't exist.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     patch:
       tags:
@@ -214,23 +214,23 @@ paths:
           description: TThe ROM data you want to update in the database.
           required: true
           schema:
-            '$ref': '#/definitions/Rom'
+            $ref: '#/definitions/Rom'
             type: object
       responses:
-        '200':
+        200:
           description: A single rom object.
           schema:
-            '$ref': '#/definitions/Rom'
+            $ref: '#/definitions/Rom'
             type: object
-        '400':
+        400:
           description: Bad JSON input.
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
         '404':
           description: Specified ROM doesn't exist.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     delete:
       tags:
@@ -248,7 +248,7 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        200:
           description: A success object.
           schema:
             type: object
@@ -259,13 +259,13 @@ paths:
                 type: string
               status:
                 type: object
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
         '404':
           description: Requested ROM not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     head:
       tags:
@@ -281,15 +281,15 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        200:
           description: No body, just headers.
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
         '404':
           description: ROM not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
   '/api/roms/core':
     post:
@@ -302,16 +302,16 @@ paths:
       produces:
         - application/json
       responses:
-        '201':
+        201:
           description: A ROMs array.
           schema:
             type: array
             items:
-              '$ref': '#/definitions/Rom'
+              $ref: '#/definitions/Rom'
               type: object
-        '401':
+        401:
           description: No auth token / no user found in database with that name.
-        '403':
+        403:
           description: JWT token and username from client don't match.
-        '500':
+        500:
           description: Internal server error on back-end occured.

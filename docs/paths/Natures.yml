@@ -9,12 +9,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        200:
           description: A single Natures array.
           schema:
-            '$ref': '#/definitions/Nature'
+            $ref: '#/definitions/Nature'
             type: object
-        '500':
+        500:
           description: Internal server error on back-end occured.
     post:
       tags:
@@ -28,22 +28,22 @@ paths:
       parameters:
         - in: body
           name: natureData
-          description: TThe nature data you want to add to the database.
+          description: The nature data you want to add to the database.
           required: true
           schema:
-            '$ref': '#/definitions/Nature'
+            $ref: '#/definitions/Nature'
             type: object
       responses:
-        '200':
+        200:
           description: A single Nature object.
           schema:
-            '$ref': '#/definitions/Nature'
+            $ref: '#/definitions/Nature'
             type: object
-        '400':
+        400:
           description: Bad JSON input.
-        '404':
+        404:
           description: The specified nature doesn't exist.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     delete:
       tags:
@@ -53,9 +53,9 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        200:
           description: Successfully deleted all natures.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     head:
       tags:
@@ -63,9 +63,9 @@ paths:
       name: Get Head Info (All Natures)
       summary: Gets Header Information of all Natures
       responses:
-        '200':
+        200:
           description: No body, just headers.
-        '500':
+        500:
           description: Internal server error on back-end occured.
   '/api/natures/{id}':
     get:
@@ -82,14 +82,14 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        200:
           description: A single Nature object.
           schema:
-            '$ref': '#/definitions/Nature'
+            $ref: '#/definitions/Nature'
             type: object
-        '404':
+        404:
           description: The specified nature doesn't exist.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     put:
       tags:
@@ -111,19 +111,19 @@ paths:
           description: TThe nature data you want to update with.
           required: true
           schema:
-            '$ref': '#/definitions/Nature'
+            $ref: '#/definitions/Nature'
             type: object
       responses:
-        '200':
+        200:
           description: A single Nature object.
           schema:
-            '$ref': '#/definitions/Nature'
+            $ref: '#/definitions/Nature'
             type: object
-        '400':
+        400:
           description: Bad JSON input.
-        '404':
+        404:
           description: The specified nature doesn't exist.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     patch:
       tags:
@@ -145,19 +145,19 @@ paths:
           description: TThe nature data you want to partially update with.
           required: true
           schema:
-            '$ref': '#/definitions/Nature'
+            $ref: '#/definitions/Nature'
             type: object
       responses:
-        '200':
+        200:
           description: A single Nature object.
           schema:
-            '$ref': '#/definitions/Nature'
+            $ref: '#/definitions/Nature'
             type: object
-        '400':
+        400:
           description: Bad JSON input.
-        '404':
+        404:
           description: The specified nature doesn't exist.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     delete:
       tags:
@@ -173,11 +173,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        200:
           description: Successfuly delete nature.
-        '404':
+        404:
           description: The specified nature doesn't exist.
-        '500':
+        500:
           description: Internal server error on back-end occured.
     head:
       tags:
@@ -191,11 +191,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        200:
           description: No body, just headers.
-        '404':
+        404:
           description: Nature not found.
-        '500':
+        500:
           description: Internal server error on back-end occured.
   '/api/natures/all':
     post:
@@ -211,7 +211,7 @@ paths:
           schema:
             type: array
             items:
-              '$ref': '#/definitions/Nature'
+              $ref: '#/definitions/Nature'
               type: object
-        '500':
+        500:
           description: Internal server error on back-end occured.

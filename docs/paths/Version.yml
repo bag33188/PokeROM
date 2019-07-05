@@ -9,10 +9,10 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        200:
           description: An API version object.
           schema:
             type: object
-            '$ref': '#/definitions/Version'
-        '500':
+            $ref: '#/definitions/Version'
+        500:
           description: Internal server error on back-end occured.
