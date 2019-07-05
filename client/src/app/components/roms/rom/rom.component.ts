@@ -17,7 +17,7 @@ export class RomComponent implements OnInit {
     return `${altValue
       .replace(/[\s:]/g, '-')
       .replace(/\xe9/g, 'e')
-      .replace('\'', '')}-box-art`;
+      .replace("'", '')}-box-art`;
   }
 
   /**
@@ -30,6 +30,16 @@ export class RomComponent implements OnInit {
       return 'oversized-img card-img-top box-art-img';
     } else {
       return 'card-img-top box-art-img';
+    }
+  }
+
+  convertSize(romSize: number): [number, string] {
+    if (romSize > 1024 && romSize < 1000000) {
+      return [parseFloat((romSize / 1000).toFixed(2)), 'MB'];
+    } else if (romSize >= 1000000) {
+      return [parseFloat((romSize / 1000000).toFixed(2)), 'GB'];
+    } else {
+      return [romSize, 'KB'];
     }
   }
 }
