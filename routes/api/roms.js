@@ -30,7 +30,7 @@ const fieldsToSanitize = [
  * @returns {Date} A valid UTC date from the input date string.
  */
 function convertToDateFormat(date) {
-  // split of entity due to sanitiation
+  // split of entity due to sanitation
   let dateArr = date.split('&#x2F;');
   const year = dateArr[2];
   dateArr = dateArr.reverse();
@@ -453,7 +453,7 @@ router.patch(
       const id = req.params.id;
       const query = req.body;
       let isValid = true;
-      for (let field of Object.keys(req.body)) {
+      for (const field of Object.keys(req.body)) {
         if (
           field !== 'orderNumber' &&
           field !== 'fileSize' &&
