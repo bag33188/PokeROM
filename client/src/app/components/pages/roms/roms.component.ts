@@ -16,6 +16,10 @@ export class RomsComponent implements OnInit {
   constructor(private romsService: RomsService) {}
 
   ngOnInit() {
+    this.getRoms();
+  }
+
+  getRoms() {
     this.romsService.getAllRoms(35).subscribe(
       (roms: Rom[]): void => {
         this.romsData = roms;
