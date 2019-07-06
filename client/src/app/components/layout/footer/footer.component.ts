@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import he from 'he';
 
 @Component({
   selector: 'app-footer',
@@ -13,7 +12,6 @@ export class FooterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.appName = he.decode(this.appName);
   }
 
   getYear(): number {

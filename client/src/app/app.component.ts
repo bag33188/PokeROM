@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import he from 'he';
 import { ApiService } from './services/api.service';
 import { environment } from '../environments/environment';
 
@@ -30,7 +29,7 @@ import { environment } from '../environments/environment';
   ]
 })
 export class AppComponent {
-  readonly title: string = 'Pok&eacute;ROM';
+  readonly title: string = 'PokéROM';
 
   constructor(private apiService: ApiService) {
     this.changeTitleIfNotProductionMode();
@@ -39,7 +38,7 @@ export class AppComponent {
 
   changeTitleIfNotProductionMode(): void {
     if (!environment.production) {
-      document.title = `${he.decode(this.title)} (Beta)`;
+      document.title = `${this.title} (Beta)`;
     }
   }
 
