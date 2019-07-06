@@ -61,13 +61,11 @@ jQuery(document).ready(function () {
     }, statusCode: { // on certain status codes...
       // check for 404 error
       404: function (err404) {
-        console.error('Error 404: Not Found.');
-        throw err404;
+        throw err404; // throw error
       },
       // check for 500 error
       500: function (err500) {
-        console.error('Error 500: Internal Server Error.');
-        throw err500;
+        throw err500; // throw error
       }
     }
   });
