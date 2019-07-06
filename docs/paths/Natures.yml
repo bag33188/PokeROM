@@ -34,7 +34,7 @@ paths:
             $ref: '#/definitions/Nature'
             type: object
       responses:
-        200:
+        201:
           description: A single Nature object.
           schema:
             $ref: '#/definitions/Nature'
