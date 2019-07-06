@@ -53,7 +53,7 @@ export class AppComponent {
             console.log(`API Version: ${res[keys[0]][keys[1]]}`);
           }
         )
-        .catch((excptn: any): void => console.error(excptn));
+        .catch((err: any): void => console.error(err));
     }
   }
 }
