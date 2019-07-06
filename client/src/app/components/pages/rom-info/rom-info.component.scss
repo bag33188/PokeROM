@@ -49,9 +49,9 @@
   'game-logo game-logo'
   'game-description game-specs'
   'game-description rom-specs'
-  'game-download . ';
+  'game-download .';
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: .5fr fit-conent(1fr) fit-conent(1fr) 42px;
+  grid-template-rows: .5fr fit-content(1fr) fit-content(1fr) 42px;
   margin: 30px;
   @media only all and (max-width: 938px) {
     grid-template-areas:
