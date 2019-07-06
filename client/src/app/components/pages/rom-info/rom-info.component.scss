@@ -5,8 +5,8 @@
  * 
  * Full:
  * |===================================================|
- * |         game-logo          |                      |
- * |                            |                      |
+ * |                      game-logo                    |
+ * |                                                   |
  * |----------------------------|----------------------|
  * |                            |                      |
  * |                            |      game-specs      |
@@ -46,7 +46,7 @@
 #rom-container {
   display: grid;
   grid-template-areas:
-  'game-logo . '
+  'game-logo game-logo'
   'game-description game-specs'
   'game-description rom-specs'
   'game-download . ';
@@ -69,7 +69,7 @@
 
 #game-logo {
   grid-area: 'game-logo';
-  grid-column: 1;
+  grid-column: 1 / 2;
   grid-row: 1;
 }
 
