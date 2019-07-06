@@ -42,13 +42,13 @@ C:/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
 C:/MongoDB/bin/mongo "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188
 
 # Not using git Bash
-CD C:\WebstormProjects\bin && mongod.exe --dbpath=..\data
-CD C:\WebstormProjects\bin && mongo.exe
-CD %USERPROFILE%\WebstormProjects\PokeROM && npm run app
-CD %USERPROFILE%\WebstormProjects\PokeROM\client && ng serve
-CD %USERPROFILE%\WebstormProjects\PokeROM
+CD C:\Projects\bin && mongod.exe --dbpath=..\data
+CD C:\Projects\bin && mongo.exe
+CD %USERPROFILE%\Projects\PokeROM && npm run app
+CD %USERPROFILE%\Projects\PokeROM\client && ng serve
+CD %USERPROFILE%\Projects\PokeROM
 
-C:\MongoDB\bin\mongo.exe %USERPROFILE%\WebstormProjects\PokeROM\database\pkmn-roms.js
+C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js
 
 C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188
 
