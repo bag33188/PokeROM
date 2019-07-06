@@ -24,11 +24,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "app": "nodemon app",
+    "dev": "nodemon app",
     "test-osx": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./version.sh && bash ./options.sh",
-    "test-win": "cd tests && roms.sh && users.sh && natures.sh && version.sh && options.sh",
-    "prod": "cd client && ng build --prod && cd ../public && mv index.html old && mv styles old && mv scripts old && mv favicon.ico old && cd ../client/dist/pokerom && mv * ../../../public && cd ../../../ && rm -rf client/dist",
-    "dev": "cd public && rm *.js && rm *.css && rm *.html && rm *.ico && rm *.txt && rm -rf assets && cd old && mv *.html ../ && mv *.ico ../ && mv scripts ../ && mv styles ../"
+    "test-win": "cd tests && roms.sh && users.sh && natures.sh && version.sh && options.sh"
   },
   "author": "bag33188",
   "license": "ISC",

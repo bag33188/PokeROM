@@ -33,7 +33,7 @@ there's a problem when you don't know why it is working.
 # Using Git Bash
 cd C:/MongoDB/bin && ./mongod.exe --dbpath=../data
 cd C:/MongoDB/bin && ./mongo.exe
-cd ~/Projects/PokeROM && npm run app
+cd ~/Projects/PokeROM && npm run dev
 cd ~/Projects/PokeROM/client && ng serve
 cd ~/Projects/PokeROM
 
@@ -44,7 +44,7 @@ C:/MongoDB/bin/mongo "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms"
 # Not using git Bash
 CD C:\Projects\bin && mongod.exe --dbpath=..\data
 CD C:\Projects\bin && mongo.exe
-CD %USERPROFILE%\Projects\PokeROM && npm run app
+CD %USERPROFILE%\Projects\PokeROM && npm run dev
 CD %USERPROFILE%\Projects\PokeROM\client && ng serve
 CD %USERPROFILE%\Projects\PokeROM
 
@@ -55,7 +55,7 @@ C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-r
 # OSX
 ~/mongodb/bin/mongod
 ~/mongodb/bin/mongo
-cd ~/Projects/PokeROM && npm run app
+cd ~/Projects/PokeROM && npm run dev
 cd ~/Projects/PokeROM/client && ng serve
 cd ~/Projects/PokeROM
 
