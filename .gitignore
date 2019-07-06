@@ -13,6 +13,9 @@ _MACOSX
 # Project File(s)
 *.code-workspace
 
+#Project Folder(s)
+.idea
+
 # Logs
 logs
 *.log
