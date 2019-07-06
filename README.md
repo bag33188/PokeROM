@@ -33,22 +33,22 @@ there's a problem when you don't know why it is working.
 # Using Git Bash
 cd C:/MongoDB/bin && ./mongod.exe --dbpath=../data
 cd C:/MongoDB/bin && ./mongo.exe
-cd ~/Projects/PokeROM && npm run app
-cd ~/Projects/PokeROM/client && ng serve
-cd ~/Projects/PokeROM
+cd ~/WebstormProjects/PokeROM && npm run app
+cd ~/WebstormProjects/PokeROM/client && ng serve
+cd ~/WebstormProjects/PokeROM
 
-C:/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
+C:/MongoDB/bin/mongo ~/WebstormProjects/PokeROM/database/pkmn-roms.js
 
 C:/MongoDB/bin/mongo "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188
 
 # Not using git Bash
-CD C:\MongoDB\bin && mongod.exe --dbpath=..\data
-CD C:\MongoDB\bin && mongo.exe
-CD %USERPROFILE%\Projects\PokeROM && npm run app
-CD %USERPROFILE%\Projects\PokeROM\client && ng serve
-CD %USERPROFILE%\Projects\PokeROM
+CD C:\WebstormProjects\bin && mongod.exe --dbpath=..\data
+CD C:\WebstormProjects\bin && mongo.exe
+CD %USERPROFILE%\WebstormProjects\PokeROM && npm run app
+CD %USERPROFILE%\WebstormProjects\PokeROM\client && ng serve
+CD %USERPROFILE%\WebstormProjects\PokeROM
 
-C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js
+C:\MongoDB\bin\mongo.exe %USERPROFILE%\WebstormProjects\PokeROM\database\pkmn-roms.js
 
 C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188
 
