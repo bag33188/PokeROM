@@ -11,22 +11,7 @@ import Rom from '../../../models/Rom';
   styleUrls: ['./rom-info.component.scss']
 })
 export class RomInfoComponent implements OnInit, AfterContentInit {
-  rom: Rom = {
-    orderNumber: 0,
-    gameName: '',
-    fileSize: 0,
-    generation: 0,
-    dateReleased: new Date(),
-    fileType: '',
-    genre: '',
-    description: '',
-    downloadLink: '',
-    region: '',
-    logoUrl: '',
-    boxArtUrl: '',
-    fileName: '',
-    platform: ''
-  };
+  rom: Rom;
   id: string = this.activatedRoute.snapshot.url[2].path;
 
   constructor(
@@ -37,7 +22,27 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   ) {}
 
   ngOnInit() {
-    this.romService.getRom(this.id).subscribe(
+    this.rom = {
+      orderNumber: 0,
+      gameName: '',
+      fileSize: 0,
+      generation: 0,
+      dateReleased: new Date(),
+      fileType: '',
+      genre: '',
+      description: '',
+      downloadLink: '',
+      region: '',
+      logoUrl: '',
+      boxArtUrl: '',
+      fileName: '',
+      platform: ''
+    };
+    this.getRom(this.id);
+  }
+
+  getRom(id: string) {
+    this.romService.getRom(id).subscribe(
       (rom: Rom): void => {
         if (!rom.genre) {
           rom.genre = 'N/A';
