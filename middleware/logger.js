@@ -11,6 +11,6 @@ function logger(req, res, next) {
   const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
   console.log(`${req.method} ${url} ${moment().format()}`);
   next();
-};
+}
 
 module.exports = logger;
