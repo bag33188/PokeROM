@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
   styles: [
     `
       /* CSS charset */
-      @charset 'UTF-8';
+      @charset "UTF-8";
     `,
     `
       #container-wrapper {
