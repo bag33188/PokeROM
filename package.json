@@ -23,7 +23,7 @@
   },
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app",
     "dev": "nodemon app",
     "test-osx": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./version.sh && bash ./options.sh",
     "test-win": "cd tests && roms.sh && users.sh && natures.sh && version.sh && options.sh"
