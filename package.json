@@ -25,7 +25,7 @@
   "scripts": {
     "start": "node app",
     "dev": "nodemon app",
-    "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./version.sh && bash ./options.sh",
+    "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./version.sh && bash ./options.sh"
   },
   "author": "bag33188",
   "license": "ISC",
