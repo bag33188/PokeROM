@@ -62,7 +62,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(corsConfig);
 
-// routng middleware
+// routing middleware
 app.use('/options', options);
 app.use('/api/roms', roms);
 app.use('/api/users', users);
