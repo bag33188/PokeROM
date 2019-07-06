@@ -28,7 +28,7 @@ naturesCollection = db.createCollection("natures");
 printjson(naturesCollection);
 
 // create db user
-db.createUser({
+dbUserInsertQuery = db.createUser({
   user: "Broccolini",
   pwd: "12345678",
   roles: [
@@ -36,6 +36,7 @@ db.createUser({
     "dbAdmin"
   ]
 });
+printjson(dbUserInsertQuery);
 
 // insert main user
 insertUserQuery = db.users.insert({
