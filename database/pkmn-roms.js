@@ -4,7 +4,7 @@
 // 2. load("<path_to_this_file>.js")
 // or
 // 1. go to terminal
-// 2. "<path_to_mongo>" "<path_to_this_file>.js"
+// 2. <path_to_mongo> <path_to_this_file>.js
 
 // connect to mongodb
 conn = new Mongo();
