@@ -33,11 +33,11 @@ there's a problem when you don't know why it is working.
 # Using Git Bash
 cd C:/MongoDB/bin && ./mongod.exe --dbpath=../data
 cd C:/MongoDB/bin && ./mongo.exe
-cd ~/WebstormProjects/PokeROM && npm run app
-cd ~/WebstormProjects/PokeROM/client && ng serve
-cd ~/WebstormProjects/PokeROM
+cd ~/Projects/PokeROM && npm run app
+cd ~/Projects/PokeROM/client && ng serve
+cd ~/Projects/PokeROM
 
-C:/MongoDB/bin/mongo ~/WebstormProjects/PokeROM/database/pkmn-roms.js
+C:/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
 
 C:/MongoDB/bin/mongo "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188
 
