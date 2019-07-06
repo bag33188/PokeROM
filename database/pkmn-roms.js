@@ -27,7 +27,7 @@ printjson(usersCollection);
 naturesCollection = db.createCollection("natures");
 printjson(naturesCollection);
 
-// create user
+// create db user
 db.createUser({
   user: "Broccolini",
   pwd: "12345678",
