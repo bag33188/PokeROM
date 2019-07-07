@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  ngClasses(): { [index: string]: boolean } {
+  setClasses(): { [index: string]: boolean } {
     return {
       container: true,
       'text-center': true,

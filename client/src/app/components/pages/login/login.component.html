@@ -1,4 +1,4 @@
-<div (window:resize)="ngClasses()" [ngClass]="ngClasses()" id="form-container">
+<div (window:resize)="setClasses()" [ngClass]="setClasses()" id="form-container">
   <form (ngSubmit)="login()" [formGroup]="loginForm" name="loginForm">
     <fieldset>
       <legend class="pt-2 pb-2">Login</legend>
