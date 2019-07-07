@@ -18,7 +18,7 @@ export class RomComponent implements OnInit {
     return `${altValue
       .replace(/[\s:]/g, '-')
       .replace(/\xe9/g, 'e')
-      .replace(/\'/g, '')}-box-art`;
+      .replace(/('|[\(\)])/g, '')}-box-art`;
   }
 
   fileData(romFileSize: number): [number, string] {
@@ -34,19 +34,26 @@ export class RomComponent implements OnInit {
    * @description Checks if the game is Pokemon Green, Pokemon Let's Go Pikachu, and/or Pokemon Lets Go Eevee.
    * @param altValue The alt value of the image.
    */
-  checkGame(altValue: string): { [index: string]: boolean } {
-    if (/pokemon\-(green\-version|lets-go)/i.test(altValue)) {
-      return {
-        'oversized-img': true,
-        'card-img-top': true,
-        'box-art-img': true
-      };
-    } else {
-      return {
-        'oversized-img': false,
-        'card-img-top': true,
-        'box-art-img': true
-      };
+  applyClassesForGameImgSize(altValue: string): { [index: string]: boolean } {
+    const overSizedImgClasses: { [index: string]: boolean } = {
+      'oversized-img': true,
+      'card-img-top': true,
+      'box-art-img': true
+    };
+    const regularSizedImgClasses: { [index: string]: boolean } = {
+      'oversized-img': false,
+      'card-img-top': true,
+      'box-art-img': true
+    };
+    switch (altValue.toLowerCase()) {
+      case 'pokemon-green-version-jp-box-art':
+        return overSizedImgClasses;
+      case 'pokemon-lets-go-pikachu-box-art':
+        return overSizedImgClasses;
+      case 'pokemon-lets-go-eevee-box-art':
+        return overSizedImgClasses;
+      default:
+        return regularSizedImgClasses;
     }
   }
 }
