@@ -51,7 +51,7 @@
   'game-description rom-specs'
   'game-download .';
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: .5fr fit-content(1fr) fit-content(1fr) 2.6rem;
+  grid-template-rows: .5fr fit-content(188px) fit-content(188px) 2.6rem;
   margin: 30px;
   @media only all and (max-width: 938px) {
     grid-template-areas:
@@ -61,7 +61,7 @@
     'rom-specs'
     'game-download';
     grid-template-columns: 1fr;
-    grid-template-rows: .5fr fit-content(2fr) repeat(2, 15.9rem) 3.4rem;
+    grid-template-rows: .5fr fit-content(388px) repeat(2, 15.9rem) 3.4rem;
     margin: 0 auto;
     text-align: center;
   }
