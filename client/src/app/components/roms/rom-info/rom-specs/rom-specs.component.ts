@@ -14,11 +14,11 @@ export class RomSpecsComponent implements OnInit {
 
   ngOnInit() {}
 
-  fileData(): [number, string] {
+  fileData(romFileSize: number): [number, string] {
     const [fileSize, fileType]: [
       number,
       string
-    ] = this.sizeConverter.convertSize(this.rom.fileSize);
+    ] = this.sizeConverter.convertSize(romFileSize);
     return [fileSize, fileType];
   }
 }

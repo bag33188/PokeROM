@@ -21,9 +21,9 @@ export class RomComponent implements OnInit {
       .replace(/\'/g, '')}-box-art`;
   }
 
-  fileData(): [number, string] {
+  fileData(romFileSize: number): [number, string] {
     const [fileSize, fileType]: [number, string] = this.sizeConverter.convertSize(
-      this.rom.fileSize
+      romFileSize
     );
     return [fileSize, fileType];
   }
