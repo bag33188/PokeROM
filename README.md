@@ -98,7 +98,7 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
     "editor.highlightActiveIndentGuide": true,
     "editor.tabSize": 2,
     "editor.fontFamily": "Source Code Pro", // Consolas, 'Courier New', monospace
-    "workbench.colorTheme": "Default Dark+",
+    "workbench.colorTheme": "Sublime Material Theme - Dark",
     "workbench.iconTheme": "material-icon-theme",
     "sasslint.configFile": "C:\\Users\\bglat\\Projects\\PokeROM\\client\\.sass-lint.yml",
     "sasslint.enable": true,
@@ -124,6 +124,7 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 * [Sass][]
 * [Sass Lint][]
 * [TSLint][]
+* [Sublime Material Theme Dark][]
 
 [Bracket Pair Colorizer 2]: <https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2> "Bracket Pair Colorizer 2 VS Code Extension"
 [EditorConfig for VS Code]: <https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig> "EditorConfig for VS Code VS Code Extension"
@@ -135,5 +136,6 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 [Sass]: <https://marketplace.visualstudio.com/items?itemName=robinbentley.sass-indented> "Sass VS Code Extension"
 [Sass Lint]: <https://marketplace.visualstudio.com/items?itemName=glen-84.sass-lint> "Sass Lint VS Code Extension"
 [TSLint]: <https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin> "TSLint VC Code Extension"
+[Sublime Material Theme Dark]: <https://marketplace.visualstudio.com/items?itemName=jprestidge.theme-material-theme> "Sublime Material Theme Dark VS Code Extension"
 
 [comment]: # "End README.md"
