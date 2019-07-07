@@ -13,4 +13,12 @@ export class RomSpecsComponent implements OnInit {
   constructor(public sizeConverter: SizeConversionService) {}
 
   ngOnInit() {}
+
+  fileData(): [number, string] {
+    const [fileSize, fileType]: [
+      number,
+      string
+    ] = this.sizeConverter.convertSize(this.rom.fileSize);
+    return [fileSize, fileType];
+  }
 }

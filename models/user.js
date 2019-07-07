@@ -19,7 +19,7 @@ const UserSchema = mongoose.Schema({
           v
         );
       },
-      message: (props) => `${props.value} is not a valid email.`
+      message: props => `${props.value} is not a valid email.`
     }
   },
   username: {
@@ -95,10 +95,10 @@ module.exports.addUser = function(newUser, callback, errCallbacks) {
               });
             }
           })
-          .catch((err) => console.log(err));
+          .catch(err => console.log(err));
       }
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 };
 
 /**
@@ -154,11 +154,12 @@ module.exports.getAllUsers = function(callback) {
  * @param {Resonse} callback The callback function.
  */
 module.exports.updateUser = function(query, userData, options, callback) {
+  const { name, email, username, password } = userData;
   const userQuery = {
-    name: userData.name,
-    email: userData.email,
-    username: userData.username,
-    password: userData.password
+    name,
+    email,
+    username,
+    password
   };
   bcrypt.genSalt(10, (err, salt) => {
     if (err) console.log(err);

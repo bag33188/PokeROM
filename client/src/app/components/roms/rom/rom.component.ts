@@ -21,6 +21,13 @@ export class RomComponent implements OnInit {
       .replace(/\'/g, '')}-box-art`;
   }
 
+  fileData(): [number, string] {
+    const [fileSize, fileType]: [number, string] = this.sizeConverter.convertSize(
+      this.rom.fileSize
+    );
+    return [fileSize, fileType];
+  }
+
   /**
    * @summary Checks the Pokemon Game.
    * @description Checks if the game is Pokemon Green, Pokemon Let's Go Pikachu, and/or Pokemon Lets Go Eevee.
