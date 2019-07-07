@@ -18,7 +18,7 @@ export class RomComponent implements OnInit {
     return `${altValue
       .replace(/[\s:]/g, '-')
       .replace(/\xe9/g, 'e')
-      .replace(`'`, '')}-box-art`;
+      .replace(/\'/g, '')}-box-art`;
   }
 
   /**
@@ -26,11 +26,19 @@ export class RomComponent implements OnInit {
    * @description Checks if the game is Pokemon Green, Pokemon Let's Go Pikachu, and/or Pokemon Lets Go Eevee.
    * @param altValue The alt value of the image.
    */
-  checkGame(altValue: string): string {
+  checkGame(altValue: string): { [index: string]: boolean } {
     if (/pokemon\-(green\-version|lets-go)/i.test(altValue)) {
-      return 'oversized-img card-img-top box-art-img';
+      return {
+        'oversized-img': true,
+        'card-img-top': true,
+        'box-art-img': true
+      };
     } else {
-      return 'card-img-top box-art-img';
+      return {
+        'oversized-img': false,
+        'card-img-top': true,
+        'box-art-img': true
+      };
     }
   }
 }
