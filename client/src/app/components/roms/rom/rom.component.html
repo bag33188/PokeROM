@@ -3,7 +3,7 @@
     <img
       [alt]="imgAlt(rom.gameName) | lowercase"
       [src]="rom.boxArtUrl"
-      [class]="checkGame(imgAlt(rom.gameName))"
+      [ngClass]="checkGame(imgAlt(rom.gameName))"
     />
   </div>
 
