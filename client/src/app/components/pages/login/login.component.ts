@@ -1,3 +1,5 @@
+/// <reference path="../../../interfaces/NgClasses.ts" />
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  setClasses(): { [index: string]: boolean } {
+  setClasses(): NgClasses {
     return {
       container: true,
       'text-center': true,

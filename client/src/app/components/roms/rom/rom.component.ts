@@ -1,3 +1,5 @@
+/// <reference path="../../../interfaces/NgClasses.ts" />
+
 import { Component, OnInit, Input } from '@angular/core';
 import Rom from '../../../models/Rom';
 import { SizeConversionService } from '../../../services/size-conversion.service';
@@ -34,13 +36,13 @@ export class RomComponent implements OnInit {
    * @description Checks if the game is Pokemon Green, Pokemon Let's Go Pikachu, and/or Pokemon Lets Go Eevee.
    * @param altValue The alt value of the image.
    */
-  applyClassesForGameImgSize(altValue: string): { [index: string]: boolean } {
-    const overSizedImgClasses: { [index: string]: boolean } = {
+  applyClassesForGameImgSize(altValue: string): NgClasses {
+    const overSizedImgClasses: NgClasses = {
       'oversized-img': true,
       'card-img-top': true,
       'box-art-img': true
     };
-    const regularSizedImgClasses: { [index: string]: boolean } = {
+    const regularSizedImgClasses: NgClasses = {
       'oversized-img': false,
       'card-img-top': true,
       'box-art-img': true
