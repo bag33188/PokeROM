@@ -108,11 +108,7 @@ router.post(
         flavor: req.body.flavor,
         usage: req.body.usage
       });
-      const name = nature.name;
-      const up = nature.up;
-      const down = nature.down;
-      const flavor = nature.flavor;
-      const usage = nature.usage;
+      const { name, up, down, flavor, usage } = nature;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -202,11 +198,7 @@ router.put(
         flavor: req.body.flavor,
         usage: req.body.usage
       };
-      const name = nature.name;
-      const up = nature.up;
-      const down = nature.down;
-      const flavor = nature.flavor;
-      const usage = nature.usage;
+      const { name, up, down, flavor, usage } = updateData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });

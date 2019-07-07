@@ -94,10 +94,7 @@ router.post(
         username: req.body.username,
         password: req.body.password
       });
-      const name = newUser.name;
-      const email = newUser.email;
-      const username = newUser.username;
-      const password = newUser.password;
+      const { name, email, username, password } = newUser;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -129,20 +126,16 @@ router.post(
         [
           () => {
             // err callback function
-            return res
-              .status(500)
-              .json({
-                success: false,
-                message: 'User with email already registered.'
-              });
+            return res.status(500).json({
+              success: false,
+              message: 'User with email already registered.'
+            });
           },
           () => {
-            return res
-              .status(500)
-              .json({
-                success: false,
-                message: 'User with username already exists.'
-              });
+            return res.status(500).json({
+              success: false,
+              message: 'User with username already exists.'
+            });
           }
         ]
       );
@@ -180,8 +173,7 @@ router.post(
   ],
   async (req, res, next) => {
     try {
-      const username = req.body.username;
-      const password = req.body.password;
+      const { username, password } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -279,14 +271,12 @@ router.put(
       if (!name) {
         name = null;
       }
-      const email = req.body.email;
-      const username = req.body.username;
-      const password = req.body.password;
+      const { email, username, password } = userData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      await User.updateUser({ _id: id }, userData, {}, (err) => {
+      await User.updateUser({ _id: id }, userData, {}, err => {
         if (err) {
           switch (err.name) {
             case 'CastError':

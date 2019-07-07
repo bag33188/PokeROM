@@ -55,28 +55,32 @@ router.get('/', auth, async (req, res, next) => {
     if (!limit) {
       limit = 0;
     }
-    await Rom.getAllRoms({ userId: req.user['_id'] }, (err, roms) => {
-      if (err) {
-        return res.status(500).json({ success: false, ...err });
-      }
-      let perPage = parseInt(req.query['per_page']);
-      if (!perPage) {
-        perPage = 14;
-      }
-      const pageCount = Math.ceil(roms.length / perPage);
-      let page = parseInt(req.query['page']);
-      if (!page || (!page && !perPage)) {
-        return res.status(200).json(roms);
-      }
-      if (page > pageCount) {
-        page = pageCount;
-      }
-      const paginationFormulaResult = roms.slice(
-        page * perPage - perPage,
-        page * perPage
-      );
-      res.status(200).json(paginationFormulaResult);
-    }, limit);
+    await Rom.getAllRoms(
+      { userId: req.user['_id'] },
+      (err, roms) => {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        let perPage = parseInt(req.query['per_page']);
+        if (!perPage) {
+          perPage = 14;
+        }
+        const pageCount = Math.ceil(roms.length / perPage);
+        let page = parseInt(req.query['page']);
+        if (!page || (!page && !perPage)) {
+          return res.status(200).json(roms);
+        }
+        if (page > pageCount) {
+          page = pageCount;
+        }
+        const paginationFormulaResult = roms.slice(
+          page * perPage - perPage,
+          page * perPage
+        );
+        res.status(200).json(paginationFormulaResult);
+      },
+      limit
+    );
   } catch (err) {
     next(err);
   }
@@ -224,20 +228,22 @@ router.post(
         dateReleased: req.body.dateReleased,
         logoUrl: req.body.logoUrl
       });
-      const orderNumber = newRom.orderNumber;
-      const fileName = newRom.fileName;
-      const fileSize = newRom.fileSize;
-      const fileType = newRom.fileType;
-      const downloadLink = newRom.downloadLink;
-      const generation = newRom.generation;
-      const boxArtUrl = newRom.boxArtUrl;
-      const gameName = newRom.gameName;
-      const region = newRom.region;
-      const platform = newRom.platform;
-      const description = newRom.description;
-      const genre = newRom.genre;
-      const dateReleased = newRom.dateReleased;
-      const logoUrl = newRom.logoUrl;
+      const {
+        orderNumber,
+        fileName,
+        fileSize,
+        fileType,
+        downloadLink,
+        generation,
+        boxArtUrl,
+        gameName,
+        region,
+        platform,
+        description,
+        genre,
+        dateReleased,
+        logoUrl
+      } = newRom;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -388,20 +394,22 @@ router.put(
         dateReleased: req.body.dateReleased,
         logoUrl: req.body.logoUrl
       };
-      const orderNumber = updateRomData.orderNumber;
-      const fileName = updateRomData.fileName;
-      const fileSize = updateRomData.fileSize;
-      const fileType = updateRomData.fileType;
-      const downloadLink = updateRomData.downloadLink;
-      const generation = updateRomData.generation;
-      const boxArtUrl = updateRomData.boxArtUrl;
-      const gameName = updateRomData.gameName;
-      const region = updateRomData.region;
-      const platform = updateRomData.platform;
-      const description = updateRomData.description;
-      const genre = updateRomData.genre;
-      const dateReleased = updateRomData.dateReleased;
-      const logoUrl = updateRomData.logoUrl;
+      const {
+        orderNumber,
+        fileName,
+        fileSize,
+        fileType,
+        downloadLink,
+        generation,
+        boxArtUrl,
+        gameName,
+        region,
+        platform,
+        description,
+        genre,
+        dateReleased,
+        logoUrl
+      } = updateRomData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
