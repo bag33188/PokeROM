@@ -38,8 +38,7 @@ function convertToDateFormat(date) {
   dateArr = dateArr.reverse();
   dateArr.unshift(year);
   const formattedDate = dateArr.join(',');
-  date = new Date(formattedDate);
-  return date;
+  return new Date(formattedDate);
 }
 
 /**
