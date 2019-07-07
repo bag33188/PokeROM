@@ -98,9 +98,10 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
     "editor.highlightActiveIndentGuide": true,
     "editor.tabSize": 2,
     "editor.fontFamily": "Source Code Pro", // Consolas, 'Courier New', monospace
-    "workbench.colorTheme": "Default Dark+", //"Sublime Material Theme - Dark",
+    "workbench.colorTheme": "Default Dark+", // "Sublime Material Theme - Dark",
     "workbench.iconTheme": "material-icon-theme",
-    "sasslint.configFile": "C:\\Users\\bglat\\Projects\\PokeROM\\client\\.sass-lint.yml",
+    "sasslint.configFile": "C:\\Users\\<username>\\Projects\\PokeROM\\client\\.sass-lint.yml",
+    // "sassLint.configFile": "/Users/<username>/Projects/PokeROM/client/.sass-lint.yml"
     "sasslint.enable": true,
     "sasslint.resolvePathsRelativeToConfig": true,
     "prettier.endOfLine": "lf",
@@ -111,6 +112,8 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
   }
 }
 ```
+
+> Source Code Pro Fonts: [download](https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA "Source Code Pro Fonts Download (Direct Download)")
 
 ### Extensions
 
