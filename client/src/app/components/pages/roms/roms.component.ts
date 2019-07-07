@@ -19,7 +19,7 @@ export class RomsComponent implements OnInit {
     this.getRoms();
   }
 
-  getRoms() {
+  getRoms(): void {
     this.romsService.getAllRoms(35).subscribe(
       (roms: Rom[]): void => {
         this.romsData = roms;

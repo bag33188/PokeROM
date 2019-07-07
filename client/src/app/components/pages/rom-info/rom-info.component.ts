@@ -41,7 +41,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     this.getRom(this.id);
   }
 
-  getRom(id: string) {
+  getRom(id: string): void {
     this.romService.getRom(id).subscribe(
       (rom: Rom): void => {
         if (!rom.genre) {
