@@ -41,6 +41,10 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     this.getRom(this.id);
   }
 
+  ngAfterContentInit() {
+    window.scrollTo(0, 0);
+  }
+
   getRom(id: string): void {
     this.romService.getRom(id).subscribe(
       (rom: Rom): void => {
@@ -54,10 +58,6 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
         throw err;
       }
     );
-  }
-
-  ngAfterContentInit() {
-    window.scrollTo(0, 0);
   }
 
   logOut(): void {
