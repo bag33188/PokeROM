@@ -218,7 +218,7 @@ module.exports.postCore = function (coreRoms, user, callback) {
       Rom.create(rom);
     });
     resolve('Done!');
-    reject(new Error("Error!"));
+    reject(new Error('Error!'));
   })
   romsAsync
     .then(() => callback())
