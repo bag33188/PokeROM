@@ -20,7 +20,8 @@ export class RomsComponent implements OnInit {
   }
 
   getRoms(): void {
-    this.romsService.getAllRoms(35).subscribe(
+    const limit: number = 35;
+    this.romsService.getAllRoms(limit).subscribe(
       (roms: Rom[]): void => {
         this.romsData = roms;
       },
