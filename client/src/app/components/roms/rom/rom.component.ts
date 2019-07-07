@@ -22,9 +22,10 @@ export class RomComponent implements OnInit {
   }
 
   fileData(romFileSize: number): [number, string] {
-    const [fileSize, fileType]: [number, string] = this.sizeConverter.convertSize(
-      romFileSize
-    );
+    const [fileSize, fileType]: [
+      number,
+      string
+    ] = this.sizeConverter.convertSize(romFileSize);
     return [fileSize, fileType];
   }
 
