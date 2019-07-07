@@ -98,7 +98,7 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
     "editor.highlightActiveIndentGuide": true,
     "editor.tabSize": 2,
     "editor.fontFamily": "Source Code Pro", // Consolas, 'Courier New', monospace
-    "workbench.colorTheme": "Sublime Material Theme - Dark",
+    "workbench.colorTheme": "Default Dark+", //"Sublime Material Theme - Dark",
     "workbench.iconTheme": "material-icon-theme",
     "sasslint.configFile": "C:\\Users\\bglat\\Projects\\PokeROM\\client\\.sass-lint.yml",
     "sasslint.enable": true,
