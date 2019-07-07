@@ -29,10 +29,10 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
       // close alert after 3 seconds
       setTimeout((): void => {
         // fade out alert during 1 second
-        $('#' + betaVerAlertId).fadeOut(1000 /* 1 second */, (): void =>
+        $('#' + betaVerAlertId).fadeOut(1000, (): void => // 1 second
           this.closeAlert(this.alerts[0])
         );
-      }, 3000 /* 3 seconds */);
+      }, 3000); // 3 seconds
     }
   }
 
