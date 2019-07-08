@@ -65,7 +65,6 @@ export class RomInfoComponent implements OnInit, AfterContentInit, DoCheck {
         this.isError = false;
       },
       (err: any): never => {
-        console.log('fdsfdsfas');
         this.loading = false;
         this.isError = true;
         throw err;
