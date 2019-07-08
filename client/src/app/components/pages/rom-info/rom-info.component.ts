@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import he from 'he';
 import { RomsService } from '../../../services/roms.service';
@@ -10,7 +10,7 @@ import Rom from '../../../models/Rom';
   templateUrl: './rom-info.component.html',
   styleUrls: ['./rom-info.component.scss']
 })
-export class RomInfoComponent implements OnInit, AfterContentInit {
+export class RomInfoComponent implements OnInit, AfterContentInit, DoCheck {
   rom: Rom;
   id: string = this.activatedRoute.snapshot.url[2].path;
   loading: boolean = true;
@@ -41,13 +41,16 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
       platform: ''
     };
     this.getRom(this.id);
-    if (!this.loading && this.isError) {
-      this.router.navigate(['/404', this.id]);
-    }
   }
 
   ngAfterContentInit() {
     window.scrollTo(0, 0);
+  }
+
+  ngDoCheck() {
+    if (!this.loading && this.isError) {
+      this.router.navigate(['/404', this.id]);
+    }
   }
 
   getRom(id: string): void {
@@ -62,6 +65,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
         this.isError = false;
       },
       (err: any): never => {
+        console.log('fdsfdsfas');
         this.loading = false;
         this.isError = true;
         throw err;
