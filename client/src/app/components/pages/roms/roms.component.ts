@@ -9,14 +9,19 @@ import Rom from '../../../models/Rom';
 })
 export class RomsComponent implements OnInit {
   romsData: Rom[] = [];
-  currentPage = 1;
-  itemsPerPage = 4;
+  currentPage: number = 1;
+  itemsPerPage: number = 4;
   pageSize: number;
+  loading: boolean = true;
+  noRomsMsg: string = '';
 
   constructor(private romsService: RomsService) {}
 
   ngOnInit() {
     this.getRoms();
+    if (!this.loading) {
+      this.noRomsMsg = 'No ROMs to Show';
+    }
   }
 
   getRoms(): void {
@@ -24,6 +29,7 @@ export class RomsComponent implements OnInit {
     this.romsService.getAllRoms(limit).subscribe(
       (roms: Rom[]): void => {
         this.romsData = roms;
+        this.loading = false;
       },
       (err: any): never => {
         throw err;

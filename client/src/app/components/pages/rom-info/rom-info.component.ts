@@ -13,6 +13,7 @@ import Rom from '../../../models/Rom';
 export class RomInfoComponent implements OnInit, AfterContentInit {
   rom: Rom;
   id: string = this.activatedRoute.snapshot.url[2].path;
+  loading: boolean = true;
 
   constructor(
     private romService: RomsService,
@@ -39,11 +40,13 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
       platform: ''
     };
     this.getRom(this.id);
-    setTimeout((): void => {
-      if (this.rom.gameName === '' && this.rom.downloadLink === '') {
-        this.router.navigate(['/404', this.id]);
-      }
-    }, 1000);
+    if (
+      !this.loading &&
+      this.rom.gameName === '' &&
+      this.rom.downloadLink === ''
+    ) {
+      this.router.navigate(['/404', this.id]);
+    }
   }
 
   ngAfterContentInit() {
@@ -58,6 +61,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
         }
         rom.description = he.decode(rom.description);
         this.rom = rom;
+        this.loading = false;
       },
       (err: any): never => {
         throw err;
