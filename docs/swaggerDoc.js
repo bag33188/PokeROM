@@ -17,7 +17,7 @@ const version = options.swaggerDefinition['info']['version'];
  * @param {object} app expressJS app object.
  */
 const apiDocs = (app) => {
-  app.use(`/api-docs/${version}`, swaggerUi.serve, swaggerUi.setup(specs));
+  app.use(`/api/docs/${version}`, swaggerUi.serve, swaggerUi.setup(specs));
 };
 
 // export version and docs

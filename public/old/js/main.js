@@ -50,7 +50,7 @@ jQuery(document).ready(function () {
       // grab version from data
       var version = data.apiVersion;
       // set version in anchor element's href attribute
-      docsLink.attr("href", "/api-docs/" + version);
+      docsLink.attr("href", "/api/docs/" + version);
       // set version in span element's text
       apiVersion.text(version);
       // log API version number as info to console
