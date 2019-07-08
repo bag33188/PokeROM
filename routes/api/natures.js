@@ -254,7 +254,7 @@ router.patch(
       const id = req.params.id;
       const query = req.body;
       let isValid = true;
-      for (let field of Object.keys(req.body)) {
+      for (const field of Object.keys(req.body)) {
         if (
           field !== 'name' &&
           field !== 'up' &&
