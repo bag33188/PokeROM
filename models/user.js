@@ -135,8 +135,12 @@ module.exports.deleteAllUsers = function(callback) {
  * @param {any} callback The callback function.
  */
 module.exports.deleteUser = function(id, callback) {
-  Rom.deleteAllRoms({ userId: id }, null);
-  User.findOneAndDelete(id, callback);
+  Rom.deleteAllRoms({ userId: id }, (err) => {
+    if (err) {
+      console.log(err);
+    }
+    User.findOneAndDelete(id, callback);
+  });
 };
 
 /**
