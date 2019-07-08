@@ -1,3 +1,5 @@
+/// <reference path="../../../../interfaces/Browser.ts" />
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabset.component.scss']
 })
 export class TabsetComponent implements OnInit {
-  browsers: { [index: string]: string }[];
+  browsers: Browser[];
 
   constructor() {}
 
@@ -14,27 +16,33 @@ export class TabsetComponent implements OnInit {
     this.browsers = [
       {
         browser: 'Chrome',
-        status: 'Compatible'
+        status: 'Compatible',
+        minVersion: 58
       },
       {
         browser: 'Opera',
-        status: 'Compatible'
+        status: 'Compatible',
+        minVersion: 44
       },
       {
         browser: 'Safari',
-        status: 'Compatible'
+        status: 'Compatible',
+        minVersion: 10.1
       },
       {
         browser: 'Firefox',
-        status: 'Compatible'
+        status: 'Compatible',
+        minVersion: 54
       },
       {
         browser: 'Edge',
-        status: 'Compatible'
+        status: 'Compatible',
+        minVersion: 16
       },
       {
         browser: 'Internet Explorer',
-        status: 'Incompatible'
+        status: 'Incompatible',
+        minVersion: null
       }
     ];
   }
