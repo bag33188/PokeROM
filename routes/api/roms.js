@@ -549,7 +549,7 @@ router.delete('/:id', auth, async (req, res, next) => {
  */
 router.delete('/', auth, async (req, res, next) => {
   try {
-    await Rom.deleteAllRoms({ _id: req.user['_id'] }, (err, status) => {
+    await Rom.deleteAllRoms({ userId: req.user['_id'] }, (err, status) => {
       if (err) {
         return res.status(500).json({ success: false, ...err });
       }
