@@ -20,6 +20,7 @@ export const routes: Routes = [
   },
   { path: 'faq', component: FaqComponent },
   { path: 'natures', component: NaturesComponent},
+  { path: '404', component: NotFoundComponent },
   { path: '**', component: NotFoundComponent }
   // { path: '**', redirectTo: '/404' },
   // { path: '404', component: NotFoundComponent }

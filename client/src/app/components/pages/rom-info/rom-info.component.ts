@@ -39,6 +39,11 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
       platform: ''
     };
     this.getRom(this.id);
+    setTimeout((): void => {
+      if (this.rom.gameName === '' && this.rom.downloadLink === '') {
+        this.router.navigate(['/404', this.id]);
+      }
+    }, 1000);
   }
 
   ngAfterContentInit() {
@@ -64,5 +69,4 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     this.authService.logout();
     this.router.navigate(['/']);
   }
-
 }
