@@ -50,7 +50,7 @@ export class RomComponent implements OnInit {
     switch (altValue.toLowerCase()) {
       case 'pokemon-green-version-jp-box-art':
         return overSizedImgClasses;
-      case 'pokemon-ulta-moon-version-box-art':
+      case 'pokemon-ultra-moon-version-box-art':
         return overSizedImgClasses;
       case 'pokemon-lets-go-pikachu-box-art':
         return overSizedImgClasses;
