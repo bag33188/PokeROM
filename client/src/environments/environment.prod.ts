@@ -2,5 +2,5 @@
 
 export const environment: Environment = {
   production: true,
-  apiUrl: 'http://localhost:5000'
+  apiUrl: 'https://pokerom-bag33188.herokuapp.com'
 };
