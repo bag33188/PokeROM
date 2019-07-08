@@ -141,4 +141,8 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 [TSLint]: <https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin> "TSLint VC Code Extension"
 [Sublime Material Theme Dark]: <https://marketplace.visualstudio.com/items?itemName=jprestidge.theme-material-theme> "Sublime Material Theme Dark VS Code Extension"
 
+--------
+
+> _**Enjoy!**_
+
 [comment]: # "End README.md"
