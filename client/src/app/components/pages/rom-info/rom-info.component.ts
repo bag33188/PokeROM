@@ -14,6 +14,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   rom: Rom;
   id: string = this.activatedRoute.snapshot.url[2].path;
   loading: boolean = true;
+  isError: boolean = false;
 
   constructor(
     private romService: RomsService,
@@ -40,11 +41,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
       platform: ''
     };
     this.getRom(this.id);
-    if (
-      !this.loading &&
-      this.rom.gameName === '' &&
-      this.rom.downloadLink === ''
-    ) {
+    if (!this.loading && this.isError) {
       this.router.navigate(['/404', this.id]);
     }
   }
@@ -62,8 +59,11 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
         rom.description = he.decode(rom.description);
         this.rom = rom;
         this.loading = false;
+        this.isError = false;
       },
       (err: any): never => {
+        this.loading = false;
+        this.isError = true;
         throw err;
       }
     );
