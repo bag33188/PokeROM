@@ -124,6 +124,7 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
  * @param {any} callback The callback function.
  */
 module.exports.deleteAllUsers = function(callback) {
+  Rom.deleteAllRoms({}, null);
   User.deleteMany(callback);
 };
 
