@@ -20,7 +20,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'faq', component: FaqComponent },
-  { path: 'sandbox', component: PhoneNumberValidatorComponent },
+  // { path: 'sandbox', component: PhoneNumberValidatorComponent },
   { path: 'natures', component: NaturesComponent},
   { path: '**', component: NotFoundComponent }
   // { path: '**', redirectTo: '/404' },
