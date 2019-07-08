@@ -191,7 +191,7 @@ router.post(
           }
         }
         if (!user)
-          return res.json({
+          return res.status(404).json({
             success: false,
             message: 'Error: User not found.'
           });
@@ -204,7 +204,7 @@ router.post(
             const token = jwt.sign({ data: user }, config.secret, {
               expiresIn: 604800 // 1 week (in seconds); formula: [60s*60m*24h*7d]
             });
-            return res.json({
+            return res.status(200).json({
               success: true,
               token: `Bearer ${token}`,
               user: {
