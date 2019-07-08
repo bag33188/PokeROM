@@ -6,7 +6,6 @@ import { LoginComponent } from '../components/pages/login/login.component';
 import { RomsComponent } from '../components/pages/roms/roms.component';
 import { RomInfoComponent } from '../components/pages/rom-info/rom-info.component';
 import { FaqComponent } from '../components/pages/faq/faq.component';
-import { PhoneNumberValidatorComponent } from '../components/sandbox/phone-number-validator/phone-number-validator.component';
 import { NaturesComponent } from '../components/pages/natures/natures.component';
 
 export const routes: Routes = [
@@ -20,7 +19,6 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'faq', component: FaqComponent },
-  // { path: 'sandbox', component: PhoneNumberValidatorComponent },
   { path: 'natures', component: NaturesComponent},
   { path: '**', component: NotFoundComponent }
   // { path: '**', redirectTo: '/404' },
