@@ -432,6 +432,9 @@ router.delete('/:id', auth, async (req, res, next) => {
       }
       Rom.deleteRom({ userId: id }, err => {
         if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
           return res.status(500).json({ success: false, ...err });
         }
         return res.status(200).json({
