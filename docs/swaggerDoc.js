@@ -1,6 +1,6 @@
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerDefinition = require('swaggerDefinition.json');
+const swaggerDefinition = require('./SwaggerDefinition.json');
 
 // swagger doc info object
 // Like the one described here: https://swagger.io/specification/#infoObject
