@@ -5,11 +5,13 @@
 
 %white {
   color: set-text-color($carousel-bg);
+  z-index: -1;
 }
 
 h3 {
   @extend %white;
   padding: 0 .5em;
+  z-index: -1;
 }
 
 img {
