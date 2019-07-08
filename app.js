@@ -46,7 +46,7 @@ const corsConfig = cors({
     'http://localhost:5500' // vscode liver server
   ],
   */
-  origin: ['http://localhost:4200','https://pokerom-bag33188.herokuapp.com'],
+  origin: ['http://localhost:4200','https://pokerom-bag33188.herokuapp.com', ''],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   headers: ['Accept', 'Accept-Language', 'Authorization', 'Content-Type'],
   credentials: true
