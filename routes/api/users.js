@@ -85,6 +85,7 @@ router.post(
       .isEmpty()
       .withMessage('Password is required.')
       .isLength({ min: 8, max: 256 })
+      .withMessage('Username must be between 8 and 256 characters.')
   ],
   async (req, res, next) => {
     try {
