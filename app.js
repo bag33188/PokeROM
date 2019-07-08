@@ -23,7 +23,7 @@ const db = config.database;
 mongoose
   .connect(db, { useNewUrlParser: true, promiseLibrary: bluebird })
   .then(() => console.log(`Connected to database ${config.database}`))
-  .catch((err) => console.error(`Database error: ${err}`));
+  .catch(err => console.error(`Database error: ${err}`));
 
 // use bluebird promise library
 mongoose.Promise = bluebird;
@@ -39,14 +39,10 @@ swaggerDoc.apiDocs(app);
 
 // configure cors
 const corsConfig = cors({
-  /*
-  origin: [
-    'http://localhost:5000', // api
-    'http://localhost:4200', // angular
-    'http://localhost:5500' // vscode liver server
-  ],
-  */
-  origin: ['http://localhost:4200','https://pokerom-bag33188.herokuapp.com', ''],
+  origin:
+    process.env.NODE_ENV === 'production'
+      ? 'https://pokerom-bag33188.herokuapp.com'
+      : 'http://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   headers: ['Accept', 'Accept-Language', 'Authorization', 'Content-Type'],
   credentials: true
