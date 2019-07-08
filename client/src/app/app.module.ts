@@ -5,7 +5,6 @@ import { PagesModule } from './components/pages/pages.module';
 import { LayoutModule } from './components/layout/layout.module';
 import { RomsModule } from './components/roms/roms.module';
 import { NgBootstrapModule } from './components/ng-bootstrap/ng-bootstrap.module';
-import { SandboxModule } from './components/sandbox/sandbox.module';
 import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
 
