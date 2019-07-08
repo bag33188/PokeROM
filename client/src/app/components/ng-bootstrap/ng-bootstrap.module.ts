@@ -5,18 +5,18 @@ import { AccordionComponent } from './home/accordion/accordion.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
 import { PaginationComponent } from './roms/pagination/pagination.component';
 import { TabsetComponent } from './faq/tabset/tabset.component';
+import { ModalContentComponent } from './faq/modal/modal-content.component';
 
 @NgModule({
   declarations: [
     AccordionComponent,
     CarouselComponent,
     PaginationComponent,
-    TabsetComponent
+    TabsetComponent,
+    ModalContentComponent
   ],
-  imports: [
-    CommonModule,
-    NgbModule
-  ],
+  entryComponents: [ModalContentComponent],
+  imports: [CommonModule, NgbModule],
   exports: [
     AccordionComponent,
     CarouselComponent,
@@ -24,4 +24,4 @@ import { TabsetComponent } from './faq/tabset/tabset.component';
     TabsetComponent
   ]
 })
-export class NgBootstrapModule { }
+export class NgBootstrapModule {}

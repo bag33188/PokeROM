@@ -1,6 +1,8 @@
 /// <reference path="../../../../interfaces/Browser.ts" />
 
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalContentComponent } from '../modal/modal-content.component';
 
 @Component({
   selector: 'app-faq-tabset',
@@ -10,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class TabsetComponent implements OnInit {
   browsers: Browser[];
 
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
     this.browsers = [
@@ -44,6 +46,16 @@ export class TabsetComponent implements OnInit {
         status: 'Incompatible',
         minVersion: null
       }
+    ];
+  }
+
+  open() {
+    const modalRef = this.modalService.open(ModalContentComponent);
+    modalRef.componentInstance.reasons = [
+      'It does not support CSS grid',
+      'It does not support ES6 JavaScript',
+      'It has many security issues',
+      'It is slow'
     ];
   }
 }
