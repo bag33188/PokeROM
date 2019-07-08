@@ -190,8 +190,8 @@ module.exports.deleteRom = function (query, callback) {
  * @description Delete's all ROMs in the database.
  * @param {any} callback The callback function.
  */
-module.exports.deleteAllRoms = function (callback) {
-  Rom.deleteMany(callback);
+module.exports.deleteAllRoms = function (query, callback) {
+  Rom.deleteMany(query, callback);
 };
 
 /**
