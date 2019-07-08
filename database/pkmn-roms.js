@@ -606,7 +606,7 @@ insertRomsQuery = db.roms.insert([
   },
   {
     orderNumber: 31,
-    fileName: 'Pokémon Prism.gbc',
+    fileName: 'Pokemon Prism.gbc',
     fileSize: 2048,
     fileType: 'gbc',
     downloadLink:
