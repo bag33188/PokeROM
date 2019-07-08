@@ -31,15 +31,15 @@ there's a problem when you don't know why it is working.
 # Windows
 
 # Using Git Bash
-cd C:/MongoDB/bin && ./mongod.exe --dbpath=../data
-cd C:/MongoDB/bin && ./mongo.exe
+cd /c/MongoDB/bin && ./mongod.exe --dbpath=../data
+cd /c/MongoDB/bin && ./mongo.exe
 cd ~/Projects/PokeROM && npm run dev
 cd ~/Projects/PokeROM/client && ng serve
 cd ~/Projects/PokeROM
 
-C:/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
+/c/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
 
-C:/MongoDB/bin/mongo "mongodb+srv://pokerom-ng2of.gcp.mongodb.net/pkmn-roms" --username bag33188
+/c/MongoDB/bin/mongo "mongodb+srv://pokerom-ng2of.gcp.mongodb.net/pkmn-roms" --username bag33188
 
 # Not using git Bash
 CD C:\Projects\bin && mongod.exe --dbpath=..\data
