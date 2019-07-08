@@ -14,7 +14,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   pathName(): string {
-    return location.pathname;
+    return location.pathname.replace('/404', '');
   }
 
 }
