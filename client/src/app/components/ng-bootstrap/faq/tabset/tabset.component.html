@@ -7,11 +7,11 @@
           >.
           <br />
           Details: This app works on
-          <span class="underline">Chrome</span> browsers released
-          <span class="font-weight-bold"
-            >from early 2017 to now (minimum version requirement: Chrome
-            {{ browsers[0].minVersion }})</span
-          >.
+          <span class="font-italic">Chrome</span> browsers released
+          <span class="font-weight-bold">from early 2017 to now</span
+          >&nbsp;(minimum version requirement:
+          <span class="underline">Chrome {{ browsers[0].minVersion }}</span
+          >).
         </p>
       </ng-template>
     </ngb-tab>
@@ -20,11 +20,11 @@
         <p class="pt-2">
           Status: <span class="compatible">{{ browsers[1].status }}</span
           >.<br />Details: This app works on
-          <span class="underline">Opera</span> versions
-          <span class="font-weight-bold"
-            >from late 2017 to now (minimum version requirement: Opera
-            {{ browsers[1].minVersion }})</span
-          >.
+          <span class="font-italic">Opera</span> versions
+          <span class="font-weight-bold">from late 2017 to now</span
+          >&nbsp;(minimum version requirement:
+          <span class="underline">Opera {{ browsers[1].minVersion }}</span
+          >).
         </p>
       </ng-template>
     </ngb-tab>
@@ -35,11 +35,11 @@
           >.
           <br />
           Details: This app works on
-          <span class="underline">Safari</span> versions
-          <span class="font-weight-bold"
-            >from mid-2017 to now (minimum version requirement: Safari
-            {{ browsers[2].minVersion }})</span
-          >.
+          <span class="font-italic">Safari</span> versions
+          <span class="font-weight-bold">from mid-2017 to now</span
+          >&nbsp;(minimum version requirement:
+          <span class="underline">Safari {{ browsers[2].minVersion }}</span
+          >).
         </p>
       </ng-template>
     </ngb-tab>
@@ -50,11 +50,11 @@
           >.
           <br />
           Details: This app works on
-          <span class="underline">Firefox</span> versions from
-          <span class="font-weight-bold"
-            >from early 2017 to now (minimum version requirement: Firefox
-            {{ browsers[3].minVersion }})</span
-          >.
+          <span class="font-italic">Firefox</span> versions from
+          <span class="font-weight-bold">from early 2017 to now</span>(minimum
+          version requirement:
+          <span class="underline">Firefox {{ browsers[3].minVersion }}</span
+          >).
         </p>
       </ng-template>
     </ngb-tab>
@@ -63,11 +63,11 @@
         ><p class="pt-2">
           Status: <span class="compatible">{{ browsers[4].status }}</span
           >.<br />Details: This app works on
-          <span class="underline">Edge</span> versions
-          <span class="font-weight-bold"
-            >from late 2017 to now (minimum version requirement: Edge
-            {{ browsers[4].minVersion }})</span
-          >.
+          <span class="font-italic">Edge</span> versions
+          <span class="font-weight-bold">from late 2017 to now</span
+          >&nbsp;(minimum version requirement:
+          <span class="underline">Edge {{ browsers[4].minVersion }}</span
+          >).
         </p></ng-template
       >
     </ngb-tab>
@@ -78,8 +78,9 @@
           Status: <span class="incompatible">{{ browsers[5].status }}</span
           >.<br />Details: This app is
           <span class="font-weight-bold">NOT</span> compatible with
-          <span class="underline">Internet Explorer</span>. Please use another
-          browser.
+          <span id="ie" placement="top" ngbTooltip="booooooo!"
+            >Internet Explorer</span
+          >. Please use another browser.
         </p></ng-template
       >
     </ngb-tab>
