@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const Rom = require('./rom');
 
 // create schema
 const UserSchema = mongoose.Schema({
@@ -124,7 +123,6 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
  * @param {any} callback The callback function.
  */
 module.exports.deleteAllUsers = function(callback) {
-  Rom.deleteAllRoms({}, null);
   User.deleteMany(callback);
 };
 
@@ -135,12 +133,7 @@ module.exports.deleteAllUsers = function(callback) {
  * @param {any} callback The callback function.
  */
 module.exports.deleteUser = function(id, callback) {
-  Rom.deleteAllRoms({ userId: id }, (err) => {
-    if (err) {
-      console.log(err);
-    }
-    User.findOneAndDelete(id, callback);
-  });
+  User.findOneAndDelete(id, callback);
 };
 
 /**

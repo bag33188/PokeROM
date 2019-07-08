@@ -8,6 +8,7 @@ const config = require('../../config/database');
 const User = require('../../models/user');
 const auth = require('../../middleware/auth');
 const router = express.Router();
+const Rom = require('../../models/rom');
 
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
 
@@ -398,10 +399,15 @@ router.delete('/', auth, async (req, res, next) => {
         }
         return res.status(500).json({ success: false, ...err });
       }
-      return res.status(200).json({
-        success: true,
-        message: 'All users successfully deleted!',
-        ...status
+      Rom.deleteAllRoms({}, err => {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        return res.status(200).json({
+          success: true,
+          message: 'All users successfully deleted!',
+          ...status
+        });
       });
     });
   } catch (err) {
@@ -424,10 +430,15 @@ router.delete('/:id', auth, async (req, res, next) => {
         }
         return res.status(500).json({ success: false, ...err });
       }
-      return res.status(200).json({
-        success: true,
-        message: 'User successfully deleted!',
-        ...status
+      Rom.deleteRom({ userId: id }, err => {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        return res.status(200).json({
+          success: true,
+          message: 'User successfully deleted!',
+          ...status
+        });
       });
     });
   } catch (err) {
