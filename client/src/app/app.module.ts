@@ -18,8 +18,7 @@ import { AppComponent } from './app.component';
     PagesModule,
     LayoutModule,
     RomsModule,
-    NgBootstrapModule,
-    SandboxModule
+    NgBootstrapModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
