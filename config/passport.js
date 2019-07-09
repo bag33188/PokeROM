@@ -1,7 +1,7 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../models/user');
-const database = require('./database');
+const database = require('./db');
 
 /**
  * @summary Generate JWT Bearer.
