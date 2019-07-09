@@ -11,9 +11,7 @@ const users = require('./routes/api/users');
 const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const options = require('./routes/options');
-
-
-passportConfig(passport);
+passportConfig(passport); // configure passport
 
 // connect to database
 connectDB();
