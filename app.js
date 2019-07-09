@@ -3,7 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const passport = require('passport');
 const logger = require('./middleware/logger');
-const config = require('./config/db');
+const connectDB = require('./config/db');
 const roms = require('./routes/api/roms');
 const users = require('./routes/api/users');
 const version = require('./routes/api/version');
@@ -15,7 +15,7 @@ const passportConfig = require('./config/passport');
 passportConfig(passport);
 
 // connect to database
-config.connectDB();
+connectDB();
 
 // define app from express js
 const app = express();

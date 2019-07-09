@@ -1,7 +1,8 @@
+const config = require('config');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../models/user');
-const database = require('./db');
+const secret = config.get('secret');
 
 /**
  * @summary Generate JWT Bearer.
@@ -12,7 +13,7 @@ const passport = (passportJwt) => {
   // setup options
   const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: database.secret
+    secretOrKey: secret
   };
   // jwt strategy middelware
   passportJwt.use(new JwtStrategy(opts, (jwt_payload, done) => {
