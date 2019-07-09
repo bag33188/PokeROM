@@ -2,5 +2,5 @@
 
 export const environment: Environment = {
   production: true,
-  apiUrl: 'https://pokerom-bag33188.herokuapp.com'
+  apiUrl: 'https://pokerom-broccolini.herokuapp.com'
 };
