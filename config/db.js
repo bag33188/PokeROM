@@ -9,7 +9,7 @@ const connectDB = async () => {
     console.log(`Connected to database ${config.mongoURI}`);
   } catch (err) {
     console.error(`Database error: ${err}`);
-    process.exit(1);
+    // process.exit(1);
   }
 };
 
