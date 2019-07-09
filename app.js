@@ -13,8 +13,9 @@ const natures = require('./routes/api/natures');
 const options = require('./routes/options');
 passportConfig(passport); // configure passport
 
-// connect to database
-connectDB();
+// database
+const db = connectDB;
+db(); // connect to database
 
 // define app from express js
 const app = express();
