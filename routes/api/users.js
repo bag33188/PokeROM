@@ -1,10 +1,11 @@
 const express = require('express');
 const moment = require('moment');
+const config = require('config');
 const url = require('url');
 const jwt = require('jsonwebtoken');
 const { body } = require('express-validator/check');
 const { check, validationResult } = require('express-validator/check');
-const config = require('../../config/db');
+const secret = config.get('secret');
 const User = require('../../models/user');
 const auth = require('../../middleware/auth');
 const router = express.Router();
@@ -204,7 +205,7 @@ router.post(
             return res.status(403).json({ success: false, ...err });
           }
           if (isMatch) {
-            const token = jwt.sign({ data: user }, config.secret, {
+            const token = jwt.sign({ data: user }, secret, {
               expiresIn: 604800 // 1 week (in seconds); formula: [60s*60m*24h*7d]
             });
             return res.status(200).json({
