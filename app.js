@@ -41,7 +41,7 @@ swaggerDoc.apiDocs(app);
 const corsConfig = cors({
   origin:
     process.env.NODE_ENV === 'production'
-      ? 'https://pokerom-bag33188.herokuapp.com'
+      ? 'https://pokerom-broccolini.herokuapp.com'
       : 'http://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   headers: ['Accept', 'Accept-Language', 'Authorization', 'Content-Type'],
