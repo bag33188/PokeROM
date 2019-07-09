@@ -19,21 +19,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let betaVerAlertId: string;
-    if (/Edge/.test(navigator.userAgent)) {
-      betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[0].nodeValue;
-    } else {
-      betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[1].nodeValue;
-    }
-    if (this.isBeta) {
-      // close alert after 3 seconds
-      setTimeout((): void => {
-        // fade out alert during 1 second
-        $('#' + betaVerAlertId).fadeOut(1000, (): void => // 1 second
-          this.closeAlert(this.alerts[0])
-        );
-      }, 3000); // 3 seconds
-    }
+    this.closeAlert();
   }
 
   betaVersionAlert(): void {
@@ -52,7 +38,22 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
     this.alerts = JSON.parse(sessionStorage.getItem('beta-version-alert'));
   }
 
-  closeAlert(alert: Alert): void {
+  closeAlert(alert?: Alert): void {
+    let betaVerAlertId: string;
+    if (/Edge/.test(navigator.userAgent)) {
+      betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[0].nodeValue;
+    } else {
+      betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[1].nodeValue;
+    }
+    if (this.isBeta) {
+      // close alert after 3 seconds
+      setTimeout((): void => {
+        // fade out alert during 1 second
+        $('#' + betaVerAlertId).fadeOut(1000, (): void => // 1 second
+          this.closeAlert(this.alerts[0])
+        );
+      }, 3000); // 3 seconds
+    }
     this.alerts.splice(this.alerts.indexOf(alert), 1);
     sessionStorage.setItem('beta-version-alert', JSON.stringify(this.alerts));
   }
