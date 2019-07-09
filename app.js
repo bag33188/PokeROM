@@ -2,10 +2,8 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const passport = require('passport');
-const mongoose = require('mongoose');
-const bluebird = require('bluebird');
 const logger = require('./middleware/logger');
-const config = require('./config/database');
+const config = require('./config/db');
 const roms = require('./routes/api/roms');
 const users = require('./routes/api/users');
 const version = require('./routes/api/version');
@@ -16,20 +14,8 @@ const passportConfig = require('./config/passport');
 
 passportConfig(passport);
 
-// Database
-const db = config.mongoURI;
-
-// db connection setup
-mongoose
-  .connect(db, { useNewUrlParser: true, promiseLibrary: bluebird })
-  .then(() => console.log(`Connected to database ${config.mongoURI}`))
-  .catch(err => console.error(`Database error: ${err}`));
-
-// use bluebird promise library
-mongoose.Promise = bluebird;
-
-// use to avoid deprecation
-mongoose.set('useFindAndModify', false);
+// connect to database
+config.connectDB();
 
 // define app from express js
 const app = express();
