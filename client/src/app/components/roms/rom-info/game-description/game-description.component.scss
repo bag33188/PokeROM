@@ -11,6 +11,7 @@
   padding: 1em 20px 20px;
   word-wrap: break-word;
   @media only all and (max-width: 938px) {
-    height: auto;
+    height: 300px;
+    padding-bottom: 1em !important;
   }
 }

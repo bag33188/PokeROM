@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@import '../../../../assets/scss/functions';
+
 /*
  * CSS Grid Layout:
  * 
@@ -61,7 +63,7 @@
     'rom-specs'
     'game-download';
     grid-template-columns: 1fr;
-    grid-template-rows: .5fr fit-content(388px) 15.9rem 17.5rem 5.5rem;
+    grid-template-rows: .5fr fit-content(308px) 15.9rem 17.5rem 5.5rem;
     margin: 0 auto;
     text-align: center;
   }
