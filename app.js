@@ -16,7 +16,7 @@ const passportConfig = require('./config/passport');
 
 passportConfig(passport);
 
-// DB config
+// Database
 const db = config.mongoURI;
 
 // db connection setup
