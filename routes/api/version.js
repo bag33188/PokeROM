@@ -9,12 +9,13 @@ const router = express.Router();
  * @description Gets the API's version.
  */
 router.get('/', async (req, res, next) => {
-    try {
-        const version = Version.getApiVersion(swaggerDoc.version);
-        await res.status(200).json(version);
-    } catch (err) {
-        next(err);
-    }
+  try {
+    const [, version] = swaggerDoc;
+    const apiVersion = Version.getApiVersion(version);
+    await res.status(200).json(apiVersion);
+  } catch (err) {
+    next(err);
+  }
 });
 
 // export router

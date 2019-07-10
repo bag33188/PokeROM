@@ -20,8 +20,10 @@ db(); // connect to database
 // define app from express js
 const app = express();
 
+const [apiDocs] = swaggerDoc;
+
 // setup swagger docs
-swaggerDoc.apiDocs(app);
+apiDocs(app);
 
 // middleware
 app.use(logger);

@@ -21,5 +21,4 @@ const apiDocs = (app) => {
 };
 
 // export version and docs
-module.exports.version = version;
-module.exports.apiDocs = apiDocs;
+module.exports = [apiDocs, version];
