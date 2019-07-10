@@ -9,9 +9,7 @@ const moment = require('moment');
  */
 function logger(req, res, next) {
   const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-  moment().locale('en');
-  moment().utcOffset(8);
-  console.log(`${req.method} ${url} ${moment().format('LLLL')}`);
+  console.log(`${req.method} ${url} ${moment().format('LLLL').utcOffset(8)}`);
   next();
 }
 
