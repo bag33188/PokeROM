@@ -10,7 +10,7 @@ const moment = require('moment');
 function logger(req, res, next) {
   const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
   console.log(
-    `${req.method} ${url} ${moment()
+    `${req.method} (${res.statusCode}) ${url} ${moment()
       .subtract(7, 'hours') // pacific standard time
       .format('LLLL')}`
   );
