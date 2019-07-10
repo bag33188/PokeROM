@@ -88,6 +88,10 @@ router.post(
       .withMessage('Password is required.')
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
+      .matches(
+        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/gi
+      )
+      .withMessage('Password conatins invalid characters.')
   ],
   async (req, res, next) => {
     try {
@@ -175,6 +179,10 @@ router.post(
       .withMessage('Password is required.')
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
+      .matches(
+        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/gi
+      )
+      .withMessage('Password conatins invalid characters.')
   ],
   async (req, res, next) => {
     try {
@@ -267,6 +275,10 @@ router.put(
       .isEmpty()
       .withMessage('Password is required.')
       .isLength({ min: 8, max: 256 })
+      .matches(
+        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/gi
+      )
+      .withMessage('Password conatins invalid characters.')
   ],
   async (req, res, next) => {
     try {
@@ -334,6 +346,7 @@ router.patch(
       const id = req.params.id;
       const query = req.body;
       let isValid = true;
+      const pwRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/gi;
       for (let field of Object.keys(req.body)) {
         if (
           field !== 'name' &&
@@ -343,6 +356,8 @@ router.patch(
         ) {
           isValid = false;
           break;
+        } else if (field === 'password' && pwRegex.test(field)) {
+          isValid = false;
         } else {
           isValid = true;
         }
