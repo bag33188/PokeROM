@@ -193,6 +193,15 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
+      let isValid = true;
+      Object.keys(req.body).forEach((field) => {
+        if (field !== 'username' && field !== 'password') {
+          isValid = false;
+        }
+      });
+      if (!isValid) {
+        return res.status(400).json({ success: false, msg: 'Bad JSON body.' });
+      }
       await User.getUserByUsername(username, (err, user) => {
         if (err) {
           switch (err.name) {
