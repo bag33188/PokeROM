@@ -11,15 +11,17 @@ import { environment } from '../../../../environments/environment';
 export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
   isBeta: boolean;
   alerts: Alert[];
+  betaVerAlertId: string;
 
   constructor(private elRef: ElementRef) {}
 
   ngOnInit() {
     this.betaVersionAlert();
+    this.setBetaVersionAlertId();
   }
 
   ngAfterViewInit() {
-    this.closeAlert();
+    this.fadeOutAlert();
   }
 
   betaVersionAlert(): void {
@@ -32,29 +34,38 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
       if (environment.production) {
         sessionStorage.setItem('beta-version-alert', JSON.stringify([]));
       } else {
-        sessionStorage.setItem('beta-version-alert', JSON.stringify([betaVersionAlert]));
+        sessionStorage.setItem(
+          'beta-version-alert',
+          JSON.stringify([betaVersionAlert])
+        );
       }
     }
     this.alerts = JSON.parse(sessionStorage.getItem('beta-version-alert'));
   }
 
-  closeAlert(alert?: Alert): void {
-    let betaVerAlertId: string;
-    if (/Edge/.test(navigator.userAgent)) {
-      betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[0].nodeValue;
-    } else {
-      betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[1].nodeValue;
-    }
+  closeAlert(alert: Alert): void {
+    this.alerts.splice(this.alerts.indexOf(alert), 1);
+    sessionStorage.setItem('beta-version-alert', JSON.stringify(this.alerts));
+  }
+
+  fadeOutAlert(): void {
     if (this.isBeta) {
       // close alert after 3 seconds
       setTimeout((): void => {
         // fade out alert during 1 second
-        $('#' + betaVerAlertId).fadeOut(1000, (): void => // 1 second
-          this.closeAlert(this.alerts[0])
+        $('#' + this.betaVerAlertId).fadeOut(
+          1000,
+          (): void => this.closeAlert(this.alerts[0]) // 1 second
         );
       }, 3000); // 3 seconds
     }
-    this.alerts.splice(this.alerts.indexOf(alert), 1);
-    sessionStorage.setItem('beta-version-alert', JSON.stringify(this.alerts));
+  }
+
+  setBetaVersionAlertId(): void {
+    if (/Edge/.test(navigator.userAgent)) {
+      this.betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[0].nodeValue;
+    } else {
+      this.betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[1].nodeValue;
+    }
   }
 }
