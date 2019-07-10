@@ -58,15 +58,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106579&authkey=AFh1G-fhw1ddTbs',
     generation: 1,
-    boxArtUrl: 'https://bit.ly/2Wr6mts',
+    boxArtUrl:
+      'https://0nqsgw.sn.files.1drv.com/y4m2BzY8hfzVzQxYbI39zLMxNIpFlVM2VfKFw_oChvqnNXtGh4vEbhwyZBJTfK_h_88RXRoXtmMkHGlf1Teg9NsTgRhDcHWoUrvnCkl7aTYUGdztzZfKYxO3uYfIeszAqrgSf6EjdqDbs_MnOZvhflCC0GreOQCm9XF1oxENdJEIrd0IBfVlF9bx_uUO-wcKsQh8sFAtH1XSpPATZQ7ucBrNw?width=898&height=890&cropmode=none',
     gameName: 'Pokémon Red Version',
     region: 'Kanto',
     platform: 'Game Boy',
     description:
       "Pokémon Red and Pokémon Blue introduce legions of gamers to the world of Kanto, where the likes of Charmander, Pikachu, and Mewtwo were first discovered. Through exciting exploration, battles, and trades, Trainers are able to access 150 Pokémon. You begin your journey in Pallet Town as a young boy. After a dangerous brush with wild Pokémon, Professor Oak teaches you how to capture Pokémon, and then sends you on your way as a fledgling Trainer. During your journey through Kanto, you must capture Pokémon to record their information in your Pokédex, as well as become a better Trainer by competing in Gyms scattered throughout the region. Once you've proven your mettle as a Pokémon Trainer, it's time to take on the Elite Four, a crack group of Trainers that will put all of your learned skills to the test. Your journey will be far from easy. In addition to the many Trainers and wild Pokémon you'll encounter along the way, you'll also have to be watchful of Team Rocket, a despicable group of Pokémon thieves. Prevent Team Rocket from stealing rare Pokémon and stop their criminal ways! You won't be able to catch every Pokémon in either Pokémon Red or Pokémon Blue; to collect every Pokémon, you'll have to trade with friends via the Game Link™ Cable. With it, you can also take your team of faithful Pokémon into battle against your pals to see how well your team stacks up! There's much to see and do in Pokémon Red and Pokémon Blue. Start your journey through Kanto and become a Master Trainer!",
     genre: 'RPG',
-    dateReleased: ISODate('1998-09-28T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2Mu5YdV'
+    dateReleased: '1998-09-28T07:00:00Z',
+    logoUrl:
+      'https://zhrlpg.sn.files.1drv.com/y4m99wXwtGrWHHMW0SiI8P45V1o7SxOVDkBv3sUv9V4LHGtvefXPDCo2sJkr5BVlo6vi_Ba5T_Ix2kzpPNZL4TvQDCDYyHMJD44lGd1qICT4NPKeTMy3bwqASzOjrNjQixP7mOgOHSCcFLqyNhZ82vcg7KS8y2FhpwpnxughHKze64_Un6SGoWaZseHH0Vf06rcta1MNAnUQcN9eXVabJ7TDQ?width=400&height=155&cropmode=none'
   },
   {
     orderNumber: 1,
@@ -76,15 +78,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106584&authkey=AAu3Ad8tHrWmdgQ',
     generation: 1,
-    boxArtUrl: 'https://bit.ly/2K4GDW8',
+    boxArtUrl:
+      'https://03qigw.sn.files.1drv.com/y4mRMNcs72yCHfNOjYzS2W7QkazHfO_pmD-iwoOWJ7P0Mr-A1qOpsCjBYuoLt86ILVKhH9Kuy4zNZACqw0MIo7S9LFPZn_FfX9pA-HdkWMyRvdZRPzP3KUr1MCM9RJ1O30-WsN0cpNf5Ixr-Q4ERwoNAxcNGbaX0IOPhisAgVnrvlf3tgyxSnfHS7InFNa7G7j7Wp7kBVm0NOXo-fzGIgdbGg?width=894&height=894&cropmode=none',
     gameName: 'Pokémon Blue Version',
     region: 'Kanto',
     platform: 'Game Boy',
     description:
       "Pokémon Red and Pokémon Blue introduce legions of gamers to the world of Kanto, where the likes of Charmander, Pikachu, and Mewtwo were first discovered. Through exciting exploration, battles, and trades, Trainers are able to access 150 Pokémon. You begin your journey in Pallet Town as a young boy. After a dangerous brush with wild Pokémon, Professor Oak teaches you how to capture Pokémon, and then sends you on your way as a fledgling Trainer. During your journey through Kanto, you must capture Pokémon to record their information in your Pokédex, as well as become a better Trainer by competing in Gyms scattered throughout the region. Once you've proven your mettle as a Pokémon Trainer, it's time to take on the Elite Four, a crack group of Trainers that will put all of your learned skills to the test. Your journey will be far from easy. In addition to the many Trainers and wild Pokémon you'll encounter along the way, you'll also have to be watchful of Team Rocket, a despicable group of Pokémon thieves. Prevent Team Rocket from stealing rare Pokémon and stop their criminal ways! You won't be able to catch every Pokémon in either Pokémon Red or Pokémon Blue; to collect every Pokémon, you'll have to trade with friends via the Game Link™ Cable. With it, you can also take your team of faithful Pokémon into battle against your pals to see how well your team stacks up! There's much to see and do in Pokémon Red and Pokémon Blue. Start your journey through Kanto and become a Master Trainer!",
     genre: 'RPG',
-    dateReleased: ISODate('1998-09-28T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2QWVcvo'
+    dateReleased: '1998-09-28T07:00:00Z',
+    logoUrl:
+      'https://y3rnpg.sn.files.1drv.com/y4mHsDlhurRGRjBXJUI-ZPYAzeg8Het5mMg8d2P6ES7aDwI56T_a7wEq8m5alvLYJNGpCRT0Qqlfy6TuokLAq3bPA7tqgcUt2iICU1B56xDomjfClHM9fPvDqZfJNrSjjgoKP2E_ozqS9KUaGS4npTfOOv3W9CVLCAO4lWlB1UArVroHZS6GRHAAqR1zlK9IczD8Hzi4YG_cYQlbsQNwnEk2g?width=1727&height=903&cropmode=none'
   },
   {
     orderNumber: 2,
@@ -94,15 +98,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106576&authkey=AEr3meD0RCYY81M',
     generation: 1,
-    boxArtUrl: 'https://bit.ly/2QWm7HO',
+    boxArtUrl:
+      'https://0nqdgw.sn.files.1drv.com/y4mFQW9jaQrNfHN9skbC23ch2IlYGQ_C37COALLc1CwfPCdJUFbokBeoiKvCBB3wWn1723RfLVTcLkZylfzAaE3eCX0NBqH03qyA2ELKxjCHwcptJ901_xorMX45fPRrhAt4G0hpc23bw5WAdqyqy6dwb7iXBrxDeolVTgbwf8W3bWg4rG2wUsnlTfW0NGd2pj1wgs2G6LTxo9TxKHHgT0pSg?width=894&height=894&cropmode=none',
     gameName: 'Pokémon Yellow: Special Pikachu Edition',
     region: 'Kanto',
     platform: 'Game Boy',
     description:
       "Building on the terrific success of Pokémon Red Version and Pokémon Blue Version, Pokémon Yellow Version returns Trainers to Kanto for more even more fun and adventure. Pokémon Yellow delivers a feature that hasn't been duplicated in any other Pokémon game-Pikachu actually follows you around throughout your journey! The graphics for Pokémon Yellow are updated slightly from Pokémon Red and Pokémon Blue, and you can use innovative peripherals such as the Game Boy Printer, which allow you to print out stickers of your favorite Pokémon. Pokémon Yellow also introduces challenges and battle modes that let you compete in exciting ways.",
     genre: 'RPG',
-    dateReleased: ISODate('1999-10-01T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2wH3mi3'
+    dateReleased: '1999-10-01T07:00:00Z',
+    logoUrl:
+      'https://zxrmpg.sn.files.1drv.com/y4mZHO43t9qFAJz-9rBVHppHmiYcjoV5dXpmKSyrmFTEFaHD-p43p9UTmG-Vz65U6OB-FxfY7wlT5TPES7ZiQMc2rrZuIoOfdjgNKiWw0TA9XZNeY4ETJVNBRcpQ6pytechZvN3uGFCJJJWLEruHaJBxJKyqB1_v7fpKNuefuzMH-9Gp3JHj_0LbDmwTCOuQLM2yZgnU5qL-h8HFhwBEZS1yg?width=400&height=155&cropmode=none'
   },
   {
     orderNumber: 3,
@@ -112,14 +118,16 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106583&authkey=AKd_c8Z6BOt1WxE',
     generation: 1,
-    boxArtUrl: 'https://bit.ly/2WlpVTX',
+    boxArtUrl:
+      'https://03qkgw.sn.files.1drv.com/y4mKA-4wtHmBgPgR-_Wx60t_Vp9fItrhkgH3fCaBTI0Ax8cx0ko01gxfh-sOCP9PPTrfCTzvqU_YeWLTCk2vI2YrYNG6b5ckPrB_n9csRW45-9n5svgjQ85H1xsBgj3_1EMUWkDrCltrhoXd6EZVowgH-46gCd7L-pksi7vDcGQGK7ekLh7NgRdGmhwjhdUDgA9mLDsHzczHmbcFcgFUl6dGg?width=479&height=599&cropmode=none',
     gameName: 'Pokémon Green Version (JP)',
     region: 'Kanto',
     platform: 'Game Boy',
     description: 'Pokémon Green is the Japanese version of Pokémon Blue.',
     genre: 'RPG',
-    dateReleased: ISODate('1996-02-27T08:00:00Z'),
-    logoUrl: 'https://bit.ly/2I1ysrc'
+    dateReleased: '1996-02-27T08:00:00Z',
+    logoUrl:
+      'https://znripg.sn.files.1drv.com/y4mh65e5IHCzq3UTNjAA1uT6YU5hb7pJdQXf53TjbC14vNimSVoRKwxpIx4NMvNACtOfQgRIy9i-zQempD6LIwA6L2uw_cSjgU0GwatMpXD4vZ201LctUVW5DbPLd6bHKS8NvDWiFbwDVzH9nnO5XnMskevRpkGp4ocxSf1inicx69ql-mAIlg8_YM7XPZudGXKsKiKwor9jheTpIMSDpEOVQ?width=480&height=360&cropmode=none'
   },
   {
     orderNumber: 4,
@@ -129,15 +137,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106573&authkey=AImVAcHQPMcqHdQ',
     generation: 2,
-    boxArtUrl: 'https://bit.ly/2WXkxuB',
+    boxArtUrl:
+      'https://0nqigw.sn.files.1drv.com/y4mmuevpMK5D5_0TiU9PBT7bWuAmRATMwP4wbJVIfCqGDoS-4VTzwjGuJOA3vWrK6MmUpvdu4bU0MMpdk4Q5ezoMhw9OF8abDaCUYkrW-Q_xeKfnEIaTWJu_qDnMMWWpDh8S-9JoYyUPhLU_jiX2K7qmE83wAEDqEeJ3IKN_6qNSeJr1ko_KMVXRwpATxuLSwASMCEtS7SlCYDpZSO-PPPVhA?width=220&height=220&cropmode=none',
     gameName: 'Pokémon Gold Version',
     region: 'Johto',
     platform: 'Game Boy Color',
     description:
       'One of the first mainstream RPG games to appear on the Game Boy Color, Pokémon Gold Version and Pokémon Silver Version continued to expand the Pokémon universe, adding 100 Pokémon, held items, and real-time events, thanks to an internal game clock. These major Pokémon releases take you on a journey through the Johto region, and for the first time, show your Pokémon appearing in glorious color on your Game Boy Color. All kinds of creative aspects are to be found in Pokémon Gold and Pokémon Silver, including genders and items that Pokémon can hold to improve their skills. Dozens of Pokémon join the action, including the trio of Legendary Pokémon Raikou, Entei, and Suicune. They’re always on the move, so you’ll need to be at the right place at the right time to catch any of them. Pokémon Gold and Pokémon Silver introduce new Pokémon types as well—look out for Steel- and Dark-type Pokémon throughout your travels. Pokémon Egg groups expand the ways you can collect Pokémon. Leave two compatible Pokémon at the Pokémon Day Care and cross your fingers. If you’re lucky, an Egg may appear that will hatch into a new young Pokémon! Only some Pokémon will give you an Egg, and Pokémon are picky about which other Pokémon they get along with, so it will take plenty of experimenting to find a match!',
     genre: 'RPG',
-    dateReleased: ISODate('2000-10-15T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2XAPMbZ'
+    dateReleased: '2000-10-15T07:00:00Z',
+    logoUrl:
+      'https://zhrnpg.sn.files.1drv.com/y4mHNsbCm0PIcvCZ9BkIWWpJRBgQQR7oGeOTjaWtQpy88XzDb3bc_oW4Z7GQqBbOXOGCfdtHHyDKsK6iuYqOcL4cy7pTfl__cR9eyozcyGMtY11Jpt6ca6SjfAgc6vh92snSKkSzdBdC6OCn0c5khoSVt6a2xgtjvsHlD7NZtgJaxPra5USOyjLM93Z5AoaVf7gvXc8w9j5yl18IfHcFl8l9Q?width=1701&height=985&cropmode=none'
   },
   {
     orderNumber: 5,
@@ -147,15 +157,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106570&authkey=AMkhM_B6wawLVBo',
     generation: 2,
-    boxArtUrl: 'https://bit.ly/2EXJ48I',
+    boxArtUrl:
+      'https://0xqrgw.sn.files.1drv.com/y4m4Y-DMcKpOJW59EsPDBk5JMjngMy2zZVDC4goQ9ipzDsYsPlkkIj0uaKq6tEJHBD2vfmakykAWqWpHeO7ZKt7reUmcCCXPiigAj5_ZjCMiEbfRmlrwOn-Wg1Djv7uYPlYheHWg1guO5hkIHWMPMMWnlcl0jUF-XBhP6QK0B0aPvhw-orJSK9N2VBnWZSOe9d0tlZaQH3963qj1CSzIuZzrg?width=287&height=289&cropmode=nonehttps://bit.ly/2EXJ48I',
     gameName: 'Pokémon Silver Version',
     region: 'Johto',
     platform: 'Game Boy Color',
     description:
       'One of the first mainstream RPG games to appear on the Game Boy Color, Pokémon Gold Version and Pokémon Silver Version continued to expand the Pokémon universe, adding 100 Pokémon, held items, and real-time events, thanks to an internal game clock. These major Pokémon releases take you on a journey through the Johto region, and for the first time, show your Pokémon appearing in glorious color on your Game Boy Color. All kinds of creative aspects are to be found in Pokémon Gold and Pokémon Silver, including genders and items that Pokémon can hold to improve their skills. Dozens of Pokémon join the action, including the trio of Legendary Pokémon Raikou, Entei, and Suicune. They’re always on the move, so you’ll need to be at the right place at the right time to catch any of them. Pokémon Gold and Pokémon Silver introduce new Pokémon types as well—look out for Steel- and Dark-type Pokémon throughout your travels. Pokémon Egg groups expand the ways you can collect Pokémon. Leave two compatible Pokémon at the Pokémon Day Care and cross your fingers. If you’re lucky, an Egg may appear that will hatch into a new young Pokémon! Only some Pokémon will give you an Egg, and Pokémon are picky about which other Pokémon they get along with, so it will take plenty of experimenting to find a match!',
     genre: 'RPG',
-    dateReleased: ISODate('2000-10-15T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2XCuGKk'
+    dateReleased: '2000-10-15T07:00:00Z',
+    logoUrl:
+      'https://zhripg.sn.files.1drv.com/y4m2IWgu2OtNA_K1cJSR7EuonPGHCQTDu5Pmvzlr7X5D7J81Z8zBnPcdKO_GMyPwTkM16RsoZctCKMOJQQ8H2NMUgKkep1saDIB2HBX6MRHhX3OxgMxXOLd-p9dHkUvdEQY-NjZOIBo4rDBLfEwT1E6vg2IVyxhXOcTFh7kaVc67VvFiQ6LmHFWIQ0BKqyCNcsSBRIXutFBXOW2mN62li9dBg?width=348&height=214&cropmode=none'
   },
   {
     orderNumber: 6,
@@ -165,15 +177,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106575&authkey=AHfY_trc76OVv1g',
     generation: 2,
-    boxArtUrl: 'https://bit.ly/2WsdWJ8',
+    boxArtUrl:
+      'https://0nqggw.sn.files.1drv.com/y4mqrHF9RQhQSCRV6PcIgMPe3qx2tYMFoXaBVNCCzbUO5dQPaN_AiLMAmvu5bnkVm6ut9tYo8Bp3oA49mMq5sd48tVnXDLzag75nW0cb8-TAikS9Nuo6FTPd2ZfeThRYP-5R22zVlE-6lT0kx7bNGzgZhs9pcY39f48knhDOAE-r60O0AMwd_NxCEb0QVxTOPOyxtJoGXBd3LhPpP99IC247Q?width=256&height=256&cropmode=none',
     gameName: 'Pokémon Crystal Version',
     region: 'Johto',
     platform: 'Game Boy Color',
     description:
       "The last of the Game Boy Color Pokémon games, Pokémon Crystal Version sent the classic system off in style. On the surface, Pokémon Crystal Version is a lot like Pokémon Gold Version and Pokémon Silver Version, in that the story takes place in Johto and the adventure takes you down a familiar path. But, digging deeper, you'll see that Pokémon Crystal has plenty of aspects that have revolutionized Pokémon games. Pokémon Crystal is the first Pokémon game where you can choose to play either as a boy or girl, and it's also the first Pokémon game to feature a Battle Tower, a central location for hordes of the toughest Trainers in the land! Pokémon Crystal features animated introductions for each Pokémon when they are brought to the heat of battle, as well as other graphic improvements you'll notice as you roam the Johto region. While doing so, keep an eye out for Pokémon in different locations and Legendary Pokémon that can be caught only by the most talented Trainers!",
     genre: 'RPG',
-    dateReleased: ISODate('2001-07-29T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2KCalBl'
+    dateReleased: '2001-07-29T07:00:00Z',
+    logoUrl:
+      'https://y3rmpg.sn.files.1drv.com/y4mH5Qd83RSvD8DvKXC5jzp5AmjDBpWeoF3NIRhFzjPtCYe1LmFTvzw9sTUKIVwe83MeiiQJhxOhU-9YiCazISHpIgW9IpZTHTQsGo95IjN-yycJ-x1QSJAsI0qP85LO8WV9Y8cvICmZfJmYRr0su4avl_d9HvH3bf8UqLmdpskTdclDtRd2sAHOpG0HXdDCJs4kZOwqWT2sFmc3AVc_oqOTw?width=1500&height=1090&cropmode=none'
   },
   {
     orderNumber: 7,
@@ -183,15 +197,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106560&authkey=AAicbxqnQnJ8GR8',
     generation: 3,
-    boxArtUrl: 'https://bit.ly/2wGkuVg',
+    boxArtUrl:
+      'https://0hqrgw.sn.files.1drv.com/y4mIPBDlOy9M9EJJKpUD-Kynwed0d86NXrhnl_5mLXHkShGedV4e3UlePxEAqiNSNWV0J_e7THIPzruluSWtzW4LJMnG8F2ajNG6ZZfpMMMwN7VEUHpmsvYB3GCqvGSJ9TwdSb-FO1dxPIctIQfaKWNuBE1M1QTStB3CDT3G9-ggO9sI1ugcNd041ZpnU5vra_SfXAH_QhuvEwGSjdLRQWFRw?width=500&height=500&cropmode=none',
     gameName: 'Pokémon Ruby Version',
     region: 'Hoenn',
     platform: 'Game Boy Advanced',
     description:
       "The first Pokémon RPGs for the Game Boy Advance showed off the system's improved graphics and sound, and introduced now-permanent fixtures to the Pokémon world, such as double battles and Contests. Pokémon reinvents itself once again with two of the most popular games in the series! Pokémon Ruby Version and Pokémon Sapphire Version take great leaps in gameplay, particularly during combat. For the first time in a Pokémon game, Trainers can send two Pokémon into battle at the same time. Some Pokémon can learn moves that aid a partner or damage both of the opponent's Pokémon. And Pokémon have Abilities and Natures that affect their performance in battle. Your Pokémon are more than just good fighters, however. Enter them in Contests where they can perform special moves in front of judges to capture the judges' attention. To improve their stage appeal, feed the Pokémon Poké Blocks made from Berries you cultivate around the region. Explore the world of the Hoenn region with a whole host of Pokémon. To make room for all of them, Pokémon Ruby and Pokémon Sapphire can hook up to Pokémon Box™, a storage system on the Nintendo GameCube. A true test of Pokémon skills and strategies, Pokémon Ruby and Pokémon Sapphire definitely bring the level of Pokémon gameplay up a notch.",
     genre: 'RPG',
-    dateReleased: ISODate('2003-05-19T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2Wr97Lk'
+    dateReleased: '2003-05-19T07:00:00Z',
+    logoUrl:
+      'https://zhrkpg.sn.files.1drv.com/y4mz1NZ1IFn1oDR7C9GLYRk0oWWtvYKT4sMXXCwqp11HMmdvmk0ehxY1SUYAgu2-5RqwOxXs4xr2XTyjXobPF94x6IBQIdlOlBTfI-N8kUPzUKpo_l3xzEajeJwVQ2j52t-L8oeqgv9kMoy-tdB8TiSeuVQ9SCiI7RVED4yduCFNfYOEFx54GO0K6Q7fdr-mi8KppXDcRDVIPNd4QB9wezQtA?width=1838&height=1005&cropmode=none'
   },
   {
     orderNumber: 8,
@@ -201,15 +217,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106558&authkey=AMCDEefqenLL0R0',
     generation: 3,
-    boxArtUrl: 'https://bit.ly/2WUm1pj',
+    boxArtUrl:
+      'https://0hqdgw.sn.files.1drv.com/y4mO5t8dWmWjCNX18g5MllMt6pwPAikhXyG14ap_7wOwXF0_y66mh2STtj6HRrgIwOA_qSG_cslo4SYhrAYmlHnXVaJMFsxxQG50gdc9mWNhj3x1h9FyEiYvZbwPcYe5aTHyaTeNBj4mfQPNdqIaymbLt4dDPnlh2LT3z0IyLCcwluY1CSK9i-9twTFHb9lgjQHk8I7QDF-LmMjX91N82vdlA?width=500&height=500&cropmode=none',
     gameName: 'Pokémon Sapphire Version',
     region: 'Hoenn',
     platform: 'Game Boy Advanced',
     description:
       "The first Pokémon RPGs for the Game Boy Advance showed off the system's improved graphics and sound, and introduced now-permanent fixtures to the Pokémon world, such as double battles and Contests. Pokémon reinvents itself once again with two of the most popular games in the series! Pokémon Ruby Version and Pokémon Sapphire Version take great leaps in gameplay, particularly during combat. For the first time in a Pokémon game, Trainers can send two Pokémon into battle at the same time. Some Pokémon can learn moves that aid a partner or damage both of the opponent's Pokémon. And Pokémon have Abilities and Natures that affect their performance in battle. Your Pokémon are more than just good fighters, however. Enter them in Contests where they can perform special moves in front of judges to capture the judges' attention. To improve their stage appeal, feed the Pokémon Poké Blocks made from Berries you cultivate around the region. Explore the world of the Hoenn region with a whole host of Pokémon. To make room for all of them, Pokémon Ruby and Pokémon Sapphire can hook up to Pokémon Box™, a storage system on the Nintendo GameCube. A true test of Pokémon skills and strategies, Pokémon Ruby and Pokémon Sapphire definitely bring the level of Pokémon gameplay up a notch.",
     genre: 'RPG',
-    dateReleased: ISODate('2003-05-19T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2WW5PEi'
+    dateReleased: '2003-05-19T07:00:00Z',
+    logoUrl:
+      'https://zhrjpg.sn.files.1drv.com/y4mzJUQygMgdCbj6E89nc9vL0brHiMf2CoZt40GTrrjipABnJ0aCgkboFoeQhTPAkBZz1gnKueFM6270ztTqWfrcs0AOQJGeDp8BPBurbeTK-KzcWPKR8iJm1oljMXNp8ycO6UN-GscwlQxmxzDTrOPJn7xaAOhwANYMqowljK8RJ7u2sjBbaetBbJ5mb12isGzDppXcpU285FGeXzFRngFRQ?width=380&height=178&cropmode=none'
   },
   {
     orderNumber: 9,
@@ -219,15 +237,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106571&authkey=AA8u7r6a_HUa3cc',
     generation: 3,
-    boxArtUrl: 'https://bit.ly/2WXlZ01',
+    boxArtUrl:
+      'https://0xqsgw.sn.files.1drv.com/y4m5tFd8ln8fa0xIrw38hwF-V3SZ0os89pOW5HO18bKCTensACuCnDsoggrezQPzn1S5m7VmjvDcN_DI3Qt1_5tgaPf9p2pCNPWj6j3jJV7xPPufHG89bfEQeerqssNwR2Pm8xQo-ITZbm4ap2IOB4hdobEAppWj51x0VBugDfTgEWyfD-3CC3u5UNVG4in5VkyrI_Fo1kkwcjsruOys7KxAA?width=1473&height=1475&cropmode=none',
     gameName: 'Pokémon Emerald Version',
     region: 'Hoenn',
     platform: 'Game Boy Advanced',
     description:
       "Despite the Nintendo DS system making a splash, Pokémon Emerald Version showed that the Game Boy Advance was still an excellent system. Fortunately for Nintendo DS owners, you could transfer Pokémon from any of the Game Boy Advance games into future DS Pokémon RPGs. Pokémon Emerald Version takes Trainers back to the land of Hoenn for an expanded adventure, this time against both Team Magma and Team Aqua! Pokémon Emerald also features an even more exciting storyline featuring the Legendary Rayquaza, and the chance to catch more Legendary Pokémon such as both Latios and Latias! Around the region you'll notice exciting locales, especially the Battle Frontier. The Battle Frontier is basically an amusement park for Trainers, with a variety of challenges in a number of arenas headed by the always-intimidating Frontier Brains, some of the most formidable Trainers you've ever faced.",
     genre: 'RPG',
-    dateReleased: ISODate('2005-05-01T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2XpFTxK'
+    dateReleased: '2005-05-01T07:00:00Z',
+    logoUrl:
+      'https://y3rlpg.sn.files.1drv.com/y4mDD20sqaCbinCtBs6B2r7Gux--eOHsLaL6lga0cq2iiDhj-BqtzDFH7jNLIaOLsOXc3gtyf-zaaCRFbxxFFZja_1tI1aB4sMEmL0utUahTTuj_GGKoOIWymzOQttN_3OT1EMB2Cm_LS6umUDGi7TsCzGyBMNUEUbC2603frfRgtd9pu3dZnj-TVH5HM051_pRgxXGYpwuyx4GYDqvkRU-WA?width=1123&height=603&cropmode=none'
   },
   {
     orderNumber: 10,
@@ -237,15 +257,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106566&authkey=AK7XBtxuQ3zlSeI',
     generation: 3,
-    boxArtUrl: 'https://bit.ly/31mab6K',
+    boxArtUrl:
+      'https://0xqfgw.sn.files.1drv.com/y4mpiNcz1cHD9btjOoF8OUOOPtik7UkDluNtQkKEB6FGehLQnTExIKt57rVj0BTZronAT4iZhGCkRBFA0fPLeBCyYSlUV6WXw_HE2-iCRDLA-BFVO3KlQiNqCUXhpdp57OlSs2QsN-rb2Wi0a-Xg53fhAt_jaMm_pel-rJxWXhXyzN_Z2zBBCBlkUFY3A5M9ndsH_TukKyMSIMCvEKxG6yUsA?width=400&height=400&cropmode=none',
     gameName: 'Pokémon FireRed Version',
     region: 'Kanto',
     platform: 'Game Boy Advanced',
     description:
       "Six years after the original Pokémon Red Version and Pokémon Blue Version, this pair of titles for the Game Boy Advance system introduced Pokémon to a new group of gamers. These titles also shipped with a wireless adapter for Game Boy Advance, making it the first handheld to have such technology. Get set to return to where it all started—Pokémon FireRed Version and Pokémon LeafGreen Version head back to the Kanto region, the home of Pokémon Red and Pokémon Blue. Thanks to the capabilities of the Game Boy Advance system, the locales, Pokémon, and animations are greatly improved since the last installment. Pokémon FireRed and Pokémon LeafGreen finally unite all the worlds of Pokémon, making it possible to catch and keep every single Pokémon in one game! You'll need a little help from Pokémon Ruby Version and Pokémon Sapphire Version, as well as Pokémon Stadium, but if it were too easy it wouldn't be fun! To aid in trading Pokémon, Pokémon Ruby and Pokémon Sapphire come with a device for your Game Boy Advance that lets you trade Pokémon wirelessly. You can also chat or battle without the need for Game Link cables, too! Veterans of Pokémon Red and Pokémon Blue will appreciate that all the improvements made since the first visit to the Kanto region are available. Plus, there are different places to explore, most notably the Sevii Islands, where you can catch special Pokémon that don't exist anywhere else in Kanto!",
     genre: 'RPG',
-    dateReleased: ISODate('2004-09-09T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2QXSh5u'
+    dateReleased: '2004-09-09T07:00:00Z',
+    logoUrl:
+      'https://y3rhpg.sn.files.1drv.com/y4mwD2EibMgbFm6pZ5UpBqldgYvm5g-xWi6Nz8jzDpG1yYYdHP9adKM6ZY_qhW8JtfrMeaddlr2WojTkMHlAsnizAxLe19-fD5gcGmgxyKuh2HsK2mJFqkFJDLpCCnLF4xjegjvDUKhMmqorD-o_VU2jDHTyDNV96CcURSS8EXGgfja8OgbGY44AoPGK3W58IL2OmgSYWBI8B9VGD_AHMtvyw?width=400&height=175&cropmode=none'
   },
   {
     orderNumber: 11,
@@ -255,15 +277,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106562&authkey=AJfhMuGmifpjIIc',
     generation: 3,
-    boxArtUrl: 'https://bit.ly/2I4pCsP',
+    boxArtUrl:
+      'https://0xqjgw.sn.files.1drv.com/y4m6QJhWV4sW_3EqnPwye8FDpm38dWik5MdYTvPOVfB_e8AT_v5q4j4jl5HS5juF7t0KiXtlCGYUhTI8K3-OvCtgmNCT8vM65dy4kLK4lCzBjIkLOhoSZpWRa8yr8OK42fF0hmdd4FGWyoLximGHsmKip5AhMQJY_z5zLgajzKO-SVSKeWvdtHmgI1tUl77gUitujhSfOaeDPA3qLZw0Ak39Q?width=800&height=803&cropmode=none',
     gameName: 'Pokémon LeafGreen Version',
     region: 'Kanto',
     platform: 'Game Boy Advanced',
     description:
       "Six years after the original Pokémon Red Version and Pokémon Blue Version, this pair of titles for the Game Boy Advance system introduced Pokémon to a new group of gamers. These titles also shipped with a wireless adapter for Game Boy Advance, making it the first handheld to have such technology. Get set to return to where it all started—Pokémon FireRed Version and Pokémon LeafGreen Version head back to the Kanto region, the home of Pokémon Red and Pokémon Blue. Thanks to the capabilities of the Game Boy Advance system, the locales, Pokémon, and animations are greatly improved since the last installment. Pokémon FireRed and Pokémon LeafGreen finally unite all the worlds of Pokémon, making it possible to catch and keep every single Pokémon in one game! You'll need a little help from Pokémon Ruby Version and Pokémon Sapphire Version, as well as Pokémon Stadium, but if it were too easy it wouldn't be fun! To aid in trading Pokémon, Pokémon Ruby and Pokémon Sapphire come with a device for your Game Boy Advance that lets you trade Pokémon wirelessly. You can also chat or battle without the need for Game Link cables, too! Veterans of Pokémon Red and Pokémon Blue will appreciate that all the improvements made since the first visit to the Kanto region are available. Plus, there are different places to explore, most notably the Sevii Islands, where you can catch special Pokémon that don't exist anywhere else in Kanto!",
     genre: 'RPG',
-    dateReleased: ISODate('2004-09-09T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2ETqajl'
+    dateReleased: '2004-09-09T07:00:00Z',
+    logoUrl:
+      'https://y3rjpg.sn.files.1drv.com/y4mzjkEtP0AMqg2D4BT97JTZQfi6pP-b5xIUTjHz-UTV6GjlQt0voixoHFqy07LyDup__KFBIioWbzsq-7dQjUw2IYsj90hBHHXih_HZXEGR5dCR7e6UR0iqgQFT60HB7flM81CMyN4U5TkCoZ8lFNmQr_h7dGt0UVVskEiQmyadQLvzIngPHSt5ToDRoCyWlITPzhNmClBLeMqw6PVLoBeKA?width=400&height=175&cropmode=none'
   },
   {
     orderNumber: 12,
@@ -273,15 +297,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106541&authkey=AI-u3tH7cRJe0rk',
     generation: 4,
-    boxArtUrl: 'https://bit.ly/2Wx0TGh',
+    boxArtUrl:
+      'https://z3qkgw.sn.files.1drv.com/y4m9PAGjn4yJo70RHq5ht05KKzcvH4vIh8iYH-oQzyTH9m7oexcHPDJpPY2WO7fWfJjlA43l7N_-V7Z8UD4O1Syv7-A0QlD2ixaD_NyPbZh_5iw_-Z1T5GnkxZ-RXlS9g5QHgml1lIl0o7lonH018EurZ9pXpO2JJutoiIjNbarEk67YGlRbresFcpekqKlajjNOYD6T8K4aat1YmSe6KiITw?width=1500&height=1344&cropmode=none',
     gameName: 'Pokémon Diamond Version',
     region: 'Sinnoh',
     platform: 'Nintendo DS',
     description:
       "Pokémon Diamond Version and Pokémon Pearl Version introduce Trainers to a different land and many Pokémon to catch! Explore the lakes, forests, and mountains of the Sinnoh region, seeking out Pokémon such as the Bug-type Kricketot or the hard-headed Rock- and Steel-type Shieldon. And if you're lucky, you might bump into Legendary Pokémon Palkia or Dialga! There are more than 490 Pokémon in Pokémon Diamond and Pokémon Pearl. But be on the lookout for Team Galactic, a dastardly group that is trying to kidnap Pokémon. Pokémon RPGs have never looked better than they do in Pokémon Diamond and Pokémon Pearl. 3-D graphics bring the land of Sinnoh to life! And realistic lighting casts the land in sun or darkness depending on the time of day. However, there's more to daylight than just graphics—some Pokémon will only show their faces during certain times of day, so you'll have to explore morning, noon, and night if you want collect them all! Everywhere you look, gameplay has been revamped thanks to the awesome abilities of the Nintendo DS system. With two screens, you can watch the action on one screen while monitoring the health of your Pokémon on the other. The touch screen is used in a number of ways: You can use it to select moves in battle, to perform in Contests, or while exploring underground. And with the cool Trainer wristwatch, the Pokétch, you can keep tabs on all kinds of important data during your adventure. The Underground is formed by a series of subterranean passages below Sinnoh that hold untold numbers of treasures for you to find. But there's more to the Underground than just spelunking—you can meet up with other Trainers while you're down there, and you can create a Secret Base for people to visit!",
     genre: 'RPG',
-    dateReleased: ISODate('2007-04-22T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2WxsXJC'
+    dateReleased: '2007-04-22T07:00:00Z',
+    logoUrl:
+      'https://znrkpg.sn.files.1drv.com/y4mMoOKsG29xkq2t5DnqyhNrj4R35G0h5GkMVQHNlOnnuwZt-G_6a803F0UYfuTLDAqsuekLhUx226TM0jjg-KgChIxLbyj9_VXSGTpsQXxSXEBGs0ou70fZlHikx6htf4eKvWffkx3d70sajzteaUuyR6ddY_iWV3-Fj1S_nJ-46nKZBAnVMOJwyv2w_LXdgbBemDrdKqnnlPFpEiJOhjeiA?width=1280&height=720&cropmode=none'
   },
   {
     orderNumber: 13,
@@ -291,15 +317,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106537&authkey=ALazDTbFxyhD1jA',
     generation: 4,
-    boxArtUrl: 'https://bit.ly/2WsygFj',
+    boxArtUrl:
+      'https://znqegw.sn.files.1drv.com/y4mVaMilG6gt-1RY6z3TGOiIIqLRwWWPtrefrOKnipUyCRP1JYDVJVBO6B-DPRBX5uQHd5Fdxs_rFPmxDzV676L0PW2-y5DZ0dWhwlKS57ke7GwjIi2jMrrZtiEJQXbIQCljytgYEtJqsPbL84-RJiTrPokKQNWcDDwAzOfMHaIcrCu5MSVOe0nTC7KRM4bAbqw0KI_DjxmDzhnKI8pFBkPxg?width=1531&height=1372&cropmode=none',
     gameName: 'Pokémon Pearl Version',
     region: 'Sinnoh',
     platform: 'Nintendo DS',
     description:
       "Pokémon Diamond Version and Pokémon Pearl Version introduce Trainers to a different land and many Pokémon to catch! Explore the lakes, forests, and mountains of the Sinnoh region, seeking out Pokémon such as the Bug-type Kricketot or the hard-headed Rock- and Steel-type Shieldon. And if you're lucky, you might bump into Legendary Pokémon Palkia or Dialga! There are more than 490 Pokémon in Pokémon Diamond and Pokémon Pearl. But be on the lookout for Team Galactic, a dastardly group that is trying to kidnap Pokémon. Pokémon RPGs have never looked better than they do in Pokémon Diamond and Pokémon Pearl. 3-D graphics bring the land of Sinnoh to life! And realistic lighting casts the land in sun or darkness depending on the time of day. However, there's more to daylight than just graphics—some Pokémon will only show their faces during certain times of day, so you'll have to explore morning, noon, and night if you want collect them all! Everywhere you look, gameplay has been revamped thanks to the awesome abilities of the Nintendo DS system. With two screens, you can watch the action on one screen while monitoring the health of your Pokémon on the other. The touch screen is used in a number of ways: You can use it to select moves in battle, to perform in Contests, or while exploring underground. And with the cool Trainer wristwatch, the Pokétch, you can keep tabs on all kinds of important data during your adventure. The Underground is formed by a series of subterranean passages below Sinnoh that hold untold numbers of treasures for you to find. But there's more to the Underground than just spelunking—you can meet up with other Trainers while you're down there, and you can create a Secret Base for people to visit!",
     genre: 'RPG',
-    dateReleased: ISODate('2007-04-22T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2WPt0jy'
+    dateReleased: '2007-04-22T07:00:00Z',
+    logoUrl:
+      'https://znrjpg.sn.files.1drv.com/y4m6Spvl78Ssv4XijQD4EQPXUuTsJul-PxffGhOgpo8LsY7tZtNFG7dMjBTMVb4YeX2lYIIdPeTkH3TOqfOL2a5ihMQzICoZgLnTqi7-7NFHRRIWDL4TzpAkh17B7MzcYpLW0BWuOIGTHdjU9CVvD4rYdC5zhimS41O2n4wqqunbEYi8fSQCq6v0aBb1CwabnQkBrP2lWTNfo9lq2YmjigxKw?width=1200&height=840&cropmode=none'
   },
   {
     orderNumber: 14,
@@ -309,15 +337,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106535&authkey=AGZ8ql4xzQs6Hb4',
     generation: 4,
-    boxArtUrl: 'https://bit.ly/2ZhHPZL',
+    boxArtUrl:
+      'https://znqggw.sn.files.1drv.com/y4mynv2aFRr1F8OL5we4oKKdPNGoUkPe0C_Mof57UGiFKZK0Ey3Gzrmzh2aiR2qQ7k0EcqQ-9NL4P4ZQn1jOcE_o915FQFZ0G60FOT8fmoKCC16PZkgaMKBVwoGFLWPqvzqfUWGtfPnXFPHkPFP5X5I1PEwhz1m7zJYz1UXfVLOex9FNrfkMe6JSBHJJkX9bOwqSLCQZouq9tusnulADn5a-g?width=476&height=434&cropmode=none',
     gameName: 'Pokémon Platinum Version',
     region: 'Sinnoh',
     platform: 'Nintendo DS',
     description:
       "Another world has emerged in the Sinnoh region, a place where time and space have been completely altered. Explore the Distortion World, where challenges await at every turn! Visit other locations designed especially for the serious Trainer: A Battle Frontier will test your battle skills with its abundance of committed opponents, led by the Frontier Brains. Also check out the Wi-Fi Plaza, where up to 20 players can connect with a wireless broadband internet connection and participate in fun games and activities. While Dialga and Palkia shared the limelight in Pokémon Diamond Version and Pokémon Pearl Version, the Legendary Pokémon Giratina is at the center of the story in Pokémon Platinum Version. As you track down the elusive Giratina, watch out for Team Galactic—they're back, and with Cyrus leading, they're as dangerous as ever. Check out the expanded Global Trade Station, now known as the Global Terminal. Various upgrades include the ability to record your battles using the Vs. Recorder. Once the battles have been recorded, post them for the world to see how awesome your team really is!",
     genre: 'RPG',
-    dateReleased: ISODate('2009-03-22T07:00:00Z'),
-    logoUrl: 'https://bit.ly/310MK2Z'
+    dateReleased: '2009-03-22T07:00:00Z',
+    logoUrl:
+      'https://zhrmpg.sn.files.1drv.com/y4mUOuWUZlkLVVnSdjLTukSszW19YBrR2Y3pwFgl8dn5DBk0xLepiffg6j3ivIr8QT1IVbmELGoIORIAEm3sikAfb71BqPMC067wjf7WHNGnFpRSjmw7a4mHHqOo51KipbpimeXaiAMGxv5-w4pj8uSCP149mjWLX4wdQVfA1neTX8KT1jVi4mqcrc-tYqZ4q1uzLVoXINvQC2ZHZzh9T4OIQ?width=800&height=436&cropmode=none'
   },
   {
     orderNumber: 15,
@@ -327,15 +357,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106539&authkey=ADkioFmXBOEjPcI',
     generation: 4,
-    boxArtUrl: 'https://bit.ly/2My3jA0',
+    boxArtUrl:
+      'https://znqsgw.sn.files.1drv.com/y4mgCBc4qWNdSjBWTyPRSORsAzIYmckDqzcz7OxGAUiiGMjYaxfOwK5q23SnVJP3gD-pE3TuMBteOWIKEtFn85DEasPaJWogNBx_EL5wpK0BcnHufPVR1hkIf0cTb0_N5nVtXt2CwooB7lU8YIvAcjEcX85UUw8CS2WGEcVpRt6linKLxwLwnf2BVkv51suc7FJnKW8ErKtR5ry572rr1LHew?width=1000&height=912&cropmode=none',
     gameName: 'Pokémon HeartGold Version',
     region: 'Johto',
     platform: 'Nintendo DS',
     description:
       "Pokémon HeartGold and SoulSilver Versions are available for the Nintendo DS and Nintendo DSi systems today! It's been nearly a decade since Pokémon fans first traveled to the scenic Johto region. With Pokémon HeartGold and SoulSilver Versions, they can return there to experience the exciting adventure of Pokémon Gold and Pokémon Silver on the Nintendo DS and Nintendo DSi systems. Check out updated graphics and sound, as well as awesome new touch-screen features and lots of surprises! Pokémon HeartGold and SoulSilver Versions bring dozens of Pokémon characters, such as starters Chikorita, Cyndaquil, and Totodile, back into the limelight for a new group of Pokémon fans—and long-time Trainers—to catch, train and battle! More to Touch! Plenty of enhancements have been to the gameplay, including all-new touch-screen controls! You can navigate your Pokédex, check out the inventory in your Bag, and even move Pokémon around inside your PC Boxes. If you’re a Trainer who would rather use the buttons, don’t worry—both methods will be available, so you can play in whatever way suits you best! The Pokéwalker! Pokémon HeartGold and SoulSilver Versions come with the brand-new Pokéwalker, an accesory that brings a dimension to Pokémon games that you’ve never seen before. The Pokéwalker is a special pedometer that you carry with you that lets you take Pokémon fun wherever you go! You can transfer a Pokémon onto the Pokéwalker accessory using an infrared connection between the Pokéwalker and your Game Card. Then as you Stroll around with your Pokémon, it’ll earn Experience Points. And you can even find items and new Pokémon while you’re on the go! The Pokéwalker is small enough that you can keep it in your pocket and take wherever you go. It also has a clip to hook it on your belt, and a hole for attaching a strap. It’s never been easier to take Pokémon with you!",
     genre: 'RPG',
-    dateReleased: ISODate('2010-03-14T08:00:00Z'),
-    logoUrl: 'https://bit.ly/2Wx23S9'
+    dateReleased: '2010-03-14T08:00:00Z',
+    logoUrl:
+      'https://znrlpg.sn.files.1drv.com/y4mWK3Pu6X6x1pR-_-YyxZ54g4fecK6bWdvGo78LL4YIMShRTkLw8fhD8GC5olRVeNgQJFbIw9Ga4Z0QAUQQGLECfnsz41te7T0oQTOlBb6-BOFuVSYqcwb2KAVxl9t2Tq9DWia6etITMimbMDDTaCSVTkpg0h11_nOaPuVpVNgiU7dZT1P-4T0KeKooV2EUc--nNUL78oNHFKYLmrwrAuF7w?width=1023&height=582&cropmode=none'
   },
   {
     orderNumber: 16,
@@ -345,15 +377,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106532&authkey=AMy1Td3abmOw2Rw',
     generation: 4,
-    boxArtUrl: 'https://bit.ly/2I551on',
+    boxArtUrl:
+      'https://znqkgw.sn.files.1drv.com/y4mT-kktCtGzu-o2BgRQmPp-tXciT_FyPqF6xycSqrSxhljAcrmjqEH3lAlejYCKLEGSMk-PKMdyEie4K1FnDAS3ckN6xSTrk3kl6G_6GbRBJDC0Mm_HhLWmr8BWPREzveDQ-EYXuMxdD8o8S7qodlzWqxOgTdUnlLA92KaExcRSTvvP3ftCNNvl3oRN-g3XlB3XT8Y6GIw5XdNUfgH5g8I3Q?width=220&height=201&cropmode=none',
     gameName: 'Pokémon SoulSilver Version',
     region: 'Johto',
     platform: 'Nintendo DS',
     description:
       "Pokémon HeartGold and SoulSilver Versions are available for the Nintendo DS and Nintendo DSi systems today! It's been nearly a decade since Pokémon fans first traveled to the scenic Johto region. With Pokémon HeartGold and SoulSilver Versions, they can return there to experience the exciting adventure of Pokémon Gold and Pokémon Silver on the Nintendo DS and Nintendo DSi systems. Check out updated graphics and sound, as well as awesome new touch-screen features and lots of surprises! Pokémon HeartGold and SoulSilver Versions bring dozens of Pokémon characters, such as starters Chikorita, Cyndaquil, and Totodile, back into the limelight for a new group of Pokémon fans—and long-time Trainers—to catch, train and battle! More to Touch! Plenty of enhancements have been to the gameplay, including all-new touch-screen controls! You can navigate your Pokédex, check out the inventory in your Bag, and even move Pokémon around inside your PC Boxes. If you’re a Trainer who would rather use the buttons, don’t worry—both methods will be available, so you can play in whatever way suits you best! The Pokéwalker! Pokémon HeartGold and SoulSilver Versions come with the brand-new Pokéwalker, an accesory that brings a dimension to Pokémon games that you’ve never seen before. The Pokéwalker is a special pedometer that you carry with you that lets you take Pokémon fun wherever you go! You can transfer a Pokémon onto the Pokéwalker accessory using an infrared connection between the Pokéwalker and your Game Card. Then as you Stroll around with your Pokémon, it’ll earn Experience Points. And you can even find items and new Pokémon while you’re on the go! The Pokéwalker is small enough that you can keep it in your pocket and take wherever you go. It also has a clip to hook it on your belt, and a hole for attaching a strap. It’s never been easier to take Pokémon with you!",
     genre: 'RPG',
-    dateReleased: ISODate('2010-03-14T08:00:00Z'),
-    logoUrl: 'https://bit.ly/2WrTtzg'
+    dateReleased: '2010-03-14T08:00:00Z',
+    logoUrl:
+      'https://znrhpg.sn.files.1drv.com/y4mkeCwu7F8LoKxrB841XmgGOFzhtdpTC9vx5ZyFLNtTTRLpPHF5fx1dwloPe7qN8S4I6pERs6LW9vZ5cElB_SskZVBDz22S6XIGO4qrHLnobkrpz1LkTYmugasl49ykx8L-qTRjsGUOl471rbzDy-Y525_SSzff5PWztt5eZLVZnlJR51cMo97Pxhh2tGM3pkvRwqfmbnTk0fQi0jEr66CEg?width=1023&height=582&cropmode=none'
   },
   {
     orderNumber: 17,
@@ -363,15 +397,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106529&authkey=ACiPB5J1Df4NDPU',
     generation: 5,
-    boxArtUrl: 'https://bit.ly/2WrTyTA',
+    boxArtUrl:
+      'https://zxqsgw.sn.files.1drv.com/y4mEUGE06AeIrChZnRo6Dw1muxRGWJ8NZcDuMSMuWk0_kpn6J1zD2CEJi7akWX_ZTZ-PfIKMw5mwS4hJOWJ4rX0Qo2OafXBrV07N0JE_DKoQ_HAcIZ95bL-mqCl1jZUC6D0NRBql1yKvFzX4UOHh0Rv7r4pH-d9PU52CkQlLVnI83Lg6eA8zpOO_pMuriYqzaAiVMofvJTyoqLMl-Bqh1DCDA?width=1000&height=897&cropmode=none',
     gameName: 'Pokémon Black Version',
     region: 'Unova',
     platform: 'Nintendo DSi',
     description:
       'Pokémon™ Black Version and Pokémon White Version are now available on the Nintendo DS™ family of systems! Travel through the Unova region to discover new Pokémon, tough trainers, and many exciting adventures! Pokémon Black Version and Pokémon White Version features a new generation of amazing Pokémon. The Legendary Pokémon Reshiram appears on the cover of Pokémon Black Version and the Legendary Pokémon Zekrom is seen on the cover of Pokémon White Version. You will begin your adventure with your choice of Snivy, Tepig, or Oshawott—Pokémon who are eager to join you on your epic journey!',
     genre: 'RPG',
-    dateReleased: ISODate('2011-03-06T08:00:00Z'),
-    logoUrl: 'https://bit.ly/31iRSzn'
+    dateReleased: '2011-03-06T08:00:00Z',
+    logoUrl:
+      'https://y3ropg.sn.files.1drv.com/y4mWHnHZ9DwdC8FtvUmkx4vgrSgQd15Rq7ltK_7h1GANvY03KhLjMGi0ZAHHa5ZGwfgzF9PbYm-Vrw_U8YchGflOLOb2YGPXG54O_HolbzsVQTQAB2kPha57Db1Kg4B5urVD6XNYyIzvdf6xf6brtWFvMvNk8QlAjC5JpTsOhzK50KtRnpHiHm8Dqj8_ayHGbu77Hx6_s5El3u-MdZBp1LwDw?width=624&height=390&cropmode=none'
   },
   {
     orderNumber: 18,
@@ -381,15 +417,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106525&authkey=ANYqwpMMfolTje8',
     generation: 5,
-    boxArtUrl: 'https://bit.ly/31jbAex',
+    boxArtUrl:
+      'https://zhqegw.sn.files.1drv.com/y4mBMxpDKm_fTRI5FRaK_OLlqvGwzx7m7xFdrlPhq3goQ7tW51aA2dxL19OpW92Vzeho0R69DqefrpXsb94l-plVqAgsNcDL9C80sn82-uvb1-_wJ-jbmiMosi-NJ_uk9oJYehDuqVk5TlGbTy2PZxTZ3zPSiPOinc_YU82eKSzCv_eXzCYKIxju-CTSA51GT69GfkU4ow__t5LazlwOswc0w?width=1000&height=896&cropmode=none',
     gameName: 'Pokémon White Version',
     region: 'Unova',
     platform: 'Nintendo DSi',
     description:
       'Pokémon™ Black Version and Pokémon White Version are now available on the Nintendo DS™ family of systems! Travel through the Unova region to discover new Pokémon, tough trainers, and many exciting adventures! Pokémon Black Version and Pokémon White Version features a new generation of amazing Pokémon. The Legendary Pokémon Reshiram appears on the cover of Pokémon Black Version and the Legendary Pokémon Zekrom is seen on the cover of Pokémon White Version. You will begin your adventure with your choice of Snivy, Tepig, or Oshawott—Pokémon who are eager to join you on your epic journey!',
     genre: 'RPG',
-    dateReleased: ISODate('2011-03-06T08:00:00Z'),
-    logoUrl: 'https://bit.ly/2wKJUBf'
+    dateReleased: '2011-03-06T08:00:00Z',
+    logoUrl:
+      'https://zxropg.sn.files.1drv.com/y4msskO2dIC6n2ZxuRVGMM0pUHQ5XfCwe8gmOg4Zwq02T4uGPQy0iaFgaEzcYNg8f8GMI9SfEw0itsDwEQrxXNg_Wl7IAtofr7MqCyYMGKVR5rkT8uCHkIMKbIb8ygKu8CdXQR0mN86AEXfnC7LxpTBocVaMHZN2INM8fFG_akplfvEB1S2_WE3Jv-ja1yDrrvs275FiNmd0xB16sR4ZkiQeQ?width=278&height=169&cropmode=none'
   },
   {
     orderNumber: 19,
@@ -399,15 +437,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106531&authkey=AJ3jEhds-HXNQLQ',
     generation: 5,
-    boxArtUrl: 'https://bit.ly/2XwuFHD',
+    boxArtUrl:
+      'https://zxqegw.sn.files.1drv.com/y4m1lweqFJUEemUO53X3bb1Os0AQTZGTUuy8avcmHjsXENB0HZ0zlSRjnIyqyWS3AkN87VH1-5fYa8itpbkIAkXOJoqNtTU7Iq6-JggMoZz8Gp83Dji2Mb5tJX-DjNTA7aDrwL0RP4dvkwRONJi0kFbPRtpj0yBQ3E8dTHNwutR0n9Go9GxwDDWNrSp4nudAV-2SBwV9d03oh1ALVqYnWBIjg?width=656&height=600&cropmode=none',
     gameName: 'Pokémon Black 2 Version',
     region: 'Unova',
     platform: 'Nintendo DSi',
     description:
       'Pokémon fans, get excited for two incredible new adventures! Pokémon Black Version 2 and Pokémon White Version 2 are available now for the Nintendo DS™ family of systems. The games can also be played in 2D on the Nintendo 3DS™ system. Your journey takes place in the Unova region two years after the events of Pokémon Black Version and Pokémon White Version. You’ll start your adventure in Aspertia City, in the far southwest corner of the Unova region. Many things have changed in the region, including some extraordinary new places and people for you to discover. Plus, many of the returning characters from Pokémon Black Version and Pokémon White Version have taken on new roles when you meet them. Look forward to uncovering the mystery of Black Kyurem—or White Kyurem—somewhere in the Unova region. Little is known about this enigmatic Pokémon, except that it’s a Dragon- and Ice-type Pokémon with a devastating Ice-type attack—even stronger than Zekrom’s Fusion Bolt or Reshiram’s Fusion Flare! Pokémon Black Version 2 and Pokémon White Version 2 have a special connection with Pokémon Dream Radar for the Nintendo 3DS system. The Pokémon you obtain in Pokémon Dream Radar can be sent to your Pokémon Black Version 2 or Pokémon White Version 2 game! Get more information on Pokémon Dream Radar now. And to help you with the many Pokémon found in the Unova region, look forward to Pokédex 3D Pro, another Nintendo 3DS title that’s on the way to the Nintendo eShop. With Pokédex 3D Pro, you’ll have information on every Pokémon in the National Pokédex—just what you need to become a master Trainer. Learn more about Pokédex 3D Pro!',
     genre: 'RPG',
-    dateReleased: ISODate('2012-10-07T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2IvumGK'
+    dateReleased: '2012-10-07T07:00:00Z',
+    logoUrl:
+      'https://1htuhq.sn.files.1drv.com/y4mmbsFgqFSoHy1v803jbE8fE7Si69rX_GC1vRMyeiqeI891NPVfAqx132-MgO0L584eIfe-pX7ReT73xS_2zjyXgM8fZ3shsQ9XUDlkSW--RmgcUB1NVJvdMcUFQWaP_j_NCQNpHmP2X5_NJMj3CWJM6C16A4LKF_zty9URN2VWIXKpGH7ejU_7MiZzD6j7v6QpaosiBdp6yOwdl3qAS1ymg?width=1400&height=784&cropmode=none'
   },
   {
     orderNumber: 20,
@@ -417,15 +457,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106527&authkey=APY0JNM98HHBCbU',
     generation: 5,
-    boxArtUrl: 'https://bit.ly/2WVhJyb',
+    boxArtUrl:
+      'https://1hsddg.sn.files.1drv.com/y4mAG6ybiw0qoZEcGi769wHguWyQ8cZUbrnPHi5Dk4GB1p6Tyrhox9ueZpFP2ya6JDMJIevp0U3tDj-9joVFR1lcELd8ynSr4cAaoaziNScZKXgbkoaRhBQwHVLnKz9tRWU220lXBOMOizTg7x-kXgsSa7t8IzwafDb_t4kMtn0l6PRiutt_SJXzUmRuOMpDs2XKAnTbwwXWybFOkh1s-FjaQ?width=250&height=223&cropmode=none',
     gameName: 'Pokémon White 2 Version',
     region: 'Unova',
     platform: 'Nintendo DSi',
     description:
       'Pokémon fans, get excited for two incredible new adventures! Pokémon Black Version 2 and Pokémon White Version 2 are available now for the Nintendo DS™ family of systems. The games can also be played in 2D on the Nintendo 3DS™ system. Your journey takes place in the Unova region two years after the events of Pokémon Black Version and Pokémon White Version. You’ll start your adventure in Aspertia City, in the far southwest corner of the Unova region. Many things have changed in the region, including some extraordinary new places and people for you to discover. Plus, many of the returning characters from Pokémon Black Version and Pokémon White Version have taken on new roles when you meet them. Look forward to uncovering the mystery of Black Kyurem—or White Kyurem—somewhere in the Unova region. Little is known about this enigmatic Pokémon, except that it’s a Dragon- and Ice-type Pokémon with a devastating Ice-type attack—even stronger than Zekrom’s Fusion Bolt or Reshiram’s Fusion Flare! Pokémon Black Version 2 and Pokémon White Version 2 have a special connection with Pokémon Dream Radar for the Nintendo 3DS system. The Pokémon you obtain in Pokémon Dream Radar can be sent to your Pokémon Black Version 2 or Pokémon White Version 2 game! Get more information on Pokémon Dream Radar now. And to help you with the many Pokémon found in the Unova region, look forward to Pokédex 3D Pro, another Nintendo 3DS title that’s on the way to the Nintendo eShop. With Pokédex 3D Pro, you’ll have information on every Pokémon in the National Pokédex—just what you need to become a master Trainer. Learn more about Pokédex 3D Pro!',
     genre: 'RPG',
-    dateReleased: ISODate('2012-10-07T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2R0Kl3x'
+    dateReleased: '2012-10-07T07:00:00Z',
+    logoUrl:
+      'https://znrvpg.sn.files.1drv.com/y4mpF7HNy8PzyPspOvojYckyO8TeWXu-TWlyAwPzYwNGiWpbp3HXt28oQTMCtgG046-lynZt6zI0qrh-IDurSMjkUryudBzFZY-R4JUszySujY-iCQmrEZNyqyq1ptfeTV1RM0bmlX_q-THLp3baNMGAq2xLV5Lqf4_gTtGjk9ekxvLmwYsfWxG-hax5c1aSBTtC9ZOcO0s7m4juGgQ1cqjKw?width=960&height=561&cropmode=none'
   },
   {
     orderNumber: 21,
@@ -435,15 +477,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106567&authkey=ACGNRmtCyaK2GAo',
     generation: 6,
-    boxArtUrl: 'https://bit.ly/2XAM4Pw',
+    boxArtUrl:
+      'https://0hqggw.sn.files.1drv.com/y4moUhELKW13F-2rNv1_yGZItpKXjuDk_EkBmTAvwmeyUrrKJYuZ8De1kUGm079v4inCY2CjF1pU8Nd28UJ0nUe2lx_odIkstjxSwh3Is5p4Z3XINsiDg3WMUx4jbA4i7Vr1UYbMO3Bm2iL8c7QImnTrsx6pE3y3CGKrOZ2oTnh4sGcmWLO3-uoquE6Dnx7GpN0TxTfsv3EuKtOEKEXHbbI4Q?width=1200&height=1096&cropmode=none',
     gameName: 'Pokémon X Version',
     region: 'Kalos',
     platform: 'Nintendo 3DS',
     description:
       "An all-new 3D Pokémon adventure packed with never-before-seen Pokémon has launched! Pokémon X and Pokémon Y presents a new generation of Pokémon and introduces players to an exciting new adventure in a breathtaking 3D world. You'll be able to go on your journey as a boy or a girl, and you can choose how your hero looks overall! Find a look that suits you, and then set off on your travels! Your adventure takes place in the expansive Kalos region, where you'll explore cities, meet people, and encounter many Pokémon. Don't miss Lumiose City, the central hub of the region, where you'll return many times on your journey. Look for all-new Fairy-type Pokémon, the first new Pokémon type since Dark-type and Steel-type Pokémon were introduced almost a decade ago. Fairy-type moves are super effective against Dragon-type Pokémon. One such Fairy-type Pokémon to meet is Sylveon, the new evolved form of Eevee! All-new battle formats are fun for new players and Pokémon pros. Sky Battles feature duels between Pokémon that can fly, and Horde encounters are massive competitions where one of your Pokémon faces many wild Pokémon at once! These new modes will challenge every Pokémon Trainer. In addition to new battle types, you can also care for your Pokémon with the Pokémon-Amie feature. Feed, pet, and play with your Pokémon to increase your bond. The more you play with your Pokémon, the friendlier they'll become—and perhaps perform better for you in battle. Around the Kalos region, you'll meet a lot of people. First there's the brilliant Professor Sycamore. He's researching Pokémon, and he's looking to you and your friends for help. He may even challenge you to a battle from time to time. But you're also likely to encounter members of the mysterious organization Team Flare. What they're up to is anyone's guess. In Pokémon X and Pokémon Y, some Pokémon will tap into powers long dormant. This special kind of Evolution is called Mega Evolution. In addition to far greater strength, Mega-Evolved Pokémon may also see their Ability change, or even their type!",
     genre: 'RPG',
-    dateReleased: ISODate('2013-10-12T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2WsRDhT'
+    dateReleased: '2013-10-12T07:00:00Z',
+    logoUrl:
+      'https://z3ropg.sn.files.1drv.com/y4m5B-Ob9tHSyNxv7OIJp10voA5GT5Wqi3blaH0ANLIP0tC8_HkKuQXF9Kx1uBUtTv_NQgzAhKkjA30Nwo3V-5NE2O-M-cHOvLfeMrIAbdeyXRR1EhcnXoVllA9CjDGzgMpAvNbI1HUN3Kb2bguHrNxsOMC246aL2RRP3o4cnJD-HiUEeWDzqsVqccTmECVpmKIDk1xjgAAoDNCCmvxXjupkA?width=576&height=250&cropmode=none'
   },
   {
     orderNumber: 22,
@@ -453,15 +497,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106585&authkey=AEq4ioX0VrAa59k',
     generation: 6,
-    boxArtUrl: 'https://bit.ly/2ZbjwMY',
+    boxArtUrl:
+      'https://0xqhgw.sn.files.1drv.com/y4mtocmjMR3RYMCRfkNgZOCgCaFqV8arET-XcHlLsLOnYb8toVU9QK7a83kWdF3poujILoH7_bXcKPx4m2ScLgkKG7KxylimMRYVvjnSoxWK3Ya-FuNoa55w8XXJO6LeVuBdyYP2-DWhHECF4QDKii2sG8H9QeYFQV2rD1GqJDrmmI82hijKKqyefPuTlDySpGeFcHFQQgI9-m5im1HxIZijQ?width=833&height=762&cropmode=none',
     gameName: 'Pokémon Y Version',
     region: 'Kalos',
     platform: 'Nintendo 3DS',
     description:
       "An all-new 3D Pokémon adventure packed with never-before-seen Pokémon has launched! Pokémon X and Pokémon Y presents a new generation of Pokémon and introduces players to an exciting new adventure in a breathtaking 3D world. You'll be able to go on your journey as a boy or a girl, and you can choose how your hero looks overall! Find a look that suits you, and then set off on your travels! Your adventure takes place in the expansive Kalos region, where you'll explore cities, meet people, and encounter many Pokémon. Don't miss Lumiose City, the central hub of the region, where you'll return many times on your journey. Look for all-new Fairy-type Pokémon, the first new Pokémon type since Dark-type and Steel-type Pokémon were introduced almost a decade ago. Fairy-type moves are super effective against Dragon-type Pokémon. One such Fairy-type Pokémon to meet is Sylveon, the new evolved form of Eevee! All-new battle formats are fun for new players and Pokémon pros. Sky Battles feature duels between Pokémon that can fly, and Horde encounters are massive competitions where one of your Pokémon faces many wild Pokémon at once! These new modes will challenge every Pokémon Trainer. In addition to new battle types, you can also care for your Pokémon with the Pokémon-Amie feature. Feed, pet, and play with your Pokémon to increase your bond. The more you play with your Pokémon, the friendlier they'll become—and perhaps perform better for you in battle. Around the Kalos region, you'll meet a lot of people. First there's the brilliant Professor Sycamore. He's researching Pokémon, and he's looking to you and your friends for help. He may even challenge you to a battle from time to time. But you're also likely to encounter members of the mysterious organization Team Flare. What they're up to is anyone's guess. In Pokémon X and Pokémon Y, some Pokémon will tap into powers long dormant. This special kind of Evolution is called Mega Evolution. In addition to far greater strength, Mega-Evolved Pokémon may also see their Ability change, or even their type!",
     genre: 'RPG',
-    dateReleased: ISODate('2013-10-12T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2WSOGuX'
+    dateReleased: '2013-10-12T07:00:00Z',
+    logoUrl:
+      'https://zxrnpg.sn.files.1drv.com/y4mJ4rJrkwy_ydBhQO5sBvNT6zQdZCZVXry3wh5AAAMGy_AWmSDFZNJJjfQUdDqGAs5-tHSW0iHFSwy2nD_fTpeptVd2Z-Mt8xahTvQE1pJFQkWklSYxx-LrEEz3tBEpM_FGetml6hZtQ3StjLCbFAJgcY1yq3LyBzUPNpS171D762QmwOl6DZbK5DUAEfKM36lRZQUw9P5_ASZuAreHrb_gA?width=1116&height=497&cropmode=none'
   },
   {
     orderNumber: 23,
@@ -471,15 +517,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106556&authkey=AAPpmfuqhzaq8tM',
     generation: 6,
-    boxArtUrl: 'https://bit.ly/2WPumLa',
+    boxArtUrl:
+      'https://0hqkgw.sn.files.1drv.com/y4mRw1x9Jhh3u8sw4IdAeQnq3PBo4dp2uvGm6qW0gO_lHbghKz5JsKL0pETlNUDjQJ-2Jaovn_ZPJeQ3VxL0dRFs_OhjKrkpXDR2CuV-KTJvjK-2vLX1H9skdQkIFx16gVkS3ADC6mURoGE7wPgD_Gll1dgEZAWM69aVnwFlMXECdVP6VMiEOL4H66XiqBDRSXgGlriKVKe6kWwS1fVzv9O9Q?width=1798&height=1600&cropmode=none',
     gameName: 'Pokémon Omega Ruby Version',
     region: 'Hoenn',
     platform: 'Nintendo 3DS',
     description:
       'Experience an epic journey through a world filled with Pokémon in Pokémon Omega Ruby and Pokémon Alpha Sapphire for the Nintendo 3DS family of systems. Pokémon fans first enjoyed Pokémon Ruby and Pokémon Sapphire when it launched in 2003 for the Game Boy Advance. A whole new generation of Pokémon fans will experience the dramatic story line that unfolds in Pokémon Omega Ruby and Pokémon Alpha Sapphire. Your adventure takes place in Hoenn, a region that consists of a main island that stretches widely from east to west along with countless islets that dot the deep blue sea around it. A live volcano steams constantly in the heart of this green-covered island. Look forward to a region rich with natural beauty, a variety of Pokémon, and extraordinary people. Among those folks is Pokémon Professor Birch, who runs the Pokémon Lab in Littleroot Town. With him, you will have your first meeting with the Pokémon that will become your partner on your journey, and a new bond will be born. You’ll also encounter incredibly tough Trainers during your journey and visit Pokémon Gyms, where Pokémon Trainers gather and Gym Leaders stand ready for Trainers to challenge them. As the story unfolds, you will battle Team Magma in Pokémon Omega Ruby and Team Aqua in Pokémon Alpha Sapphire. Led by Maxie, Team Magma seeks to expand the land, while Archie and Team Aqua wish to expand the seas. In order to bring about these grand plans, each will turn to the power of a Legendary Pokémon: Groudon or Kyogre. Team Magma pursues Groudon, while Team Aqua goes after Kyogre. What could be driving them to such lengths? These Legendary Pokémon also undergo an event called Primal Reversion to become Primal Groudon and Primal Kyogre. These Pokémon play a great role in shaping the stories in which they each appear.',
     genre: 'RPG',
-    dateReleased: ISODate('2014-11-21T08:00:00Z'),
-    logoUrl: 'https://bit.ly/2Wpqs7l'
+    dateReleased: '2014-11-21T08:00:00Z',
+    logoUrl:
+      'https://zhropg.sn.files.1drv.com/y4mdxh6wDWIt5E-rTq5EV1oRKFfnaaxly8FAUDgW06HZaZchowdnbGlA9FFLZhGr_mnVMBuDuJ2MKztwv88vRbG2R6_OWS7Bpgu7EgWRnTanfn_tGU_k5Nyiy-tSKVm6-u5vayCKJcdnApsDtjKjqPbpZo8KdHff6wQW_oAh_T0h9i0Bv1U_7Qe9LQUMfGnNWtToz8SQZw83qw6oBzZuxPsgQ?width=397&height=250&cropmode=none'
   },
   {
     orderNumber: 24,
@@ -489,15 +537,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106564&authkey=ABwmbFxt2ZX3V_M',
     generation: 6,
-    boxArtUrl: 'https://bit.ly/2R0Rq4m',
+    boxArtUrl:
+      'https://0hqigw.sn.files.1drv.com/y4mbsE70x5pLol7wsNurcHVfxKrErWnr7P2whPYHdXnggP0nzQ1nKENDbxmtcZtI3MxEvUXic0LsDycgD1yGebTy3AS4g85XiUsVFYwWOZc69P0A4eWjfMQeNjWGaC9GZQOhnbgOJphF2yxHw2lFeLwhJ_3RKuk9u3FoIN3FaTBVJ2sPdrj9tUXIsDD5R_eNIo4Yw2ZSkye4-QiRdlzO93Kgw?width=1799&height=1601&cropmode=none',
     gameName: 'Pokémon Alpha Sapphire Version',
     region: 'Hoenn',
     platform: 'Nintendo 3DS',
     description:
       'Experience an epic journey through a world filled with Pokémon in Pokémon Omega Ruby and Pokémon Alpha Sapphire for the Nintendo 3DS family of systems. Pokémon fans first enjoyed Pokémon Ruby and Pokémon Sapphire when it launched in 2003 for the Game Boy Advance. A whole new generation of Pokémon fans will experience the dramatic story line that unfolds in Pokémon Omega Ruby and Pokémon Alpha Sapphire. Your adventure takes place in Hoenn, a region that consists of a main island that stretches widely from east to west along with countless islets that dot the deep blue sea around it. A live volcano steams constantly in the heart of this green-covered island. Look forward to a region rich with natural beauty, a variety of Pokémon, and extraordinary people. Among those folks is Pokémon Professor Birch, who runs the Pokémon Lab in Littleroot Town. With him, you will have your first meeting with the Pokémon that will become your partner on your journey, and a new bond will be born. You’ll also encounter incredibly tough Trainers during your journey and visit Pokémon Gyms, where Pokémon Trainers gather and Gym Leaders stand ready for Trainers to challenge them. As the story unfolds, you will battle Team Magma in Pokémon Omega Ruby and Team Aqua in Pokémon Alpha Sapphire. Led by Maxie, Team Magma seeks to expand the land, while Archie and Team Aqua wish to expand the seas. In order to bring about these grand plans, each will turn to the power of a Legendary Pokémon: Groudon or Kyogre. Team Magma pursues Groudon, while Team Aqua goes after Kyogre. What could be driving them to such lengths? These Legendary Pokémon also undergo an event called Primal Reversion to become Primal Groudon and Primal Kyogre. These Pokémon play a great role in shaping the stories in which they each appear.',
     genre: 'RPG',
-    dateReleased: ISODate('2014-11-21T08:00:00Z'),
-    logoUrl: 'https://bit.ly/2wFOdxI'
+    dateReleased: '2014-11-21T08:00:00Z',
+    logoUrl:
+      'https://1htvhq.sn.files.1drv.com/y4m528zTsdwUJ8qoFCtZoHWIkXCCROXsS5CUUxdXU2tc8A7zU8he8SWLp8ljdi1eVWLTtbaGpc2bWLpYe8paOVf7teBHEmBKkrENcNR0NR04oKvZq95bDp8o4JPaan1VULgwekbjDfzRxH64xrNTGcVaOqlWYIY-WqSeab7JQVeiHbCTidigM1Xlgs11_PBjSQTilgRESGlmLhIiKTn8CSZ7A?width=1024&height=584&cropmode=none'
   },
   {
     orderNumber: 25,
@@ -507,15 +557,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106549&authkey=AHDbUZ0ACayd4ac',
     generation: 7,
-    boxArtUrl: 'https://bit.ly/31mfgfp',
+    boxArtUrl:
+      'https://z3qggw.sn.files.1drv.com/y4mxfr9WhL8gEsJ4_2OkUc-zsXa0UhsiziYfkB4C5pzxMn2VzrZWNKSZd7z-jyC--y1ejes8FXMNVsZ0N2iDCQfQHq9ySw8_Ho_25zJhuxPh8hjK2cu0F9poVj4a3AuuQkCjyZJSEUXcuKr33Ff0NUgvsmRVhlBUnmnsOPl13rs2NqhT8-Q_gnB1DfEyrqS8OaHVk25Mmbu8aMwUqklSWnooA?width=1200&height=1095&cropmode=none',
     gameName: 'Pokémon Sun Version',
     region: 'Alola',
     platform: 'New Nintendo 3DS',
     description:
       'Your journey in Pokémon Sun and Pokémon Moon will take you across the beautiful islands of the Alola region, where you’ll encounter newly discovered Pokémon, as well as Pokémon that have taken on a new Alolan style. You may even encounter powerful Legendary Pokémon and other special Pokémon, such as the mysterious guardian deities. Keep track of all the Pokémon you’ve seen and caught with the new Rotom Pokédex. Some of the Pokémon you’ll train and battle with can learn powerful new Z-Moves,—moves so strong they can be used only once in battle. There are Z-Moves for every different type, as well as exclusive Z-Moves for certain Pokémon, including Eevee and Pikachu. Try them out in battle to see what these awesome moves can do! Around every corner, your battling skills will be tested by tough Trainers! Epic battles are in store for you against Team Skull, a nefarious group of ruffians attempting to steal Pokémon, and you’ll also face the kahunas, the tough leaders of each island. And if you’re strong enough, you may reach the Battle Tree, a place where the most accomplished Trainers go to battle each other. The new Pokémon Refresh feature can keep your Pokémon in top shape after all that battling. Take care of your Pokémon by curing any status conditions like poisoning and paralysis. Plus, the more affectionate your Pokémon become toward you, the better they’ll perform in battle. Take good care of your Pokémon with Pokémon Refresh, and they’ll be great allies on your adventure! Your Pokémon can also enjoy a new experience known as Poké Pelago, a place for them to visit when they’ve been placed in PC Boxes. Poké Pelago is a group of islands where your Pokémon can explore, play, and do other fun activities. As your Pokémon play there, they might get stronger or obtain items for you.',
     genre: 'RPG',
-    dateReleased: ISODate('2016-11-18T08:00:00Z'),
-    logoUrl: 'https://bit.ly/2wKAyFG'
+    dateReleased: '2016-11-18T08:00:00Z',
+    logoUrl:
+      'https://zhrhpg.sn.files.1drv.com/y4mYUG_Qk0KUlV8nXjXrtgOmo1JSX6u2VcykLE93GZaqY5zXFZ8K4RzsQYBN5zNHe8ZE7Ab3-wJwtyTBuWCa49r2C7qR6KqDelJXCqJtrgML4w2K8Iet-Mr2oBKIObS2Fm0EAYWCK63fONsbMQVOTAcul0tSBrvp5kxtlxskFK5FjO_dGy_7GxvRp1EfNmRkPxWbvL8ra0lwZReYOP-R0YX9w?width=1200&height=638&cropmode=none'
   },
   {
     orderNumber: 26,
@@ -525,15 +577,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106553&authkey=AHHRtsyc3Ea9Ayo',
     generation: 7,
-    boxArtUrl: 'https://bit.ly/2MKVpUe',
+    boxArtUrl:
+      'https://z3qsgw.sn.files.1drv.com/y4mEuNjkV8s_Obohlr7qrHVGKPsXMaKO4ZyntUsh-OC5fZPVt1YYRUO_e7Ir5sWsOWsgvmnMjRbQduFgI0rF1e0f3DeF3duyVnGqu8U8CLGjGSSfBQ3R9sve4dX_Kteag_XJdTuAVYJiWQcu58At2xmxGMZ89_VrZx_Z7iwNSXPGhZtXNtFJM5pnu0HwZogcjf8mAeq9XFqu7wNU0sXIoZt7g?width=1863&height=1704&cropmode=none',
     gameName: 'Pokémon Moon Version',
     region: 'Alola',
     platform: 'New Nintendo 3DS',
     description:
       'Your journey in Pokémon Sun and Pokémon Moon will take you across the beautiful islands of the Alola region, where you’ll encounter newly discovered Pokémon, as well as Pokémon that have taken on a new Alolan style. You may even encounter powerful Legendary Pokémon and other special Pokémon, such as the mysterious guardian deities. Keep track of all the Pokémon you’ve seen and caught with the new Rotom Pokédex. Some of the Pokémon you’ll train and battle with can learn powerful new Z-Moves,—moves so strong they can be used only once in battle. There are Z-Moves for every different type, as well as exclusive Z-Moves for certain Pokémon, including Eevee and Pikachu. Try them out in battle to see what these awesome moves can do! Around every corner, your battling skills will be tested by tough Trainers! Epic battles are in store for you against Team Skull, a nefarious group of ruffians attempting to steal Pokémon, and you’ll also face the kahunas, the tough leaders of each island. And if you’re strong enough, you may reach the Battle Tree, a place where the most accomplished Trainers go to battle each other. The new Pokémon Refresh feature can keep your Pokémon in top shape after all that battling. Take care of your Pokémon by curing any status conditions like poisoning and paralysis. Plus, the more affectionate your Pokémon become toward you, the better they’ll perform in battle. Take good care of your Pokémon with Pokémon Refresh, and they’ll be great allies on your adventure! Your Pokémon can also enjoy a new experience known as Poké Pelago, a place for them to visit when they’ve been placed in PC Boxes. Poké Pelago is a group of islands where your Pokémon can explore, play, and do other fun activities. As your Pokémon play there, they might get stronger or obtain items for you.',
     genre: 'RPG',
-    dateReleased: ISODate('2016-11-18T08:00:00Z'),
-    logoUrl: 'https://bit.ly/2wLOMG4'
+    dateReleased: '2016-11-18T08:00:00Z',
+    logoUrl:
+      'https://y3rvpg.sn.files.1drv.com/y4muZH6V74UVzW1LZ8R0jnwbh8LwJ23Go_6AMuFtwoABQtgOQLMCBZKBaHEC4eUBtP1qzNWucCZO4Cg7KsQjAKMh5zGIwm-PesaD6W8JxSTxpTv7LQlrtgLERDHo5HzdsOo_CmmN5uKMh1UlnKXnOqWgg4SVubGpoJgLZVNhaWAoQQgJpvNxvD0-Fu5HgmJz0PKpeuY5ncM5E_INnJ5VR7FaA?width=1200&height=638&cropmode=none'
   },
   {
     orderNumber: 27,
@@ -541,7 +595,7 @@ insertRomsQuery = db.roms.insert([
     fileSize: 4194304,
     fileType: '3ds',
     downloadLink:
-      'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106547&authkey=AOheDwtEMuimfFc',
+      'https://z3qigw.sn.files.1drv.com/y4mQD8s_-mqNL5ntdbVhjOGvSTNS2to0vArn8LiDgg1FFLBiqil10aEZRTvbLcY6J9TTzxc3VYRxEPttIfa-K0VnwNILEjxDt3n29BPqkEyhXqkm3BRCI8nJRJmL023oUnCxdRlViyDSZA64tVnu8BbyUZprjMjbhL9hemGC12EtMUNMEZGuE6_7nqLUlV8R1J6o9zEcZbSMSVaWYM6mbO0QQ?width=1200&height=1095&cropmode=none',
     generation: 7,
     boxArtUrl: 'https://bit.ly/2Zbk0CM',
     gameName: 'Pokémon Ultra Sun Version',
@@ -550,72 +604,89 @@ insertRomsQuery = db.roms.insert([
     description:
       'Pokémon Ultra Sun and Pokémon Ultra Moon have been powered up with new additions to the story and features of Pokémon Sun and Pokémon Moon. The games take place in the Alola region, which is made up of four islands, along with one artificial island. The islands are teeming with Pokémon, including some Alolan variants of familiar Pokémon that were originally discovered in the Kanto region. During your adventure, you’ll have multiple run-ins with the troublesome Team Skull, encounter the elusive guardian deities, and unravel a plot surrounding the mysterious Aether Foundation. There’s nothing like a return trip to the wonderful, tropical Alola region! The Mysteries of the Ultra Wormhole! A strange pocket of space has been spotted over the Alola region! The Ultra Wormhole is a gateway to other worlds, and occasionally, fearsome Ultra Beasts will emerge from it. These powerful creatures are unlike any that you’ve ever seen before. Challenge these incredible Ultra Beasts, and you might even be able to add them to your team. Just make sure to bring a few Beast Balls to catch them. With the help of the Legendary Pokémon Solgaleo or Lunala, you can even travel into the Ultra Wormhole to explore what lies beyond. You’ll find more Ultra Beasts within Ultra Space, but you may also encounter Legendary Pokémon such as Mewtwo, Ho-Oh, Lugia, and others. With enough persistence, you could potentially put together an entire team of Legendary Pokémon! Necrozma’s New Tale! One Legendary Pokémon that you won’t have to travel to Ultra Space to meet is the mighty Necrozma. This imposing Pokémon features heavily in Pokémon Ultra Sun and Pokémon Ultra Moon’s story, and by playing, you’ll uncover new secrets about Necrozma and the Alola region. Necrozma’s power continues to grow when it reveals its alternate forms—Dusk Mane Necrozma appears in Pokémon Ultra Sun while Dawn Wings Necrozma shows up in Pokémon Ultra Moon. And just what is Ultra Necrozma? Can this Legendary Pokémon’s power be contained? Perhaps the Ultra Recon Squad will have the answer to that question. This group hails from a world that lies beyond an Ultra Wormhole, and they have come to the Alola region to find out more about Necrozma, including how to restore the light that the Legendary Pokémon has stolen from their home.',
     genre: 'RPG',
-    dateReleased: ISODate('2017-11-17T08:00:00Z'),
-    logoUrl: 'https://www.pokemoncenter.com/wcsstore/PokemonCatalogAssetStore/images/catalog/products/P3929/716-75006/P3929_716-75006_02.jpg'
+    dateReleased: '2017-11-17T08:00:00Z',
+    logoUrl:
+      'https://znrwpg.sn.files.1drv.com/y4m6IrsXww35vsdHe1sHFwlo_6uvRpTyFt0xXv5Tb9R197-SgAINbd2ZrL9r2EXfUIYmWLwpgD_a7oBID8avrpsiAuwWM-6u8BduiIdU77b07gIMJxIdiGpEnwH7YRUfiqPeV9dl7vQoBhKoIKciiUQDFjz-75_1fAvBVtSK1lT5urQuhooMb___fQ8_3sGrHeaXv81VRL5lQqis6PnlLIfxw?width=616&height=353&cropmode=none'
   },
   {
     orderNumber: 28,
-    fileName: "Pokemon Ultra Moon.3ds",
+    fileName: 'Pokemon Ultra Moon.3ds',
     fileSize: 4194304,
-    fileType: "3ds",
-    downloadLink: "https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106551&authkey=AJ9rXowWVDeoCIY",
+    fileType: '3ds',
+    downloadLink:
+      'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106551&authkey=AJ9rXowWVDeoCIY',
     generation: 7,
-    boxArtUrl: "https://storemedia.nintendo.com/ui/images/devices/3ds/software/3ds-pokemon-ultramoon-640x480.png",
-    gameName: "Pokémon Ultra Moon Version",
-    region: "Alola",
-    platform: "New Nintendo 3DS",
-    description: "Pokémon Ultra Sun and Pokémon Ultra Moon have been powered up with new additions to the story and features of Pokémon Sun and Pokémon Moon. The games take place in the Alola region, which is made up of four islands, along with one artificial island. The islands are teeming with Pokémon, including some Alolan variants of familiar Pokémon that were originally discovered in the Kanto region. During your adventure, you’ll have multiple run-ins with the troublesome Team Skull, encounter the elusive guardian deities, and unravel a plot surrounding the mysterious Aether Foundation. There’s nothing like a return trip to the wonderful, tropical Alola region! The Mysteries of the Ultra Wormhole! A strange pocket of space has been spotted over the Alola region! The Ultra Wormhole is a gateway to other worlds, and occasionally, fearsome Ultra Beasts will emerge from it. These powerful creatures are unlike any that you’ve ever seen before. Challenge these incredible Ultra Beasts, and you might even be able to add them to your team. Just make sure to bring a few Beast Balls to catch them. With the help of the Legendary Pokémon Solgaleo or Lunala, you can even travel into the Ultra Wormhole to explore what lies beyond. You’ll find more Ultra Beasts within Ultra Space, but you may also encounter Legendary Pokémon such as Mewtwo, Ho-Oh, Lugia, and others. With enough persistence, you could potentially put together an entire team of Legendary Pokémon! Necrozma’s New Tale! One Legendary Pokémon that you won’t have to travel to Ultra Space to meet is the mighty Necrozma. This imposing Pokémon features heavily in Pokémon Ultra Sun and Pokémon Ultra Moon’s story, and by playing, you’ll uncover new secrets about Necrozma and the Alola region. Necrozma’s power continues to grow when it reveals its alternate forms—Dusk Mane Necrozma appears in Pokémon Ultra Sun while Dawn Wings Necrozma shows up in Pokémon Ultra Moon. And just what is Ultra Necrozma? Can this Legendary Pokémon’s power be contained? Perhaps the Ultra Recon Squad will have the answer to that question. This group hails from a world that lies beyond an Ultra Wormhole, and they have come to the Alola region to find out more about Necrozma, including how to restore the light that the Legendary Pokémon has stolen from their home.",
-    genre: "RPG",
-    dateReleased: "2017-11-17T08:00:00Z",
-    logoUrl: "https://hb.imgix.net/aa44f2234d518c1f43ea71f130da758a74393f1f.jpg?auto=compress,format&fit=crop&h=353&w=616&s=1bc5acf01842f0484e329a87f3eb0ba9"
+    boxArtUrl:
+      'https://z3qegw.sn.files.1drv.com/y4mC27o-EM5qFc7MnjybwuAfq89FJRYLPKyr0KBd-ox74spshWPv7UrJU3eXBj8n5BD6nFt5202d8eoOUbz_hKqYtIQdmZuSaGswTjSxhIhqtNYnB8jWgR3DhhVOo5ek4dba2KL-Y-pKSrMmSYWGWmeXKu4iZjtziV6xkbzbOeKrO_ARHkacRvI-bwd5PWe3QPWyFOBZyZQhUAqZp5ZnCSJ6w?width=300&height=275&cropmode=none',
+    gameName: 'Pokémon Ultra Moon Version',
+    region: 'Alola',
+    platform: 'New Nintendo 3DS',
+    description:
+      'Pokémon Ultra Sun and Pokémon Ultra Moon have been powered up with new additions to the story and features of Pokémon Sun and Pokémon Moon. The games take place in the Alola region, which is made up of four islands, along with one artificial island. The islands are teeming with Pokémon, including some Alolan variants of familiar Pokémon that were originally discovered in the Kanto region. During your adventure, you’ll have multiple run-ins with the troublesome Team Skull, encounter the elusive guardian deities, and unravel a plot surrounding the mysterious Aether Foundation. There’s nothing like a return trip to the wonderful, tropical Alola region! The Mysteries of the Ultra Wormhole! A strange pocket of space has been spotted over the Alola region! The Ultra Wormhole is a gateway to other worlds, and occasionally, fearsome Ultra Beasts will emerge from it. These powerful creatures are unlike any that you’ve ever seen before. Challenge these incredible Ultra Beasts, and you might even be able to add them to your team. Just make sure to bring a few Beast Balls to catch them. With the help of the Legendary Pokémon Solgaleo or Lunala, you can even travel into the Ultra Wormhole to explore what lies beyond. You’ll find more Ultra Beasts within Ultra Space, but you may also encounter Legendary Pokémon such as Mewtwo, Ho-Oh, Lugia, and others. With enough persistence, you could potentially put together an entire team of Legendary Pokémon! Necrozma’s New Tale! One Legendary Pokémon that you won’t have to travel to Ultra Space to meet is the mighty Necrozma. This imposing Pokémon features heavily in Pokémon Ultra Sun and Pokémon Ultra Moon’s story, and by playing, you’ll uncover new secrets about Necrozma and the Alola region. Necrozma’s power continues to grow when it reveals its alternate forms—Dusk Mane Necrozma appears in Pokémon Ultra Sun while Dawn Wings Necrozma shows up in Pokémon Ultra Moon. And just what is Ultra Necrozma? Can this Legendary Pokémon’s power be contained? Perhaps the Ultra Recon Squad will have the answer to that question. This group hails from a world that lies beyond an Ultra Wormhole, and they have come to the Alola region to find out more about Necrozma, including how to restore the light that the Legendary Pokémon has stolen from their home.',
+    genre: 'RPG',
+    dateReleased: '2017-11-17T08:00:00Z',
+    logoUrl:
+      'https://zhrvpg.sn.files.1drv.com/y4mEHsa06B0B4GLjziEKzV-WsZXEOUJN9vJjgCUsPoOiQvUPcuehhtS8RcrqBN7Z-pgeQVVQOPGmtpXp0RwcxZ26ii4afE5GPluIGsiMZfLYDsQyi58kSGEb9xDcxyI1FIWfm0KEWpDi6MPJK2DaUezIi28tr29wThlpe--6BQw5NLcL6OepU9WD_b70kQbghwFpBad1Dmz0YQzPKumcaJ3XA?width=1200&height=591&cropmode=none'
   },
   {
     orderNumber: 29,
     fileName: "Pokemon Let's Go Pikachu.xci",
     fileSize: 4737727,
-    fileType: "xci",
-    downloadLink: "https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106545&authkey=AH6PyIU37tYizgg",
+    fileType: 'xci',
+    downloadLink:
+      'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106545&authkey=AH6PyIU37tYizgg',
     generation: 7,
-    boxArtUrl: "https://www.nintendo.com/content/dam/noa/global/images/games/buy-digital/IEqiKeiJ-27z1heGl5Wc34Nmhp_T_3aW.png",
+    boxArtUrl:
+      'https://znqhgw.sn.files.1drv.com/y4mqzYbfTYAIsmbqLwDZsL6jQprG_6p1c33r6PoincEpMdDOI_7TpOcNUgb3OiS7gES3QEv9FETeeAEfgBoPx9bAK3T89S9E5jT_3D5ViyqFUj6nlMPX8etWPCyUMc1Oyv_egqVz16YvCoNNFGMSxH2WBKdJCmt2nscLpy2YjYd-hz8rCLplUWXL_0NUNRwR78R6q4lnbV5Ux6Xn4PK4hDEHA?width=2894&height=4686&cropmode=none',
     gameName: "Pokémon Let's Go Pikachu",
-    region: "Kanto",
-    platform: "Nintendo Switch",
-    description: "Return to the Kanto region and experience a classic Pokémon journey in a whole new way with Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! These two titles were created by GAME FREAK, the developers of the Pokémon core RPG titles. Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! introduce a new play style that anyone can enjoy and combine it with the fun of collecting Pokémon. Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! are based on Pokémon Yellow: Special Pikachu Edition, which first launched in Japan in 1998. These updated versions reimagine the original to make the most of the unique capabilities of the Nintendo Switch. The games also capture the fun of Pokémon GO and its intuitive Pokémon-catching mechanic. Befriend Your Partner! At the start of your tale, you encounter either Pikachu or Eevee, depending on which game version you choose. This Pikachu or Eevee joins you as your partner in your adventures, growing together with you on your journey. Pikachu or Eevee is with you wherever you go, either hanging on your shoulder or riding on your head. Don’t let its adorable expressions fool you into thinking that cuteness is all it offers, though. Your partner is a dependable ally in battle, too. In addition to determining your first partner Pokémon, your choice of Pokémon: Let’s Go, Pikachu! or Pokémon: Let’s Go, Eevee! also affects the species of Pokémon you encounter and the rate at which you encounter them.",
-    genre: "RPG",
-    dateReleased: "2018-11-16T08:00:00Z",
-    logoUrl: "https://pokemonletsgo.pokemon.com/assets/img/en-au/logo-pokemon-letsgo-pikachu.png"
+    region: 'Kanto',
+    platform: 'Nintendo Switch',
+    description:
+      'Return to the Kanto region and experience a classic Pokémon journey in a whole new way with Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! These two titles were created by GAME FREAK, the developers of the Pokémon core RPG titles. Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! introduce a new play style that anyone can enjoy and combine it with the fun of collecting Pokémon. Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! are based on Pokémon Yellow: Special Pikachu Edition, which first launched in Japan in 1998. These updated versions reimagine the original to make the most of the unique capabilities of the Nintendo Switch. The games also capture the fun of Pokémon GO and its intuitive Pokémon-catching mechanic. Befriend Your Partner! At the start of your tale, you encounter either Pikachu or Eevee, depending on which game version you choose. This Pikachu or Eevee joins you as your partner in your adventures, growing together with you on your journey. Pikachu or Eevee is with you wherever you go, either hanging on your shoulder or riding on your head. Don’t let its adorable expressions fool you into thinking that cuteness is all it offers, though. Your partner is a dependable ally in battle, too. In addition to determining your first partner Pokémon, your choice of Pokémon: Let’s Go, Pikachu! or Pokémon: Let’s Go, Eevee! also affects the species of Pokémon you encounter and the rate at which you encounter them.',
+    genre: 'RPG',
+    dateReleased: '2018-11-16T08:00:00Z',
+    logoUrl:
+      'https://y3rwpg.sn.files.1drv.com/y4m2d6Yj_Jsaj-YiMf7bfguz1acYzRS7cp5AQsd6w2N0CSHPvSZWcsmF9ZYEcvKLPIFgIPg5E8Subd2bmPvHkq1pKIvX-9-OWK2Pl5cbPdUMktOiLx77dOBO8lYK8rnfXI7tP9iGzT5h45oCO_TE8VNo5VpUmG0aQu54PEXPCneeBF1IwB4j-1D8JmHQTUO47VNbW7uYDc9L3fBKWcx3toEZQ?width=447&height=202&cropmode=none'
   },
   {
     orderNumber: 30,
     fileName: "Pokemon Let's Go Eevee.xci",
     fileSize: 4737727,
-    fileType: "xci",
-    downloadLink: "https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106543&authkey=ANrrufnvqg8NCsA",
+    fileType: 'xci',
+    downloadLink:
+      'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106543&authkey=ANrrufnvqg8NCsA',
     generation: 7,
-    boxArtUrl: "https://www.nintendo.com/content/dam/noa/global/images/games/buy-digital/PuhHRfNGbPs3MCRRIsm6WjrEsnn0DZAg.png",
+    boxArtUrl:
+      'https://y3qdgw.sn.files.1drv.com/y4mkJjE83B3tU2Rrt6kdu-T0g0kCU4aUU-wRb1un_OFVNawyRr4YZuqw-kAUl7MxOVriLhoK7u6RrW__YZ_95A-RrpiNV3RBc_uCV_cf-rpn0bWrP1g_E2kddAqkojW83bQqC6jNwvq1_b7DOEXoX_fsouR4nXlixnHKG3r4bBGd4fYnOJ1EbnKTuMw_BXiaRquoQjsC7M_WATFlYONSJVMOg?width=2894&height=4686&cropmode=none',
     gameName: "Pokémon Let's Go Eevee",
-    region: "Kanto",
-    platform: "Nintendo Switch",
-    description: "Return to the Kanto region and experience a classic Pokémon journey in a whole new way with Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! These two titles were created by GAME FREAK, the developers of the Pokémon core RPG titles. Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! introduce a new play style that anyone can enjoy and combine it with the fun of collecting Pokémon. Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! are based on Pokémon Yellow: Special Pikachu Edition, which first launched in Japan in 1998. These updated versions reimagine the original to make the most of the unique capabilities of the Nintendo Switch. The games also capture the fun of Pokémon GO and its intuitive Pokémon-catching mechanic. Befriend Your Partner! At the start of your tale, you encounter either Pikachu or Eevee, depending on which game version you choose. This Pikachu or Eevee joins you as your partner in your adventures, growing together with you on your journey. Pikachu or Eevee is with you wherever you go, either hanging on your shoulder or riding on your head. Don’t let its adorable expressions fool you into thinking that cuteness is all it offers, though. Your partner is a dependable ally in battle, too. In addition to determining your first partner Pokémon, your choice of Pokémon: Let’s Go, Pikachu! or Pokémon: Let’s Go, Eevee! also affects the species of Pokémon you encounter and the rate at which you encounter them.",
-    genre: "RPG",
-    dateReleased: "2018-11-16T08:00:00Z",
-    logoUrl: "https://pokemonletsgo.pokemon.com/assets/img/en-us/logo-pokemon-letsgo-eevee.png"
+    region: 'Kanto',
+    platform: 'Nintendo Switch',
+    description:
+      'Return to the Kanto region and experience a classic Pokémon journey in a whole new way with Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! These two titles were created by GAME FREAK, the developers of the Pokémon core RPG titles. Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! introduce a new play style that anyone can enjoy and combine it with the fun of collecting Pokémon. Pokémon: Let’s Go, Pikachu! and Pokémon: Let’s Go, Eevee! are based on Pokémon Yellow: Special Pikachu Edition, which first launched in Japan in 1998. These updated versions reimagine the original to make the most of the unique capabilities of the Nintendo Switch. The games also capture the fun of Pokémon GO and its intuitive Pokémon-catching mechanic. Befriend Your Partner! At the start of your tale, you encounter either Pikachu or Eevee, depending on which game version you choose. This Pikachu or Eevee joins you as your partner in your adventures, growing together with you on your journey. Pikachu or Eevee is with you wherever you go, either hanging on your shoulder or riding on your head. Don’t let its adorable expressions fool you into thinking that cuteness is all it offers, though. Your partner is a dependable ally in battle, too. In addition to determining your first partner Pokémon, your choice of Pokémon: Let’s Go, Pikachu! or Pokémon: Let’s Go, Eevee! also affects the species of Pokémon you encounter and the rate at which you encounter them.',
+    genre: 'RPG',
+    dateReleased: '2018-11-16T08:00:00Z',
+    logoUrl:
+      'https://y3ripg.sn.files.1drv.com/y4m-U_I-Qnn3Y7bPI9dVpT_wvq6n0ZezlsPTV-660Wo03LRGSaACQ-qbC0XbHRN-Be-3Uir4wLvzKSz3KowrHjH5O9zFdybQ1NLuUcuPfZCk0bFYzI8Jl7CBO3vgmmLWd8k5ciyRGZ27MpPI_f4HfrMiV2mOXnD0Zp_mtD5ITMVxTRMlgnbFg3AtyexqnRWE0kfUL86KhDc-mYQAZDwbmc0jw?width=447&height=202&cropmode=none'
   },
   {
     orderNumber: 31,
-    fileName: "Pokemon Prism.gbc",
+    fileName: 'Pokemon Prism.gbc',
     fileSize: 2048,
-    fileType: "gbc",
-    downloadLink: "https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106595&authkey=AJcTDNwVvo66Y2o",
+    fileType: 'gbc',
+    downloadLink:
+      'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106595&authkey=AJcTDNwVvo66Y2o',
     generation: 2,
-    boxArtUrl: "https://i.redd.it/b8uuxvafp7hz.png",
-    gameName: "Pokémon Prism Version (ROM Hack)",
-    region: "Naljo",
-    platform: "Game Boy Color (Emulator)",
-    description: "Pokémon Prism is an awesome Pokémon ROM hack.\r\nFind out more info here: http://bit.ly/2Xy5qos",
-    genre: "RPG",
-    dateReleased: "2016-12-25T08:00:00Z",
-    logoUrl: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0142bedd-cb17-4a69-aa12-745dfe68419e/db3h5ae-18a563ea-4aa9-4d6c-8c21-f858d6978247.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzAxNDJiZWRkLWNiMTctNGE2OS1hYTEyLTc0NWRmZTY4NDE5ZVwvZGIzaDVhZS0xOGE1NjNlYS00YWE5LTRkNmMtOGMyMS1mODU4ZDY5NzgyNDcucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.2BPjxAFsy2UOTubEseGkvawXQzdxPVL4eojrecGo4u4"
+    boxArtUrl:
+      'https://1hqggw.sn.files.1drv.com/y4mpJga6ZyW44khRKC-UDFExmvqm7bAjCW6xD0dzrUG2nr00JbXi79_rTsst8SJ-1wXrJDMXyqpJw6HsPELtJMt-FrERZskCre-O3-y-wA4qAd05IohVXSX-OOaiWTwoi8Fr1FU9cvAGw21DFJ5Z97JkaezP-x90tNFhyZLaB5KkfsAgjNnCpLJP7oSpf4V18F7y5w2FyUJtK68_Bu1ZBmlqg?width=640&height=640&cropmode=none',
+    gameName: 'Pokémon Prism Version (ROM Hack)',
+    region: 'Naljo',
+    platform: 'Game Boy Color (Emulator)',
+    description:
+      'Pokémon Prism is an awesome Pokémon ROM hack.\r\nFind out more info here: http://bit.ly/2Xy5qos',
+    genre: 'RPG',
+    dateReleased: '2016-12-25T08:00:00Z',
+    logoUrl:
+      'https://zhrwpg.sn.files.1drv.com/y4mbR5UnKlWp6mv6qpM3Jcf3ijhUsGFXX2NSJPEucMCGoaK4St2MbtSB-IShw9rMh41Wq5JQqrbQ4RJS_YnBDqiDnx2xT-36K1C6QJvqYQrNmtqm1JoMf80SI1NK6K8Ry3EtRAhTaVHa3jLRU-XXNhup3XE5TyVV23kSrwMFWf-aoCfMgkYeGo6_IbEvCkYsZawSrSFWWq_C92RAlbzUHafaQ?width=770&height=470&cropmode=none'
   },
   {
     orderNumber: 32,
@@ -625,15 +696,17 @@ insertRomsQuery = db.roms.insert([
     downloadLink:
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106597&authkey=ANQl3JsQwoMHMhs',
     generation: 3,
-    boxArtUrl: 'https://bit.ly/2Wph3S5',
+    boxArtUrl:
+      'https://1hqhgw.sn.files.1drv.com/y4mwdX0ceYvPOHob_EzEzF2K88YlXuZqxwrOvH_Jr3c_vBKI4-pggiRqQ4S68vDQGADwm5OZLJChiaCfgc3S2DbTtv_INxKmMt4HLvWJuOMOkB_QPwIaC5j9YGlvecDENYplh_wylnRtHQqPdnnifRr22Q2iQX9pSMdrQeJgNxKlTwfotYAVP8G2LVY4q7VBdZesU_Xj2i2rulCGlT5114Qxw?width=225&height=225&cropmode=none',
     gameName: 'Pokémon Ash Gray Version (ROM Hack)',
     region: 'Kanto',
     platform: 'Game Boy Advanced (Emulator)',
     description:
       'Pokémon Ash Gray is an amazing Pokémon ROM hack. It features the story of Ash Ketchum in the Kanto region during his journey in the Pokémon Generation I anime.',
     genre: 'RPG',
-    dateReleased: ISODate('2009-05-31T07:00:00Z'),
-    logoUrl: 'https://bit.ly/2WKYiYM'
+    dateReleased: '2009-05-31T07:00:00Z',
+    logoUrl:
+      'https://y3rkpg.sn.files.1drv.com/y4mKr692hNcVa7YcZs8DOTbknaixWs7Lw5bGCq-8lriyxeyONkOPWsPWoVKCAmgKUg_OpilMdHlY-q1NPg_aIBheK6clGccT8YYoldEsLjk7JhZWxGFRX_CqUX8kbZkaRBKRD-SwLXNstpN0A_F3M5iFaVgI-EJTLPqEdLEz5kJSJwcCVm6HwGyjQ-fK95eNkDhrUhNTiU2xCTWOn10iv5O2w?width=1920&height=1080&cropmode=none'
   }
 ]);
 printjson(insertRomsQuery);
