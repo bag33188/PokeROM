@@ -50,8 +50,8 @@ cd ~/Projects/PokeROM
 /c/MongoDB/bin/mongo "mongodb+srv://pokerom-ng2of.gcp.mongodb.net/pkmn-roms" --username bag33188
 
 # Not using git Bash
-CD C:\Projects\bin && mongod.exe --dbpath=..\data
-CD C:\Projects\bin && mongo.exe
+CD C:\MongoDB\bin && mongod.exe --dbpath=..\data
+CD C:\MongoDB\bin && mongo.exe
 CD %USERPROFILE%\Projects\PokeROM && npm run dev
 CD %USERPROFILE%\Projects\PokeROM\client && ng serve
 CD %USERPROFILE%\Projects\PokeROM
