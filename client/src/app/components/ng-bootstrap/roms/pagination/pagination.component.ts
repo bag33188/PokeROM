@@ -13,6 +13,7 @@ export class PaginationComponent implements OnInit {
   @Input() pageSize: number;
   @Input() itemsPerPage: number;
   @Output() paginate: EventEmitter<number> = new EventEmitter<number>();
+  pageWidth: number;
 
   constructor() {}
 
@@ -21,5 +22,9 @@ export class PaginationComponent implements OnInit {
   onPageChange(pageNum: number): void {
     this.pageSize = this.itemsPerPage * (pageNum - 1);
     this.paginate.emit(this.pageSize);
+  }
+
+  setWidth(): void {
+    this.pageWidth = window.innerWidth;
   }
 }

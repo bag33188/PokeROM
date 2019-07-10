@@ -1,14 +1,19 @@
-<div class="pt-4" style="margin: 0 auto;">
+<div class="pt-4" style="margin: 0 auto;" (window:resize)="setWidth()">
   <ngb-pagination
-    aria-label="Custom pagination"
-    [boundaryLinks]="true"
+    aria-label="ROMs pagination"
+    [boundaryLinks]="pageWidth > 600"
+    [directionLinks]="pageWidth > 600"
     [collectionSize]="romsData.length"
     #numPages
     [pageSize]="itemsPerPage"
     [(page)]="currentPage"
     (pageChange)="onPageChange(currentPage)"
   >
-    <ng-template ngbPaginationPrevious>Prev</ng-template>
-    <ng-template ngbPaginationNext>Next</ng-template></ngb-pagination
+    <ng-template *ngIf="pageWidth > 600" ngbPaginationPrevious
+      >Prev</ng-template
+    >
+    <ng-template *ngIf="pageWidth > 600" ngbPaginationNext
+      >Next</ng-template
+    ></ngb-pagination
   >
 </div>
