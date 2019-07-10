@@ -1,5 +1,5 @@
 const express = require('express');
-const Nature = require('../../models/nature');
+const Nature = require('../../models/Nature');
 const { sanitizeBody } = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const moment = require('moment');

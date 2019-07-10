@@ -1,6 +1,6 @@
 const express = require('express');
 const url = require('url');
-const Rom = require('../../models/rom');
+const Rom = require('../../models/Rom');
 const { sanitizeBody } = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const moment = require('moment');

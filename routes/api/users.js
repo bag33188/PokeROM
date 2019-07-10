@@ -6,10 +6,10 @@ const jwt = require('jsonwebtoken');
 const { body } = require('express-validator/check');
 const { check, validationResult } = require('express-validator/check');
 const secret = config.get('secret');
-const User = require('../../models/user');
+const User = require('../../models/User');
+const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const router = express.Router();
-const Rom = require('../../models/rom');
 
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
 

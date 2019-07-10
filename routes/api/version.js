@@ -1,6 +1,6 @@
 const express = require('express');
 const swaggerDoc = require('../../docs/swaggerDoc');
-const Version = require('../../models/version');
+const Version = require('../../models/Version');
 const router = express.Router();
 
 // get api version
