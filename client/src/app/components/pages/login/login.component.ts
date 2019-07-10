@@ -13,8 +13,6 @@ import RegisteredUser from '../../../models/RegisteredUser';
 import NgClasses from '../../../interfaces/NgClasses';
 import sanitizeXSS from './sanitation/sanitizeXSS';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
