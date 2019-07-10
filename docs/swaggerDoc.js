@@ -20,5 +20,5 @@ const apiDocs = (app) => {
   app.use(`/api/docs/${version}`, swaggerUi.serve, swaggerUi.setup(specs));
 };
 
-// export version and docs
+// export docs and version
 module.exports = [apiDocs, version];
