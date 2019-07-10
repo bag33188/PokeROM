@@ -1,120 +1,173 @@
 const mongoose = require('mongoose');
 
-const urlRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
+const urlRegex = /^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))$/i;
 
 // create schema
-const RomSchema = mongoose.Schema({
-  userId: {
-    type: String, // mongoose.Schema.Types.ObjectId,
-    required: [true, 'User ID is required.']
-  },
-  orderNumber: {
-    type: Number,
-    required: [true, 'Order number is required.'],
-    min: [0, 'Order number must not be negative.'],
-    max: [88, 'Order number cannot exceed 88.']
-  },
-  fileName: {
-    type: String,
-    required: [true, 'File name is required.'],
-    minlength: [3, 'File name is too short (must be between 3 and 80 characters).'],
-    maxlength: [80, 'File name is too long (must be between 3 and 80 characters).']
-  },
-  fileSize: {
-    type: Number,
-    required: [true, 'File size is required.'],
-    min: [64, 'File too small (must be between 64 and 12000000 Kilobytes).'],
-    max: [12000000, 'File too large (must be between 64 and 12000000 Kilobytes).']
-  },
-  fileType: {
-    type: String,
-    required: [true, 'File type is required.'],
-    validate: {
-      validator: function (v) {
-        return /^(?:(.?)(gb[ac]?|[n3]ds|xci))$/.test(v);
-      },
-      message: props => `${props.value} is not a valid file type`
+const RomSchema = mongoose.Schema(
+  {
+    userId: {
+      type: String, // mongoose.Schema.Types.ObjectId,
+      required: [true, 'User ID is required.']
+    },
+    orderNumber: {
+      type: Number,
+      required: [true, 'Order number is required.'],
+      min: [0, 'Order number must not be negative.'],
+      max: [88, 'Order number cannot exceed 88.']
+    },
+    fileName: {
+      type: String,
+      required: [true, 'File name is required.'],
+      minlength: [
+        3,
+        'File name is too short (must be between 3 and 80 characters).'
+      ],
+      maxlength: [
+        80,
+        'File name is too long (must be between 3 and 80 characters).'
+      ]
+    },
+    fileSize: {
+      type: Number,
+      required: [true, 'File size is required.'],
+      min: [64, 'File too small (must be between 64 and 12000000 Kilobytes).'],
+      max: [
+        12000000,
+        'File too large (must be between 64 and 12000000 Kilobytes).'
+      ]
+    },
+    fileType: {
+      type: String,
+      required: [true, 'File type is required.'],
+      validate: {
+        validator: function(v) {
+          return /^(?:(.?)(gb[ac]?|[n3]ds|xci))$/.test(v);
+        },
+        message: props => `${props.value} is not a valid file type`
+      }
+    },
+    downloadLink: {
+      type: String,
+      required: [true, 'Download link is required.'],
+      minlength: [
+        8,
+        'URL is too short (must be between 8 and 1000 characters).'
+      ],
+      maxlength: [
+        1000,
+        'URL is too long (must be between 8 and 1000 characters).'
+      ],
+      validate: {
+        validator: function(v) {
+          return urlRegex.test(v);
+        },
+        message: props => `${props.value} is not a valid URL.`
+      }
+    },
+    generation: {
+      type: Number,
+      required: [true, 'Generation is required.'],
+      min: [1, 'Generation must be between 1 and 8 (must be between 1 and 8).'],
+      max: [8, 'Generation must be between 1 and 8 (must be between 1 and 8).']
+    },
+    boxArtUrl: {
+      type: String,
+      required: [true, 'Box art URL is required.'],
+      minlength: [
+        8,
+        'URL is too short (must be between 8 and 1000 characters).'
+      ],
+      maxlength: [
+        1000,
+        'URL is too long (must be between 8 and 1000 characters).'
+      ],
+      validate: {
+        validator: function(v) {
+          return urlRegex.test(v);
+        },
+        message: props => `${props.value} is not a valid URL.`
+      }
+    },
+    gameName: {
+      type: String,
+      required: [true, 'Game name is required.'],
+      minlength: [
+        2,
+        'Game name is too short (must be between 2 and 42 characters).'
+      ],
+      maxlength: [
+        42,
+        'Game name is too long (must be between 2 and 42 characters).'
+      ]
+    },
+    region: {
+      type: String,
+      required: [true, 'Region is required.'],
+      minlength: [
+        3,
+        'Region name is too short (must be between 3 and 10 characters).'
+      ],
+      maxlength: [
+        10,
+        'Region name is too long (must be between 3 and 10 characters).'
+      ]
+    },
+    platform: {
+      type: String,
+      required: [true, 'Platform is required.'],
+      minlength: [
+        2,
+        'Platform name is too short (must be between 2 and 50 characters).'
+      ],
+      maxlength: [
+        50,
+        'Platform name is too long (must be between 2 and 50 characters).'
+      ]
+    },
+    description: {
+      type: String,
+      required: [true, 'Description is required.'],
+      minlength: [
+        5,
+        'Description is too short (must be between 5 and 8000 characters).'
+      ],
+      maxlength: [
+        8000,
+        'Description is too long (must be between 5 and 8000 characters).'
+      ]
+    },
+    genre: {
+      type: String,
+      minlength: [
+        2,
+        'Genre is too short (must be between 2 and 20 characters).'
+      ],
+      maxlength: [
+        20,
+        'Genre is too long (must be between 2 and 20 characters).'
+      ]
+    },
+    dateReleased: {
+      type: Date,
+      required: [true, 'Date released is required.']
+    },
+    logoUrl: {
+      type: String,
+      required: [true, 'A logo URL is required.'],
+      validate: {
+        validator: function(v) {
+          return urlRegex.test(v);
+        },
+        message: props => `${props.value} is not a valid URL.`
+      }
     }
-  },
-  downloadLink: {
-    type: String,
-    required: [true, 'Download link is required.'],
-    minlength: [8, 'URL is too short (must be between 8 and 1000 characters).'],
-    maxlength: [1000, 'URL is too long (must be between 8 and 1000 characters).'],
-    validate: {
-      validator: function (v) {
-        return urlRegex.test(v);
-      },
-      message: props => `${props.value} is not a valid URL.`
-    }
-  },
-  generation: {
-    type: Number,
-    required: [true, 'Generation is required.'],
-    min: [1, 'Generation must be between 1 and 8 (must be between 1 and 8).'],
-    max: [8, 'Generation must be between 1 and 8 (must be between 1 and 8).']
-  },
-  boxArtUrl: {
-    type: String,
-    required: [true, 'Box art URL is required.'],
-    minlength: [8, 'URL is too short (must be between 8 and 1000 characters).'],
-    maxlength: [1000, 'URL is too long (must be between 8 and 1000 characters).'],
-    validate: {
-      validator: function (v) {
-        return urlRegex.test(v);
-      },
-      message: props => `${props.value} is not a valid URL.`
-    }
-  },
-  gameName: {
-    type: String,
-    required: [true, 'Game name is required.'],
-    minlength: [2, 'Game name is too short (must be between 2 and 42 characters).'],
-    maxlength: [42, 'Game name is too long (must be between 2 and 42 characters).']
-  },
-  region: {
-    type: String,
-    required: [true, 'Region is required.'],
-    minlength: [3, 'Region name is too short (must be between 3 and 10 characters).'],
-    maxlength: [10, 'Region name is too long (must be between 3 and 10 characters).']
-  },
-  platform: {
-    type: String,
-    required: [true, 'Platform is required.'],
-    minlength: [2, 'Platform name is too short (must be between 2 and 50 characters).'],
-    maxlength: [50, 'Platform name is too long (must be between 2 and 50 characters).']
-  },
-  description: {
-    type: String,
-    required: [true, 'Description is required.'],
-    minlength: [5, 'Description is too short (must be between 5 and 8000 characters).'],
-    maxlength: [8000, 'Description is too long (must be between 5 and 8000 characters).']
-  },
-  genre: {
-    type: String,
-    minlength: [2, 'Genre is too short (must be between 2 and 20 characters).'],
-    maxlength: [20, 'Genre is too long (must be between 2 and 20 characters).']
-  },
-  dateReleased: {
-    type: Date,
-    required: [true, 'Date released is required.']
-  },
-  logoUrl: {
-    type: String,
-    required: [true, 'A logo URL is required.'],
-    validate: {
-      validator: function (v) {
-        return urlRegex.test(v);
-      },
-      message: props => `${props.value} is not a valid URL.`
-    }
-  }
-}/*, {
+  } /*, {
   versionKey: false
-}*/);
+}*/
+);
 
 // create ROM model
-const Rom = module.exports = mongoose.model('Rom', RomSchema);
+const Rom = (module.exports = mongoose.model('Rom', RomSchema));
 
 /**
  * @summary Get all ROMs.
@@ -122,9 +175,11 @@ const Rom = module.exports = mongoose.model('Rom', RomSchema);
  * @param {any} callback The callback function.
  * @param {number} limit The number of ROMs to limit.
  */
-module.exports.getAllRoms = function (query, callback, limit) {
+module.exports.getAllRoms = (query, callback, limit) => {
   // make sure to parse limit as integer
-  Rom.find(query, callback).limit(parseInt(limit)).sort({ orderNumber: 1 });
+  Rom.find(query, callback)
+    .limit(parseInt(limit))
+    .sort({ orderNumber: 1 });
 };
 
 /**
@@ -133,7 +188,7 @@ module.exports.getAllRoms = function (query, callback, limit) {
  * @param {object} query The query for getting a single ROM.
  * @param {any} callback The callback function.
  */
-module.exports.getRomById = function (query, callback) {
+module.exports.getRomById = (query, callback) => {
   Rom.findById(query, callback);
 };
 
@@ -143,7 +198,7 @@ module.exports.getRomById = function (query, callback) {
  * @param {object} newRom The new ROM data to add to the database.
  * @param {any} callback The callback function.
  */
-module.exports.addRom = function (newRom, callback) {
+module.exports.addRom = (newRom, callback) => {
   Rom.create(newRom, callback);
 };
 
@@ -155,7 +210,7 @@ module.exports.addRom = function (newRom, callback) {
  * @param {object} options N/A.
  * @param {any} callback The callback function.
  */
-module.exports.updateRom = function (query, romData, options, callback) {
+module.exports.updateRom = (query, romData, options, callback) => {
   const updateQuery = {
     orderNumber: romData.orderNumber,
     fileName: romData.fileName,
@@ -181,7 +236,7 @@ module.exports.updateRom = function (query, romData, options, callback) {
  * @param {object} query The query to delete with.
  * @param {any} callback The callback function.
  */
-module.exports.deleteRom = function (query, callback) {
+module.exports.deleteRom = (query, callback) => {
   Rom.findOneAndDelete(query, callback);
 };
 
@@ -190,7 +245,7 @@ module.exports.deleteRom = function (query, callback) {
  * @description Delete's all ROMs in the database.
  * @param {any} callback The callback function.
  */
-module.exports.deleteAllRoms = function (query, callback) {
+module.exports.deleteAllRoms = (query, callback) => {
   Rom.deleteMany(query, callback);
 };
 
@@ -201,7 +256,7 @@ module.exports.deleteAllRoms = function (query, callback) {
  * @param {object} query The data to partially update with.
  * @param {any} callback The callback function.
  */
-module.exports.patchRom = function (idQuery, query, callback) {
+module.exports.patchRom = (idQuery, query, callback) => {
   Rom.updateOne(idQuery, query, callback);
 };
 
@@ -211,7 +266,7 @@ module.exports.patchRom = function (idQuery, query, callback) {
  * @param {Array<Rom>} coreRoms The core ROMs array.
  * @param {User} user The user object.
  */
-module.exports.postCore = function (coreRoms, user, callback) {
+module.exports.postCore = (coreRoms, user, callback) => {
   const romsAsync = new Promise((resolve, reject) => {
     coreRoms.forEach(rom => {
       rom.userId = user['_id'];
@@ -219,8 +274,6 @@ module.exports.postCore = function (coreRoms, user, callback) {
     });
     resolve('Done!');
     reject(new Error('Error!'));
-  })
-  romsAsync
-    .then(() => callback())
-    .catch(err => console.log(err));
+  });
+  romsAsync.then(() => callback()).catch(err => console.log(err));
 };

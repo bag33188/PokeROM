@@ -11,38 +11,56 @@ const NatureSchema = mongoose.Schema({
   up: {
     type: String,
     required: [true, 'The increased stat of the nature is required.'],
-    minlength: [4, 'The increased stat of the nature  must be at least 4 characters.'],
-    maxlength: [20, 'The increased stat of the nature  can only be 20 characters at max.']
+    minlength: [
+      4,
+      'The increased stat of the nature  must be at least 4 characters.'
+    ],
+    maxlength: [
+      20,
+      'The increased stat of the nature  can only be 20 characters at max.'
+    ]
   },
   down: {
     type: String,
     required: [true, 'The decreased stat of the nature is required.'],
-    minlength: [4, 'The decreased stat of the nature  must be at least 4 characters.'],
-    maxlength: [20, 'The decreased stat of the nature can only be 20 characters at max.']
+    minlength: [
+      4,
+      'The decreased stat of the nature  must be at least 4 characters.'
+    ],
+    maxlength: [
+      20,
+      'The decreased stat of the nature can only be 20 characters at max.'
+    ]
   },
   flavor: {
     type: String,
     required: false,
     minlength: [4, 'The flavor of the nature must be at least 4 characters.'],
-    maxlength: [14, 'The flavor of the nature can only be 14 characters at max.']
+    maxlength: [
+      14,
+      'The flavor of the nature can only be 14 characters at max.'
+    ]
   },
   usage: {
     type: String,
     required: [true, 'The usage for the nature is required'],
     minlength: [5, 'The usage for the nature must be at least 5 characters.'],
-    maxlength: [40, 'The usage for the nature can only be 40 characters at max.']
+    maxlength: [
+      40,
+      'The usage for the nature can only be 40 characters at max.'
+    ]
   }
 });
 
 // create ROM model
-const Nature = module.exports = mongoose.model('Nature', NatureSchema);
+const Nature = (module.exports = mongoose.model('Nature', NatureSchema));
 
 /**
  * @summary Get All Natures
  * @description Gets all natures from the database.
  * @param {Response} callback The callback function.
  */
-module.exports.getNatures = function (callback) {
+module.exports.getNatures = callback => {
   Nature.find(callback).sort({
     up: 1,
     down: 1
@@ -55,7 +73,7 @@ module.exports.getNatures = function (callback) {
  * @param {object} query The query to grab the nature with (usually the ID query).
  * @param {Response} callback The callback function.
  */
-module.exports.getNature = function (query, callback) {
+module.exports.getNature = (query, callback) => {
   Nature.findById(query, callback);
 };
 
@@ -66,7 +84,7 @@ module.exports.getNature = function (query, callback) {
  * @param {object} query The data to update the nature with.
  * @param {Response} callback The callback function.
  */
-module.exports.patchNature = function (idQuery, query, callback) {
+module.exports.patchNature = (idQuery, query, callback) => {
   Nature.updateOne(idQuery, query, callback);
 };
 
@@ -74,9 +92,9 @@ module.exports.patchNature = function (idQuery, query, callback) {
  * @summary Delete Nature
  * @description Deletes one nature in the database.
  * @param {object} query The id query for locating which nature to delete.
- * @param {Response} callback The callback functio
+ * @param {Response} callback The callback function
  */
-module.exports.deleteNature = function (query, callback) {
+module.exports.deleteNature = (query, callback) => {
   Nature.deleteOne(query, callback);
 };
 
@@ -85,10 +103,9 @@ module.exports.deleteNature = function (query, callback) {
  * @description Deletes all natures in the database.
  * @param {any} callback The callback function.
  */
-module.exports.deleteAllNatures = function(callback) {
+module.exports.deleteAllNatures = (callback) => {
   Nature.deleteMany(callback);
 };
-
 
 /**
  * @summary Add Nature
@@ -96,7 +113,7 @@ module.exports.deleteAllNatures = function(callback) {
  * @param {Nature} newNature The new nature to add.
  * @param {Response} callback The callback function.
  */
-module.exports.addNature = function (newNature, callback) {
+module.exports.addNature = (newNature, callback) => {
   Nature.create(newNature, callback);
 };
 
@@ -106,9 +123,9 @@ module.exports.addNature = function (newNature, callback) {
  * @param {object} query The query to find the nature.
  * @param {Nature} natureData The data to update the nature with.
  * @param {object} options Any options (none in this case).
- * @param {any} callback The callback function.  
+ * @param {any} callback The callback function.
  */
-module.exports.updateNature = function (query, natureData, options, callback) {
+module.exports.updateNature = (query, natureData, options, callback) => {
   const natureQuery = {
     name: natureData.name,
     up: natureData.up,
@@ -124,15 +141,13 @@ module.exports.updateNature = function (query, natureData, options, callback) {
  * @description Adds all natures to the database.
  * @param {Array<Nature>} allNatures The natures array containing all natures.
  */
-module.exports.postAll = function (allNatures, callback) {
+module.exports.postAll = (allNatures, callback) => {
   const naturesAsync = new Promise((resolve, reject) => {
-    allNatures.forEach((nature) => {
+    allNatures.forEach(nature => {
       Nature.create(nature);
     });
     resolve('Done!');
     reject(new Error('Error!'));
   });
-  naturesAsync
-    .then(() => callback())
-    .catch(err => console.log(err));
+  naturesAsync.then(() => callback()).catch(err => console.log(err));
 };

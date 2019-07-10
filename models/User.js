@@ -52,7 +52,7 @@ const User = (module.exports = mongoose.model('User', UserSchema));
  * @param {object} query The ID query for getting the user.
  * @param {any} callback The callback function.
  */
-module.exports.getUserById = function(query, callback) {
+module.exports.getUserById = (query, callback) => {
   User.findById(query, callback);
 };
 
@@ -62,7 +62,7 @@ module.exports.getUserById = function(query, callback) {
  * @param {string} username The username of the user to find.
  * @param {any} callback The callback function.
  */
-module.exports.getUserByUsername = function(username, callback) {
+module.exports.getUserByUsername = (username, callback) => {
   const query = { username: username };
   User.findOne(query, callback);
 };
@@ -74,7 +74,7 @@ module.exports.getUserByUsername = function(username, callback) {
  * @param {any} callback The callback function.
  * @param {Array<any>} errCallbacks The error callback functions array.
  */
-module.exports.addUser = function(newUser, callback, errCallbacks) {
+module.exports.addUser = (newUser, callback, errCallbacks) => {
   // check if user already exists
   User.findOne({ email: newUser.email }) // check email first
     .then((user, err) => {
@@ -115,7 +115,7 @@ module.exports.addUser = function(newUser, callback, errCallbacks) {
  * @param {string} hash The hashed password.
  * @param {any} callback The callback function.
  */
-module.exports.comparePassword = function(candidatePassword, hash, callback) {
+module.exports.comparePassword = (candidatePassword, hash, callback) => {
   bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
     if (err) {
       console.log(err);
@@ -129,7 +129,7 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
  * @description Deletes all users in the database.
  * @param {any} callback The callback function.
  */
-module.exports.deleteAllUsers = function(callback) {
+module.exports.deleteAllUsers = (callback) => {
   User.deleteMany(callback);
 };
 
@@ -139,7 +139,7 @@ module.exports.deleteAllUsers = function(callback) {
  * @param {string} id The ID of the user to delete.
  * @param {any} callback The callback function.
  */
-module.exports.deleteUser = function(id, callback) {
+module.exports.deleteUser = (id, callback) => {
   User.findOneAndDelete(id, callback);
 };
 
@@ -148,7 +148,7 @@ module.exports.deleteUser = function(id, callback) {
  * @description Gets all users in the database.
  * @param {any} callback The callback function.
  */
-module.exports.getAllUsers = function(callback) {
+module.exports.getAllUsers = (callback) => {
   User.find(callback);
 };
 
@@ -160,7 +160,7 @@ module.exports.getAllUsers = function(callback) {
  * @param {object} options Any update options (not using any here).
  * @param {Resonse} callback The callback function.
  */
-module.exports.updateUser = function(query, userData, options, callback) {
+module.exports.updateUser = (query, userData, options, callback) => {
   const { name, email, username, password } = userData;
   const userQuery = {
     name,
@@ -186,7 +186,7 @@ module.exports.updateUser = function(query, userData, options, callback) {
  * @param {object} userQuery The user data to partially update the user with.
  * @param {any} callback The callback function.
  */
-module.exports.patchUser = function(idQuery, userQuery, callback) {
+module.exports.patchUser = (idQuery, userQuery, callback) => {
   if (!userQuery['$set'].password) {
     User.updateOne(idQuery, userQuery, callback);
   } else {
