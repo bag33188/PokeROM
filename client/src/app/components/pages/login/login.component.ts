@@ -1,5 +1,3 @@
-/// <reference path="../../../interfaces/NgClasses.ts" />
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -12,7 +10,10 @@ import {
 import { AuthService } from '../../../services/auth.service';
 import LoggedUser from '../../../models/LoggedUser';
 import RegisteredUser from '../../../models/RegisteredUser';
+import NgClasses from '../../../interfaces/NgClasses';
 import sanitizeXSS from './sanitation/sanitizeXSS';
+
+
 
 @Component({
   selector: 'app-login',

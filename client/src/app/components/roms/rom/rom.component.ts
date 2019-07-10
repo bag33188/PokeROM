@@ -1,7 +1,6 @@
-/// <reference path="../../../interfaces/NgClasses.ts" />
-
 import { Component, OnInit, Input } from '@angular/core';
 import Rom from '../../../models/Rom';
+import NgClasses from '../../../interfaces/NgClasses';
 import { SizeConversionService } from '../../../services/size-conversion.service';
 
 @Component({

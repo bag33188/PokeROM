@@ -1,4 +1,4 @@
-/// <reference path="../app/interfaces/Environment.ts"/>
+import Environment from '../app/interfaces/Environment';
 
 export const environment: Environment = {
   production: true,

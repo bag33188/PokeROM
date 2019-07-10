@@ -1,6 +1,5 @@
-/// <reference path="../../../interfaces/Alert.ts"/>
-
 import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import Alert from '../../../interfaces/Alert';
 import { environment } from '../../../../environments/environment';
 
 @Component({
