@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
   }
 
   sanitizeData(): void {
-    this.Username.setValue(this.Username.value.sanitizeXSS(false));
+    this.Username.setValue(this.Username.value.sanitizeXSS(true));
     this.Password.setValue(this.Password.value.sanitizeXSS(false));
   }
 }

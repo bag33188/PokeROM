@@ -1,17 +1,21 @@
 declare global {
   interface String {
-    sanitizeXSS(logValues: boolean): string;
+    sanitizeXSS(replaceSpecialChars: boolean): string;
   }
 }
 
-String.prototype.sanitizeXSS = function(logValues: boolean): string {
+String.prototype.sanitizeXSS = function(replaceSpecialChars: boolean): string {
   const checkXSS: RegExp = new RegExp(
-    /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[&'"<>\)\(\\\/\{\}\[\]\:\;\^\*])/,
+    /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/,
     'gim'
   );
-  const sanitizedStr: string = this.replace(checkXSS, '');
-  if (logValues) {
-    console.log(this);
+  const checkChars: RegExp = new RegExp(
+    /(?:([&'"<>\)\(\\\/\{\}\[\]\:\;\^\*]))/,
+    'gim'
+  );
+  let sanitizedStr: string = this.replace(checkXSS, '');
+  if (replaceSpecialChars) {
+    sanitizedStr = sanitizedStr.replace(checkChars, '');
   }
   return sanitizedStr;
 };
