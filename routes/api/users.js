@@ -345,8 +345,8 @@ router.patch(
     try {
       const id = req.params.id;
       const query = req.body;
-      let isValid = true;
       const pwRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/gi;
+      let isValid = true;
       for (let field of Object.keys(req.body)) {
         if (
           field !== 'name' &&
