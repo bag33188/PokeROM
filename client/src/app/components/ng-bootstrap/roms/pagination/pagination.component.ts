@@ -17,7 +17,9 @@ export class PaginationComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.pageWidth = window.innerWidth;
+  }
 
   onPageChange(pageNum: number): void {
     this.pageSize = this.itemsPerPage * (pageNum - 1);
