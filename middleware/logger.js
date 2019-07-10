@@ -9,7 +9,7 @@ const moment = require('moment');
  */
 function logger(req, res, next) {
   const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-  console.log(`${req.method} ${url} ${moment().subtract(8, 'hours').format('LLLL')}`);
+  console.log(`${req.method} ${url} ${moment().subtract(7, 'hours').format('LLLL')}`);
   next();
 }
 
