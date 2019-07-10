@@ -21,10 +21,10 @@
     "type": "git",
     "url": "https://github.com/bag33188/Pokemon-ROMs-Project.git"
   },
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node app",
-    "dev": "nodemon app",
+    "start": "node server",
+    "dev": "nodemon server",
     "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./version.sh && bash ./options.sh"
   },
   "author": "bag33188",
