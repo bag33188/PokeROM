@@ -36,7 +36,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
       } else {
         sessionStorage.setItem(
           'beta-version-alert',
-          JSON.stringify([betaVersionAlert])
+          JSON.stringify([].push(betaVersionAlert))
         );
       }
     }
