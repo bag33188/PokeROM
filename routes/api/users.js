@@ -88,6 +88,7 @@ router.post(
       .withMessage('Password is required.')
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
+      .not()
       .matches(
         /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/gi
       )
@@ -179,6 +180,7 @@ router.post(
       .withMessage('Password is required.')
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
+      .not()
       .matches(
         /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/gi
       )
@@ -275,6 +277,8 @@ router.put(
       .isEmpty()
       .withMessage('Password is required.')
       .isLength({ min: 8, max: 256 })
+      .withMessage('Password must be between 8 and 256 characters.')
+      .not()
       .matches(
         /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/gi
       )
