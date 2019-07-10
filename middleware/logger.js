@@ -9,6 +9,7 @@ const moment = require('moment');
  */
 function logger(req, res, next) {
   const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  moment.locale('en');
   console.log(`${req.method} ${url} ${moment().format('LLLL')}`);
   next();
 }
