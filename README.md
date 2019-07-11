@@ -52,7 +52,7 @@ cd /c/MongoDB/bin && ./mongod.exe --dbpath=../data
 cd /c/MongoDB/bin && ./mongo.exe
 cd ~/Projects/PokeROM && npm run dev
 cd ~/Projects/PokeROM/client && ng serve --open
-cd ~/Projects/PokeROM
+cd ~/Projects/PokeROM && git status
 
 /c/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
 
@@ -63,7 +63,7 @@ CD C:\MongoDB\bin && mongod.exe --dbpath=..\data
 CD C:\MongoDB\bin && mongo.exe
 CD %USERPROFILE%\Projects\PokeROM && npm run dev
 CD %USERPROFILE%\Projects\PokeROM\client && ng serve --open
-CD %USERPROFILE%\Projects\PokeROM
+CD %USERPROFILE%\Projects\PokeROM && git status
 
 C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js
 
@@ -74,7 +74,7 @@ C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-ng2of.gcp.mongodb.net/pkmn-roms"
 ~/mongodb/bin/mongo
 cd ~/Projects/PokeROM && npm run dev
 cd ~/Projects/PokeROM/client && ng serve --open
-cd ~/Projects/PokeROM
+cd ~/Projects/PokeROM && git status
 
 ~/mongodb/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
 
