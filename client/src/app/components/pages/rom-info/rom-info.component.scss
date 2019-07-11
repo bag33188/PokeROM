@@ -63,12 +63,7 @@
     'rom-specs'
     'game-download';
     grid-template-columns: 1fr;
-    grid-template-rows:
-    .5fr
-    fit-content(em(308px))
-    fit-content(15.9rem)
-    fit-content(17.5rem)
-    fit-content(5.5rem);
+    grid-template-rows: .5fr fit-content(em(308px)) 15.5rem fit-content(17.5rem) fit-content(5.5rem);
     margin: 0 auto;
     text-align: center;
   }
