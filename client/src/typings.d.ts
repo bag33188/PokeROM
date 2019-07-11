@@ -1,7 +1,6 @@
 /* CommonJS module definition */
 declare var module: NodeModule;
 interface NodeModule {
-  /* tslint:disable-next-line:callable-types */
   (id: string): any;
 }
 
