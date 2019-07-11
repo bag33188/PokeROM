@@ -68,7 +68,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '1998-09-28T07:00:00Z',
     logoUrl:
-      'https://zhrlpg.sn.files.1drv.com/y4m99wXwtGrWHHMW0SiI8P45V1o7SxOVDkBv3sUv9V4LHGtvefXPDCo2sJkr5BVlo6vi_Ba5T_Ix2kzpPNZL4TvQDCDYyHMJD44lGd1qICT4NPKeTMy3bwqASzOjrNjQixP7mOgOHSCcFLqyNhZ82vcg7KS8y2FhpwpnxughHKze64_Un6SGoWaZseHH0Vf06rcta1MNAnUQcN9eXVabJ7TDQ?width=400&height=155&cropmode=none'
+      'https://1hrwpg.sn.files.1drv.com/y4mG_PS3E35xvssoQaHGfnCGhAfY9MClXpB-brQOmGcrWwX53dg30tU0h_FN17mNXe3UzRpNj6gRRhsH48wFR41eHHLe6iBRn8gBzNbVq8AlmTywK2R6KDLOKQ7ltpK1W9pPRduPe_52t8MeLSW291rZyjP3Bpaa-3kdrm64M0vG2g2yeP2pp-ZJ1kFBOPfrkhRWImMWSJsGSVOzSxJDN9faQ?width=400&height=155&cropmode=none'
   },
   {
     orderNumber: 1,
@@ -88,7 +88,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '1998-09-28T07:00:00Z',
     logoUrl:
-      'https://y3rnpg.sn.files.1drv.com/y4mHsDlhurRGRjBXJUI-ZPYAzeg8Het5mMg8d2P6ES7aDwI56T_a7wEq8m5alvLYJNGpCRT0Qqlfy6TuokLAq3bPA7tqgcUt2iICU1B56xDomjfClHM9fPvDqZfJNrSjjgoKP2E_ozqS9KUaGS4npTfOOv3W9CVLCAO4lWlB1UArVroHZS6GRHAAqR1zlK9IczD8Hzi4YG_cYQlbsQNwnEk2g?width=1727&height=903&cropmode=none'
+      'https://03rjpg.sn.files.1drv.com/y4m5TVWDfm2JZeX4x7BCDp0xbYeCSFDfrrV2DKGRtEPw-Opu8-gAdBOFojjCT9GHq3y8qciMuErBPSMcm_Be6Q0K6XWfplz6eKK0r8EwsoErXX2DT5TVFc2VHpMbpqGu7OXq2tjwbG1NyEs49yZJiv4-aSpMct65r8xBrHBod90j5okTV-ZE4-TaAwcJ_Hn5fm9TdDJ6n64AqreRziJxcgHww?width=1727&height=903&cropmode=none'
   },
   {
     orderNumber: 2,
@@ -108,7 +108,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '1999-10-01T07:00:00Z',
     logoUrl:
-      'https://zxrmpg.sn.files.1drv.com/y4mZHO43t9qFAJz-9rBVHppHmiYcjoV5dXpmKSyrmFTEFaHD-p43p9UTmG-Vz65U6OB-FxfY7wlT5TPES7ZiQMc2rrZuIoOfdjgNKiWw0TA9XZNeY4ETJVNBRcpQ6pytechZvN3uGFCJJJWLEruHaJBxJKyqB1_v7fpKNuefuzMH-9Gp3JHj_0LbDmwTCOuQLM2yZgnU5qL-h8HFhwBEZS1yg?width=400&height=155&cropmode=none'
+      'https://zpmcgw.sn.files.1drv.com/y4m0ueVErNYyLnx-1mrs4-VR4ekTg9fvktoCQy-td4at5iauAa-_DEqKV2fHB8pWDGCBRt1ts44OjiW1XlfZgXxieiIpYiVtUqAUac1k6IuQDBD5tXanTXh_XGGw37W3j-A39JUkK-pS4Po4nrraZQ9heelvHOPAdx-ncVXkN5dEAUh_B5Y5WiU0WX4gxrk-BnOHtvVqPDK17Y09cjvOyDIPg?width=400&height=155&cropmode=none'
   },
   {
     orderNumber: 3,
@@ -127,7 +127,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '1996-02-27T08:00:00Z',
     logoUrl:
-      'https://znripg.sn.files.1drv.com/y4mh65e5IHCzq3UTNjAA1uT6YU5hb7pJdQXf53TjbC14vNimSVoRKwxpIx4NMvNACtOfQgRIy9i-zQempD6LIwA6L2uw_cSjgU0GwatMpXD4vZ201LctUVW5DbPLd6bHKS8NvDWiFbwDVzH9nnO5XnMskevRpkGp4ocxSf1inicx69ql-mAIlg8_YM7XPZudGXKsKiKwor9jheTpIMSDpEOVQ?width=480&height=360&cropmode=none'
+      'https://1hropg.sn.files.1drv.com/y4mCK03DncKo1VKlvJx7b8xafybJPECphxj8WPPYGrHN4mett1zc-6bgEayvNqEqRsIM2c0G3Iv_LBHHGlACLJvk6jHJSNrLwBd89wfNrG4JQjeNiAB1z8jDvwxeM7TKXOzS_blvfsBTx8SRTYdiFqz91Iy31w1e2xTnx7DepZidTZZnZHN1eO-ljttKPlM9-uj65PWUavk2QPeCf4-pwb3VA?width=480&height=360&cropmode=none'
   },
   {
     orderNumber: 4,
@@ -147,7 +147,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2000-10-15T07:00:00Z',
     logoUrl:
-      'https://zhrnpg.sn.files.1drv.com/y4mHNsbCm0PIcvCZ9BkIWWpJRBgQQR7oGeOTjaWtQpy88XzDb3bc_oW4Z7GQqBbOXOGCfdtHHyDKsK6iuYqOcL4cy7pTfl__cR9eyozcyGMtY11Jpt6ca6SjfAgc6vh92snSKkSzdBdC6OCn0c5khoSVt6a2xgtjvsHlD7NZtgJaxPra5USOyjLM93Z5AoaVf7gvXc8w9j5yl18IfHcFl8l9Q?width=1701&height=985&cropmode=none'
+      'https://03rwpg.sn.files.1drv.com/y4mZFvyiTrrxENEF4Dt7zZt_m9npZLea5Atrn1tXMvVssTsG5CPif-aGVeFc884JZogQsrvywwL2ocu3S8jyGaPE5kzKy774G050xybt-sqypS7b6Bwj0Yo5PhY9rJXIaHBa7_F9e5xHl3F7KmhgLdZ2hsRAvXbJMOvctnSo1Y6CklP6tFAurpRXTCOp4gelg5ZGCC3Ew3sgrk_evyWOtirWA?width=1701&height=985&cropmode=none'
   },
   {
     orderNumber: 5,
@@ -167,7 +167,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2000-10-15T07:00:00Z',
     logoUrl:
-      'https://zhripg.sn.files.1drv.com/y4m2IWgu2OtNA_K1cJSR7EuonPGHCQTDu5Pmvzlr7X5D7J81Z8zBnPcdKO_GMyPwTkM16RsoZctCKMOJQQ8H2NMUgKkep1saDIB2HBX6MRHhX3OxgMxXOLd-p9dHkUvdEQY-NjZOIBo4rDBLfEwT1E6vg2IVyxhXOcTFh7kaVc67VvFiQ6LmHFWIQ0BKqyCNcsSBRIXutFBXOW2mN62li9dBg?width=348&height=214&cropmode=none'
+      'https://zumagw.sn.files.1drv.com/y4m28LU0gs2tHnLint12ODvMbbruTaaQZqxDgm_MhY61G6NJvoAhkoogm7zvKspF7-wJZ6P2yQi12qG5D4orBraMhdTXLZr_noELSukDBt-TdbaN6wMC3gfP2H2h1XqT-v-cQQuruSFAopWa7BVo3JXgRjPCx7KRpirfJh50tOlEzi3h4RER8CkyMiHyXP21EdYrHN9G5Cd7jfVE5QBNSmMlQ?width=348&height=214&cropmode=none'
   },
   {
     orderNumber: 6,
@@ -187,7 +187,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2001-07-29T07:00:00Z',
     logoUrl:
-      'https://y3rmpg.sn.files.1drv.com/y4mH5Qd83RSvD8DvKXC5jzp5AmjDBpWeoF3NIRhFzjPtCYe1LmFTvzw9sTUKIVwe83MeiiQJhxOhU-9YiCazISHpIgW9IpZTHTQsGo95IjN-yycJ-x1QSJAsI0qP85LO8WV9Y8cvICmZfJmYRr0su4avl_d9HvH3bf8UqLmdpskTdclDtRd2sAHOpG0HXdDCJs4kZOwqWT2sFmc3AVc_oqOTw?width=1500&height=1090&cropmode=none'
+      'https://03rkpg.sn.files.1drv.com/y4mkAlGXSdmoCN-5JUA-1HAe19UVmF8NruiKy5VGl9QmvZje_lFmi2dqwJ9wodbz95H9fHXVTJlq2VPZIAVl90oRMfYz275VqgRzYh6P99znSvnQdLS32loiUoNquPPPhZzFRpGttEcTdbQ9vcIN7zw6hlZitco69KoDRY_gwZHvEK8PboivG0eu7diNMY5mrSgtIRKYK-fDWU3cvjOBqnHbA?width=1500&height=1090&cropmode=none'
   },
   {
     orderNumber: 7,
@@ -207,7 +207,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2003-05-19T07:00:00Z',
     logoUrl:
-      'https://zhrkpg.sn.files.1drv.com/y4mz1NZ1IFn1oDR7C9GLYRk0oWWtvYKT4sMXXCwqp11HMmdvmk0ehxY1SUYAgu2-5RqwOxXs4xr2XTyjXobPF94x6IBQIdlOlBTfI-N8kUPzUKpo_l3xzEajeJwVQ2j52t-L8oeqgv9kMoy-tdB8TiSeuVQ9SCiI7RVED4yduCFNfYOEFx54GO0K6Q7fdr-mi8KppXDcRDVIPNd4QB9wezQtA?width=1838&height=1005&cropmode=none'
+      'https://zumbgw.sn.files.1drv.com/y4mKjzbTRxdTlekURGA0vK6Ir5VCm_5SFbo51f3RDCXSVXAqTBtHzVe9CtxlVT43nPuoicfxJ593WxQYtWMDffXdO-7EvyA2Hg8Jr_eLkmv_Ng_w1D3jm-cUDVHJiIbiuHpLZec0eTq5wWEyEr-HV99So4EMBvcO-uHFij-Qyr54YLyPjZqLzsUWfBuF9ydIoS0qRqKDOi6ibL6gXeO39Ks3A?width=1838&height=1005&cropmode=none'
   },
   {
     orderNumber: 8,
@@ -227,7 +227,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2003-05-19T07:00:00Z',
     logoUrl:
-      'https://zhrjpg.sn.files.1drv.com/y4mzJUQygMgdCbj6E89nc9vL0brHiMf2CoZt40GTrrjipABnJ0aCgkboFoeQhTPAkBZz1gnKueFM6270ztTqWfrcs0AOQJGeDp8BPBurbeTK-KzcWPKR8iJm1oljMXNp8ycO6UN-GscwlQxmxzDTrOPJn7xaAOhwANYMqowljK8RJ7u2sjBbaetBbJ5mb12isGzDppXcpU285FGeXzFRngFRQ?width=380&height=178&cropmode=none'
+      'https://zumcgw.sn.files.1drv.com/y4mPWqi8FMMdevZoIdf_cKg9New6k2g_a8gFwZKwGAhzwTd56wBGRCIdCVscPjfuo8DNygn6Pw7w7QuBrIoHCrBGaG_74WqufpeRqcMdrpyJjz_R_boOPbnkv3Hi3hMtfWw8FS8ZEPRqshLA3wHD1UoQSQMCJBlZY-sXHTshbrUxYlaaMDSa9CNDalH0d4GwY_0xut5zTvUVfbcP_VL_BPBcQ?width=380&height=178&cropmode=none'
   },
   {
     orderNumber: 9,
@@ -247,7 +247,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2005-05-01T07:00:00Z',
     logoUrl:
-      'https://y3rlpg.sn.files.1drv.com/y4mDD20sqaCbinCtBs6B2r7Gux--eOHsLaL6lga0cq2iiDhj-BqtzDFH7jNLIaOLsOXc3gtyf-zaaCRFbxxFFZja_1tI1aB4sMEmL0utUahTTuj_GGKoOIWymzOQttN_3OT1EMB2Cm_LS6umUDGi7TsCzGyBMNUEUbC2603frfRgtd9pu3dZnj-TVH5HM051_pRgxXGYpwuyx4GYDqvkRU-WA?width=1123&height=603&cropmode=none'
+      'https://03ripg.sn.files.1drv.com/y4mmZVnT8z_gpWDk4XaTD3-5tQxPLtNDe2dHEZ_Gw2hAQ0dEWbFxEj0UDFhIBuKlwT3EJEgSrc2RF_GOUBfTSXJk2JeYRLZtSGFxjshshwKEXiV3V6zk5FKJLMnkvWvwt2ycVpY79vhnrCouxggtNGauo3s1Ez5JW2OQBc5J9u49a2m0Z5K5UviAKaatGZCjBpikOtYWccF18h1Gasu5Lt5qA?width=1123&height=603&cropmode=none'
   },
   {
     orderNumber: 10,
@@ -267,7 +267,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2004-09-09T07:00:00Z',
     logoUrl:
-      'https://y3rhpg.sn.files.1drv.com/y4mwD2EibMgbFm6pZ5UpBqldgYvm5g-xWi6Nz8jzDpG1yYYdHP9adKM6ZY_qhW8JtfrMeaddlr2WojTkMHlAsnizAxLe19-fD5gcGmgxyKuh2HsK2mJFqkFJDLpCCnLF4xjegjvDUKhMmqorD-o_VU2jDHTyDNV96CcURSS8EXGgfja8OgbGY44AoPGK3W58IL2OmgSYWBI8B9VGD_AHMtvyw?width=400&height=175&cropmode=none'
+      'https://03rhpg.sn.files.1drv.com/y4mMRRaPxmAmHkJ-DHHEn0vo9zTKQ9W1UggKafoM4Aiz8SpLd5OJKlYtyx8b7u9pBuEEL0Zz_05VdU30YbpJYEJ0onPPsYVZ1tqpzqjcUe4FIIYWppKV1bzqeYD27i9YNQZKisIscNxNsayM3wSDdiADb12ojjQHdj0rqf-r8Rp9qfgx5YME2s_podwxctI-y7ZuBegVq5Xbe-VRnFQUlPuDA?width=400&height=175&cropmode=none'
   },
   {
     orderNumber: 11,
@@ -287,7 +287,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2004-09-09T07:00:00Z',
     logoUrl:
-      'https://y3rjpg.sn.files.1drv.com/y4mzjkEtP0AMqg2D4BT97JTZQfi6pP-b5xIUTjHz-UTV6GjlQt0voixoHFqy07LyDup__KFBIioWbzsq-7dQjUw2IYsj90hBHHXih_HZXEGR5dCR7e6UR0iqgQFT60HB7flM81CMyN4U5TkCoZ8lFNmQr_h7dGt0UVVskEiQmyadQLvzIngPHSt5ToDRoCyWlITPzhNmClBLeMqw6PVLoBeKA?width=400&height=175&cropmode=none'
+      'https://1hrnpg.sn.files.1drv.com/y4mfBN2m7WswVfICESLscINpbufb4C_gc1oG7d4xI4NcxsUujwkV1KcY13U0fW1vHg3MnwbrxTIlvrvgQ-8UnlYwaffYWnEZUNoWKG-jhMtlSaICJPKd_jUDwO-RyYSQ4f0nnCLfYpypDeNsUyNCOTKEKwZH76Ytw4kNtYcog-aTN1SvaocHQLdo4nNiNqDGt9VIUAWjQKfhe5KSEhjOTv48Q?width=400&height=175&cropmode=none'
   },
   {
     orderNumber: 12,
@@ -307,7 +307,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2007-04-22T07:00:00Z',
     logoUrl:
-      'https://znrkpg.sn.files.1drv.com/y4mMoOKsG29xkq2t5DnqyhNrj4R35G0h5GkMVQHNlOnnuwZt-G_6a803F0UYfuTLDAqsuekLhUx226TM0jjg-KgChIxLbyj9_VXSGTpsQXxSXEBGs0ou70fZlHikx6htf4eKvWffkx3d70sajzteaUuyR6ddY_iWV3-Fj1S_nJ-46nKZBAnVMOJwyv2w_LXdgbBemDrdKqnnlPFpEiJOhjeiA?width=1280&height=720&cropmode=none'
+      'https://03rlpg.sn.files.1drv.com/y4mKtPcDSkq8gQoFSmAEYWNj5GtJLvjoOqQ9Q5Pe6XGq16hnynmcXdX8ypEKXfNmNknq8Vdv6Pmf61jd77UMg_RJCiz-Qy0JtYT-rwq5Bu0FbFtOaXqvoqGAXbh3wX99owIX235POwRxgZs79MWXQMUtX8CRgs6rf5yyCZ4YO4ZY5FsZyNNAL1tOj7ZHtO-6Ni6xCKFhFlWRvxovgiEfz5w1A?width=1280&height=720&cropmode=none'
   },
   {
     orderNumber: 13,
@@ -327,7 +327,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2007-04-22T07:00:00Z',
     logoUrl:
-      'https://znrjpg.sn.files.1drv.com/y4m6Spvl78Ssv4XijQD4EQPXUuTsJul-PxffGhOgpo8LsY7tZtNFG7dMjBTMVb4YeX2lYIIdPeTkH3TOqfOL2a5ihMQzICoZgLnTqi7-7NFHRRIWDL4TzpAkh17B7MzcYpLW0BWuOIGTHdjU9CVvD4rYdC5zhimS41O2n4wqqunbEYi8fSQCq6v0aBb1CwabnQkBrP2lWTNfo9lq2YmjigxKw?width=1200&height=840&cropmode=none'
+      'https://1hrjpg.sn.files.1drv.com/y4mLdHOCPS3vf0wFbWO4TJwujwzak1CtVpbR1PPjcoWnsIci-6J58SWdWzkw5lMXr8kN_xAW-VUGSfMSpUnZyJD4Fyen-6wydwKSL-yiMbpcvgQ9yYeutgvc_-__xjZPUhUfvVn4Fxcz3UoANLK1r9BVNffuGPQCrLFyBqnqe1DoZ4VeD1uljI4Fkt_I_1beROmxz8IEvaAPcr9iWHRvnWSZg?width=1200&height=840&cropmode=none'
   },
   {
     orderNumber: 14,
@@ -347,7 +347,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2009-03-22T07:00:00Z',
     logoUrl:
-      'https://zhrmpg.sn.files.1drv.com/y4mUOuWUZlkLVVnSdjLTukSszW19YBrR2Y3pwFgl8dn5DBk0xLepiffg6j3ivIr8QT1IVbmELGoIORIAEm3sikAfb71BqPMC067wjf7WHNGnFpRSjmw7a4mHHqOo51KipbpimeXaiAMGxv5-w4pj8uSCP149mjWLX4wdQVfA1neTX8KT1jVi4mqcrc-tYqZ4q1uzLVoXINvQC2ZHZzh9T4OIQ?width=800&height=436&cropmode=none'
+      'https://zpmagw.sn.files.1drv.com/y4mpA2mHyb8AZWUk54LGN-XrZEROKE3Gwqvsa_iqx_3S_RSkWn1BHROsXhjfw1trPp25khp7DhRB1QFrqX-XiH55i_JuqavuBTk7ofldwTcfBUyji4GsH5s1FfUQREDQRRTqN8gtnNstYFzgzjxQ6ikKehKRs6JHdqCXbvtPhlpkn5A8P9gVXXB8bW3FN-aux69DXVb3khBOgY6QuWrhCWN8Q?width=800&height=436&cropmode=none'
   },
   {
     orderNumber: 15,
@@ -367,7 +367,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2010-03-14T08:00:00Z',
     logoUrl:
-      'https://znrlpg.sn.files.1drv.com/y4mWK3Pu6X6x1pR-_-YyxZ54g4fecK6bWdvGo78LL4YIMShRTkLw8fhD8GC5olRVeNgQJFbIw9Ga4Z0QAUQQGLECfnsz41te7T0oQTOlBb6-BOFuVSYqcwb2KAVxl9t2Tq9DWia6etITMimbMDDTaCSVTkpg0h11_nOaPuVpVNgiU7dZT1P-4T0KeKooV2EUc--nNUL78oNHFKYLmrwrAuF7w?width=1023&height=582&cropmode=none'
+      'https://03rvpg.sn.files.1drv.com/y4mgXL-6wjEHE6c4mDXBWoyC2LpujqF-oEwcNrhD61qnB5EP7ZWu5F0OsX2-9li07x7g4DWFRJP5Vey-IXGZPLNBZEdzx1LjfDiEvTfvqJ-aZ7KIyKwPZ2PADXSmsQbA-lfa521VbI9Xt62v6nEhXOukR-P_YMZ34hwPuA5n8C8oyPgQIBQBvRw4UhZfog5ll2mnKlK8x2cYCNgd5vVlR4Mlg?width=1023&height=582&cropmode=none'
   },
   {
     orderNumber: 16,
@@ -387,7 +387,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2010-03-14T08:00:00Z',
     logoUrl:
-      'https://znrhpg.sn.files.1drv.com/y4mkeCwu7F8LoKxrB841XmgGOFzhtdpTC9vx5ZyFLNtTTRLpPHF5fx1dwloPe7qN8S4I6pERs6LW9vZ5cElB_SskZVBDz22S6XIGO4qrHLnobkrpz1LkTYmugasl49ykx8L-qTRjsGUOl471rbzDy-Y525_SSzff5PWztt5eZLVZnlJR51cMo97Pxhh2tGM3pkvRwqfmbnTk0fQi0jEr66CEg?width=1023&height=582&cropmode=none'
+      'https://zumzgw.sn.files.1drv.com/y4mIcj4fawPlNMgUVLH5NC67y1OnqDREno-bdnWMPxFGfugAjJZ_NnWahIPclrjSKimr-Zdh0EiCJrxkZXgvPIAEdGW5NDHQnc704hHzSYb8dgJfT223f0HxJTesRHRVAXw7YHEOrwrftxDEDmceBqtt82k9FQw35-S4eRBGBmuAfwip4cf9zFpt8jT3ONti5-KH_MLL4qYc619oOO6abbudQ?width=1023&height=582&cropmode=none'
   },
   {
     orderNumber: 17,
@@ -407,7 +407,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2011-03-06T08:00:00Z',
     logoUrl:
-      'https://y3ropg.sn.files.1drv.com/y4mWHnHZ9DwdC8FtvUmkx4vgrSgQd15Rq7ltK_7h1GANvY03KhLjMGi0ZAHHa5ZGwfgzF9PbYm-Vrw_U8YchGflOLOb2YGPXG54O_HolbzsVQTQAB2kPha57Db1Kg4B5urVD6XNYyIzvdf6xf6brtWFvMvNk8QlAjC5JpTsOhzK50KtRnpHiHm8Dqj8_ayHGbu77Hx6_s5El3u-MdZBp1LwDw?width=624&height=390&cropmode=none'
+      'https://03rmpg.sn.files.1drv.com/y4mTH3_Uo3WWZIRS6HIwD507CAriJ0TYrHwPBlwQ6hldcmv5QHp2VPMtZ_fxg_YcvcNWVIR1mKbfehLqHOPgEa8y7bNHPi1ZX9pmQ7LmI2vJCVdgAScOxXF9cps8U8YM6caeDiYQ8y5Nrfs1UP0qdOElIFKQpr8tUJwPHsnsM_EuuqAlNYhaP8xSR93Zmc0WR43XBFyvfxNAoVbfPNjxCx9ag?width=624&height=390&cropmode=none'
   },
   {
     orderNumber: 18,
@@ -427,7 +427,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2011-03-06T08:00:00Z',
     logoUrl:
-      'https://zxropg.sn.files.1drv.com/y4msskO2dIC6n2ZxuRVGMM0pUHQ5XfCwe8gmOg4Zwq02T4uGPQy0iaFgaEzcYNg8f8GMI9SfEw0itsDwEQrxXNg_Wl7IAtofr7MqCyYMGKVR5rkT8uCHkIMKbIb8ygKu8CdXQR0mN86AEXfnC7LxpTBocVaMHZN2INM8fFG_akplfvEB1S2_WE3Jv-ja1yDrrvs275FiNmd0xB16sR4ZkiQeQ?width=278&height=169&cropmode=none'
+      'https://zpmbgw.sn.files.1drv.com/y4mCqIEEVT9uordHqLoNGG7orOZ4tOWg1T2ZtQx0Tz_4rGfNlK3aDh0pzrGOz1S2mncIpzqbKxonZV-WyANAq67SvUW70Ix-SG9MidZOjk5CC5JtEUkQ9bRwq2REPV9FzeOn7TmOAyx4ulcscCjZ1ftsB2W1SFJUJpqZ6bU5qr1u06hmRva_ZXWNOgMCQfUVWdkRwS24-s-lrQ8Vk48ycUJZw?width=278&height=169&cropmode=none'
   },
   {
     orderNumber: 19,
@@ -447,7 +447,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2012-10-07T07:00:00Z',
     logoUrl:
-      'https://1htuhq.sn.files.1drv.com/y4mmbsFgqFSoHy1v803jbE8fE7Si69rX_GC1vRMyeiqeI891NPVfAqx132-MgO0L584eIfe-pX7ReT73xS_2zjyXgM8fZ3shsQ9XUDlkSW--RmgcUB1NVJvdMcUFQWaP_j_NCQNpHmP2X5_NJMj3CWJM6C16A4LKF_zty9URN2VWIXKpGH7ejU_7MiZzD6j7v6QpaosiBdp6yOwdl3qAS1ymg?width=1400&height=784&cropmode=none'
+      'https://03ropg.sn.files.1drv.com/y4mt02bRgmD8vJG4kLsrQD5_bDsLg7pOhynAsy-oQuOzIkNj9nm4muLOt1KjJ4oLs5gbr6ktMQQxxdJarGFzXxod1Vrqj1wgL7mt1ZV_P6a8I9YAVXTaQ2olSYCBOJA2MjOZ03sGIOkBnNKiAn_Dl938XReAdspaOKqtvPBfS75UVHA0kJPSjUnhCcc8xO5YBLq2wZwYfYfsUPnPkLf6D-Hjg?width=1400&height=784&cropmode=none'
   },
   {
     orderNumber: 20,
@@ -467,7 +467,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2012-10-07T07:00:00Z',
     logoUrl:
-      'https://znrvpg.sn.files.1drv.com/y4mpF7HNy8PzyPspOvojYckyO8TeWXu-TWlyAwPzYwNGiWpbp3HXt28oQTMCtgG046-lynZt6zI0qrh-IDurSMjkUryudBzFZY-R4JUszySujY-iCQmrEZNyqyq1ptfeTV1RM0bmlX_q-THLp3baNMGAq2xLV5Lqf4_gTtGjk9ekxvLmwYsfWxG-hax5c1aSBTtC9ZOcO0s7m4juGgQ1cqjKw?width=960&height=561&cropmode=none'
+      'https://zumwgw.sn.files.1drv.com/y4m4J1ZRsbspDrzXxbJKc4QZjKspQSFC0xOTloTvdIayyOhA3ZSI1S-zrO73N8tQ9XNR4u3aGRBwApOUam_i2SfhHLEAEH9RQa38JZCh4afBLrCT00v2kIUbHy31mmnuAkgMHYvRqSnGzNWz8stFtdT5SjtRX4hQ3E8QyNVKt0_sB4NFWX2kBicV647ECUDmpEz1bgkiswn_bDAi4HsaZN9lg?width=960&height=561&cropmode=none'
   },
   {
     orderNumber: 21,
@@ -487,7 +487,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2013-10-12T07:00:00Z',
     logoUrl:
-      'https://z3ropg.sn.files.1drv.com/y4m5B-Ob9tHSyNxv7OIJp10voA5GT5Wqi3blaH0ANLIP0tC8_HkKuQXF9Kx1uBUtTv_NQgzAhKkjA30Nwo3V-5NE2O-M-cHOvLfeMrIAbdeyXRR1EhcnXoVllA9CjDGzgMpAvNbI1HUN3Kb2bguHrNxsOMC246aL2RRP3o4cnJD-HiUEeWDzqsVqccTmECVpmKIDk1xjgAAoDNCCmvxXjupkA?width=576&height=250&cropmode=none'
+      'https://zumkgw.sn.files.1drv.com/y4mWOadLEKok0yrHhuz3Ya062tGri8fgMkcMMD9cHu81JQB0-9qfRAvw5PG3gexcjpxB7dAym7LEOCSdlEBiCRRslxAmJSkeQJfDdXCp0qzjBo3f0PWLyllenF-XepYwS52ET9fShMMLS5E1Wy35Js32yxJSmucFRJexeFX_owLdMPtk5-IazIfwPlOddHACc1ccbsJyNP1UpKt2fHeqQz3Mw?width=576&height=250&cropmode=none'
   },
   {
     orderNumber: 22,
@@ -507,7 +507,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2013-10-12T07:00:00Z',
     logoUrl:
-      'https://zxrnpg.sn.files.1drv.com/y4mJ4rJrkwy_ydBhQO5sBvNT6zQdZCZVXry3wh5AAAMGy_AWmSDFZNJJjfQUdDqGAs5-tHSW0iHFSwy2nD_fTpeptVd2Z-Mt8xahTvQE1pJFQkWklSYxx-LrEEz3tBEpM_FGetml6hZtQ3StjLCbFAJgcY1yq3LyBzUPNpS171D762QmwOl6DZbK5DUAEfKM36lRZQUw9P5_ASZuAreHrb_gA?width=1116&height=497&cropmode=none'
+      'https://zpmzgw.sn.files.1drv.com/y4mbHRU3s3ISACt6iqcjzUQbPIy0py5V005Hgn8gk9BYY2aCExJnRZPSF5we3YGdgbUVu6tuI8ed9WaImQA270mZNk4SAjrjYcUrBxGsR4QXsNI6J9tQfd3xeJUpTj-E-XJytqUEKVzNKJXVHJVgwvfb1Lalj_KCObQDMEM6p3rGd8RAIwwfGGhZ48s1t6A5qhI8nXVb30VYnuTYl6qoGqOMA?width=1116&height=497&cropmode=none'
   },
   {
     orderNumber: 23,
@@ -527,7 +527,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2014-11-21T08:00:00Z',
     logoUrl:
-      'https://zhropg.sn.files.1drv.com/y4mdxh6wDWIt5E-rTq5EV1oRKFfnaaxly8FAUDgW06HZaZchowdnbGlA9FFLZhGr_mnVMBuDuJ2MKztwv88vRbG2R6_OWS7Bpgu7EgWRnTanfn_tGU_k5Nyiy-tSKVm6-u5vayCKJcdnApsDtjKjqPbpZo8KdHff6wQW_oAh_T0h9i0Bv1U_7Qe9LQUMfGnNWtToz8SQZw83qw6oBzZuxPsgQ?width=397&height=250&cropmode=none'
+      'https://1hripg.sn.files.1drv.com/y4m4Q8G8iboJJmvoGyQ-BgVwxW1f0Oel8K6vmT_wvRzgjBBDP6RCoX1q1M1ofuyE8Ekxv3NL60DxjppR1osPSsSYhYi55Jx57XfOFdBbFHxGyLYMJt-yQS0y_PHuE95GmvzP5FFYy9I_fXDbpbTn5_7zYuO0CnCi5spGE8qMpkdoWem7l4eBcoK4vGDgqxMUBQVGo_uURMsR4pQKA8xBMEgBA?width=397&height=250&cropmode=none'
   },
   {
     orderNumber: 24,
@@ -547,7 +547,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2014-11-21T08:00:00Z',
     logoUrl:
-      'https://1htvhq.sn.files.1drv.com/y4m528zTsdwUJ8qoFCtZoHWIkXCCROXsS5CUUxdXU2tc8A7zU8he8SWLp8ljdi1eVWLTtbaGpc2bWLpYe8paOVf7teBHEmBKkrENcNR0NR04oKvZq95bDp8o4JPaan1VULgwekbjDfzRxH64xrNTGcVaOqlWYIY-WqSeab7JQVeiHbCTidigM1Xlgs11_PBjSQTilgRESGlmLhIiKTn8CSZ7A?width=1024&height=584&cropmode=none'
+      'https://0nrvpg.sn.files.1drv.com/y4mpSxRmsVfQDIU1N7d758SOAPJcdUlrh7lhF5poGS8Gl3ifPErWncSf-crk5KaQAlPnAasSzWycsAwK9SRvhh31FqzV7k7-Bs9R-wDIirmT7QNc_CbVl5mJEFzdIduo_4yH0Fcp09IwmXIUWEvMHJ_hPuWIjnHe3XxUDh0DSHDn5jAGSDLjJxEzOmJANt9O-5WM-kar9_IyhgXBfX3dWTmrg?width=1024&height=584&cropmode=none'
   },
   {
     orderNumber: 25,
@@ -567,7 +567,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2016-11-18T08:00:00Z',
     logoUrl:
-      'https://zhrhpg.sn.files.1drv.com/y4mYUG_Qk0KUlV8nXjXrtgOmo1JSX6u2VcykLE93GZaqY5zXFZ8K4RzsQYBN5zNHe8ZE7Ab3-wJwtyTBuWCa49r2C7qR6KqDelJXCqJtrgML4w2K8Iet-Mr2oBKIObS2Fm0EAYWCK63fONsbMQVOTAcul0tSBrvp5kxtlxskFK5FjO_dGy_7GxvRp1EfNmRkPxWbvL8ra0lwZReYOP-R0YX9w?width=1200&height=638&cropmode=none'
+      'https://zumygw.sn.files.1drv.com/y4m5ELc1BTfLeVhBqEIBsdzgnORwskdrqp-0iH7R7GMr_L9_0pbI6pnv3NB3ZvI4QNg2ixoGTKVrmU_ptx6fenBfTiPzZfQZgRbbVX2UlV8A3YbajigY7MyDF2qqzovgnhEDv8DtcZS0232uEYTkmPDtBMTibvyY1neuFbY1H1rsJlbNThj8vc64QNrf7wLbGtggR6KEJ47Qj0V-w__0dXgqQ?width=1200&height=638&cropmode=none'
   },
   {
     orderNumber: 26,
@@ -587,7 +587,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2016-11-18T08:00:00Z',
     logoUrl:
-      'https://y3rvpg.sn.files.1drv.com/y4muZH6V74UVzW1LZ8R0jnwbh8LwJ23Go_6AMuFtwoABQtgOQLMCBZKBaHEC4eUBtP1qzNWucCZO4Cg7KsQjAKMh5zGIwm-PesaD6W8JxSTxpTv7LQlrtgLERDHo5HzdsOo_CmmN5uKMh1UlnKXnOqWgg4SVubGpoJgLZVNhaWAoQQgJpvNxvD0-Fu5HgmJz0PKpeuY5ncM5E_INnJ5VR7FaA?width=1200&height=638&cropmode=none'
+      'https://1hrlpg.sn.files.1drv.com/y4m2EMffC5wV2HXGVUpiuGQb0432VUwvI5s1Bx1h8ALZiuX1d7oeuqC-5WVvDVFivpotdnW2bc12PfvMeIJCK5maQLp12QdfX0TYOTjjZkqFjtpmAiJwzfHVEQf4LvA0LmHCS-nZ0uZWZbtDYxL4SmK1Nh7wx7v5cDOHICh2u7rhOd6PTssm2LLEiciNmtAk9dsLLX5y-aiEfg1imXpNcAEDA?width=1200&height=638&cropmode=none'
   },
   {
     orderNumber: 27,
@@ -606,7 +606,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2017-11-17T08:00:00Z',
     logoUrl:
-      'https://znrwpg.sn.files.1drv.com/y4m6IrsXww35vsdHe1sHFwlo_6uvRpTyFt0xXv5Tb9R197-SgAINbd2ZrL9r2EXfUIYmWLwpgD_a7oBID8avrpsiAuwWM-6u8BduiIdU77b07gIMJxIdiGpEnwH7YRUfiqPeV9dl7vQoBhKoIKciiUQDFjz-75_1fAvBVtSK1lT5urQuhooMb___fQ8_3sGrHeaXv81VRL5lQqis6PnlLIfxw?width=616&height=353&cropmode=none'
+      'https://zumxgw.sn.files.1drv.com/y4m5z0IPTPChajKJPqbAgLS6no_EWZw9GhlyYn0_Ocq-shKIsDKmzxzfQfJw7AnsTVL6Pg62Lw1jXqlQNyuAt6OcMC6sbLbksyGkl-1qcGN1QnoVw3cesE5aIejdulJO8_0Yxrf48F1kAe8Ls0kfPaQJkH3hMVzcjgYAohS2pC0isNy1EJsah-sWwNG_Fr9bFitAFL6uWcN4DyskEr2WJfnbQ?width=616&height=353&cropmode=none'
   },
   {
     orderNumber: 28,
@@ -626,7 +626,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2017-11-17T08:00:00Z',
     logoUrl:
-      'https://zhrvpg.sn.files.1drv.com/y4mEHsa06B0B4GLjziEKzV-WsZXEOUJN9vJjgCUsPoOiQvUPcuehhtS8RcrqBN7Z-pgeQVVQOPGmtpXp0RwcxZ26ii4afE5GPluIGsiMZfLYDsQyi58kSGEb9xDcxyI1FIWfm0KEWpDi6MPJK2DaUezIi28tr29wThlpe--6BQw5NLcL6OepU9WD_b70kQbghwFpBad1Dmz0YQzPKumcaJ3XA?width=1200&height=591&cropmode=none'
+      'https://zumvgw.sn.files.1drv.com/y4m2jPjnrNXLZ0q7O4rKh_uVi-pgY9yDVLcgvfuPKCqGV1Ow4786Tv0_gLsW53DP7K4YvYEHVdsx5ZkLs11z_GCBwKlZUmuGDmU2xg7GqYDY7ui7aI4ZO7oi8Cqg01e76OXf4V0uHnDPQBL1je2JLMwaxWVeyVFxCmN88U-dAZhqQbM2_F21NbgBP3_WonjZ4f0KOl8doRUBAeLdjQJQchNRw?width=1200&height=591&cropmode=none'
   },
   {
     orderNumber: 29,
@@ -646,7 +646,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2018-11-16T08:00:00Z',
     logoUrl:
-      'https://y3rwpg.sn.files.1drv.com/y4m2d6Yj_Jsaj-YiMf7bfguz1acYzRS7cp5AQsd6w2N0CSHPvSZWcsmF9ZYEcvKLPIFgIPg5E8Subd2bmPvHkq1pKIvX-9-OWK2Pl5cbPdUMktOiLx77dOBO8lYK8rnfXI7tP9iGzT5h45oCO_TE8VNo5VpUmG0aQu54PEXPCneeBF1IwB4j-1D8JmHQTUO47VNbW7uYDc9L3fBKWcx3toEZQ?width=447&height=202&cropmode=none'
+      'https://1hrmpg.sn.files.1drv.com/y4m_O9hXHXADQDh9FB0uueLLMZ9JON01v4r89XZchRieYjgJyTftJUdCpL7DYQ4FYjFqb0f8LJICjgO_K-v6C00DRK0RY-ChfrqagZL4LNOaIVB3WF-N3ajPgKXQtxPw0zNcVLa7es2B6P8bqGJatGDnE1KqjYLlDKuOQej0P8f5f0zcgJB50EMhHAiM5nngo1dzvAFpEBuhVMjMloOM58etQ?width=447&height=202&cropmode=none'
   },
   {
     orderNumber: 30,
@@ -666,7 +666,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2018-11-16T08:00:00Z',
     logoUrl:
-      'https://y3ripg.sn.files.1drv.com/y4m-U_I-Qnn3Y7bPI9dVpT_wvq6n0ZezlsPTV-660Wo03LRGSaACQ-qbC0XbHRN-Be-3Uir4wLvzKSz3KowrHjH5O9zFdybQ1NLuUcuPfZCk0bFYzI8Jl7CBO3vgmmLWd8k5ciyRGZ27MpPI_f4HfrMiV2mOXnD0Zp_mtD5ITMVxTRMlgnbFg3AtyexqnRWE0kfUL86KhDc-mYQAZDwbmc0jw?width=447&height=202&cropmode=none'
+      'https://1hrkpg.sn.files.1drv.com/y4m6XL-JR6xUPT7ZYNPqyDOglFTggjEcEkw4zIG4g6hBrifEsEiuqLimAvutufTrpD-a9LBLhvJUd4IKvxzV64yJ8WpSMtphcNZPF7xrz8V7T67chnqrqXal7xKbzpUT7DOEpoISjL9BCZsqzxwMU5mc4RyXcjS1mkGFIB-NWaf61GApDsHEFHiTh_1ZtagxecjznhSIaEZuy38sacQ5JmDhA?width=447&height=202&cropmode=none'
   },
   {
     orderNumber: 31,
@@ -686,7 +686,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2016-12-25T08:00:00Z',
     logoUrl:
-      'https://zhrwpg.sn.files.1drv.com/y4mbR5UnKlWp6mv6qpM3Jcf3ijhUsGFXX2NSJPEucMCGoaK4St2MbtSB-IShw9rMh41Wq5JQqrbQ4RJS_YnBDqiDnx2xT-36K1C6QJvqYQrNmtqm1JoMf80SI1NK6K8Ry3EtRAhTaVHa3jLRU-XXNhup3XE5TyVV23kSrwMFWf-aoCfMgkYeGo6_IbEvCkYsZawSrSFWWq_C92RAlbzUHafaQ?width=770&height=470&cropmode=none'
+      'https://1hrhpg.sn.files.1drv.com/y4mdMLn-kUfjZA1laNJYx9472MBGKGssiYwnoXBFCd7-3Yyy8-xDiVIaCSP2oYKsn5Dl0TXlfAZBR_CAR2ECrTxDY3jjFoxOYMdtB62yAaHZeJhWEqbF8sv42ofSyIqeEP3hWQKnU2hTdPFfqRxbFs91WRpXoWVC0HRPJWufI-gwJGrBfInnwKt6MbLE3GYe2OLCxi75lZE94WP5siD69Xwtg?width=770&height=470&cropmode=none'
   },
   {
     orderNumber: 32,
@@ -706,7 +706,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2009-05-31T07:00:00Z',
     logoUrl:
-      'https://y3rkpg.sn.files.1drv.com/y4mKr692hNcVa7YcZs8DOTbknaixWs7Lw5bGCq-8lriyxeyONkOPWsPWoVKCAmgKUg_OpilMdHlY-q1NPg_aIBheK6clGccT8YYoldEsLjk7JhZWxGFRX_CqUX8kbZkaRBKRD-SwLXNstpN0A_F3M5iFaVgI-EJTLPqEdLEz5kJSJwcCVm6HwGyjQ-fK95eNkDhrUhNTiU2xCTWOn10iv5O2w?width=1920&height=1080&cropmode=none'
+      'https://03rnpg.sn.files.1drv.com/y4moO_HZvoByM75VgYQEVVjDWzlLce2OrZsYMI6EcLu1aIQQnkToKBhuz1PFcJr_EldBUPyhhU1UYV6SGlY-uLckkj2cGWMfOawJwmAJYX1X30Gd7FHlYJiTfvbG717yBGBkSLyTKT9zaJIj4iW9yRROo7HvRnIwzyfcgHvgHNn9e6MG_ndrXHR_A3qJnVxfiRV-0rcCYQApnXsSYHydjgVgA?width=1920&height=1080&cropmode=none'
   }
 ]);
 printjson(insertRomsQuery);
