@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import he from 'he';
 import LoggedUser from '../../../models/LoggedUser';
 
@@ -8,20 +9,17 @@ import LoggedUser from '../../../models/LoggedUser';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit, AfterContentInit {
-  login: LoggedUser;
-  sourceCodeUrl: string;
+  emulatorUrl: string;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.login = {
-      username: 'bag33188',
-      password: he.decode('&#x31;&#x32;&#x33;&#x34;&#x35;&#x36;&#x37;&#x38;')
-    };
-    this.sourceCodeUrl = 'https://github.com/bag33188/Pokemon-ROMs-Project';
+    this.emulatorUrl = 'https://www.retroarch.com';
   }
 
   ngAfterContentInit() {
-    window.scrollTo(0, 0);
+    if (!this.route.snapshot.fragment) {
+      window.scrollTo(0, 0);
+    }
   }
 }
