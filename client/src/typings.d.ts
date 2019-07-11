@@ -1,7 +1,8 @@
-/* SystemJS module definition */
+/* CommonJS module definition */
 declare var module: NodeModule;
 interface NodeModule {
-  id: string;
+  /* tslint:disable-next-line:callable-types */
+  (id: string): any;
 }
 
 /* Module Delcarations */

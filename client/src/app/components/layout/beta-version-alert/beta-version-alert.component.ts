@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import * as $ from 'jquery';
 import Alert from '../../../interfaces/Alert';
 import { environment } from '../../../../environments/environment';
 

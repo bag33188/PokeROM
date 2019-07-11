@@ -8,10 +8,21 @@ import Rom from '../../../../models/Rom';
 })
 export class GameDownloadComponent implements OnInit {
   @Input() rom: Rom;
+  btnDisabled: boolean;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    this.disableBtnIfMobileOrTablet();
   }
 
+  disableBtnIfMobileOrTablet(): boolean {
+    if (navigator.userAgent.match(/iPhone|iPad|iPod/i) || navigator.userAgent.match(/Android/i)) {
+      this.btnDisabled = true;
+      return true;
+    } else {
+      this.btnDisabled = false;
+      return false;
+    }
+  }
 }

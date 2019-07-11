@@ -2,8 +2,7 @@
 
 @import '../../../../../assets/scss/variables';
 
-#download-link {
-  width: 100%;
+#download-link-wrapper {
   @media only all and (max-width: 938px) {
     margin-top: 1rem;
   }
