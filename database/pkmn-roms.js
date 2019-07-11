@@ -586,15 +586,16 @@ insertRomsQuery = db.roms.insert([
       'https://1hrlpg.sn.files.1drv.com/y4m2EMffC5wV2HXGVUpiuGQb0432VUwvI5s1Bx1h8ALZiuX1d7oeuqC-5WVvDVFivpotdnW2bc12PfvMeIJCK5maQLp12QdfX0TYOTjjZkqFjtpmAiJwzfHVEQf4LvA0LmHCS-nZ0uZWZbtDYxL4SmK1Nh7wx7v5cDOHICh2u7rhOd6PTssm2LLEiciNmtAk9dsLLX5y-aiEfg1imXpNcAEDA?width=1200&height=638&cropmode=none'
   },
   {
-    orderNumber: 27,
-    fileName: 'Pokemon Ultra Sun.3ds',
+    orderNumber: 28,
+    fileName: 'Pokemon Ultra Moon.3ds',
     fileSize: 4194304,
     fileType: '3ds',
     downloadLink:
-      'https://z3qigw.sn.files.1drv.com/y4mQD8s_-mqNL5ntdbVhjOGvSTNS2to0vArn8LiDgg1FFLBiqil10aEZRTvbLcY6J9TTzxc3VYRxEPttIfa-K0VnwNILEjxDt3n29BPqkEyhXqkm3BRCI8nJRJmL023oUnCxdRlViyDSZA64tVnu8BbyUZprjMjbhL9hemGC12EtMUNMEZGuE6_7nqLUlV8R1J6o9zEcZbSMSVaWYM6mbO0QQ?width=1200&height=1095&cropmode=none',
+      'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106551&authkey=AJ9rXowWVDeoCIY',
     generation: 7,
-    boxArtUrl: 'https://bit.ly/2Zbk0CM',
-    gameName: 'Pokémon Ultra Sun Version',
+    boxArtUrl:
+      'https://zpmvgw.sn.files.1drv.com/y4mUh2lANoS1yFqqsS4DYLZHgRH6v-0qmNRxsjiSpY0kmF2NC6672adflcXbmATT3EkniH3eH3xixqWjF-x3z6keoMpT8BXDmmjFHlya0xuFmJVo2DD-UAJBhT6bIWiW00wyw_86jafFTPWM-GWdCejtEU0JTNBieWUjC0Pltzem79V3XcTPorwvuZqUT5BFjCVJX8Hhb8FTigAzBmdlIAUNg?width=1200&height=1097&cropmode=none',
+    gameName: 'Pokémon Ultra Moon Version',
     region: 'Alola',
     platform: 'New Nintendo 3DS',
     description:
@@ -602,7 +603,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2017-11-17T08:00:00Z',
     logoUrl:
-      'https://zumxgw.sn.files.1drv.com/y4m5z0IPTPChajKJPqbAgLS6no_EWZw9GhlyYn0_Ocq-shKIsDKmzxzfQfJw7AnsTVL6Pg62Lw1jXqlQNyuAt6OcMC6sbLbksyGkl-1qcGN1QnoVw3cesE5aIejdulJO8_0Yxrf48F1kAe8Ls0kfPaQJkH3hMVzcjgYAohS2pC0isNy1EJsah-sWwNG_Fr9bFitAFL6uWcN4DyskEr2WJfnbQ?width=616&height=353&cropmode=none'
+      'https://zumvgw.sn.files.1drv.com/y4m2jPjnrNXLZ0q7O4rKh_uVi-pgY9yDVLcgvfuPKCqGV1Ow4786Tv0_gLsW53DP7K4YvYEHVdsx5ZkLs11z_GCBwKlZUmuGDmU2xg7GqYDY7ui7aI4ZO7oi8Cqg01e76OXf4V0uHnDPQBL1je2JLMwaxWVeyVFxCmN88U-dAZhqQbM2_F21NbgBP3_WonjZ4f0KOl8doRUBAeLdjQJQchNRw?width=1200&height=591&cropmode=none'
   },
   {
     orderNumber: 28,
