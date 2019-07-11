@@ -17,13 +17,16 @@ export class BodyComponent implements OnInit {
     // * Webkit Browsers: Apple Computer, Inc. (Safari), Google Inc. (Chrome and Opera)
     // * Non-Webkit Browsers: None
     if (!this.isWebKitBrowser()) {
-      console.warn('CSS custom scrollbar not available in non-WebKit browsers.');
+      console.warn(
+        'CSS custom scrollbar not available in non-WebKit browsers.'
+      );
     }
   }
 
   isWebKitBrowser(): boolean {
-    const webKitRegEx: RegExp = /(?:(WebKit))/gi;
-    const appNavgiator: string = navigator.appVersion;
-    return webKitRegEx.test(appNavgiator);
+    return (
+      /(?:(WebKit))/i.test(navigator.appVersion) &&
+      !/Edge/.test(navigator.userAgent)
+    );
   }
 }
