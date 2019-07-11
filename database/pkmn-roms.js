@@ -6,12 +6,9 @@
 // 1. go to terminal
 // 2. <path_to_mongo> <path_to_this_file>.js
 
-// DO NOT RUN THIS BLOCK IF USING PRODUCTION SERVER MONGO SHELL
-// -------------------
 // connect to mongodb
-conn = new Mongo();
-printjson(conn);
-// -------------------
+// conn = new Mongo();
+// printjson(conn);
 
 // connect to/create pkmn-roms database
 db = conn.getDB('pkmn-roms');
