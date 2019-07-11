@@ -35,7 +35,7 @@ const UserSchema = mongoose.Schema({
     maxlength: [256, 'Password must be less than 256 characters.'],
     validate: {
       validator: function(v) {
-        return !(/(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/\"\'<>])/gi.test(
+        return !(/(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/\"\'<>&])/gi.test(
           v
         ));
       }
