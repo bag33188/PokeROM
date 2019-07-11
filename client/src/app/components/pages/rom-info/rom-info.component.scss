@@ -77,7 +77,9 @@
   grid-area: 'game-logo';
   grid-column: 1 / 2;
   grid-row: 1;
-  text-align: center;
+  @media only all and (max-width: 938px) {
+    text-align: center;
+  }
 }
 
 #game-description {
@@ -87,6 +89,7 @@
   @media only all and (max-width: 938px) {
     grid-column: 1;
     grid-row: 2;
+    text-align: center;
   }
 }
 
@@ -94,10 +97,10 @@
   grid-area: 'game-download';
   grid-column: 1;
   grid-row: 4;
-  text-align: center;
   @media only all and (max-width: 938px) {
     grid-column: 1;
     grid-row: 5;
+    text-align: center;
   }
 }
 
