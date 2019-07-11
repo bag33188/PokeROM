@@ -1,5 +1,4 @@
-// database file for pkmn-roms mongodb database
-// to run/load:
+// to run/load (in non-cloud server):
 // 1. go into mongo shell
 // 2. load("<path_to_this_file>.js")
 // or
