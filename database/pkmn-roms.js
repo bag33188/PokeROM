@@ -626,7 +626,7 @@ insertRomsQuery = db.roms.insert([
     genre: 'RPG',
     dateReleased: '2017-11-17T08:00:00Z',
     logoUrl:
-      'https://zumvgw.sn.files.1drv.com/y4m2jPjnrNXLZ0q7O4rKh_uVi-pgY9yDVLcgvfuPKCqGV1Ow4786Tv0_gLsW53DP7K4YvYEHVdsx5ZkLs11z_GCBwKlZUmuGDmU2xg7GqYDY7ui7aI4ZO7oi8Cqg01e76OXf4V0uHnDPQBL1je2JLMwaxWVeyVFxCmN88U-dAZhqQbM2_F21NbgBP3_WonjZ4f0KOl8doRUBAeLdjQJQchNRw?width=1200&height=591&cropmode=none'
+      'https://zpmvgw.sn.files.1drv.com/y4mUh2lANoS1yFqqsS4DYLZHgRH6v-0qmNRxsjiSpY0kmF2NC6672adflcXbmATT3EkniH3eH3xixqWjF-x3z6keoMpT8BXDmmjFHlya0xuFmJVo2DD-UAJBhT6bIWiW00wyw_86jafFTPWM-GWdCejtEU0JTNBieWUjC0Pltzem79V3XcTPorwvuZqUT5BFjCVJX8Hhb8FTigAzBmdlIAUNg?width=1200&height=1097&cropmode=none'
   },
   {
     orderNumber: 29,
