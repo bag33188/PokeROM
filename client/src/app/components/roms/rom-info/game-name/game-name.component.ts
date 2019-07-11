@@ -7,12 +7,14 @@ import Rom from '../../../../models/Rom';
   styleUrls: ['./game-name.component.scss']
 })
 export class GameNameComponent implements OnInit {
-
   @Input() rom: Rom;
+  isRomHack: boolean;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    setTimeout((): void => {
+      this.isRomHack = /\(ROM Hack\)/.test(this.rom.gameName) ? true : false;
+    }, 1000);
   }
-
 }
