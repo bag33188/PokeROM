@@ -14,7 +14,8 @@ const options = require('./routes/options');
 passportConfig(passport); // configure passport
 var globalTunnel = require('global-tunnel');
 globalTunnel.initialize({
-  host: '54.173.229.200',
+  protocol: 'https',
+  host: 'http://fixie:n7WX1zp8Hnw0x99@velodrome.usefixie.com:80',
   port:  process.env.PORT
 });
 
