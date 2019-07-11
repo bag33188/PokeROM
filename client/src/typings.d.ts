@@ -1,7 +1,7 @@
 /* CommonJS module definition */
 declare var module: NodeModule;
 
-/* CommonJS module interfaces */
+/* CommonJS module imports interfaces */
 interface NodeRequireFunction {
   (id: string): any;
 }
