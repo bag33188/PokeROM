@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
+const globalTunnel = require('global-tunnel');
 const logger = require('./middleware/logger');
 const swaggerDoc = require('./docs/swaggerDoc');
 const connectDB = require('./config/db');
@@ -12,11 +13,10 @@ const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const options = require('./routes/options');
 passportConfig(passport); // configure passport
-var globalTunnel = require('global-tunnel');
+
 globalTunnel.initialize({
-  protocol: 'https',
-  host: 'http://fixie:n7WX1zp8Hnw0x99@velodrome.usefixie.com:80',
-  port:  process.env.PORT
+  host: 'velodrome.usefixie.com:80',
+  port: 80
 });
 
 // database
