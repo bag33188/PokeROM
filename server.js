@@ -16,7 +16,8 @@ passportConfig(passport); // configure passport
 
 globalTunnel.initialize({
   host: 'velodrome.usefixie.com:80',
-  port: 80
+  port: 80,
+  tunnel: 'both'
 });
 
 // database
