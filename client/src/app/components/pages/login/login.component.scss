@@ -15,15 +15,11 @@
   @include responsive-width(761px, 626px, 63vw);
   @include responsive-width(0, 555px, 70vw);
   margin: 0 auto;
-  padding-top: 5rem;
+  padding-top: 2rem;
   width: 32vw;
 }
 
 #border-container {
   background-color: $white;
   padding: 14px;
-}
-
-.large-top-margin {
-  margin-top: 4rem !important;
 }

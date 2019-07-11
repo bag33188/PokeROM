@@ -19,7 +19,6 @@ import sanitizeXSS from './sanitation/sanitizeXSS';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  classes: string;
   loginFail: string;
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [
@@ -46,14 +45,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {}
-
-  setClasses(): NgClasses {
-    return {
-      container: true,
-      'text-center': true,
-      'mt-4': document.body.offsetWidth >= 500
-    };
-  }
 
   login(): void {
     const user: LoggedUser = {
