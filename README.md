@@ -37,6 +37,12 @@ heroku config:set PROD_MONGODB=mongodb+srv://bag33188:Sullivan@pokerom-ng2of.gcp
 heroku logs --tail
 git push heroku master
 
+# clear build cache
+$ heroku plugins:install heroku-repo
+$ heroku repo:purge_cache -a appname
+$ git commit --allow-empty -m "Purge cache"
+$ git push heroku master
+
 # Windows
 
 # Using Git Bash
