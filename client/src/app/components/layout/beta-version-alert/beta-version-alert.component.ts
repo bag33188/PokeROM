@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import Alert from '../../../interfaces/Alert';
 import { environment } from '../../../../environments/environment';
 
@@ -48,7 +48,10 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
   }
 
   fadeOutAlert(): void {
-    if (this.isBeta) {
+    if (
+      sessionStorage.getItem('beta-version-alert') !== JSON.stringify([]) &&
+      this.isBeta
+    ) {
       // close alert after 3 seconds
       setTimeout((): void => {
         // fade out alert during 1 second
