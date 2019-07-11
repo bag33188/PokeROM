@@ -6,8 +6,12 @@ const router = express.Router();
  * @summary Get backend options.
  * @description Gets supported options for entire backend.
  */
-router.options('/', (req, res) => {
-  res.status(204);
+router.options('/', async (req, res, next) => {
+  try {
+    await res.status(204);
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;
