@@ -2,6 +2,7 @@
   "name": "pokerom",
   "version": "1.0.0",
   "description": "The back-end/server side for the pokerom website.",
+  "private": true,
   "licenses": [
     {
       "type": "ISC",
