@@ -21,6 +21,7 @@ there's a problem when you don't know why it is working.
     - [Code Workspace File](#code-workspace-file)
     - [Extensions](#extensions)
   - [Diagrams](#diagrams)
+  - [Browser Compatibility](#browser-compatibility)
 
 <!-- /TOC -->
 
@@ -159,6 +160,12 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 ## Diagrams
 
 To open the `.drawio` files, use the [draw.io](https://about.draw.io/integrations/#integrations_offline "draw.io desktop integrations") app.
+
+## Browser Compatibility
+
+|   Browser       | Chrome    | Opera    | Safari      | Firefox    | Edge    | IE            |
+|-----------------|-----------|----------|-------------|------------|---------|---------------|
+| **Min Version** | Chrome 58 | Opera 44 | Safari 10.1 | Firefox 54 | Edge 16 | Incompatibile |
 
 --------
 
