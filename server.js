@@ -12,6 +12,11 @@ const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const options = require('./routes/options');
 passportConfig(passport); // configure passport
+var globalTunnel = require('global-tunnel');
+globalTunnel.initialize({
+  host: '54.173.229.200',
+  port:  process.env.PORT
+});
 
 // database
 const db = connectDB;
