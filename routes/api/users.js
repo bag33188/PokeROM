@@ -90,7 +90,7 @@ router.post(
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(
-        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/\"\'<>&])/gi
+        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/"'<>&])/gi
       )
       .withMessage('Password conatins invalid characters.')
   ],
@@ -182,7 +182,7 @@ router.post(
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(
-        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/\"\'<>&])/gi
+        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/"'<>&])/gi
       )
       .withMessage('Password conatins invalid characters.')
   ],
@@ -289,7 +289,7 @@ router.put(
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(
-        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/\"\'<>&])/gi
+        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/"'<>&])/gi
       )
       .withMessage('Password conatins invalid characters.')
   ],
@@ -358,7 +358,7 @@ router.patch(
     try {
       const id = req.params.id;
       const query = req.body;
-      const pwRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/\"\'<>&])/gi;
+      const pwRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/"'<>&])/gi;
       let isValid = true;
       for (let field of Object.keys(req.body)) {
         if (

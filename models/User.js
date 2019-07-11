@@ -35,9 +35,9 @@ const UserSchema = mongoose.Schema({
     maxlength: [256, 'Password must be less than 256 characters.'],
     validate: {
       validator: function(v) {
-        return !(/(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/\"\'<>&])/gi.test(
+        return !/(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\\/"'<>&])/gi.test(
           v
-        ));
+        );
       }
     }
   }
@@ -129,7 +129,7 @@ module.exports.comparePassword = (candidatePassword, hash, callback) => {
  * @description Deletes all users in the database.
  * @param {any} callback The callback function.
  */
-module.exports.deleteAllUsers = (callback) => {
+module.exports.deleteAllUsers = callback => {
   User.deleteMany(callback);
 };
 
@@ -148,7 +148,7 @@ module.exports.deleteUser = (id, callback) => {
  * @description Gets all users in the database.
  * @param {any} callback The callback function.
  */
-module.exports.getAllUsers = (callback) => {
+module.exports.getAllUsers = callback => {
   User.find(callback);
 };
 
