@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 @import '../../../../assets/scss/variables';
+@import '../../../../assets/scss/functions';
 
 /*
  * CSS Grid Layout:
@@ -80,8 +81,12 @@
     'rom-3'
     'rom-4';
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr fit-content(300px) fit-content(300px) fit-content(300px);
-    margin: 0 auto !important;
+    grid-template-rows:
+    1fr
+    fit-content(em(300px, 16px))
+    fit-content(em(300px, 16px))
+    fit-content(em(300px, 16px));
+    margin: 0 auto;
     padding: 1.8rem 0 0;
     width: 90vw;
   }
