@@ -22,6 +22,7 @@ there's a problem when you don't know why it is working.
     - [Extensions](#extensions)
   - [Diagrams](#diagrams)
   - [Browser Compatibility](#browser-compatibility)
+  - [Notes](#notes)
 
 <!-- /TOC -->
 
@@ -166,6 +167,10 @@ To open the `.drawio` files, use the [draw.io](https://about.draw.io/integration
 |   Browser       | Chrome    | Opera    | Safari      | Firefox    | Edge    | IE            |
 |-----------------|-----------|----------|-------------|------------|---------|---------------|
 | **Min Version** | Chrome 58 | Opera 44 | Safari 10.1 | Firefox 54 | Edge 16 | Incompatibile |
+
+## Notes
+
+1. If on Windows, install Git Bash.
 
 --------
 

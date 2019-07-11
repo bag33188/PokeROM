@@ -13,8 +13,12 @@ export class GameNameComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    setTimeout((): void => {
-      this.isRomHack = /\(ROM Hack\)/.test(this.rom.gameName) ? true : false;
-    }, 1000);
+    setTimeout(
+      (): boolean =>
+        (this.isRomHack = /\(ROM Hack\)/.test(this.rom.gameName)
+          ? true
+          : false),
+      1000
+    );
   }
 }
