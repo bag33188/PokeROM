@@ -9,7 +9,7 @@
       *ngFor="let carouselSlide of carouselData; index as i"
     >
       <div class="img-container">
-        <img [src]="carouselSlide.img" alt="slide {{ i + 1 }}" />
+        <img [src]="carouselSlide.img" alt="slide-{{ i + 1 }}" />
       </div>
       <div class="carousel-caption">
         <h3 class="white">
