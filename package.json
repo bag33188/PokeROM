@@ -25,7 +25,8 @@
   "scripts": {
     "start": "node server",
     "dev": "nodemon server",
-    "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./version.sh && bash ./options.sh"
+    "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./version.sh && bash ./options.sh",
+    "prod": "cd tests && bash ./production.sh"
   },
   "private": true,
   "author": "bag33188",

@@ -40,4 +40,5 @@ ng build --prod && (
     fi
   done
   git push
+  git push heroku master
 ) && read -n 1 -s -r -p "Press any key to exit" && echo -e "\r\n"
