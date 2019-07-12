@@ -6,13 +6,15 @@ import { environment } from '../environments/environment';
 @Component({
   selector: 'app-root',
   template: `
-    <!-- begin page container/wrapper -->
-    <div attr.data-name="{{ title }}" id="container-wrapper">
-      <app-header></app-header>
-      <app-body></app-body>
-      <app-footer [appName]="title"></app-footer>
-    </div>
-    <!-- end page container/wrapper -->
+    <ng-container>
+      <!-- begin page container/wrapper -->
+      <div attr.data-name="{{ title }}" id="container-wrapper">
+        <app-header></app-header>
+        <app-body></app-body>
+        <app-footer [appName]="title"></app-footer>
+      </div>
+      <!-- end page container/wrapper -->
+    </ng-container>
   `,
   styles: [
     `
