@@ -2,7 +2,6 @@
   "name": "pokerom",
   "version": "1.0.0",
   "description": "The back-end/server side for the pokerom website.",
-  "private": true,
   "licenses": [
     {
       "type": "ISC",
@@ -28,6 +27,7 @@
     "dev": "nodemon server",
     "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./version.sh && bash ./options.sh"
   },
+  "private": true,
   "author": "bag33188",
   "license": "ISC",
   "dependencies": {
