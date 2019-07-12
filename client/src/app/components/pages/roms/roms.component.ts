@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, DoCheck } from '@angular/core';
 import { RomsService } from '../../../services/roms.service';
 import Rom from '../../../models/Rom';
 
@@ -7,7 +7,7 @@ import Rom from '../../../models/Rom';
   templateUrl: './roms.component.html',
   styleUrls: ['./roms.component.scss']
 })
-export class RomsComponent implements OnInit, DoCheck, AfterContentInit {
+export class RomsComponent implements OnInit, AfterContentInit, DoCheck {
   romsData: Rom[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 4;
@@ -21,14 +21,14 @@ export class RomsComponent implements OnInit, DoCheck, AfterContentInit {
     this.getRoms();
   }
 
+  ngAfterContentInit() {
+    this.jumpToTop();
+  }
+
   ngDoCheck() {
     if (!this.loading) {
       this.noRomsMsg = 'No ROMs to Show';
     }
-  }
-
-  ngAfterContentInit() {
-    this.jumpToTop();
   }
 
   getRoms(): void {
