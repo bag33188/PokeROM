@@ -1,7 +1,8 @@
 import User from './User';
 
-export default class RegisteredUser {
+class RegisteredUser {
   success: boolean;
   token: string;
   user: User;
 }
+export default RegisteredUser;

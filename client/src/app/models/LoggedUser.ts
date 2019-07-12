@@ -1,4 +1,5 @@
-export default class LoggedUser {
+class LoggedUser {
   username: string;
   password: string;
 }
+export default LoggedUser;
