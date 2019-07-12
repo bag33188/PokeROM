@@ -1,0 +1,19 @@
+{
+  "swaggerDefinition": {
+    "info": {
+      "title": "PokéROM API Documentation",
+      "version": "v1",
+      "description": "<p><span>The API documentation for <strong>Pok&eacute;ROM</strong> (the website).</span><br/><a href=\"/\" target=\"_self\">Home</a></p>",
+      "license": { "name": "ISC", "url": "https://opensource.org/licenses/ISC" }
+    },
+    "securityDefinitions": {
+      "bearerAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "scheme": "bearer",
+        "in": "header"
+      }
+    }
+  },
+  "apis": ["./docs/definitions/*.yml", "./docs/paths/*.yml"]
+}

@@ -1,0 +1,22 @@
+---
+definitions:
+  Nature:
+    type: object
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+        required: true
+      up:
+        type: string
+        reuired: true
+      down:
+        type: string
+        reuired: true
+      flavor:
+        type: string
+        required: false
+      usage:
+        type: string
+        reuired: true
