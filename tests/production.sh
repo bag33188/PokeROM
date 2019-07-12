@@ -3,27 +3,28 @@
 cd ../client
 ng build --prod && (
   cd ../public
-  if [ test -f "*.html" ]; then
+  if [ -f "*.html" ]; then
     rm *.html
   fi
-  if [ test -f "*.css" ]; then
+  if [ -f "*.css" ]; then
     rm *.css
   fi
-  if [ test -f "*.js" ]; then
+  if [ -f "*.js" ]; then
     rm *.js
   fi
-  if [ test -f "*.ico" ]; then
+  if [ -f "*.ico" ]; then
     rm *.ico
   fi
-  if [ test -f "*.txt" ]; then
+  if [ -f "*.txt" ]; then
     rm *.txt
   fi
-  if [ -d "$DIRECTORY" ]; then
+  if [ -d "assets" ]; then
     rm -rf assets
   fi
   mv ../client/dist/pokerom/*.* ./
   mv ../client/dist/pokerom/assets ./
   cd ..
+  rm -rf client/dist
   while [ true ]
   do
     git status
@@ -31,12 +32,12 @@ ng build --prod && (
     git add $files
     read -p "Commit Message: " cm
     git commit -m "$cm"
-    read -p "Done? (y/n) " isDone
-    if [[ isDone == 'y' ]]; then
+    read -p "Done? (y/n) " is_done
+    if [[ $is_done == 'y' ]]; then
       break
     else
       continue
     fi
   done
   git push
-) && read -p
+) && read -n 1 -s -r -p "Press any key to exit" && echo -e "\r\n"
