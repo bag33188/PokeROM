@@ -1,37 +1,21 @@
 <div class="mt-2">
-  <ngb-carousel *ngIf="images" [showNavigationIndicators]="false">
-    <ng-template ngbSlide>
+  <ngb-carousel
+    *ngIf="images"
+    [showNavigationIndicators]="false"
+    [pauseOnHover]="false"
+  >
+    <ng-template
+      ngbSlide
+      *ngFor="let carouselSlide of carouselData; index as i"
+    >
       <div class="img-container">
-        <img [src]="images[0]" alt="first slide" />
+        <img [src]="carouselSlide.img" alt="slide {{ i + 1 }}" />
       </div>
       <div class="carousel-caption">
         <h3 class="white">
-          Now Introducing a New Pok&eacute;mon ROMs Website
+          {{ carouselSlide.heading }}
         </h3>
-        <p class="white">For All Core Pok&eacute;mon Games</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="img-container">
-        <img [src]="images[1]" alt="second slide" />
-      </div>
-      <div class="carousel-caption">
-        <h3 class="white">Including Let's Go Games</h3>
-        <p class="white">
-          This database includes ROMs for Pok&eacute;mon Let's Go Pikachu &amp;
-          Eevee
-        </p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="img-container">
-        <img [src]="images[2]" alt="third slide" />
-      </div>
-      <div class="carousel-caption">
-        <h3 class="white">Now with ROM Hacks</h3>
-        <p class="white">
-          You can now play your favorite Pok&eacute;mon ROM hacks
-        </p>
+        <p class="white">{{ carouselSlide.details }}</p>
       </div>
     </ng-template>
   </ngb-carousel>
