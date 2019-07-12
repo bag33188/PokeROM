@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
+import Raphnet from '../../../../enums/raphnet.enum';
 
 @Component({
   selector: 'app-home-accordion',
@@ -7,17 +8,13 @@ import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./accordion.component.scss']
 })
 export class AccordionComponent implements OnInit {
+  raphnet: typeof Raphnet;
+
   constructor(private config: NgbAccordionConfig) {
     this.config.type = 'warning';
   }
 
-  ngOnInit() {}
-
-  raphnet(): object {
-    enum Raphnet {
-      SOFTWARE = 'https://www.raphnet-tech.com/products/adapter_manager/index.php',
-      PRODUCT = 'https://www.raphnet-tech.com/products/n64_usb_adapter_gen3/index.php'
-    }
-    return Raphnet;
+  ngOnInit() {
+    this.raphnet = Raphnet;
   }
 }
