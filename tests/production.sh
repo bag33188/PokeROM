@@ -9,9 +9,7 @@ ng build --prod && (
   if [ -f "*.css" ]; then
     rm *.css
   fi
-  if [ -f "*.js" ]; then
-    rm *.js
-  fi
+  rm *js
   if [ -f "*.ico" ]; then
     rm *.ico
   fi
