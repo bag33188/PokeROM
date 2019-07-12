@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-not-found',
@@ -6,15 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent implements OnInit {
-
-  constructor() { }
+  constructor(private logger: LoggerService) {}
 
   ngOnInit() {
-    console.error(`Error 404: Page Not Found - "${this.pathName()}"`);
+    this.logger.error(`Error 404: Page Not Found - "${this.pathName()}"`);
   }
 
   pathName(): string {
     return location.pathname.replace('/404', '');
   }
-
 }

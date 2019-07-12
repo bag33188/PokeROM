@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoggerService } from './services/logger.service';
 import { ApiService } from './services/api.service';
 import { environment } from '../environments/environment';
 
@@ -31,7 +32,7 @@ import { environment } from '../environments/environment';
 export class AppComponent {
   readonly title: string = 'PokéROM';
 
-  constructor(private apiService: ApiService) {
+  constructor(private logger: LoggerService, private apiService: ApiService) {
     this.changeTitleIfNotProductionMode();
     this.getApiVersionIfNotProductionMode();
   }
@@ -49,10 +50,10 @@ export class AppComponent {
         .then(
           (res: Response): void => {
             const keys: string[] = ['data', 'apiVersion'];
-            console.log(`API Version: ${res[keys[0]][keys[1]]}`);
+            this.logger.log(`API Version: ${res[keys[0]][keys[1]]}`);
           }
         )
-        .catch((err: any): void => console.error(err));
+        .catch((err: any): void => this.logger.error(err));
     }
   }
 }
