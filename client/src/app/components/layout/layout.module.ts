@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
@@ -17,7 +18,8 @@ import { BetaVersionAlertComponent } from './beta-version-alert/beta-version-ale
   imports: [
     CommonModule,
     RouterModule.forRoot([]),
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule
   ],
   exports: [
     BodyComponent,
