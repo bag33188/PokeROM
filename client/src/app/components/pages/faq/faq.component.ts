@@ -18,7 +18,6 @@ export class FaqComponent implements OnInit {
       window.scrollTo(0, 0);
     } else {
       $('#' + this.route.snapshot.fragment)[0].scrollIntoView();
-      // window.location.hash = this.route.snapshot.fragment;
     }
   }
 }
