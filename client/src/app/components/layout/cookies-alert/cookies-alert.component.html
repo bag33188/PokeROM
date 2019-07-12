@@ -1,0 +1,15 @@
+<div *ngFor="let alert of alerts" [@fadeOut]="'in'">
+  <ngb-alert
+    *ngIf="!cookiesOk"
+    [dismissible]="true"
+    [type]="alert.type"
+    class="text-center font-weight-bold"
+    id="cookies-alert"
+    (close)="closeAlert(alert)"
+  >
+    {{ alert.message }} Find out more by visiting the
+    <a [routerLink]="['/faq']" fragment="cookies" (click)="closeAlert(alert)"
+      >FAQ page</a
+    >.
+  </ngb-alert>
+</div>

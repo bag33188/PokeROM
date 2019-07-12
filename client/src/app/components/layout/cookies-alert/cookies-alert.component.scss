@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+#cookies-alert {
+  margin: 1rem 1rem 0;
+  @media only all and (max-width: 991px) {
+    margin-top: 2rem;
+  }
+}

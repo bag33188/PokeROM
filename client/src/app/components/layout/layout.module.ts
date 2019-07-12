@@ -7,13 +7,15 @@ import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { BetaVersionAlertComponent } from './beta-version-alert/beta-version-alert.component';
+import { CookiesAlertComponent } from './cookies-alert/cookies-alert.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
     BodyComponent,
-    BetaVersionAlertComponent
+    BetaVersionAlertComponent,
+    CookiesAlertComponent
   ],
   imports: [
     CommonModule,
