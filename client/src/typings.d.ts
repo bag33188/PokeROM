@@ -1,35 +1,7 @@
 /* CommonJS module definition */
 declare var module: NodeModule;
-
-/* CommonJS module imports interfaces */
-interface NodeRequireFunction {
-  (id: string): any;
-}
-interface NodeRequire extends NodeRequireFunction {
-  resolve: RequireResolve;
-  cache: any;
-  extensions: NodeExtensions;
-  main: NodeModule | undefined;
-}
-interface RequireResolve {
-  (id: string, options?: { paths?: string[] }): string;
-  paths(request: string): string[] | null;
-}
-interface NodeExtensions {
-  '.js': (m: NodeModule, filename: string) => any;
-  '.json': (m: NodeModule, filename: string) => any;
-  '.node': (m: NodeModule, filename: string) => any;
-  [ext: string]: (m: NodeModule, filename: string) => any;
-}
 interface NodeModule {
-  exports: any;
-  require: NodeRequireFunction;
   id: string;
-  filename: string;
-  loaded: boolean;
-  parent: NodeModule | null;
-  children: NodeModule[];
-  paths: string[];
 }
 
 /* Module Delcarations */
