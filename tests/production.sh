@@ -30,8 +30,8 @@ ng build --prod && (
     git status
     read -p "Add files: " files
     git add $files
-    read -p "Commit Message: " cm
-    git commit -m "$cm"
+    read -p "Commit Message: " commit_msg
+    git commit -m "$commit_msg"
     read -p "Done? (y/n) " is_done
     if [[ $is_done == 'y' ]]; then
       break
