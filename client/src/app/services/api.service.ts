@@ -15,27 +15,30 @@ export class ApiService {
     return apiVersion;
   }
 
-  public getCookie(cname: string): string {
-    const name: string = `${cname}=`;
+  public getCookie(cookieName: string): string {
+    const name: string = `${cookieName}=`;
     const decodedCookie: string = decodeURIComponent(document.cookie);
-    const ca: string[] = decodedCookie.split(';');
-    // tslint:disable-next-line: prefer-for-of
-    for (let i: number = 0; i < ca.length; i++) {
-      let c: string = ca[i];
-      while (c.charAt(0) === ' ') {
-        c = c.substring(1);
+    const cookieArray: string[] = decodedCookie.split(';');
+    for (const cookieData of cookieArray) {
+      let cookie: string = cookieData;
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1);
       }
-      if (c.indexOf(name) === 0) {
-        return c.substring(name.length, c.length);
+      if (cookie.indexOf(name) === 0) {
+        return cookie.substring(name.length, cookie.length);
       }
     }
     return '';
   }
 
-  public setCookie(cname: string, cvalue: string, exdays: number): void {
-    const d: Date = new Date();
-    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    const expires: string = `expires=${d.toUTCString()}`;
-    document.cookie = `${cname}=${cvalue};${expires};path=/`;
+  public setCookie(
+    cookieName: string,
+    cookieValue: string,
+    expireDays: number
+  ): void {
+    const now: Date = new Date();
+    now.setTime(now.getTime() + expireDays * 24 * 60 * 60 * 1000);
+    const expires: string = `expires=${now.toUTCString()}`;
+    document.cookie = `${cookieName}=${cookieValue};${expires};path=/`;
   }
 }
