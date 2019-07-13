@@ -4,24 +4,12 @@ production() {
   cd ../client
   ng build --prod && (
     cd ../public
-    if [ -f "*.html" ]; then
-      rm *.html
-    fi
-    if [ -f "*.css" ]; then
-      rm *.css
-    fi
-    # if [ -f "*js" ]; then
+    rm *.html
+    rm *css
     rm *js
-    # fi
-    if [ -f "*.ico" ]; then
-      rm *.ico
-    fi
-    if [ -f "*.txt" ]; then
-      rm *.txt
-    fi
-    if [ -d "assets" ]; then
-      rm -rf assets
-    fi
+    rm *.ico
+    rm *.txt
+    rm -rf assets
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
     cd ..
