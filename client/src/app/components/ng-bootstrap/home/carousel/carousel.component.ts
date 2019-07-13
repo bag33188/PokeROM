@@ -10,8 +10,7 @@ import Images from '../../../../enums/images.enum';
 })
 export class CarouselComponent implements OnInit {
   images: typeof Images;
-  carouselData: CarouselSlide[] = [];
-
+  carouselData: CarouselSlide[];
   ngOnInit() {
     this.images = Images;
     this.carouselData = [
