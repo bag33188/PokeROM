@@ -52,7 +52,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
       if (!this.loading && this.isError) {
         this.router.navigate(['/404', this.id]);
       }
-    }, 1000);
+    }, 500);
   }
 
   getRom(id: string): void {
