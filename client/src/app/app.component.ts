@@ -51,8 +51,8 @@ export class AppComponent {
         .getApiVersion()
         .then(
           (res: Response): void => {
-            const keys: string[] = ['data', 'apiVersion'];
-            this.logger.log(`API Version: ${res[keys[0]][keys[1]]}`);
+            const [data, apiVersion]: [string, string] = ['data', 'apiVersion'];
+            this.logger.log(`API Version: ${res[data][apiVersion]}`);
           }
         )
         .catch((err: any): void => this.logger.error(err));

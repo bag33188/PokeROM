@@ -48,14 +48,13 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
       type: 'danger',
       message: 'THIS WEB APP IS STILL IN BETA VERSIONING'
     };
-    if (
-      this.isBeta &&
-      sessionStorage.getItem('beta-version-alert') !== JSON.stringify([])
-    ) {
-      sessionStorage.setItem(
-        'beta-version-alert',
-        JSON.stringify([betaVersionAlert])
-      );
+    if (this.isBeta) {
+      if (sessionStorage.getItem('beta-version-alert') !== JSON.stringify([])) {
+        sessionStorage.setItem(
+          'beta-version-alert',
+          JSON.stringify([betaVersionAlert])
+        );
+      }
     } else {
       sessionStorage.removeItem('beta-version-alert');
     }
