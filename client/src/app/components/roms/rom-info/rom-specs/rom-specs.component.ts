@@ -18,7 +18,7 @@ export class RomSpecsComponent implements OnInit {
     const [fileSize, fileType]: [
       number,
       string
-    ] = this.sizeConverter.convertSize(romFileSize);
+    ] = this.sizeConverter.convertRomSize(romFileSize);
     return [fileSize, fileType];
   }
 }
