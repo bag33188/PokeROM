@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
 
 @Component({
@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 export class FaqComponent implements OnInit {
   emulatorUrl: string;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.emulatorUrl = 'https://www.retroarch.com';
