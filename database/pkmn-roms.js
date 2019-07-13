@@ -154,7 +154,7 @@ insertRomsQuery = db.roms.insert([
       'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106570&authkey=AMkhM_B6wawLVBo',
     generation: 2,
     boxArtUrl:
-      'https://0xqrgw.sn.files.1drv.com/y4m4Y-DMcKpOJW59EsPDBk5JMjngMy2zZVDC4goQ9ipzDsYsPlkkIj0uaKq6tEJHBD2vfmakykAWqWpHeO7ZKt7reUmcCCXPiigAj5_ZjCMiEbfRmlrwOn-Wg1Djv7uYPlYheHWg1guO5hkIHWMPMMWnlcl0jUF-XBhP6QK0B0aPvhw-orJSK9N2VBnWZSOe9d0tlZaQH3963qj1CSzIuZzrg?width=287&height=289&cropmode=nonehttps://bit.ly/2EXJ48I',
+      'https://0xqrgw.sn.files.1drv.com/y4m4Y-DMcKpOJW59EsPDBk5JMjngMy2zZVDC4goQ9ipzDsYsPlkkIj0uaKq6tEJHBD2vfmakykAWqWpHeO7ZKt7reUmcCCXPiigAj5_ZjCMiEbfRmlrwOn-Wg1Djv7uYPlYheHWg1guO5hkIHWMPMMWnlcl0jUF-XBhP6QK0B0aPvhw-orJSK9N2VBnWZSOe9d0tlZaQH3963qj1CSzIuZzrg?width=287&height=289&cropmode=none',
     gameName: 'Pokémon Silver Version',
     region: 'Johto',
     platform: 'Game Boy Color',
