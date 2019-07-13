@@ -4,11 +4,11 @@ production() {
   cd ../client
   ng build --prod && (
     cd ../public
-    rm *.html
+    rm *html
     rm *css
     rm *js
-    rm *.ico
-    rm *.txt
+    rm *ico
+    rm *txt
     rm -rf assets
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
