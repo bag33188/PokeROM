@@ -41,4 +41,16 @@ export class ApiService {
     const expires: string = `expires=${now.toUTCString()}`;
     document.cookie = `${cookieName}=${cookieValue};${expires};path=/`;
   }
+
+  public checkCookie(cookieName: string, expireDays: number, callbacks: any[]) {
+    const cookie: string = this.getCookie(cookieName);
+    if (cookie !== '') {
+      callbacks[0]();
+    } else {
+      callbacks[1]();
+      if (cookie !== '' && cookie != null) {
+        this.setCookie(cookieName, cookie, expireDays);
+      }
+    }
+  }
 }
