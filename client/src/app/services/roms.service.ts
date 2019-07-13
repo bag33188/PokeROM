@@ -23,7 +23,7 @@ export class RomsService {
         headers
       });
     } else {
-      return this.http.get<Rom[]>(`${environment.apiUrl}/api/roms`, {
+      return this.http.get<Rom[]>(this.romsUrl, {
         headers
       });
     }
