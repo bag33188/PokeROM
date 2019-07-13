@@ -1,6 +1,6 @@
 const cors = require('cors');
 
-module.exports = cors({
+const corsConfig = cors({
   credentials: true,
   exposedHeaders: [
     'Cache-Control',
@@ -30,3 +30,5 @@ module.exports = cors({
       ? 'https://pokerom-broccolini.herokuapp.com'
       : 'http://localhost:4200'
 });
+
+module.exports = corsConfig;
