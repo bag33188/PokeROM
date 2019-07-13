@@ -29,7 +29,9 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
   constructor(private elRef: ElementRef) {}
 
   ngOnInit() {
-    this.betaVersionAlert();
+    this.isBeta = !environment.production ? true : false;
+    this.setBetaVersionAlert();
+    this.getBetaVersionAlert();
     this.setBetaVersionAlertId();
   }
 
@@ -37,23 +39,26 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
     this.fadeOutAlert();
   }
 
-  betaVersionAlert(): void {
-    this.isBeta = !environment.production ? true : false;
+  getBetaVersionAlert(): void {
+    this.alerts = JSON.parse(sessionStorage.getItem('beta-version-alert'));
+  }
+
+  setBetaVersionAlert(): void {
     const betaVersionAlert: Alert = {
       type: 'danger',
       message: 'THIS WEB APP IS STILL IN BETA VERSIONING'
     };
-    if (sessionStorage.getItem('beta-version-alert') !== JSON.stringify([])) {
-      if (environment.production) {
-        sessionStorage.setItem('beta-version-alert', JSON.stringify([]));
-      } else {
-        sessionStorage.setItem(
-          'beta-version-alert',
-          JSON.stringify([betaVersionAlert])
-        );
-      }
+    if (
+      this.isBeta &&
+      sessionStorage.getItem('beta-version-alert') !== JSON.stringify([])
+    ) {
+      sessionStorage.setItem(
+        'beta-version-alert',
+        JSON.stringify([betaVersionAlert])
+      );
+    } else {
+      sessionStorage.removeItem('beta-version-alert');
     }
-    this.alerts = JSON.parse(sessionStorage.getItem('beta-version-alert'));
   }
 
   closeAlert(alert: Alert): void {
@@ -63,8 +68,8 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
 
   fadeOutAlert(): void {
     if (
-      sessionStorage.getItem('beta-version-alert') !== JSON.stringify([]) &&
-      this.isBeta
+      this.isBeta &&
+      sessionStorage.getItem('beta-version-alert') !== JSON.stringify([])
     ) {
       // close alert after 3 seconds
       setTimeout((): void => {
@@ -73,7 +78,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
           1000,
           function(): void {
             this.closeAlert(this.alerts[0]);
-          }.bind(BetaVersionAlertComponent) // bind `this` to component
+          }.bind(this, BetaVersionAlertComponent) // bind `this` to component
         );
       }, 2015); // 2.015 seconds
     }
