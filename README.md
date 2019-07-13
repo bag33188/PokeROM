@@ -33,18 +33,6 @@ there's a problem when you don't know why it is working.
 ## Commands
 
 ```bash
-# Heroku
-heroku config:set PROD_MONGODB=mongodb+srv://bag33188:Sullivan@pokerom-ng2of.gcp.mongodb.net/pkmn-roms?retryWrites=true&w=majority&ssl=true
-
-heroku logs --tail
-git push heroku master
-
-# clear build cache
-$ heroku plugins:install heroku-repo
-$ heroku repo:purge_cache -a appname
-$ git commit --allow-empty -m "Purge cache"
-$ git push heroku master
-
 # Windows
 
 # Using Git Bash
@@ -79,6 +67,18 @@ cd ~/Projects/PokeROM && git status
 ~/mongodb/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
 
 ~/mongodb/bin/mongo "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188
+
+# Heroku
+heroku config:set PROD_MONGODB=mongodb+srv://bag33188:Sullivan@pokerom-ng2of.gcp.mongodb.net/pkmn-roms?retryWrites=true&w=majority&ssl=true
+
+heroku logs --tail
+git push heroku master
+
+# clear build cache
+$ heroku plugins:install heroku-repo
+$ heroku repo:purge_cache -a appname
+$ git commit --allow-empty -m "Purge cache"
+$ git push heroku master
 ```
 
 ## Visual Studio Code
