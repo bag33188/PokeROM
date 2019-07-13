@@ -14,6 +14,7 @@ export class RomsComponent implements OnInit, AfterContentInit, DoCheck {
   pageSize: number;
   loading: boolean = true;
   noRomsMsg: string = '';
+  limit: number = 35;
 
   constructor(private romsService: RomsService) {}
 
@@ -32,7 +33,7 @@ export class RomsComponent implements OnInit, AfterContentInit, DoCheck {
   }
 
   getRoms(): void {
-    const limit: number = 35;
+    const limit: number = this.limit;
     this.romsService.getAllRoms(limit).subscribe(
       (roms: Rom[]): void => {
         this.romsData = roms;
