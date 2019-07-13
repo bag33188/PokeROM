@@ -29,7 +29,7 @@ export class CookiesAlertComponent implements OnInit {
     this.alerts = [
       {
         type: 'warning',
-        message: `I hate to interrupt you, but I am required to tell you that this site uses cookies to store your login token for authentication. Click the (x) icon on the top right of this alert to close this annoying piece of garbage.`
+        message: `I hate to interrupt you, but I am required to tell you that this site uses cookies to store your login token for authentication. Click the (x) icon on the top right corner of this alert to close this annoying piece of garbage.`
       }
     ];
     this.cookiesOk = (sessionStorage.getItem(
