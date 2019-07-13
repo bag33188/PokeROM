@@ -7,6 +7,7 @@ production() {
     rm *html
     rm *css
     rm *js
+    rm *map
     rm *ico
     rm *txt
     rm -rf assets
