@@ -42,7 +42,7 @@ export class ApiService {
     document.cookie = `${cookieName}=${cookieValue};${expires};path=/`;
   }
 
-  public checkCookie(cookieName: string, expireDays: number, callbacks: any[]) {
+  public checkCookie(cookieName: string, expireDays: number, callbacks: any[]): void {
     const cookie: string = this.getCookie(cookieName);
     if (cookie !== '') {
       callbacks[0]();
