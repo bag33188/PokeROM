@@ -21,11 +21,13 @@ function logger(req, res, next) {
   next();
 }
 
+// get current offset hours from utc
 /*
 function findOffset() {
-  const now = new Date().getHours();
-  const utc = new Date().getUTCHours();
-  return utc - now;
+  const now = new Date();
+  const localHours = now.getHours();
+  const utcHours = now.getUTCHours();
+  return utcHours - localHours; 
 }
 console.log(findOffset());
 */
