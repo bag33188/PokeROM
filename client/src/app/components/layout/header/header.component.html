@@ -13,24 +13,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a
-          class="nav-item nav-link {{ this.isUrl('/home') ? 'yellow' : 'white' }}"
-          [routerLink]="['/home']"
-          >Home</a
-        >
-        <a
-          class="nav-item nav-link {{ this.isUrl('/roms') ? 'yellow' : 'white' }}"
-          [routerLink]="['/roms']"
-          >ROMs</a
-        >
-        <a
-          class="nav-item nav-link {{ this.isUrl('/faq') ? 'yellow' : 'white' }}"
-          [routerLink]="['/faq']"
-          >FAQ</a
-        >
-        <a
-          class="nav-item nav-link {{ this.isUrl('/natures') ? 'yellow' : 'white' }}"
-          [routerLink]="['/natures']"
+        <a [ngClass]="setNavClasses('/home')" [routerLink]="['/home']">Home</a>
+        <a [ngClass]="setNavClasses('/roms')" [routerLink]="['/roms']">ROMs</a>
+        <a [ngClass]="setNavClasses('/faq')" [routerLink]="['/faq']">FAQ</a>
+        <a [ngClass]="setNavClasses('/natures')" [routerLink]="['/natures']"
           >Natures</a
         >
       </div>
@@ -39,7 +25,10 @@
       <a
         class="btn btn-primary nav-item"
         [routerLink]="['/login']"
-        *ngIf="(isUrl('/home') || isUrl('/faq') || isUrl('/natures')) && isLoggedOut()"
+        *ngIf="
+          (isUrl('/home') || isUrl('/faq') || isUrl('/natures')) &&
+          isLoggedOut()
+        "
         >Login</a
       >
       <button

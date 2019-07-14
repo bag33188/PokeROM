@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggerService } from 'src/app/services/logger.service';
+import { LoggerService } from '../../../services/logger.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-not-found',
@@ -7,13 +8,13 @@ import { LoggerService } from 'src/app/services/logger.service';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent implements OnInit {
-  constructor(private logger: LoggerService) {}
+  constructor(private logger: LoggerService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.logger.error(`Error 404: Page Not Found - "${this.pathName()}"`);
   }
 
   pathName(): string {
-    return location.pathname.replace('/404', '');
+    return this.route.snapshot.url[1].path.replace('/404', '');
   }
 }
