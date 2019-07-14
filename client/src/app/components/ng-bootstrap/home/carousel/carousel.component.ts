@@ -11,6 +11,9 @@ import Images from '../../../../enums/images.enum';
 export class CarouselComponent implements OnInit {
   images: typeof Images;
   carouselData: CarouselSlide[];
+
+  constructor() {}
+
   ngOnInit() {
     this.images = Images;
     this.carouselData = [
@@ -28,7 +31,9 @@ export class CarouselComponent implements OnInit {
       {
         img: this.images.IMG3,
         heading: 'Now with ROM Hacks',
-        details: he.decode('You can now play your favorite Pok&eacute;mon ROM hacks')
+        details: he.decode(
+          'You can now play your favorite Pok&eacute;mon ROM hacks'
+        )
       }
     ];
   }
