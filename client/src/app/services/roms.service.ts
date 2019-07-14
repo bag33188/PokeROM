@@ -6,20 +6,30 @@ import Rom from '../models/Rom';
 import { environment } from '../../environments/environment';
 import { CookiesService } from './cookies.service';
 
+/*
+ * headers.append(name: string, value: string | string[])
+ * headers.set(name: string, value: string | string[])
+ * headers.delete(name: string)
+ */
+
 @Injectable({
   providedIn: 'root'
 })
 export class RomsService {
   private romsUrl: string = `${environment.apiUrl}/api/roms`;
 
-  constructor(private http: HttpClient, private cookieService: CookiesService) {}
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookiesService
+  ) {}
 
   public getAllRoms(limit?: number): Observable<Rom[]> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
     if (limit) {
-      return this.http.get<Rom[]>(`${this.romsUrl}?_limit=${limit}`, {
+      const url: string = `${this.romsUrl}?_limit=${limit}`;
+      return this.http.get<Rom[]>(url, {
         headers
       });
     } else {
@@ -33,7 +43,8 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
-    return this.http.get<Rom>(`${this.romsUrl}/${id}`, { headers });
+    const url: string = `${this.romsUrl}/${id}`;
+    return this.http.get<Rom>(url, { headers });
   }
 
   public addRom(rom: Rom): Observable<Rom> {
@@ -48,7 +59,8 @@ export class RomsService {
       Authorization: this.cookieService.getCookie('token_id'),
       'Content-Type': 'application/json'
     });
-    return this.http.put<Rom>(`${this.romsUrl}/${id}`, rom, { headers });
+    const url: string = `${this.romsUrl}/${id}`;
+    return this.http.put<Rom>(url, rom, { headers });
   }
 
   public patchRom(id: string, partialRom: any): Observable<Rom> {
@@ -56,7 +68,8 @@ export class RomsService {
       Authorization: this.cookieService.getCookie('token_id'),
       'Content-Type': 'application/json'
     });
-    return this.http.patch<Rom>(`$${this.romsUrl}/${id}`, partialRom, {
+    const url: string = `$${this.romsUrl}/${id}`;
+    return this.http.patch<Rom>(url, partialRom, {
       headers
     });
   }
@@ -65,7 +78,8 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
-    return this.http.delete<any>(`$${this.romsUrl}/${id}`, { headers });
+    const url: string = `$${this.romsUrl}/${id}`;
+    return this.http.delete<any>(url, { headers });
   }
   public deleteAllRoms(): Observable<any> {
     const headers: HttpHeaders = new HttpHeaders({
@@ -84,7 +98,8 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
-    return this.http.head<void>(`${this.romsUrl}/${id}`, { headers });
+    const url: string = `${this.romsUrl}/${id}`;
+    return this.http.head<void>(url, { headers });
   }
   public getOptionsInfo(): Observable<void> {
     return this.http.options<void>(this.romsUrl);

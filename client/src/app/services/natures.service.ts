@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import Nature from '../models/Nature';
 import { environment } from '../../environments/environment';
 
+const headers: HttpHeaders = new HttpHeaders({
+  'Content-Type': 'application/json'
+});
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,35 +21,30 @@ export class NaturesService {
   }
 
   getNature(id: string): Observable<Nature> {
-    return this.http.get<Nature>(`${this.naturesUrl}/${id}`);
+    const url: string = `${this.naturesUrl}/${id}`;
+    return this.http.get<Nature>(url);
   }
 
   addNature(nature: Nature): Observable<Nature> {
-    const headers: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
     return this.http.post<Nature>(this.naturesUrl, nature, {
       headers
     });
   }
   updateNature(id: string, nature: Nature): Observable<Nature> {
-    const headers: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    return this.http.put<Nature>(`${this.naturesUrl}/${id}`, nature, {
+    const url: string = `${this.naturesUrl}/${id}`;
+    return this.http.put<Nature>(url, nature, {
       headers
     });
   }
   patchNature(id: string, nature: any): Observable<any> {
-    const headers: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    return this.http.patch<any>(`${this.naturesUrl}/${id}`, nature, {
+    const url: string = `${this.naturesUrl}/${id}`;
+    return this.http.patch<any>(url, nature, {
       headers
     });
   }
   deleteNature(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.naturesUrl}/${id}`);
+    const url: string = `${this.naturesUrl}/${id}`;
+    return this.http.delete<any>(url);
   }
   deleteAllNatures(): Observable<any> {
     return this.http.delete<any>(this.naturesUrl);
