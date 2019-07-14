@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggerService } from '../../../services/logger.service';
 import { ActivatedRoute } from '@angular/router';
+import { LoggerService } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-not-found',
