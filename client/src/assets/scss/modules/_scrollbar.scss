@@ -1,9 +1,9 @@
 @charset "UTF-8";
 // _scrollbar.scss
 
-@import '../variables';
-
 /*! CUSTOM SCROLLBAR ONLY WORKS IN WEBKIT BROWSERS (CHROME, OPERA, & SAFARI) */
+
+@import '../variables';
 
 ::-webkit-scrollbar {
   width: 12px;
