@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import LoggedUser from '../models/LoggedUser';
 import User from '../models/User';
 import RegisteredUser from '../models/RegisteredUser';
-import { environment } from '../../environments/environment';
 import { CookiesService } from './cookies.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
