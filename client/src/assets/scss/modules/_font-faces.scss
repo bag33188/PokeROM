@@ -31,7 +31,7 @@ $roboto-font-data:
     font-weight: $font-weight;
     src:
     local($font-name),
-    local(str-replace(str-replace($font-woff1-url, $roboto-font-url-prefix, ''), '.woff', '')),
+    local(str-replace(str-replace($font-woff1-url, '#{$roboto-font-url-prefix}/', ''), '.woff', '')),
     url($font-woff2-url) format('woff2'),
     url($font-woff1-url) format('woff');
   }
@@ -55,7 +55,7 @@ $arial-font-data:
     font-weight: $font-weight;
     src:
     local($font-name),
-    local(str-replace(str-replace($font-woff1-url, $arial-font-url-prefix, ''), '.woff', '')),
+    local(str-replace(str-replace($font-woff1-url, '#{$arial-font-url-prefix}/', ''), '.woff', '')),
     url($font-woff2-url) format('woff2'),
     url($font-woff1-url) format('woff');
   }
