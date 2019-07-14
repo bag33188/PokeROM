@@ -6,7 +6,7 @@ import LoggedUser from '../models/LoggedUser';
 import User from '../models/User';
 import RegisteredUser from '../models/RegisteredUser';
 import { environment } from '../../environments/environment';
-import { ApiService } from './api.service';
+import { CookiesService } from './cookies.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     public jwtHelper: JwtHelperService,
-    private apiService: ApiService
+    private cookieService: CookiesService
   ) {}
 
   public authenticateUser(user: LoggedUser): Observable<RegisteredUser> {
@@ -31,19 +31,19 @@ export class AuthService {
 
   public storeData(token: string, user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
-    this.apiService.setCookie('token_id', token, 7);
+    this.cookieService.setCookie('token_id', token, 7);
     this.authToken = token;
     this.user = user;
   }
 
   public loggedOut(): boolean {
-    return this.jwtHelper.isTokenExpired(this.apiService.getCookie('token_id'));
+    return this.jwtHelper.isTokenExpired(this.cookieService.getCookie('token_id'));
   }
 
   public logout(): void {
     this.authToken = null;
     this.user = null;
     localStorage.clear();
-    this.apiService.setCookie('token_id', '', 0);
+    this.cookieService.setCookie('token_id', '', 0);
   }
 }
