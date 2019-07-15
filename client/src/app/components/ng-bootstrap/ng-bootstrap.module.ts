@@ -8,6 +8,7 @@ import { PaginationComponent } from './roms/pagination/pagination.component';
 import { TabsetComponent } from './faq/tabset/tabset.component';
 import { PopupComponent } from './rom-info/popup/popup.component';
 import { ToastComponent } from './faq/toast/toast.component';
+import { SvgComponent } from './faq/toast/svg/svg.component';
 import { ModalContentComponent } from './faq/modal/modal-content.component';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     TabsetComponent,
     ModalContentComponent,
     PopupComponent,
-    ToastComponent
+    ToastComponent,
+    SvgComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [CommonModule, NgbModule, BrowserModule],
