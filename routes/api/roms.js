@@ -27,7 +27,7 @@ const fieldsToSanitize = [
  * @summary Convert input date.
  * @description Converts JSON date to date valid for UTC conversion.
  * @param {string} date The date string.
- * @returns {Date} A valid UTC date from the input date string.
+ * @returns {Date|undefined} A valid UTC date from the input date string or nothing.
  */
 function convertToDateFormat(date) {
   if (date) {
@@ -41,6 +41,8 @@ function convertToDateFormat(date) {
     const formattedDate = dateArr.join(',');
     const newDate = new Date(formattedDate);
     return newDate;
+  } else {
+    return;
   }
 }
 
