@@ -30,22 +30,26 @@ export class NaturesService {
       headers
     });
   }
+
   updateNature(id: string, nature: Nature): Observable<Nature> {
     const url: string = `${this.naturesUrl}/${id}`;
     return this.http.put<Nature>(url, nature, {
       headers
     });
   }
+
   patchNature(id: string, nature: any): Observable<any> {
     const url: string = `${this.naturesUrl}/${id}`;
     return this.http.patch<any>(url, nature, {
       headers
     });
   }
+
   deleteNature(id: string): Observable<any> {
     const url: string = `${this.naturesUrl}/${id}`;
     return this.http.delete<any>(url);
   }
+
   deleteAllNatures(): Observable<any> {
     return this.http.delete<any>(this.naturesUrl);
   }

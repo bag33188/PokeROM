@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CookiesService {
   constructor() {}
+
   public getCookie(cookieName: string): string {
     const name: string = `${cookieName}=`;
     const decodedCookie: string = decodeURIComponent(document.cookie);

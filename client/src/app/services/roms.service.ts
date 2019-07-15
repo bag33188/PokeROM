@@ -54,6 +54,7 @@ export class RomsService {
     });
     return this.http.post<Rom>(this.romsUrl, rom, { headers });
   }
+
   public updateRom(id: string, rom: Rom): Observable<Rom> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id'),
@@ -81,6 +82,7 @@ export class RomsService {
     const url: string = `$${this.romsUrl}/${id}`;
     return this.http.delete<any>(url, { headers });
   }
+
   public deleteAllRoms(): Observable<any> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
@@ -94,6 +96,7 @@ export class RomsService {
     });
     return this.http.head<void>(this.romsUrl, { headers });
   }
+
   public getHeadersSingle(id: string): Observable<void> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
@@ -101,6 +104,7 @@ export class RomsService {
     const url: string = `${this.romsUrl}/${id}`;
     return this.http.head<void>(url, { headers });
   }
+
   public getOptionsInfo(): Observable<void> {
     return this.http.options<void>(this.romsUrl);
   }
