@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import Environment from '../../../interfaces/Environment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -6,12 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-
   @Input() appName: string;
+  environment: Environment;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    this.environment = environment;
   }
 
   getYear(): number {
@@ -19,5 +22,4 @@ export class FooterComponent implements OnInit {
     const year: number = now.getFullYear(); // now.getUTCFullYear()
     return year;
   }
-
 }
