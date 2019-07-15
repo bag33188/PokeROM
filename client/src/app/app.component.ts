@@ -35,17 +35,17 @@ export class AppComponent {
   readonly title: string = 'PokéROM';
 
   constructor(private logger: LoggerService, private apiService: ApiService) {
-    this.changeTitleIfDevMode();
-    this.getApiVersionIfDevMode();
+    this.changeTitleIfDevEnv();
+    this.getApiVersionIfDevEnv();
   }
 
-  changeTitleIfDevMode(): void {
+  changeTitleIfDevEnv(): void {
     if (!environment.production) {
       document.title = `${this.title} (Beta)`;
     }
   }
 
-  getApiVersionIfDevMode(): void {
+  getApiVersionIfDevEnv(): void {
     if (!environment.production) {
       this.apiService
         .getApiVersion()
