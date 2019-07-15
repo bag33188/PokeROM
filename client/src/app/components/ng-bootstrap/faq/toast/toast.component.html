@@ -1,4 +1,10 @@
-<ngb-toast *ngIf="show" [autohide]="false" (hide)="close()" id="toast">
+<ngb-toast
+  *ngIf="show"
+  [autohide]="false"
+  (hide)="close()"
+  id="toast"
+  [@fadeOut]="'in'"
+>
   <ng-template ngbToastHeader>
     <svg
       class="svg-icon"

@@ -1,9 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 
 @Component({
   selector: 'app-toast',
   templateUrl: './toast.component.html',
-  styleUrls: ['./toast.component.scss']
+  styleUrls: ['./toast.component.scss'],
+  animations: [
+    trigger('fadeOut', [
+      state('in', style({ opacity: 1 })),
+      transition(':leave', animate(555, style({ opacity: 0 })))
+    ])
+  ]
 })
 export class ToastComponent implements OnInit {
   show: boolean;
