@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
       case 'full':
         return this.activatedRoute[this.routeKey].snapshot.url === (url as string);
       case 'prefix':
-        return (url as RegExp).test(
+        return new RegExp(url).test(
           this.activatedRoute[this.routeKey].snapshot.url
         );
       default:
