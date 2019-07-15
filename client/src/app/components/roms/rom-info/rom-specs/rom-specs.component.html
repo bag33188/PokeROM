@@ -1,6 +1,8 @@
 <div id="list-container">
   <ul class="list-group">
-    <li class="list-group-item active bg-red">ROM Info</li>
+    <li class="list-group-item active bg-red">
+      <fa-icon [icon]="faCompactDisc" class="mr-2"></fa-icon>ROM Info
+    </li>
     <li class="list-group-item">File Type: {{ rom.fileType }}</li>
     <li class="list-group-item">
       File Size: {{ fileData(rom.fileSize)[0] }}{{ fileData(rom.fileSize)[1] }}

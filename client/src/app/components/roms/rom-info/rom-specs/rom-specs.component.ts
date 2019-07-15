@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { faCompactDisc, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../../models/Rom';
 import { SizeConversionService } from '../../../../services/size-conversion.service';
 
@@ -9,10 +10,13 @@ import { SizeConversionService } from '../../../../services/size-conversion.serv
 })
 export class RomSpecsComponent implements OnInit {
   @Input() rom: Rom;
+  faCompactDisc: IconDefinition;
 
   constructor(public sizeConverter: SizeConversionService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.faCompactDisc = faCompactDisc;
+  }
 
   fileData(romFileSize: number): [number, string] {
     const [fileSize, fileType]: [

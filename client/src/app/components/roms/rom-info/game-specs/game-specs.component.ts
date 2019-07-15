@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { faGamepad, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../../models/Rom';
 
 @Component({
@@ -8,10 +9,11 @@ import Rom from '../../../../models/Rom';
 })
 export class GameSpecsComponent implements OnInit {
   @Input() rom: Rom;
+  faGamepad: IconDefinition;
 
   constructor() {}
 
   ngOnInit() {
+    this.faGamepad = faGamepad;
   }
-
 }
