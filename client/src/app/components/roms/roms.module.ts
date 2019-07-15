@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgBootstrapModule } from '../ng-bootstrap/ng-bootstrap.module';
 import { RomComponent } from './rom/rom.component';
 import { GameSpecsComponent } from './rom-info/game-specs/game-specs.component';
 import { GameDescriptionComponent } from './rom-info/game-description/game-description.component';
@@ -23,7 +24,8 @@ import { RomSpecsComponent } from './rom-info/rom-specs/rom-specs.component';
   imports: [
     CommonModule,
     RouterModule.forRoot([]),
-    NgbModule
+    NgbModule,
+    NgBootstrapModule
   ],
   exports: [
     RomComponent,
