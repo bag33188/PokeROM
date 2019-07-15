@@ -13,10 +13,31 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a [ngClass]="setNavClasses('/home')" [routerLink]="['home']">Home</a>
-        <a [ngClass]="setNavClasses('/roms')" [routerLink]="['roms']">ROMs</a>
-        <a [ngClass]="setNavClasses('/faq')" [routerLink]="['faq']">FAQ</a>
-        <a [ngClass]="setNavClasses('/natures')" [routerLink]="['natures']"
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['home']"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['roms']"
+          [routerLinkActive]="['active']"
+          >ROMs</a
+        >
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['faq']"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >FAQ</a
+        >
+        <a
+          class="nav-item nav-link"
+          [routerLink]="['natures']"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
           >Natures</a
         >
       </div>

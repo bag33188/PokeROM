@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import NgClasses from '../../../interfaces/NgClasses';
 
 @Component({
   selector: 'app-header',
@@ -37,14 +36,5 @@ export class HeaderComponent implements OnInit {
     ) {
       this.router.navigate(['home']);
     }
-  }
-
-  setNavClasses(routeUrl: string): NgClasses {
-    return {
-      'nav-item': true,
-      'nav-link': true,
-      yellow: this.isUrl(routeUrl),
-      white: !this.isUrl(routeUrl)
-    };
   }
 }
