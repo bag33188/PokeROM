@@ -15,3 +15,9 @@
     padding-bottom: 1em !important;
   }
 }
+
+#description-icon {
+  @media only all and (max-width: 388px) {
+    display: none !important;
+  }
+}
