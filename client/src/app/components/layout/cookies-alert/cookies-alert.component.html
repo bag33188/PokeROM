@@ -7,7 +7,8 @@
     id="cookies-alert"
     (close)="closeAlert(alert)"
   >
-    {{ alert.message }} You can find out more by visiting the
+    <fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon
+    >{{ alert.message }} You can find out more by visiting the
     <span class="underline">Cookies section</span> on the
     <a [routerLink]="['faq']" fragment="cookies" (click)="closeAlert(alert)"
       >FAQ page</a
