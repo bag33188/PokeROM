@@ -9,6 +9,7 @@ const secret = config.get('secret');
 const User = require('../../models/User');
 const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
+const romsData = require('../../database/data.json')[0];
 const router = express.Router();
 
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
@@ -116,6 +117,9 @@ router.post(
             }
             return res.status(500).json({ success: false, ...err });
           }
+          Rom.postCore(romsData, user, () => {
+            console.log(`Core ROMs added for user '${user.username}'.`);
+          });
           res.append(
             'Created-At-Route',
             `${url
@@ -194,7 +198,7 @@ router.post(
         return res.status(400).json({ errors: errors.array() });
       }
       let isValid = true;
-      Object.keys(req.body).forEach((field) => {
+      Object.keys(req.body).forEach(field => {
         if (field !== 'username' && field !== 'password') {
           isValid = false;
         }
