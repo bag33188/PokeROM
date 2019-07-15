@@ -1,6 +1,6 @@
 <header class="mt-4 pt-4">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="header">
-    <a class="navbar-brand" [routerLink]="['/']">Pok&eacute;ROM</a>
+    <a class="navbar-brand" [routerLink]="['']">Pok&eacute;ROM</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -13,10 +13,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a [ngClass]="setNavClasses('/home')" [routerLink]="['/home']">Home</a>
-        <a [ngClass]="setNavClasses('/roms')" [routerLink]="['/roms']">ROMs</a>
-        <a [ngClass]="setNavClasses('/faq')" [routerLink]="['/faq']">FAQ</a>
-        <a [ngClass]="setNavClasses('/natures')" [routerLink]="['/natures']"
+        <a [ngClass]="setNavClasses('/home')" [routerLink]="['home']">Home</a>
+        <a [ngClass]="setNavClasses('/roms')" [routerLink]="['roms']">ROMs</a>
+        <a [ngClass]="setNavClasses('/faq')" [routerLink]="['faq']">FAQ</a>
+        <a [ngClass]="setNavClasses('/natures')" [routerLink]="['natures']"
           >Natures</a
         >
       </div>
@@ -24,7 +24,7 @@
     <div class="my-2 my-lg-0">
       <a
         class="btn btn-primary nav-item"
-        [routerLink]="['/login']"
+        [routerLink]="['login']"
         *ngIf="
           (isUrl('/home') || isUrl('/faq') || isUrl('/natures')) &&
           isLoggedOut()

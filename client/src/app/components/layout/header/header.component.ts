@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
       this.isUrl('/roms') ||
       /roms/g.test(this.activatedRoute[this.routeKey].snapshot.url)
     ) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['home']);
     }
   }
 

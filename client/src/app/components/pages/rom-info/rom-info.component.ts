@@ -50,7 +50,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   navTo404(): void {
     setTimeout((): void => {
       if (!this.loading && this.isError) {
-        this.router.navigate(['/404', this.id]);
+        this.router.navigate(['404', this.id]);
       }
     }, 500);
   }

@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       (data: RegisteredUser): void => {
         if (data.success) {
           this.authService.storeData(data.token, data.user);
-          this.router.navigate(['/roms']);
+          this.router.navigate(['roms']);
           this.loginFail = '';
         } else {
           this.loginFail = 'Incorrect Login';
