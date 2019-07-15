@@ -10,6 +10,7 @@ import {
   NgbAlertModule
 } from '@ng-bootstrap/ng-bootstrap';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RomsComponent } from './roms/roms.component';
 import { RomInfoComponent } from './rom-info/rom-info.component';
 import { HomeComponent } from './home/home.component';
@@ -45,7 +46,8 @@ import { NgBootstrapModule } from '../../components/ng-bootstrap/ng-bootstrap.mo
     FormsModule,
     ReactiveFormsModule,
     RomsModule,
-    NgBootstrapModule
+    NgBootstrapModule,
+    FontAwesomeModule
   ],
   providers: [
     AuthService,
