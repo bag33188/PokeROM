@@ -188,7 +188,6 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
         "value": "#42b883"
       }
     ]
-    // "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
   }
 }
 ```
