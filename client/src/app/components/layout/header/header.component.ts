@@ -43,9 +43,11 @@ export class HeaderComponent implements OnInit {
   isUrl(url: string | RegExp, pathMatch: string): boolean {
     switch (pathMatch) {
       case 'full':
-        return this.activatedRoute[this.routeKey].snapshot.url === (url as string);
+        return (
+          this.activatedRoute[this.routeKey].snapshot.url === (url as string)
+        );
       case 'prefix':
-        return new RegExp(url).test(
+        return new RegExp(url as RegExp).test(
           this.activatedRoute[this.routeKey].snapshot.url
         );
       default:
