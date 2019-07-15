@@ -208,6 +208,7 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 * [Sass Lint][]
 * [TSLint][]
 * [Sublime Material Theme Dark][]
+* [Angular Essentials][]
 
 [Bracket Pair Colorizer 2]: <https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2> "Bracket Pair Colorizer 2 VS Code Extension"
 [EditorConfig for VS Code]: <https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig> "EditorConfig for VS Code VS Code Extension"
