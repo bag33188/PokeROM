@@ -36,7 +36,6 @@
     "@angular/router": "~8.0.0",
     "@auth0/angular-jwt": "^2.1.0",
     "@ng-bootstrap/ng-bootstrap": "^4.2.1",
-    "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "classlist.js": "^1.1.20150312",
     "he": "^1.2.0",
