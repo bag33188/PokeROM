@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
+import { Observable } from 'rxjs';
+import ApiVersion from '../models/ApiVersion';
 import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +10,9 @@ import { environment } from '../../environments/environment';
 export class ApiService {
   private apiVersionUrl: string = `${environment.apiUrl}/api/version`;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  public getApiVersion(): Promise<Response> {
-    const apiVersion: Promise<Response> = axios.get(this.apiVersionUrl);
-    return apiVersion;
+  public getApiVersion(): Observable<ApiVersion> {
+    return this.http.get<ApiVersion>(this.apiVersionUrl);
   }
 }

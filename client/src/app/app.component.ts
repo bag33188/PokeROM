@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoggerService } from './services/logger.service';
 import { ApiService } from './services/api.service';
+import ApiVersion from './models/ApiVersion';
 import { environment } from '../environments/environment';
 
 @Component({
@@ -47,15 +48,14 @@ export class AppComponent {
 
   getApiVersionIfDevEnv(): void {
     if (!environment.production) {
-      this.apiService
-        .getApiVersion()
-        .then(
-          (res: Response): void => {
-            const [data, apiVersion]: [string, string] = ['data', 'apiVersion'];
-            this.logger.log(`API Version: ${res[data][apiVersion]}`);
-          }
-        )
-        .catch((err: any): void => this.logger.error(err));
+      this.apiService.getApiVersion().subscribe(
+        (res: ApiVersion): void => {
+          this.logger.log(`API Version: ${res.apiVersion}`);
+        },
+        (err: any): never => {
+          throw err;
+        }
+      );
     }
   }
 }
