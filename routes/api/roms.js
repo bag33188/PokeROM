@@ -30,16 +30,18 @@ const fieldsToSanitize = [
  * @returns {Date} A valid UTC date from the input date string.
  */
 function convertToDateFormat(date) {
-  // split of entity due to sanitation
-  let dateArr = date.split('&#x2F;');
-  const year = dateArr[2];
-  dateArr = dateArr.reverse();
-  dateArr.shift();
-  dateArr = dateArr.reverse();
-  dateArr.unshift(year);
-  const formattedDate = dateArr.join(',');
-  const newDate = new Date(formattedDate);
-  return newDate;
+  if (date) {
+    // split of entity due to sanitation
+    let dateArr = date.split('&#x2F;');
+    const year = dateArr[2];
+    dateArr = dateArr.reverse();
+    dateArr.shift();
+    dateArr = dateArr.reverse();
+    dateArr.unshift(year);
+    const formattedDate = dateArr.join(',');
+    const newDate = new Date(formattedDate);
+    return newDate;
+  }
 }
 
 /**
