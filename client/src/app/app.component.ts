@@ -10,9 +10,15 @@ import { environment } from '../environments/environment';
     <ng-container>
       <!-- begin page container/wrapper -->
       <div attr.data-name="{{ title }}" id="container-wrapper">
-        <app-header></app-header>
-        <app-body></app-body>
-        <app-footer [appName]="title"></app-footer>
+        <section>
+          <app-header></app-header>
+        </section>
+        <section>
+          <app-body></app-body>
+        </section>
+        <section>
+          <app-footer [appName]="title"></app-footer>
+        </section>
       </div>
       <!-- end page container/wrapper -->
     </ng-container>
@@ -23,8 +29,12 @@ import { environment } from '../environments/environment';
       @charset "UTF-8";
     `,
     `
-      #container-wrapper {
+      ::ng-deep :root {
         --mp-prop-val: auto;
+      }
+    `,
+    `
+      #container-wrapper {
         display: block;
         margin: var(--mp-prop-val);
         padding: var(--mp-prop-val);
