@@ -4,7 +4,7 @@
       src="/assets/images/logo.png"
       alt="app-logo"
       id="logo"
-      class="d-inline-block align-top mr-2"
+      class="navbar-brand d-inline-block align-top mr-2"
       routerLink="/"
     />
     <!-- <a class="navbar-brand" routerLink="/">Pok&eacute;ROM</a> -->
@@ -68,7 +68,7 @@
       <button
         class="btn btn-primary nav-item"
         (click)="logout()"
-        *ngIf="!isUrl('/login', 'full')"
+        *ngIf="!isUrl('/login', 'full') && !isLoggedOut()"
       >
         Logout
       </button>
