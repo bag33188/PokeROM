@@ -1,7 +1,11 @@
 <div class="p-2" (window:load)="navTo404()">
   <div id="rom-info-container" class="mt-4">
     <div id="back-btn-container">
-      <button type="button" class="btn btn-primary" [routerLink]="['roms']">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [routerLink]="['/', 'roms']"
+      >
         Back
       </button>
     </div>
@@ -9,7 +13,7 @@
       <h1>ROM Info</h1>
     </div>
     <div id="dummy-container">
-      <div style="width: 61.1667px">
+      <div style="width: 61.1667px;">
         <!-- dummy div -->
       </div>
     </div>
