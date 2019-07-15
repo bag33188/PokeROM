@@ -17,7 +17,10 @@ export class GameDownloadComponent implements OnInit {
   }
 
   disableBtnIfMobileOrTablet(): boolean {
-    if (navigator.userAgent.match(/iPhone|iPad|iPod/i) || navigator.userAgent.match(/Android/i)) {
+    if (
+      /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+      /Android/i.test(navigator.userAgent)
+    ) {
       this.btnDisabled = true;
       return true;
     } else {
