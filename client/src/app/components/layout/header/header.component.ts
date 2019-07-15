@@ -37,4 +37,14 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['home']);
     }
   }
+
+  detectRoutes(routes: string[]): boolean {
+    let isCommongRoute: boolean = false;
+    routes.forEach((route: string) => {
+      if (this.isUrl(route)) {
+        isCommongRoute = true;
+      }
+    });
+    return isCommongRoute && this.isLoggedOut();
+  }
 }
