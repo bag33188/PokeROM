@@ -5,7 +5,6 @@ interface NodeModule {
 }
 
 /* Module Delcarations */
-declare module 'axios'; // axios ajax library
 declare module 'he'; // html decoding library
 declare module 'jquery'; // jquery library
 declare module 'sprintf-js'; // print-string formatter
