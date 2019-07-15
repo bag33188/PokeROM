@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import he from 'he';
-import CarouselSlide from 'src/app/interfaces/CarouselSlide';
+import CarouselSlide from '../../../../interfaces/CarouselSlide';
 import Images from '../../../../enums/images.enum';
 
 @Component({
