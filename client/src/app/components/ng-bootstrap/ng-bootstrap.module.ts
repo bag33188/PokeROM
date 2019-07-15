@@ -5,6 +5,7 @@ import { AccordionComponent } from './home/accordion/accordion.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
 import { PaginationComponent } from './roms/pagination/pagination.component';
 import { TabsetComponent } from './faq/tabset/tabset.component';
+import { PopupComponent } from './rom-info/popup/popup.component';
 import { ModalContentComponent } from './faq/modal/modal-content.component';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     CarouselComponent,
     PaginationComponent,
     TabsetComponent,
-    ModalContentComponent
+    ModalContentComponent,
+    PopupComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [CommonModule, NgbModule],
@@ -21,7 +23,8 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     AccordionComponent,
     CarouselComponent,
     PaginationComponent,
-    TabsetComponent
+    TabsetComponent,
+    PopupComponent
   ]
 })
 export class NgBootstrapModule {}
