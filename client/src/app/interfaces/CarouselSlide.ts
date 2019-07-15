@@ -1,6 +1,6 @@
 interface CarouselSlide {
-  img: string;
+  image: string;
   heading: string;
-  details: string;
+  caption: string;
 }
 export default CarouselSlide;
