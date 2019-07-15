@@ -124,7 +124,70 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
     "prettier.endOfLine": "lf",
     "files.eol": "\n",
     "workbench.settings.editor": "json",
-    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    // "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+    "peacock.affectActivityBar": true,
+    "peacock.affectStatusBar": true,
+    "peacock.affectTitleBar": false,
+    "peacock.keepBadgeColor": false,
+    "peacock.keepForegroundColor": false,
+    "editor.autoIndent": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": false
+    },
+    "editor.codeLens": false,
+    "editor.cursorBlinking": "solid",
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorStyle": "line",
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": false,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "none",
+    "editor.tabCompletion": "on",
+    "peacock.favoriteColors": [
+      {
+        "name": "Angular Red",
+        "value": "#b52e31"
+      },
+      {
+        "name": "Auth0 Orange",
+        "value": "#eb5424"
+      },
+      {
+        "name": "Azure Blue",
+        "value": "#007fff"
+      },
+      {
+        "name": "Gatsby Purple",
+        "value": "#639"
+      },
+      {
+        "name": "JavaScript Yellow",
+        "value": "#f9e64f"
+      },
+      {
+        "name": "Mandalorian Blue",
+        "value": "#1857a4"
+      },
+      {
+        "name": "Node Green",
+        "value": "#215732"
+      },
+      {
+        "name": "React Blue",
+        "value": "#00b3e6"
+      },
+      {
+        "name": "Something Different",
+        "value": "#832561"
+      },
+      {
+        "name": "Vue Green",
+        "value": "#42b883"
+      }
+    ]
     // "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
   }
 }
@@ -157,6 +220,7 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 [Sass Lint]: <https://marketplace.visualstudio.com/items?itemName=glen-84.sass-lint> "Sass Lint VS Code Extension"
 [TSLint]: <https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin> "TSLint VC Code Extension"
 [Sublime Material Theme Dark]: <https://marketplace.visualstudio.com/items?itemName=jprestidge.theme-material-theme> "Sublime Material Theme Dark VS Code Extension"
+[Angular Essentials]: <https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials> "Angular Essentials VS Code Extension"
 
 ## Diagrams
 
