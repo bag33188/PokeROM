@@ -1,21 +1,22 @@
 <div class="mt-2">
   <ngb-carousel
     *ngIf="images"
-    [showNavigationIndicators]="false"
+    interval="5555"
     [pauseOnHover]="false"
+    [showNavigationIndicators]="false"
   >
     <ng-template
       ngbSlide
       *ngFor="let carouselSlide of carouselData; index as i"
     >
       <div class="img-container">
-        <img [src]="carouselSlide.img" alt="slide-{{ i + 1 }}" />
+        <img [src]="carouselSlide.image" alt="slide-{{ i + 1 }}" />
       </div>
       <div class="carousel-caption">
         <h3 class="white">
           {{ carouselSlide.heading }}
         </h3>
-        <p class="white">{{ carouselSlide.details }}</p>
+        <p class="white">{{ carouselSlide.caption }}</p>
       </div>
     </ng-template>
   </ngb-carousel>
