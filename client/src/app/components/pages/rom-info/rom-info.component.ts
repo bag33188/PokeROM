@@ -12,9 +12,9 @@ import Rom from '../../../models/Rom';
 })
 export class RomInfoComponent implements OnInit, AfterContentInit {
   rom: Rom;
-  id: string = this.activatedRoute.snapshot.url[2].path;
-  loading: boolean = true;
-  isError: boolean = false;
+  id: string;
+  loading: boolean;
+  isError: boolean;
 
   constructor(
     private romService: RomsService,
@@ -24,6 +24,9 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   ) {}
 
   ngOnInit() {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.loading = true;
+    this.isError = false;
     this.rom = {
       orderNumber: 0,
       gameName: '',
