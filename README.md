@@ -235,6 +235,17 @@ To open the `.drawio` files, use the [draw.io](https://about.draw.io/integration
 ## Notes
 
 1. If on Windows, install Git Bash.
+2. Languages Used:
+  * HTML
+  * CSS
+  * JavaScript
+  * SCSS
+  * TypeScript
+  * JSON
+  * YAML
+  * Shell/Bash
+  * SVG
+  * Markdown
 
 --------
 
