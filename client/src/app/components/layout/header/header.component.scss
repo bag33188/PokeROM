@@ -26,4 +26,7 @@
 #logo {
   cursor: pointer;
   height: 30px;
+  @media only all and (max-width: 576px) {
+    display: none !important;
+  }
 }
