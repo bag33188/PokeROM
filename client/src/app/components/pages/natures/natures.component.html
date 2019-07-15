@@ -5,7 +5,10 @@
     <thead>
       <tr>
         <th *ngFor="let header of headers; let i = index">
-          <fa-icon [icon]="icons[i]" class="mr-2"></fa-icon>{{ header }}
+          <div class="header-icon-container">
+            <fa-icon [icon]="icons[i]" class="mr-2"></fa-icon>
+          </div>
+          <span class="header-text">{{ header }}</span>
         </th>
       </tr>
     </thead>

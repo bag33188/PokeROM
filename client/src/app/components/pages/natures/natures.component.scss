@@ -9,3 +9,16 @@
 #natures {
   background-color: $white;
 }
+
+.header-text {
+  display: initial;
+  @media only all and (max-width: 991px) {
+    display: none;
+  }
+}
+
+.header-icon-container {
+  @media only all and (max-width: 991px) {
+    text-align: center;
+  }
+}
