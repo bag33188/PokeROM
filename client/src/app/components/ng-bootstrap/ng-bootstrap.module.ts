@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccordionComponent } from './home/accordion/accordion.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
 import { PaginationComponent } from './roms/pagination/pagination.component';
 import { TabsetComponent } from './faq/tabset/tabset.component';
 import { PopupComponent } from './rom-info/popup/popup.component';
+import { ToastComponent } from './faq/toast/toast.component';
 import { ModalContentComponent } from './faq/modal/modal-content.component';
 
 @NgModule({
@@ -15,16 +17,18 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     PaginationComponent,
     TabsetComponent,
     ModalContentComponent,
-    PopupComponent
+    PopupComponent,
+    ToastComponent
   ],
   entryComponents: [ModalContentComponent],
-  imports: [CommonModule, NgbModule],
+  imports: [CommonModule, NgbModule, BrowserModule],
   exports: [
     AccordionComponent,
     CarouselComponent,
     PaginationComponent,
     TabsetComponent,
-    PopupComponent
+    PopupComponent,
+    ToastComponent
   ]
 })
 export class NgBootstrapModule {}

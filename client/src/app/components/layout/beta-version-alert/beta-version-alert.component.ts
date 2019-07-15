@@ -56,7 +56,8 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
         );
       }
     } else {
-      sessionStorage.removeItem('beta-version-alert');
+      // sessionStorage.removeItem('beta-version-alert');
+      sessionStorage.setItem('beta-version-alert', JSON.stringify([]));
     }
   }
 

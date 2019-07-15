@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+@import '../../../../../assets/scss/functions';
+@import '../../../../../assets/scss/variables';
+
+#toast {
+  font-size: em(16px);
+}
+
+.svg-icon {
+  height: 2em;
+  margin-right: .5rem;
+  width: 2em;
+
+  circle {
+    stroke: $svg-blue;
+    stroke-width: 1;
+  }
+
+  polygon,
+  rect,
+  path {
+    fill: $svg-blue;
+  }
+}
