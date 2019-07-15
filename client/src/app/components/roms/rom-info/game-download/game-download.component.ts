@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../../models/Rom';
 
 @Component({
@@ -9,10 +10,12 @@ import Rom from '../../../../models/Rom';
 export class GameDownloadComponent implements OnInit {
   @Input() rom: Rom;
   btnDisabled: boolean;
+  faDownload: IconDefinition;
 
   constructor() {}
 
   ngOnInit() {
+    this.faDownload = faDownload;
     this.disableBtnIfMobileOrTablet();
   }
 

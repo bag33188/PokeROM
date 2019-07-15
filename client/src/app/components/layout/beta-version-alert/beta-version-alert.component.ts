@@ -6,6 +6,10 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import {
+  faExclamationTriangle,
+  IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
 import * as $ from 'jquery';
 import Alert from '../../../interfaces/Alert';
 import { environment } from '../../../../environments/environment';
@@ -25,10 +29,12 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
   isBeta: boolean;
   alerts: Alert[];
   betaVerAlertId: string;
+  faExclamationTriangle: IconDefinition;
 
   constructor(private elRef: ElementRef) {}
 
   ngOnInit() {
+    this.faExclamationTriangle = faExclamationTriangle;
     this.isBeta = !environment.production ? true : false;
     this.setBetaVersionAlert();
     this.getBetaVersionAlert();

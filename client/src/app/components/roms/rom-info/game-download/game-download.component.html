@@ -8,7 +8,7 @@
     [href]="rom.downloadLink"
     target="_blank"
     class="btn btn-success w-100"
-    >Download</a
+    ><fa-icon [icon]="faDownload" class="mr-2"></fa-icon>Download</a
   >
   <span *ngIf="disableBtnIfMobileOrTablet()" class="text-center"
     >You cannot download this ROM since you are not on a computer</span
