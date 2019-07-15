@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     if (
       this.isUrl('/roms') ||
-      /roms/g.test(this.activatedRoute[this.routeKey].snapshot.url)
+      /roms/.test(this.activatedRoute[this.routeKey].snapshot.url)
     ) {
       this.router.navigate(['home']);
     }
