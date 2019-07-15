@@ -38,13 +38,15 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  detectRoutes(routes: string[]): boolean {
-    let isCommongRoute: boolean = false;
-    routes.forEach((route: string) => {
-      if (this.isUrl(route)) {
-        isCommongRoute = true;
+  isRoutes(routes: string[]): boolean {
+    let isOneOfRoutes: boolean = false;
+    routes.forEach(
+      (route: string): void => {
+        if (this.isUrl(route)) {
+          isOneOfRoutes = true;
+        }
       }
-    });
-    return isCommongRoute && this.isLoggedOut();
+    );
+    return isOneOfRoutes && this.isLoggedOut();
   }
 }
