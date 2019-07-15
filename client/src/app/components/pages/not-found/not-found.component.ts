@@ -15,6 +15,10 @@ export class NotFoundComponent implements OnInit {
   }
 
   pathName(): string {
-    return this.route.snapshot.url[1].path.replace('/404', '');
+    if (/\/404/.test(location.pathname)) {
+      return this.route.snapshot.url[1].path.replace('/404', '');
+    } else {
+      return this.route.snapshot.url[0].path;
+    }
   }
 }

@@ -62,13 +62,13 @@
       <a
         class="btn btn-primary nav-item"
         [routerLink]="['login']"
-        *ngIf="isRoutes(['/faq', '/natures', '/home'])"
+        *ngIf="isRoutes(routes)"
         >Login</a
       >
       <button
         class="btn btn-primary nav-item"
         (click)="logout()"
-        *ngIf="!isUrl('/login') && !isLoggedOut()"
+        *ngIf="!isUrl('/login', 'full') && !isLoggedOut()"
       >
         Logout
       </button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import Route from '../../../interfaces/Route';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   routeKey: string;
+  routes: Route[];
 
   constructor(
     private authService: AuthService,
@@ -18,10 +20,37 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.routeKey = '_routerState';
+    this.routes = [
+      {
+        url: '/faq',
+        pathMatch: 'full'
+      },
+      {
+        url: '/home',
+        pathMatch: 'full'
+      },
+      {
+        url: '/natures',
+        pathMatch: 'full'
+      },
+      {
+        url: /\/404/,
+        pathMatch: 'prefix'
+      }
+    ];
   }
 
-  isUrl(url: string): boolean {
-    return this.activatedRoute[this.routeKey].snapshot.url === url;
+  isUrl(url: string | RegExp, pathMatch: string): boolean {
+    switch (pathMatch) {
+      case 'full':
+        return this.activatedRoute[this.routeKey].snapshot.url === (url as string);
+      case 'prefix':
+        return (url as RegExp).test(
+          this.activatedRoute[this.routeKey].snapshot.url
+        );
+      default:
+        return location.pathname === (url as string);
+    }
   }
 
   isLoggedOut(): boolean {
@@ -31,18 +60,19 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.authService.logout();
     if (
-      this.isUrl('/roms') ||
-      /roms/.test(this.activatedRoute[this.routeKey].snapshot.url)
+      this.isUrl('/roms', 'full') ||
+      this.isUrl('roms', 'prefix') ||
+      this.isUrl(/\/404/, 'prefix')
     ) {
       this.router.navigate(['home']);
     }
   }
 
-  isRoutes(routes: string[]): boolean {
+  isRoutes(routes: Route[]): boolean {
     let isOneOfRoutes: boolean = false;
     routes.forEach(
-      (route: string): void => {
-        if (this.isUrl(route)) {
+      (route: Route): void => {
+        if (this.isUrl(route.url, route.pathMatch)) {
           isOneOfRoutes = true;
         }
       }
