@@ -4,16 +4,18 @@
   <table id="natures" class="table border rounded">
     <thead>
       <tr>
-        <th *ngFor="let header of headers">{{header}}</th>
+        <th *ngFor="let header of headers; let i = index">
+          <fa-icon [icon]="icons[i]" class="mr-2"></fa-icon>{{ header }}
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let nature of natures">
-        <td>{{nature.name}}</td>
-        <td>{{nature.up}}</td>
-        <td>{{nature.down}}</td>
-        <td>{{nature.flavor}}</td>
-        <td>{{nature.usage}}</td>
+        <td>{{ nature.name }}</td>
+        <td>{{ nature.up }}</td>
+        <td>{{ nature.down }}</td>
+        <td>{{ nature.flavor }}</td>
+        <td>{{ nature.usage }}</td>
       </tr>
     </tbody>
   </table>
