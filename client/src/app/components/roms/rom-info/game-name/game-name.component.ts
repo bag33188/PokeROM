@@ -8,17 +8,8 @@ import Rom from '../../../../models/Rom';
 })
 export class GameNameComponent implements OnInit {
   @Input() rom: Rom;
-  isRomHack: boolean;
 
   constructor() {}
 
-  ngOnInit() {
-    setTimeout(
-      (): boolean =>
-        (this.isRomHack = /\(ROM Hack\)/.test(this.rom.gameName)
-          ? true
-          : false),
-      1000
-    );
-  }
+  ngOnInit() {}
 }
