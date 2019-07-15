@@ -1,11 +1,16 @@
 <header class="mt-4 pt-4">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="header">
+    <ng-template #logoTooltip>
+      <i>I know, this logo sucks.</i>
+    </ng-template>
     <img
       src="/assets/images/logo.png"
       alt="app-logo"
       id="logo"
       class="navbar-brand d-inline-block align-top mr-2"
       routerLink="/"
+      placement="bottom"
+      [ngbTooltip]="logoTooltip"
     />
     <!-- <a class="navbar-brand" routerLink="/">Pok&eacute;ROM</a> -->
     <button
