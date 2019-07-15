@@ -85,7 +85,7 @@ git push heroku master
 
 # clear build cache
 $ heroku plugins:install heroku-repo
-$ heroku repo:purge_cache -a appname
+$ heroku repo:purge_cache -a pokerom-broccolini
 $ git commit --allow-empty -m "Purge cache"
 $ git push heroku master
 ```
