@@ -268,7 +268,7 @@ module.exports.patchRom = (idQuery, query, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.postCore = (coreRoms, user, callback) => {
-  const romsAsync = new Promise((resolve, reject) => {
+  const coreRomsAsync = new Promise((resolve, reject) => {
     coreRoms.forEach(rom => {
       rom.userId = user['_id'];
       Rom.create(rom);
@@ -276,7 +276,7 @@ module.exports.postCore = (coreRoms, user, callback) => {
     resolve('Done!');
     reject(new Error('Error!'));
   });
-  romsAsync.then(() => callback()).catch(err => console.log(err));
+  coreRomsAsync.then(() => callback()).catch(err => console.log(err));
 };
 
 /**
@@ -288,9 +288,13 @@ module.exports.postCore = (coreRoms, user, callback) => {
  */
 module.exports.postHacks = (romHacks, user, callback) => {
   [romHack1, romHack2] = romHacks;
-  romHack1.userId = user['_id'];
-  romHack2.userId = user['_id'];
-  Rom.create(romHack1);
-  Rom.create(romHack2);
-  callback();
+  const romHacksAsync = new Promise((resolve, reject) => {
+    romHack1.userId = user['_id'];
+    romHack2.userId = user['_id'];
+    Rom.create(romHack1);
+    Rom.create(romHack2);
+    resolve('Done!');
+    reject(new Error('Error!'));
+  });
+  romHacksAsync.then(() => callback()).catch(err => console.log(err));
 };
