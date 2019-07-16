@@ -41,7 +41,7 @@ const RomSchema = mongoose.Schema(
       required: [true, 'File type is required.'],
       validate: {
         validator: function(v) {
-          return /^(?:(.?)(gb[ac]?|[n3]ds|xci))$/.test(v);
+          return /^(?:\.?(gb[ac]?|[n3]ds|xci))$/.test(v);
         },
         message: props => `${props.value} is not a valid file type`
       }
