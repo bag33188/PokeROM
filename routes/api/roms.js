@@ -626,7 +626,7 @@ router.post('/core', auth, async (req, res, next) => {
  * @description Adds Pokemon ROM Hacks.
  */
 
-router.post('/hacks', auth, async (req, res, next) => {
+outer.post('/hacks', auth, async (req, res, next) => {
   try {
     await Rom.postHacks(romsData[1], req.user, () => {
       Rom.getAllRoms({ userId: req.user['_id'] }, (err, roms) => {
