@@ -303,7 +303,31 @@ paths:
         - application/json
       responses:
         201:
-          description: A ROMs array.
+          description: A ROMs array with all current ROMs.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Rom'
+              type: object
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        500:
+          description: Internal server error on back-end occured.
+  '/api/roms/hacks':
+    post:
+      tags:
+        - Roms
+      name: Post ROM Hacks
+      summary: Adds the ROM Hacks to the database
+      security:
+        - bearerAuth: []
+      produces:
+        - application/json
+      responses:
+        201:
+          description: A ROMs array with all current ROMs.
           schema:
             type: array
             items:
