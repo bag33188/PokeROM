@@ -75,7 +75,7 @@ paths:
       tags:
         - Roms
       name: Delete All ROMs
-      summary: Removes all ROMs
+      summary: Removes all ROMs for a Single User
       security:
         - bearerAuth: []
       produces:
@@ -235,7 +235,7 @@ paths:
     delete:
       tags:
         - Roms
-      name: Delete Single ROM
+      name: Delete Single ROM for a Single User
       summary: Removes a single ROM
       security:
         - bearerAuth: []
