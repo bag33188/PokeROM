@@ -4,7 +4,7 @@ const { sanitizeBody } = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const moment = require('moment');
 const url = require('url');
-const natureData = require('../../database/data.json')[1];
+const natureData = require('../../database/data.json')[2];
 
 const router = express.Router();
 

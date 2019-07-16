@@ -277,3 +277,12 @@ module.exports.postCore = (coreRoms, user, callback) => {
   });
   romsAsync.then(() => callback()).catch(err => console.log(err));
 };
+
+module.exports.postHacks = (romHacks, user, callback) => {
+  [romHack1, romHack2] = romHacks;
+  romHack1.userId = user['_id'];
+  romHack2.userId = user['_id'];
+  Rom.create(romHack1);
+  Rom.create(romHack2);
+  callback();
+};

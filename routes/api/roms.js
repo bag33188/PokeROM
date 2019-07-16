@@ -5,7 +5,7 @@ const { sanitizeBody } = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const moment = require('moment');
 const auth = require('../../middleware/auth');
-const romsData = require('../../database/data.json')[0];
+const romsData = require('../../database/data.json');
 
 const router = express.Router();
 
@@ -611,7 +611,22 @@ router.options('/', async (req, res, next) => {
  */
 router.post('/core', auth, async (req, res, next) => {
   try {
-    await Rom.postCore(romsData, req.user, () => {
+    await Rom.postCore(romsData[0], req.user, () => {
+      Rom.getAllRoms({ userId: req.user['_id'] }, (err, roms) => {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        return res.status(201).json(roms);
+      });
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/hacks', auth, async (req, res, next) => {
+  try {
+    await Rom.postHacks(romsData[1], req.user, () => {
       Rom.getAllRoms({ userId: req.user['_id'] }, (err, roms) => {
         if (err) {
           return res.status(500).json({ success: false, ...err });
