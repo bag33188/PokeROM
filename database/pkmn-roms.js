@@ -45,7 +45,7 @@ insertUserQuery = db.users.insert({
 printjson(insertUserQuery);
 
 // insert all roms
-insertRomsQuery = db.roms.insert([
+insertRomsQuery = db.roms.insertMany([
   {
     orderNumber: 0,
     fileName: 'Pokemon Red.gb',
@@ -709,7 +709,7 @@ insertRomsQuery = db.roms.insert([
 printjson(insertRomsQuery);
 
 // insert all natures
-insertNaturesQuery = db.natures.insert([
+insertNaturesQuery = db.natures.insertMany([
   {
     name: 'Adamant',
     up: 'Attack',
