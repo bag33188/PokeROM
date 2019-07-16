@@ -34,24 +34,22 @@ export class HeaderComponent implements OnInit {
         pathMatch: 'full'
       },
       {
-        url: /\/404/,
+        url: '/404',
         pathMatch: 'prefix'
       }
     ];
   }
 
-  isUrl(url: string | RegExp, pathMatch: string): boolean {
+  isUrl(url: string, pathMatch: string): boolean {
     switch (pathMatch) {
       case 'full':
-        return (
-          this.activatedRoute[this.routeKey].snapshot.url === (url as string)
-        );
+        return this.activatedRoute[this.routeKey].snapshot.url === url;
       case 'prefix':
-        return new RegExp(url as RegExp).test(
+        return new RegExp(url.replace('/', '\\/'), 'i').test(
           this.activatedRoute[this.routeKey].snapshot.url
         );
       default:
-        return location.pathname === (url as string);
+        return location.pathname === url;
     }
   }
 
@@ -64,7 +62,7 @@ export class HeaderComponent implements OnInit {
     if (
       this.isUrl('/roms', 'full') ||
       this.isUrl('roms', 'prefix') ||
-      this.isUrl(/\/404/, 'prefix')
+      this.isUrl('/404', 'prefix')
     ) {
       this.router.navigate(['home']);
     }

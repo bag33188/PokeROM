@@ -1,5 +1,5 @@
 interface Route {
-  url: string | RegExp;
+  url: string;
   pathMatch: string;
 }
 export default Route;
