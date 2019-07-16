@@ -206,7 +206,7 @@ paths:
       produces:
         - application/json
       responses:
-        '201':
+        201:
           description: A natures array (containing all natures).
           schema:
             type: array
