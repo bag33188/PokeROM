@@ -26,7 +26,7 @@ paths:
       tags:
         - Users
       name: Deletes All Users
-      summary: Removes all Users
+      summary: Removes all Users and all ROMs
       security:
         - bearerAuth: []
       produces:
@@ -199,7 +199,7 @@ paths:
       tags:
         - Users
       name: Delete Single User
-      summary: Removes a single User
+      summary: Removes a single User and all of their ROMs
       security:
         - bearerAuth: []
       produces:
@@ -255,7 +255,7 @@ paths:
       tags:
         - Users
       name: Add User
-      summary: Adds a User to the database
+      summary: Adds a User to the database along with all the core ROMs
       consumes:
         - application/json
       produces:
