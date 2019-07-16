@@ -305,35 +305,41 @@ router.put(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      await User.updateUser({ _id: id }, userData, {}, err => {
-        if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(400).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
-          }
-        }
-        User.getUserById({ _id: id }, (err, user) => {
+      if (req.user['_id'].toString() === id) {
+        await User.updateUser({ _id: id }, userData, {}, err => {
           if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
+            switch (err.name) {
+              case 'CastError':
+                return res.status(404).json({ success: false, ...err });
+              case 'ValidationError':
+                return res.status(400).json({ success: false, ...err });
+              default:
+                return res.status(500).json({ success: false, ...err });
             }
-            return res.status(500).json({ success: false, ...err });
           }
-          return res.status(200).json({
-            success: true,
-            user: {
-              id: user._id,
-              name: user.name,
-              email: user.email,
-              username: user.username
+          User.getUserById({ _id: id }, (err, user) => {
+            if (err) {
+              if (err.name === 'CastError') {
+                return res.status(404).json({ success: false, ...err });
+              }
+              return res.status(500).json({ success: false, ...err });
             }
+            return res.status(200).json({
+              success: true,
+              user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                username: user.username
+              }
+            });
           });
         });
-      });
+      } else {
+        return await res
+          .status(401)
+          .json({ success: false, msg: 'You cannot update this user.' });
+      }
     } catch (err) {
       next(err);
     }
@@ -379,37 +385,43 @@ router.patch(
           .status(400)
           .json({ success: false, message: 'Invalid JSON body.' });
       }
-      await User.patchUser({ _id: id }, { $set: query }, (err, status) => {
-        if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(400).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
-          }
-        }
-        User.getUserById({ _id: id }, (err, user) => {
+      if (req.user['_id'].toString() === id) {
+        await User.patchUser({ _id: id }, { $set: query }, (err, status) => {
           if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            } else {
-              return res.status(500).json({ success: false, ...err });
+            switch (err.name) {
+              case 'CastError':
+                return res.status(404).json({ success: false, ...err });
+              case 'ValidationError':
+                return res.status(400).json({ success: false, ...err });
+              default:
+                return res.status(500).json({ success: false, ...err });
             }
           }
-          console.log(user.password);
-          return res.status(200).json({
-            success: true,
-            user: {
-              id: user._id,
-              name: user.name,
-              email: user.email,
-              username: user.username
+          User.getUserById({ _id: id }, (err, user) => {
+            if (err) {
+              if (err.name === 'CastError') {
+                return res.status(404).json({ success: false, ...err });
+              } else {
+                return res.status(500).json({ success: false, ...err });
+              }
             }
+            console.log(user.password);
+            return res.status(200).json({
+              success: true,
+              user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                username: user.username
+              }
+            });
           });
         });
-      });
+      } else {
+        return await res
+          .status(401)
+          .json({ success: false, msg: 'You cannot patch this user.' });
+      }
     } catch (err) {
       next(err);
     }
@@ -453,27 +465,33 @@ router.delete('/', auth, async (req, res, next) => {
 router.delete('/:id', auth, async (req, res, next) => {
   try {
     const id = req.params.id;
-    await User.deleteUser({ _id: id }, (err, status) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        }
-        return res.status(500).json({ success: false, ...err });
-      }
-      Rom.deleteAllRoms({ userId: id }, err => {
+    if (req.user['_id'].toString() === id) {
+      await User.deleteUser({ _id: id }, (err, status) => {
         if (err) {
           if (err.name === 'CastError') {
             return res.status(404).json({ success: false, ...err });
           }
           return res.status(500).json({ success: false, ...err });
         }
-        return res.status(200).json({
-          success: true,
-          message: 'User successfully deleted!',
-          ...status
+        Rom.deleteAllRoms({ userId: id }, err => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
+          }
+          return res.status(200).json({
+            success: true,
+            message: 'User successfully deleted!',
+            ...status
+          });
         });
       });
-    });
+    } else {
+      return await res
+        .status(401)
+        .json({ success: false, msg: 'You cannot delete this user.' });
+    }
   } catch (err) {
     next(err);
   }

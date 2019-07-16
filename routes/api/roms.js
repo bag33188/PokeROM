@@ -106,7 +106,13 @@ router.get('/:id', auth, async (req, res, next) => {
         }
         return res.status(500).json({ success: false, ...err });
       }
-      return res.status(200).json(rom);
+      if (req.user['_id'].toString() === rom.userId) {
+        return res.status(200).json(rom);
+      } else {
+        return res
+          .status(401)
+          .json({ success: false, msg: `You cannot get this user's ROM.` });
+      }
     });
   } catch (err) {
     next(err);
@@ -148,7 +154,7 @@ router.post(
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({ min: 2, max: 3 })
       .withMessage('File type must be between 2 and 3 characters.')
-      .matches(/^(?:\.?(gb[ca]|[n3]ds|xci))$/)
+      .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/)
       .withMessage('Invalid file extension.'),
     check('downloadLink')
       .not()
@@ -311,7 +317,7 @@ router.put(
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({ min: 2, max: 3 })
       .withMessage('File type must be between 2 and 3 characters.')
-      .matches(/^(?:\.?(gb[ca]|[n3]ds|xci))$/)
+      .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/)
       .withMessage('Invalid file extension.'),
     check('downloadLink')
       .not()
@@ -415,28 +421,36 @@ router.put(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      await Rom.updateRom({ _id: id }, updateRomData, {}, (err, rom) => {
+      let isOwnUser = null;
+      let fetchedRom = null;
+      Rom.getRomById({ _id: id }, (err, rom) => {
         if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(400).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
           }
+          return res.status(500).json({ success: false, ...err });
         }
-        Rom.getRomById({ _id: id }, (err, rom) => {
+        isOwnUser = rom.userId === req.user['_id'].toString();
+        fetchedRom = rom;
+      });
+      if (isOwnUser) {
+        await Rom.updateRom({ _id: id }, updateRomData, {}, (err, rom) => {
           if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
+            switch (err.name) {
+              case 'CastError':
+                return res.status(404).json({ success: false, ...err });
+              case 'ValidationError':
+                return res.status(400).json({ success: false, ...err });
+              default:
+                return res.status(500).json({ success: false, ...err });
             }
-            return res.status(500).json({ success: false, ...err });
-          } else {
-            return res.status(200).json(rom);
           }
         });
-      });
+      } else {
+        return await res
+          .status(401)
+          .json({ success: false, msg: `You can update this user's ROM.` });
+      }
     } catch (err) {
       next(err);
     }
@@ -490,28 +504,37 @@ router.patch(
           .status(400)
           .json({ success: false, message: 'Invalid JSON body.' });
       }
-      await Rom.patchRom({ _id: id }, { $set: query }, (err, status) => {
+      let isOwnUser = null;
+      let fetchedRom = null;
+      Rom.getRomById({ _id: id }, (err, rom) => {
         if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(400).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
           }
+          return res.status(500).json({ success: false, ...err });
         }
-        Rom.getRomById({ _id: id }, (err, rom) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          } else {
-            return res.status(200).json(rom);
-          }
-        });
+        isOwnUser = rom.userId === req.user['_id'].toString() ? true : false;
+        fetchedRom = rom;
       });
+      if (isOwnUser) {
+        await Rom.patchRom({ _id: id }, { $set: query }, (err, status) => {
+          if (err) {
+            switch (err.name) {
+              case 'CastError':
+                return res.status(404).json({ success: false, ...err });
+              case 'ValidationError':
+                return res.status(400).json({ success: false, ...err });
+              default:
+                return res.status(500).json({ success: false, ...err });
+            }
+          }
+          return res.status(200).json(fetchedRom);
+        });
+      } else {
+        return await res
+          .status(401)
+          .json({ success: false, msg: `You cannot patch this user's ROM.` });
+      }
     } catch (err) {
       next(err);
     }
@@ -526,19 +549,35 @@ router.patch(
 router.delete('/:id', auth, async (req, res, next) => {
   try {
     const id = req.params.id;
-    await Rom.deleteRom({ _id: id }, (err, status) => {
+    let isOwnUser = null;
+    Rom.getRomById({ _id: id }, (err, rom) => {
       if (err) {
         if (err.name === 'CastError') {
           return res.status(404).json({ success: false, ...err });
         }
         return res.status(500).json({ success: false, ...err });
       }
-      return res.status(200).json({
-        success: true,
-        message: 'ROM successfully deleted!',
-        ...status
-      });
+      isOwnUser = rom.userId === req.user['_id'] ? true : false;
     });
+    if (isOwnUser) {
+      await Rom.deleteRom({ _id: id }, (err, status) => {
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
+        }
+        return res.status(200).json({
+          success: true,
+          message: 'ROM successfully deleted!',
+          ...status
+        });
+      });
+    } else {
+      return await res
+        .status(401)
+        .json({ success: false, msg: `You cannot delete this user's ROM.` });
+    }
   } catch (err) {
     next(err);
   }
@@ -550,16 +589,34 @@ router.delete('/:id', auth, async (req, res, next) => {
  */
 router.delete('/', auth, async (req, res, next) => {
   try {
-    await Rom.deleteAllRoms({ userId: req.user['_id'] }, (err, status) => {
-      if (err) {
-        return res.status(500).json({ success: false, ...err });
-      }
-      return res.status(200).json({
-        success: true,
-        message: 'All ROMs successfully deleted!',
-        ...status
+    let isOwnUser = null;
+    Rom.getAllRoms(
+      { userId: req.user['_id'] },
+      (err, roms) => {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        isOwnUser =
+          roms[0].userId === req.user['_id'].toString() ? true : false;
+      },
+      1
+    );
+    if (isOwnUser) {
+      await Rom.deleteAllRoms({ userId: req.user['_id'] }, (err, status) => {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        return res.status(200).json({
+          success: true,
+          message: 'All ROMs successfully deleted!',
+          ...status
+        });
       });
-    });
+    } else {
+      return await res
+        .status(401)
+        .json({ success: false, msg: 'You cannot delete ROMs for this user.' });
+    }
   } catch (err) {
     next(err);
   }
