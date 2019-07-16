@@ -148,7 +148,7 @@ router.post(
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({ min: 2, max: 3 })
       .withMessage('File type must be between 2 and 3 characters.')
-      .matches(/^(?:\.?(gb[ac]?|[n3]ds|xci))$/)
+      .matches(/^(?:\.?(gb[ca]|[n3]ds|xci))$/)
       .withMessage('Invalid file extension.'),
     check('downloadLink')
       .not()
@@ -311,7 +311,7 @@ router.put(
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({ min: 2, max: 3 })
       .withMessage('File type must be between 2 and 3 characters.')
-      .matches(/^(?:\.?(gb[ac]?|[n3]ds|xci))$/)
+      .matches(/^(?:\.?(gb[ca]|[n3]ds|xci))$/)
       .withMessage('Invalid file extension.'),
     check('downloadLink')
       .not()
