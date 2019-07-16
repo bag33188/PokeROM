@@ -624,6 +624,10 @@ router.post('/core', auth, async (req, res, next) => {
   }
 });
 
+/**
+ * @summary Post ROM Hacks.
+ * @description Adds Pokemon ROM Hacks.
+ */ 
 router.post('/hacks', auth, async (req, res, next) => {
   try {
     await Rom.postHacks(romsData[1], req.user, () => {

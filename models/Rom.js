@@ -265,6 +265,7 @@ module.exports.patchRom = (idQuery, query, callback) => {
  * @description Adds all core ROMs to the database.
  * @param {Array<Rom>} coreRoms The core ROMs array.
  * @param {User} user The user object.
+ * @param {any} callback The callback function.
  */
 module.exports.postCore = (coreRoms, user, callback) => {
   const romsAsync = new Promise((resolve, reject) => {
@@ -278,6 +279,13 @@ module.exports.postCore = (coreRoms, user, callback) => {
   romsAsync.then(() => callback()).catch(err => console.log(err));
 };
 
+/**
+ * @summary Post ROM Hacks.
+ * @description Adds some ROM Hacks to the database.
+ * @param {Array<Rom>} romHacks The ROM Hacks array.
+ * @param {User} user The user object.
+ * @param {any} callback The callback function.
+ */
 module.exports.postHacks = (romHacks, user, callback) => {
   [romHack1, romHack2] = romHacks;
   romHack1.userId = user['_id'];
