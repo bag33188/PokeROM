@@ -28,6 +28,9 @@ function findOffset() {
   const utcHours = nowUtc.getUTCHours();
   return utcHours - localHours; 
 }
-console.log(findOffset());
+
+if (process.env.NODE_ENV !== 'production') {
+  console.log(`Logger time offset: ${findOffset()}`);
+}
 
 module.exports = logger;
