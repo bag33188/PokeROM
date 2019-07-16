@@ -22,9 +22,10 @@ function logger(req, res, next) {
 }
 
 function findOffset() {
-  const now = new Date();
-  const localHours = now.getHours();
-  const utcHours = now.getUTCHours();
+  const nowLocal = new Date();
+  const nowUtc = new Date();
+  const localHours = nowLocal.getHours();
+  const utcHours = nowUtc.getUTCHours();
   return utcHours - localHours; 
 }
 console.log(findOffset());
