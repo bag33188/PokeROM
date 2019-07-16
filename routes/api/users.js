@@ -13,6 +13,7 @@ const coreRomsData = require('../../database/data.json')[0];
 const router = express.Router();
 
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
+const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
 /**
  * @summary Get all Users.
@@ -90,9 +91,7 @@ router.post(
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
-      .matches(
-        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi
-      )
+      .matches(pwdRegex)
       .withMessage('Password conatins invalid characters.')
   ],
   async (req, res, next) => {
@@ -185,9 +184,7 @@ router.post(
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
-      .matches(
-        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi
-      )
+      .matches(pwdRegex)
       .withMessage('Password conatins invalid characters.')
   ],
   async (req, res, next) => {
@@ -292,9 +289,7 @@ router.put(
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
-      .matches(
-        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi
-      )
+      .matches(pwdRegex)
       .withMessage('Password conatins invalid characters.')
   ],
   async (req, res, next) => {
@@ -362,7 +357,7 @@ router.patch(
     try {
       const id = req.params.id;
       const query = req.body;
-      const pwRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
+      const pwRegex = pwdRegex;
       let isValid = true;
       for (let field of Object.keys(req.body)) {
         if (

@@ -22,6 +22,7 @@ const fieldsToSanitize = [
   'generation',
   'gameName'
 ];
+const dateRegex = /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/;
 
 /**
  * @summary Convert input date.
@@ -200,9 +201,7 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('Date released is required.')
-      .matches(
-        /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/
-      )
+      .matches(dateRegex)
       .withMessage('Date released must be in the format MM/DD/YYYY.'),
     check('description')
       .not()
@@ -365,9 +364,7 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('Date released is required.')
-      .matches(
-        /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/
-      )
+      .matches(dateRegex)
       .withMessage('Date released must be in the format MM/DD/YYYY.'),
     check('description')
       .not()
@@ -627,7 +624,8 @@ router.post('/core', auth, async (req, res, next) => {
 /**
  * @summary Post ROM Hacks.
  * @description Adds Pokemon ROM Hacks.
- */ 
+ */
+
 router.post('/hacks', auth, async (req, res, next) => {
   try {
     await Rom.postHacks(romsData[1], req.user, () => {
