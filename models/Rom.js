@@ -287,7 +287,7 @@ module.exports.postCore = (coreRoms, user, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.postHacks = (romHacks, user, callback) => {
-  [romHack1, romHack2] = romHacks;
+  const [romHack1, romHack2] = romHacks;
   const romHacksAsync = new Promise((resolve, reject) => {
     romHack1.userId = user['_id'];
     romHack2.userId = user['_id'];
