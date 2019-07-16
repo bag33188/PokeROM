@@ -11,11 +11,14 @@
   </ng-template>
   <p>
     This website is <strong>READ ONLY</strong>, you can only download the ROMs
-    (not add/update/delete). Additionally, you cannot register/create an account
-    without contacting me (the developer).
-    <br />
-    Furthermore, Pok&eacute;mon ROMs are the property of Nintendo. Please do not
-    go around sharing these ROMs.
+    (not add/update/delete).<span [hidden]="userLoggedIn()">
+      Additionally, you cannot register/create an account without contacting me
+      (the developer).
+      <br />
+      Furthermore,</span
+    >&nbsp;<span [hidden]="!userLoggedIn()">Additionally, </span>Pok&eacute;mon
+    ROMs are the property of Nintendo. Please do not go around sharing these
+    ROMs.
     <br />
     Thank you!
   </p>
