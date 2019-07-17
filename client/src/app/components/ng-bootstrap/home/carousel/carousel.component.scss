@@ -16,14 +16,11 @@ h3 {
 
 img {
   filter: brightness(55%);
+  height: unquote('calc(100vh - (56px + 2rem))');
   object-fit: cover;
   position: static;
   width: 100%;
   @media screen {
-    height: 88vh !important;
+    height: unquote('calc(100vh - (56px + 2rem))');
   }
-}
-
-.img-container {
-  height: 88vh !important;
 }

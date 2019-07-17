@@ -7,7 +7,7 @@
 }
 
 #carousel-container {
-  height: 88vh;
+  height: unquote('calc(100% - (56px + 2rem))');
 }
 
 #more-info-container {
