@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faReceipt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faFileAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../../models/Rom';
 
 @Component({
@@ -9,12 +9,12 @@ import Rom from '../../../../models/Rom';
 })
 export class GameDescriptionComponent implements OnInit {
   @Input() rom: Rom;
-  faReceipt: IconDefinition;
+  faFileAlt: IconDefinition;
 
   constructor() {}
 
   ngOnInit() {
-    this.faReceipt = faReceipt;
+    this.faFileAlt = faFileAlt;
     setTimeout((): void => {
       this.rom.description = this.changeUrlToLink(this.rom.description);
     }, 1000);
