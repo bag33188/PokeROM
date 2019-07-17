@@ -22,11 +22,11 @@ h3 {
 
 img {
   filter: brightness(55%);
-  height: unquote($string: 'calc(100vh - (#{$header-height} + #{$footer-height}))');
+  height: unquote($calc-height);
   object-fit: cover;
   position: static;
   width: 100%;
-  @media screen {
-    height: unquote($string: 'calc(100vh - (#{$header-height} + #{$footer-height}))');
+  @media all {
+    height: unquote($calc-height);
   }
 }

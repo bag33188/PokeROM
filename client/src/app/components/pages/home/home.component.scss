@@ -5,7 +5,7 @@
 }
 
 #carousel-container {
-  height: unquote($string: 'calc(100vh - (#{$header-height} + #{$footer-height}))');
+  height: unquote($calc-height);
 }
 
 #more-info-container {

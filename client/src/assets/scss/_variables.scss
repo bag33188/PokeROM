@@ -94,3 +94,6 @@ $arial-italic2: '#{$arial-font-url-prefix}/Arial-ItalicMT.woff2';
 // sizes
 $footer-height: 2rem;
 $header-height: 56px;
+
+// calculations
+$calc-height: 'calc(100vh - (#{$header-height} + #{$footer-height}))';
