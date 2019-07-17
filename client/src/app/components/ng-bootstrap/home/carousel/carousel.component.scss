@@ -14,13 +14,21 @@ h3 {
   z-index: -1;
 }
 
+.carousel-caption {
+  @media only all and (max-height: 537px) {
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
 img {
   filter: brightness(55%);
-  height: unquote('calc(100vh - (56px + 2rem))');
+  height: unquote($string: 'calc(100vh - (#{$header-height} + #{$footer-height}))');
   object-fit: cover;
   position: static;
   width: 100%;
   @media screen {
-    height: unquote('calc(100vh - (56px + 2rem))');
+    height: unquote($string: 'calc(100vh - (#{$header-height} + #{$footer-height}))');
   }
 }
