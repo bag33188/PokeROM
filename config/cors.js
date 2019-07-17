@@ -10,7 +10,8 @@ const corsConfig = cors({
     'Last-Modified',
     'Pragma',
     'Content-Range',
-    'X-Content-Range'
+    'X-Content-Range',
+    'X-Requested-With'
   ],
   headers: [
     'Accept',
@@ -20,7 +21,8 @@ const corsConfig = cors({
     'Content-Language',
     'Save-Data',
     'Viewport-Width',
-    'Width'
+    'Width',
+    'X-Requested-With'
   ],
   maxAge: 86400,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
