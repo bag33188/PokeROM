@@ -20,6 +20,9 @@ router.get('/', async (req, res, next) => {
       if (err) {
         return res.status(500).json({ success: false, ...err });
       }
+      if (!natures) {
+        return res.status(500).json({ success: false });
+      }
       return res.status(200).json(natures);
     });
   } catch (err) {
@@ -42,6 +45,11 @@ router.get('/:id', async (req, res, next) => {
         } else {
           return res.status(500).json({ success: false, ...err });
         }
+      }
+      if (!nature) {
+        return res
+          .status(404)
+          .json({ success: false, msg: 'Error 404: nature not found.' });
       }
       return res.status(200).json(nature);
     });
@@ -120,6 +128,12 @@ router.post(
           } else {
             return res.status(500).json({ success: false, ...err });
           }
+        }
+        if (!nature) {
+          return res.status(404).json({
+            success: false,
+            msg: 'Error 404: nature not found.'
+          });
         }
         res.append(
           'Created-At-Route',
@@ -218,6 +232,12 @@ router.put(
                 return res.status(500).json({ success: false, ...err });
             }
           }
+          if (!updatedNature) {
+            return res.status(404).json({
+              success: false,
+              msg: 'Error 404: nature not found.'
+            });
+          }
           Nature.getNature({ _id: id }, (err, nature) => {
             if (err) {
               if (err.name === 'CastError') {
@@ -225,6 +245,12 @@ router.put(
               } else {
                 return res.status(500).json({ success: false, ...err });
               }
+            }
+            if (!nature) {
+              return res.status(404).json({
+                success: false,
+                msg: 'Error 404: nature not found.'
+              });
             }
             return res.status(200).json(nature);
           });
@@ -284,12 +310,23 @@ router.patch(
               return res.status(500).json({ success: false, ...err });
           }
         }
+        if (!status) {
+          return res.status(404).json({
+            success: false,
+            msg: 'Error 404: nature not found.'
+          });
+        }
         Nature.getNature({ _id: id }, (err, nature) => {
           if (err) {
             if (err.name === 'CastError') {
               return res.status(404).json({ success: false, ...err });
             }
             return res.status(500).json({ success: false, ...err });
+          } else if (!nature) {
+            return res.status(404).json({
+              success: false,
+              msg: 'Error 404: nature not found.'
+            });
           } else {
             return res.status(200).json(nature);
           }
@@ -316,6 +353,12 @@ router.delete('/:id', async (req, res, next) => {
         }
         return res.status(500).json({ success: false, ...err });
       }
+      if (!status) {
+        return res.status(404).json({
+          success: false,
+          msg: 'Error 404: nature not found.'
+        });
+      }
       return res.status(200).json({ success: true, ...status });
     });
   } catch (err) {
@@ -333,7 +376,17 @@ router.delete('/', async (req, res, next) => {
       if (err) {
         return res.status(500).json({ success: false, ...err });
       }
-      return res.status(200).json({ success: true, message: 'All Natures successfuly deleted!', ...status });
+      if (!status) {
+        return res.status(404).json({
+          success: false,
+          msg: 'Error 404: nature not found.'
+        });
+      }
+      return res.status(200).json({
+        success: true,
+        message: 'All Natures successfuly deleted!',
+        ...status
+      });
     });
   } catch (err) {
     next(err);
@@ -375,6 +428,11 @@ router.post('/all', async (req, res, next) => {
       Nature.getNatures((err, natures) => {
         if (err) {
           return res.status(500).json({ success: false, ...err });
+        }
+        if (!natures) {
+          return res.status(500).json({
+            success: false
+          });
         }
         return res.status(201).json(natures);
       });

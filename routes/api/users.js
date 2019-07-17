@@ -25,6 +25,9 @@ router.get('/', auth, async (req, res, next) => {
       if (err) {
         return res.stauts(500).json({ success: false, ...err });
       }
+      if (!users) {
+        return res.status(500).json({ success: false });
+      }
       return res.status(200).json(users);
     });
   } catch (err) {
@@ -46,6 +49,11 @@ router.get('/:id', auth, async (req, res, next) => {
           return res.status(404).json({ success: false, ...err });
         }
         return res.status(500).json({ success: false, ...err });
+      }
+      if (!user) {
+        return res
+          .status(404)
+          .json({ success: false, msg: 'Error 404: user not found.' });
       }
       return res.status(200).json(user);
     });
@@ -115,6 +123,12 @@ router.post(
               return res.status(400).json({ success: false, ...err });
             }
             return res.status(500).json({ success: false, ...err });
+          }
+          if (!user) {
+            return res.status(404).json({
+              success: false,
+              msg: 'Error 404: user not found.'
+            });
           }
           Rom.postCore(coreRomsData, user, () => {
             console.log(`Core ROMs added for user '${user.username}'.`);
@@ -306,7 +320,7 @@ router.put(
         return res.status(400).json({ errors: errors.array() });
       }
       if (req.user['_id'].toString() === id) {
-        await User.updateUser({ _id: id }, userData, {}, err => {
+        await User.updateUser({ _id: id }, userData, {}, (err, user) => {
           if (err) {
             switch (err.name) {
               case 'CastError':
@@ -317,12 +331,24 @@ router.put(
                 return res.status(500).json({ success: false, ...err });
             }
           }
+          if (!user) {
+            return res.status(404).json({
+              success: false,
+              msg: 'Error 404: user not found.'
+            });
+          }
           User.getUserById({ _id: id }, (err, user) => {
             if (err) {
               if (err.name === 'CastError') {
                 return res.status(404).json({ success: false, ...err });
               }
               return res.status(500).json({ success: false, ...err });
+            }
+            if (!user) {
+              return res.status(404).json({
+                success: false,
+                msg: 'Error 404: user not found.'
+              });
             }
             return res.status(200).json({
               success: true,
@@ -397,6 +423,12 @@ router.patch(
                 return res.status(500).json({ success: false, ...err });
             }
           }
+          if (!status) {
+            return res.status(404).json({
+              success: false,
+              msg: 'Error 404: user not found.'
+            });
+          }
           User.getUserById({ _id: id }, (err, user) => {
             if (err) {
               if (err.name === 'CastError') {
@@ -404,6 +436,12 @@ router.patch(
               } else {
                 return res.status(500).json({ success: false, ...err });
               }
+            }
+            if (!user) {
+              return res.status(404).json({
+                success: false,
+                msg: 'Error 404: user not found.'
+              });
             }
             console.log(user.password);
             return res.status(200).json({
@@ -441,9 +479,21 @@ router.delete('/', auth, async (req, res, next) => {
         }
         return res.status(500).json({ success: false, ...err });
       }
-      Rom.deleteAllRoms({}, err => {
+      if (!status) {
+        return res.status(404).json({
+          success: false,
+          msg: 'Error 404: user not found.'
+        });
+      }
+      Rom.deleteAllRoms({}, (err, romsStatus) => {
         if (err) {
           return res.status(500).json({ success: false, ...err });
+        }
+        if (!romsStatus) {
+          return res.status(404).json({
+            success: false,
+            msg: 'Error 404: user not found.'
+          });
         }
         return res.status(200).json({
           success: true,
@@ -473,12 +523,24 @@ router.delete('/:id', auth, async (req, res, next) => {
           }
           return res.status(500).json({ success: false, ...err });
         }
-        Rom.deleteAllRoms({ userId: id }, err => {
+        if (!status) {
+          return res.status(404).json({
+            success: false,
+            msg: 'Error 404: user not found.'
+          });
+        }
+        Rom.deleteAllRoms({ userId: id }, (err, romsStatus) => {
           if (err) {
             if (err.name === 'CastError') {
               return res.status(404).json({ success: false, ...err });
             }
             return res.status(500).json({ success: false, ...err });
+          }
+          if (!romsStatus) {
+            return res.status(404).json({
+              success: false,
+              msg: 'Error 404: user not found.'
+            });
           }
           return res.status(200).json({
             success: true,
