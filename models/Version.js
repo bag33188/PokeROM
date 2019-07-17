@@ -3,16 +3,21 @@ const mongoose = require('mongoose');
 
 /*
  * uuid.v1()
- * uuid.v4() 
+ * uuid.v4()
  */
 
 // create mongoose schema
-const VersionSchema = mongoose.Schema({
-  apiVersion: String
-});
+const VersionSchema = mongoose.Schema(
+  {
+    apiVersion: String
+  },
+  {
+    versionKey: false
+  }
+);
 
 // create version model
-const Version = module.exports = mongoose.model('Version', VersionSchema);
+const Version = (module.exports = mongoose.model('Version', VersionSchema));
 
 /**
  * @summary Get API Version
@@ -20,7 +25,7 @@ const Version = module.exports = mongoose.model('Version', VersionSchema);
  * @param {string} apiVersion The API's version.
  * @returns {Version} Version object.
  */
-module.exports.getApiVersion = (apiVersion) => {
+module.exports.getApiVersion = apiVersion => {
   const version = new Version({ apiVersion });
   return version;
 };

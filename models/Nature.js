@@ -103,7 +103,7 @@ module.exports.deleteNature = (query, callback) => {
  * @description Deletes all natures in the database.
  * @param {any} callback The callback function.
  */
-module.exports.deleteAllNatures = (callback) => {
+module.exports.deleteAllNatures = callback => {
   Nature.deleteMany(callback);
 };
 
