@@ -399,6 +399,7 @@ router.patch(
       .trim()
       .escape()
   ],
+  auth,
   async (req, res, next) => {
     try {
       const id = req.params.id;
@@ -605,7 +606,7 @@ router.delete('/:id', auth, async (req, res, next) => {
  * @summary Get Head Info.
  * @description Get's header info for entire /api/users route.
  */
-router.head('/', async (req, res, next) => {
+router.head('/', auth, async (req, res, next) => {
   try {
     await res.status(200);
   } catch (err) {
@@ -617,7 +618,7 @@ router.head('/', async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/users/:id route.
  */
-router.head('/:id', async (req, res, next) => {
+router.head('/:id', auth, async (req, res, next) => {
   try {
     const id = req.params.id;
     await res.status(200);
