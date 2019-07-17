@@ -15,7 +15,7 @@ export class ApiService {
   /**
    * @summary Gets the API's Version.
    * @description Sends a get request to /api/version.
-   * @returns An observable.
+   * @returns An observable (api version).
    */
   public getApiVersion(): Observable<ApiVersion> {
     return this.http.get<ApiVersion>(this.apiVersionUrl);
