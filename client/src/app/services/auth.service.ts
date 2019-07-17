@@ -22,6 +22,12 @@ export class AuthService {
     private cookieService: CookiesService
   ) {}
 
+  /**
+   * @summary Authenticates a User.
+   * @description Sends a post to request to /api/users/authenticate
+   * @param user The logged user data.
+   * @returns An observable.
+   */
   public authenticateUser(user: LoggedUser): Observable<RegisteredUser> {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -29,6 +35,12 @@ export class AuthService {
     return this.http.post<RegisteredUser>(this.authUrl, user, { headers });
   }
 
+  /**
+   * @summary Stores the user data in local storage and the JWT as a cookie.
+   * @param token The Bearer token (aka the JWT).
+   * @param user The user data.
+   * @returns nothing (void).
+   */
   public storeData(token: string, user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
     this.cookieService.setCookie('token_id', token, 7);
@@ -36,10 +48,20 @@ export class AuthService {
     this.user = user;
   }
 
+  /**
+   * @summary Checks if the JWT is expired.
+   * @returns True if the JWT is expired, false if it's not.
+   */
   public loggedOut(): boolean {
-    return this.jwtHelper.isTokenExpired(this.cookieService.getCookie('token_id'));
+    return this.jwtHelper.isTokenExpired(
+      this.cookieService.getCookie('token_id')
+    );
   }
 
+  /**
+   * @summary Logs out the user.
+   * @description Clears local storage, sets authToken and user to null, and clears the token_id cookie.
+   */
   public logout(): void {
     this.authToken = null;
     this.user = null;
