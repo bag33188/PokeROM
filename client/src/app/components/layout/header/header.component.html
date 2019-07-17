@@ -23,7 +23,7 @@
         <li class="nav-item">
           <a
             class="nav-link white"
-            [routerLink]="['home']"
+            [routerLink]="['/', 'home']"
             [routerLinkActive]="['yellow']"
             [routerLinkActiveOptions]="{ exact: true }"
             >Home</a
@@ -32,7 +32,7 @@
         <li class="nav-item">
           <a
             class="nav-link white"
-            [routerLink]="['roms']"
+            [routerLink]="['/', 'roms']"
             [routerLinkActive]="['yellow']"
             [routerLinkActiveOptions]="{ exact: false }"
             >ROMs</a
@@ -41,7 +41,7 @@
         <li class="nav-item">
           <a
             class="nav-link white"
-            [routerLink]="['faq']"
+            [routerLink]="['/', 'faq']"
             [routerLinkActive]="['yellow']"
             [routerLinkActiveOptions]="{ exact: true }"
             >FAQ</a
@@ -50,7 +50,7 @@
         <li class="nav-item">
           <a
             class="nav-link white"
-            [routerLink]="['natures']"
+            [routerLink]="['/', 'natures']"
             [routerLinkActive]="['yellow']"
             [routerLinkActiveOptions]="{ exact: true }"
             >Natures</a
@@ -61,7 +61,7 @@
     <div class="my-2 my-lg-0">
       <a
         class="btn btn-primary nav-item"
-        [routerLink]="['login']"
+        [routerLink]="['/', 'login']"
         *ngIf="isRoutes(routes)"
         >Login</a
       >
