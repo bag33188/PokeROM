@@ -1,8 +1,12 @@
-;
-
-#beta-ver-alert-container,
-#cookies-alert-container {
+.alert-container {
   position: fixed;
   width: 100%;
+}
+
+#cookies-alert-container {
+  z-index: 99;
+}
+
+#beta-ver-alert-container {
   z-index: 11;
 }
