@@ -26,7 +26,7 @@ import { environment } from '../environments/environment';
   styles: [
     `
       /* CSS Charset */
-      @charset "UTF-8";
+      ;
     `,
     `
       /* CSS Global Vars */

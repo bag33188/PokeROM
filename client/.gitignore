@@ -1,7 +1,7 @@
 # if gitignore is not working, try this:
 #
-# git rm -r --cached .
-# git add .
+# git rm -r --cached <untracked_files>
+# git add <untracked_files>
 # git commit -m "fixed untracked files"
 # git push
 

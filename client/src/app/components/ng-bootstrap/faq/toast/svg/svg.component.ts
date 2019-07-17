@@ -17,9 +17,6 @@ import { Component } from '@angular/core';
   `,
   styles: [
     `
-      @charset "UTF-8";
-    `,
-    `
       ::ng-deep :root {
         --svg-blue: #4691f6;
       }
