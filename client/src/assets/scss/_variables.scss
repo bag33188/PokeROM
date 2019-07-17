@@ -96,4 +96,4 @@ $footer-height: 2rem;
 $header-height: 56px;
 
 // calculations
-$calc-height: 'calc(100vh - (#{$header-height} + #{$footer-height}))';
+$calc-height: calc(100vh - (#{$header-height} + #{$footer-height}));

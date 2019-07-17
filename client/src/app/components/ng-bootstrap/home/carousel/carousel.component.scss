@@ -22,11 +22,11 @@ h3 {
 
 img {
   filter: brightness(55%);
-  height: unquote($calc-height);
+  height: unquote('#{$calc-height}');
   object-fit: cover;
   position: static;
   width: 100%;
   @media all {
-    height: unquote($calc-height);
+    height: unquote('#{$calc-height}');
   }
 }
