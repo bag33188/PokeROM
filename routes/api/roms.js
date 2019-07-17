@@ -430,7 +430,7 @@ router.put(
           }
           return res.status(500).json({ success: false, ...err });
         }
-        isOwnUser = rom.userId === req.user['_id'].toString();
+        isOwnUser = rom.userId === req.user['_id'].toString() ? true : false;
         fetchedRom = rom;
       });
       if (isOwnUser) {
@@ -557,7 +557,7 @@ router.delete('/:id', auth, async (req, res, next) => {
         }
         return res.status(500).json({ success: false, ...err });
       }
-      isOwnUser = rom.userId === req.user['_id'] ? true : false;
+      isOwnUser = rom.userId === req.user['_id'].toString() ? true : false;
     });
     if (isOwnUser) {
       await Rom.deleteRom({ _id: id }, (err, status) => {
