@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -31,14 +31,13 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
   betaVerAlertId: string;
   faExclamationTriangle: IconDefinition;
 
-  constructor(private elRef: ElementRef) {}
+  constructor() {}
 
   ngOnInit() {
     this.faExclamationTriangle = faExclamationTriangle;
     this.isBeta = !environment.production ? true : false;
     this.setBetaVersionAlert();
     this.getBetaVersionAlert();
-    this.setBetaVersionAlertId();
   }
 
   ngAfterViewInit() {
@@ -90,11 +89,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
     }
   }
 
-  setBetaVersionAlertId(): void {
-    if (/Edge/.test(navigator.userAgent)) {
-      this.betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[0].nodeValue;
-    } else {
-      this.betaVerAlertId = this.elRef.nativeElement.offsetParent.attributes[1].nodeValue;
-    }
+  setBetaVersionAlertId(element: HTMLDivElement): void {
+    this.betaVerAlertId = element.id;
   }
 }
