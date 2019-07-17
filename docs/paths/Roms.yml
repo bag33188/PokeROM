@@ -119,6 +119,8 @@ paths:
         - Roms
       name: Get Options
       summary: Gets Options info
+      security:
+        - bearerAuth: []
       responses:
         204:
           description: No body.

@@ -697,7 +697,7 @@ router.head('/:id', auth, async (req, res, next) => {
  * @summary Get Options.
  * @description Get supported options for this endpoint.
  */
-router.options('/', async (req, res, next) => {
+router.options('/', auth, async (req, res, next) => {
   try {
     await res.status(204);
   } catch (err) {
