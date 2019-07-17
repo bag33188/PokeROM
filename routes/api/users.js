@@ -362,9 +362,23 @@ router.put(
           });
         });
       } else {
-        return await res
-          .status(401)
-          .json({ success: false, msg: 'You cannot update this user.' });
+        await User.getUserById({ _id: id }, (err, user) => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
+          }
+          if (!user) {
+            return res.status(404).json({
+              success: false,
+              msg: 'Error 404: user not found.'
+            });
+          }
+          return res
+            .status(401)
+            .json({ success: false, msg: 'You cannot update this user.' });
+        });
       }
     } catch (err) {
       next(err);
@@ -456,9 +470,23 @@ router.patch(
           });
         });
       } else {
-        return await res
-          .status(401)
-          .json({ success: false, msg: 'You cannot patch this user.' });
+        await User.getUserById({ _id: id }, (err, user) => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
+          }
+          if (!user) {
+            return res.status(404).json({
+              success: false,
+              msg: 'Error 404: user not found.'
+            });
+          }
+          return res
+            .status(401)
+            .json({ success: false, msg: 'You cannot patch this user.' });
+        });
       }
     } catch (err) {
       next(err);
@@ -550,9 +578,23 @@ router.delete('/:id', auth, async (req, res, next) => {
         });
       });
     } else {
-      return await res
-        .status(401)
-        .json({ success: false, msg: 'You cannot delete this user.' });
+      await User.getUserById({ _id: id }, (err, user) => {
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
+        }
+        if (!user) {
+          return res.status(404).json({
+            success: false,
+            msg: 'Error 404: user not found.'
+          });
+        }
+        return res
+          .status(401)
+          .json({ success: false, msg: 'You cannot delete this user.' });
+      });
     }
   } catch (err) {
     next(err);
