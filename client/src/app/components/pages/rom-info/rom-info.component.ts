@@ -53,14 +53,6 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     window.scrollTo(0, 0);
   }
 
-  navTo404(): void {
-    setTimeout((): void => {
-      if (!this.loading && this.isError) {
-        this.router.navigate(['404', this.id]);
-      }
-    }, 215);
-  }
-
   getRom(id: string): void {
     this.romService.getRom(id).subscribe(
       (rom: Rom): void => {
@@ -75,6 +67,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
       (err: any): never => {
         this.loading = false;
         this.isError = true;
+        this.router.navigate(['404', this.id]);
         throw err;
       }
     );
