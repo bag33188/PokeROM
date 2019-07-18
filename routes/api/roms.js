@@ -716,6 +716,9 @@ router.post('/core', auth, async (req, res, next) => {
         if (err) {
           return res.status(500).json({ success: false, ...err });
         }
+        if (!roms) {
+          return res.status(500).json({ success: false });
+        }
         return res.status(201).json(roms);
       });
     });
@@ -734,6 +737,9 @@ router.post('/hacks', auth, async (req, res, next) => {
       Rom.getAllRoms({ userId: req.user['_id'] }, (err, roms) => {
         if (err) {
           return res.status(500).json({ success: false, ...err });
+        }
+        if (!roms) {
+          return res.status(500).json({ success: false });
         }
         setTimeout(() => {
           return res.status(201).json(roms);
