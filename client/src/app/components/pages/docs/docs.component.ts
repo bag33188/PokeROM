@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CookiesService } from 'src/app/services/cookies.service';
-import { ApiService } from 'src/app/services/api.service';
-import { environment } from 'src/environments/environment';
-import ApiVersion from 'src/app/models/ApiVersion';
+import { ApiService } from '../../../services/api.service';
+import ApiVersion from '../../../models/ApiVersion';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-docs',
@@ -13,10 +12,7 @@ export class DocsComponent implements OnInit {
   apiVersion: string;
   apiUrl: string;
   httpVerbs: string[];
-  constructor(
-    private cookieService: CookiesService,
-    private apiService: ApiService
-  ) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.httpVerbs = [
