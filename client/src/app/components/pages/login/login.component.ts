@@ -11,7 +11,6 @@ import { AuthService } from '../../../services/auth.service';
 import LoggedUser from '../../../models/LoggedUser';
 import RegisteredUser from '../../../models/RegisteredUser';
 import sanitizeXSS from './sanitation/sanitizeXSS';
-import { CookiesService } from 'src/app/services/cookies.service';
 
 @Component({
   selector: 'app-login',
@@ -40,11 +39,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private cookieService: CookiesService
-  ) {
+  constructor(private authService: AuthService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
   }
 

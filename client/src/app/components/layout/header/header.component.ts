@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import Route from '../../../interfaces/Route';
-import { CookiesService } from 'src/app/services/cookies.service';
 
 @Component({
   selector: 'app-header',
@@ -13,15 +12,58 @@ export class HeaderComponent implements OnInit {
   routeKey: string;
   loggedOutRoutes: Route[];
   loggedInRoutes: Route[];
+  routes: {
+    class: string;
+    routerLink: string[];
+    routerLinkActive: string[];
+    routerLinkActiveOptions: { exact: boolean };
+    navLinkText: string;
+  }[];
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private cookieService: CookiesService
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.routes = [
+      {
+        class: 'nav-link white',
+        routerLink: ['/', 'home'],
+        routerLinkActive: ['yellow'],
+        routerLinkActiveOptions: { exact: true },
+        navLinkText: 'Home'
+      },
+      {
+        class: 'nav-link white',
+        routerLink: ['/', 'roms'],
+        routerLinkActive: ['yellow'],
+        routerLinkActiveOptions: { exact: false },
+        navLinkText: 'ROMs'
+      },
+      {
+        class: 'nav-link white',
+        routerLink: ['/', 'faq'],
+        routerLinkActive: ['yellow'],
+        routerLinkActiveOptions: { exact: true },
+        navLinkText: 'FAQ'
+      },
+      {
+        class: 'nav-link white',
+        routerLink: ['/', 'natures'],
+        routerLinkActive: ['yellow'],
+        routerLinkActiveOptions: { exact: true },
+        navLinkText: 'Natures'
+      },
+      {
+        class: 'nav-link white',
+        routerLink: ['/', 'docs'],
+        routerLinkActive: ['yellow'],
+        routerLinkActiveOptions: { exact: true },
+        navLinkText: 'Natures'
+      }
+    ];
     this.routeKey = '_routerState';
     this.loggedOutRoutes = [
       {
