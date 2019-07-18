@@ -26,7 +26,8 @@
     "start": "node server",
     "dev": "nodemon server",
     "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./version.sh && bash ./options.sh",
-    "prod": "cd tests && bash ./production.sh"
+    "prod": "cd scripts && bash ./production.sh",
+    "open-pages": "cd scripts && open_pages.bat"
   },
   "private": true,
   "author": "bag33188",
