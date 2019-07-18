@@ -9,9 +9,11 @@ permissions (unix)
 ------------------
 
 add to current permissions
+$ cd scripts
 $ chmod +x ./users.sh
 
 set current permissions
+$ cd scripts
 $ chmod 755 ./users.sh
 --MULTILINE-COMMENT--
 

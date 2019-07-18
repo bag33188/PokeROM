@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# =================
+# Production Script
+# =================
+
+<< --MULTILINE-COMMENT--
+permissions (unix)
+------------------
+
+add to current permissions
+$ cd scripts
+$ chmod +x ./production.sh
+
+set current permissions
+$ cd scripts
+$ chmod 755 ./production.sh
+--MULTILINE-COMMENT--
+
 production() {
   cd ../client
   ng build --prod && (
