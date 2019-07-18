@@ -735,7 +735,9 @@ router.post('/hacks', auth, async (req, res, next) => {
         if (err) {
           return res.status(500).json({ success: false, ...err });
         }
-        return res.status(201).json(roms);
+        setTimeout(() => {
+          return res.status(201).json(roms);
+        }, 320);
       });
     });
   } catch (err) {
