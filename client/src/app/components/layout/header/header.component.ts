@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import Route from '../../../interfaces/Route';
+import { CookiesService } from 'src/app/services/cookies.service';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +11,19 @@ import Route from '../../../interfaces/Route';
 })
 export class HeaderComponent implements OnInit {
   routeKey: string;
-  routes: Route[];
+  loggedOutRoutes: Route[];
+  loggedInRoutes: Route[];
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cookieService: CookiesService
   ) {}
 
   ngOnInit() {
     this.routeKey = '_routerState';
-    this.routes = [
+    this.loggedOutRoutes = [
       {
         url: '/faq',
         pathMatch: 'full'
@@ -31,6 +34,24 @@ export class HeaderComponent implements OnInit {
       },
       {
         url: '/natures',
+        pathMatch: 'full'
+      },
+      {
+        url: '/404',
+        pathMatch: 'prefix'
+      }
+    ];
+    this.loggedInRoutes = [
+      {
+        url: '/roms',
+        pathMatch: 'full'
+      },
+      {
+        url: '/roms',
+        pathMatch: 'prefix'
+      },
+      {
+        url: '/docs',
         pathMatch: 'full'
       },
       {
@@ -59,16 +80,12 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
-    if (
-      this.isUrl('/roms', 'full') ||
-      this.isUrl('roms', 'prefix') ||
-      this.isUrl('/404', 'prefix')
-    ) {
+    if (this.isRoutes(this.loggedInRoutes, true)) {
       this.router.navigate(['home']);
     }
   }
 
-  isRoutes(routes: Route[]): boolean {
+  isRoutes(routes: Route[], loggedIn: boolean): boolean {
     let isOneOfRoutes: boolean = false;
     routes.forEach(
       (route: Route): void => {
@@ -77,6 +94,10 @@ export class HeaderComponent implements OnInit {
         }
       }
     );
-    return isOneOfRoutes && this.isLoggedOut();
+    if (loggedIn) {
+      return isOneOfRoutes;
+    } else {
+      return isOneOfRoutes && this.isLoggedOut();
+    }
   }
 }

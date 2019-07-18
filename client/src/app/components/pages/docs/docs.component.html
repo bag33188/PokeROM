@@ -1,0 +1,78 @@
+<div class="container mt-4">
+  <h1 class="mt-3">Docs</h1>
+  <div class="border p-4 bg-light rounded">
+    <ng-container>
+      <h2 class="text-center mb-4">API Documentation</h2>
+      <div class="text-justified">
+        <p>
+          You can view the API documentation by clicking
+          <a href="{{ apiUrl }}/api/docs/{{ apiVersion }}" target="_blank"
+            >here</a
+          >. The documentation was generated with
+          <a href="https://swagger.io/docs/" target="_blank">Swagger</a>. In
+          these docs, you will find ways to make API requests to a various
+          amount of endpoints.
+        </p>
+        <ng-container>
+          Some of the following HTTP verbs in those requests include:
+          <ul>
+            <li *ngFor="let verb of httpVerbs">
+              {{ verb }}
+            </li>
+          </ul>
+        </ng-container>
+        <p>
+          You will need to authenticate/authorize yourself if you wish to make
+          requests to all of the
+          <code>/api/roms</code> endpoints and most of the
+          <code>/api/users</code> endpoints.
+          <br />
+          This API uses <strong>JWT</strong> (JSON Web Token) authentication,
+          also known as a <strong>Bearer Token</strong>.
+        </p>
+      </div>
+    </ng-container>
+    <ng-container>
+      <h2 class="text-center mt-4 mb-4">Application Development Information</h2>
+      <div class="text-justified">
+        <p>
+          This application uses the <strong>MEAN stack</strong>, which stands
+          for <span class="underline">MongoDB</span>,
+          <span class="underline">Express.JS</span>,
+          <span class="underline">Angular 2</span>, and
+          <span class="underline">Node.JS</span>.
+        </p>
+        <p>
+          <ng-container>
+            <span class="font-italic">MongoDB</span> serves as the
+            <span class="highlighted">database</span> for the entire
+            application. It is a document-typed database.
+          </ng-container>
+          <br />
+          <ng-container>
+            <span class="font-italic">Express.JS</span> serves as the
+            <span class="highlighted">API</span> for the entire application. API
+            stands for
+            <span class="underline">Application Programmed Interface</span>. It
+            is the middleman between the website and the database, constantly
+            sending data in between the two.
+          </ng-container>
+          <br />
+          <ng-container>
+            <span class="font-italic">Angular 2</span> is the
+            <span class="highlighted">client</span>. It represents the website.
+            It is the very front of the application, the part that the user can
+            see and interact with.
+          </ng-container>
+          <br />
+          <ng-container>
+            <span class="font-italic">Node.JS</span> is the
+            <span class="highlighted">runtime</span>. It is responsible for
+            making sure the whole application is running properly. The whole
+            application responds to and runs on Node.JS.
+          </ng-container>
+        </p>
+      </div>
+    </ng-container>
+  </div>
+</div>

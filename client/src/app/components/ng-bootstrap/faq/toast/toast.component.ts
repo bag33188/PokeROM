@@ -35,8 +35,4 @@ export class ToastComponent implements OnInit {
     this.show = JSON.parse(localStorage.getItem('show-toast'));
     // setTimeout((): boolean => (this.show = true), 5000);
   }
-
-  userLoggedIn(): boolean {
-    return localStorage.getItem('user') ? true : false;
-  }
 }

@@ -56,13 +56,22 @@
             >Natures</a
           >
         </li>
+        <li class="nav-item">
+          <a
+            class="nav-link white"
+            [routerLink]="['/', 'docs']"
+            [routerLinkActive]="['yellow']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Docs</a
+          >
+        </li>
       </ul>
     </div>
     <div class="my-2 my-lg-0">
       <a
         class="btn btn-primary nav-item"
         [routerLink]="['/', 'login']"
-        *ngIf="isRoutes(routes)"
+        *ngIf="isRoutes(loggedOutRoutes, false)"
         >Login</a
       >
       <button

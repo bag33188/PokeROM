@@ -22,6 +22,7 @@ import { AuthService } from '../../services/auth.service';
 import { RomsService } from '../../services/roms.service';
 import { AuthGuard } from '../../guards/auth.guard';
 import { RomsModule } from '../../components/roms/roms.module';
+import { DocsComponent } from './docs/docs.component';
 import { NgBootstrapModule } from '../../components/ng-bootstrap/ng-bootstrap.module';
 
 @NgModule({
@@ -32,7 +33,8 @@ import { NgBootstrapModule } from '../../components/ng-bootstrap/ng-bootstrap.mo
     NotFoundComponent,
     LoginComponent,
     FaqComponent,
-    NaturesComponent
+    NaturesComponent,
+    DocsComponent
   ],
   imports: [
     CommonModule,

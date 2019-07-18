@@ -19,7 +19,7 @@ export class PopupComponent implements OnInit {
         (this.isRomHack = this.romHackTxtIdentifier.test(this.gameName)
           ? true
           : false),
-      1000
+      555
     );
   }
 
