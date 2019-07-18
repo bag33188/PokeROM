@@ -10,7 +10,7 @@ import Rom from '../../../../models/Rom';
 export class GameDescriptionComponent implements OnInit {
   @Input() rom: Rom;
   faFileAlt: IconDefinition;
-  @HostListener('window:load')
+  @HostListener('document:load')
   windowOnLoad(): void {
     if (this.rom) {
       this.rom.description = this.changeUrlToLink(this.rom.description);

@@ -20,7 +20,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
   loading: boolean = true;
   noRomsMsg: string = '';
   limit: number = 35;
-  @HostListener('window:load')
+  @HostListener('document:load')
   windowOnLoad(): void {
     if (!this.loading) {
       this.noRomsMsg = 'No ROMs to Show';
