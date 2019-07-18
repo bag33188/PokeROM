@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { faFileAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../../models/Rom';
 
@@ -10,14 +10,16 @@ import Rom from '../../../../models/Rom';
 export class GameDescriptionComponent implements OnInit {
   @Input() rom: Rom;
   faFileAlt: IconDefinition;
-
+  @HostListener('window:load')
+  windowOnLoad(): void {
+    if (this.rom) {
+      this.rom.description = this.changeUrlToLink(this.rom.description);
+    }
+  }
   constructor() {}
 
   ngOnInit() {
     this.faFileAlt = faFileAlt;
-    setTimeout((): void => {
-      this.rom.description = this.changeUrlToLink(this.rom.description);
-    }, 555);
   }
 
   isRomHack(gameName: string): boolean {
