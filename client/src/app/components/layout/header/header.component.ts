@@ -136,10 +136,6 @@ export class HeaderComponent implements OnInit {
         }
       }
     );
-    if (loggedIn) {
-      return isOneOfRoutes;
-    } else {
-      return isOneOfRoutes && this.isLoggedOut();
-    }
+    return loggedIn ? isOneOfRoutes : isOneOfRoutes && this.isLoggedOut();
   }
 }
