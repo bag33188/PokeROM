@@ -17,7 +17,7 @@ export class GameDescriptionComponent implements OnInit {
     this.faFileAlt = faFileAlt;
     setTimeout((): void => {
       this.rom.description = this.changeUrlToLink(this.rom.description);
-    }, 1000);
+    }, 115);
   }
 
   isRomHack(gameName: string): boolean {
