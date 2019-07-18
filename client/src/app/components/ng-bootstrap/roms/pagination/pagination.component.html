@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-center pt-4" (window:resize)="setWidth()">
   <ngb-pagination
     aria-label="ROMs pagination"
-    [boundaryLinks]="pageWidth > 600"
-    [directionLinks]="pageWidth > 600"
+    [boundaryLinks]="pageWidth > 600 && romsData.length > 0"
+    [directionLinks]="pageWidth > 600 && romsData.length > 0"
     [collectionSize]="romsData.length"
     #numPages
     [pageSize]="itemsPerPage"
