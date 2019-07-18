@@ -1,6 +1,6 @@
 @ECHO OFF
 
-:OPEN_PAGES
+:OPEN_SITES
   REM PokeROM Github page
   START "" https://github.com/bag33188/PokeROM
   REM PokeROM Setup Github page

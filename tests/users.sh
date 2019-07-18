@@ -15,7 +15,7 @@ set current permissions
 $ chmod 755 ./users.sh
 --MULTILINE-COMMENT--
 
-userTests() {
+user_tests() {
   echo "Testing the /api/users endpoints..."
   printf "\r\n"
   while [ true ]
@@ -29,16 +29,16 @@ userTests() {
     read -p "Enter JSON Web Token: " jwt
     printf "\r\n"
     get() {
-      getAll() {
+      get_all() {
         echo "Testing GET: /api/users"
         printf "\r\n"
         curl -i -X GET "http://localhost:5000/api/users" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '1' ]]; then
-        getAll
+        get_all
       fi
-      getSingle() {
+      get_single() {
         echo "Testing GET: /api/users/:id"
         printf "\r\n"
         read -p "Enter User ID: " id
@@ -47,14 +47,14 @@ userTests() {
         printf "\r\n\r\n"
       }
       if [[ $rqst == '2' ]]; then
-        getSingle
+        get_single
       fi
     }
     if [[ $rqst == '1' || $rqst == '2' ]]; then
       get
     fi
     post() {
-      postUser() {
+      post_user() {
         echo "Testing POST: /api/users"
         printf "\r\n"
         read -p "Enter User Data (escape quotes): " data
@@ -63,9 +63,9 @@ userTests() {
         printf "\r\n\r\n"
       }
       if [[ $rqst == '3' ]]; then
-        postUser
+        post_user
       fi
-      registerUser() {
+      register_user() {
         echo "Testing POST: /api/users/register"
         printf "\r\n"
         read -p "Enter New User Data (escape quotes): " data
@@ -74,9 +74,9 @@ userTests() {
         printf "\r\n\r\n"
       }
       if [[ $rqst == '4' ]]; then
-        registerUser
+        register_user
       fi
-      authenticateUser() {
+      authenticate_user() {
        echo "Testing POST: /api/users/authenticate"
         printf "\r\n"
         read -p "Enter Existing User Data (escape quotes): " data
@@ -85,7 +85,7 @@ userTests() {
         printf "\r\n\r\n"
       }
       if [[ $rqst == '5' ]]; then
-        authenticateUser
+        authenticate_user
       fi
     }
     if [[ $rqst == '3' || $rqst == '4' || $rqst == '5' ]]; then
@@ -118,7 +118,7 @@ userTests() {
       patch
     fi
     delete() {
-      deleteSingle() {
+      delete_single() {
         echo "Testing DELETE: /api/users/:id"
         printf "\r\n"
         read -p "Enter User ID: " id
@@ -127,32 +127,32 @@ userTests() {
         printf "\r\n\r\n"
       }
       if [[ $rqst == '8' ]]; then
-        deleteSingle
+        delete_single
       fi
-      deleteAll() {
+      delete_all() {
         echo "Testing DELETE: /api/users"
         printf "\r\n"
         curl -i -X DELETE "http://localhost:5000/api/users" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '9' ]]; then
-        deleteAll
+        delete_all
       fi
     }
     if [[ $rqst == '8' || $rqst == '9' ]]; then
       delete
     fi
     head() {
-      headAll() {
+      head_all() {
         echo "Testing HEAD: /api/users"
         printf "\r\n"
         curl -i --head "http://localhost:5000/api/users/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '10' ]]; then
-        headAll
+        head_all
       fi
-      headSingle() {
+      head_single() {
         echo "Testing HEAD: /api/users/:id"
         printf "\r\n"
         read -p 'Enter User ID: ' id
@@ -161,7 +161,7 @@ userTests() {
         printf "\r\n\r\n"
       }
       if [[ $rqst == '11' ]]; then
-        headSingle
+        head_single
       fi
     }
     if [[ $rqst == '10' || $rqst == '11' ]]; then
@@ -172,7 +172,7 @@ userTests() {
     continue
   done
 }
-userTests
+user_tests
 
 read -n 1 -s -r -p "Press any key to exit"
 echo -e "\r\n"

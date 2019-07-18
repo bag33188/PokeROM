@@ -15,7 +15,7 @@ set current permissions
 $ chmod 755 ./roms.sh
 --MULTILINE-COMMENT--
 
-romTests() {
+rom_tests() {
   echo "Testing the /api/roms endpoints..."
   printf "\r\n"
   while [ true ]
@@ -29,16 +29,16 @@ romTests() {
     read -p "Enter JSON Web Token: " jwt
     printf "\r\n"
     get() {
-      getAll() {
+      get_all() {
         echo "Testing GET: /api/roms"
         printf "\r\n"
         curl -i -X GET "http://localhost:5000/api/roms" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '1' ]]; then
-        getAll
+        get_all
       fi
-      getSingle() {
+      get_single() {
         echo "Testing GET: /api/roms/:id"
         printf "\r\n"
         read -p "Enter ROM ID: " id
@@ -47,7 +47,7 @@ romTests() {
         printf "\r\n\r\n"
       }
       if [[ $rqst == '2' ]]; then
-        getSingle
+        get_single
       fi
     }
     if [[ $rqst == '1' || $rqst == '2' ]]; then
@@ -91,7 +91,7 @@ romTests() {
       patch
     fi
     delete() {
-      deleteSingle() {
+      delete_single() {
         echo "Testing DELETE: /api/roms/:id"
         printf "\r\n"
         read -p "Enter ROM ID: " id
@@ -100,32 +100,32 @@ romTests() {
         printf "\r\n\r\n"
       }
       if [[ $rqst == '6' ]]; then
-        deleteSingle
+        delete_single
       fi
-      deleteAll() {
+      delete_all() {
         echo "Testing DELETE: /api/roms"
         printf "\r\n"
         curl -i -X DELETE "http://localhost:5000/api/roms" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '7' ]]; then
-        deleteAll
+        delete_all
       fi
     }
     if [[ $rqst == '6' || $rqst == '7' ]]; then
       delete
     fi
     head() {
-      headAll() {
+      head_all() {
         echo "Testing HEAD: /api/roms"
         printf "\r\n"
         curl -i --head "http://localhost:5000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '8' ]]; then
-        headAll
+        head_all
       fi
-      headSingle() {
+      head_single() {
         echo "Testing HEAD: /api/roms/:id"
         printf "\r\n"
         read -p 'Enter ROM ID: ' id
@@ -134,7 +134,7 @@ romTests() {
         printf "\r\n\r\n"
       }
     if [[ $rqst == '9' ]]; then
-        headSingle
+        head_single
       fi
     }
     if [[ $rqst == '8' || $rqst == '9' ]]; then
@@ -149,21 +149,21 @@ romTests() {
     if [[ $rqst == '10' ]]; then
       options
     fi
-    postCore() {
+    post_core() {
       echo "Testing POST /api/roms/core"
       printf "\r\n"
       curl -i -X POST "http://localhost:5000/api/roms/core" -H  "accept: application/json" -H  "Authorization: $jwt"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '11' ]]; then
-      postCore
+      post_core
     fi
     read -p 'Press enter to continue'
     printf "\r\n"
     continue
   done
 }
-romTests
+rom_tests
 
 read -n 1 -s -r -p "Press any key to exit"
 echo -e "\r\n"

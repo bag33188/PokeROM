@@ -15,7 +15,7 @@ set current permissions
 $ chmod 755 ./options.sh
 --MULTILINE-COMMENT--
 
-optionsTest() {
+options_test() {
   echo "Testing the /options endpoint..."
   printf "\r\n"
   options() {
@@ -26,7 +26,7 @@ optionsTest() {
   }
   options
 }
-optionsTest
+options_test
 
 read -n 1 -s -r -p "Press any key to exit"
 echo -e "\r\n"

@@ -15,7 +15,7 @@ set current permissions
 $ chmod 755 ./version.sh
 --MULTILINE-COMMENT--
 
-versionTest() {
+version_test() {
   echo "Testing the /api/version endpoint..."
   printf "\r\n"
   get() {
@@ -26,7 +26,7 @@ versionTest() {
   }
   get
 }
-versionTest
+version_test
 
 read -n 1 -s -r -p "Press any key to exit"
 echo -e "\r\n"
