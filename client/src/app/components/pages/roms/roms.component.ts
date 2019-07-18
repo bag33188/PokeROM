@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  AfterContentInit,
-  HostListener
-} from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { RomsService } from '../../../services/roms.service';
 import Rom from '../../../models/Rom';
 
@@ -20,12 +15,6 @@ export class RomsComponent implements OnInit, AfterContentInit {
   loading: boolean = true;
   noRomsMsg: string = '';
   limit: number = 35;
-  @HostListener('document:load')
-  windowOnLoad(): void {
-    if (!this.loading) {
-      this.noRomsMsg = 'No ROMs to Show';
-    }
-  }
 
   constructor(private romsService: RomsService) {}
 
@@ -43,6 +32,9 @@ export class RomsComponent implements OnInit, AfterContentInit {
       (roms: Rom[]): void => {
         this.romsData = roms;
         this.loading = false;
+        if (!this.loading && this.romsData.length === 0) {
+          this.noRomsMsg = 'No ROMs to Show';
+        }
       },
       (err: any): never => {
         throw err;
