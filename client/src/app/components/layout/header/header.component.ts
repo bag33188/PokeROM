@@ -79,6 +79,10 @@ export class HeaderComponent implements OnInit {
         pathMatch: 'full'
       },
       {
+        url: '/docs',
+        pathMatch: 'full'
+      },
+      {
         url: '/404',
         pathMatch: 'prefix'
       }
@@ -91,10 +95,6 @@ export class HeaderComponent implements OnInit {
       {
         url: '/roms',
         pathMatch: 'prefix'
-      },
-      {
-        url: '/docs',
-        pathMatch: 'full'
       },
       {
         url: '/404',
