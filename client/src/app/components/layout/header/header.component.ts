@@ -68,7 +68,7 @@ export class HeaderComponent implements OnInit {
     this.loggedOutRoutes = [
       {
         url: '/faq',
-        pathMatch: 'full'
+        pathMatch: 'prefix'
       },
       {
         url: '/home',
