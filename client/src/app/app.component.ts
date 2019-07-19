@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from './services/logger.service';
 import { ApiService } from './services/api.service';
 import ApiVersion from './models/ApiVersion';
@@ -16,7 +17,7 @@ import { environment } from '../environments/environment';
         <section>
           <app-body></app-body>
         </section>
-        <section>
+        <section [ngClass]="{ 'bg-primary': isHomePage() }">
           <app-footer [appName]="title"></app-footer>
         </section>
       </div>
@@ -46,7 +47,11 @@ import { environment } from '../environments/environment';
 export class AppComponent {
   readonly title: string = 'PokéROM';
 
-  constructor(private logger: LoggerService, private apiService: ApiService) {
+  constructor(
+    private logger: LoggerService,
+    private apiService: ApiService,
+    private route: ActivatedRoute
+  ) {
     this.changeTitleIfDevEnv();
     this.getApiVersionIfDevEnv();
   }
@@ -68,5 +73,10 @@ export class AppComponent {
         }
       );
     }
+  }
+
+  isHomePage(): boolean {
+    const routeKey: string = '_routerState';
+    return this.route[routeKey].snapshot.url === '/home';
   }
 }

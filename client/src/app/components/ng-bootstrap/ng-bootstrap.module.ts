@@ -7,6 +7,7 @@ import { AccordionComponent } from './home/accordion/accordion.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
 import { PaginationComponent } from './roms/pagination/pagination.component';
 import { TabsetComponent } from './faq/tabset/tabset.component';
+import { JumbotronComponent } from './home/jumbotron/jumbotron.component';
 import { PopupComponent } from './rom-info/popup/popup.component';
 import { ToastComponent } from './faq/toast/toast.component';
 import { SvgComponent } from './faq/toast/svg/svg.component';
@@ -21,7 +22,8 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     ModalContentComponent,
     PopupComponent,
     ToastComponent,
-    SvgComponent
+    SvgComponent,
+    JumbotronComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [CommonModule, NgbModule, BrowserModule, RouterModule],
@@ -31,7 +33,8 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     PaginationComponent,
     TabsetComponent,
     PopupComponent,
-    ToastComponent
+    ToastComponent,
+    JumbotronComponent
   ]
 })
 export class NgBootstrapModule {}
