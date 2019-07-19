@@ -22,12 +22,12 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     private romService: RomsService,
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.faBackspace = faBackspace;
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
     this.loading = true;
     this.isError = false;
     this.rom = {

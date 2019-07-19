@@ -1,9 +1,7 @@
-@import '../../../../assets/scss/variables';
-
 .underline {
   text-decoration: underline;
 }
 
-.highlighted {
-  background-color: $yellow;
+.json-code-block {
+  white-space: pre;
 }

@@ -9,7 +9,7 @@ const secret = config.get('secret');
 const User = require('../../models/User');
 const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
-const coreRomsData = require('../../database/data.json')[0];
+const romsData = require('../../database/data.json');
 const router = express.Router();
 
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
@@ -130,8 +130,11 @@ router.post(
               msg: 'Error 404: user not found.'
             });
           }
-          Rom.postCore(coreRomsData, user, () => {
+          Rom.postCore(romsData[0], user, () => {
             console.log(`Core ROMs added for user '${user.username}'.`);
+          });
+          Rom.postHacks(romsData[1], user, () => {
+            console.log(`ROM Hacks added for user '${user.username}'.`);
           });
           res.append(
             'Created-At-Route',

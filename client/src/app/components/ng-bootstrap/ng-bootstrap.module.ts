@@ -10,6 +10,7 @@ import { PopupComponent } from './rom-info/popup/popup.component';
 import { ToastComponent } from './faq/toast/toast.component';
 import { SvgComponent } from './faq/toast/svg/svg.component';
 import { ModalContentComponent } from './faq/modal/modal-content.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     SvgComponent
   ],
   entryComponents: [ModalContentComponent],
-  imports: [CommonModule, NgbModule, BrowserModule],
+  imports: [CommonModule, NgbModule, BrowserModule, RouterModule],
   exports: [
     AccordionComponent,
     CarouselComponent,

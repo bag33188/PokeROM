@@ -22,7 +22,7 @@
             </li>
           </ul>
         </ng-container>
-        <p>
+        <p id="register">
           You will need to authenticate/authorize yourself if you wish to make
           requests to all of the
           <code>/api/roms</code> endpoints and most of the
@@ -31,6 +31,48 @@
           This API uses <strong>JWT</strong> (JSON Web Token) authentication,
           also known as a <strong>Bearer Token</strong>.
         </p>
+      </div>
+    </ng-container>
+    <ng-container>
+      <h2 class="text-center mt-4 mb-4">Register as a User</h2>
+      <div class="text-justified">
+        To register as a user, you must first visit the
+        <strong>API Documentation</strong> page at
+        <code>/api/docs/{{ apiVersion }}</code> (linked above).
+        <br />
+        There, you will you need to scroll down to the
+        <code>Users</code> section and expand the
+        <code>/api/users/register</code> section.
+        <br />
+        Then click the <code>Try it out</code> button.
+        <br />
+        You should then see a textbox with something like this in it:
+        <br />
+        <code class="json-code-block">
+          {{
+            '{\r\n&nbsp;&nbsp;&nbsp;&nbsp;"_id":"string",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"name":"string",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"email":"string",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"username":"string",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"password":"string"\r\n}'
+          }}
+        </code>
+        <br />
+        First, delete the <code>"_id":"string",</code> part. Then replace the
+        <code>string</code> part with your information.<br />Here's an
+        example:<br />
+        <code class="json-code-block">
+          {{
+            '{\r\n&nbsp;&nbsp;&nbsp;&nbsp;"name":"John Doe",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"email":"jdoe123@gmail.com",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"username":"john_doe",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"password":"12345678"\r\n}'
+          }}
+        </code>
+        <br />
+        Then click the <code>Execute</code> button.
+        <br />
+        Done! You are now registered as a user!
+        <br />
+        You should be able to login using that information and have all the core
+        Pok&eacute;mon ROMs and the 2 ROM hacks (Pok&eacute;mon Prism and
+        Pok&eacute;mon Ash Gray).
+        <br />
+        If you get any errors when registering, read what they are, and fix your
+        data so that they match the registration criteria.
       </div>
     </ng-container>
     <ng-container>
@@ -95,11 +137,9 @@
             </ng-container>
             <br />
             <ng-container>
-              This application was developed on a native Windows machine (<span
-                class="highlighted"
-                >Surface Pro 6</span
-              >), but can also be run in a development (and production)
-              environment on a Mac device running OSX.
+              This application was developed on a native Windows machine
+              (Surface Pro 6), but can also be run in a development (and
+              production) environment on a Mac device running OSX.
             </ng-container>
           </p>
         </ng-container>

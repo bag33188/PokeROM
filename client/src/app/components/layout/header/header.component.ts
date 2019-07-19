@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -100,10 +100,10 @@ export class HeaderComponent implements OnInit {
   isUrl(url: string, pathMatch: string): boolean {
     switch (pathMatch) {
       case 'full':
-        return this.activatedRoute[this.routeKey].snapshot.url === url;
+        return this.route[this.routeKey].snapshot.url === url;
       case 'prefix':
         return new RegExp(url.replace('/', '\\/'), 'i').test(
-          this.activatedRoute[this.routeKey].snapshot.url
+          this.route[this.routeKey].snapshot.url
         );
       default:
         return location.pathname === url;
