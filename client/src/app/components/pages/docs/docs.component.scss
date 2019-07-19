@@ -1,3 +1,9 @@
+@import '../../../../assets/scss/variables';
+
 .underline {
   text-decoration: underline;
+}
+
+.highlighted {
+  background-color: $yellow;
 }
