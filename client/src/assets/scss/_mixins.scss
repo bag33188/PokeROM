@@ -6,7 +6,13 @@
   }
 }
 
-@mixin list-container($margin-bottom, $margin-left, $margin-top, $max-width, $margin) {
+@mixin list-container(
+  $margin-bottom,
+  $margin-left,
+  $margin-top,
+  $max-width,
+  $margin
+) {
   margin-bottom: $margin-bottom;
   margin-left: $margin-left;
   margin-top: $margin-top;
