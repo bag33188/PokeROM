@@ -9,6 +9,7 @@ import {
   NgbAlertModule
 } from '@ng-bootstrap/ng-bootstrap';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RomsComponent } from './roms/roms.component';
 import { RomInfoComponent } from './rom-info/rom-info.component';
@@ -23,7 +24,6 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { RomsModule } from '../../components/roms/roms.module';
 import { DocsComponent } from './docs/docs.component';
 import { NgBootstrapModule } from '../../components/ng-bootstrap/ng-bootstrap.module';
-import { AppRoutingModule } from 'src/app/routes/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,9 @@ import { AppRoutingModule } from 'src/app/routes/app-routing.module';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule,
+    RouterModule.forRoot([], {
+      anchorScrolling: 'enabled'
+    }),
     NgbPaginationModule,
     NgbAlertModule,
     NgbModule,

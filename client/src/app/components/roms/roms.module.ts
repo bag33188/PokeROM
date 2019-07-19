@@ -40,4 +40,4 @@ import { RomSpecsComponent } from './rom-info/rom-specs/rom-specs.component';
     RomSpecsComponent
   ]
 })
-export class RomsModule { }
+export class RomsModule {}

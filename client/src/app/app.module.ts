@@ -7,24 +7,18 @@ import { RomsModule } from './components/roms/roms.module';
 import { NgBootstrapModule } from './components/ng-bootstrap/ng-bootstrap.module';
 import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PagesModule,
     LayoutModule,
     RomsModule,
-    NgBootstrapModule,
-    RouterModule.forRoot([], {
-      anchorScrolling: 'enabled'
-    })
+    NgBootstrapModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
