@@ -5,7 +5,10 @@
       <span *ngSwitchCase="false">{{ appName }}</span>
       <span *ngSwitchDefault>{{ appName }} Web App</span>
     </ng-container>
-    | &copy; {{ getYear() }} Broccolini/bag33188 |
+    | &copy; {{ getYear() }} Broccolini<span *ngIf="!environment.production"
+      >/bag33188</span
+    >
+    |
     <a href="https://opensource.org/licenses/MIT" target="_blank"
       >MIT License</a
     >
