@@ -9,12 +9,14 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./docs.component.scss']
 })
 export class DocsComponent implements OnInit {
+  sourceCodeUrl: string;
   apiVersion: string;
   apiUrl: string;
   httpVerbs: string[];
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
+    this.sourceCodeUrl = 'https://github.com/bag33188/PokeROM';
     this.httpVerbs = [
       'GET',
       'POST',
