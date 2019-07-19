@@ -512,9 +512,8 @@ router.delete('/', auth, async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!status) {
-        return res.status(404).json({
-          success: false,
-          msg: 'Error 404: user not found.'
+        return res.status(500).json({
+          success: false
         });
       }
       Rom.deleteAllRoms({}, (err, romsStatus) => {
@@ -522,9 +521,8 @@ router.delete('/', auth, async (req, res, next) => {
           return res.status(500).json({ success: false, ...err });
         }
         if (!romsStatus) {
-          return res.status(404).json({
-            success: false,
-            msg: 'Error 404: user not found.'
+          return res.status(500).json({
+            success: false
           });
         }
         return res.status(200).json({

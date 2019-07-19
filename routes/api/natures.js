@@ -123,7 +123,7 @@ router.post(
       }
       await Nature.addNature(nature, (err, nature) => {
         if (err) {
-          if (err.name = 'ValidationError') {
+          if ((err.name = 'ValidationError')) {
             return res.status(400).json({ success: false, ...err });
           } else {
             return res.status(500).json({ success: false, ...err });
@@ -377,9 +377,8 @@ router.delete('/', async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!status) {
-        return res.status(404).json({
-          success: false,
-          msg: 'Error 404: nature not found.'
+        return res.status(500).json({
+          success: false
         });
       }
       return res.status(200).json({
