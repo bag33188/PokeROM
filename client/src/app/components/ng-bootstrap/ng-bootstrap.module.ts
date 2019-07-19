@@ -30,9 +30,7 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     CommonModule,
     NgbModule,
     BrowserModule,
-    RouterModule.forRoot([], {
-      anchorScrolling: 'enabled'
-    })
+    RouterModule
   ],
   exports: [
     AccordionComponent,

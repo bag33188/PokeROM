@@ -7,6 +7,7 @@ import { RomsModule } from './components/roms/roms.module';
 import { NgBootstrapModule } from './components/ng-bootstrap/ng-bootstrap.module';
 import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,10 @@ import { AppComponent } from './app.component';
     PagesModule,
     LayoutModule,
     RomsModule,
-    NgBootstrapModule
+    NgBootstrapModule,
+    RouterModule.forRoot([], {
+      anchorScrolling: 'enabled'
+    })
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

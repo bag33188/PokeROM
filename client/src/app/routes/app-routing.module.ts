@@ -3,7 +3,9 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

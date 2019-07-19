@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NgbModule,
@@ -24,6 +23,7 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { RomsModule } from '../../components/roms/roms.module';
 import { DocsComponent } from './docs/docs.component';
 import { NgBootstrapModule } from '../../components/ng-bootstrap/ng-bootstrap.module';
+import { AppRoutingModule } from 'src/app/routes/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -41,9 +41,7 @@ import { NgBootstrapModule } from '../../components/ng-bootstrap/ng-bootstrap.mo
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([], {
-      anchorScrolling: 'enabled'
-    }),
+    AppRoutingModule,
     NgbPaginationModule,
     NgbAlertModule,
     NgbModule,

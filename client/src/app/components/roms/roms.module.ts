@@ -24,7 +24,7 @@ import { RomSpecsComponent } from './rom-info/rom-specs/rom-specs.component';
   ],
   imports: [
     CommonModule,
-    RouterModule.forRoot([]),
+    RouterModule,
     NgbModule,
     NgBootstrapModule,
     FontAwesomeModule
