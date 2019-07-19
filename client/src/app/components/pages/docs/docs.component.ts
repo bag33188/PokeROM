@@ -27,10 +27,12 @@ export class DocsComponent implements OnInit {
       'OPTIONS'
     ];
     this.apiUrl = environment.apiUrl;
+    this.getApiVersion();
+  }
+
+  getApiVersion(): void {
     this.apiService.getApiVersion().subscribe(
-      (res: ApiVersion) => {
-        this.apiVersion = res.apiVersion;
-      },
+      (res: ApiVersion): string => (this.apiVersion = res.apiVersion),
       (err: any): never => {
         throw err;
       }
