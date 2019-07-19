@@ -27,14 +27,10 @@ export class FaqComponent implements OnInit, AfterContentInit {
   ngAfterContentInit() {
     switch (this.route.snapshot.fragment) {
       case 'browser-compatibility':
-        this.browserCompatibilityElement.nativeElement.scrollIntoView({
-          block: 'start'
-        });
+        this.browserCompatibilityElement.nativeElement.scrollIntoView();
         break;
       case 'cookies':
-        this.cookiesElement.nativeElement.scrollIntoView({
-          block: 'start'
-        });
+        this.cookiesElement.nativeElement.scrollIntoView();
         break;
       default:
         window.scrollTo(0, 0);

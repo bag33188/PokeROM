@@ -5,7 +5,7 @@ import { routes } from './routes';
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      // anchorScrolling: 'enabled'
+      anchorScrolling: 'enabled'
     })
   ],
   exports: [RouterModule]

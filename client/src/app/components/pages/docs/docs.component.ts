@@ -40,12 +40,16 @@ export class DocsComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    if (this.route.snapshot.fragment === 'register') {
-      this.registerElement.nativeElement.scrollIntoView({
-        block: 'start'
-      });
+    switch (this.route.snapshot.fragment) {
+      case 'register':
+        this.registerElement.nativeElement.scrollIntoView();
+        break;
+      default:
+        window.scrollTo(0, 0);
+        break;
     }
   }
+
   getApiVersion(): void {
     this.apiService.getApiVersion().subscribe(
       (res: ApiVersion): string => (this.apiVersion = res.apiVersion),
