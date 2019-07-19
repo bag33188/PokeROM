@@ -40,6 +40,12 @@ export class HeaderComponent implements OnInit {
         navLinkText: 'ROMs'
       },
       {
+        routerLink: ['/', 'natures'],
+        routerLinkActive: ['yellow'],
+        routerLinkActiveOptions: { exact: true },
+        navLinkText: 'Natures'
+      },
+      {
         routerLink: ['/', 'faq'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
@@ -50,12 +56,6 @@ export class HeaderComponent implements OnInit {
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
         navLinkText: 'Docs'
-      },
-      {
-        routerLink: ['/', 'natures'],
-        routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: { exact: true },
-        navLinkText: 'Natures'
       }
     ];
     this.routeKey = '_routerState';
