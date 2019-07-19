@@ -1,26 +1,16 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import * as $ from 'jquery';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss']
 })
-export class FaqComponent implements OnInit, AfterContentInit {
+export class FaqComponent implements OnInit {
   emulatorUrl: string;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit() {
     this.emulatorUrl = 'https://www.retroarch.com';
-  }
-
-  ngAfterContentInit() {
-    if (!this.route.snapshot.fragment) {
-      window.scrollTo(0, 0);
-    } else {
-      $('#' + this.route.snapshot.fragment)[0].scrollIntoView();
-    }
   }
 }

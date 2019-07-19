@@ -41,7 +41,9 @@ import { NgBootstrapModule } from '../../components/ng-bootstrap/ng-bootstrap.mo
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([], {
+      anchorScrolling: 'enabled'
+    }),
     NgbPaginationModule,
     NgbAlertModule,
     NgbModule,

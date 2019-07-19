@@ -1,6 +1,5 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as $ from 'jquery';
 import { ApiService } from '../../../services/api.service';
 import ApiVersion from '../../../models/ApiVersion';
 import { environment } from '../../../../environments/environment';
@@ -10,12 +9,12 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss']
 })
-export class DocsComponent implements OnInit, AfterContentInit {
+export class DocsComponent implements OnInit {
   sourceCodeUrl: string;
   apiVersion: string;
   apiUrl: string;
   httpVerbs: string[];
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.sourceCodeUrl = 'https://github.com/bag33188/PokeROM';
@@ -39,13 +38,5 @@ export class DocsComponent implements OnInit, AfterContentInit {
         throw err;
       }
     );
-  }
-
-  ngAfterContentInit() {
-    if (!this.route.snapshot.fragment) {
-      window.scrollTo(0, 0);
-    } else {
-      $('#' + this.route.snapshot.fragment)[0].scrollIntoView();
-    }
   }
 }

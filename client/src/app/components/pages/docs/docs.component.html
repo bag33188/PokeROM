@@ -22,7 +22,7 @@
             </li>
           </ul>
         </ng-container>
-        <p id="register">
+        <p>
           You will need to authenticate/authorize yourself if you wish to make
           requests to all of the
           <code>/api/roms</code> endpoints and most of the
@@ -34,7 +34,7 @@
       </div>
     </ng-container>
     <ng-container>
-      <h2 class="text-center mt-4 mb-4">Register as a User</h2>
+      <h2 class="text-center mt-4 mb-4" id="register">Register as a User</h2>
       <div>
         To register as a user, you must first visit the
         <strong>API Documentation</strong> page at
@@ -55,8 +55,8 @@
         </code>
         <br />
         First, delete the <code>"_id":"string",</code> part. Then replace the
-        <code>string</code> part with your information.<br />Here's an
-        example:<br />
+        other <code>string</code> parts with your own information.<br />Here's
+        an example:<br />
         <code class="json-code-block">
           {{
             '{\r\n&nbsp;&nbsp;&nbsp;&nbsp;"name":"John Doe",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"email":"jdoe123@gmail.com",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"username":"john_doe",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"password":"12345678"\r\n}'
