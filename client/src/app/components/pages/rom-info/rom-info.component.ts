@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { faBackspace, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLongArrowAltLeft,
+  IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
 import { RomsService } from '../../../services/roms.service';
 import { AuthService } from '../../../services/auth.service';
@@ -16,7 +19,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   id: string;
   loading: boolean;
   isError: boolean;
-  faBackspace: IconDefinition;
+  faLongArrowAltLeft: IconDefinition;
 
   constructor(
     private romService: RomsService,
@@ -26,7 +29,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   ) {}
 
   ngOnInit() {
-    this.faBackspace = faBackspace;
+    this.faLongArrowAltLeft = faLongArrowAltLeft;
     this.id = this.route.snapshot.paramMap.get('id');
     this.loading = true;
     this.isError = false;
