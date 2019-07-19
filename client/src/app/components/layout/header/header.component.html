@@ -22,10 +22,10 @@
       <ul class="navbar-nav">
         <li class="nav-item" *ngFor="let route of routes">
           <a
+            class="nav-link white"
             [routerLink]="route.routerLink"
             [routerLinkActive]="route.routerLinkActive"
             [routerLinkActiveOptions]="route.routerLinkActiveOptions"
-            [class]="route.class"
             >{{ route.navLinkText }}</a
           >
         </li>

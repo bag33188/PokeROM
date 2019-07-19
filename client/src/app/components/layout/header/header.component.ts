@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   loggedOutRoutes: Route[];
   loggedInRoutes: Route[];
   routes: {
-    class: string;
     routerLink: string[];
     routerLinkActive: string[];
     routerLinkActiveOptions: { exact: boolean };
@@ -29,35 +28,30 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.routes = [
       {
-        class: 'nav-link white',
         routerLink: ['/', 'home'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
         navLinkText: 'Home'
       },
       {
-        class: 'nav-link white',
         routerLink: ['/', 'roms'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: false },
         navLinkText: 'ROMs'
       },
       {
-        class: 'nav-link white',
         routerLink: ['/', 'faq'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
         navLinkText: 'FAQ'
       },
       {
-        class: 'nav-link white',
         routerLink: ['/', 'docs'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
         navLinkText: 'Docs'
       },
       {
-        class: 'nav-link white',
         routerLink: ['/', 'natures'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
