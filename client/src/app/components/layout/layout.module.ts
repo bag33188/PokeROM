@@ -20,7 +20,7 @@ import { CookiesAlertComponent } from './cookies-alert/cookies-alert.component';
   ],
   imports: [
     CommonModule,
-    RouterModule.forRoot([]),
+    RouterModule,
     NgbModule,
     BrowserAnimationsModule,
     FontAwesomeModule
