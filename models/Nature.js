@@ -5,7 +5,7 @@ const NatureSchema = mongoose.Schema({
   name: {
     type: String,
     required: [true, 'The name of the nature is required.'],
-    minlength: [4, 'Nature must be at least 4 characters.'],
+    minlength: [3, 'Nature must be at least 3 characters.'],
     maxlength: [10, 'Nature can only be 10 characters at max.']
   },
   up: {

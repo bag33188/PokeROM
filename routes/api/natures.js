@@ -73,9 +73,9 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('The name of the nature is required.')
-      .isLength({ min: 4, max: 20 })
+      .isLength({ min: 3, max: 20 })
       .withMessage(
-        'The name of the nature must be between 4 and 10 characters.'
+        'The name of the nature must be between 3 and 10 characters.'
       ),
     check('up')
       .not()
@@ -168,9 +168,9 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('The name of the nature is required.')
-      .isLength({ min: 4, max: 20 })
+      .isLength({ min: 3, max: 20 })
       .withMessage(
-        'The name of the nature must be between 4 and 10 characters.'
+        'The name of the nature must be between 3 and 10 characters.'
       ),
     check('up')
       .not()
