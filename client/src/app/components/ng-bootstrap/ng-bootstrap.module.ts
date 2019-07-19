@@ -26,7 +26,14 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     JumbotronComponent
   ],
   entryComponents: [ModalContentComponent],
-  imports: [CommonModule, NgbModule, BrowserModule, RouterModule],
+  imports: [
+    CommonModule,
+    NgbModule,
+    BrowserModule,
+    RouterModule.forRoot([], {
+      anchorScrolling: 'enabled'
+    })
+  ],
   exports: [
     AccordionComponent,
     CarouselComponent,
