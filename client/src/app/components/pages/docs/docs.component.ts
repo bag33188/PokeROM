@@ -21,6 +21,7 @@ export class DocsComponent implements OnInit, AfterContentInit {
   apiUrl: string;
   httpVerbs: string[];
   @ViewChild('register', { static: true }) registerElement: ElementRef;
+
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
