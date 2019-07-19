@@ -123,7 +123,7 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.authService.logout();
     if (this.isRoutes(this.loggedInRoutes, true)) {
-      this.router.navigate(['home']);
+      this.router.navigate(['/', 'home']);
     }
   }
 
