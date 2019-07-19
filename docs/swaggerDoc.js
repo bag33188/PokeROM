@@ -16,7 +16,7 @@ const version = options.swaggerDefinition['info']['version'];
  * @description Configures middleware for Swagger Docs.
  * @param {object} app expressJS app object.
  */
-const apiDocs = (app) => {
+const apiDocs = app => {
   app.use(`/api/docs/${version}`, swaggerUi.serve, swaggerUi.setup(specs));
 };
 

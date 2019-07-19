@@ -434,20 +434,20 @@ router.put(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      await Rom.getRomById({ _id: id }, (err, rom) => {
+      await Rom.getRomById({ _id: id }, (err, fetchedRom) => {
         if (err) {
           if (err.name === 'CastError') {
             return res.status(404).json({ success: false, ...err });
           }
           return res.status(500).json({ success: false, ...err });
         }
-        if (!rom) {
+        if (!fetchedRom) {
           return res
             .status(404)
             .json({ success: false, msg: 'Error 404: ROM not found.' });
         }
         const isOwnUser =
-          rom.userId === req.user['_id'].toString() ? true : false;
+          fetchedRom.userId === req.user['_id'].toString() ? true : false;
         if (isOwnUser) {
           Rom.updateRom({ _id: id }, updateRomData, {}, (err, rom) => {
             if (err) {
@@ -465,6 +465,7 @@ router.put(
                 .status(404)
                 .json({ success: false, msg: 'Error 404: ROM not found.' });
             }
+            rom = { _id: rom._id, ...updateRomData };
             return res.status(200).json(rom);
           });
         } else {
@@ -529,20 +530,22 @@ router.patch(
           .status(400)
           .json({ success: false, message: 'Invalid JSON body.' });
       }
-      await Rom.getRomById({ _id: id }, (err, rom) => {
+      await Rom.getRomById({ _id: id }, (err, fetchedRom) => {
         if (err) {
           if (err.name === 'CastError') {
             return res.status(404).json({ success: false, ...err });
           }
           return res.status(500).json({ success: false, ...err });
         }
-        if (!rom) {
+        if (!fetchedRom) {
           return res
             .status(404)
             .json({ success: false, msg: 'Error 404: ROM not found.' });
         }
         const isOwnUser =
-          rom.userId === req.user['_id'].toString() ? true : false;
+          fetchedRom.userId === req.user['_id'].toString()
+            ? true
+            : false;
         if (isOwnUser) {
           Rom.patchRom({ _id: id }, { $set: query }, (err, status) => {
             if (err) {
@@ -558,7 +561,23 @@ router.patch(
             if (!status) {
               return res.status(500).json({ success: false });
             }
-            return res.status(200).json(rom);
+            Rom.getRomById({ _id: id }, (err, rom) => {
+              if (err) {
+                if (err.name === 'CastError') {
+                  return res.status(404).json({ success: false, ...err });
+                }
+                return res.status(500).json({ success: false, ...err });
+              }
+              if (!rom) {
+                return res
+                  .status(404)
+                  .json({
+                    success: false,
+                    msg: 'Error 404: ROM not found.'
+                  });
+              }
+              return res.status(200).json(rom);
+            });
           });
         } else {
           return res.status(401).json({
