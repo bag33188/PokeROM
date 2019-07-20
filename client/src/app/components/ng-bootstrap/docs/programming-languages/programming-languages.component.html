@@ -1,0 +1,22 @@
+<ng-container>
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="isCollapsed = !isCollapsed"
+  >
+    {{ isCollapsed ? 'Show' : 'Hide' }} Languages
+  </button>
+  <div [ngbCollapse]="isCollapsed">
+    <ul id="programming-lang-list">
+      <li *ngFor="let codingLanguage of codingLanguagesUsed" class="mt-3">
+        Name: <code>{{ codingLanguage.name }}</code>
+        <br />
+        <span *ngIf="codingLanguage.fullName !== codingLanguage.name"
+          >Full Name: <code>{{ codingLanguage.fullName }}</code
+          ><br
+        /></span>
+        File Extension: <code>{{ codingLanguage.fileExt }}</code>
+      </li>
+    </ul>
+  </div>
+</ng-container>
