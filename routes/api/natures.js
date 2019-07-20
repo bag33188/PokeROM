@@ -10,6 +10,24 @@ const router = express.Router();
 
 const fieldsToSanitize = ['name', 'up', 'down', 'flavor', 'usage'];
 
+function getNature(query, req, res, callback) {
+  return Nature.getNature(query, (err, nature) => {
+    if (err) {
+      if (err.name === 'CastError') {
+        return res.status(404).json({ success: false, ...err });
+      } else {
+        return res.status(500).json({ success: false, ...err });
+      }
+    }
+    if (!nature) {
+      return res
+        .status(404)
+        .json({ success: false, msg: 'Error 404: nature not found.' });
+    }
+    return callback(nature);
+  });
+}
+
 /**
  * @summary Get all Natures.
  * @description Gets all Natures in the database.
@@ -237,20 +255,7 @@ router.put(
               msg: 'Error 404: nature not found.'
             });
           }
-          Nature.getNature({ _id: id }, (err, nature) => {
-            if (err) {
-              if (err.name === 'CastError') {
-                return res.status(404).json({ success: false, ...err });
-              } else {
-                return res.status(500).json({ success: false, ...err });
-              }
-            }
-            if (!nature) {
-              return res.status(404).json({
-                success: false,
-                msg: 'Error 404: nature not found.'
-              });
-            }
+          getNature({ _id: id }, req, res, nature => {
             return res.status(200).json(nature);
           });
         }
@@ -315,20 +320,8 @@ router.patch(
             msg: 'Error 404: nature not found.'
           });
         }
-        Nature.getNature({ _id: id }, (err, nature) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          } else if (!nature) {
-            return res.status(404).json({
-              success: false,
-              msg: 'Error 404: nature not found.'
-            });
-          } else {
-            return res.status(200).json(nature);
-          }
+        getNature({ _id: id }, req, res, nature => {
+          return res.status(200).json(nature);
         });
       });
     } catch (err) {
@@ -345,19 +338,7 @@ router.patch(
 router.delete('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    await Nature.getNature({ _id: id }, (err, nature) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        } else {
-          return res.status(500).json({ success: false, ...err });
-        }
-      }
-      if (!nature) {
-        return res
-          .status(404)
-          .json({ success: false, msg: 'Error 404: nature not found.' });
-      }
+    getNature({ _id: id }, req, res, () => {
       Nature.deleteNature({ _id: id }, (err, status) => {
         if (err) {
           if (err.name === 'CastError') {
@@ -365,7 +346,6 @@ router.delete('/:id', async (req, res, next) => {
           }
           return res.status(500).json({ success: false, ...err });
         }
-        console.log(status);
         if (!status) {
           return res.status(404).json({
             success: false,

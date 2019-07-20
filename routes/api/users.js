@@ -15,6 +15,23 @@ const router = express.Router();
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
+function getUserById(query, req, res, callback) {
+  return User.getUserById(query, (err, user) => {
+    if (err) {
+      if (err.name === 'CastError') {
+        return res.status(404).json({ success: false, ...err });
+      }
+      return res.status(500).json({ success: false, ...err });
+    }
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, msg: 'Error 404: user not found.' });
+    }
+    return callback(user);
+  });
+}
+
 /**
  * @summary Get all Users.
  * @description Gets all users in the database.
@@ -339,19 +356,7 @@ router.put(
               msg: 'Error 404: user not found.'
             });
           }
-          User.getUserById({ _id: id }, (err, user) => {
-            if (err) {
-              if (err.name === 'CastError') {
-                return res.status(404).json({ success: false, ...err });
-              }
-              return res.status(500).json({ success: false, ...err });
-            }
-            if (!user) {
-              return res.status(404).json({
-                success: false,
-                msg: 'Error 404: user not found.'
-              });
-            }
+          getUserById({ _id: id }, req, res, (user) => {
             return res.status(200).json({
               success: true,
               user: {
@@ -364,22 +369,11 @@ router.put(
           });
         });
       } else {
-        await User.getUserById({ _id: id }, (err, user) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!user) {
-            return res.status(404).json({
-              success: false,
-              msg: 'Error 404: user not found.'
-            });
-          }
-          return res
-            .status(401)
-            .json({ success: false, msg: 'You cannot update this user.' });
+        getUserById({ _id: id }, req, res, () => {
+          return res.status(401).json({
+            success: false,
+            msg: 'You cannot update this user.'
+          });
         });
       }
     } catch (err) {
@@ -446,20 +440,7 @@ router.patch(
               msg: 'Error 404: user not found.'
             });
           }
-          User.getUserById({ _id: id }, (err, user) => {
-            if (err) {
-              if (err.name === 'CastError') {
-                return res.status(404).json({ success: false, ...err });
-              } else {
-                return res.status(500).json({ success: false, ...err });
-              }
-            }
-            if (!user) {
-              return res.status(404).json({
-                success: false,
-                msg: 'Error 404: user not found.'
-              });
-            }
+          getUserById({ _id: id }, req, res, (user) => {
             console.log(user.password);
             return res.status(200).json({
               success: true,
@@ -473,22 +454,11 @@ router.patch(
           });
         });
       } else {
-        await User.getUserById({ _id: id }, (err, user) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!user) {
-            return res.status(404).json({
-              success: false,
-              msg: 'Error 404: user not found.'
-            });
-          }
-          return res
-            .status(401)
-            .json({ success: false, msg: 'You cannot patch this user.' });
+        getUserById({ _id: id }, req, res, () => {
+          return res.status(401).json({
+            success: false,
+            msg: 'You cannot patch this user.'
+          });
         });
       }
     } catch (err) {
@@ -545,19 +515,7 @@ router.delete('/:id', auth, async (req, res, next) => {
   try {
     const id = req.params.id;
     if (req.user['_id'].toString() === id) {
-      await User.getUserById({ _id: id }, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!user) {
-          return res.status(404).json({
-            success: false,
-            msg: 'Error 404: user not found.'
-          });
-        }
+      getUserById({ _id: id }, req, res, () => {
         User.deleteUser({ _id: id }, (err, status) => {
           if (err) {
             if (err.name === 'CastError') {
@@ -593,22 +551,11 @@ router.delete('/:id', auth, async (req, res, next) => {
         });
       });
     } else {
-      await User.getUserById({ _id: id }, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!user) {
-          return res.status(404).json({
-            success: false,
-            msg: 'Error 404: user not found.'
-          });
-        }
-        return res
-          .status(401)
-          .json({ success: false, msg: 'You cannot delete this user.' });
+      getUserById({ _id: id }, req, res, () => {
+        return res.status(401).json({
+          success: false,
+          msg: 'You cannot delete this user.'
+        });
       });
     }
   } catch (err) {
