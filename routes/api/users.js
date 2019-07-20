@@ -370,7 +370,7 @@ router.put(
         });
       } else {
         getUserById({ _id: id }, req, res, () => {
-          return res.status(401).json({
+          return res.status(403).json({
             success: false,
             msg: 'You cannot update this user.'
           });
@@ -455,7 +455,7 @@ router.patch(
         });
       } else {
         getUserById({ _id: id }, req, res, () => {
-          return res.status(401).json({
+          return res.status(403).json({
             success: false,
             msg: 'You cannot patch this user.'
           });
@@ -552,7 +552,7 @@ router.delete('/:id', auth, async (req, res, next) => {
       });
     } else {
       getUserById({ _id: id }, req, res, () => {
-        return res.status(401).json({
+        return res.status(403).json({
           success: false,
           msg: 'You cannot delete this user.'
         });

@@ -63,7 +63,7 @@ function getRomById(query, req, res, callback) {
         return callback(fetchedRom);
       } else {
         return res
-          .status(401)
+          .status(403)
           .json({ success: false, msg: `You cannot get this user's ROM.` });
       }
     }
@@ -159,7 +159,7 @@ router.get('/:id', auth, async (req, res, next) => {
           return res.status(200).json(rom);
         } else {
           return res
-            .status(401)
+            .status(403)
             .json({ success: false, msg: `You cannot get this user's ROM.` });
         }
       }
@@ -584,7 +584,7 @@ router.patch(
             });
           });
         } else {
-          return res.status(401).json({
+          return res.status(403).json({
             success: false,
             msg: `You cannot patch this user's ROM.`
           });
@@ -625,7 +625,7 @@ router.delete('/:id', auth, async (req, res, next) => {
           });
         });
       } else {
-        return res.status(401).json({
+        return res.status(403).json({
           success: false,
           msg: `You cannot delete this user's ROM.`
         });
@@ -664,7 +664,7 @@ router.delete('/', auth, async (req, res, next) => {
             });
           });
         } else {
-          return res.status(401).json({
+          return res.status(403).json({
             success: false,
             msg: 'You cannot delete ROMs for this user.'
           });
