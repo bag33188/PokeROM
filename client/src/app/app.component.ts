@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
         <section>
           <app-body></app-body>
         </section>
-        <section [ngClass]="{ 'bg-primary': isHomePage() }">
+        <section [ngClass]="{ 'bg-danger': isHomePage() }">
           <app-footer [appName]="title"></app-footer>
         </section>
       </div>

@@ -1,5 +1,5 @@
 <ng-container>
-  <div class="jumbotron bg-success text-light">
+  <div class="jumbotron bg-info text-light">
     <h1 class="display-4">Welcome to the world of Pok&eacute;ROM!</h1>
     <p class="lead">
       Here, you can find all of the core Pok&eacute;mon ROMs.
@@ -12,7 +12,7 @@
       >&nbsp;(Gen V ROMs are included)
     </p>
     <a
-      class="btn btn-primary btn-lg"
+      class="btn btn-warning btn-lg"
       [routerLink]="['/', 'docs']"
       fragment="register"
       role="button"
@@ -20,7 +20,7 @@
       >Sign Up!</a
     >
     <a
-      class="btn btn-primary btn-lg"
+      class="btn btn-warning btn-lg"
       [routerLink]="['/', 'roms']"
       role="button"
       *ngIf="loggedIn()"
