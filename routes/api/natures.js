@@ -345,20 +345,35 @@ router.patch(
 router.delete('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    await Nature.deleteNature({ _id: id }, (err, status) => {
+    await Nature.getNature({ _id: id }, (err, nature) => {
       if (err) {
         if (err.name === 'CastError') {
           return res.status(404).json({ success: false, ...err });
+        } else {
+          return res.status(500).json({ success: false, ...err });
         }
-        return res.status(500).json({ success: false, ...err });
       }
-      if (!status) {
-        return res.status(404).json({
-          success: false,
-          msg: 'Error 404: nature not found.'
-        });
+      if (!nature) {
+        return res
+          .status(404)
+          .json({ success: false, msg: 'Error 404: nature not found.' });
       }
-      return res.status(200).json({ success: true, ...status });
+      Nature.deleteNature({ _id: id }, (err, status) => {
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
+        }
+        console.log(status);
+        if (!status) {
+          return res.status(404).json({
+            success: false,
+            msg: 'Error 404: nature not found.'
+          });
+        }
+        return res.status(200).json({ success: true, ...status });
+      });
     });
   } catch (err) {
     next(err);

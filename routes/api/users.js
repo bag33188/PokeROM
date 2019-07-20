@@ -545,36 +545,50 @@ router.delete('/:id', auth, async (req, res, next) => {
   try {
     const id = req.params.id;
     if (req.user['_id'].toString() === id) {
-      await User.deleteUser({ _id: id }, (err, status) => {
+      await User.getUserById({ _id: id }, (err, user) => {
         if (err) {
           if (err.name === 'CastError') {
             return res.status(404).json({ success: false, ...err });
           }
           return res.status(500).json({ success: false, ...err });
         }
-        if (!status) {
+        if (!user) {
           return res.status(404).json({
             success: false,
             msg: 'Error 404: user not found.'
           });
         }
-        Rom.deleteAllRoms({ userId: id }, (err, romsStatus) => {
+        User.deleteUser({ _id: id }, (err, status) => {
           if (err) {
             if (err.name === 'CastError') {
               return res.status(404).json({ success: false, ...err });
             }
             return res.status(500).json({ success: false, ...err });
           }
-          if (!romsStatus) {
+          if (!status) {
             return res.status(404).json({
               success: false,
               msg: 'Error 404: user not found.'
             });
           }
-          return res.status(200).json({
-            success: true,
-            message: 'User successfully deleted!',
-            ...status
+          Rom.deleteAllRoms({ userId: id }, (err, romsStatus) => {
+            if (err) {
+              if (err.name === 'CastError') {
+                return res.status(404).json({ success: false, ...err });
+              }
+              return res.status(500).json({ success: false, ...err });
+            }
+            if (!romsStatus) {
+              return res.status(404).json({
+                success: false,
+                msg: 'Error 404: user not found.'
+              });
+            }
+            return res.status(200).json({
+              success: true,
+              message: 'User successfully deleted!',
+              ...status
+            });
           });
         });
       });
