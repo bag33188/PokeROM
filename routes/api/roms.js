@@ -70,6 +70,25 @@ function getRomById(query, req, res, callback) {
   });
 }
 
+function getAllRoms(query, req, res, callback, limit) {
+  return Rom.getAllRoms(
+    query,
+    (err, roms) => {
+      if (err) {
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!roms) {
+        return res.status(500).json({ success: false });
+      }
+      if (roms.length === 0) {
+        return res.status(404).json({ success: false, msg: 'No ROMs Exit' });
+      }
+      return callback(roms);
+    },
+    limit
+  );
+}
+
 /**
  * @summary Get all ROMs.
  * @description Gets all ROMs in the database.
@@ -623,17 +642,11 @@ router.delete('/:id', auth, async (req, res, next) => {
  */
 router.delete('/', auth, async (req, res, next) => {
   try {
-    await Rom.getAllRoms(
+    await getAllRoms(
       { userId: req.user['_id'] },
-      (err, roms) => {
-        if (err) {
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!roms) {
-          return res
-            .status(404)
-            .json({ msg: 'No ROMs exist.', success: false });
-        }
+      req,
+      res,
+      roms => {
         const isOwnUser =
           roms[0].userId === req.user['_id'].toString() ? true : false;
         if (isOwnUser) {
@@ -708,15 +721,15 @@ router.options('/', auth, async (req, res, next) => {
 router.post('/core', auth, async (req, res, next) => {
   try {
     await Rom.postCore(romsData[0], req.user, () => {
-      Rom.getAllRoms({ userId: req.user['_id'] }, (err, roms) => {
-        if (err) {
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!roms) {
-          return res.status(500).json({ success: false });
-        }
-        return res.status(201).json(roms);
-      });
+      getAllRoms(
+        { userId: req.user['_id'] },
+        req,
+        res,
+        roms => {
+          return res.status(201).json(roms);
+        },
+        0
+      );
     });
   } catch (err) {
     next(err);
@@ -730,17 +743,17 @@ router.post('/core', auth, async (req, res, next) => {
 router.post('/hacks', auth, async (req, res, next) => {
   try {
     await Rom.postHacks(romsData[1], req.user, () => {
-      Rom.getAllRoms({ userId: req.user['_id'] }, (err, roms) => {
-        if (err) {
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!roms) {
-          return res.status(500).json({ success: false });
-        }
-        setTimeout(() => {
-          return res.status(201).json(roms);
-        }, 320);
-      });
+      getAllRoms(
+        { userId: req.user['_id'] },
+        req,
+        res,
+        roms => {
+          setTimeout(() => {
+            return res.status(201).json(roms);
+          }, 320);
+        },
+        0
+      );
     });
   } catch (err) {
     next(err);
