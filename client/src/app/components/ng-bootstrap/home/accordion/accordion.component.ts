@@ -11,7 +11,7 @@ export class AccordionComponent implements OnInit {
   raphnet: typeof Raphnet;
 
   constructor(private config: NgbAccordionConfig) {
-    this.config.type = 'secondary';
+    this.config.type = 'light';
   }
 
   ngOnInit() {

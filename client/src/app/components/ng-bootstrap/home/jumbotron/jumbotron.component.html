@@ -4,7 +4,7 @@
     <p class="lead">
       Here, you can find all of the core Pok&eacute;mon ROMs.
     </p>
-    <hr class="my-4" />
+    <hr class="my-4 bg-light" />
     <p>
       Play em' on your emus, catch em' all, and
       <span class="font-weight-bold" ngbTooltip="yeah I said it!"
@@ -12,7 +12,7 @@
       >&nbsp;(Gen V ROMs are included)
     </p>
     <a
-      class="btn btn-warning btn-lg"
+      class="btn btn-outline-light btn-lg"
       [routerLink]="['/', 'docs']"
       fragment="register"
       role="button"
@@ -20,7 +20,7 @@
       >Sign Up!</a
     >
     <a
-      class="btn btn-warning btn-lg"
+      class="btn btn-outline-light btn-lg"
       [routerLink]="['/', 'roms']"
       role="button"
       *ngIf="loggedIn()"
