@@ -11,6 +11,7 @@ import { JumbotronComponent } from './home/jumbotron/jumbotron.component';
 import { PopupComponent } from './rom-info/popup/popup.component';
 import { ToastComponent } from './faq/toast/toast.component';
 import { SvgComponent } from './faq/toast/svg/svg.component';
+import { ProgrammingLanguagesComponent } from './docs/programming-languages/programming-languages.component';
 import { ModalContentComponent } from './faq/modal/modal-content.component';
 
 @NgModule({
@@ -23,15 +24,11 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     PopupComponent,
     ToastComponent,
     SvgComponent,
-    JumbotronComponent
+    JumbotronComponent,
+    ProgrammingLanguagesComponent
   ],
   entryComponents: [ModalContentComponent],
-  imports: [
-    CommonModule,
-    NgbModule,
-    BrowserModule,
-    RouterModule
-  ],
+  imports: [CommonModule, NgbModule, BrowserModule, RouterModule],
   exports: [
     AccordionComponent,
     CarouselComponent,
@@ -39,7 +36,8 @@ import { ModalContentComponent } from './faq/modal/modal-content.component';
     TabsetComponent,
     PopupComponent,
     ToastComponent,
-    JumbotronComponent
+    JumbotronComponent,
+    ProgrammingLanguagesComponent
   ]
 })
 export class NgBootstrapModule {}
