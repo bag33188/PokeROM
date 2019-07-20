@@ -630,7 +630,9 @@ router.delete('/', auth, async (req, res, next) => {
           return res.status(500).json({ success: false, ...err });
         }
         if (!roms) {
-          return res.status(500).json({ success: false });
+          return res
+            .status(404)
+            .json({ msg: 'No ROMs exist.', success: false });
         }
         const isOwnUser =
           roms[0].userId === req.user['_id'].toString() ? true : false;
