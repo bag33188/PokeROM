@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import HtmlRoute from '../../../models/HtmlRoute';
 import Route from '../../../interfaces/Route';
 
 @Component({
@@ -12,12 +13,7 @@ export class HeaderComponent implements OnInit {
   routeKey: string;
   loggedOutRoutes: Route[];
   loggedInRoutes: Route[];
-  routes: {
-    routerLink: string[];
-    routerLinkActive: string[];
-    routerLinkActiveOptions: { exact: boolean };
-    navLinkText: string;
-  }[];
+  routes: HtmlRoute[];
 
   constructor(
     private authService: AuthService,
