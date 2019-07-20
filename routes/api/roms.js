@@ -273,9 +273,7 @@ router.post(
           return res.status(500).json({ success: false, ...err });
         }
         if (!rom) {
-          return res
-            .status(404)
-            .json({ success: false, msg: 'Error 404: ROM not found.' });
+          return res.status(500).json({ success: false });
         }
         res.append(
           'Created-At-Route',
@@ -543,9 +541,7 @@ router.patch(
             .json({ success: false, msg: 'Error 404: ROM not found.' });
         }
         const isOwnUser =
-          fetchedRom.userId === req.user['_id'].toString()
-            ? true
-            : false;
+          fetchedRom.userId === req.user['_id'].toString() ? true : false;
         if (isOwnUser) {
           Rom.patchRom({ _id: id }, { $set: query }, (err, status) => {
             if (err) {
@@ -569,12 +565,10 @@ router.patch(
                 return res.status(500).json({ success: false, ...err });
               }
               if (!rom) {
-                return res
-                  .status(404)
-                  .json({
-                    success: false,
-                    msg: 'Error 404: ROM not found.'
-                  });
+                return res.status(404).json({
+                  success: false,
+                  msg: 'Error 404: ROM not found.'
+                });
               }
               return res.status(200).json(rom);
             });

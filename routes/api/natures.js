@@ -130,9 +130,8 @@ router.post(
           }
         }
         if (!nature) {
-          return res.status(404).json({
-            success: false,
-            msg: 'Error 404: nature not found.'
+          return res.status(500).json({
+            success: false
           });
         }
         res.append(

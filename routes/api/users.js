@@ -125,9 +125,8 @@ router.post(
             return res.status(500).json({ success: false, ...err });
           }
           if (!user) {
-            return res.status(404).json({
-              success: false,
-              msg: 'Error 404: user not found.'
+            return res.status(500).json({
+              success: false
             });
           }
           Rom.postCore(romsData[0], user, () => {
