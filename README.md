@@ -253,6 +253,7 @@ To open the `.drawio` files, use the [draw.io](https://about.draw.io/integration
   * JSON
   * YAML
   * Shell/Bash
+  * Batch
   * SVG
   * Markdown
 
