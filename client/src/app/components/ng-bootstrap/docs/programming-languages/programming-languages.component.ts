@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import ProgrammingLanguage from '../../../../interfaces/ProgrammingLanguage';
 
 @Component({
   selector: 'app-programming-languages',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./programming-languages.component.scss']
 })
 export class ProgrammingLanguagesComponent implements OnInit {
-  codingLanguagesUsed: { name: string; fullName: string; fileExt: string }[];
+  codingLanguagesUsed: ProgrammingLanguage[];
   isCollapsed: boolean = true;
 
   constructor() {}
