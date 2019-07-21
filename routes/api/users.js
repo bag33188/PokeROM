@@ -76,7 +76,7 @@ router.get('/:id', auth, async (req, res, next) => {
       }
       return res.status(200).json(user);
     });
-  } catch (e) {
+  } catch (err) {
     next(err);
   }
 });
