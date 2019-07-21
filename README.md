@@ -21,7 +21,6 @@ there's a problem when you don't know why it is working.
   - [Visual Studio Code](#visual-studio-code)
     - [Code Workspace File](#code-workspace-file)
     - [Extensions](#extensions)
-  - [Diagrams](#diagrams)
   - [Browser Compatibility](#browser-compatibility)
   - [Notes](#notes)
 
@@ -230,10 +229,6 @@ Download Link: [https://code.visualstudio.com/download](https://code.visualstudi
 [TSLint]: <https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin> "TSLint VC Code Extension"
 [Sublime Material Theme Dark]: <https://marketplace.visualstudio.com/items?itemName=jprestidge.theme-material-theme> "Sublime Material Theme Dark VS Code Extension"
 [Angular Essentials]: <https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials> "Angular Essentials VS Code Extension"
-
-## Diagrams
-
-To open the `.drawio` files, use the [draw.io](https://about.draw.io/integrations/#integrations_offline "draw.io desktop integrations") app.
 
 ## Browser Compatibility
 
