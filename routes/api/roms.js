@@ -81,7 +81,7 @@ function getAllRoms(query, req, res, callback, limit) {
         return res.status(500).json({ success: false });
       }
       if (roms.length === 0) {
-        return res.status(404).json({ success: false, msg: 'No ROMs Exit' });
+        return res.status(404).json({ success: false, msg: 'No ROMs exist.' });
       }
       return callback(roms);
     },
