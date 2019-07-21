@@ -436,9 +436,13 @@ router.post('/all', async (req, res, next) => {
     next(err);
   }
 });
-router.all('/*', async (req, res) => {
-  res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
-  await res.status(405).json({success: false, msg: 'Method not allowed.'});
+router.all('/*', async (req, res, next) => {
+  try {
+    res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
+    await res.status(405).json({success: false, msg: 'Method not allowed.'});
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;

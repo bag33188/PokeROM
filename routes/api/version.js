@@ -18,9 +18,13 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.all('/*', async (req, res) => {
-  res.set('Allow', 'GET');
-  await res.status(405).json({success: false, msg: 'Method not allowed.'});
+router.all('/*', async (req, res, next) => {
+  try {
+    res.set('Allow', 'GET');
+    await res.status(405).json({success: false, msg: 'Method not allowed.'});
+  } catch (err) {
+    next(err);
+  }
 });
 // export router
 module.exports = router;
