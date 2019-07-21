@@ -141,7 +141,7 @@ router.post(
       }
       await Nature.addNature(nature, (err, nature) => {
         if (err) {
-          if ((err.name = 'ValidationError')) {
+          if (err.name === 'ValidationError') {
             return res.status(400).json({ success: false, ...err });
           } else {
             return res.status(500).json({ success: false, ...err });
