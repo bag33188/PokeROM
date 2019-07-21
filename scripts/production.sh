@@ -52,12 +52,12 @@ production() {
           continue
         fi
       done
-      if [[ $valid == 1 ]]; then
-        break
-      fi
-      if [[ valid == 2 ]]; then
-        continue
-      fi
+      case ${valid} in
+        1 )
+          break ;;
+        2 )
+          continue ;;
+     esac
     done
     git push
     git push heroku master
