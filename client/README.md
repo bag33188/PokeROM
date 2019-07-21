@@ -32,4 +32,4 @@ https://github.hubspot.com/pace/docs/welcome/
 
 ## Ivy
 
-ivy-ngcc
+npx ivy-ngcc
