@@ -16,6 +16,8 @@ paths:
             type: object
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     post:
       tags:
         - Natures
@@ -43,6 +45,8 @@ paths:
           description: Bad JSON input.
         404:
           description: The specified nature doesn't exist.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.
     delete:
@@ -67,6 +71,8 @@ paths:
           description: No body, just headers.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
   '/api/natures/{id}':
     get:
       tags:
@@ -123,6 +129,8 @@ paths:
           description: Bad JSON input.
         404:
           description: The specified nature doesn't exist.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.
     patch:
@@ -157,8 +165,12 @@ paths:
           description: Bad JSON input.
         404:
           description: The specified nature doesn't exist.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     delete:
       tags:
         - Natures
@@ -215,3 +227,5 @@ paths:
               type: object
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.

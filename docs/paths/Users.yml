@@ -22,6 +22,8 @@ paths:
           description: JWT token and username from client don't match.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     delete:
       tags:
         - Users
@@ -51,6 +53,8 @@ paths:
           description: Specified User not found.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     head:
       tags:
         - Users
@@ -142,6 +146,8 @@ paths:
           description: Unauthorized.
         404:
           description: User not found.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.
     patch:
@@ -193,8 +199,12 @@ paths:
           description: Unauthorized.
         404:
           description: User not found.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     delete:
       tags:
         - Users
@@ -230,6 +240,8 @@ paths:
           description: Specified User not found.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     head:
       tags:
         - Users
@@ -276,6 +288,8 @@ paths:
             type: object
         400:
           description: Bad JSON input.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: User with email already registered or user with username already exists.
   '/api/users/authenticate':
@@ -331,5 +345,7 @@ paths:
           description: JWT token and username from client don't match.
         404:
           description: Specified User not found.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.

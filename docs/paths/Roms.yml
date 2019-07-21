@@ -38,6 +38,8 @@ paths:
           description: JWT token and username from client don't match.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     post:
       tags:
         - Roms
@@ -69,6 +71,8 @@ paths:
           description: No auth token / no user found in database with that name.
         403:
           description: JWT token and username from client don't match.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.
     delete:
@@ -98,6 +102,8 @@ paths:
           description: JWT token and username from client don't match.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     head:
       tags:
         - Roms
@@ -192,6 +198,8 @@ paths:
           description: JWT token and username from client don't match.
         404:
           description: Specified ROM doesn't exist.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.
     patch:
@@ -232,8 +240,12 @@ paths:
           description: JWT token and username from client don't match.
         404:
           description: Specified ROM doesn't exist.
+        406:
+          description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     delete:
       tags:
         - Roms
@@ -269,6 +281,8 @@ paths:
           description: Requested ROM not found.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     head:
       tags:
         - Roms
