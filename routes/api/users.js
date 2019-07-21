@@ -42,7 +42,7 @@ router.get('/', auth, async (req, res, next) => {
   try {
     await User.getAllUsers((err, users) => {
       if (err) {
-        return res.stauts(500).json({ success: false, ...err });
+        return res.status(500).json({ success: false, ...err });
       }
       if (!users) {
         return res.status(500).json({ success: false });
