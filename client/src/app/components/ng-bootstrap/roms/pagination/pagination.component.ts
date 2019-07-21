@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  HostListener
+} from '@angular/core';
 import Rom from '../../../../models/Rom';
 
 @Component({
@@ -13,6 +20,10 @@ export class PaginationComponent implements OnInit {
   @Input() itemsPerPage: number;
   @Output() paginate: EventEmitter<number> = new EventEmitter<number>();
   pageWidth: number;
+  @HostListener('window:resize')
+  setWidth(): void {
+    this.pageWidth = window.innerWidth;
+  }
 
   constructor() {}
 
@@ -23,9 +34,5 @@ export class PaginationComponent implements OnInit {
   onPageChange(pageNum: number): void {
     this.pageSize = this.itemsPerPage * (pageNum - 1);
     this.paginate.emit(this.pageSize);
-  }
-
-  setWidth(): void {
-    this.pageWidth = window.innerWidth;
   }
 }

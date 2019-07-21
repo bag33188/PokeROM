@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../../models/Rom';
 
@@ -11,14 +11,7 @@ export class GameDownloadComponent implements OnInit {
   @Input() rom: Rom;
   btnDisabled: boolean;
   faDownload: IconDefinition;
-
-  constructor() {}
-
-  ngOnInit() {
-    this.faDownload = faDownload;
-    this.disableBtnIfMobileOrTablet();
-  }
-
+  @HostListener('window:resize')
   disableBtnIfMobileOrTablet(): boolean {
     if (
       /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
@@ -30,5 +23,12 @@ export class GameDownloadComponent implements OnInit {
       this.btnDisabled = false;
       return false;
     }
+  }
+
+  constructor() {}
+
+  ngOnInit() {
+    this.faDownload = faDownload;
+    this.disableBtnIfMobileOrTablet();
   }
 }

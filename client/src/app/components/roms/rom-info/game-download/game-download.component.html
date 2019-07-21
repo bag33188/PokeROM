@@ -1,8 +1,4 @@
-<div
-  (window:resize)="disableBtnIfMobileOrTablet()"
-  id="download-link-wrapper"
-  class="text-center"
->
+<div id="download-link-wrapper" class="text-center">
   <a
     [class.disabled]="btnDisabled"
     [href]="rom.downloadLink"
