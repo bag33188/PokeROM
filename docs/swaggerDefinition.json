@@ -2,18 +2,18 @@
   "swaggerDefinition": {
     "info": {
       "title": "PokéROM API Documentation",
-      "version": "v1",
       "description": "<div><p><span>The API documentation for <strong>Pok&eacute;ROM</strong> (the website).</span><br/><a href=\"/\" target=\"_self\">Home</a></p></div>",
-      "license": {
-        "name": "ISC",
-        "url": "https://opensource.org/licenses/ISC"
-      },
       "termsOfService": "https://1drv.ms/t/s!AmuGEkjVxD0JhslDktOegP93OxrK_g?e=55mFBA",
       "contact": {
         "name": "API Support",
         "url": "/docs",
         "email": "bglatman@callutheran.edu"
-      }
+      },
+      "license": {
+        "name": "ISC",
+        "url": "https://opensource.org/licenses/ISC"
+      },
+      "version": "v1"
     },
     "securityDefinitions": {
       "bearerAuth": {
