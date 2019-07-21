@@ -6,6 +6,7 @@ const { check, validationResult } = require('express-validator/check');
 const moment = require('moment');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
+// const all_routes = require('express-list-endpoints');
 
 const router = express.Router();
 
@@ -761,6 +762,9 @@ router.post('/hacks', auth, async (req, res, next) => {
     next(err);
   }
 });
-
+router.all('/*', async (req, res) => {
+  res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
+  await res.status(405).json({success: false, msg: 'Method not allowed.'});
+});
 // export router
 module.exports = router;
