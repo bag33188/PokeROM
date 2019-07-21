@@ -3,6 +3,7 @@ const cors = require('cors');
 const corsConfig = cors({
   credentials: true,
   exposedHeaders: [
+    'Allow',
     'Cache-Control',
     'Content-Language',
     'Content-Type',
@@ -16,6 +17,7 @@ const corsConfig = cors({
   headers: [
     'Accept',
     'Accept-Language',
+    'Allow',
     'Authorization',
     'Content-Type',
     'Content-Language',
