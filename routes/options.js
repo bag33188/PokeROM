@@ -13,6 +13,7 @@ router.options('/', async (req, res, next) => {
     next(err);
   }
 });
+
 router.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'OPTIONS');

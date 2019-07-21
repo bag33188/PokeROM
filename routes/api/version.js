@@ -26,5 +26,6 @@ router.all('/*', async (req, res, next) => {
     next(err);
   }
 });
+
 // export router
 module.exports = router;

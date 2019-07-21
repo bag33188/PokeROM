@@ -762,6 +762,7 @@ router.post('/hacks', auth, async (req, res, next) => {
     next(err);
   }
 });
+
 router.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
