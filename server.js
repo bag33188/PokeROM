@@ -11,6 +11,7 @@ const users = require('./routes/api/users');
 const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const options = require('./routes/options');
+
 passportConfig(passport); // configure passport
 
 // connect to database
@@ -37,9 +38,9 @@ app.use(cors);
 // routing middleware
 app.use('/options', options);
 app.use('/api/roms', roms);
-app.use('/api/users', users);
 app.use('/api/natures', natures);
-app.use('/api/version', version);
+app.use(app.use('/api/users', users);
+'/api/version', version);
 
 // index route
 app.get('/', async (req, res, next) => {
