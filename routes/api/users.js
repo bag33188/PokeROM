@@ -45,7 +45,10 @@ router.get('/', auth, async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!users) {
-        return res.status(500).json({ success: false });
+        return res.status(502).json({
+          success: false,
+          msg: 'Bad gateway.'
+        });
       }
       return res.status(200).json(users);
     });
@@ -139,7 +142,7 @@ router.post(
         (err, user) => {
           if (err) {
             if (err.name === 'ValidationError') {
-              return res.status(400).json({ success: false, ...err });
+              return res.status(406).json({ success: false, ...err });
             }
             return res.status(500).json({ success: false, ...err });
           }
@@ -244,7 +247,7 @@ router.post(
             case 'CastError':
               return res.status(404).json({ success: false, ...err });
             case 'ValidationError':
-              return res.status(400).json({ success: false, ...err });
+              return res.status(406).json({ success: false, ...err });
             default:
               return res.status(500).json({ success: false, ...err });
           }
@@ -325,7 +328,7 @@ router.put(
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(pwdRegex)
-      .withMessage('Password conatins invalid characters.')
+      .withMessage('Password contains invalid characters.')
   ],
   async (req, res, next) => {
     try {
@@ -347,7 +350,7 @@ router.put(
               case 'CastError':
                 return res.status(404).json({ success: false, ...err });
               case 'ValidationError':
-                return res.status(400).json({ success: false, ...err });
+                return res.status(406).json({ success: false, ...err });
               default:
                 return res.status(500).json({ success: false, ...err });
             }
@@ -431,15 +434,15 @@ router.patch(
               case 'CastError':
                 return res.status(404).json({ success: false, ...err });
               case 'ValidationError':
-                return res.status(400).json({ success: false, ...err });
+                return res.status(406).json({ success: false, ...err });
               default:
                 return res.status(500).json({ success: false, ...err });
             }
           }
           if (!status) {
-            return res.status(404).json({
+            return res.status(502).json({
               success: false,
-              msg: 'Error 404: user not found.'
+              msg: 'Bad gateway.'
             });
           }
           getUserById({ _id: id }, req, res, user => {
@@ -483,8 +486,9 @@ router.delete('/', auth, async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!status) {
-        return res.status(500).json({
-          success: false
+        return res.status(502).json({
+          success: false,
+          msg: 'Bad gateway.'
         });
       }
       Rom.deleteAllRoms({}, (err, romsStatus) => {
@@ -526,9 +530,9 @@ router.delete('/:id', auth, async (req, res, next) => {
             return res.status(500).json({ success: false, ...err });
           }
           if (!status) {
-            return res.status(404).json({
+            return res.status(502).json({
               success: false,
-              msg: 'Error 404: user not found.'
+              msg: 'Bad gateway.'
             });
           }
           Rom.deleteAllRoms({ userId: id }, (err, romsStatus) => {
@@ -600,5 +604,5 @@ router.all('/*', async (req, res, next) => {
     next(err);
   }
 });
-// use this to make router avaialbe to middleware
+// use this to make router available to middleware
 module.exports = router;

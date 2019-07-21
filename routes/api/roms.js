@@ -79,7 +79,10 @@ function getAllRoms(query, req, res, callback, limit) {
         return res.status(500).json({ success: false, ...err });
       }
       if (!roms) {
-        return res.status(500).json({ success: false });
+        return res.status(502).json({
+          success: false,
+          msg: 'Bad gateway.'
+        });
       }
       if (roms.length === 0) {
         return res.status(404).json({ success: false, msg: 'No ROMs exist.' });
@@ -110,7 +113,10 @@ router.get('/', auth, async (req, res, next) => {
           return res.status(500).json({ success: false, ...err });
         }
         if (!roms) {
-          return res.status(500).json({ success: false });
+          return res.status(502).json({
+            success: false,
+            msg: 'Bad gateway.'
+          });
         }
         let perPage = parseInt(req.query['per_page']);
         if (!perPage) {
@@ -311,7 +317,7 @@ router.post(
       await Rom.addRom(newRom, (err, rom) => {
         if (err) {
           if (err.name === 'ValidationError') {
-            return res.status(400).json({ success: false, ...err });
+            return res.status(406).json({ success: false, ...err });
           }
           return res.status(500).json({ success: false, ...err });
         }
@@ -485,7 +491,7 @@ router.put(
                 case 'CastError':
                   return res.status(404).json({ success: false, ...err });
                 case 'ValidationError':
-                  return res.status(400).json({ success: false, ...err });
+                  return res.status(406).json({ success: false, ...err });
                 default:
                   return res.status(500).json({ success: false, ...err });
               }
@@ -572,13 +578,16 @@ router.patch(
                 case 'CastError':
                   return res.status(404).json({ success: false, ...err });
                 case 'ValidationError':
-                  return res.status(400).json({ success: false, ...err });
+                  return res.status(406).json({ success: false, ...err });
                 default:
                   return res.status(500).json({ success: false, ...err });
               }
             }
             if (!status) {
-              return res.status(500).json({ success: false });
+              return res.status(502).json({
+                success: false,
+                msg: 'Bad gateway.'
+              });
             }
             getRomById({ _id: id }, req, res, rom => {
               return res.status(200).json(rom);
@@ -617,7 +626,10 @@ router.delete('/:id', auth, async (req, res, next) => {
             return res.status(500).json({ success: false, ...err });
           }
           if (!status) {
-            return res.status(500).json({ success: false });
+            return res.status(502).json({
+              success: false,
+              msg: 'Bad gateway.'
+            });
           }
           return res.status(200).json({
             success: true,
@@ -656,7 +668,10 @@ router.delete('/', auth, async (req, res, next) => {
               return res.status(500).json({ success: false, ...err });
             }
             if (!status) {
-              return res.status(500).json({ success: false });
+              return res.status(502).json({
+                success: false,
+                msg: 'Bad gateway.'
+              });
             }
             return res.status(200).json({
               success: true,

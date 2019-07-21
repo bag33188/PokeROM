@@ -39,7 +39,10 @@ router.get('/', async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!natures) {
-        return res.status(500).json({ success: false });
+        return res.status(502).json({
+          success: false,
+          msg: 'Bad gateway.'
+        });
       }
       return res.status(200).json(natures);
     });
@@ -142,7 +145,7 @@ router.post(
       await Nature.addNature(nature, (err, nature) => {
         if (err) {
           if (err.name === 'ValidationError') {
-            return res.status(400).json({ success: false, ...err });
+            return res.status(406).json({ success: false, ...err });
           } else {
             return res.status(500).json({ success: false, ...err });
           }
@@ -244,7 +247,7 @@ router.put(
               case 'CastError':
                 return res.status(404).json({ success: false, ...err });
               case 'ValidationError':
-                return res.status(400).json({ success: false, ...err });
+                return res.status(406).json({ success: false, ...err });
               default:
                 return res.status(500).json({ success: false, ...err });
             }
@@ -309,15 +312,15 @@ router.patch(
             case 'CastError':
               return res.status(404).json({ success: false, ...err });
             case 'ValidationError':
-              return res.status(400).json({ success: false, ...err });
+              return res.status(406).json({ success: false, ...err });
             default:
               return res.status(500).json({ success: false, ...err });
           }
         }
         if (!status) {
-          return res.status(404).json({
+          return res.status(502).json({
             success: false,
-            msg: 'Error 404: nature not found.'
+            msg: 'Bad gateway.'
           });
         }
         getNature({ _id: id }, req, res, nature => {
@@ -347,9 +350,9 @@ router.delete('/:id', async (req, res, next) => {
           return res.status(500).json({ success: false, ...err });
         }
         if (!status) {
-          return res.status(404).json({
+          return res.status(502).json({
             success: false,
-            msg: 'Error 404: nature not found.'
+            msg: 'Bad gateway.'
           });
         }
         return res.status(200).json({ success: true, ...status });
@@ -371,8 +374,9 @@ router.delete('/', async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!status) {
-        return res.status(500).json({
-          success: false
+        return res.status(502).json({
+          success: false,
+          msg: 'Bad gateway.'
         });
       }
       return res.status(200).json({
@@ -425,8 +429,9 @@ router.post('/all', async (req, res, next) => {
           return res.status(500).json({ success: false, ...err });
         }
         if (!natures) {
-          return res.status(500).json({
-            success: false
+          return res.status(502).json({
+            success: false,
+            msg: 'Bad gateway.'
           });
         }
         return res.status(201).json(natures);
