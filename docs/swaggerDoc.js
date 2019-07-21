@@ -7,8 +7,8 @@ const swaggerDefinition = require('./swaggerDefinition.json');
 // './docs/**/*.yml'
 
 switch (process.env.NODE_ENV) {
-  case 'development':
   case undefined:
+  case 'development':
     swaggerDefinition.swaggerDefinition.info.contact.url =
       'http://localhost:4200/docs';
     break;
