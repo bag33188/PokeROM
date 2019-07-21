@@ -3,11 +3,11 @@ import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../../models/Rom';
 
 @Component({
-  selector: 'app-game-download',
-  templateUrl: './game-download.component.html',
-  styleUrls: ['./game-download.component.scss']
+  selector: 'app-rom-download',
+  templateUrl: './rom-download.component.html',
+  styleUrls: ['./rom-download.component.scss']
 })
-export class GameDownloadComponent implements OnInit {
+export class RomDownloadComponent implements OnInit {
   @Input() rom: Rom;
   btnDisabled: boolean;
   faDownload: IconDefinition;

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GameDownloadComponent } from './game-download.component';
+import { RomDownloadComponent } from './rom-download.component';
 
-describe('GameDownloadComponent', () => {
-  let component: GameDownloadComponent;
-  let fixture: ComponentFixture<GameDownloadComponent>;
+describe('RomDownloadComponent', () => {
+  let component: RomDownloadComponent;
+  let fixture: ComponentFixture<RomDownloadComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameDownloadComponent ]
+      declarations: [ RomDownloadComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GameDownloadComponent);
+    fixture = TestBed.createComponent(RomDownloadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
