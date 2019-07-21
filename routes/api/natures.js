@@ -405,7 +405,9 @@ router.head('/', async (req, res, next) => {
 router.head('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    await res.status(200);
+    await getNature({ _id: id }, req, res, () => {
+      return res.status(200);
+    });
   } catch (err) {
     next(err);
   }

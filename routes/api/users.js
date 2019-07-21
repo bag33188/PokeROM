@@ -18,12 +18,14 @@ const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|
 function getUserById(query, req, res, callback) {
   return User.getUserById(query, (err, user) => {
     if (err) {
+
       if (err.name === 'CastError') {
         return res.status(404).json({ success: false, ...err });
       }
       return res.status(500).json({ success: false, ...err });
     }
     if (!user) {
+
       return res
         .status(404)
         .json({ success: false, msg: 'Error 404: user not found.' });
@@ -356,7 +358,7 @@ router.put(
               msg: 'Error 404: user not found.'
             });
           }
-          getUserById({ _id: id }, req, res, (user) => {
+          getUserById({ _id: id }, req, res, user => {
             return res.status(200).json({
               success: true,
               user: {
@@ -440,7 +442,7 @@ router.patch(
               msg: 'Error 404: user not found.'
             });
           }
-          getUserById({ _id: id }, req, res, (user) => {
+          getUserById({ _id: id }, req, res, user => {
             console.log(user.password);
             return res.status(200).json({
               success: true,
@@ -582,7 +584,9 @@ router.head('/', auth, async (req, res, next) => {
 router.head('/:id', auth, async (req, res, next) => {
   try {
     const id = req.params.id;
-    await res.status(200);
+    await getUserById({ _id: id }, req, res, () => {
+      return res.status(200);
+    });
   } catch (err) {
     next(err);
   }
