@@ -2,14 +2,28 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerDefinition = require('./swaggerDefinition.json');
 
-// swagger doc info object
+// Swagger Definition: swagger doc info object
 // Like the one described here: https://swagger.io/specification/#infoObject
-const options = swaggerDefinition;
 // './docs/**/*.yml'
 
+switch (process.env.NODE_ENV) {
+  case 'development':
+  case undefined:
+    swaggerDefinition.swaggerDefinition.info.contact.url =
+      'http://localhost:4200/docs';
+    break;
+  case 'production':
+    swaggerDefinition.swaggerDefinition.info.contact.url =
+      'https://pokerom-broccolini.herokuapp.com/docs';
+    break;
+  default:
+    swaggerDefinition.swaggerDefinition.info.contact.url = '/docs';
+    break;
+}
+
 // define swagger entities
-const specs = swaggerJsDoc(options);
-const version = options.swaggerDefinition['info']['version'];
+const specs = swaggerJsDoc(swaggerDefinition);
+const version = swaggerDefinition.swaggerDefinition['info']['version'];
 
 /**
  * @summary API Docs middleware.

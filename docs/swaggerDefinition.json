@@ -3,8 +3,17 @@
     "info": {
       "title": "PokéROM API Documentation",
       "version": "v1",
-      "description": "<p><span>The API documentation for <strong>Pok&eacute;ROM</strong> (the website).</span><br/><a href=\"/\" target=\"_self\">Home</a></p>",
-      "license": { "name": "ISC", "url": "https://opensource.org/licenses/ISC" }
+      "description": "<div><p><span>The API documentation for <strong>Pok&eacute;ROM</strong> (the website).</span><br/><a href=\"/\" target=\"_self\">Home</a></p></div>",
+      "license": {
+        "name": "ISC",
+        "url": "https://opensource.org/licenses/ISC"
+      },
+      "termsOfService": "",
+      "contact": {
+        "name": "API Support",
+        "url": "",
+        "email": "bglatman@outlook.edu"
+      }
     },
     "securityDefinitions": {
       "bearerAuth": {
