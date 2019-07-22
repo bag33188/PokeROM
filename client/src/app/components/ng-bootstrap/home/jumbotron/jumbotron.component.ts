@@ -13,6 +13,6 @@ export class JumbotronComponent implements OnInit {
   }
 
   loggedIn(): boolean {
-    return localStorage.getItem('user') ? true : false;
+    return !!localStorage.getItem('user');
   }
 }
