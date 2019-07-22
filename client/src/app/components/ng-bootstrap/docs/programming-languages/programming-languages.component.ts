@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import ProgrammingLanguage from '../../../../interfaces/ProgrammingLanguage';
 
 @Component({
@@ -6,13 +6,14 @@ import ProgrammingLanguage from '../../../../interfaces/ProgrammingLanguage';
   templateUrl: './programming-languages.component.html',
   styleUrls: ['./programming-languages.component.scss']
 })
-export class ProgrammingLanguagesComponent implements OnInit {
+export class ProgrammingLanguagesComponent implements OnInit, OnDestroy {
   codingLanguagesUsed: ProgrammingLanguage[];
-  isCollapsed: boolean = true;
+  isCollapsed: boolean;
 
   constructor() {}
 
   ngOnInit() {
+    this.isCollapsed = true;
     this.codingLanguagesUsed = [
       {
         name: 'HTML',
@@ -70,5 +71,8 @@ export class ProgrammingLanguagesComponent implements OnInit {
         fileExt: '.md'
       }
     ];
+  }
+  ngOnDestroy() {
+    this.isCollapsed = true;
   }
 }
