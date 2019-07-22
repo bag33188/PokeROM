@@ -76,6 +76,11 @@ cd ~/Projects/PokeROM && git status
 
 ~/mongodb/bin/mongo "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188 --password Sullivan
 
+# to kill mongod process
+# ----------------------
+# $ sudo lsof -iTCP -sTCP:LISTEN -n -P
+# $ sudo kill <mongod_command_pid>
+
 # Heroku
 heroku config:set PROD_MONGODB=mongodb+srv://bag33188:Sullivan@pokerom-ng2of.gcp.mongodb.net/pkmn-roms?retryWrites=true&w=majority&ssl=true
 
