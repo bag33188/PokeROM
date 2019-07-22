@@ -1,9 +1,0 @@
----
-definitions:
-  Version:
-    type: object
-    properties:
-      _id:
-        type: string
-      apiVersion:
-        type: string
