@@ -5,7 +5,7 @@
 # ================
 
 << --MULTILINE-COMMENT--
-permissions (unix)
+Permissions (Unix)
 ------------------
 
 add to current permissions
