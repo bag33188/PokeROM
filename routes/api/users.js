@@ -3,8 +3,8 @@ const moment = require('moment');
 const config = require('config');
 const url = require('url');
 const jwt = require('jsonwebtoken');
-const { body } = require('express-validator/check');
-const { check, validationResult } = require('express-validator/check');
+const {body} = require('express-validator/check');
+const {check, validationResult} = require('express-validator/check');
 const secret = config.get('secret');
 const User = require('../../models/User');
 const Rom = require('../../models/Rom');
@@ -20,15 +20,15 @@ function getUserById(query, req, res, callback) {
     if (err) {
 
       if (err.name === 'CastError') {
-        return res.status(404).json({ success: false, ...err });
+        return res.status(404).json({success: false, ...err});
       }
-      return res.status(500).json({ success: false, ...err });
+      return res.status(500).json({success: false, ...err});
     }
     if (!user) {
 
       return res
         .status(404)
-        .json({ success: false, msg: 'Error 404: user not found.' });
+        .json({success: false, msg: 'Error 404: user not found.'});
     }
     return callback(user);
   });
@@ -42,7 +42,7 @@ router.get('/', auth, async (req, res, next) => {
   try {
     await User.getAllUsers((err, users) => {
       if (err) {
-        return res.status(500).json({ success: false, ...err });
+        return res.status(500).json({success: false, ...err});
       }
       if (!users) {
         return res.status(502).json({
@@ -65,17 +65,17 @@ router.get('/', auth, async (req, res, next) => {
 router.get('/:id', auth, async (req, res, next) => {
   try {
     const id = req.params.id;
-    await User.getUserById({ _id: id }, (err, user) => {
+    await User.getUserById({_id: id}, (err, user) => {
       if (err) {
         if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
+          return res.status(404).json({success: false, ...err});
         }
-        return res.status(500).json({ success: false, ...err });
+        return res.status(500).json({success: false, ...err});
       }
       if (!user) {
         return res
           .status(404)
-          .json({ success: false, msg: 'Error 404: user not found.' });
+          .json({success: false, msg: 'Error 404: user not found.'});
       }
       return res.status(200).json(user);
     });
@@ -96,7 +96,7 @@ router.post(
       .trim()
       .escape(),
     check('name')
-      .isLength({ max: 100 })
+      .isLength({max: 100})
       .withMessage('Name can only be 100 characters at max.'),
     check('email')
       .not()
@@ -112,13 +112,13 @@ router.post(
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({ min: 5, max: 22 })
+      .isLength({min: 5, max: 22})
       .withMessage('Username must be between 5 and 22 characters.'),
     check('password')
       .not()
       .isEmpty()
       .withMessage('Password is required.')
-      .isLength({ min: 8, max: 256 })
+      .isLength({min: 8, max: 256})
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(pwdRegex)
@@ -132,19 +132,19 @@ router.post(
         username: req.body.username,
         password: req.body.password
       });
-      const { name, email, username, password } = newUser;
+      const {name, email, username, password} = newUser;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({errors: errors.array()});
       }
       await User.addUser(
         newUser,
         (err, user) => {
           if (err) {
             if (err.name === 'ValidationError') {
-              return res.status(406).json({ success: false, ...err });
+              return res.status(406).json({success: false, ...err});
             }
-            return res.status(500).json({ success: false, ...err });
+            return res.status(500).json({success: false, ...err});
           }
           if (!user) {
             return res.status(500).json({
@@ -170,7 +170,7 @@ router.post(
           res.append('Created-At', moment().format());
           return res
             .status(201)
-            .json({ success: true, message: 'User successfully registered!' });
+            .json({success: true, message: 'User successfully registered!'});
         },
         [
           () => {
@@ -213,13 +213,13 @@ router.post(
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({ min: 5, max: 22 })
+      .isLength({min: 5, max: 22})
       .withMessage('Username must be between 5 and 22 characters.'),
     check('password')
       .not()
       .isEmpty()
       .withMessage('Password is required.')
-      .isLength({ min: 8, max: 256 })
+      .isLength({min: 8, max: 256})
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(pwdRegex)
@@ -227,10 +227,10 @@ router.post(
   ],
   async (req, res, next) => {
     try {
-      const { username, password } = req.body;
+      const {username, password} = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({errors: errors.array()});
       }
       let isValid = true;
       Object.keys(req.body).forEach(field => {
@@ -239,17 +239,17 @@ router.post(
         }
       });
       if (!isValid) {
-        return res.status(400).json({ success: false, msg: 'Bad JSON body.' });
+        return res.status(400).json({success: false, msg: 'Bad JSON body.'});
       }
       await User.getUserByUsername(username, (err, user) => {
         if (err) {
           switch (err.name) {
             case 'CastError':
-              return res.status(404).json({ success: false, ...err });
+              return res.status(404).json({success: false, ...err});
             case 'ValidationError':
-              return res.status(406).json({ success: false, ...err });
+              return res.status(406).json({success: false, ...err});
             default:
-              return res.status(500).json({ success: false, ...err });
+              return res.status(500).json({success: false, ...err});
           }
         }
         if (!user)
@@ -260,10 +260,10 @@ router.post(
         // check entered if password matches username's password
         User.comparePassword(password, user.password, (err, isMatch) => {
           if (err) {
-            return res.status(403).json({ success: false, ...err });
+            return res.status(403).json({success: false, ...err});
           }
           if (isMatch) {
-            const token = jwt.sign({ data: user }, secret, {
+            const token = jwt.sign({data: user}, secret, {
               expiresIn: 604800 // 1 week (in seconds); formula: [60s*60m*24h*7d]
             });
             return res.status(200).json({
@@ -279,7 +279,7 @@ router.post(
           }
           return res
             .status(403)
-            .json({ success: false, message: 'Error: wrong password.' });
+            .json({success: false, message: 'Error: wrong password.'});
         });
       });
     } catch (err) {
@@ -302,7 +302,7 @@ router.put(
       .trim()
       .escape(),
     check('name')
-      .isLength({ max: 100 })
+      .isLength({max: 100})
       .withMessage('Name can only be 100 characters at max.'),
     check('email')
       .not()
@@ -318,13 +318,13 @@ router.put(
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({ min: 5, max: 22 })
+      .isLength({min: 5, max: 22})
       .withMessage('Username must be between 5 and 22 characters.'),
     check('password')
       .not()
       .isEmpty()
       .withMessage('Password is required.')
-      .isLength({ min: 8, max: 256 })
+      .isLength({min: 8, max: 256})
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(pwdRegex)
@@ -338,21 +338,21 @@ router.put(
       if (!name) {
         name = null;
       }
-      const { email, username, password } = userData;
+      const {email, username, password} = userData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({errors: errors.array()});
       }
       if (req.user['_id'].toString() === id) {
-        await User.updateUser({ _id: id }, userData, {}, (err, user) => {
+        await User.updateUser({_id: id}, userData, {}, (err, user) => {
           if (err) {
             switch (err.name) {
               case 'CastError':
-                return res.status(404).json({ success: false, ...err });
+                return res.status(404).json({success: false, ...err});
               case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
+                return res.status(406).json({success: false, ...err});
               default:
-                return res.status(500).json({ success: false, ...err });
+                return res.status(500).json({success: false, ...err});
             }
           }
           if (!user) {
@@ -361,7 +361,7 @@ router.put(
               msg: 'Error 404: user not found.'
             });
           }
-          getUserById({ _id: id }, req, res, user => {
+          getUserById({_id: id}, req, res, user => {
             return res.status(200).json({
               success: true,
               user: {
@@ -374,7 +374,7 @@ router.put(
           });
         });
       } else {
-        getUserById({ _id: id }, req, res, () => {
+        getUserById({_id: id}, req, res, () => {
           return res.status(403).json({
             success: false,
             msg: 'You cannot update this user.'
@@ -425,18 +425,18 @@ router.patch(
       if (!isValid) {
         return res
           .status(400)
-          .json({ success: false, message: 'Invalid JSON body.' });
+          .json({success: false, message: 'Invalid JSON body.'});
       }
       if (req.user['_id'].toString() === id) {
-        await User.patchUser({ _id: id }, { $set: query }, (err, status) => {
+        await User.patchUser({_id: id}, {$set: query}, (err, status) => {
           if (err) {
             switch (err.name) {
               case 'CastError':
-                return res.status(404).json({ success: false, ...err });
+                return res.status(404).json({success: false, ...err});
               case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
+                return res.status(406).json({success: false, ...err});
               default:
-                return res.status(500).json({ success: false, ...err });
+                return res.status(500).json({success: false, ...err});
             }
           }
           if (!status) {
@@ -445,7 +445,7 @@ router.patch(
               msg: 'Bad gateway.'
             });
           }
-          getUserById({ _id: id }, req, res, user => {
+          getUserById({_id: id}, req, res, user => {
             console.log(user.password);
             return res.status(200).json({
               success: true,
@@ -459,7 +459,7 @@ router.patch(
           });
         });
       } else {
-        getUserById({ _id: id }, req, res, () => {
+        getUserById({_id: id}, req, res, () => {
           return res.status(403).json({
             success: false,
             msg: 'You cannot patch this user.'
@@ -481,9 +481,9 @@ router.delete('/', auth, async (req, res, next) => {
     await User.deleteAllUsers((err, status) => {
       if (err) {
         if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
+          return res.status(404).json({success: false, ...err});
         }
-        return res.status(500).json({ success: false, ...err });
+        return res.status(500).json({success: false, ...err});
       }
       if (!status) {
         return res.status(502).json({
@@ -493,7 +493,7 @@ router.delete('/', auth, async (req, res, next) => {
       }
       Rom.deleteAllRoms({}, (err, romsStatus) => {
         if (err) {
-          return res.status(500).json({ success: false, ...err });
+          return res.status(500).json({success: false, ...err});
         }
         if (!romsStatus) {
           return res.status(500).json({
@@ -521,13 +521,13 @@ router.delete('/:id', auth, async (req, res, next) => {
   try {
     const id = req.params.id;
     if (req.user['_id'].toString() === id) {
-      getUserById({ _id: id }, req, res, () => {
-        User.deleteUser({ _id: id }, (err, status) => {
+      getUserById({_id: id}, req, res, () => {
+        User.deleteUser({_id: id}, (err, status) => {
           if (err) {
             if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
+              return res.status(404).json({success: false, ...err});
             }
-            return res.status(500).json({ success: false, ...err });
+            return res.status(500).json({success: false, ...err});
           }
           if (!status) {
             return res.status(502).json({
@@ -535,12 +535,12 @@ router.delete('/:id', auth, async (req, res, next) => {
               msg: 'Bad gateway.'
             });
           }
-          Rom.deleteAllRoms({ userId: id }, (err, romsStatus) => {
+          Rom.deleteAllRoms({userId: id}, (err, romsStatus) => {
             if (err) {
               if (err.name === 'CastError') {
-                return res.status(404).json({ success: false, ...err });
+                return res.status(404).json({success: false, ...err});
               }
-              return res.status(500).json({ success: false, ...err });
+              return res.status(500).json({success: false, ...err});
             }
             if (!romsStatus) {
               return res.status(404).json({
@@ -557,7 +557,7 @@ router.delete('/:id', auth, async (req, res, next) => {
         });
       });
     } else {
-      getUserById({ _id: id }, req, res, () => {
+      getUserById({_id: id}, req, res, () => {
         return res.status(403).json({
           success: false,
           msg: 'You cannot delete this user.'
@@ -588,7 +588,7 @@ router.head('/', auth, async (req, res, next) => {
 router.head('/:id', auth, async (req, res, next) => {
   try {
     const id = req.params.id;
-    await getUserById({ _id: id }, req, res, () => {
+    await getUserById({_id: id}, req, res, () => {
       return res.status(200);
     });
   } catch (err) {

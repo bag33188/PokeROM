@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { String, StringBuilder } from 'typescript-string-operations';
+import {Component, OnInit, Input} from '@angular/core';
+import {String, StringBuilder} from 'typescript-string-operations';
 import Rom from '../../../../models/Rom';
 
 @Component({
@@ -10,9 +10,11 @@ import Rom from '../../../../models/Rom';
 export class GameLogoComponent implements OnInit {
   @Input() rom: Rom;
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   imgAlt(altValue: string): string {
     return String.Format(

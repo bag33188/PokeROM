@@ -39,7 +39,7 @@ const RomSchema = mongoose.Schema({
     type: String,
     required: [true, 'File type is required.'],
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return /^(?:\.?(gb[ca]?|[n3]ds|xci))$/.test(v);
       },
       message: props => `${props.value} is not a valid file type`
@@ -54,7 +54,7 @@ const RomSchema = mongoose.Schema({
       'URL is too long (must be between 8 and 1000 characters).'
     ],
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return urlRegex.test(v);
       },
       message: props => `${props.value} is not a valid URL.`
@@ -75,7 +75,7 @@ const RomSchema = mongoose.Schema({
       'URL is too long (must be between 8 and 1000 characters).'
     ],
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return urlRegex.test(v);
       },
       message: props => `${props.value} is not a valid URL.`
@@ -142,7 +142,7 @@ const RomSchema = mongoose.Schema({
     type: String,
     required: [true, 'A logo URL is required.'],
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return urlRegex.test(v);
       },
       message: props => `${props.value} is not a valid URL.`
@@ -163,7 +163,7 @@ module.exports.getAllRoms = (query, callback, limit) => {
   // make sure to parse limit as integer
   Rom.find(query, callback)
     .limit(parseInt(limit))
-    .sort({ orderNumber: 1 });
+    .sort({orderNumber: 1});
 };
 
 /**

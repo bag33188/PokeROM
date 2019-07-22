@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { faFileAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import {Component, OnInit, Input} from '@angular/core';
+import {faFileAlt, IconDefinition} from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../../models/Rom';
 
 @Component({
@@ -11,7 +11,8 @@ export class GameDescriptionComponent implements OnInit {
   @Input() rom: Rom;
   faFileAlt: IconDefinition;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     this.faFileAlt = faFileAlt;

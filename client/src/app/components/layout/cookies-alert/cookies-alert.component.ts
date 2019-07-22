@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   trigger,
   state,
@@ -18,8 +18,8 @@ import Alert from '../../../interfaces/Alert';
   styleUrls: ['./cookies-alert.component.scss'],
   animations: [
     trigger('fadeOut', [
-      state('in', style({ opacity: 1 })),
-      transition(':leave', animate(555, style({ opacity: 0 })))
+      state('in', style({opacity: 1})),
+      transition(':leave', animate(555, style({opacity: 0})))
     ])
   ]
 })
@@ -28,7 +28,8 @@ export class CookiesAlertComponent implements OnInit {
   cookiesOk: boolean = false;
   faInfoCircle: IconDefinition;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     this.faInfoCircle = faInfoCircle;

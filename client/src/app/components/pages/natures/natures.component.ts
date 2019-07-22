@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import {Component, OnInit, AfterContentInit} from '@angular/core';
 import {
   faLeaf,
   faArrowUp,
@@ -8,8 +8,7 @@ import {
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import Nature from '../../../models/Nature';
-import { NaturesService } from '../../../services/natures.service';
-import { Icon } from '@fortawesome/fontawesome-svg-core';
+import {NaturesService} from '../../../services/natures.service';
 
 @Component({
   selector: 'app-natures',
@@ -26,7 +25,8 @@ export class NaturesComponent implements OnInit, AfterContentInit {
   faSignLanguage: IconDefinition;
   faHeart: IconDefinition;
 
-  constructor(private naturesService: NaturesService) {}
+  constructor(private naturesService: NaturesService) {
+  }
 
   ngOnInit() {
     this.faLeaf = faLeaf;

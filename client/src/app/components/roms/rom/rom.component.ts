@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { faInfo, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import {Component, OnInit, Input} from '@angular/core';
+import {faInfo, IconDefinition} from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../models/Rom';
 import NgClasses from '../../../interfaces/NgClasses';
-import { SizeConversionService } from '../../../services/size-conversion.service';
+import {SizeConversionService} from '../../../services/size-conversion.service';
 
 @Component({
   selector: 'app-rom',
@@ -13,7 +13,8 @@ export class RomComponent implements OnInit {
   @Input() rom: Rom;
   faInfo: IconDefinition;
 
-  constructor(public sizeConverter: SizeConversionService) {}
+  constructor(public sizeConverter: SizeConversionService) {
+  }
 
   ngOnInit() {
     this.faInfo = faInfo;
@@ -30,7 +31,7 @@ export class RomComponent implements OnInit {
     const [fileSize, fileType]: [
       number,
       string
-    ] = this.sizeConverter.convertRomSize(romFileSize);
+      ] = this.sizeConverter.convertRomSize(romFileSize);
     return [fileSize, fileType];
   }
 

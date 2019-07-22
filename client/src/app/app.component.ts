@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { LoggerService } from './services/logger.service';
-import { ApiService } from './services/api.service';
+import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {LoggerService} from './services/logger.service';
+import {ApiService} from './services/api.service';
 import ApiVersion from './models/ApiVersion';
-import { environment } from '../environments/environment';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -25,13 +25,13 @@ import { environment } from '../environments/environment';
     </ng-container>
   `,
   styles: [
-    `
+      `
       /* CSS Global Vars */
       ::ng-deep :root {
         --mp-prop-val: auto;
       }
     `,
-    `
+      `
       #container-wrapper {
         display: block;
         margin: var(--mp-prop-val);

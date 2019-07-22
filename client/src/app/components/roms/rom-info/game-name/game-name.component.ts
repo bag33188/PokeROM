@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import Rom from '../../../../models/Rom';
 
 @Component({
@@ -9,7 +9,9 @@ import Rom from '../../../../models/Rom';
 export class GameNameComponent implements OnInit {
   @Input() rom: Rom;
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

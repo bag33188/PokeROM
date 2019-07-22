@@ -1,12 +1,12 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, OnInit, AfterContentInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
 import {
   faLongArrowAltLeft,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
-import { RomsService } from '../../../services/roms.service';
-import { AuthService } from '../../../services/auth.service';
+import {RomsService} from '../../../services/roms.service';
+import {AuthService} from '../../../services/auth.service';
 import Rom from '../../../models/Rom';
 
 @Component({
@@ -26,7 +26,8 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.faLongArrowAltLeft = faLongArrowAltLeft;

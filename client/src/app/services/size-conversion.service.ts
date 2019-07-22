@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SizeConversionService {
-  constructor() {}
+  constructor() {
+  }
 
   /**
    * @summary Convert size of ROM.

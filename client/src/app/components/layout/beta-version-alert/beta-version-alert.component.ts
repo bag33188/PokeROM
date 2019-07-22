@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {
   trigger,
   state,
@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import * as $ from 'jquery';
 import Alert from '../../../interfaces/Alert';
-import { environment } from '../../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-beta-version-alert',
@@ -20,8 +20,8 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./beta-version-alert.component.scss'],
   animations: [
     trigger('fadeOut', [
-      state('in', style({ opacity: 1 })),
-      transition(':leave', animate(555, style({ opacity: 0 })))
+      state('in', style({opacity: 1})),
+      transition(':leave', animate(555, style({opacity: 0})))
     ])
   ]
 })
@@ -31,7 +31,8 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
   betaVerAlertId: string;
   faExclamationTriangle: IconDefinition;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     this.faExclamationTriangle = faExclamationTriangle;
@@ -81,7 +82,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
         // fade out alert during 1 second
         $('#' + this.betaVerAlertId).fadeOut(
           1000,
-          function(): void {
+          function (): void {
             this.closeAlert(this.alerts[0]);
           }.bind(this, BetaVersionAlertComponent) // bind `this` to component
         );

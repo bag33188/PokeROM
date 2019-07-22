@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LoggerService } from '../../../services/logger.service';
+import {Component, OnInit} from '@angular/core';
+import {LoggerService} from '../../../services/logger.service';
 
 @Component({
   selector: 'app-body',
@@ -7,7 +7,8 @@ import { LoggerService } from '../../../services/logger.service';
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit {
-  constructor(private logger: LoggerService) {}
+  constructor(private logger: LoggerService) {
+  }
 
   ngOnInit() {
     // Log to console if current browser is incompatible with custom CSS scrollbar

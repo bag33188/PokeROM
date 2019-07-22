@@ -1,7 +1,7 @@
 const express = require('express');
 const Nature = require('../../models/Nature');
-const { sanitizeBody } = require('express-validator/filter');
-const { check, validationResult } = require('express-validator/check');
+const {sanitizeBody} = require('express-validator/filter');
+const {check, validationResult} = require('express-validator/check');
 const moment = require('moment');
 const url = require('url');
 const natureData = require('../../database/data.json')[2];
@@ -14,15 +14,15 @@ function getNature(query, req, res, callback) {
   return Nature.getNature(query, (err, nature) => {
     if (err) {
       if (err.name === 'CastError') {
-        return res.status(404).json({ success: false, ...err });
+        return res.status(404).json({success: false, ...err});
       } else {
-        return res.status(500).json({ success: false, ...err });
+        return res.status(500).json({success: false, ...err});
       }
     }
     if (!nature) {
       return res
         .status(404)
-        .json({ success: false, msg: 'Error 404: nature not found.' });
+        .json({success: false, msg: 'Error 404: nature not found.'});
     }
     return callback(nature);
   });
@@ -36,7 +36,7 @@ router.get('/', async (req, res, next) => {
   try {
     await Nature.getNatures((err, natures) => {
       if (err) {
-        return res.status(500).json({ success: false, ...err });
+        return res.status(500).json({success: false, ...err});
       }
       if (!natures) {
         return res.status(502).json({
@@ -59,18 +59,18 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    await Nature.getNature({ _id: id }, (err, nature) => {
+    await Nature.getNature({_id: id}, (err, nature) => {
       if (err) {
         if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
+          return res.status(404).json({success: false, ...err});
         } else {
-          return res.status(500).json({ success: false, ...err });
+          return res.status(500).json({success: false, ...err});
         }
       }
       if (!nature) {
         return res
           .status(404)
-          .json({ success: false, msg: 'Error 404: nature not found.' });
+          .json({success: false, msg: 'Error 404: nature not found.'});
       }
       return res.status(200).json(nature);
     });
@@ -94,7 +94,7 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('The name of the nature is required.')
-      .isLength({ min: 3, max: 20 })
+      .isLength({min: 3, max: 20})
       .withMessage(
         'The name of the nature must be between 3 and 10 characters.'
       ),
@@ -102,7 +102,7 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('The increased stat of the nature is required.')
-      .isLength({ min: 4, max: 20 })
+      .isLength({min: 4, max: 20})
       .withMessage(
         'The increased stat of the nature must be between 4 and 20 characters.'
       ),
@@ -110,12 +110,12 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('The decreased stat of the nature is required.')
-      .isLength({ min: 4, max: 20 })
+      .isLength({min: 4, max: 20})
       .withMessage(
         'The decreased stat of the nature must be between 4 and 20 characters.'
       ),
     check('flavor')
-      .isLength({ max: 14 })
+      .isLength({max: 14})
       .withMessage(
         'The flavor of the nature must can only be 14 characters at max.'
       ),
@@ -123,7 +123,7 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('he usage for the nature is required')
-      .isLength({ min: 5, max: 40 })
+      .isLength({min: 5, max: 40})
       .withMessage(
         'The usage for the nature mut be in between 5 and 40 characters.'
       )
@@ -137,17 +137,17 @@ router.post(
         flavor: req.body.flavor,
         usage: req.body.usage
       });
-      const { name, up, down, flavor, usage } = nature;
+      const {name, up, down, flavor, usage} = nature;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({errors: errors.array()});
       }
       await Nature.addNature(nature, (err, nature) => {
         if (err) {
           if (err.name === 'ValidationError') {
-            return res.status(406).json({ success: false, ...err });
+            return res.status(406).json({success: false, ...err});
           } else {
-            return res.status(500).json({ success: false, ...err });
+            return res.status(500).json({success: false, ...err});
           }
         }
         if (!nature) {
@@ -188,7 +188,7 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('The name of the nature is required.')
-      .isLength({ min: 3, max: 20 })
+      .isLength({min: 3, max: 20})
       .withMessage(
         'The name of the nature must be between 3 and 10 characters.'
       ),
@@ -196,7 +196,7 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('The increased stat of the nature is required.')
-      .isLength({ min: 4, max: 20 })
+      .isLength({min: 4, max: 20})
       .withMessage(
         'The increased stat of the nature must be between 4 and 20 characters.'
       ),
@@ -204,12 +204,12 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('The decreased stat of the nature is required.')
-      .isLength({ min: 4, max: 20 })
+      .isLength({min: 4, max: 20})
       .withMessage(
         'The decreased stat of the nature must be between 4 and 20 characters.'
       ),
     check('flavor')
-      .isLength({ max: 14 })
+      .isLength({max: 14})
       .withMessage(
         'The flavor of the nature must can only be 14 characters at max.'
       ),
@@ -217,7 +217,7 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('he usage for the nature is required')
-      .isLength({ min: 5, max: 40 })
+      .isLength({min: 5, max: 40})
       .withMessage(
         'The usage for the nature must be in between 5 and 40 characters.'
       )
@@ -232,24 +232,24 @@ router.put(
         flavor: req.body.flavor,
         usage: req.body.usage
       };
-      const { name, up, down, flavor, usage } = updateData;
+      const {name, up, down, flavor, usage} = updateData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({errors: errors.array()});
       }
       await Nature.updateNature(
-        { _id: id },
+        {_id: id},
         updateData,
         {},
         (err, updatedNature) => {
           if (err) {
             switch (err.name) {
               case 'CastError':
-                return res.status(404).json({ success: false, ...err });
+                return res.status(404).json({success: false, ...err});
               case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
+                return res.status(406).json({success: false, ...err});
               default:
-                return res.status(500).json({ success: false, ...err });
+                return res.status(500).json({success: false, ...err});
             }
           }
           if (!updatedNature) {
@@ -258,7 +258,7 @@ router.put(
               msg: 'Error 404: nature not found.'
             });
           }
-          getNature({ _id: id }, req, res, nature => {
+          getNature({_id: id}, req, res, nature => {
             return res.status(200).json(nature);
           });
         }
@@ -304,17 +304,17 @@ router.patch(
       if (!isValid) {
         return res
           .status(400)
-          .json({ success: false, message: 'Invalid JSON body.' });
+          .json({success: false, message: 'Invalid JSON body.'});
       }
-      await Nature.patchNature({ _id: id }, { $set: query }, (err, status) => {
+      await Nature.patchNature({_id: id}, {$set: query}, (err, status) => {
         if (err) {
           switch (err.name) {
             case 'CastError':
-              return res.status(404).json({ success: false, ...err });
+              return res.status(404).json({success: false, ...err});
             case 'ValidationError':
-              return res.status(406).json({ success: false, ...err });
+              return res.status(406).json({success: false, ...err});
             default:
-              return res.status(500).json({ success: false, ...err });
+              return res.status(500).json({success: false, ...err});
           }
         }
         if (!status) {
@@ -323,7 +323,7 @@ router.patch(
             msg: 'Bad gateway.'
           });
         }
-        getNature({ _id: id }, req, res, nature => {
+        getNature({_id: id}, req, res, nature => {
           return res.status(200).json(nature);
         });
       });
@@ -341,13 +341,13 @@ router.patch(
 router.delete('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    getNature({ _id: id }, req, res, () => {
-      Nature.deleteNature({ _id: id }, (err, status) => {
+    getNature({_id: id}, req, res, () => {
+      Nature.deleteNature({_id: id}, (err, status) => {
         if (err) {
           if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
+            return res.status(404).json({success: false, ...err});
           }
-          return res.status(500).json({ success: false, ...err });
+          return res.status(500).json({success: false, ...err});
         }
         if (!status) {
           return res.status(502).json({
@@ -355,7 +355,7 @@ router.delete('/:id', async (req, res, next) => {
             msg: 'Bad gateway.'
           });
         }
-        return res.status(200).json({ success: true, ...status });
+        return res.status(200).json({success: true, ...status});
       });
     });
   } catch (err) {
@@ -371,7 +371,7 @@ router.delete('/', async (req, res, next) => {
   try {
     Nature.deleteAllNatures((err, status) => {
       if (err) {
-        return res.status(500).json({ success: false, ...err });
+        return res.status(500).json({success: false, ...err});
       }
       if (!status) {
         return res.status(502).json({
@@ -409,7 +409,7 @@ router.head('/', async (req, res, next) => {
 router.head('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    await getNature({ _id: id }, req, res, () => {
+    await getNature({_id: id}, req, res, () => {
       return res.status(200);
     });
   } catch (err) {
@@ -426,7 +426,7 @@ router.post('/all', async (req, res, next) => {
     await Nature.postAll(natureData, () => {
       Nature.getNatures((err, natures) => {
         if (err) {
-          return res.status(500).json({ success: false, ...err });
+          return res.status(500).json({success: false, ...err});
         }
         if (!natures) {
           return res.status(502).json({

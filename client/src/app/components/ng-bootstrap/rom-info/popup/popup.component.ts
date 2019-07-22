@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-popup',
@@ -10,7 +10,8 @@ export class PopupComponent implements OnInit {
   isRomHack: boolean;
   romHackTxtIdentifier: RegExp;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     this.romHackTxtIdentifier = /(?:(\s?)(\(ROM Hack\)))/i;

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
 import HtmlRoute from '../../../models/HtmlRoute';
 import Route from '../../../interfaces/Route';
 
@@ -19,38 +19,39 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.routes = [
       {
         routerLink: ['/', 'home'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: { exact: true },
+        routerLinkActiveOptions: {exact: true},
         navLinkText: 'Home'
       },
       {
         routerLink: ['/', 'roms'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: { exact: false },
+        routerLinkActiveOptions: {exact: false},
         navLinkText: 'ROMs'
       },
       {
         routerLink: ['/', 'natures'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: { exact: true },
+        routerLinkActiveOptions: {exact: true},
         navLinkText: 'Natures'
       },
       {
         routerLink: ['/', 'faq'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: { exact: true },
+        routerLinkActiveOptions: {exact: true},
         navLinkText: 'FAQ'
       },
       {
         routerLink: ['/', 'docs'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: { exact: true },
+        routerLinkActiveOptions: {exact: true},
         navLinkText: 'Docs'
       }
     ];

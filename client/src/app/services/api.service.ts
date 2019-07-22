@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import ApiVersion from '../models/ApiVersion';
-import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
   private apiVersionUrl: string = `${environment.apiUrl}/api/version`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   /**
    * @summary Gets the API's Version.

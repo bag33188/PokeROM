@@ -14,7 +14,7 @@ const UserSchema = mongoose.Schema({
     minlength: [3, 'Email is too short.'],
     maxlength: [55, 'Email is too long.'],
     validate: {
-      validator: function(v) {
+      validator: function (v) {
         return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
           v
         );
@@ -63,7 +63,7 @@ module.exports.getUserById = (query, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.getUserByUsername = (username, callback) => {
-  const query = { username: username };
+  const query = {username: username};
   User.findOne(query, callback);
 };
 
@@ -76,14 +76,14 @@ module.exports.getUserByUsername = (username, callback) => {
  */
 module.exports.addUser = (newUser, callback, errCallbacks) => {
   // check if user already exists
-  User.findOne({ email: newUser.email }) // check email first
+  User.findOne({email: newUser.email}) // check email first
     .then((user, err) => {
       if (err) {
         console.log(err);
       } else if (user) {
         errCallbacks[0]();
       } else {
-        User.findOne({ username: newUser.username }) // then check username
+        User.findOne({username: newUser.username}) // then check username
           .then((user, err) => {
             if (err) {
               console.log(err);
@@ -161,7 +161,7 @@ module.exports.getAllUsers = callback => {
  * @param {Resonse} callback The callback function.
  */
 module.exports.updateUser = (query, userData, options, callback) => {
-  const { name, email, username, password } = userData;
+  const {name, email, username, password} = userData;
   const userQuery = {
     name,
     email,

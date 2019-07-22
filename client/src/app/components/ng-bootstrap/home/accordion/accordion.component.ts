@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit} from '@angular/core';
+import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
 import Raphnet from '../../../../enums/raphnet.enum';
 
 @Component({

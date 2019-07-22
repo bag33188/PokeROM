@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {JwtHelperService} from '@auth0/angular-jwt';
+import {Observable} from 'rxjs';
 import LoggedUser from '../models/LoggedUser';
 import User from '../models/User';
 import RegisteredUser from '../models/RegisteredUser';
-import { CookiesService } from './cookies.service';
-import { environment } from '../../environments/environment';
+import {CookiesService} from './cookies.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,8 @@ export class AuthService {
     private http: HttpClient,
     public jwtHelper: JwtHelperService,
     private cookieService: CookiesService
-  ) {}
+  ) {
+  }
 
   /**
    * @summary Authenticates a User.
@@ -32,7 +33,7 @@ export class AuthService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<RegisteredUser>(this.authUrl, user, { headers });
+    return this.http.post<RegisteredUser>(this.authUrl, user, {headers});
   }
 
   /**

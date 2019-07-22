@@ -20,12 +20,14 @@ export class PaginationComponent implements OnInit {
   @Input() itemsPerPage: number;
   @Output() paginate: EventEmitter<number> = new EventEmitter<number>();
   pageWidth: number;
+
   @HostListener('window:resize')
   setWidth(): void {
     this.pageWidth = window.innerWidth;
   }
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     this.pageWidth = window.innerWidth;

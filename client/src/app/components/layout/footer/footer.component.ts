@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import Environment from '../../../interfaces/Environment';
-import { environment } from '../../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -11,7 +11,8 @@ export class FooterComponent implements OnInit {
   @Input() appName: string;
   environment: Environment;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {
     this.environment = environment;

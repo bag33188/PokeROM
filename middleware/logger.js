@@ -26,7 +26,7 @@ function findOffset() {
   const nowUtc = new Date();
   const localHours = nowLocal.getHours();
   const utcHours = nowUtc.getUTCHours();
-  return utcHours - localHours; 
+  return utcHours - localHours;
 }
 
 if (process.env.NODE_ENV !== 'production') {

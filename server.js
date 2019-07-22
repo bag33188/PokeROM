@@ -30,7 +30,7 @@ app.use(logger);
 // define what directory to look in for serving static file(s)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false })); // extended: true
+app.use(express.urlencoded({extended: false})); // extended: true
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors);
@@ -44,24 +44,24 @@ app.use('/api/version', version);
 
 // index route
 app.get('/', async (req, res, next) => {
-  try {
-    await res.render('index');
-  } catch (err) {
-    next(err);
-  }
+    try {
+        await res.render('index');
+    } catch (err) {
+        next(err);
+    }
 });
 
 if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, 'public')));
+    // Set static folder
+    app.use(express.static(path.join(__dirname, 'public')));
 
-  app.get('*', async (req, res, next) => {
-    try {
-      await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-    } catch (err) {
-      next(err);
-    }
-  });
+    app.get('*', async (req, res, next) => {
+        try {
+            await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+        } catch (err) {
+            next(err);
+        }
+    });
 }
 
 // port

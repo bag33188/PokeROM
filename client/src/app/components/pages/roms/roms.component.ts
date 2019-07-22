@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { RomsService } from '../../../services/roms.service';
+import {Component, OnInit, AfterContentInit} from '@angular/core';
+import {RomsService} from '../../../services/roms.service';
 import Rom from '../../../models/Rom';
 
 @Component({
@@ -16,7 +16,8 @@ export class RomsComponent implements OnInit, AfterContentInit {
   noRomsMsg: string = '';
   limit: number = 35;
 
-  constructor(private romsService: RomsService) {}
+  constructor(private romsService: RomsService) {
+  }
 
   ngOnInit() {
     this.getRoms();
