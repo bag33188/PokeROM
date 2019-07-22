@@ -1,0 +1,357 @@
+---
+paths:
+  '/api/roms':
+    get:
+      tags:
+        - Roms
+      name: Get All ROMs
+      summary: Gets all ROMs
+      security:
+        - bearerAuth: []
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: _limit
+          required: false
+          description: '(Optional) The number of ROMs to limit when getting all ROMs.'
+          type: number
+        - in: query
+          name: page
+          required: false
+          description: '(Optional) For pagination: the page number to go to.'
+          type: number
+        - in: query
+          name: per_page
+          required: false
+          description: '(Optional) For pagination: the number of ROMs per page.'
+          type: number
+      responses:
+        200:
+          description: A single ROMs array.
+          schema:
+            $ref: '#/definitions/Rom'
+            type: object
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        500:
+          description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
+    post:
+      tags:
+        - Roms
+      name: Add ROM
+      summary: Adds a ROM to the database
+      security:
+        - bearerAuth: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: newRom
+          description: TThe ROM data to add to the database.
+          required: true
+          schema:
+            $ref: '#/definitions/Rom'
+            type: object
+      responses:
+        201:
+          description: A single rom object.
+          schema:
+            $ref: '#/definitions/Rom'
+            type: object
+        400:
+          description: Bad JSON input.
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        406:
+          description: Not acceptable JSON body.
+        500:
+          description: Internal server error on back-end occured.
+    delete:
+      tags:
+        - Roms
+      name: Delete All ROMs
+      summary: Removes all ROMs for a Single User
+      security:
+        - bearerAuth: []
+      produces:
+        - application/json
+      responses:
+        200:
+          description: A success object.
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              message:
+                type: string
+              status:
+                type: object
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        500:
+          description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
+    head:
+      tags:
+        - Roms
+      name: Get Head Info
+      summary: Gets Header Information
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: No body, just headers.
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        500:
+          description: Internal server error on back-end occured.
+    options:
+      tags:
+        - Roms
+      name: Get Options
+      summary: Gets Options info
+      security:
+        - bearerAuth: []
+      responses:
+        204:
+          description: No body.
+  '/api/roms/{id}':
+    get:
+      tags:
+        - Roms
+      name: Get Single ROM
+      summary: Gets a single ROM
+      security:
+        - bearerAuth: []
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the ROM to get.
+          required: true
+          type: string
+      responses:
+        200:
+          description: A single rom object.
+          schema:
+            $ref: '#/definitions/Rom'
+            type: object
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        404:
+          description: Requested ROM is not found.
+        500:
+          description: Internal server error on back-end occured.
+    put:
+      tags:
+        - Roms
+      name: Update ROM
+      summary: Updates a ROM in the database
+      security:
+        - bearerAuth: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the ROM to update.
+          required: true
+          type: string
+        - in: body
+          name: romData
+          description: TThe ROM data you want to update in the database.
+          required: true
+          schema:
+            $ref: '#/definitions/Rom'
+            type: object
+      responses:
+        200:
+          description: A single rom object.
+          schema:
+            $ref: '#/definitions/Rom'
+            type: object
+        400:
+          description: Bad JSON input.
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        404:
+          description: Specified ROM doesn't exist.
+        406:
+          description: Not acceptable JSON body.
+        500:
+          description: Internal server error on back-end occured.
+    patch:
+      tags:
+        - Roms
+      name: Partially Update ROM
+      summary: Partially updates a ROM in the database
+      security:
+        - bearerAuth: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the ROM to update.
+          required: true
+          type: string
+        - in: body
+          name: romData
+          description: TThe ROM data you want to update in the database.
+          required: true
+          schema:
+            $ref: '#/definitions/Rom'
+            type: object
+      responses:
+        200:
+          description: A single rom object.
+          schema:
+            $ref: '#/definitions/Rom'
+            type: object
+        400:
+          description: Bad JSON input.
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        404:
+          description: Specified ROM doesn't exist.
+        406:
+          description: Not acceptable JSON body.
+        500:
+          description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
+    delete:
+      tags:
+        - Roms
+      name: Delete Single ROM for a Single User
+      summary: Removes a single ROM
+      security:
+        - bearerAuth: []
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the ROM to remove.
+          required: true
+          type: string
+      responses:
+        200:
+          description: A success object.
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              message:
+                type: string
+              status:
+                type: object
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        404:
+          description: Requested ROM not found.
+        500:
+          description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
+    head:
+      tags:
+        - Roms
+      name: Get Single Head Info
+      summary: Gets Header Information of a single ROM
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the ROM to get header of.
+          required: true
+          type: string
+      responses:
+        200:
+          description: No body, just headers.
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        404:
+          description: ROM not found.
+        500:
+          description: Internal server error on back-end occured.
+  '/api/roms/core':
+    post:
+      tags:
+        - Roms
+      name: Post Core ROMs
+      summary: Adds the Core ROMs to the database
+      security:
+        - bearerAuth: []
+      produces:
+        - application/json
+      responses:
+        201:
+          description: A ROMs array with all current ROMs.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Rom'
+              type: object
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        500:
+          description: Internal server error on back-end occured.
+  '/api/roms/hacks':
+    post:
+      tags:
+        - Roms
+      name: Post ROM Hacks
+      summary: Adds the ROM Hacks to the database
+      security:
+        - bearerAuth: []
+      produces:
+        - application/json
+      responses:
+        201:
+          description: A ROMs array with all current ROMs.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Rom'
+              type: object
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        500:
+          description: Internal server error on back-end occured.

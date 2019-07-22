@@ -1,0 +1,52 @@
+---
+definitions:
+  Rom:
+    type: object
+    properties:
+      _id:
+        type: string
+      userId:
+        type: string
+        required: true
+      orderNumber:
+        type: integer
+        required: true
+      fileSize:
+        type: integer
+        reuired: true
+      fileType:
+        type: string
+        reuired: true
+      fileName:
+        type: string
+        reuired: true
+      downloadLink:
+        type: string
+        reuired: true
+      generation:
+        type: integer
+        reuired: true
+      boxArtUrl:
+        type: string
+        reuired: true
+      gameName:
+        type: string
+        reuired: true
+      region:
+        type: string
+        reuired: true
+      platform:
+        type: string
+        reuired: true
+      description:
+        type: string
+        reuired: true
+      genre:
+        type: string
+        reuired: false
+      dateReleased:
+        type: string
+        reuired: true
+      logoUrl:
+        type: string
+        reuired: true
