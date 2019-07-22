@@ -31,9 +31,16 @@ export class CarouselComponent implements OnInit {
       },
       {
         image: this.images.IMG3,
-        heading: 'Now with ROM Hacks',
+        heading: he.decode('Now with Pok&eacute;mon ROM Hacks'),
         caption: he.decode(
           'You can now play your favorite Pok&eacute;mon ROM hacks'
+        )
+      },
+      {
+        image: this.images.IMG4,
+        heading: he.decode('Pok&eacute;mon Sword and Shield Coming Soon!'),
+        caption: he.decode(
+          'The new Pok&eacute;mon games will be available on this site 1 week after their release in the US.'
         )
       }
     ];
