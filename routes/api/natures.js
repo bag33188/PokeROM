@@ -423,7 +423,16 @@ router.head('/:id', async (req, res, next) => {
  */
 router.post('/all', async (req, res, next) => {
   try {
-    await Nature.postAll(natureData, () => {
+    await Nature.postAll(natureData, (err, natures) => {
+      if (err) {
+        return res.status(500).json({success: false, ...err});
+      }
+      if (!natures) {
+        return res.status(502).json({
+          success: false,
+          message: 'Bad gateway.'
+        });
+      }
       Nature.getNatures((err, natures) => {
         if (err) {
           return res.status(500).json({success: false, ...err});

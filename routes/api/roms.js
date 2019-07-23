@@ -738,16 +738,20 @@ router.options('/', auth, async (req, res, next) => {
  */
 router.post('/core', auth, async (req, res, next) => {
   try {
-    await Rom.postCore(romsData[0], req.user, () => {
-      getAllRoms(
-        {userId: req.user['_id']},
-        req,
-        res,
-        roms => {
-          return res.status(201).json(roms);
-        },
-        0
-      );
+    await Rom.postCore(romsData[0], req.user, (err, roms) => {
+      try {
+        if (err) {
+          return res.status(500).json({success: false, ...err});
+        }
+        if (!roms) {
+          return res.status(502).json({success: false, message: 'Bad gateway.'});
+        }
+        getAllRoms({userId: req.user['_id']}, req, res, (fetchedRoms) => {
+          return res.status(201).json(fetchedRoms);
+        }, 0);
+      } catch (err) {
+        next(err);
+      }
     });
   } catch (err) {
     next(err);
@@ -760,18 +764,16 @@ router.post('/core', auth, async (req, res, next) => {
  */
 router.post('/hacks', auth, async (req, res, next) => {
   try {
-    await Rom.postHacks(romsData[1], req.user, () => {
-      getAllRoms(
-        {userId: req.user['_id']},
-        req,
-        res,
-        roms => {
-          setTimeout(() => {
-            return res.status(201).json(roms);
-          }, 320);
-        },
-        0
-      );
+    await Rom.postHacks(romsData[1], req.user, (err, roms) => {
+      if (err) {
+        return res.status(500).json({success: false, ...err});
+      }
+      if (!roms) {
+        return res.status(502).json({success: false, message: 'Bad gateway.'});
+      }
+      getAllRoms({userId: req.user['_id']}, req, res, (fetchedRoms) => {
+        return res.status(201).json(fetchedRoms);
+      }, 0);
     });
   } catch (err) {
     next(err);

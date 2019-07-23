@@ -142,12 +142,5 @@ module.exports.updateNature = (query, natureData, options, callback) => {
  * @param {Array<Nature>} allNatures The natures array containing all natures.
  */
 module.exports.postAll = (allNatures, callback) => {
-  const naturesAsync = new Promise((resolve, reject) => {
-    allNatures.forEach(nature => {
-      Nature.create(nature);
-    });
-    resolve('Done!');
-    reject(new Error('Error!'));
-  });
-  naturesAsync.then(() => callback()).catch(err => console.log(err));
+  Nature.insertMany(allNatures, callback);
 };

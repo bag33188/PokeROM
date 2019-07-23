@@ -252,15 +252,10 @@ module.exports.patchRom = (idQuery, query, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.postCore = (coreRoms, user, callback) => {
-  const coreRomsAsync = new Promise((resolve, reject) => {
-    coreRoms.forEach(rom => {
-      rom.userId = user['_id'];
-      Rom.create(rom);
-    });
-    resolve('Done!');
-    reject(new Error('Error!'));
-  });
-  coreRomsAsync.then(() => callback()).catch(err => console.log(err));
+  coreRoms.forEach((rom) =>
+    rom.userId = user['_id']
+  );
+  Rom.insertMany(coreRoms, callback);
 };
 
 /**
@@ -271,14 +266,7 @@ module.exports.postCore = (coreRoms, user, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.postHacks = (romHacks, user, callback) => {
-  const [romHack1, romHack2] = romHacks;
-  const romHacksAsync = new Promise((resolve, reject) => {
-    romHack1.userId = user['_id'];
-    romHack2.userId = user['_id'];
-    Rom.create(romHack1);
-    Rom.create(romHack2);
-    resolve('Done!');
-    reject(new Error('Error!'));
-  });
-  romHacksAsync.then(() => callback()).catch(err => console.log(err));
+  romHacks[0].userId = user['_id'];
+  romHacks[1].userId = user['_id'];
+  Rom.insertMany(romHacks, callback);
 };
