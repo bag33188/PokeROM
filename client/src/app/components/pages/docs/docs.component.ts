@@ -41,13 +41,10 @@ export class DocsComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    switch (this.route.snapshot.fragment) {
-      case 'register':
-        this.registerElement.nativeElement.scrollIntoView();
-        break;
-      default:
-        window.scrollTo(0, 0);
-        break;
+    if (this.route.snapshot.fragment === 'register') {
+      this.registerElement.nativeElement.scrollIntoView();
+    } else {
+      window.scrollTo(0, 0);
     }
   }
 
