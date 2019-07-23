@@ -22,7 +22,7 @@ function getNature(query, req, res, callback) {
     if (!nature) {
       return res
         .status(404)
-        .json({success: false, msg: 'Error 404: nature not found.'});
+        .json({success: false, message: 'Error 404: nature not found.'});
     }
     return callback(nature);
   });
@@ -41,7 +41,7 @@ router.get('/', async (req, res, next) => {
       if (!natures) {
         return res.status(502).json({
           success: false,
-          msg: 'Bad gateway.'
+          message: 'Bad gateway.'
         });
       }
       return res.status(200).json(natures);
@@ -70,7 +70,7 @@ router.get('/:id', async (req, res, next) => {
       if (!nature) {
         return res
           .status(404)
-          .json({success: false, msg: 'Error 404: nature not found.'});
+          .json({success: false, message: 'Error 404: nature not found.'});
       }
       return res.status(200).json(nature);
     });
@@ -140,7 +140,7 @@ router.post(
       const {name, up, down, flavor, usage} = nature;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
+        return res.status(406).json({errors: errors.array()});
       }
       await Nature.addNature(nature, (err, nature) => {
         if (err) {
@@ -235,7 +235,7 @@ router.put(
       const {name, up, down, flavor, usage} = updateData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
+        return res.status(406).json({errors: errors.array()});
       }
       await Nature.updateNature(
         {_id: id},
@@ -255,7 +255,7 @@ router.put(
           if (!updatedNature) {
             return res.status(404).json({
               success: false,
-              msg: 'Error 404: nature not found.'
+              message: 'Error 404: nature not found.'
             });
           }
           getNature({_id: id}, req, res, nature => {
@@ -303,8 +303,8 @@ router.patch(
       }
       if (!isValid) {
         return res
-          .status(400)
-          .json({success: false, message: 'Invalid JSON body.'});
+          .status(406)
+          .json({success: false, message: 'Data not valid.'});
       }
       await Nature.patchNature({_id: id}, {$set: query}, (err, status) => {
         if (err) {
@@ -320,7 +320,7 @@ router.patch(
         if (!status) {
           return res.status(502).json({
             success: false,
-            msg: 'Bad gateway.'
+            message: 'Bad gateway.'
           });
         }
         getNature({_id: id}, req, res, nature => {
@@ -352,7 +352,7 @@ router.delete('/:id', async (req, res, next) => {
         if (!status) {
           return res.status(502).json({
             success: false,
-            msg: 'Bad gateway.'
+            message: 'Bad gateway.'
           });
         }
         return res.status(200).json({success: true, ...status});
@@ -376,7 +376,7 @@ router.delete('/', async (req, res, next) => {
       if (!status) {
         return res.status(502).json({
           success: false,
-          msg: 'Bad gateway.'
+          message: 'Bad gateway.'
         });
       }
       return res.status(200).json({
@@ -431,7 +431,7 @@ router.post('/all', async (req, res, next) => {
         if (!natures) {
           return res.status(502).json({
             success: false,
-            msg: 'Bad gateway.'
+            message: 'Bad gateway.'
           });
         }
         return res.status(201).json(natures);
@@ -445,7 +445,7 @@ router.post('/all', async (req, res, next) => {
 router.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
-    await res.status(405).json({success: false, msg: 'Method not allowed.'});
+    await res.status(405).json({success: false, message: 'Method not allowed.'});
   } catch (err) {
     next(err);
   }

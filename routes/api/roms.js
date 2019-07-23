@@ -58,14 +58,14 @@ function getRomById(query, req, res, callback) {
     } else if (!fetchedRom) {
       return res
         .status(404)
-        .json({success: false, msg: 'Error 404: ROM not found.'});
+        .json({success: false, message: 'Error 404: ROM not found.'});
     } else {
       if (req.user['_id'].toString() === fetchedRom.userId) {
         return callback(fetchedRom);
       } else {
         return res
           .status(403)
-          .json({success: false, msg: `You cannot get this user's ROM.`});
+          .json({success: false, message: `You cannot get this user's ROM.`});
       }
     }
   });
@@ -81,11 +81,11 @@ function getAllRoms(query, req, res, callback, limit) {
       if (!roms) {
         return res.status(502).json({
           success: false,
-          msg: 'Bad gateway.'
+          message: 'Bad gateway.'
         });
       }
       if (roms.length === 0) {
-        return res.status(404).json({success: false, msg: 'No ROMs exist.'});
+        return res.status(404).json({success: false, message: 'No ROMs exist.'});
       }
       return callback(roms);
     },
@@ -115,7 +115,7 @@ router.get('/', auth, async (req, res, next) => {
         if (!roms) {
           return res.status(502).json({
             success: false,
-            msg: 'Bad gateway.'
+            message: 'Bad gateway.'
           });
         }
         let perPage = parseInt(req.query['per_page']);
@@ -160,14 +160,14 @@ router.get('/:id', auth, async (req, res, next) => {
       } else if (!rom) {
         return res
           .status(404)
-          .json({success: false, msg: 'Error 404: ROM not found.'});
+          .json({success: false, message: 'Error 404: ROM not found.'});
       } else {
         if (req.user['_id'].toString() === rom.userId) {
           return res.status(200).json(rom);
         } else {
           return res
             .status(403)
-            .json({success: false, msg: `You cannot get this user's ROM.`});
+            .json({success: false, message: `You cannot get this user's ROM.`});
         }
       }
     });
@@ -312,7 +312,7 @@ router.post(
       } = newRom;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
+        return res.status(406).json({errors: errors.array()});
       }
       await Rom.addRom(newRom, (err, rom) => {
         if (err) {
@@ -479,7 +479,7 @@ router.put(
       } = updateRomData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
+        return res.status(406).json({errors: errors.array()});
       }
       await getRomById({_id: id}, req, res, fetchedRom => {
         const isOwnUser =
@@ -499,7 +499,7 @@ router.put(
             if (!rom) {
               return res.status(404).json({
                 success: false,
-                msg: 'Error 404: ROM not found.'
+                message: 'Error 404: ROM not found.'
               });
             }
             rom = {_id: rom._id, ...updateRomData};
@@ -508,7 +508,7 @@ router.put(
         } else {
           return res.status(401).json({
             success: false,
-            msg: `You can update this user's ROM.`
+            message: `You can update this user's ROM.`
           });
         }
       });
@@ -565,8 +565,8 @@ router.patch(
       }
       if (!isValid) {
         return res
-          .status(400)
-          .json({success: false, message: 'Invalid JSON body.'});
+          .status(406)
+          .json({success: false, message: 'Data not valid.'});
       }
       await getRomById({_id: id}, req, res, fetchedRom => {
         const isOwnUser =
@@ -586,7 +586,7 @@ router.patch(
             if (!status) {
               return res.status(502).json({
                 success: false,
-                msg: 'Bad gateway.'
+                message: 'Bad gateway.'
               });
             }
             getRomById({_id: id}, req, res, rom => {
@@ -596,7 +596,7 @@ router.patch(
         } else {
           return res.status(403).json({
             success: false,
-            msg: `You cannot patch this user's ROM.`
+            message: `You cannot patch this user's ROM.`
           });
         }
       });
@@ -628,7 +628,7 @@ router.delete('/:id', auth, async (req, res, next) => {
           if (!status) {
             return res.status(502).json({
               success: false,
-              msg: 'Bad gateway.'
+              message: 'Bad gateway.'
             });
           }
           return res.status(200).json({
@@ -640,7 +640,7 @@ router.delete('/:id', auth, async (req, res, next) => {
       } else {
         return res.status(403).json({
           success: false,
-          msg: `You cannot delete this user's ROM.`
+          message: `You cannot delete this user's ROM.`
         });
       }
     });
@@ -670,7 +670,7 @@ router.delete('/', auth, async (req, res, next) => {
             if (!status) {
               return res.status(502).json({
                 success: false,
-                msg: 'Bad gateway.'
+                message: 'Bad gateway.'
               });
             }
             return res.status(200).json({
@@ -682,7 +682,7 @@ router.delete('/', auth, async (req, res, next) => {
         } else {
           return res.status(403).json({
             success: false,
-            msg: 'You cannot delete ROMs for this user.'
+            message: 'You cannot delete ROMs for this user.'
           });
         }
       },
@@ -781,7 +781,7 @@ router.post('/hacks', auth, async (req, res, next) => {
 router.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
-    await res.status(405).json({success: false, msg: 'Method not allowed.'});
+    await res.status(405).json({success: false, message: 'Method not allowed.'});
   } catch (err) {
     next(err);
   }

@@ -28,7 +28,7 @@ function getUserById(query, req, res, callback) {
 
       return res
         .status(404)
-        .json({success: false, msg: 'Error 404: user not found.'});
+        .json({success: false, message: 'Error 404: user not found.'});
     }
     return callback(user);
   });
@@ -47,7 +47,7 @@ router.get('/', auth, async (req, res, next) => {
       if (!users) {
         return res.status(502).json({
           success: false,
-          msg: 'Bad gateway.'
+          message: 'Bad gateway.'
         });
       }
       return res.status(200).json(users);
@@ -75,7 +75,7 @@ router.get('/:id', auth, async (req, res, next) => {
       if (!user) {
         return res
           .status(404)
-          .json({success: false, msg: 'Error 404: user not found.'});
+          .json({success: false, message: 'Error 404: user not found.'});
       }
       return res.status(200).json(user);
     });
@@ -135,7 +135,7 @@ router.post(
       const {name, email, username, password} = newUser;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
+        return res.status(406).json({errors: errors.array()});
       }
       await User.addUser(
         newUser,
@@ -230,7 +230,7 @@ router.post(
       const {username, password} = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
+        return res.status(406).json({errors: errors.array()});
       }
       let isValid = true;
       Object.keys(req.body).forEach(field => {
@@ -239,7 +239,7 @@ router.post(
         }
       });
       if (!isValid) {
-        return res.status(400).json({success: false, msg: 'Bad JSON body.'});
+        return res.status(406).json({success: false, message: 'Data not valid.'});
       }
       await User.getUserByUsername(username, (err, user) => {
         if (err) {
@@ -341,7 +341,7 @@ router.put(
       const {email, username, password} = userData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
+        return res.status(406).json({errors: errors.array()});
       }
       if (req.user['_id'].toString() === id) {
         await User.updateUser({_id: id}, userData, {}, (err, user) => {
@@ -358,7 +358,7 @@ router.put(
           if (!user) {
             return res.status(404).json({
               success: false,
-              msg: 'Error 404: user not found.'
+              message: 'Error 404: user not found.'
             });
           }
           getUserById({_id: id}, req, res, user => {
@@ -377,7 +377,7 @@ router.put(
         getUserById({_id: id}, req, res, () => {
           return res.status(403).json({
             success: false,
-            msg: 'You cannot update this user.'
+            message: 'You cannot update this user.'
           });
         });
       }
@@ -416,16 +416,12 @@ router.patch(
         ) {
           isValid = false;
           break;
-        } else if (field === 'password' && pwRegex.test(field)) {
-          isValid = false;
-        } else {
-          isValid = true;
-        }
+        } else isValid = !(field === 'password' && pwRegex.test(field));
       }
       if (!isValid) {
         return res
-          .status(400)
-          .json({success: false, message: 'Invalid JSON body.'});
+          .status(406)
+          .json({success: false, message: 'Data not valid.'});
       }
       if (req.user['_id'].toString() === id) {
         await User.patchUser({_id: id}, {$set: query}, (err, status) => {
@@ -442,7 +438,7 @@ router.patch(
           if (!status) {
             return res.status(502).json({
               success: false,
-              msg: 'Bad gateway.'
+              message: 'Bad gateway.'
             });
           }
           getUserById({_id: id}, req, res, user => {
@@ -462,7 +458,7 @@ router.patch(
         getUserById({_id: id}, req, res, () => {
           return res.status(403).json({
             success: false,
-            msg: 'You cannot patch this user.'
+            message: 'You cannot patch this user.'
           });
         });
       }
@@ -488,7 +484,7 @@ router.delete('/', auth, async (req, res, next) => {
       if (!status) {
         return res.status(502).json({
           success: false,
-          msg: 'Bad gateway.'
+          message: 'Bad gateway.'
         });
       }
       Rom.deleteAllRoms({}, (err, romsStatus) => {
@@ -532,7 +528,7 @@ router.delete('/:id', auth, async (req, res, next) => {
           if (!status) {
             return res.status(502).json({
               success: false,
-              msg: 'Bad gateway.'
+              message: 'Bad gateway.'
             });
           }
           Rom.deleteAllRoms({userId: id}, (err, romsStatus) => {
@@ -545,7 +541,7 @@ router.delete('/:id', auth, async (req, res, next) => {
             if (!romsStatus) {
               return res.status(404).json({
                 success: false,
-                msg: 'Error 404: user not found.'
+                message: 'Error 404: user not found.'
               });
             }
             return res.status(200).json({
@@ -560,7 +556,7 @@ router.delete('/:id', auth, async (req, res, next) => {
       getUserById({_id: id}, req, res, () => {
         return res.status(403).json({
           success: false,
-          msg: 'You cannot delete this user.'
+          message: 'You cannot delete this user.'
         });
       });
     }
@@ -599,7 +595,7 @@ router.head('/:id', auth, async (req, res, next) => {
 router.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
-    await res.status(405).json({success: false, msg: 'Method not allowed.'});
+    await res.status(405).json({success: false, message: 'Method not allowed.'});
   } catch (err) {
     next(err);
   }
