@@ -64,6 +64,15 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
+app.all('/*', async (req, res, next) => {
+    try {
+        res.set('Allow', 'GET, OPTIONS');
+        await res.status(405).json({success: false, msg: 'Method not allowed.'});
+    } catch (err) {
+        next(err);
+    }
+});
+
 // port
 const PORT = process.env.PORT || 5000;
 
