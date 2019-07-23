@@ -6,7 +6,7 @@ const {check, validationResult} = require('express-validator/check');
 const moment = require('moment');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
-const all_routes = require('express-list-endpoints');
+// const all_routes = require('express-list-endpoints');
 
 const router = express.Router();
 
