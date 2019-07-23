@@ -5,6 +5,7 @@ const {check, validationResult} = require('express-validator/check');
 const moment = require('moment');
 const url = require('url');
 const natureData = require('../../database/data.json')[2];
+const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 
 const router = express.Router();
 
@@ -94,6 +95,8 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('The name of the nature is required.')
+      .isString()
+      .withMessage('Name must be a string')
       .isLength({min: 3, max: 20})
       .withMessage(
         'The name of the nature must be between 3 and 10 characters.'
@@ -102,6 +105,8 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('The increased stat of the nature is required.')
+      .isString()
+      .withMessage('Up must be a string')
       .isLength({min: 4, max: 20})
       .withMessage(
         'The increased stat of the nature must be between 4 and 20 characters.'
@@ -110,6 +115,8 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('The decreased stat of the nature is required.')
+      .isString()
+      .withMessage('Down must be a string')
       .isLength({min: 4, max: 20})
       .withMessage(
         'The decreased stat of the nature must be between 4 and 20 characters.'
@@ -118,14 +125,18 @@ router.post(
       .isLength({max: 14})
       .withMessage(
         'The flavor of the nature must can only be 14 characters at max.'
-      ),
+      )
+      .isString()
+      .withMessage('Flavor must be a string'),
     check('usage')
       .not()
       .isEmpty()
       .withMessage('he usage for the nature is required')
+      .isString()
+      .withMessage('Usage must be a string')
       .isLength({min: 5, max: 40})
       .withMessage(
-        'The usage for the nature mut be in between 5 and 40 characters.'
+        'The usage for the nature must be in between 5 and 40 characters.'
       )
   ],
   async (req, res, next) => {
@@ -140,7 +151,7 @@ router.post(
       const {name, up, down, flavor, usage} = nature;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({errors: errors.array()});
+        return res.status(406).json({success: false, errors: errors.array()});
       }
       await Nature.addNature(nature, (err, nature) => {
         if (err) {
@@ -188,6 +199,8 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('The name of the nature is required.')
+      .isString()
+      .withMessage('Name must be a string')
       .isLength({min: 3, max: 20})
       .withMessage(
         'The name of the nature must be between 3 and 10 characters.'
@@ -196,6 +209,8 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('The increased stat of the nature is required.')
+      .isString()
+      .withMessage('Up must be a string')
       .isLength({min: 4, max: 20})
       .withMessage(
         'The increased stat of the nature must be between 4 and 20 characters.'
@@ -204,6 +219,8 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('The decreased stat of the nature is required.')
+      .isString()
+      .withMessage('Down must be a string')
       .isLength({min: 4, max: 20})
       .withMessage(
         'The decreased stat of the nature must be between 4 and 20 characters.'
@@ -212,11 +229,15 @@ router.put(
       .isLength({max: 14})
       .withMessage(
         'The flavor of the nature must can only be 14 characters at max.'
-      ),
+      )
+      .isString()
+      .withMessage('Flavor must be a string'),
     check('usage')
       .not()
       .isEmpty()
       .withMessage('he usage for the nature is required')
+      .isString()
+      .withMessage('Usage must be a string')
       .isLength({min: 5, max: 40})
       .withMessage(
         'The usage for the nature must be in between 5 and 40 characters.'
@@ -235,7 +256,7 @@ router.put(
       const {name, up, down, flavor, usage} = updateData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({errors: errors.array()});
+        return res.status(406).json({success: false, errors: errors.array()});
       }
       await Nature.updateNature(
         {_id: id},
@@ -305,6 +326,9 @@ router.patch(
         return res
           .status(406)
           .json({success: false, message: 'Data not valid.'});
+      }
+      if (new ValidatePatchRequest(req).validateNaturePatch(res)) {
+        return;
       }
       await Nature.patchNature({_id: id}, {$set: query}, (err, status) => {
         if (err) {

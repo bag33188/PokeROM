@@ -6,6 +6,7 @@ const {check, validationResult} = require('express-validator/check');
 const moment = require('moment');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
+const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 // const all_routes = require('express-list-endpoints');
 
 const router = express.Router();
@@ -195,6 +196,8 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('File name is required.')
+      .isString()
+      .withMessage('File name must be a string.')
       .isLength({min: 3, max: 80})
       .withMessage('File name must be between 3 and 80 characters.'),
     check('fileSize')
@@ -202,7 +205,7 @@ router.post(
       .isEmpty()
       .withMessage('File size is required.')
       .isDecimal({min: 64, max: 12000000})
-      .withMessage('File size must be a number between 64 and 12000000.'),
+      .withMessage('File size must be a number (in kilobytes) between 64 and 12000000.'),
     check('fileType')
       .not()
       .isEmpty()
@@ -211,7 +214,7 @@ router.post(
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({min: 2, max: 3})
       .withMessage('File type must be between 2 and 3 characters.')
-      .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/)
+      .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
       .withMessage('Invalid file extension.'),
     check('downloadLink')
       .not()
@@ -235,12 +238,16 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('Game name is required.')
+      .isString()
+      .withMessage('Game name must be a string.')
       .isLength({min: 2, max: 56})
       .withMessage('Game name must be between 2 and 56 characters.'),
     check('region')
       .not()
       .isEmpty()
       .withMessage('Region is required.')
+      .isString()
+      .withMessage('Region must be a string.')
       .isAlpha()
       .withMessage('Region must only contain letters.')
       .isLength({min: 3, max: 10})
@@ -249,11 +256,15 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('Platform is required.')
+      .isString()
+      .withMessage('Platform must be a string.')
       .isLength({min: 2, max: 50})
       .withMessage('Platform must be between 2 and 50 characters.'),
     check('genre')
       .isLength({min: 0, max: 20})
-      .withMessage('Genre must be between 2 and 20 characters.'),
+      .withMessage('Genre must be between 2 and 20 characters.')
+      .isString()
+      .withMessage('Genre must be a string.'),
     check('logoUrl')
       .not()
       .isEmpty()
@@ -270,8 +281,10 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('Description is required.')
+      .isString()
+      .withMessage('Description must be a string.')
       .isLength({min: 5, max: 8000})
-      .withMessage('Description must be between 5 and 8000 chararacters.')
+      .withMessage('Description must be between 5 and 8000 characters.')
   ],
   auth,
   async (req, res, next) => {
@@ -312,7 +325,7 @@ router.post(
       } = newRom;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({errors: errors.array()});
+        return res.status(406).json({success: false, errors: errors.array()});
       }
       await Rom.addRom(newRom, (err, rom) => {
         if (err) {
@@ -361,6 +374,8 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('File name is required.')
+      .isString()
+      .withMessage('File name must be a string.')
       .isLength({min: 3, max: 80})
       .withMessage('File name must be between 3 and 80 characters.'),
     check('fileSize')
@@ -368,7 +383,7 @@ router.put(
       .isEmpty()
       .withMessage('File size is required.')
       .isDecimal({min: 64, max: 12000000})
-      .withMessage('File size must be a number between 64 and 12000000.'),
+      .withMessage('File size must be a number (in kilobytes) between 64 and 12000000.'),
     check('fileType')
       .not()
       .isEmpty()
@@ -377,7 +392,7 @@ router.put(
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({min: 2, max: 3})
       .withMessage('File type must be between 2 and 3 characters.')
-      .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/)
+      .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
       .withMessage('Invalid file extension.'),
     check('downloadLink')
       .not()
@@ -401,12 +416,16 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('Game name is required.')
+      .isString()
+      .withMessage('Game name must be a string.')
       .isLength({min: 2, max: 56})
       .withMessage('Game name must be between 2 and 56 characters.'),
     check('region')
       .not()
       .isEmpty()
       .withMessage('Region is required.')
+      .isString()
+      .withMessage('Region must be a string.')
       .isAlpha()
       .withMessage('Region must only contain letters.')
       .isLength({min: 3, max: 10})
@@ -415,11 +434,15 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('Platform is required.')
+      .isString()
+      .withMessage('Platform must be a string.')
       .isLength({min: 2, max: 50})
       .withMessage('Platform must be between 2 and 50 characters.'),
     check('genre')
       .isLength({min: 0, max: 20})
-      .withMessage('Genre must be between 2 and 20 characters.'),
+      .withMessage('Genre must be between 2 and 20 characters.')
+      .isString()
+      .withMessage('Genre must be a string.'),
     check('logoUrl')
       .not()
       .isEmpty()
@@ -436,8 +459,10 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('Description is required.')
+      .isString()
+      .withMessage('Description must be a string.')
       .isLength({min: 5, max: 8000})
-      .withMessage('Description must be between 5 and 8000 chararacters.')
+      .withMessage('Description must be between 5 and 8000 characters.')
   ],
   auth,
   async (req, res, next) => {
@@ -479,7 +504,7 @@ router.put(
       } = updateRomData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({errors: errors.array()});
+        return res.status(406).json({success: false, errors: errors.array()});
       }
       await getRomById({_id: id}, req, res, fetchedRom => {
         const isOwnUser =
@@ -567,6 +592,9 @@ router.patch(
         return res
           .status(406)
           .json({success: false, message: 'Data not valid.'});
+      }
+      if (new ValidatePatchRequest(req).validateRomPatch(res)) {
+        return;
       }
       await getRomById({_id: id}, req, res, fetchedRom => {
         const isOwnUser =

@@ -10,6 +10,7 @@ const User = require('../../models/User');
 const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
+const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 const router = express.Router();
 
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
@@ -97,7 +98,8 @@ router.post(
       .escape(),
     check('name')
       .isLength({max: 100})
-      .withMessage('Name can only be 100 characters at max.'),
+      .withMessage('Name can only be 100 characters at max.')
+      .isString().withMessage('Name must be a string.'),
     check('email')
       .not()
       .isEmpty()
@@ -108,6 +110,7 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('Username is required.')
+      .isString().withMessage('Name must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
@@ -118,11 +121,12 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('Password is required.')
+      .isString().withMessage('Name must be a string.')
       .isLength({min: 8, max: 256})
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(pwdRegex)
-      .withMessage('Password conatins invalid characters.')
+      .withMessage('Password contains invalid characters.')
   ],
   async (req, res, next) => {
     try {
@@ -135,7 +139,7 @@ router.post(
       const {name, email, username, password} = newUser;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({errors: errors.array()});
+        return res.status(406).json({success: false, errors: errors.array()});
       }
       await User.addUser(
         newUser,
@@ -192,7 +196,8 @@ router.post(
       next(err);
     }
   }
-);
+)
+;
 
 /**
  * @summary Authenticate User.
@@ -209,6 +214,7 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('Username is required.')
+      .isString().withMessage('Name must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
@@ -219,18 +225,19 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('Password is required.')
+      .isString().withMessage('Name must be a string.')
       .isLength({min: 8, max: 256})
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(pwdRegex)
-      .withMessage('Password conatins invalid characters.')
+      .withMessage('Password contains invalid characters.')
   ],
   async (req, res, next) => {
     try {
       const {username, password} = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({errors: errors.array()});
+        return res.status(406).json({success: false, errors: errors.array()});
       }
       let isValid = true;
       Object.keys(req.body).forEach(field => {
@@ -303,7 +310,8 @@ router.put(
       .escape(),
     check('name')
       .isLength({max: 100})
-      .withMessage('Name can only be 100 characters at max.'),
+      .withMessage('Name can only be 100 characters at max.')
+      .isString().withMessage('Name must be a string.'),
     check('email')
       .not()
       .isEmpty()
@@ -314,6 +322,7 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('Username is required.')
+      .isString().withMessage('Name must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
@@ -324,6 +333,7 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('Password is required.')
+      .isString().withMessage('Name must be a string.')
       .isLength({min: 8, max: 256})
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
@@ -341,7 +351,7 @@ router.put(
       const {email, username, password} = userData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({errors: errors.array()});
+        return res.status(406).json({success: false, errors: errors.array()});
       }
       if (req.user['_id'].toString() === id) {
         await User.updateUser({_id: id}, userData, {}, (err, user) => {
@@ -422,6 +432,9 @@ router.patch(
         return res
           .status(406)
           .json({success: false, message: 'Data not valid.'});
+      }
+      if (new ValidatePatchRequest(req).validateUserPatch(res)) {
+        return;
       }
       if (req.user['_id'].toString() === id) {
         await User.patchUser({_id: id}, {$set: query}, (err, status) => {
