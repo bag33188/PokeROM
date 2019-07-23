@@ -114,6 +114,7 @@ class ValidatePatchRequest {
       }
     }
   }
+
   validateNaturePatch(res) {
     if (this.req.body.usage) {
       if (typeof this.req.body.usage !== typeof String) {
@@ -158,11 +159,6 @@ class ValidatePatchRequest {
   }
 
   validateUserPatch(res) {
-    /*    check('name')
-      .isLength({max: 100})
-      .withMessage('Name can only be 100 characters at max.')
-      .isString().withMessage('Name must be a string.'),
-  ],*/
     if (this.req.body.password) {
       if (typeof this.req.body.password !== typeof String) {
         return res.status(406).json({ success: false, message: 'Password must be a string.' });
