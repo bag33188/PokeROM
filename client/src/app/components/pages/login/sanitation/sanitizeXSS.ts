@@ -4,7 +4,7 @@ declare global {
   }
 }
 
-String.prototype.sanitizeXSS = function (replaceSpecialChars: boolean): string {
+String.prototype.sanitizeXSS = function(replaceSpecialChars: boolean): string {
   const checkXSS: RegExp = new RegExp(
     /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)))/,
     'gim'
