@@ -44,33 +44,33 @@ app.use('/api/version', version);
 
 // index route
 app.get('/', async (req, res, next) => {
-    try {
-        await res.render('index');
-    } catch (err) {
-        next(err);
-    }
+  try {
+    await res.render('index');
+  } catch (err) {
+    next(err);
+  }
 });
 
 if (process.env.NODE_ENV === 'production') {
-    // Set static folder
-    app.use(express.static(path.join(__dirname, 'public')));
+  // Set static folder
+  app.use(express.static(path.join(__dirname, 'public')));
 
-    app.get('*', async (req, res, next) => {
-        try {
-            await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-        } catch (err) {
-            next(err);
-        }
-    });
+  app.get('*', async (req, res, next) => {
+    try {
+      await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    } catch (err) {
+      next(err);
+    }
+  });
 }
 
 app.all('/*', async (req, res, next) => {
-    try {
-        res.set('Allow', 'GET, OPTIONS');
-        await res.status(405).json({success: false, msg: 'Method not allowed.'});
-    } catch (err) {
-        next(err);
-    }
+  try {
+    res.set('Allow', 'GET, OPTIONS');
+    await res.status(405).json({success: false, msg: 'Method not allowed.'});
+  } catch (err) {
+    next(err);
+  }
 });
 
 // port
