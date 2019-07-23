@@ -16,15 +16,15 @@ class ValidatePatchRequest {
       if (this.req.body.fileName.length < 3 || this.req.body.fileName.length > 80) {
         return res.status(406).json({success: false, message: 'File name must be between 3 and 80 characters.'});
       }
-      if (typeof this.req.body.fileName !== String) {
+      if (typeof this.req.body.fileName !== typeof 'string') {
         return res.status(406).json({success: false, message: 'File name must be a string'});
       }
     }
     if (this.req.body.fileSize) {
-      if (!parseFloat(this.req.body.fileSize, 10)) {
+      if (!parseFloat(this.req.body.fileSize)) {
         return res.status(406).json({success: false, message: 'File size must be a number.'});
       }
-      if (parseFloat(this.req.body.fileSize, 10) && (this.req.body.fileSize > 12000000 || this.req.body.fileSize < 64)) {
+      if (parseFloat(this.req.body.fileSize) && (this.req.body.fileSize > 12000000 || this.req.body.fileSize < 64)) {
         return res.status(406).json({
           success: false,
           message: 'File size must be in between 64 and 12000000 kilobytes'
@@ -41,7 +41,7 @@ class ValidatePatchRequest {
       if (/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i.test(this.req.body.fileType)) {
         return res.status(406).json({success: false, message: 'Invalid file type extension.'});
       }
-      if (typeof this.req.body.fileName !== typeof String) {
+      if (typeof this.req.body.fileName !== typeof 'string') {
         return res.status(406).json({success: false, message: 'File name must be a string'});
       }
     }
@@ -64,7 +64,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.gameName) {
-      if (typeof this.req.body.gameName !== typeof String) {
+      if (typeof this.req.body.gameName !== typeof 'string') {
         return res.status(406).json({success: false, message: 'Game name must be a string'});
       }
       if (this.req.body.gameName.length < 2 || this.req.body.gameName.length > 56) {
@@ -80,7 +80,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.platform) {
-      if (typeof this.req.body.platform !== typeof String) {
+      if (typeof this.req.body.platform !== typeof 'string') {
         return res.status(406).json({success: false, message: 'Platform must be a string.'});
       }
       if (this.req.body.platform.length < 2 || this.req.body.platform > 50) {
@@ -88,7 +88,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.genre) {
-      if (typeof this.req.body.genre !== typeof String) {
+      if (typeof this.req.body.genre !== typeof 'string') {
         return res.status(406).json({success: false, message: 'Genre must be a string.'});
       }
       if (this.req.body.genre.length > 20) {
@@ -106,7 +106,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.description) {
-      if (typeof this.req.body.description !== typeof String) {
+      if (typeof this.req.body.description !== typeof 'string') {
         return res.status(406).json({success: false, message: 'Description must be a string'});
       }
       if (this.req.body.description.length < 5 || this.req.body.description.length > 8000) {
@@ -117,7 +117,7 @@ class ValidatePatchRequest {
 
   validateNaturePatch(res) {
     if (this.req.body.usage) {
-      if (typeof this.req.body.usage !== typeof String) {
+      if (typeof this.req.body.usage !== typeof 'string') {
         return res.status(406).json({success: false, message: 'Usage must be a string.'});
       }
       if (this.req.body.usage.length < 5 || this.req.body.usage.length > 50) {
@@ -125,7 +125,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.flavor) {
-      if (typeof this.req.body.flavor !== typeof String) {
+      if (typeof this.req.body.flavor !== typeof 'string') {
         return res.status(406).json({success: false, message: 'flavor must be a string.'});
       }
       if (this.req.body.usage.flavor > 14) {
@@ -133,7 +133,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.down) {
-      if (typeof this.req.body.down !== typeof String) {
+      if (typeof this.req.body.down !== typeof 'string') {
         return res.status(406).json({ success: false, message: 'Down must be a string.' });
       }
       if (this.req.body.down.length < 4 || this.req.body.down.length > 20) {
@@ -141,7 +141,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.up) {
-      if (typeof this.req.body.up !== typeof String) {
+      if (typeof this.req.body.up !== typeof 'string') {
         return res.status(406).json({ success: false, message: 'Up must be a string.' });
       }
       if (this.req.body.up.length < 4 || this.req.body.up.length > 20) {
@@ -149,7 +149,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.name) {
-      if (typeof this.req.body.name !== typeof String) {
+      if (typeof this.req.body.name !== typeof 'string') {
         return res.status(406).json({success: false, message: 'Name must be a string.'});
       }
       if (this.req.body.up.length < 3 || this.req.body.up.length > 20) {
@@ -160,7 +160,7 @@ class ValidatePatchRequest {
 
   validateUserPatch(res) {
     if (this.req.body.password) {
-      if (typeof this.req.body.password !== typeof String) {
+      if (typeof this.req.body.password !== typeof 'string') {
         return res.status(406).json({ success: false, message: 'Password must be a string.' });
       }
       if (this.req.body.password.length < 8 || this.req.body.password > 256) {
@@ -171,7 +171,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.username) {
-      if (typeof this.req.body.username !== typeof String) {
+      if (typeof this.req.body.username !== typeof 'string') {
         return res.status(406).json({ success: false, message: 'Username must be a string' });
       }
       if (!/^(?:([A-Za-z0-9_])*)$/.test(this.req.body.username)) {
@@ -187,7 +187,7 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.name) {
-      if (typeof this.req.body.name !== typeof String) {
+      if (typeof this.req.body.name !== typeof 'string') {
         return res.status(406).json({ success: false, message: 'Name must be a string' });
       }
       if (this.req.body.name.length > 100) {
