@@ -2,7 +2,7 @@
   "swaggerDefinition": {
     "info": {
       "title": "PokéROM API Documentation",
-      "description": "<div><p><span>The API documentation for <strong>Pok&eacute;ROM</strong> (the website).</span><br/><a href=\"/\" target=\"_self\">Home</a></p></div>",
+      "description": "<p><span>The API documentation for <strong>Pok&eacute;ROM</strong> (the website).</span><br/><a href=\"/\" target=\"_self\">Home</a> | <a href=\"/api/docs/%VERSION%\" target=\"_self\">Root</a></p>",
       "termsOfService": "https://1drv.ms/t/s!AmuGEkjVxD0JhslDktOegP93OxrK_g?e=55mFBA",
       "contact": {
         "name": "API Support",

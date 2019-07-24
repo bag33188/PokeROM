@@ -21,9 +21,14 @@ switch (process.env.NODE_ENV) {
     break;
 }
 
-// define swagger entities
+// get api docs version
+const version = swaggerDefinition.swaggerDefinition.info.version;
+
+swaggerDefinition.swaggerDefinition.info.description =
+  swaggerDefinition.swaggerDefinition.info.description.replace('%VERSION%', version);
+
+// define swagger entity
 const specs = swaggerJsDoc(swaggerDefinition);
-const version = swaggerDefinition.swaggerDefinition['info']['version'];
 
 /**
  * @summary API Docs middleware.
