@@ -10,7 +10,7 @@ const romsData = require('../../database/data.json');
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 // const all_routes = require('express-list-endpoints');
 
-const router = express.Router();
+const http = express.Router();
 
 // define array with fields to sanitize
 const fieldsToSanitize = [
@@ -102,7 +102,7 @@ function getAllRoms(query, req, res, callback, limit) {
  * @param {number} page (Optional) For pagination: the page number to go to.
  * @param {number} per_page (Optional) For pagination: the number of ROMs per page.
  */
-router.get('/', auth, async (req, res, next) => {
+http.get('/', auth, async (req, res, next) => {
   try {
     let limit = req.query['_limit'];
     if (!limit) {
@@ -150,7 +150,7 @@ router.get('/', auth, async (req, res, next) => {
  * @description Get a single ROM from the database.
  * @param {number} id The ID of the ROM to get.
  */
-router.get('/:id', auth, async (req, res, next) => {
+http.get('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await Rom.getRomById({_id: id}, (err, rom) => {
@@ -183,7 +183,7 @@ router.get('/:id', auth, async (req, res, next) => {
  * @description Adds a ROM to the database.
  * @param {Rom} newRom The ROM data to add.
  */
-router.post(
+http.post(
   '/',
   [
     sanitizeBody(fieldsToSanitize)
@@ -362,7 +362,7 @@ router.post(
  * @param {number} id The ID of the ROM to update.
  * @param {Rom} romData The ROM data to update with.
  */
-router.put(
+http.put(
   '/:id',
   [
     sanitizeBody(fieldsToSanitize)
@@ -552,7 +552,7 @@ router.put(
  * @param {number} id The ID of the ROM to partially update.
  * @param {object} query The ROM data to partially update with.
  */
-router.patch(
+http.patch(
   '/:id',
   [
     sanitizeBody(fieldsToSanitize)
@@ -642,7 +642,7 @@ router.patch(
  * @description Deletes a single ROM in the database.
  * @param {string} id The ID of the ROM to delete.
  */
-router.delete('/:id', auth, async (req, res, next) => {
+http.delete('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await getRomById({_id: id}, req, res, fetchedRom => {
@@ -684,7 +684,7 @@ router.delete('/:id', auth, async (req, res, next) => {
  * @summary Delete all ROMs.
  * @description Deletes all ROMs in the database.
  */
-router.delete('/', auth, async (req, res, next) => {
+http.delete('/', auth, async (req, res, next) => {
   try {
     await getAllRoms(
       {userId: req.user['_id']},
@@ -728,7 +728,7 @@ router.delete('/', auth, async (req, res, next) => {
  * @summary Get Head Info.
  * @description Get's header info for entire /api/roms route.
  */
-router.head('/', auth, async (req, res, next) => {
+http.head('/', auth, async (req, res, next) => {
   try {
     await res.status(200);
   } catch (err) {
@@ -740,7 +740,7 @@ router.head('/', auth, async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/roms/:id route.
  */
-router.head('/:id', auth, async (req, res, next) => {
+http.head('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await getRomById({_id: id}, req, res, () => {
@@ -755,7 +755,7 @@ router.head('/:id', auth, async (req, res, next) => {
  * @summary Get Options.
  * @description Get supported options for this endpoint.
  */
-router.options('/', auth, async (req, res, next) => {
+http.options('/', auth, async (req, res, next) => {
   try {
     await res.status(204);
   } catch (err) {
@@ -767,7 +767,7 @@ router.options('/', auth, async (req, res, next) => {
  * @summary Post Core ROMs.
  * @description Adds Core ROMs to the Database.
  */
-router.post('/core', auth, async (req, res, next) => {
+http.post('/core', auth, async (req, res, next) => {
   try {
     await Rom.postCore(romsData[0], req.user, (err, roms) => {
       try {
@@ -793,7 +793,7 @@ router.post('/core', auth, async (req, res, next) => {
  * @summary Post ROM Hacks.
  * @description Adds Pokemon ROM Hacks.
  */
-router.post('/hacks', auth, async (req, res, next) => {
+http.post('/hacks', auth, async (req, res, next) => {
   try {
     await Rom.postHacks(romsData[1], req.user, (err, roms) => {
       if (err) {
@@ -811,7 +811,7 @@ router.post('/hacks', auth, async (req, res, next) => {
   }
 });
 
-router.all('/*', async (req, res, next) => {
+http.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
     await res.status(405).json({success: false, message: 'Method not allowed.'});
@@ -819,5 +819,5 @@ router.all('/*', async (req, res, next) => {
     next(err);
   }
 });
-// export router
-module.exports = router;
+// export http
+module.exports = http;

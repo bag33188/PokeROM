@@ -12,7 +12,8 @@ const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
-const router = express.Router();
+
+const http = express.Router();
 
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
@@ -40,7 +41,7 @@ function getUserById(query, req, res, callback) {
  * @summary Get all Users.
  * @description Gets all users in the database.
  */
-router.get('/', auth, async (req, res, next) => {
+http.get('/', auth, async (req, res, next) => {
   try {
     await User.getAllUsers((err, users) => {
       if (err) {
@@ -64,7 +65,7 @@ router.get('/', auth, async (req, res, next) => {
  * @description Gets a single user from the database.
  * @param {string} id The ID of the User to get.
  */
-router.get('/:id', auth, async (req, res, next) => {
+http.get('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await User.getUserById({_id: id}, (err, user) => {
@@ -91,7 +92,7 @@ router.get('/:id', auth, async (req, res, next) => {
  * @description Adds a user to the database to be registered.
  * @param {User} newUser The user data to add.
  */
-router.post(
+http.post(
   '/register',
   [
     body(fieldsToSanitize)
@@ -218,7 +219,7 @@ router.post(
  * @description Authenticates a user from its username and password.
  * @param {object} userLogin The login data to authenticate.
  */
-router.post(
+http.post(
   '/authenticate',
   [
     body(fieldsToSanitize)
@@ -315,7 +316,7 @@ router.post(
  * @param {string} id The id of the user to update.
  * @param {User} userData The user data to update with.
  */
-router.put(
+http.put(
   '/:id',
   auth,
   [
@@ -418,7 +419,7 @@ router.put(
  * @param {string} id The id of the user to update.
  * @param {object} userData The user data to update with.
  */
-router.patch(
+http.patch(
   '/:id',
   [
     body(fieldsToSanitize)
@@ -500,7 +501,7 @@ router.patch(
  * @summary Delete All Users.
  * @description Deletes all users in the database.
  */
-router.delete('/', auth, async (req, res, next) => {
+http.delete('/', auth, async (req, res, next) => {
   try {
     await User.deleteAllUsers((err, status) => {
       if (err) {
@@ -541,7 +542,7 @@ router.delete('/', auth, async (req, res, next) => {
  * @description Deletes a single user from the database.
  * @param {string} id The ID of the User to remove.
  */
-router.delete('/:id', auth, async (req, res, next) => {
+http.delete('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     if (req.user['_id'].toString() === id) {
@@ -597,7 +598,7 @@ router.delete('/:id', auth, async (req, res, next) => {
  * @summary Get Head Info.
  * @description Get's header info for entire /api/users route.
  */
-router.head('/', auth, async (req, res, next) => {
+http.head('/', auth, async (req, res, next) => {
   try {
     await res.status(200);
   } catch (err) {
@@ -609,7 +610,7 @@ router.head('/', auth, async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/users/:id route.
  */
-router.head('/:id', auth, async (req, res, next) => {
+http.head('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await getUserById({_id: id}, req, res, () => {
@@ -620,7 +621,7 @@ router.head('/:id', auth, async (req, res, next) => {
   }
 });
 
-router.all('/*', async (req, res, next) => {
+http.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
     await res.status(405).json({success: false, message: 'Method not allowed.'});
@@ -628,5 +629,5 @@ router.all('/*', async (req, res, next) => {
     next(err);
   }
 });
-// use this to make router available to middleware
-module.exports = router;
+// use this to make http available to middleware
+module.exports = http;

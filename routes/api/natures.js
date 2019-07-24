@@ -8,7 +8,7 @@ const Nature = require('../../models/Nature');
 const natureData = require('../../database/data.json')[2];
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 
-const router = express.Router();
+const http = express.Router();
 
 const fieldsToSanitize = ['name', 'up', 'down', 'flavor', 'usage'];
 
@@ -34,7 +34,7 @@ function getNature(query, req, res, callback) {
  * @summary Get all Natures.
  * @description Gets all Natures in the database.
  */
-router.get('/', async (req, res, next) => {
+http.get('/', async (req, res, next) => {
   try {
     await Nature.getNatures((err, natures) => {
       if (err) {
@@ -58,7 +58,7 @@ router.get('/', async (req, res, next) => {
  * @description Gets a single nature from the database.
  * @param {string} id The id of the nature to get.
  */
-router.get('/:id', async (req, res, next) => {
+http.get('/:id', async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await Nature.getNature({_id: id}, (err, nature) => {
@@ -86,7 +86,7 @@ router.get('/:id', async (req, res, next) => {
  * @description Adds a nature to the database.
  * @param {Nature} newNature The new nature to add to the database.
  */
-router.post(
+http.post(
   '/',
   [
     sanitizeBody(fieldsToSanitize)
@@ -191,7 +191,7 @@ router.post(
  * @param {string} id The id of the nature to update.
  * @param {Nature} natureData The nature data to update with.
  */
-router.put(
+http.put(
   '/:id',
   [
     sanitizeBody(fieldsToSanitize)
@@ -299,7 +299,7 @@ router.put(
  * @param {object} partialNature The partial data to update with.
  * @param {string} id The id of the nature to patch/partially update.
  */
-router.patch(
+http.patch(
   '/:id',
   [
     sanitizeBody(fieldsToSanitize)
@@ -365,7 +365,7 @@ router.patch(
  * @description Deletes a single nature from the database.
  * @param {string} id The id of the nature to delete.
  */
-router.delete('/:id', async (req, res, next) => {
+http.delete('/:id', async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     getNature({_id: id}, req, res, () => {
@@ -394,7 +394,7 @@ router.delete('/:id', async (req, res, next) => {
  * @summary Delete All Natures
  * @description Deletes all natures in the database.
  */
-router.delete('/', async (req, res, next) => {
+http.delete('/', async (req, res, next) => {
   try {
     Nature.deleteAllNatures((err, status) => {
       if (err) {
@@ -421,7 +421,7 @@ router.delete('/', async (req, res, next) => {
  * @summary Get Head Info.
  * @description Get's header info for entire /api/natures route.
  */
-router.head('/', async (req, res, next) => {
+http.head('/', async (req, res, next) => {
   try {
     await res.status(200);
   } catch (err) {
@@ -433,7 +433,7 @@ router.head('/', async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/natures/:id route.
  */
-router.head('/:id', async (req, res, next) => {
+http.head('/:id', async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await getNature({_id: id}, req, res, () => {
@@ -448,7 +448,7 @@ router.head('/:id', async (req, res, next) => {
  * @summary Add All Natures
  * @description Adds all natures to the database.
  */
-router.post('/all', async (req, res, next) => {
+http.post('/all', async (req, res, next) => {
   try {
     await Nature.postAll(natureData, (err, natures) => {
       if (err) {
@@ -478,7 +478,7 @@ router.post('/all', async (req, res, next) => {
   }
 });
 
-router.all('/*', async (req, res, next) => {
+http.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
     await res.status(405).json({success: false, message: 'Method not allowed.'});
@@ -487,5 +487,5 @@ router.all('/*', async (req, res, next) => {
   }
 });
 
-module.exports = router;
+module.exports = http;
 
