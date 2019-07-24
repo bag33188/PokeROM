@@ -4,7 +4,6 @@ const {sanitizeBody} = require('express-validator/filter');
 const {check, validationResult} = require('express-validator/check');
 const moment = require('moment');
 const url = require('url');
-const auth = require('../../middleware/auth');
 const natureData = require('../../database/data.json')[2];
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 
@@ -34,7 +33,7 @@ function getNature(query, req, res, callback) {
  * @summary Get all Natures.
  * @description Gets all Natures in the database.
  */
-router.get('/', auth, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     await Nature.getNatures((err, natures) => {
       if (err) {

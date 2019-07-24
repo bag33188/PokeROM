@@ -6,8 +6,6 @@ paths:
         - Natures
       name: Get All Natures
       summary: Gets all Natures
-      security:
-        - bearerAuth: []
       produces:
         - application/json
       responses:
