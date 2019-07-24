@@ -154,6 +154,7 @@ nature_tests() {
     continue
   done
 }
+
 nature_tests
 
 read -n 1 -s -r -p "Press any key to exit"

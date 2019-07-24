@@ -28,6 +28,7 @@ version_test() {
   }
   get
 }
+
 version_test
 
 read -n 1 -s -r -p "Press any key to exit"

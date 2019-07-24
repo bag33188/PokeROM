@@ -174,6 +174,7 @@ user_tests() {
     continue
   done
 }
+
 user_tests
 
 read -n 1 -s -r -p "Press any key to exit"
