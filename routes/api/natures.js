@@ -1,9 +1,10 @@
 const express = require('express');
-const Nature = require('../../models/Nature');
+const mongoose = require('mongoose');
+const url = require('url');
+const moment = require('moment');
 const {sanitizeBody} = require('express-validator/filter');
 const {check, validationResult} = require('express-validator/check');
-const moment = require('moment');
-const url = require('url');
+const Nature = require('../../models/Nature');
 const natureData = require('../../database/data.json')[2];
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 
@@ -59,7 +60,7 @@ router.get('/', async (req, res, next) => {
  */
 router.get('/:id', async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = mongoose.Types.ObjectId(req.params.id);
     await Nature.getNature({_id: id}, (err, nature) => {
       if (err) {
         if (err.name === 'CastError') {
@@ -247,7 +248,7 @@ router.put(
   ],
   async (req, res, next) => {
     try {
-      const id = req.params.id;
+      const id = mongoose.Types.ObjectId(req.params.id);
       const updateData = {
         name: req.body.name,
         up: req.body.up,
@@ -307,7 +308,7 @@ router.patch(
   ],
   async (req, res, next) => {
     try {
-      const id = req.params.id;
+      const id = mongoose.Types.ObjectId(req.params.id);
       const query = req.body;
       let isValid = true;
       for (const field of Object.keys(req.body)) {
@@ -366,7 +367,7 @@ router.patch(
  */
 router.delete('/:id', async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = mongoose.Types.ObjectId(req.params.id);
     getNature({_id: id}, req, res, () => {
       Nature.deleteNature({_id: id}, (err, status) => {
         if (err) {
@@ -434,7 +435,7 @@ router.head('/', async (req, res, next) => {
  */
 router.head('/:id', async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = mongoose.Types.ObjectId(req.params.id);
     await getNature({_id: id}, req, res, () => {
       return res.status(200);
     });

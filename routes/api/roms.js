@@ -1,9 +1,10 @@
 const express = require('express');
 const url = require('url');
-const Rom = require('../../models/Rom');
+const mongoose = require('mongoose');
+const moment = require('moment');
 const {sanitizeBody} = require('express-validator/filter');
 const {check, validationResult} = require('express-validator/check');
-const moment = require('moment');
+const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
@@ -151,7 +152,7 @@ router.get('/', auth, async (req, res, next) => {
  */
 router.get('/:id', auth, async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = mongoose.Types.ObjectId(req.params.id);
     await Rom.getRomById({_id: id}, (err, rom) => {
       if (err) {
         if (err.name === 'CastError') {
@@ -469,7 +470,7 @@ router.put(
   auth,
   async (req, res, next) => {
     try {
-      const id = req.params.id;
+      const id = mongoose.Types.ObjectId(req.params.id);
       req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
       const updateRomData = {
         userId: req.user['_id'],
@@ -561,7 +562,7 @@ router.patch(
   auth,
   async (req, res, next) => {
     try {
-      const id = req.params.id;
+      const id = mongoose.Types.ObjectId(req.params.id);
       const query = req.body;
       if (req.body.dateReleased) {
         req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
@@ -643,7 +644,7 @@ router.patch(
  */
 router.delete('/:id', auth, async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = mongoose.Types.ObjectId(req.params.id);
     await getRomById({_id: id}, req, res, fetchedRom => {
       const isOwnUser =
         rom.userId === req.user['_id'].toString() ? true : false;
@@ -741,7 +742,7 @@ router.head('/', auth, async (req, res, next) => {
  */
 router.head('/:id', auth, async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = mongoose.Types.ObjectId(req.params.id);
     await getRomById({_id: id}, req, res, () => {
       return res.status(200);
     });

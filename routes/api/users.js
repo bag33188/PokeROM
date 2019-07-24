@@ -2,6 +2,7 @@ const express = require('express');
 const moment = require('moment');
 const config = require('config');
 const url = require('url');
+const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const {body} = require('express-validator/check');
 const {check, validationResult} = require('express-validator/check');
@@ -65,7 +66,7 @@ router.get('/', auth, async (req, res, next) => {
  */
 router.get('/:id', auth, async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = mongoose.Types.ObjectId(req.params.id);
     await User.getUserById({_id: id}, (err, user) => {
       if (err) {
         if (err.name === 'CastError') {
@@ -356,7 +357,7 @@ router.put(
   ],
   async (req, res, next) => {
     try {
-      const id = req.params.id;
+      const id = mongoose.Types.ObjectId(req.params.id);
       const userData = req.body;
       let name = req.body.name;
       if (!name) {
@@ -427,7 +428,7 @@ router.patch(
   auth,
   async (req, res, next) => {
     try {
-      const id = req.params.id;
+      const id = mongoose.Types.ObjectId(req.params.id);
       const query = req.body;
       const pwRegex = pwdRegex;
       let isValid = true;
@@ -542,7 +543,7 @@ router.delete('/', auth, async (req, res, next) => {
  */
 router.delete('/:id', auth, async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = mongoose.Types.ObjectId(req.params.id);
     if (req.user['_id'].toString() === id) {
       getUserById({_id: id}, req, res, () => {
         User.deleteUser({_id: id}, (err, status) => {
@@ -610,7 +611,7 @@ router.head('/', auth, async (req, res, next) => {
  */
 router.head('/:id', auth, async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = mongoose.Types.ObjectId(req.params.id);
     await getUserById({_id: id}, req, res, () => {
       return res.status(200);
     });
