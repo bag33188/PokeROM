@@ -3,8 +3,6 @@ definitions:
   Rom:
     type: object
     properties:
-      _id:
-        type: string
       userId:
         type: string
         required: true
