@@ -5,7 +5,7 @@ const urlRegex = /^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]
 // create schema
 const RomSchema = mongoose.Schema({
   userId: {
-    type: String, // mongoose.Schema.Types.ObjectId,
+    type:  mongoose.Schema.Types.ObjectId,
     required: [true, 'User ID is required.']
   },
   orderNumber: {

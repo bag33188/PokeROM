@@ -62,7 +62,7 @@ function getRomById(query, req, res, callback) {
         .status(404)
         .json({success: false, message: 'Error 404: ROM not found.'});
     } else {
-      if (req.user['_id'].toString() === fetchedRom.userId) {
+      if (req.user['_id'] === fetchedRom.userId) {
         return callback(fetchedRom);
       } else {
         return res
@@ -164,7 +164,7 @@ router.get('/:id', auth, async (req, res, next) => {
           .status(404)
           .json({success: false, message: 'Error 404: ROM not found.'});
       } else {
-        if (req.user['_id'].toString() === rom.userId) {
+        if (req.user['_id'] === rom.userId) {
           return res.status(200).json(rom);
         } else {
           return res
@@ -511,7 +511,7 @@ router.put(
       }
       await getRomById({_id: id}, req, res, fetchedRom => {
         const isOwnUser =
-          fetchedRom.userId === req.user['_id'].toString() ? true : false;
+          fetchedRom.userId === req.user['_id'] ? true : false;
         if (isOwnUser) {
           Rom.updateRom({_id: id}, updateRomData, {}, (err, rom) => {
             if (err) {
@@ -601,7 +601,7 @@ router.patch(
       }
       await getRomById({_id: id}, req, res, fetchedRom => {
         const isOwnUser =
-          fetchedRom.userId === req.user['_id'].toString() ? true : false;
+          fetchedRom.userId === req.user['_id'] ? true : false;
         if (isOwnUser) {
           Rom.patchRom({_id: id}, {$set: query}, (err, status) => {
             if (err) {
@@ -647,7 +647,7 @@ router.delete('/:id', auth, async (req, res, next) => {
     const id = mongoose.Types.ObjectId(req.params.id);
     await getRomById({_id: id}, req, res, fetchedRom => {
       const isOwnUser =
-        rom.userId === req.user['_id'].toString() ? true : false;
+        rom.userId === req.user['_id'] ? true : false;
       if (isOwnUser) {
         Rom.deleteRom({_id: id}, (err, status) => {
           if (err) {
@@ -692,7 +692,7 @@ router.delete('/', auth, async (req, res, next) => {
       res,
       roms => {
         const isOwnUser =
-          roms[0].userId === req.user['_id'].toString() ? true : false;
+          roms[0].userId === req.user['_id'] ? true : false;
         if (isOwnUser) {
           Rom.deleteAllRoms({userId: req.user['_id']}, (err, status) => {
             if (err) {
