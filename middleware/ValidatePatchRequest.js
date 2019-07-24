@@ -22,10 +22,10 @@ class ValidatePatchRequest {
       }
     }
     if (this.req.body.fileSize) {
-      if (!parseFloat(this.req.body.fileSize)) {
+      if (!parseInt(this.req.body.fileSize, 10)) {
         return res.status(406).json({success: false, message: 'File size must be a number.'});
       }
-      if (parseFloat(this.req.body.fileSize) && (this.req.body.fileSize > 12000000 || this.req.body.fileSize < 64)) {
+      if (parseInt(this.req.body.fileSize, 10) && (this.req.body.fileSize > 12000000 || this.req.body.fileSize < 64)) {
         return res.status(406).json({
           success: false,
           message: 'File size must be in between 64 and 12000000 kilobytes'

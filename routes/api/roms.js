@@ -205,7 +205,7 @@ http.post(
       .not()
       .isEmpty()
       .withMessage('File size is required.')
-      .isDecimal({min: 64, max: 12000000})
+      .isInt({min: 64, max: 12000000})
       .withMessage('File size must be a number (in kilobytes) between 64 and 12000000.'),
     check('fileType')
       .not()
@@ -384,7 +384,7 @@ http.put(
       .not()
       .isEmpty()
       .withMessage('File size is required.')
-      .isDecimal({min: 64, max: 12000000})
+      .isInt({min: 64, max: 12000000})
       .withMessage('File size must be a number (in kilobytes) between 64 and 12000000.'),
     check('fileType')
       .not()
