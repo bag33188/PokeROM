@@ -5,6 +5,8 @@
 # git commit -m "fixed untracked files"
 # git push
 
+### General ###
+
 # System File(s)/Folder(s)
 .DS_Store
 Thumbs.db
@@ -16,6 +18,10 @@ _MACOSX
 # Project Folder(s)
 .idea
 
+# Created by https://www.gitignore.io/api/node
+# Edit at https://www.gitignore.io/?templates=node
+
+### Node ###
 # Logs
 logs
 *.log
@@ -104,3 +110,5 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# End of https://www.gitignore.io/api/node
