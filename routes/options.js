@@ -23,4 +23,4 @@ http.all('/*', async (req, res, next) => {
   }
 });
 
-module.exports = router;
+module.exports = http;
