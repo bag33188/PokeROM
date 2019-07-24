@@ -261,7 +261,8 @@ router.post(
       .isLength({min: 2, max: 50})
       .withMessage('Platform must be between 2 and 50 characters.'),
     check('genre')
-      .isLength({min: 0, max: 20})
+      .optional()
+      .isLength({min: 2, max: 20})
       .withMessage('Genre must be between 2 and 20 characters.')
       .isString()
       .withMessage('Genre must be a string.'),
@@ -439,7 +440,8 @@ router.put(
       .isLength({min: 2, max: 50})
       .withMessage('Platform must be between 2 and 50 characters.'),
     check('genre')
-      .isLength({min: 0, max: 20})
+      .optional()
+      .isLength({min: 2, max: 20})
       .withMessage('Genre must be between 2 and 20 characters.')
       .isString()
       .withMessage('Genre must be a string.'),

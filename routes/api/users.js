@@ -97,6 +97,7 @@ router.post(
       .trim()
       .escape(),
     check('name')
+      .optional()
       .isLength({max: 100})
       .withMessage('Name can only be 100 characters at max.')
       .isString().withMessage('Name must be a string.'),
@@ -155,11 +156,23 @@ router.post(
               success: false
             });
           }
-          Rom.postCore(romsData[0], user, () => {
-            console.log(`Core ROMs added for user '${user.username}'.`);
+          Rom.postCore(romsData[0], user, (err, roms) => {
+            if (err) {
+              return res.status(500).json({ success: false, ...err });
+            }
+            if (!roms) {
+              return res.status(502).json({ success: false, message: 'Bad gateway.' });
+            }
+            return console.log(`Core ROMs added for user '${user.username}'.`);
           });
-          Rom.postHacks(romsData[1], user, () => {
-            console.log(`ROM Hacks added for user '${user.username}'.`);
+          Rom.postHacks(romsData[1], user, (err, roms) => {
+            if (err) {
+              return res.status(500).json({ success: false, ...err });
+            }
+            if (!roms) {
+              return res.status(502).json({ success: false, message: 'Bad gateway.' });
+            }
+            return console.log(`ROM Hacks added for user '${user.username}'.`);
           });
           res.append(
             'Created-At-Route',
@@ -309,6 +322,7 @@ router.put(
       .trim()
       .escape(),
     check('name')
+      .optional()
       .isLength({max: 100})
       .withMessage('Name can only be 100 characters at max.')
       .isString().withMessage('Name must be a string.'),

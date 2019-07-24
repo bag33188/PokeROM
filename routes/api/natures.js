@@ -4,6 +4,7 @@ const {sanitizeBody} = require('express-validator/filter');
 const {check, validationResult} = require('express-validator/check');
 const moment = require('moment');
 const url = require('url');
+const auth = require('../../middleware/auth');
 const natureData = require('../../database/data.json')[2];
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 
@@ -33,7 +34,7 @@ function getNature(query, req, res, callback) {
  * @summary Get all Natures.
  * @description Gets all Natures in the database.
  */
-router.get('/', async (req, res, next) => {
+router.get('/', auth, async (req, res, next) => {
   try {
     await Nature.getNatures((err, natures) => {
       if (err) {
@@ -122,9 +123,10 @@ router.post(
         'The decreased stat of the nature must be between 4 and 20 characters.'
       ),
     check('flavor')
-      .isLength({max: 14})
+      .optional()
+      .isLength({min: 4, max: 14})
       .withMessage(
-        'The flavor of the nature must can only be 14 characters at max.'
+        'The flavor of the nature must be between 4 and 14 characters.'
       )
       .isString()
       .withMessage('Flavor must be a string'),
@@ -226,9 +228,10 @@ router.put(
         'The decreased stat of the nature must be between 4 and 20 characters.'
       ),
     check('flavor')
-      .isLength({max: 14})
+      .optional()
+      .isLength({min: 4, max: 14})
       .withMessage(
-        'The flavor of the nature must can only be 14 characters at max.'
+        'The flavor of the nature must be between 4 and 14 characters.'
       )
       .isString()
       .withMessage('Flavor must be a string'),
