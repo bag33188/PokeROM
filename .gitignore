@@ -16,9 +16,6 @@ _MACOSX
 # Project Folder(s)
 .idea
 
-# Other
-public/old
-
 # Logs
 logs
 *.log
