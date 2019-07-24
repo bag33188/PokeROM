@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // create schema
-const UserSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   name: {
     type: String,
     minlength: [1, 'Name is too short.'],
@@ -44,7 +44,7 @@ const UserSchema = mongoose.Schema({
 });
 
 // create User model
-const User = (module.exports = mongoose.model('User', UserSchema));
+const User = (module.exports = mongoose.model('User', userSchema));
 
 /**
  * @summary Get user by ID.

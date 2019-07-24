@@ -7,17 +7,18 @@ const mongoose = require('mongoose');
  */
 
 // create mongoose schema
-const VersionSchema = mongoose.Schema(
+const versionSchema = mongoose.Schema(
   {
     apiVersion: String
   },
   {
+    _id: false,
     versionKey: false
   }
 );
 
 // create version model
-const Version = (module.exports = mongoose.model('Version', VersionSchema));
+const Version = (module.exports = mongoose.model('Version', versionSchema));
 
 /**
  * @summary Get API Version

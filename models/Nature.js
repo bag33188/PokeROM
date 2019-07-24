@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // create mongoose schema
-const NatureSchema = mongoose.Schema({
+const natureSchema = mongoose.Schema({
   name: {
     type: String,
     required: [true, 'The name of the nature is required.'],
@@ -53,7 +53,7 @@ const NatureSchema = mongoose.Schema({
 });
 
 // create ROM model
-const Nature = (module.exports = mongoose.model('Nature', NatureSchema));
+const Nature = (module.exports = mongoose.model('Nature', natureSchema));
 
 /**
  * @summary Get All Natures

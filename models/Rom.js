@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const urlRegex = /^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))$/i;
 
 // create schema
-const RomSchema = mongoose.Schema({
+const romSchema = mongoose.Schema({
   userId: {
     type:  mongoose.Schema.Types.ObjectId,
     required: [true, 'User ID is required.']
@@ -151,7 +151,7 @@ const RomSchema = mongoose.Schema({
 });
 
 // create ROM model
-const Rom = (module.exports = mongoose.model('Rom', RomSchema));
+const Rom = (module.exports = mongoose.model('Rom', romSchema));
 
 /**
  * @summary Get all ROMs.
