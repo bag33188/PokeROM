@@ -14,9 +14,56 @@ export class RatingService {
 
   public addRating(rating: Rating): Observable<Rating> {
     const headers: HttpHeaders = new HttpHeaders({
-      Authorization: this.cookieService.getCookie('token_id'),
       'Content-Type': 'application/json'
     });
     return this.http.post<Rating>(this.ratingsUrl, rating, {headers});
+  }
+  public getRating(id: number): Observable<Rating> {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: this.cookieService.getCookie('token_id')
+    });
+    const url: string = `${this.ratingsUrl}/${id}`;
+    return this.http.get<Rating>(url, {headers});
+  }
+  public getRatings(limit?: number): Observable<Rating[]> {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: this.cookieService.getCookie('token_id')
+    });
+    if (limit) {
+      const url: string = `${this.ratingsUrl}?_limit=${limit}`;
+      return this.http.get<Rating[]>(url, {
+        headers
+      });
+    } else {
+      return this.http.get<Rating[]>(this.ratingsUrl, {
+        headers
+      });
+    }
+  }
+  public deleteRating(id: number): Observable<any> {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: this.cookieService.getCookie('token_id')
+    });
+    const url: string = `${this.ratingsUrl}/${id}`;
+    return this.http.delete<any>(url, {headers});
+  }
+  public deleteAllRatings(): Observable<any> {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: this.cookieService.getCookie('token_id')
+    });
+    return this.http.delete<any>(this.ratingsUrl, {headers});
+  }
+  public ratingHeaders(id: number): Observable<void> {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: this.cookieService.getCookie('token_id')
+    });
+    const url: string = `${this.ratingsUrl}/${id}`;
+    return this.http.head<void>(url, {headers});
+  }
+  public allRatingsHeaders(): Observable<void> {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: this.cookieService.getCookie('token_id')
+    });
+    return this.http.head<void>(this.ratingsUrl, {headers});
   }
 }
