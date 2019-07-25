@@ -1,5 +1,5 @@
 <ng-container>
-  <label for="rating">Rating:</label>
+  <label for="rating" triggers="mouseenter:mouseleave" ngbPopover="Either hover over the rating star of your choosing or click on ." popoverTitle="How to set Rating">Rating:</label>
   <div id="spacing"></div>
   <ngb-rating id="rating" [(rate)]="rate" (rateChange)="outputRating($event)" (hover)="outputRating($event)"></ngb-rating>
 </ng-container>
