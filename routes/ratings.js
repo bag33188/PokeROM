@@ -1,10 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Rating = require('../models/Rating');
 const {sanitizeBody} = require('express-validator/filter');
 const {check, validationResult} = require('express-validator/check');
 const url = require('url');
 const moment = require('moment');
+const Rating = require('../models/Rating');
 
 const httpRouter = express.Router();
 
@@ -59,6 +59,82 @@ httpRouter.post('/', [
     });
   } catch (err) {
     next(err);
+  }
+});
+
+httpRouter.get('/:id', async (req, res, next) => {
+  try {
+    const id = mongoose.Types.ObjectId(req.params.id);
+    await Rating.getRating({_id: id}, (err, rating) => {
+      if (err) {
+        if (err.name === 'CastError') {
+          return res.status(404).json({ success: false, ...err });
+        }
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!rating) {
+        return res.status(502).json({ success: false, message: 'Bad gateway.' });
+      }
+      return res.status(200).json(rating);
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+httpRouter.get('/', async (req, res, next) => {
+  try {
+    let limit = req.query['_limit'];
+    if (!limit) {
+      limit = 0;
+    }
+    await Rating.getRatings((err, ratings) => {
+      if (err) {
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!ratings) {
+        return res.status(502).json({ success: false, message: 'Bad gateway.' });
+      }
+      return res.status(200).json(ratings);
+    }, limit);
+  } catch (err) {
+    next(err);
+  }
+});
+
+httpRouter.delete('/:id', async (req, res, next) => {
+  try {
+    const id = mongoose.Types.ObjectId(req.params.id);
+    await Rating.deleteRating({_id: id}, (err, status) => {
+      if (err) {
+        if (err.name === 'CastError') {
+          return res.status(404).json({ success: false, ...err });
+        }
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!status) {
+        return res.status(502).json({ success: false, message: 'Bad gateway.' });
+      }
+      return res.status(200).json({ success: true, ...status });
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+httpRouter.delete('/', async (req, res, next) => {
+  try {
+    await Rating.deleteAllRatings((err, status) => {
+      if (err) {
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!status) {
+        return res.status(502).json({ success: false, message: 'Bad gateway.' });
+      }
+      return res.status(200).json({ success: true, ...status });
+    });
+  } catch (err) {
+    next (err);
   }
 });
 
