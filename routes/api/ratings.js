@@ -15,6 +15,24 @@ function setDate() {
   return now;
 }
 
+function getRating(query, req, res, callback) {
+  return Rating.getRating(query, (err, rating) => {
+    if (err) {
+      if (err.name === 'CastError') {
+        return res.status(404).json({success: false, ...err});
+      } else {
+        return res.status(500).json({success: false, ...err});
+      }
+    }
+    if (!rating) {
+      return res
+        .status(404)
+        .json({success: false, message: 'Error 404: nature not found.'});
+    }
+    return callback(rating);
+  });
+}
+
 httpRouter.post('/', [
   sanitizeBody(['message', 'dateTime']).trim().escape(),
   check('message').optional().isLength({max: 1000}).withMessage('Rating message can only be 1000 characters at max.').isString(),
@@ -55,7 +73,7 @@ httpRouter.post('/', [
   }
 });
 
-httpRouter.get('/:id', async (req, res, next) => {
+httpRouter.get('/:id', auth, async (req, res, next) => {
   try {
     let id;
     try {
@@ -108,18 +126,21 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
     } catch {
       return res.status(404).json({success: false, message: 'Rating not found.'});
     }
-    await Rating.deleteRating({_id: id}, (err, status) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
+    await getRating({_id: id}, req, res, () => {
+      Rating.deleteRating({_id: id}, (err, status) => {
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
         }
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!status) {
-        return res.status(404).json({ success: false, message: 'Rating not found.' });
-      }
-      return res.status(200).json({ success: true, ...status });
+        if (!status) {
+          return res.status(404).json({ success: false, message: 'Rating not found.' });
+        }
+        return res.status(200).json({ success: true, ...status });
+      });
     });
+
   } catch (err) {
     next(err);
   }
@@ -157,7 +178,9 @@ httpRouter.head('/:id', async (req, res, next) => {
     } catch {
       return res.status(404).json({success: false, message: 'Rating not found.'});
     }
-    await res.status(200);
+    await getRating({ _id: id }, req, res, () => {
+      return res.status(200);
+    });
   } catch (err) {
     next(err);
   }
