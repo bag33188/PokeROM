@@ -33,7 +33,7 @@ export class RatingsComponent implements OnInit {
   submitRating(): void {
     this.rating = {
       rating: this.currentRate,
-      message: this.message.sanitizeXSS(true),
+      message: this.message.sanitizeXSS(),
       dateTime: new Date()
     };
     if (this.currentRate === 0) {
