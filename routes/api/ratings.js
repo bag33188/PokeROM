@@ -27,7 +27,7 @@ function getRating(query, req, res, callback) {
     if (!rating) {
       return res
         .status(404)
-        .json({success: false, message: 'Error 404: nature not found.'});
+        .json({success: false, message: 'Rating not found.'});
     }
     return callback(rating);
   });
