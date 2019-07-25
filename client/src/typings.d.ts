@@ -5,7 +5,7 @@ interface NodeModule {
   id: string;
 }
 
-/* Module Delcarations */
+/* Module Declarations */
 declare module 'he'; // html decoding library
 declare module 'jquery'; // jquery library
 declare module 'sprintf-js'; // print-string formatter
