@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiVersionUrl: string = `${environment.apiUrl}/api/version`;
+  private apiVersionUrl: string = `${environment.apiUrl}/version`;
 
   constructor(private http: HttpClient) {
   }

@@ -16,7 +16,7 @@ import {CookiesService} from './cookies.service';
   providedIn: 'root'
 })
 export class RomsService {
-  private romsUrl: string = `${environment.apiUrl}/api/roms`;
+  private romsUrl: string = `${environment.apiUrl}/roms`;
 
   constructor(
     private http: HttpClient,

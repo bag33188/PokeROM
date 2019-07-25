@@ -12,7 +12,7 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private authUrl: string = `${environment.apiUrl}/api/users/authenticate`;
+  private authUrl: string = `${environment.apiUrl}/users/authenticate`;
   private authToken: string;
   private user: User;
 

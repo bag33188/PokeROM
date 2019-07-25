@@ -1,6 +1,6 @@
 ---
 paths:
-  '/ratings':
+  '/api/ratings':
     get:
       tags:
         - Ratings
@@ -95,7 +95,7 @@ paths:
           description: JWT token and username from client don't match.
         500:
           description: Internal server error on back-end occured.
-  '/ratings/{id}':
+  '/api/ratings/{id}':
     get:
       tags:
         - Ratings

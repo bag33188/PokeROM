@@ -4,8 +4,8 @@ const {sanitizeBody} = require('express-validator/filter');
 const {check, validationResult} = require('express-validator/check');
 const url = require('url');
 const moment = require('moment');
-const Rating = require('../models/Rating');
-const auth = require('../middleware/auth');
+const Rating = require('../../models/Rating');
+const auth = require('../../middleware/auth');
 
 const httpRouter = express.Router();
 

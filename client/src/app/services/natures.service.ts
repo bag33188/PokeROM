@@ -12,7 +12,7 @@ const headers: HttpHeaders = new HttpHeaders({
   providedIn: 'root'
 })
 export class NaturesService {
-  private naturesUrl: string = `${environment.apiUrl}/api/natures`;
+  private naturesUrl: string = `${environment.apiUrl}/natures`;
 
   constructor(private http: HttpClient) {
   }

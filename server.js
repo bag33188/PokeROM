@@ -10,7 +10,7 @@ const roms = require('./routes/api/roms');
 const users = require('./routes/api/users');
 const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
-const ratings = require('./routes/ratings');
+const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
 passportConfig(passport); // configure passport
@@ -38,7 +38,7 @@ app.use(cors);
 
 // routing middleware
 app.use('/options', options);
-app.use('/ratings', ratings);
+app.use('/api/ratings', ratings);
 app.use('/api/roms', roms);
 app.use('/api/users', users);
 app.use('/api/natures', natures);
