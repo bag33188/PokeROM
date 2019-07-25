@@ -12,6 +12,7 @@ import {PopupComponent} from './rom-info/popup/popup.component';
 import {ToastComponent} from './faq/toast/toast.component';
 import {SvgComponent} from './faq/toast/svg/svg.component';
 import {ProgrammingLanguagesComponent} from './docs/programming-languages/programming-languages.component';
+import { RatingComponent } from './ratings/rating/rating.component';
 import {ModalContentComponent} from './faq/modal/modal-content.component';
 
 @NgModule({
@@ -25,7 +26,8 @@ import {ModalContentComponent} from './faq/modal/modal-content.component';
     ToastComponent,
     SvgComponent,
     JumbotronComponent,
-    ProgrammingLanguagesComponent
+    ProgrammingLanguagesComponent,
+    RatingComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [CommonModule, NgbModule, BrowserModule, RouterModule],
@@ -37,7 +39,8 @@ import {ModalContentComponent} from './faq/modal/modal-content.component';
     PopupComponent,
     ToastComponent,
     JumbotronComponent,
-    ProgrammingLanguagesComponent
+    ProgrammingLanguagesComponent,
+    RatingComponent
   ]
 })
 export class NgBootstrapModule {

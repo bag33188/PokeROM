@@ -43,6 +43,12 @@ export class HeaderComponent implements OnInit {
         navLinkText: 'Natures'
       },
       {
+        routerLink: ['/', 'ratings'],
+        routerLinkActive: ['yellow'],
+        routerLinkActiveOptions: {exact: true},
+        navLinkText: 'Rate'
+      },
+      {
         routerLink: ['/', 'faq'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: {exact: true},
@@ -53,7 +59,7 @@ export class HeaderComponent implements OnInit {
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: {exact: true},
         navLinkText: 'Docs'
-      }
+      },
     ];
     this.routeKey = '_routerState';
     this.loggedOutRoutes = [
@@ -67,6 +73,10 @@ export class HeaderComponent implements OnInit {
       },
       {
         url: '/natures',
+        pathMatch: 'full'
+      },
+      {
+        url: '/ratings',
         pathMatch: 'full'
       },
       {

@@ -63,12 +63,8 @@
         </button>
       </div>
     </fieldset>
-    <ngb-alert
-      [dismissible]="false"
-      type="danger"
-      *ngIf="loginFail"
-      class="mt-4"
-      >{{ loginFail }}</ngb-alert
-    >
+    <div class="alert alert-danger mt-4" *ngIf="loginFail">
+      {{ loginFail }}
+    </div>
   </form>
 </div>

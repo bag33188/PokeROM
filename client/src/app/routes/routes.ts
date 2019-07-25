@@ -8,6 +8,7 @@ import {RomInfoComponent} from '../components/pages/rom-info/rom-info.component'
 import {FaqComponent} from '../components/pages/faq/faq.component';
 import {NaturesComponent} from '../components/pages/natures/natures.component';
 import {DocsComponent} from '../components/pages/docs/docs.component';
+import {RatingsComponent} from '../components/pages/ratings/ratings.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -21,6 +22,7 @@ export const routes: Routes = [
   },
   {path: 'faq', component: FaqComponent},
   {path: 'natures', component: NaturesComponent},
+  {path: 'ratings', component: RatingsComponent},
   {path: 'docs', component: DocsComponent},
   {path: '404', component: NotFoundComponent},
   {path: '**', component: NotFoundComponent}

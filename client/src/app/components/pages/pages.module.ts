@@ -11,6 +11,7 @@ import {
 import {JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
 import {RouterModule} from '@angular/router';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {NgBootstrapModule} from '../ng-bootstrap/ng-bootstrap.module';
 import {RomsComponent} from './roms/roms.component';
 import {RomInfoComponent} from './rom-info/rom-info.component';
 import {HomeComponent} from './home/home.component';
@@ -23,7 +24,7 @@ import {RomsService} from '../../services/roms.service';
 import {AuthGuard} from '../../guards/auth.guard';
 import {RomsModule} from '../roms/roms.module';
 import {DocsComponent} from './docs/docs.component';
-import {NgBootstrapModule} from '../ng-bootstrap/ng-bootstrap.module';
+import { RatingsComponent } from './ratings/ratings.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {NgBootstrapModule} from '../ng-bootstrap/ng-bootstrap.module';
     LoginComponent,
     FaqComponent,
     NaturesComponent,
-    DocsComponent
+    DocsComponent,
+    RatingsComponent
   ],
   imports: [
     CommonModule,

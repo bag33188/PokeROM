@@ -10,17 +10,9 @@ const auth = require('../middleware/auth');
 const httpRouter = express.Router();
 
 function setDate() {
-  switch (process.env.NODE_ENV) {
-    case undefined:
-    case 'development':
-      return new Date();
-    case 'production':
-      let now = new Date();
-      now.setTime(now.getHours() - 7);
-      return now;
-    default:
-      return new Date();
-  }
+  let now = new Date();
+  now.setHours(now.getHours() - 7);
+  return now;
 }
 
 httpRouter.post('/', [
