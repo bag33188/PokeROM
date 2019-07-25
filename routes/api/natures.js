@@ -60,7 +60,12 @@ httpRouter.get('/', async (req, res, next) => {
  */
 httpRouter.get('/:id', async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'Nature not found.'});
+    }
     await Nature.getNature({_id: id}, (err, nature) => {
       if (err) {
         if (err.name === 'CastError') {
@@ -248,7 +253,12 @@ httpRouter.put(
   ],
   async (req, res, next) => {
     try {
-      const id = mongoose.Types.ObjectId(req.params.id);
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res.status(404).json({success: false, message: 'Nature not found.'});
+      }
       const updateData = {
         name: req.body.name,
         up: req.body.up,
@@ -308,7 +318,12 @@ httpRouter.patch(
   ],
   async (req, res, next) => {
     try {
-      const id = mongoose.Types.ObjectId(req.params.id);
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res.status(404).json({success: false, message: 'Nature not found.'});
+      }
       const query = req.body;
       let isValid = true;
       for (const field of Object.keys(req.body)) {
@@ -367,7 +382,12 @@ httpRouter.patch(
  */
 httpRouter.delete('/:id', async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'Nature not found.'});
+    }
     getNature({_id: id}, req, res, () => {
       Nature.deleteNature({_id: id}, (err, status) => {
         if (err) {
@@ -435,7 +455,12 @@ httpRouter.head('/', async (req, res, next) => {
  */
 httpRouter.head('/:id', async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'Nature not found.'});
+    }
     await getNature({_id: id}, req, res, () => {
       return res.status(200);
     });

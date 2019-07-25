@@ -67,7 +67,12 @@ httpRouter.get('/', auth, async (req, res, next) => {
  */
 httpRouter.get('/:id', auth, async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'User not found.'});
+    }
     await User.getUserById({_id: id}, (err, user) => {
       if (err) {
         if (err.name === 'CastError') {
@@ -358,7 +363,12 @@ httpRouter.put(
   ],
   async (req, res, next) => {
     try {
-      const id = mongoose.Types.ObjectId(req.params.id);
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res.status(404).json({success: false, message: 'User not found.'});
+      }
       const userData = req.body;
       let name = req.body.name;
       if (!name) {
@@ -429,7 +439,12 @@ httpRouter.patch(
   auth,
   async (req, res, next) => {
     try {
-      const id = mongoose.Types.ObjectId(req.params.id);
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res.status(404).json({success: false, message: 'User not found.'});
+      }
       const query = req.body;
       const pwRegex = pwdRegex;
       let isValid = true;
@@ -544,7 +559,12 @@ httpRouter.delete('/', auth, async (req, res, next) => {
  */
 httpRouter.delete('/:id', auth, async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'User not found.'});
+    }
     if (req.user['_id'].toString() === id) {
       getUserById({_id: id}, req, res, () => {
         User.deleteUser({_id: id}, (err, status) => {
@@ -612,7 +632,12 @@ httpRouter.head('/', auth, async (req, res, next) => {
  */
 httpRouter.head('/:id', auth, async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'User not found.'});
+    }
     await getUserById({_id: id}, req, res, () => {
       return res.status(200);
     });

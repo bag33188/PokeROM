@@ -55,9 +55,14 @@ httpRouter.post('/', [
   }
 });
 
-httpRouter.get('/:id', auth, async (req, res, next) => {
+httpRouter.get('/:id', async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'Rating not found.'});
+    }
     await Rating.getRating({_id: id}, (err, rating) => {
       if (err) {
         if (err.name === 'CastError') {
@@ -66,7 +71,7 @@ httpRouter.get('/:id', auth, async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!rating) {
-        return res.status(502).json({ success: false, message: 'Bad gateway.' });
+        return res.status(404).json({ success: false, message: 'Rating not found.' });
       }
       return res.status(200).json(rating);
     });
@@ -97,7 +102,12 @@ httpRouter.get('/', auth, async (req, res, next) => {
 
 httpRouter.delete('/:id', auth, async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'Rating not found.'});
+    }
     await Rating.deleteRating({_id: id}, (err, status) => {
       if (err) {
         if (err.name === 'CastError') {
@@ -106,7 +116,7 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!status) {
-        return res.status(502).json({ success: false, message: 'Bad gateway.' });
+        return res.status(404).json({ success: false, message: 'Rating not found.' });
       }
       return res.status(200).json({ success: true, ...status });
     });
@@ -141,7 +151,12 @@ httpRouter.head('/', async (req, res, next) => {
 
 httpRouter.head('/:id', async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'Rating not found.'});
+    }
     await res.status(200);
   } catch (err) {
     next(err);

@@ -152,7 +152,12 @@ httpRouter.get('/', auth, async (req, res, next) => {
  */
 httpRouter.get('/:id', auth, async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'ROM not found.'});
+    }
     await Rom.getRomById({_id: id}, (err, rom) => {
       if (err) {
         if (err.name === 'CastError') {
@@ -470,7 +475,12 @@ httpRouter.put(
   auth,
   async (req, res, next) => {
     try {
-      const id = mongoose.Types.ObjectId(req.params.id);
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res.status(404).json({success: false, message: 'ROM not found.'});
+      }
       req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
       const updateRomData = {
         userId: req.user['_id'],
@@ -562,7 +572,12 @@ httpRouter.patch(
   auth,
   async (req, res, next) => {
     try {
-      const id = mongoose.Types.ObjectId(req.params.id);
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res.status(404).json({success: false, message: 'ROM not found.'});
+      }
       const query = req.body;
       if (req.body.dateReleased) {
         req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
@@ -644,7 +659,12 @@ httpRouter.patch(
  */
 httpRouter.delete('/:id', auth, async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'ROM not found.'});
+    }
     await getRomById({_id: id}, req, res, fetchedRom => {
       const isOwnUser =
         rom.userId.toString() === req.user['_id'].toString();
@@ -692,7 +712,7 @@ httpRouter.delete('/', auth, async (req, res, next) => {
       res,
       roms => {
         const isOwnUser =
-          roms[0].userId === req.user['_id'] ? true : false;
+          roms[0].userId === req.user['_id'];
         if (isOwnUser) {
           Rom.deleteAllRoms({userId: req.user['_id']}, (err, status) => {
             if (err) {
@@ -742,7 +762,12 @@ httpRouter.head('/', auth, async (req, res, next) => {
  */
 httpRouter.head('/:id', auth, async (req, res, next) => {
   try {
-    const id = mongoose.Types.ObjectId(req.params.id);
+    let id;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).json({success: false, message: 'ROM not found.'});
+    }
     await getRomById({_id: id}, req, res, () => {
       return res.status(200);
     });
