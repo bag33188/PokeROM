@@ -12,6 +12,8 @@ const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 
 const httpRouter = express.Router();
 
+// console.log(all_routes(httpRouter));
+
 // define array with fields to sanitize
 const fieldsToSanitize = [
   'fileSize',
