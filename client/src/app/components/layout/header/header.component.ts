@@ -43,16 +43,16 @@ export class HeaderComponent implements OnInit {
         navLinkText: 'Natures'
       },
       {
-        routerLink: ['/', 'ratings'],
-        routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: {exact: true},
-        navLinkText: 'Rate'
-      },
-      {
         routerLink: ['/', 'faq'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: {exact: true},
         navLinkText: 'FAQ'
+      },
+      {
+        routerLink: ['/', 'ratings'],
+        routerLinkActive: ['yellow'],
+        routerLinkActiveOptions: {exact: true},
+        navLinkText: 'Rate'
       },
       {
         routerLink: ['/', 'docs'],
