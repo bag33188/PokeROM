@@ -10,7 +10,7 @@ import {
 import {AuthService} from '../../../services/auth.service';
 import LoggedUser from '../../../models/LoggedUser';
 import RegisteredUser from '../../../models/RegisteredUser';
-import sanitizeXSS from './sanitation/sanitizeXSS';
+import sanitizeXSS from '../../../sanitation/sanitizeXSS';
 
 @Component({
   selector: 'app-login',

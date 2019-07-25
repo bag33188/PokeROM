@@ -26,6 +26,10 @@ printjson(usersCollection);
 naturesCollection = db.createCollection('natures');
 printjson(naturesCollection);
 
+// create ratings collection
+ratingsCollection = db.createCollection('ratings');
+printjson(ratingsCollection);
+
 // create db user
 dbUserInsertQuery = db.createUser({
   user: 'Broccolini',

@@ -97,7 +97,7 @@ httpRouter.post(
       .isEmpty()
       .withMessage('The name of the nature is required.')
       .isString()
-      .withMessage('Name must be a string')
+      .withMessage('Name must be a string.')
       .isLength({min: 3, max: 20})
       .withMessage(
         'The name of the nature must be between 3 and 10 characters.'
@@ -107,7 +107,7 @@ httpRouter.post(
       .isEmpty()
       .withMessage('The increased stat of the nature is required.')
       .isString()
-      .withMessage('Up must be a string')
+      .withMessage('Up must be a string.')
       .isLength({min: 4, max: 20})
       .withMessage(
         'The increased stat of the nature must be between 4 and 20 characters.'
@@ -117,7 +117,7 @@ httpRouter.post(
       .isEmpty()
       .withMessage('The decreased stat of the nature is required.')
       .isString()
-      .withMessage('Down must be a string')
+      .withMessage('Down must be a string.')
       .isLength({min: 4, max: 20})
       .withMessage(
         'The decreased stat of the nature must be between 4 and 20 characters.'
@@ -129,13 +129,13 @@ httpRouter.post(
         'The flavor of the nature must be between 4 and 14 characters.'
       )
       .isString()
-      .withMessage('Flavor must be a string'),
+      .withMessage('Flavor must be a string.'),
     check('usage')
       .not()
       .isEmpty()
       .withMessage('he usage for the nature is required')
       .isString()
-      .withMessage('Usage must be a string')
+      .withMessage('Usage must be a string.')
       .isLength({min: 5, max: 40})
       .withMessage(
         'The usage for the nature must be in between 5 and 40 characters.'
@@ -202,7 +202,7 @@ httpRouter.put(
       .isEmpty()
       .withMessage('The name of the nature is required.')
       .isString()
-      .withMessage('Name must be a string')
+      .withMessage('Name must be a string.')
       .isLength({min: 3, max: 20})
       .withMessage(
         'The name of the nature must be between 3 and 10 characters.'
@@ -212,7 +212,7 @@ httpRouter.put(
       .isEmpty()
       .withMessage('The increased stat of the nature is required.')
       .isString()
-      .withMessage('Up must be a string')
+      .withMessage('Up must be a string.')
       .isLength({min: 4, max: 20})
       .withMessage(
         'The increased stat of the nature must be between 4 and 20 characters.'
@@ -222,7 +222,7 @@ httpRouter.put(
       .isEmpty()
       .withMessage('The decreased stat of the nature is required.')
       .isString()
-      .withMessage('Down must be a string')
+      .withMessage('Down must be a string.')
       .isLength({min: 4, max: 20})
       .withMessage(
         'The decreased stat of the nature must be between 4 and 20 characters.'
@@ -234,13 +234,13 @@ httpRouter.put(
         'The flavor of the nature must be between 4 and 14 characters.'
       )
       .isString()
-      .withMessage('Flavor must be a string'),
+      .withMessage('Flavor must be a string.'),
     check('usage')
       .not()
       .isEmpty()
-      .withMessage('he usage for the nature is required')
+      .withMessage('The usage for the nature is required.')
       .isString()
-      .withMessage('Usage must be a string')
+      .withMessage('Usage must be a string.')
       .isLength({min: 5, max: 40})
       .withMessage(
         'The usage for the nature must be in between 5 and 40 characters.'

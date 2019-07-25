@@ -18,7 +18,7 @@ class ValidatePatchRequest {
         return res.status(406).json({success: false, message: 'File name must be between 3 and 80 characters.'});
       }
       if (typeof this.req.body.fileName !== typeof 'string') {
-        return res.status(406).json({success: false, message: 'File name must be a string'});
+        return res.status(406).json({success: false, message: 'File name must be a string.'});
       }
     }
     if (this.req.body.fileSize) {
@@ -43,7 +43,7 @@ class ValidatePatchRequest {
         return res.status(406).json({success: false, message: 'Invalid file type extension.'});
       }
       if (typeof this.req.body.fileName !== typeof 'string') {
-        return res.status(406).json({success: false, message: 'File name must be a string'});
+        return res.status(406).json({success: false, message: 'File name must be a string.'});
       }
     }
     if (this.req.body.downloadLink || this.req.body.downloadLink === '') {
@@ -66,7 +66,7 @@ class ValidatePatchRequest {
     }
     if (this.req.body.gameName || this.req.body.gameName === '') {
       if (typeof this.req.body.gameName !== typeof 'string') {
-        return res.status(406).json({success: false, message: 'Game name must be a string'});
+        return res.status(406).json({success: false, message: 'Game name must be a string.'});
       }
       if (this.req.body.gameName.length < 2 || this.req.body.gameName.length > 56) {
         return res.status(406).json({success: false, message: 'Game name must be in between 2 and 56 characters..'});
@@ -108,7 +108,7 @@ class ValidatePatchRequest {
     }
     if (this.req.body.description || this.req.body.description === '') {
       if (typeof this.req.body.description !== typeof 'string') {
-        return res.status(406).json({success: false, message: 'Description must be a string'});
+        return res.status(406).json({success: false, message: 'Description must be a string.'});
       }
       if (this.req.body.description.length < 5 || this.req.body.description.length > 8000) {
         return res.status(406).json({success: false, message: 'Description must be between 5 and 8000 characters.'});
@@ -173,7 +173,7 @@ class ValidatePatchRequest {
     }
     if (this.req.body.username || this.req.body.username === '') {
       if (typeof this.req.body.username !== typeof 'string') {
-        return res.status(406).json({ success: false, message: 'Username must be a string' });
+        return res.status(406).json({ success: false, message: 'Username must be a string.' });
       }
       if (!/^(?:([A-Za-z0-9_])*)$/.test(this.req.body.username)) {
         return res.status(406).json({ success: false, message: 'Username can only contain letters, numbers, or underscores.' });
@@ -189,7 +189,7 @@ class ValidatePatchRequest {
     }
     if (this.req.body.name || this.req.body.name === '') {
       if (typeof this.req.body.name !== typeof 'string') {
-        return res.status(406).json({ success: false, message: 'Name must be a string' });
+        return res.status(406).json({ success: false, message: 'Name must be a string.' });
       }
       if (this.req.body.name.length > 100) {
         return res.status(406).json({ success: false, message: 'Name can only be 100 characters at max.' });

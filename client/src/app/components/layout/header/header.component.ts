@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
-import HtmlRoute from '../../../models/HtmlRoute';
+import HtmlRoute from '../../../interfaces/HtmlRoute';
 import Route from '../../../interfaces/Route';
 
 @Component({
