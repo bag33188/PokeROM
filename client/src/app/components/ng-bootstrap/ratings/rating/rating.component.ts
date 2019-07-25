@@ -19,6 +19,7 @@ export class RatingComponent implements OnInit {
   }
 
   outputRateHover(rate: number): void {
+    this.rate = rate;
     this.currentRate.emit(rate);
   }
 
