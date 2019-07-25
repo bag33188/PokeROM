@@ -13,7 +13,7 @@ const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 
-const http = express.Router();
+const httpRouter = express.Router();
 
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
@@ -41,7 +41,7 @@ function getUserById(query, req, res, callback) {
  * @summary Get all Users.
  * @description Gets all users in the database.
  */
-http.get('/', auth, async (req, res, next) => {
+httpRouter.get('/', auth, async (req, res, next) => {
   try {
     await User.getAllUsers((err, users) => {
       if (err) {
@@ -65,7 +65,7 @@ http.get('/', auth, async (req, res, next) => {
  * @description Gets a single user from the database.
  * @param {string} id The ID of the User to get.
  */
-http.get('/:id', auth, async (req, res, next) => {
+httpRouter.get('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await User.getUserById({_id: id}, (err, user) => {
@@ -92,7 +92,7 @@ http.get('/:id', auth, async (req, res, next) => {
  * @description Adds a user to the database to be registered.
  * @param {User} newUser The user data to add.
  */
-http.post(
+httpRouter.post(
   '/register',
   [
     body(fieldsToSanitize)
@@ -219,7 +219,7 @@ http.post(
  * @description Authenticates a user from its username and password.
  * @param {object} userLogin The login data to authenticate.
  */
-http.post(
+httpRouter.post(
   '/authenticate',
   [
     body(fieldsToSanitize)
@@ -316,7 +316,7 @@ http.post(
  * @param {string} id The id of the user to update.
  * @param {User} userData The user data to update with.
  */
-http.put(
+httpRouter.put(
   '/:id',
   auth,
   [
@@ -419,7 +419,7 @@ http.put(
  * @param {string} id The id of the user to update.
  * @param {object} userData The user data to update with.
  */
-http.patch(
+httpRouter.patch(
   '/:id',
   [
     body(fieldsToSanitize)
@@ -501,7 +501,7 @@ http.patch(
  * @summary Delete All Users.
  * @description Deletes all users in the database.
  */
-http.delete('/', auth, async (req, res, next) => {
+httpRouter.delete('/', auth, async (req, res, next) => {
   try {
     await User.deleteAllUsers((err, status) => {
       if (err) {
@@ -542,7 +542,7 @@ http.delete('/', auth, async (req, res, next) => {
  * @description Deletes a single user from the database.
  * @param {string} id The ID of the User to remove.
  */
-http.delete('/:id', auth, async (req, res, next) => {
+httpRouter.delete('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     if (req.user['_id'].toString() === id) {
@@ -598,7 +598,7 @@ http.delete('/:id', auth, async (req, res, next) => {
  * @summary Get Head Info.
  * @description Get's header info for entire /api/users route.
  */
-http.head('/', auth, async (req, res, next) => {
+httpRouter.head('/', auth, async (req, res, next) => {
   try {
     await res.status(200);
   } catch (err) {
@@ -610,7 +610,7 @@ http.head('/', auth, async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/users/:id route.
  */
-http.head('/:id', auth, async (req, res, next) => {
+httpRouter.head('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await getUserById({_id: id}, req, res, () => {
@@ -621,7 +621,7 @@ http.head('/:id', auth, async (req, res, next) => {
   }
 });
 
-http.all('/*', async (req, res, next) => {
+httpRouter.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
     await res.status(405).json({success: false, message: 'Method not allowed.'});
@@ -629,5 +629,5 @@ http.all('/*', async (req, res, next) => {
     next(err);
   }
 });
-// use this to make http available to middleware
-module.exports = http;
+// use this to make httpRouter available to middleware
+module.exports = httpRouter;

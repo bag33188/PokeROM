@@ -2,14 +2,14 @@ const express = require('express');
 const swaggerDoc = require('../../docs/swaggerDoc');
 const Version = require('../../models/Version');
 
-const http = express.Router();
+const httpRouter = express.Router();
 
 // get api version
 /**
  * @summary Get API Version.
  * @description Gets the API's version.
  */
-http.get('/', async (req, res, next) => {
+httpRouter.get('/', async (req, res, next) => {
   try {
     const [, version] = swaggerDoc;
     const apiVersion = Version.getApiVersion(version);
@@ -19,7 +19,7 @@ http.get('/', async (req, res, next) => {
   }
 });
 
-http.all('/*', async (req, res, next) => {
+httpRouter.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'GET');
     await res.status(405).json({success: false, msg: 'Method not allowed.'});
@@ -28,5 +28,5 @@ http.all('/*', async (req, res, next) => {
   }
 });
 
-// export http
-module.exports = http;
+// export httpRouter
+module.exports = httpRouter;

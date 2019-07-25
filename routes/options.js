@@ -1,12 +1,13 @@
 const express = require('express');
-const http = express.Router();
+
+const httpRouter = express.Router();
 
 // get backend options
 /**
  * @summary Get backend options.
  * @description Gets supported options for entire backend.
  */
-http.options('/', async (req, res, next) => {
+httpRouter.options('/', async (req, res, next) => {
   try {
     await res.status(204);
   } catch (err) {
@@ -14,7 +15,7 @@ http.options('/', async (req, res, next) => {
   }
 });
 
-http.all('/*', async (req, res, next) => {
+httpRouter.all('/*', async (req, res, next) => {
   try {
     res.set('Allow', 'OPTIONS');
     await res.status(405).json({success: false, msg: 'Method not allowed.'});
@@ -23,4 +24,4 @@ http.all('/*', async (req, res, next) => {
   }
 });
 
-module.exports = http;
+module.exports = httpRouter;
