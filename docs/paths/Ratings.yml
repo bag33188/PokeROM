@@ -39,13 +39,13 @@ paths:
           description: The new rating to add to the database.
           required: true
           schema:
-            $ref: '#/ref/definitions/Rating'
+            $ref: '#/definitions/Rating'
             type: object
       responses:
         201:
           description: A single rating object.
           schema:
-            $ref: '#/ref/definitions/Rating'
+            $ref: '#/definitions/Rating'
             type: object
         400:
           description: Bad JSON input.
@@ -61,7 +61,7 @@ paths:
           description: Bad gateway.
     delete:
       tags:
-        - Rating
+        - Ratings
       name: Delete All Ratings
       summary: Deletes all Ratings
       security:
@@ -79,6 +79,22 @@ paths:
           description: Internal server error on back-end occured.
         502:
           description: Bad gateway.
+    head:
+      tags:
+        - Ratings
+      name: Get Ratings Headers
+      summary: Gets Header Info of All Ratings
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: Headers for all Ratings, no body.
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        500:
+          description: Internal server error on back-end occured.
   '/ratings/{id}':
     get:
       tags:
@@ -139,3 +155,27 @@ paths:
           description: Internal server error on back-end occured.
         502:
           description: Bad gateway.
+    head:
+      tags:
+        - Ratings
+      name: Get Single Rating Headers
+      summary: Gets Header Info for One Rating
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: The ID of the rating to get headers for.
+          required: true
+          type: string
+      responses:
+        200:
+          description: Headers for all Ratings, no body.
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        404:
+          description: Requested Rating is not found.
+        500:
+          description: Internal server error on back-end occured.

@@ -10,5 +10,5 @@ definitions:
         type: string
         reuired: false
       dateTime:
-        type: date
+        type: string
         reuired: true

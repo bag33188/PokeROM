@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
  * uuid.v1()
  * uuid.v4()
  */
-
+const Schema = mongoose.Schema;
 // create mongoose schema
-const versionSchema = mongoose.Schema(
+const versionSchema = new Schema(
   {
     apiVersion: String
   },

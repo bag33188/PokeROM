@@ -43,7 +43,7 @@ definitions:
         type: string
         reuired: false
       dateReleased:
-        type: date
+        type: string
         reuired: true
       logoUrl:
         type: string

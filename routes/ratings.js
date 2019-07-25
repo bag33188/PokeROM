@@ -51,7 +51,7 @@ httpRouter.post('/', [
         return res.status(502).json({success: false, message: 'Bad gateway.'});
       }
       res.append('Created-At-Route', `${url.format({
-        protocol: req.protocal,
+        protocol: req.protocol,
         host: req.get('host'),
         pathname: req.originalUrl
       })}/${rating._id}`);
@@ -136,6 +136,23 @@ httpRouter.delete('/', auth, async (req, res, next) => {
     });
   } catch (err) {
     next (err);
+  }
+});
+
+httpRouter.head('/', async (req, res, next) => {
+  try {
+    await res.status(200);
+  } catch (err) {
+    next(err);
+  }
+});
+
+httpRouter.head('/:id', async (req, res, next) => {
+  try {
+    const id = mongoose.Types.ObjectId(req.params.id);
+    await res.status(200);
+  } catch (err) {
+    next(err);
   }
 });
 

@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema;
+
 // create mongoose schema
-const natureSchema = mongoose.Schema({
+const natureSchema = new Schema({
   name: {
     type: String,
     required: [true, 'The name of the nature is required.'],
