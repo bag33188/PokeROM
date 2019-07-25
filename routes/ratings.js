@@ -5,6 +5,7 @@ const {check, validationResult} = require('express-validator/check');
 const url = require('url');
 const moment = require('moment');
 const Rating = require('../models/Rating');
+const auth = require('../middleware/auth');
 
 const httpRouter = express.Router();
 
@@ -62,7 +63,7 @@ httpRouter.post('/', [
   }
 });
 
-httpRouter.get('/:id', async (req, res, next) => {
+httpRouter.get('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await Rating.getRating({_id: id}, (err, rating) => {
@@ -82,7 +83,7 @@ httpRouter.get('/:id', async (req, res, next) => {
   }
 });
 
-httpRouter.get('/', async (req, res, next) => {
+httpRouter.get('/', auth, async (req, res, next) => {
   try {
     let limit = req.query['_limit'];
     if (!limit) {
@@ -102,7 +103,7 @@ httpRouter.get('/', async (req, res, next) => {
   }
 });
 
-httpRouter.delete('/:id', async (req, res, next) => {
+httpRouter.delete('/:id', auth, async (req, res, next) => {
   try {
     const id = mongoose.Types.ObjectId(req.params.id);
     await Rating.deleteRating({_id: id}, (err, status) => {
@@ -122,7 +123,7 @@ httpRouter.delete('/:id', async (req, res, next) => {
   }
 });
 
-httpRouter.delete('/', async (req, res, next) => {
+httpRouter.delete('/', auth, async (req, res, next) => {
   try {
     await Rating.deleteAllRatings((err, status) => {
       if (err) {

@@ -54,7 +54,7 @@ paths:
       parameters:
         - in: body
           name: newRom
-          description: TThe ROM data to add to the database.
+          description: The ROM data to add to the database.
           required: true
           schema:
             $ref: '#/definitions/Rom'
@@ -75,6 +75,8 @@ paths:
           description: Not acceptable JSON body.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
     delete:
       tags:
         - Roms
@@ -331,6 +333,8 @@ paths:
           description: JWT token and username from client don't match.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.
   '/api/roms/hacks':
     post:
       tags:
@@ -355,3 +359,5 @@ paths:
           description: JWT token and username from client don't match.
         500:
           description: Internal server error on back-end occured.
+        502:
+          description: Bad gateway.

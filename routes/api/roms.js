@@ -337,7 +337,7 @@ httpRouter.post(
           return res.status(500).json({success: false, ...err});
         }
         if (!rom) {
-          return res.status(500).json({success: false});
+          return res.status(502).json({success: false, message: 'Bad gateway.'});
         }
         res.append(
           'Created-At-Route',

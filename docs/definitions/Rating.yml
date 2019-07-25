@@ -1,0 +1,14 @@
+---
+definitions:
+  Rating:
+    type: object
+    properties:
+      rating:
+        type: number
+        required: true
+      message:
+        type: string
+        reuired: false
+      dateTime:
+        type: date
+        reuired: true
