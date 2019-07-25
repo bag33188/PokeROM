@@ -1,4 +1,4 @@
-/* CommonJS module definition */
+/* SystemJS module definition */
 declare var module: NodeModule;
 
 interface NodeModule {
