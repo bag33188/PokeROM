@@ -1,3 +1,27 @@
 #thx-msg::after  {
   content: "\1F603";
 }
+#submit-container-flex {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#submit-container-flex {
+  div:first-child {
+    @media only all and (max-width: 360px) {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+#submit-container-flex {
+  div:last-child {
+    span {
+      @media only all and (max-width: 360px) {
+        margin-left: 0 !important;
+      }
+    }
+  }
+}

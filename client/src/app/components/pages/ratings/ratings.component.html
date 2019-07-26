@@ -26,8 +26,14 @@
         </div>
         <p class="mt-2">Current Length: {{ message.length }} (Max: 1000)</p>
       </div>
-      <input type="submit" value="Submit!" class="btn btn-success" [disabled]="!rateHasChanged || message.length > 1000"  />
-      <span class="ml-3 alert alert-warning p-2" [hidden]="rateHasChanged">Please choose a rating.</span>
+      <div id="submit-container-flex">
+        <div>
+         <input type="submit" value="Submit!" class="btn btn-success" [disabled]="!rateHasChanged || message.length > 1000" />
+        </div>
+        <div>
+          <span class="ml-3 alert alert-warning p-2" [hidden]="rateHasChanged">Please choose a rating.</span>
+        </div>
+      </div>
     </form>
     <div *ngIf="formSubmitted">
       <h3 id="thx-msg">Thank you for your feedback&nbsp;</h3>
