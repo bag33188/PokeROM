@@ -8,7 +8,7 @@ definitions:
         required: true
       message:
         type: string
-        reuired: false
+        required: false
       dateTime:
         type: string
-        reuired: true
+        required: true
