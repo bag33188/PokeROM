@@ -26,8 +26,8 @@
         </div>
         <p class="mt-2">Current Length: {{ message.length }} (Max: 1000)</p>
       </div>
-      <input type="submit" value="Submit!" class="btn btn-success" [disabled]="currentRate === 0 || currentRateHover === 0 || message.length > 1000"  />
-      <span class="ml-3 alert alert-warning p-2" [hidden]="!(currentRate === 0 || currentRateHover === 0)">Please choose a rating.</span>
+      <input type="submit" value="Submit!" class="btn btn-success" [disabled]="!rateHasChanged || message.length > 1000"  />
+      <span class="ml-3 alert alert-warning p-2" [hidden]="rateHasChanged">Please choose a rating.</span>
     </form>
     <div *ngIf="formSubmitted">
       <h3 id="thx-msg">Thank you for your feedback&nbsp;</h3>
