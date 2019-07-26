@@ -24,8 +24,8 @@ const Rating = (module.exports = mongoose.model('Rating', ratingSchema));
 
 module.exports.getRatings = (callback, limit) => {
   Rating.find(callback).sort({
-    dateTime: -1,
-    rating: 1
+    rating: 1,
+    dateTime: -1
   }).limit(parseInt(limit));
 };
 
