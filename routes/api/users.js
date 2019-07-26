@@ -379,7 +379,7 @@ httpRouter.put(
       if (!errors.isEmpty()) {
         return res.status(406).json({success: false, errors: errors.array()});
       }
-      if (req.user['_id'].toString() === id) {
+      if (req.user['_id'].toString() === id.toString()) {
         await User.updateUser({_id: id}, userData, {}, (err, user) => {
           if (err) {
             switch (err.name) {
@@ -467,7 +467,7 @@ httpRouter.patch(
       if (new ValidatePatchRequest(req).validateUserPatch(res)) {
         return;
       }
-      if (req.user['_id'].toString() === id) {
+      if (req.user['_id'].toString() === id.toString()) {
         await User.patchUser({_id: id}, {$set: query}, (err, status) => {
           if (err) {
             switch (err.name) {
@@ -565,7 +565,7 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
     } catch {
       return res.status(404).json({success: false, message: 'User not found.'});
     }
-    if (req.user['_id'].toString() === id) {
+    if (req.user['_id'].toString() === id.toString()) {
       getUserById({_id: id}, req, res, () => {
         User.deleteUser({_id: id}, (err, status) => {
           if (err) {
