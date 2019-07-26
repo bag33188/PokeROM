@@ -18,7 +18,7 @@ httpRouter.options('/', async (req, res, next) => {
 httpRouter.all('/*', async (req, res, next) => {
   try {
     const methods = ['OPTIONS'];
-    res.set('Allow', methods[0]);
+    res.set('Allow', methods.join(''));
     if (methods.includes(req.method)) {
       return await res.status(405).json({success: false, message: 'Method not allowed.'});
     } else {
