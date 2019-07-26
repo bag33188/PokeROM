@@ -40,9 +40,12 @@ export class CookiesAlertComponent implements OnInit {
           'I hate to interrupt, but I am required to tell you that this site uses cookies to store your login token for authentication. Click the (x) icon on the top right corner of this alert to close this annoying piece of garbage.'
       }
     ];
-    this.cookiesOk = (sessionStorage.getItem(
+    if (!sessionStorage.getItem('cookiesOk') || !JSON.parse(sessionStorage.getItem('cookiesOk'))) {
+      sessionStorage.setItem('cookiesOk', 'false');
+    }
+    this.cookiesOk = JSON.parse(sessionStorage.getItem(
       'cookiesOk'
-    ) as unknown) as boolean;
+    ));
   }
 
   closeAlert(alert: Alert): void {
