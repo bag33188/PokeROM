@@ -18,7 +18,7 @@ export class RatingService {
     });
     return this.http.post<Rating>(this.ratingsUrl, rating, {headers});
   }
-  public getRating(id: number): Observable<Rating> {
+  public getRating(id: string): Observable<Rating> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
@@ -40,7 +40,7 @@ export class RatingService {
       });
     }
   }
-  public deleteRating(id: number): Observable<any> {
+  public deleteRating(id: string): Observable<any> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
@@ -53,7 +53,7 @@ export class RatingService {
     });
     return this.http.delete<any>(this.ratingsUrl, {headers});
   }
-  public ratingHeaders(id: number): Observable<void> {
+  public ratingHeaders(id: string): Observable<void> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });

@@ -39,6 +39,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@ng-bootstrap/ng-bootstrap": "^5.0.0",
+    "@types/bootstrap": "^4.3.1",
     "bootstrap": "^4.3.1",
     "classlist.js": "^1.1.20150312",
     "he": "^1.2.0",
