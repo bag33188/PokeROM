@@ -162,7 +162,7 @@ httpRouter.delete('/', auth, async (req, res, next) => {
   }
 });
 
-httpRouter.head('/', async (req, res, next) => {
+httpRouter.head('/', auth, async (req, res, next) => {
   try {
     await res.status(200);
   } catch (err) {
@@ -170,7 +170,7 @@ httpRouter.head('/', async (req, res, next) => {
   }
 });
 
-httpRouter.head('/:id', async (req, res, next) => {
+httpRouter.head('/:id', auth, async (req, res, next) => {
   try {
     let id;
     try {
