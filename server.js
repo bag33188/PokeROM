@@ -4,7 +4,6 @@ const passport = require('passport');
 const logger = require('./middleware/logger');
 const swaggerDoc = require('./docs/swaggerDoc');
 const connectDB = require('./config/db');
-const passportConfig = require('./config/passport');
 const cors = require('./config/cors');
 const roms = require('./routes/api/roms');
 const users = require('./routes/api/users');
@@ -13,7 +12,7 @@ const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
-passportConfig(passport); // configure passport
+require('./config/passport')(passport); // configure passport
 
 // connect to database
 connectDB();
