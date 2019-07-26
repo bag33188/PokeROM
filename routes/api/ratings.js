@@ -42,7 +42,7 @@ httpRouter.post('/', [
     const dateAndTime = setDate();
     const newRating = new Rating({
       rating: req.body.rating,
-      message: req.body.message,
+      message: req.body.message || '',
       dateTime: dateAndTime
     });
     const {rating, message, dateTime} = newRating;
