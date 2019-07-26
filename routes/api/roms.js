@@ -45,10 +45,7 @@ function convertToDateFormat(date) {
     dateArr = dateArr.reverse();
     dateArr.unshift(year);
     const formattedDate = dateArr.join(',');
-    const newDate = new Date(formattedDate);
-    return newDate;
-  } else {
-    return;
+    return new Date(formattedDate);
   }
 }
 
