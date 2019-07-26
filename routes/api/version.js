@@ -21,8 +21,13 @@ httpRouter.get('/', async (req, res, next) => {
 
 httpRouter.all('/*', async (req, res, next) => {
   try {
-    res.set('Allow', 'GET');
-    await res.status(405).json({success: false, msg: 'Method not allowed.'});
+    const methods = ['GET'];
+    res.set('Allow', methods[0]);
+    if (methods.includes(req.method)) {
+      return await res.status(405).json({success: false, message: 'Method not allowed.'});
+    } else {
+      return await res.status(501).json({success: false, message: 'Method not implemented.'});
+    }
   } catch (err) {
     next(err);
   }
