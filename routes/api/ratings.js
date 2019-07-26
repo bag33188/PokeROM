@@ -189,8 +189,8 @@ httpRouter.head('/:id', auth, async (req, res, next) => {
 httpRouter.all('/*', async (req, res, next) => {
   try {
     const methods = ['GET', 'POST', 'DELETE'];
-    res.set('Allow', methods.join(', '));
     if (methods.includes(req.method)) {
+      res.set('Allow', methods.join(', '));
       return await res.status(405).json({success: false, message: 'Method not allowed.'});
     } else {
       return await res.status(501).json({success: false, message: 'Method not implemented.'});
