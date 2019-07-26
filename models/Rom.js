@@ -195,21 +195,37 @@ module.exports.addRom = (newRom, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.updateRom = (query, romData, options, callback) => {
+  const {
+    orderNumber,
+    fileName,
+    fileSize,
+    fileType,
+    downloadLink,
+    generation,
+    boxArtUrl,
+    gameName,
+    region,
+    platform,
+    description,
+    genre,
+    dateReleased,
+    logoUrl
+  } = romData;
   const updateQuery = {
-    orderNumber: romData.orderNumber,
-    fileName: romData.fileName,
-    fileSize: romData.fileSize,
-    fileType: romData.fileType,
-    downloadLink: romData.downloadLink,
-    generation: romData.generation,
-    boxArtUrl: romData.boxArtUrl,
-    gameName: romData.gameName,
-    region: romData.region,
-    platform: romData.platform,
-    description: romData.description,
-    genre: romData.genre,
-    dateReleased: romData.dateReleased,
-    logoUrl: romData.logoUrl
+    orderNumber,
+    fileName,
+    fileSize,
+    fileType,
+    downloadLink,
+    generation,
+    boxArtUrl,
+    gameName,
+    region,
+    platform,
+    description,
+    genre,
+    dateReleased,
+    logoUrl
   };
   Rom.findOneAndUpdate(query, updateQuery, options, callback);
 };

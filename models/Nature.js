@@ -128,12 +128,13 @@ module.exports.addNature = (newNature, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.updateNature = (query, natureData, options, callback) => {
+  const {name, up, down, flavor, usage} = natureData;
   const natureQuery = {
-    name: natureData.name,
-    up: natureData.up,
-    down: natureData.down,
-    flavor: natureData.flavor,
-    usage: natureData.usage
+    name,
+    up,
+    down,
+    flavor,
+    usage
   };
   Nature.findOneAndUpdate(query, natureQuery, options, callback);
 };
