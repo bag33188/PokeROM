@@ -663,7 +663,7 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
     } catch {
       return res.status(404).json({success: false, message: 'ROM not found.'});
     }
-    await getRomById({_id: id}, req, res, fetchedRom => {
+    await getRomById({_id: id}, req, res, () => {
       const isOwnUser =
         rom.userId.toString() === req.user['_id'].toString();
       if (isOwnUser) {
