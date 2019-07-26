@@ -15,6 +15,9 @@ export class RatingsComponent implements OnInit {
   message: string;
   formValid: boolean;
   formSubmitted: boolean;
+  rateHasChanged: boolean;
+  currentRateHover: number;
+  rate: number;
 
   constructor(private ratingService: RatingService) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -24,10 +27,25 @@ export class RatingsComponent implements OnInit {
     this.message = '';
     this.formValid = true;
     this.formSubmitted = false;
+    this.rateHasChanged = false;
+    this.currentRateHover = 0;
+    this.rate = 0;
   }
 
   setRating(rate: number): void {
     this.currentRate = rate;
+    this.rate = rate;
+  }
+
+  setRatingHover(rate: number) {
+    this.currentRateHover = rate;
+  }
+  resetRating(): void {
+    if (!this.rateHasChanged) {
+      this.currentRateHover = 0;
+    } else {
+      this.currentRate = this.rate;
+    }
   }
 
   submitRating(): void {

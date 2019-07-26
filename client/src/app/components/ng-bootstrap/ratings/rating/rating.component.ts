@@ -8,6 +8,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class RatingComponent implements OnInit {
   rate: number;
   @Output() currentRate: EventEmitter<number> = new EventEmitter();
+  @Output() currentRateHover: EventEmitter<number> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -15,7 +16,10 @@ export class RatingComponent implements OnInit {
   }
 
   outputRating(rate: number): void {
-    this.rate = rate;
-    this.currentRate.emit(this.rate);
+    this.currentRate.emit(rate);
+  }
+
+  outputRatingHover(rate: number): void {
+    this.currentRateHover.emit(rate);
   }
 }
