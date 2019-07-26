@@ -2,11 +2,11 @@ import he from 'he';
 
 declare global {
   interface String {
-    sanitizeXSS(replaceSpecialChars?: boolean): string;
+    sanitizeXSS(replaceSpecialChars: boolean, encode?: boolean): string;
   }
 }
 
-String.prototype.sanitizeXSS = function(replaceSpecialChars?: boolean): string {
+String.prototype.sanitizeXSS = function(replaceSpecialChars: boolean, encode?: boolean): string {
   let checkXSS: RegExp;
   checkXSS = new RegExp(
     /(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))/,
@@ -20,7 +20,7 @@ String.prototype.sanitizeXSS = function(replaceSpecialChars?: boolean): string {
   if (replaceSpecialChars) {
     sanitizedStr = sanitizedStr.replace(checkChars, '');
   }
-  if (!replaceSpecialChars) {
+  if (encode) {
     sanitizedStr = he.encode(sanitizedStr);
   }
   return sanitizedStr;

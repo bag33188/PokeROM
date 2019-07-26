@@ -51,7 +51,7 @@ export class RatingsComponent implements OnInit {
   submitRating(): void {
     this.rating = {
       rating: this.currentRate,
-      message: this.message.sanitizeXSS(),
+      message: this.message.sanitizeXSS(false, true),
       dateTime: new Date()
     };
     if (this.currentRate === 0) {
@@ -68,5 +68,4 @@ export class RatingsComponent implements OnInit {
       );
     }
   }
-
 }
