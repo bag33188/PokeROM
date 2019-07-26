@@ -52,7 +52,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
   setBetaVersionAlert(): void {
     const betaVersionAlert: Alert = {
       type: 'danger',
-      message: 'THIS WEB APP IS STILL IN BETA VERSIONING'
+      message: 'THIS WEB APP IS STILL IN BETA VERSION'
     };
     if (this.isBeta) {
       if (sessionStorage.getItem('beta-version-alert') !== JSON.stringify([])) {
@@ -62,8 +62,8 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
         );
       }
     } else {
-      // sessionStorage.removeItem('beta-version-alert');
-      sessionStorage.setItem('beta-version-alert', JSON.stringify([]));
+      sessionStorage.removeItem('beta-version-alert');
+      // sessionStorage.setItem('beta-version-alert', JSON.stringify([]));
     }
   }
 

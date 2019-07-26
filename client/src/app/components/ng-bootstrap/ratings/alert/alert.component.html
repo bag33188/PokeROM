@@ -1,0 +1,5 @@
+<ng-container>
+  <p [@fadeOut]="'in'" *ngFor="let alert of alerts">
+    <ngb-alert [type]="alert.type" [dismissible]="true" class="mt-3" (close)="closeAlert(alert)">{{alert.message}}</ngb-alert>
+  </p>
+</ng-container>

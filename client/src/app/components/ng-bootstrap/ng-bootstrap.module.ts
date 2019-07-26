@@ -14,6 +14,7 @@ import {SvgComponent} from './faq/toast/svg/svg.component';
 import {ProgrammingLanguagesComponent} from './docs/programming-languages/programming-languages.component';
 import { RatingComponent } from './ratings/rating/rating.component';
 import {ModalContentComponent} from './faq/modal/modal-content.component';
+import { AlertComponent } from './ratings/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ModalContentComponent} from './faq/modal/modal-content.component';
     SvgComponent,
     JumbotronComponent,
     ProgrammingLanguagesComponent,
-    RatingComponent
+    RatingComponent,
+    AlertComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [CommonModule, NgbModule, BrowserModule, RouterModule],
@@ -40,7 +42,8 @@ import {ModalContentComponent} from './faq/modal/modal-content.component';
     ToastComponent,
     JumbotronComponent,
     ProgrammingLanguagesComponent,
-    RatingComponent
+    RatingComponent,
+    AlertComponent
   ]
 })
 export class NgBootstrapModule {

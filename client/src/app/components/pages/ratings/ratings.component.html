@@ -1,4 +1,4 @@
-<div class="container bg-light mt-4">
+<div class="container mt-4">
   <h2>Rate this App</h2>
   <hr />
   <div class="border p-4 bg-light rounded">
@@ -18,11 +18,12 @@
         <div class="alert alert-danger" [hidden]="message.length <= 1000">
           Feedback message to too long. It can only be 1000 characters at max.
         </div>
-        <p>Current Length: {{ message.length }} (Max: 1000)</p>
+        <p class="mt-2">Current Length: {{ message.length }} (Max: 1000)</p>
       </div>
       <input type="submit" value="Submit!" class="btn btn-success" [disabled]="currentRate === 0 || currentRateHover === 0 || message.length > 1000"  />
       <span class="ml-3 alert alert-warning p-2" [hidden]="!(currentRate === 0 || currentRateHover === 0)">Please choose a rating.</span>
     </form>
     <h3 *ngIf="formSubmitted" id="thx-msg">Thank you for your feedback&nbsp;</h3>
   </div>
+  <app-alert></app-alert>
 </div>

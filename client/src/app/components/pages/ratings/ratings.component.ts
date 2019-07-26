@@ -3,7 +3,6 @@ import {RatingService} from '../../../services/rating.service';
 import Rating from '../../../models/Rating';
 import sanitizeXSS from '../../../sanitation/sanitizeXSS';
 
-
 @Component({
   selector: 'app-ratings',
   templateUrl: './ratings.component.html',
