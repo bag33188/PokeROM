@@ -37,8 +37,7 @@ const dateRegex = /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\
  */
 function convertToDateFormat(date) {
   if (date) {
-    // split of entity due to sanitation
-    let dateArr = date.split('&#x2F;');
+    let dateArr = date.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
     const year = dateArr[2];
     dateArr = dateArr.reverse();
     dateArr.shift();
