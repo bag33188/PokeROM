@@ -24,7 +24,7 @@ const passport = (passportJwt) => {
       return (user) ? done(null, user) : done(null, false);
     });
   }));
-}
+};
 
 // bearer token handler
 module.exports = passport;
