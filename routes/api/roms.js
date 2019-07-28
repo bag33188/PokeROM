@@ -60,7 +60,7 @@ function getRomById(query, req, res, callback) {
         .status(404)
         .json({success: false, message: 'Error 404: ROM not found.'});
     } else {
-      if (req.user['_id'] === fetchedRom.userId) {
+      if (req.user['_id'].toString() === fetchedRom.userId.toString()) {
         return callback(fetchedRom);
       } else {
         return res
