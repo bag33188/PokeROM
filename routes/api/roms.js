@@ -710,7 +710,7 @@ httpRouter.delete('/', auth, async (req, res, next) => {
       res,
       roms => {
         const isOwnUser =
-          roms[0].userId === req.user['_id'];
+          roms[0].userId.toString() === req.user['_id'].toString();
         if (isOwnUser) {
           Rom.deleteAllRoms({userId: req.user['_id']}, (err, status) => {
             if (err) {
