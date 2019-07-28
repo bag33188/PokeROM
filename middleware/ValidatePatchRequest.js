@@ -13,6 +13,17 @@ class ValidatePatchRequest {
         return res.status(406).json({success: false, message: 'Order number must be an integer from 0 to 88.'});
       }
     }
+    if (this.req.body.romType) {
+      if (typeof this.req.body.romType !== typeof 'string') {
+        return res.status(406).json({success: false, message: 'ROM type must be a string.'});
+      }
+      if (this.req.body.romType.length < 4 || this.req.body.romType > 5) {
+        return res.status(406).json({success: false, message: 'ROM type must be in between 4 and 5 characters.'});
+      }
+      if (this.req.body.romType.toLowerCase() !== 'core' && this.req.body.romType.toLowerCase() !== 'hack') {
+        return res.status(406).json({success: false, message: 'ROM type can only be a core or hack.'});
+      }
+    }
     if (this.req.body.fileName || this.req.body.fileName === '') {
       if (this.req.body.fileName.length < 3 || this.req.body.fileName.length > 80 || this.req.body.fileName === '') {
         return res.status(406).json({success: false, message: 'File name must be between 3 and 80 characters.'});

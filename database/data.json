@@ -2,6 +2,7 @@
   [
     {
       "orderNumber": 0,
+      "romType": "core",
       "fileName": "Pokemon Red.gb",
       "fileSize": 1024,
       "fileType": "gb",
@@ -18,6 +19,7 @@
     },
     {
       "orderNumber": 1,
+      "romType": "core",
       "fileName": "Pokemon Blue.gb",
       "fileSize": 1024,
       "fileType": "gb",
@@ -34,6 +36,7 @@
     },
     {
       "orderNumber": 2,
+      "romType": "core",
       "fileName": "Pokemon Yellow (Special Pikachu Edition).gb",
       "fileSize": 1024,
       "fileType": "gb",
@@ -50,6 +53,7 @@
     },
     {
       "orderNumber": 3,
+      "romType": "core",
       "fileName": "Pokemon Green (JP).gb",
       "fileSize": 1024,
       "fileType": "gb",
@@ -66,6 +70,7 @@
     },
     {
       "orderNumber": 4,
+      "romType": "core",
       "fileName": "Pokemon Gold.gbc",
       "fileSize": 2048,
       "fileType": "gbc",
@@ -82,6 +87,7 @@
     },
     {
       "orderNumber": 5,
+      "romType": "core",
       "fileName": "Pokemon Silver.gbc",
       "fileSize": 2048,
       "fileType": "gbc",
@@ -98,6 +104,7 @@
     },
     {
       "orderNumber": 6,
+      "romType": "core",
       "fileName": "Pokemon Crystal.gbc",
       "fileSize": 2048,
       "fileType": "gbc",
@@ -114,6 +121,7 @@
     },
     {
       "orderNumber": 7,
+      "romType": "core",
       "fileName": "Pokemon Ruby.gba",
       "fileSize": 16384,
       "fileType": "gba",
@@ -130,6 +138,7 @@
     },
     {
       "orderNumber": 8,
+      "romType": "core",
       "fileName": "Pokemon Sapphire.gba",
       "fileSize": 16384,
       "fileType": "gba",
@@ -146,6 +155,7 @@
     },
     {
       "orderNumber": 9,
+      "romType": "core",
       "fileName": "Pokemon Emerald.gba",
       "fileSize": 16384,
       "fileType": "gba",
@@ -162,6 +172,7 @@
     },
     {
       "orderNumber": 10,
+      "romType": "core",
       "fileName": "Pokemon FireRed.gba",
       "fileSize": 16384,
       "fileType": "gba",
@@ -178,6 +189,7 @@
     },
     {
       "orderNumber": 11,
+      "romType": "core",
       "fileName": "Pokemon LeafGreen.gba",
       "fileSize": 16384,
       "fileType": "gba",
@@ -194,6 +206,7 @@
     },
     {
       "orderNumber": 12,
+      "romType": "core",
       "fileName": "Pokemon Diamond.nds",
       "fileSize": 65536,
       "fileType": "nds",
@@ -210,6 +223,7 @@
     },
     {
       "orderNumber": 13,
+      "romType": "core",
       "fileName": "Pokemon Pearl.nds",
       "fileSize": 65536,
       "fileType": "nds",
@@ -226,6 +240,7 @@
     },
     {
       "orderNumber": 14,
+      "romType": "core",
       "fileName": "Pokemon Platinum.nds",
       "fileSize": 131072,
       "fileType": "nds",
@@ -242,6 +257,7 @@
     },
     {
       "orderNumber": 15,
+      "romType": "core",
       "fileName": "Pokemon HeartGold.nds",
       "fileSize": 131072,
       "fileType": "nds",
@@ -258,6 +274,7 @@
     },
     {
       "orderNumber": 16,
+      "romType": "core",
       "fileName": "Pokemon SoulSilver.nds",
       "fileSize": 131072,
       "fileType": "nds",
@@ -274,6 +291,7 @@
     },
     {
       "orderNumber": 17,
+      "romType": "core",
       "fileName": "Pokemon Black.nds",
       "fileSize": 262144,
       "fileType": "nds",
@@ -290,6 +308,7 @@
     },
     {
       "orderNumber": 18,
+      "romType": "core",
       "fileName": "Pokemon White.nds",
       "fileSize": 262144,
       "fileType": "nds",
@@ -306,6 +325,7 @@
     },
     {
       "orderNumber": 19,
+      "romType": "core",
       "fileName": "Pokemon Black 2.nds",
       "fileSize": 524288,
       "fileType": "nds",
@@ -322,6 +342,7 @@
     },
     {
       "orderNumber": 20,
+      "romType": "core",
       "fileName": "Pokemon White 2.nds",
       "fileSize": 524288,
       "fileType": "nds",
@@ -338,6 +359,7 @@
     },
     {
       "orderNumber": 21,
+      "romType": "core",
       "fileName": "Pokemon X.3ds",
       "fileSize": 2097152,
       "fileType": "3ds",
@@ -354,6 +376,7 @@
     },
     {
       "orderNumber": 22,
+      "romType": "core",
       "fileName": "Pokemon Y.3ds",
       "fileSize": 2097152,
       "fileType": "3ds",
@@ -370,6 +393,7 @@
     },
     {
       "orderNumber": 23,
+      "romType": "core",
       "fileName": "Pokemon Omega Ruby.3ds",
       "fileSize": 2097152,
       "fileType": "3ds",
@@ -386,6 +410,7 @@
     },
     {
       "orderNumber": 24,
+      "romType": "core",
       "fileName": "Pokemon Alpha Sapphire.3ds",
       "fileSize": 2097152,
       "fileType": "3ds",
@@ -402,6 +427,7 @@
     },
     {
       "orderNumber": 25,
+      "romType": "core",
       "fileName": "Pokemon Sun.3ds",
       "fileSize": 4194304,
       "fileType": "3ds",
@@ -418,6 +444,7 @@
     },
     {
       "orderNumber": 26,
+      "romType": "core",
       "fileName": "Pokemon Moon.3ds",
       "fileSize": 4194304,
       "fileType": "3ds",
@@ -434,6 +461,7 @@
     },
     {
       "orderNumber": 27,
+      "romType": "core",
       "fileName": "Pokemon Ultra Sun.3ds",
       "fileSize": 4194304,
       "fileType": "3ds",
@@ -450,6 +478,7 @@
     },
     {
       "orderNumber": 28,
+      "romType": "core",
       "fileName": "Pokemon Ultra Moon.3ds",
       "fileSize": 4194304,
       "fileType": "3ds",
@@ -466,6 +495,7 @@
     },
     {
       "orderNumber": 29,
+      "romType": "core",
       "fileName": "Pokemon Let's Go Pikachu.xci",
       "fileSize": 4737727,
       "fileType": "xci",
@@ -482,6 +512,7 @@
     },
     {
       "orderNumber": 30,
+      "romType": "core",
       "fileName": "Pokemon Let's Go Eevee.xci",
       "fileSize": 4737727,
       "fileType": "xci",
@@ -500,6 +531,7 @@
   [
     {
       "orderNumber": 31,
+      "romType": "hack",
       "fileName": "Pokemon Prism.gbc",
       "fileSize": 2048,
       "fileType": "gbc",
@@ -516,6 +548,7 @@
     },
     {
       "orderNumber": 32,
+      "romType": "hack",
       "fileName": "Pokemon Ash Gray.gba",
       "fileSize": 16384,
       "fileType": "gba",

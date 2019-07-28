@@ -14,6 +14,21 @@ const romSchema = new Schema({
     min: [0, 'Order number must not be negative.'],
     max: [88, 'Order number cannot exceed 88.']
   },
+  romType: {
+    type: String,
+    required: [true, 'ROM type is required.'],
+    minlength: [4, 'ROM type is too short (must be at least 4 characters).'],
+    maxlength: [
+      5,
+      'ROM type is too long (can only 5 characters at max).'
+    ],
+    validate: {
+      validator: function (v) {
+        return !(v.toLowerCase() !== 'core' && v.toLowerCase() !== 'hack');
+      },
+      message: props => `${props.value} is not a valid ROM type. ROM type can only be "core" or "hack".`
+    }
+  },
   fileName: {
     type: String,
     required: [true, 'File name is required.'],

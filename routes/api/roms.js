@@ -195,7 +195,17 @@ httpRouter.post(
     check('orderNumber')
       .not()
       .isEmpty()
-      .withMessage('Order number is required.'),
+      .withMessage('Order number is required.')
+      .isInt({min: 0, max: 33})
+      .withMessage('Order number must be an integer between 0 and 33.'),
+    check('romType')
+      .not()
+      .isEmpty()
+      .withMessage('ROM type is required.')
+      .matches(/^(core|hack)$/i)
+      .withMessage('ROM type must either be a core or a hack.')
+      .isLength({min: 4, max: 5})
+      .withMessage('ROM type must be either 4 or 5 characters.'),
     check('fileName')
       .not()
       .isEmpty()
@@ -298,6 +308,7 @@ httpRouter.post(
       const newRom = new Rom({
         userId: req.user['_id'],
         orderNumber: req.body.orderNumber,
+        romType: req.body.romType,
         fileName: req.body.fileName,
         fileSize: req.body.fileSize,
         fileType: req.body.fileType,
@@ -374,7 +385,17 @@ httpRouter.put(
     check('orderNumber')
       .not()
       .isEmpty()
-      .withMessage('Order number is required.'),
+      .withMessage('Order number is required.')
+      .isInt({min: 0, max: 33})
+      .withMessage('Order number must be an integer between 0 and 33.'),
+    check('romType')
+      .not()
+      .isEmpty()
+      .withMessage('ROM type is required.')
+      .matches(/^(core|hack)$/i)
+      .withMessage('ROM type must either be a core or a hack.')
+      .isLength({min: 4, max: 5})
+      .withMessage('ROM type must be either 4 or 5 characters.'),
     check('fileName')
       .not()
       .isEmpty()
@@ -483,6 +504,7 @@ httpRouter.put(
       const updateRomData = {
         userId: req.user['_id'],
         orderNumber: req.body.orderNumber,
+        romType: req.body.romType,
         fileName: req.body.fileName,
         fileSize: req.body.fileSize,
         fileType: req.body.fileType,
@@ -596,7 +618,8 @@ httpRouter.patch(
           field !== 'region' &&
           field !== 'generation' &&
           field !== 'boxArtUrl' &&
-          field !== 'logoUrl'
+          field !== 'logoUrl' &&
+          field !== 'romType'
         ) {
           isValid = false;
           break;

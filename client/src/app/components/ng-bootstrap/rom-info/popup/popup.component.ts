@@ -6,6 +6,7 @@ import {Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
+  @Input() romType: string;
   @Input() gameName: string;
   isRomHack: boolean;
   romHackTxtIdentifier: RegExp;
@@ -17,9 +18,7 @@ export class PopupComponent implements OnInit {
     this.romHackTxtIdentifier = /(?:(\s?)(\(ROM Hack\)))/i;
     setTimeout(
       (): boolean =>
-        (this.isRomHack = this.romHackTxtIdentifier.test(this.gameName)
-          ? true
-          : false),
+        (this.isRomHack = this.romType === 'hack'),
       555
     );
   }

@@ -36,6 +36,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     this.isError = false;
     this.rom = {
       orderNumber: 0,
+      romType: '',
       gameName: '',
       fileSize: 0,
       generation: 0,

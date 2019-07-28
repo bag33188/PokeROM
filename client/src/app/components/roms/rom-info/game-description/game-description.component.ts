@@ -23,8 +23,8 @@ export class GameDescriptionComponent implements OnInit {
     }, 555);
   }
 
-  isRomHack(gameName: string): boolean {
-    return /ROM Hack/.test(gameName) ? true : false;
+  isRomHack(romType: string): boolean {
+    return romType === 'hack';
   }
 
   changeUrlToLink(description: string): string {

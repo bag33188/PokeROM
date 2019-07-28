@@ -2,6 +2,7 @@ class Rom {
   _id?: string;
   userId?: string;
   orderNumber: number;
+  romType: string;
   fileName: string;
   fileSize: number;
   fileType: string;
