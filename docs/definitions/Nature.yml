@@ -8,13 +8,13 @@ definitions:
         required: true
       up:
         type: string
-        reuired: true
+        required: true
       down:
         type: string
-        reuired: true
+        required: true
       flavor:
         type: string
         required: false
       usage:
         type: string
-        reuired: true
+        required: true

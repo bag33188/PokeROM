@@ -14,40 +14,40 @@ definitions:
         required: true
       fileSize:
         type: integer
-        reuired: true
+        required: true
       fileType:
         type: string
-        reuired: true
+        required: true
       fileName:
         type: string
-        reuired: true
+        required: true
       downloadLink:
         type: string
-        reuired: true
+        required: true
       generation:
         type: integer
-        reuired: true
+        required: true
       boxArtUrl:
         type: string
-        reuired: true
+        required: true
       gameName:
         type: string
-        reuired: true
+        required: true
       region:
         type: string
-        reuired: true
+        required: true
       platform:
         type: string
-        reuired: true
+        required: true
       description:
         type: string
-        reuired: true
+        required: true
       genre:
         type: string
-        reuired: false
+        required: false
       dateReleased:
         type: string
-        reuired: true
+        required: true
       logoUrl:
         type: string
-        reuired: true
+        required: true

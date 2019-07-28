@@ -8,10 +8,10 @@ definitions:
         required: false
       email:
         type: string
-        reuired: true
+        required: true
       username:
         type: string
-        reuired: true
+        required: true
       password:
         type: string
-        reuired: true
+        required: true
