@@ -9,8 +9,6 @@ There isn't a problem when you don't why it's not working,
 there's a problem when you don't know why it is working.
 -->
 
-<!-- jQuery('#your_element_id_here').css('font-size'); -->
-
 **Table of Contents**
 <!-- TOC -->
 
