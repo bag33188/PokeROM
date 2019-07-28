@@ -23,6 +23,7 @@ class ValidatePatchRequest {
       if (this.req.body.romType.toLowerCase() !== 'core' && this.req.body.romType.toLowerCase() !== 'hack') {
         return res.status(406).json({success: false, message: 'ROM type can only be a core or hack.'});
       }
+      this.req.body.romType = this.req.body.romType.toLowerCase();
     }
     if (this.req.body.fileName || this.req.body.fileName === '') {
       if (this.req.body.fileName.length < 3 || this.req.body.fileName.length > 80 || this.req.body.fileName === '') {

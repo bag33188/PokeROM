@@ -308,7 +308,7 @@ httpRouter.post(
       const newRom = new Rom({
         userId: req.user['_id'],
         orderNumber: req.body.orderNumber,
-        romType: req.body.romType,
+        romType: req.body.romType.toLowerCase(),
         fileName: req.body.fileName,
         fileSize: req.body.fileSize,
         fileType: req.body.fileType,
@@ -504,7 +504,7 @@ httpRouter.put(
       const updateRomData = {
         userId: req.user['_id'],
         orderNumber: req.body.orderNumber,
-        romType: req.body.romType,
+        romType: req.body.romType.toLowerCase(),
         fileName: req.body.fileName,
         fileSize: req.body.fileSize,
         fileType: req.body.fileType,
