@@ -9,6 +9,9 @@ definitions:
       orderNumber:
         type: integer
         required: true
+      romType:
+        type: string
+        required: true
       fileSize:
         type: integer
         reuired: true
