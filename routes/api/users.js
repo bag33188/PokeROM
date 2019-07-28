@@ -139,7 +139,7 @@ httpRouter.post(
   async (req, res, next) => {
     try {
       let newUser = new User({
-        name: req.body.name,
+        name: req.body.name || 'No Name',
         email: req.body.email,
         username: req.body.username,
         password: req.body.password
