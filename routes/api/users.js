@@ -102,7 +102,7 @@ httpRouter.post(
   [
     body(fieldsToSanitize)
       .trim()
-      .escape(),
+      .unescape().escape(),
     check('name')
       .optional()
       .isLength({max: 100})
@@ -229,7 +229,7 @@ httpRouter.post(
   [
     body(fieldsToSanitize)
       .trim()
-      .escape(),
+      .unescape().escape(),
     check('username')
       .not()
       .isEmpty()
@@ -327,7 +327,7 @@ httpRouter.put(
   [
     body(fieldsToSanitize)
       .trim()
-      .escape(),
+      .unescape().escape(),
     check('name')
       .optional()
       .isLength({max: 100})
@@ -434,7 +434,7 @@ httpRouter.patch(
   [
     body(fieldsToSanitize)
       .trim()
-      .escape()
+      .unescape().escape()
   ],
   auth,
   async (req, res, next) => {

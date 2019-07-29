@@ -96,7 +96,7 @@ httpRouter.post(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .escape(),
+      .unescape().escape(),
     check('name')
       .not()
       .isEmpty()
@@ -201,7 +201,7 @@ httpRouter.put(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .escape(),
+      .unescape().escape(),
     check('name')
       .not()
       .isEmpty()
@@ -314,7 +314,7 @@ httpRouter.patch(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .escape()
+      .unescape().escape()
   ],
   async (req, res, next) => {
     try {
