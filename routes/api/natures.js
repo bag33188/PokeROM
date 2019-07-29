@@ -34,7 +34,7 @@ function getNature(query, req, res, callback) {
  * @summary Get all Natures.
  * @description Gets all Natures in the database.
  */
-httpRouter.get('/', async (req, res, next) => {
+httpRouter.get('/', [sanitizeBody(['message']).unescape()], async (req, res, next) => {
   try {
     await Nature.getNatures((err, natures) => {
       if (err) {
@@ -58,7 +58,7 @@ httpRouter.get('/', async (req, res, next) => {
  * @description Gets a single nature from the database.
  * @param {string} id The id of the nature to get.
  */
-httpRouter.get('/:id', async (req, res, next) => {
+httpRouter.get('/:id', [sanitizeBody(['message']).unescape()], async (req, res, next) => {
   try {
     let id;
     try {
@@ -96,7 +96,7 @@ httpRouter.post(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().escape(),
+      .unescape().unescape().escape(),
     check('name')
       .not()
       .isEmpty()
@@ -201,7 +201,7 @@ httpRouter.put(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().escape(),
+      .unescape().unescape().escape(),
     check('name')
       .not()
       .isEmpty()
@@ -314,7 +314,7 @@ httpRouter.patch(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().escape()
+      .unescape().unescape().escape()
   ],
   async (req, res, next) => {
     try {

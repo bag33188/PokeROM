@@ -34,7 +34,7 @@ function getRating(query, req, res, callback) {
 }
 
 httpRouter.post('/', [
-  sanitizeBody(['rating', 'message', 'dateTime']).trim().unescape().escape(),
+  sanitizeBody(['rating', 'message', 'dateTime']).trim().unescape().unescape().escape(),
   check('message').optional().isLength({max: 1000}).withMessage('Rating message can only be 1000 characters at max.').isString().withMessage('Message must be a string.'),
   check('rating').not().isEmpty().withMessage('Rating is required.').isInt({min: 1, max: 10}).withMessage('Rating must be in between 1 and 10.')
 ], async (req, res, next) => {
@@ -73,7 +73,7 @@ httpRouter.post('/', [
   }
 });
 
-httpRouter.get('/:id', auth, async (req, res, next) => {
+httpRouter.get('/:id', [sanitizeBody(['message']).unescape()], auth, async (req, res, next) => {
   try {
     let id;
     try {
@@ -98,7 +98,7 @@ httpRouter.get('/:id', auth, async (req, res, next) => {
   }
 });
 
-httpRouter.get('/', auth, async (req, res, next) => {
+httpRouter.get('/', [sanitizeBody(['message']).unescape()], auth, async (req, res, next) => {
   try {
     let limit = req.query['_limit'];
     if (!limit) {

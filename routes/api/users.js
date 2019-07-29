@@ -41,7 +41,7 @@ function getUserById(query, req, res, callback) {
  * @summary Get all Users.
  * @description Gets all users in the database.
  */
-httpRouter.get('/', auth, async (req, res, next) => {
+httpRouter.get('/', [sanitizeBody(['message']).unescape()], auth, async (req, res, next) => {
   try {
     await User.getAllUsers((err, users) => {
       if (err) {
@@ -65,7 +65,7 @@ httpRouter.get('/', auth, async (req, res, next) => {
  * @description Gets a single user from the database.
  * @param {string} id The ID of the User to get.
  */
-httpRouter.get('/:id', auth, async (req, res, next) => {
+httpRouter.get('/:id', [[sanitizeBody(['message']).unescape()]], auth, async (req, res, next) => {
   try {
     let id;
     try {
@@ -102,7 +102,7 @@ httpRouter.post(
   [
     body(fieldsToSanitize)
       .trim()
-      .unescape().escape(),
+      .unescape().unescape().escape(),
     check('name')
       .optional()
       .isLength({max: 100})
@@ -229,7 +229,7 @@ httpRouter.post(
   [
     body(fieldsToSanitize)
       .trim()
-      .unescape().escape(),
+      .unescape().unescape().escape(),
     check('username')
       .not()
       .isEmpty()
@@ -327,7 +327,7 @@ httpRouter.put(
   [
     body(fieldsToSanitize)
       .trim()
-      .unescape().escape(),
+      .unescape().unescape().escape(),
     check('name')
       .optional()
       .isLength({max: 100})
@@ -434,7 +434,7 @@ httpRouter.patch(
   [
     body(fieldsToSanitize)
       .trim()
-      .unescape().escape()
+      .unescape().unescape().escape()
   ],
   auth,
   async (req, res, next) => {

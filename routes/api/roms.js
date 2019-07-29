@@ -100,7 +100,7 @@ function getAllRoms(query, req, res, callback, limit) {
  * @param {number} page (Optional) For pagination: the page number to go to.
  * @param {number} per_page (Optional) For pagination: the number of ROMs per page.
  */
-httpRouter.get('/', auth, async (req, res, next) => {
+httpRouter.get('/', [sanitizeBody(['message']).unescape()], auth, async (req, res, next) => {
   try {
     let limit = req.query['_limit'];
     if (!limit) {
@@ -148,7 +148,7 @@ httpRouter.get('/', auth, async (req, res, next) => {
  * @description Get a single ROM from the database.
  * @param {number} id The ID of the ROM to get.
  */
-httpRouter.get('/:id', auth, async (req, res, next) => {
+httpRouter.get('/:id', [sanitizeBody(['message']).unescape()], auth, async (req, res, next) => {
   try {
     let id;
     try {
@@ -191,7 +191,7 @@ httpRouter.post(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().escape(),
+      .unescape().unescape().escape(),
     check('orderNumber')
       .not()
       .isEmpty()
@@ -384,7 +384,7 @@ httpRouter.put(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().escape(),
+      .unescape().unescape().escape(),
     check('orderNumber')
       .not()
       .isEmpty()
@@ -593,7 +593,7 @@ httpRouter.patch(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().escape()
+      .unescape().unescape().escape()
   ],
   auth,
   async (req, res, next) => {
