@@ -41,7 +41,7 @@ function getUserById(query, req, res, callback) {
  * @summary Get all Users.
  * @description Gets all users in the database.
  */
-httpRouter.get('/', [sanitizeBody(['message']).unescape()], auth, async (req, res, next) => {
+httpRouter.get('/',  auth, async (req, res, next) => {
   try {
     await User.getAllUsers((err, users) => {
       if (err) {

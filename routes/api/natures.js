@@ -34,7 +34,7 @@ function getNature(query, req, res, callback) {
  * @summary Get all Natures.
  * @description Gets all Natures in the database.
  */
-httpRouter.get('/', [sanitizeBody(['message']).unescape()], async (req, res, next) => {
+httpRouter.get('/',  async (req, res, next) => {
   try {
     await Nature.getNatures((err, natures) => {
       if (err) {
@@ -58,7 +58,7 @@ httpRouter.get('/', [sanitizeBody(['message']).unescape()], async (req, res, nex
  * @description Gets a single nature from the database.
  * @param {string} id The id of the nature to get.
  */
-httpRouter.get('/:id', [sanitizeBody(['message']).unescape()], async (req, res, next) => {
+httpRouter.get('/:id',  async (req, res, next) => {
   try {
     let id;
     try {

@@ -100,7 +100,7 @@ function getAllRoms(query, req, res, callback, limit) {
  * @param {number} page (Optional) For pagination: the page number to go to.
  * @param {number} per_page (Optional) For pagination: the number of ROMs per page.
  */
-httpRouter.get('/', [sanitizeBody(['message']).unescape()], auth, async (req, res, next) => {
+httpRouter.get('/',  auth, async (req, res, next) => {
   try {
     let limit = req.query['_limit'];
     if (!limit) {
@@ -148,7 +148,7 @@ httpRouter.get('/', [sanitizeBody(['message']).unescape()], auth, async (req, re
  * @description Get a single ROM from the database.
  * @param {number} id The ID of the ROM to get.
  */
-httpRouter.get('/:id', [sanitizeBody(['message']).unescape()], auth, async (req, res, next) => {
+httpRouter.get('/:id',  auth, async (req, res, next) => {
   try {
     let id;
     try {
