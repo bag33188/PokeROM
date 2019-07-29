@@ -172,6 +172,7 @@ const Rom = (module.exports = mongoose.model('Rom', romSchema));
 /**
  * @summary Get all ROMs.
  * @description Gets all ROMs from the database and can apply optional limit.
+ * @param {object} query The query to get all roms by.
  * @param {any} callback The callback function.
  * @param {string} limit The number of ROMs to limit.
  */
