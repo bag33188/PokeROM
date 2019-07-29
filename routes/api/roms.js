@@ -305,10 +305,13 @@ httpRouter.post(
   async (req, res, next) => {
     try {
       req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
+      if (req.body.romType) {
+        req.body.romType = req.body.romType.toLowerCase();
+      }
       const newRom = new Rom({
         userId: req.user['_id'],
         orderNumber: req.body.orderNumber,
-        romType: req.body.romType.toLowerCase(),
+        romType: req.body.romType,
         fileName: req.body.fileName,
         fileSize: req.body.fileSize,
         fileType: req.body.fileType,
@@ -501,10 +504,13 @@ httpRouter.put(
         return res.status(404).json({success: false, message: 'ROM not found.'});
       }
       req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
+      if (req.body.romType) {
+        req.body.romType = req.body.romType.toLowerCase();
+      }
       const updateRomData = {
         userId: req.user['_id'],
         orderNumber: req.body.orderNumber,
-        romType: req.body.romType.toLowerCase(),
+        romType: req.body.romType,
         fileName: req.body.fileName,
         fileSize: req.body.fileSize,
         fileType: req.body.fileType,
