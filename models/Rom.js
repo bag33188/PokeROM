@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const urlRegex = /^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))$/i;
 const Schema = mongoose.Schema;
+
 // create schema
 const romSchema = new Schema({
   userId: {
-    type:  mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     required: [true, 'User ID is required.']
   },
   orderNumber: {
@@ -297,7 +298,8 @@ module.exports.postCore = (coreRoms, user, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.postHacks = (romHacks, user, callback) => {
-  romHacks[0].userId = user['_id'];
-  romHacks[1].userId = user['_id'];
+  romHacks.forEach(romHack => {
+    romHack.userId = user['_id'];
+  });
   Rom.insertMany(romHacks, callback);
 };
