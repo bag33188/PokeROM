@@ -4,7 +4,7 @@ const config = require('config');
 const url = require('url');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const {body} = require('express-validator/check');
+const {sanitizeBody} = require('express-validator/check');
 const {check, validationResult} = require('express-validator/check');
 const secret = config.get('secret');
 const User = require('../../models/User');
@@ -100,7 +100,7 @@ httpRouter.get('/:id', auth, async (req, res, next) => {
 httpRouter.post(
   '/register',
   [
-    body(fieldsToSanitize)
+    sanitizeBody(fieldsToSanitize)
       .trim()
       .unescape().unescape().escape(),
     check('name')
@@ -227,7 +227,7 @@ httpRouter.post(
 httpRouter.post(
   '/authenticate',
   [
-    body(fieldsToSanitize)
+    sanitizeBody(fieldsToSanitize)
       .trim()
       .unescape().unescape().escape(),
     check('username')
@@ -325,7 +325,7 @@ httpRouter.put(
   '/:id',
   auth,
   [
-    body(fieldsToSanitize)
+    sanitizeBody(fieldsToSanitize)
       .trim()
       .unescape().unescape().escape(),
     check('name')
@@ -432,7 +432,7 @@ httpRouter.put(
 httpRouter.patch(
   '/:id',
   [
-    body(fieldsToSanitize)
+    sanitizeBody(fieldsToSanitize)
       .trim()
       .unescape().unescape().escape()
   ],
