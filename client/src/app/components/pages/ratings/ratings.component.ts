@@ -18,6 +18,7 @@ export class RatingsComponent implements OnInit {
   rateHasChanged: boolean;
   currentRateHover: number;
   rate: number;
+  isError: boolean;
 
   constructor(private ratingService: RatingService, private logger: LoggerService) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -30,6 +31,7 @@ export class RatingsComponent implements OnInit {
     this.rateHasChanged = false;
     this.currentRateHover = 0;
     this.rate = 0;
+    this.isError = false;
   }
 
   setRating(rate: number): void {
@@ -62,8 +64,10 @@ export class RatingsComponent implements OnInit {
           this.logger.log('Rating sent!', res);
           this.formValid = true;
           this.formSubmitted = true;
-        }, (err: any): never => {
-          throw err;
+          this.isError = false;
+        }, (err: any): void => {
+          this.isError = true;
+          console.error(err);
         }
       );
     }

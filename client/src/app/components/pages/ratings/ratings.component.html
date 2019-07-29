@@ -34,6 +34,7 @@
           <span class="ml-3 alert alert-warning p-2" [hidden]="rateHasChanged">Please choose a rating.</span>
         </div>
       </div>
+      <div class="alert alert-danger mt-3" [hidden]="!isError">Oops, there was an error while trying to submit your rating. Please try again later.</div>
     </form>
     <div *ngIf="formSubmitted">
       <h3 id="thx-msg" class="text-center">Thank you for your feedback&nbsp;</h3>
