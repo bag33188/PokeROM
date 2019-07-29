@@ -73,7 +73,7 @@ httpRouter.post('/', [
   }
 });
 
-httpRouter.get('/:id',  auth, async (req, res, next) => {
+httpRouter.get('/:id', auth, async (req, res, next) => {
   try {
     let id;
     try {
@@ -98,7 +98,7 @@ httpRouter.get('/:id',  auth, async (req, res, next) => {
   }
 });
 
-httpRouter.get('/',  auth, async (req, res, next) => {
+httpRouter.get('/', auth, async (req, res, next) => {
   try {
     let limit = req.query['_limit'];
     if (!limit) {
