@@ -33,10 +33,10 @@ production() {
     cd ..
     rm -rf client/dist
     valid=0
-    while [ true ]; do
+    while [[ true ]]; do
       git status
       read -p "Add files: " files
-      git add $files
+      git add ${files}
       read -p "Commit Message: " commit_msg
       git commit -m "$commit_msg"
       while [[ true ]]; do
