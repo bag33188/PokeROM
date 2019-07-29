@@ -191,7 +191,7 @@ httpRouter.post(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().unescape().escape(),
+      .escape(),
     check('orderNumber')
       .not()
       .isEmpty()
@@ -384,7 +384,7 @@ httpRouter.put(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().unescape().escape(),
+      .escape(),
     check('orderNumber')
       .not()
       .isEmpty()
@@ -593,7 +593,7 @@ httpRouter.patch(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().unescape().escape()
+      .escape()
   ],
   auth,
   async (req, res, next) => {

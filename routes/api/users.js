@@ -21,7 +21,6 @@ const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|
 function getUserById(query, req, res, callback) {
   return User.getUserById(query, (err, user) => {
     if (err) {
-
       if (err.name === 'CastError') {
         return res.status(404).json({success: false, ...err});
       }
@@ -102,7 +101,7 @@ httpRouter.post(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().unescape().escape(),
+      .escape(),
     check('name')
       .optional()
       .isLength({max: 100})
@@ -229,7 +228,7 @@ httpRouter.post(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().unescape().escape(),
+      .escape(),
     check('username')
       .not()
       .isEmpty()
@@ -327,7 +326,7 @@ httpRouter.put(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().unescape().escape(),
+      .escape(),
     check('name')
       .optional()
       .isLength({max: 100})
@@ -434,7 +433,7 @@ httpRouter.patch(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .unescape().unescape().escape()
+      .escape()
   ],
   auth,
   async (req, res, next) => {
