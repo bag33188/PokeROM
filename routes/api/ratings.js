@@ -50,7 +50,6 @@ httpRouter.post('/', [
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() })
     }
-    console.log(he.decode('&amp;'));
     await Rating.addRating(newRating, (err, rating) => {
       if (err) {
         if (err.name === 'ValidationError') {
