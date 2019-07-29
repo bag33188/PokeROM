@@ -100,7 +100,7 @@ git push heroku master
 
 ## Notes
 
-1. If on Windows, install Git Bash.
+1. If on Windows, install and use **[Git Bash](https://git-scm.com/ "Git SCM")**.
 2. Languages Used:
   * HTML
   * CSS
