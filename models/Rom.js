@@ -173,7 +173,7 @@ const Rom = (module.exports = mongoose.model('Rom', romSchema));
  * @summary Get all ROMs.
  * @description Gets all ROMs from the database and can apply optional limit.
  * @param {any} callback The callback function.
- * @param {number} limit The number of ROMs to limit.
+ * @param {string} limit The number of ROMs to limit.
  */
 module.exports.getAllRoms = (query, callback, limit) => {
   // make sure to parse limit as integer
