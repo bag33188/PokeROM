@@ -486,7 +486,6 @@ httpRouter.patch(
             });
           }
           getUserById({_id: id}, req, res, user => {
-            console.log(user.password);
             return res.status(200).json({
               success: true,
               user: {
