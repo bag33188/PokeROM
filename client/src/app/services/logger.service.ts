@@ -24,7 +24,7 @@ export class LoggerService {
    * @returns nothing (void).
    */
   public error(...msg: any[]): void {
-    console.info(...msg);
+    console.error(...msg);
   }
 
   /**
@@ -34,7 +34,7 @@ export class LoggerService {
    * @returns nothing (void).
    */
   public warn(...msg: any[]): void {
-    console.info(...msg);
+    console.warn(...msg);
   }
 
   /**
