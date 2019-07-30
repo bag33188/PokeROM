@@ -91,7 +91,7 @@ nature_tests() {
       patch
     fi
     delete() {
-      selete_single() {
+      delete_single() {
         echo "Testing DELETE: /api/natures/:id"
         printf "\r\n"
         read -p "Enter Nature ID: " id
@@ -100,7 +100,7 @@ nature_tests() {
         printf "\r\n\r\n"
       }
       if [[ $rqst == '6' ]]; then
-        selete_single
+        delete_single
       fi
       delete_all() {
         echo "Testing DELETE: /api/natures"

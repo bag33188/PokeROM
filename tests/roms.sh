@@ -22,10 +22,10 @@ rom_tests() {
   printf "\r\n"
   while [ true ]
   do 
-    echo -e "What would you like to test?\r\n\r\n1: GET /api/roms\r\n2: GET /api/roms/:id\r\n3: POST /api/roms\r\n4: PUT /api/roms/:id\r\n5: PATCH /api/roms/:id\r\n6: DELETE /api/roms/:id\r\n7: DELETE /api/roms\r\n8: HEAD /api/roms\r\n9: HEAD /api/roms/:id\r\n10: OPTIONS /api/roms\r\n11: POST /api/roms/core\r\n12: Exit\r\n\r\n"
+    echo -e "What would you like to test?\r\n\r\n1: GET /api/roms\r\n2: GET /api/roms/:id\r\n3: POST /api/roms\r\n4: PUT /api/roms/:id\r\n5: PATCH /api/roms/:id\r\n6: DELETE /api/roms/:id\r\n7: DELETE /api/roms\r\n8: HEAD /api/roms\r\n9: HEAD /api/roms/:id\r\n10: OPTIONS /api/roms\r\n11: POST /api/roms/core\r\n12: POST /api/roms/hacks\r\n13: Exit\r\n\r\n"
     read -p 'Enter option here: ' rqst
     printf "\r\n"
-    if [[ $rqst == '12' ]]; then 
+    if [[ $rqst == '13' ]]; then
       break
     fi
     read -p "Enter JSON Web Token: " jwt
@@ -159,6 +159,15 @@ rom_tests() {
     }
     if [[ $rqst == '11' ]]; then
       post_core
+    fi
+    post_hacks() {
+      echo "Testing POST /api/roms/hacks"
+      printf "\r\n"
+      curl -i -X POST "http://localhost:5000/api/roms/hacks" -H  "accept: application/json" -H  "Authorization: $jwt"
+      printf "\r\n\r\n"
+    }
+    if [[ $rqst == '12' ]]; then
+      post_hacks
     fi
     read -p 'Press enter to continue'
     printf "\r\n"
