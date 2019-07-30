@@ -21,7 +21,7 @@ function logger(req, res, next) {
   next();
 }
 
-function findOffset() {
+function findUTCTimeOffset() {
   const nowLocal = new Date();
   const nowUtc = new Date();
   const localHours = nowLocal.getHours();
@@ -30,7 +30,7 @@ function findOffset() {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  console.log(`Logger time offset: ${findOffset()}`);
+  console.log(`Logger time offset: ${findUTCTimeOffset()}`);
 }
 
 module.exports = logger;
