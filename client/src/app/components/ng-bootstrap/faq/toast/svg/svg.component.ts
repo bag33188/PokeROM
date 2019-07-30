@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-svg',
+  selector: 'app-faq-toast-svg',
   template: `
     <ng-container>
       <svg

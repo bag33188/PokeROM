@@ -8,7 +8,7 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'app-toast',
+  selector: 'app-faq-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
   animations: [

@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-popup',
+  selector: 'app-rom-info-popup',
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.scss']
 })

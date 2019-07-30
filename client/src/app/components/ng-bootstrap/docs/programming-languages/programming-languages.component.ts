@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import ProgrammingLanguage from '../../../../interfaces/ProgrammingLanguage';
 
 @Component({
-  selector: 'app-programming-languages',
+  selector: 'app-docs-programming-languages',
   templateUrl: './programming-languages.component.html',
   styleUrls: ['./programming-languages.component.scss']
 })

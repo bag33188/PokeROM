@@ -9,7 +9,7 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'app-alert',
+  selector: 'app-ratings-alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
   animations: [

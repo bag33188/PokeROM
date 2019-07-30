@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-jumbotron',
+  selector: 'app-home-jumbotron',
   templateUrl: './jumbotron.component.html',
   styleUrls: ['./jumbotron.component.scss']
 })

@@ -8,13 +8,13 @@
       </div>
       <div class="form-group">
         <div class="mb-1">
-          <app-rating
+          <app-ratings-rating
             (mouseleave)="resetRating()"
             (mousemove)="currentRate = currentRateHover"
             (click)="rateHasChanged = true"
             (currentRateHover)="setRatingHover($event)"
             (currentRate)="setRating($event)"
-          ></app-rating>
+          ></app-ratings-rating>
         </div>
         Current rating: {{ rateHasChanged ? currentRate : currentRateHover }}
       </div>
@@ -40,5 +40,5 @@
       <h3 id="thx-msg" class="text-center">Thank you for your feedback&nbsp;</h3>
     </div>
   </div>
-  <app-alert></app-alert>
+  <app-ratings-alert></app-ratings-alert>
 </div>
