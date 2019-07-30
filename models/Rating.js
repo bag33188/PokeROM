@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 
+function setDate(offset) {
+  let now = new Date();
+  now.setHours(now.getHours() - offset);
+  return now;
+}
+
 const Schema = mongoose.Schema;
 
 const ratingSchema = new Schema({
@@ -16,7 +22,8 @@ const ratingSchema = new Schema({
   },
   dateTime: {
     type: Date,
-    required: [true, 'A date and time is required for when the rating was made.']
+    required: [true, 'A date and time is required for when the rating was made.'],
+    default: setDate(7)
   }
 });
 

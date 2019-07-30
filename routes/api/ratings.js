@@ -9,11 +9,7 @@ const auth = require('../../middleware/auth');
 
 const httpRouter = express.Router();
 
-function setDate(offset) {
-  let now = new Date();
-  now.setHours(now.getHours() - offset);
-  return now;
-}
+
 
 function getRating(query, req, res, callback) {
   return Rating.getRating(query, (err, rating) => {
@@ -39,11 +35,9 @@ httpRouter.post('/', [
   check('rating').not().isEmpty().withMessage('Rating is required.').isInt({min: 1, max: 10}).withMessage('Rating must be in between 1 and 10.')
 ], async (req, res, next) => {
   try {
-    const dateAndTime = setDate(7);
     const newRating = new Rating({
       rating: req.body.rating,
-      message: req.body.message || '',
-      dateTime: dateAndTime
+      message: req.body.message || ''
     });
     const {rating, message, dateTime} = newRating;
     const errors = validationResult(req);
