@@ -733,6 +733,8 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
  */
 httpRouter.delete('/', auth, async (req, res, next) => {
   try {
+    const deleteCore = req.query['core'];
+    const deleteHacks = req.query['hacks'];
     await getAllRoms(
       {userId: req.user['_id']},
       req,
@@ -741,7 +743,19 @@ httpRouter.delete('/', auth, async (req, res, next) => {
         const isOwnUser =
           roms[0].userId.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          Rom.deleteAllRoms({userId: req.user['_id']}, (err, status) => {
+          let query = {};
+          let message = '';
+          if (Boolean(deleteCore)) {
+            query = {userId: req.user['_id'], romType: 'core'};
+            message = 'All core ROMs have been deleted.';
+          } else if (Boolean(deleteHacks)) {
+            query = {userId: req.user['_id'], romType: 'hack'};
+            message = 'All ROM hacks have been deleted.';
+          } else {
+            query = {userId: req.user['_id']};
+            message = 'All ROMs successfully deleted!';
+          }
+          Rom.deleteAllRoms(query, (err, status) => {
             if (err) {
               return res.status(500).json({success: false, ...err});
             }
@@ -753,7 +767,7 @@ httpRouter.delete('/', auth, async (req, res, next) => {
             }
             return res.status(200).json({
               success: true,
-              message: 'All ROMs successfully deleted!',
+              message,
               ...status
             });
           });
@@ -865,7 +879,7 @@ httpRouter.post('/hacks', auth, async (req, res, next) => {
 
 httpRouter.all('/*', async (req, res, next) => {
   try {
-    const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD' ,'OPTIONS'];
+    const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(', '));
       return await res.status(405).json({success: false, message: 'Method not allowed.'});

@@ -86,6 +86,17 @@ paths:
         - bearerAuth: []
       produces:
         - application/json
+      parameters:
+        - in: query
+          name: core
+          required: false
+          description: 'Delete all core ROMs.'
+          type: boolean
+        - in: query
+          name: hacks
+          required: false
+          description: 'Delete all ROMs hacks.'
+          type: boolean
       responses:
         200:
           description: A success object.

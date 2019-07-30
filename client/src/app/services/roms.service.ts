@@ -27,9 +27,11 @@ export class RomsService {
    * @summary Get all ROMs.
    * @description Sends a get request to /api/roms
    * @param limit The number of roms to limit.
+   * @param page Pagination: page number.
+   * @param perPage Pagination: how many per page.
    * @returns An observable (rom array).
    */
-  public getAllRoms(limit?: number): Observable<Rom[]> {
+  public getAllRoms(limit?: number, page?: number, perPage?: number): Observable<Rom[]> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
@@ -124,13 +126,23 @@ export class RomsService {
   /**
    * @summary Delete all ROMs.
    * @description Sends a delete request to /api/roms
+   * @param core Delete all core ROMs.
+   * @param hacks Delete all ROM hacks.
    * @returns An observable (any).
    */
-  public deleteAllRoms(): Observable<any> {
+  public deleteAllRoms(core?: boolean, hacks?: boolean): Observable<any> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
-    return this.http.delete<any>(this.romsUrl, {headers});
+    let url: string = '';
+    if (core) {
+      url = `${this.romsUrl}?core=true`;
+    } else if (hacks) {
+      url = `${this.romsUrl}?hacks=true`;
+    } else {
+      url = this.romsUrl;
+    }
+    return this.http.delete<any>(url, {headers});
   }
 
   /**

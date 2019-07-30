@@ -260,6 +260,7 @@ module.exports.deleteRom = (query, callback) => {
 /**
  * @summary Delete All ROMs.
  * @description Delete's all ROMs in the database.
+ * @param query The deletion query.
  * @param {any} callback The callback function.
  */
 module.exports.deleteAllRoms = (query, callback) => {
