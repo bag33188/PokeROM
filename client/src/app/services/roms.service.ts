@@ -135,7 +135,9 @@ export class RomsService {
       Authorization: this.cookieService.getCookie('token_id')
     });
     let url: string = '';
-    if (core) {
+    if (core && hacks) {
+      url = this.romsUrl;
+    } else if (core) {
       url = `${this.romsUrl}?core=true`;
     } else if (hacks) {
       url = `${this.romsUrl}?hacks=true`;

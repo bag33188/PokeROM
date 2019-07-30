@@ -745,7 +745,10 @@ httpRouter.delete('/', auth, async (req, res, next) => {
         if (isOwnUser) {
           let query = {};
           let message = '';
-          if (Boolean(deleteCore)) {
+          if (Boolean(deleteCore) && Boolean(deleteHacks)) {
+            query = {userId: req.user['_id']};
+            message = 'All ROMs successfully deleted!';
+          } else if (Boolean(deleteCore)) {
             query = {userId: req.user['_id'], romType: 'core'};
             message = 'All core ROMs have been deleted.';
           } else if (Boolean(deleteHacks)) {
