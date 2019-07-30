@@ -839,19 +839,15 @@ httpRouter.options('/', auth, async (req, res, next) => {
 httpRouter.post('/core', auth, async (req, res, next) => {
   try {
     await Rom.postCore(romsData[0], req.user, (err, roms) => {
-      try {
-        if (err) {
-          return res.status(500).json({success: false, ...err});
-        }
-        if (!roms) {
-          return res.status(502).json({success: false, message: 'Bad gateway.'});
-        }
-        getAllRoms({userId: req.user['_id']}, req, res, (fetchedRoms) => {
-          return res.status(201).json(fetchedRoms);
-        }, 0);
-      } catch (err) {
-        next(err);
+      if (err) {
+        return res.status(500).json({success: false, ...err});
       }
+      if (!roms) {
+        return res.status(502).json({success: false, message: 'Bad gateway.'});
+      }
+      getAllRoms({userId: req.user['_id']}, req, res, (fetchedRoms) => {
+        return res.status(201).json(fetchedRoms);
+      }, 0);
     });
   } catch (err) {
     next(err);
@@ -893,5 +889,5 @@ httpRouter.all('/*', async (req, res, next) => {
     next(err);
   }
 });
-// export httpRouter
+
 module.exports = httpRouter;
