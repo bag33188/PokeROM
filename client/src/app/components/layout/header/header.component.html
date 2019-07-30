@@ -30,21 +30,21 @@
           >
         </li>
       </ul>
-    </div>
-    <div class="my-2 my-lg-0">
-      <a
-        class="btn btn-primary nav-item"
-        [routerLink]="['/', 'login']"
-        *ngIf="isRoutes(loggedOutRoutes, false)"
+      <div class="ml-auto my-2 my-lg-0">
+        <a
+          class="btn btn-primary nav-item"
+          [routerLink]="['/', 'login']"
+          *ngIf="isRoutes(loggedOutRoutes, false)"
         >Login</a
-      >
-      <button
-        class="btn btn-primary nav-item"
-        (click)="logout()"
-        *ngIf="!isUrl('/login', 'full') && !isLoggedOut()"
-      >
-        Logout
-      </button>
+        >
+        <button
+          class="btn btn-primary nav-item"
+          (click)="logout()"
+          *ngIf="!isUrl('/login', 'full') && !isLoggedOut()"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   </nav>
 </header>
