@@ -73,7 +73,7 @@ module.exports.getUserByUsername = (username, callback) => {
  * @description Adds a user to the database.
  * @param {User} newUser The new user data.
  * @param {any} callback The callback function.
- * @param errCallbacks The error callback functions array; contains the errors for existing email and username.
+ * @param errCallbacks An array that contains the errors for existing email and username.
  */
 module.exports.addUser = (newUser, callback, errCallbacks) => {
   // check if user already exists
