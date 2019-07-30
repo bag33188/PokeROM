@@ -190,7 +190,7 @@ httpRouter.post(
               })
               .replace('/register', '')}/${user._id}`
           );
-          res.append('Created-At', moment().format());
+          res.append('Created-At', moment().subtract(7, 'hours').format());
           return res
             .status(201)
             .json({success: true, message: 'User successfully registered!'});
