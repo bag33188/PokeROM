@@ -11,4 +11,5 @@ definitions:
         required: false
       dateTime:
         type: string
-        required: true
+        required: false
+        autoGen: true
