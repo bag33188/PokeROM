@@ -30,7 +30,7 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.css",
-              "node_modules/progressive-loading-bar/dist/flat-top/css/plb.min.css"
+              "node_modules/progressive-loading-bar/dist/css/flat-top/plb.min.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -41,7 +41,7 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
-              "node_modules/progressive-loading-bar/dist/flat-top/js/plb.min.js"
+              "node_modules/progressive-loading-bar/dist/js/plb.min.js"
             ]
           },
           "configurations": {
