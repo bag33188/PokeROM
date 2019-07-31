@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-rom-info-popup',
@@ -11,16 +11,11 @@ export class PopupComponent implements OnInit {
   isRomHack: boolean;
   romHackTxtIdentifier: RegExp;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.romHackTxtIdentifier = /(?:(\s?)(\(ROM Hack\)))/i;
-    setTimeout(
-      (): boolean =>
-        (this.isRomHack = this.romType === 'hack'),
-      555
-    );
+    setTimeout((): boolean => (this.isRomHack = this.romType === 'hack'), 555);
   }
 
   removeRomHackText(gameName: string): string {

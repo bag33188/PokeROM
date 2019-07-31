@@ -65,8 +65,8 @@
   grid-column-gap: 14%;
   grid-row-gap: 2.5rem;
   grid-template-areas:
-  'rom-1 rom-2'
-  'rom-3 rom-4';
+    'rom-1 rom-2'
+    'rom-3 rom-4';
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr minmax(min-content, auto);
   padding: 20px 0 2rem;
@@ -74,16 +74,16 @@
   @media only all and (max-width: 916px) {
     grid-row-gap: 1.4rem;
     grid-template-areas:
-    'rom-1'
-    'rom-2'
-    'rom-3'
-    'rom-4';
+      'rom-1'
+      'rom-2'
+      'rom-3'
+      'rom-4';
     grid-template-columns: 1fr;
     grid-template-rows:
-    1fr
-    fit-content(em(300px, 16px))
-    fit-content(em(300px, 16px))
-    fit-content(em(300px, 16px));
+      1fr
+      fit-content(em(300px, 16px))
+      fit-content(em(300px, 16px))
+      fit-content(em(300px, 16px));
     margin: 0 auto;
     padding: 1.8rem 0 0;
     width: 90vw;

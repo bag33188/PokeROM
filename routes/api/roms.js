@@ -2,8 +2,8 @@ const express = require('express');
 const url = require('url');
 const mongoose = require('mongoose');
 const moment = require('moment');
-const {sanitizeBody} = require('express-validator/filter');
-const {check, validationResult} = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
+const { check, validationResult } = require('express-validator/check');
 const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
@@ -52,20 +52,20 @@ function getRomById(query, req, res, callback) {
   return Rom.getRomById(query, (err, fetchedRom) => {
     if (err) {
       if (err.name === 'CastError') {
-        return res.status(404).json({success: false, ...err});
+        return res.status(404).json({ success: false, ...err });
       }
-      return res.status(500).json({success: false, ...err});
+      return res.status(500).json({ success: false, ...err });
     } else if (!fetchedRom) {
       return res
         .status(404)
-        .json({success: false, message: 'Error 404: ROM not found.'});
+        .json({ success: false, message: 'Error 404: ROM not found.' });
     } else {
       if (req.user['_id'].toString() === fetchedRom.userId.toString()) {
         return callback(fetchedRom);
       } else {
         return res
           .status(403)
-          .json({success: false, message: `You cannot get this user's ROM.`});
+          .json({ success: false, message: `You cannot get this user's ROM.` });
       }
     }
   });
@@ -76,7 +76,7 @@ function getAllRoms(query, req, res, callback, limit) {
     query,
     (err, roms) => {
       if (err) {
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
       if (!roms) {
         return res.status(502).json({
@@ -85,7 +85,9 @@ function getAllRoms(query, req, res, callback, limit) {
         });
       }
       if (roms.length === 0) {
-        return res.status(404).json({success: false, message: 'No ROMs exist.'});
+        return res
+          .status(404)
+          .json({ success: false, message: 'No ROMs exist.' });
       }
       return callback(roms);
     },
@@ -107,10 +109,10 @@ httpRouter.get('/', auth, async (req, res, next) => {
       limit = 0;
     }
     await Rom.getAllRoms(
-      {userId: req.user['_id']},
+      { userId: req.user['_id'] },
       (err, roms) => {
         if (err) {
-          return res.status(500).json({success: false, ...err});
+          return res.status(500).json({ success: false, ...err });
         }
         if (!roms) {
           return res.status(502).json({
@@ -154,25 +156,28 @@ httpRouter.get('/:id', auth, async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'ROM not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
     }
-    await Rom.getRomById({_id: id}, (err, rom) => {
+    await Rom.getRomById({ _id: id }, (err, rom) => {
       if (err) {
         if (err.name === 'CastError') {
-          return res.status(404).json({success: false, ...err});
+          return res.status(404).json({ success: false, ...err });
         }
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       } else if (!rom) {
         return res
           .status(404)
-          .json({success: false, message: 'Error 404: ROM not found.'});
+          .json({ success: false, message: 'Error 404: ROM not found.' });
       } else {
         if (req.user['_id'].toString() === rom.userId.toString()) {
           return res.status(200).json(rom);
         } else {
-          return res
-            .status(403)
-            .json({success: false, message: `You cannot get this user's ROM.`});
+          return res.status(403).json({
+            success: false,
+            message: `You cannot get this user's ROM.`
+          });
         }
       }
     });
@@ -196,7 +201,7 @@ httpRouter.post(
       .not()
       .isEmpty()
       .withMessage('Order number is required.')
-      .isInt({min: 0, max: 33})
+      .isInt({ min: 0, max: 33 })
       .withMessage('Order number must be an integer between 0 and 33.'),
     check('romType')
       .not()
@@ -204,7 +209,7 @@ httpRouter.post(
       .withMessage('ROM type is required.')
       .matches(/^(core|hack)$/i)
       .withMessage('ROM type must either be a core or a hack.')
-      .isLength({min: 4, max: 5})
+      .isLength({ min: 4, max: 5 })
       .withMessage('ROM type must be either 4 or 5 characters.'),
     check('fileName')
       .not()
@@ -212,21 +217,23 @@ httpRouter.post(
       .withMessage('File name is required.')
       .isString()
       .withMessage('File name must be a string.')
-      .isLength({min: 3, max: 80})
+      .isLength({ min: 3, max: 80 })
       .withMessage('File name must be between 3 and 80 characters.'),
     check('fileSize')
       .not()
       .isEmpty()
       .withMessage('File size is required.')
-      .isInt({min: 64, max: 12000000})
-      .withMessage('File size must be a number (in kilobytes) between 64 and 12000000.'),
+      .isInt({ min: 64, max: 12000000 })
+      .withMessage(
+        'File size must be a number (in kilobytes) between 64 and 12000000.'
+      ),
     check('fileType')
       .not()
       .isEmpty()
       .withMessage('File type is required.')
       .isAlphanumeric()
       .withMessage('File type must only contain letters with optional numbers.')
-      .isLength({min: 2, max: 3})
+      .isLength({ min: 2, max: 3 })
       .withMessage('File type must be between 2 and 3 characters.')
       .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
       .withMessage('Invalid file extension.'),
@@ -240,7 +247,7 @@ httpRouter.post(
       .not()
       .isEmpty()
       .withMessage('Generation is required.')
-      .isInt({min: 1, max: 8})
+      .isInt({ min: 1, max: 8 })
       .withMessage('Generation must be a number between 1 and 8.'),
     check('boxArtUrl')
       .not()
@@ -254,7 +261,7 @@ httpRouter.post(
       .withMessage('Game name is required.')
       .isString()
       .withMessage('Game name must be a string.')
-      .isLength({min: 2, max: 56})
+      .isLength({ min: 2, max: 56 })
       .withMessage('Game name must be between 2 and 56 characters.'),
     check('region')
       .not()
@@ -264,7 +271,7 @@ httpRouter.post(
       .withMessage('Region must be a string.')
       .isAlpha()
       .withMessage('Region must only contain letters.')
-      .isLength({min: 3, max: 10})
+      .isLength({ min: 3, max: 10 })
       .withMessage('Region must be between 3 and 10 characters.'),
     check('platform')
       .not()
@@ -272,11 +279,11 @@ httpRouter.post(
       .withMessage('Platform is required.')
       .isString()
       .withMessage('Platform must be a string.')
-      .isLength({min: 2, max: 50})
+      .isLength({ min: 2, max: 50 })
       .withMessage('Platform must be between 2 and 50 characters.'),
     check('genre')
       .optional()
-      .isLength({min: 2, max: 20})
+      .isLength({ min: 2, max: 20 })
       .withMessage('Genre must be between 2 and 20 characters.')
       .isString()
       .withMessage('Genre must be a string.'),
@@ -298,7 +305,7 @@ httpRouter.post(
       .withMessage('Description is required.')
       .isString()
       .withMessage('Description must be a string.')
-      .isLength({min: 5, max: 8000})
+      .isLength({ min: 5, max: 8000 })
       .withMessage('Description must be between 5 and 8000 characters.')
   ],
   auth,
@@ -344,17 +351,19 @@ httpRouter.post(
       } = newRom;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({success: false, errors: errors.array()});
+        return res.status(406).json({ success: false, errors: errors.array() });
       }
       await Rom.addRom(newRom, (err, rom) => {
         if (err) {
           if (err.name === 'ValidationError') {
-            return res.status(406).json({success: false, ...err});
+            return res.status(406).json({ success: false, ...err });
           }
-          return res.status(500).json({success: false, ...err});
+          return res.status(500).json({ success: false, ...err });
         }
         if (!rom) {
-          return res.status(502).json({success: false, message: 'Bad gateway.'});
+          return res
+            .status(502)
+            .json({ success: false, message: 'Bad gateway.' });
         }
         res.append(
           'Created-At-Route',
@@ -364,7 +373,12 @@ httpRouter.post(
             pathname: req.originalUrl
           })}/${rom._id}`
         );
-        res.append('Created-At', moment().subtract(7, 'hours').format());
+        res.append(
+          'Created-At',
+          moment()
+            .subtract(7, 'hours')
+            .format()
+        );
         return res.status(201).json(rom);
       });
     } catch (err) {
@@ -389,7 +403,7 @@ httpRouter.put(
       .not()
       .isEmpty()
       .withMessage('Order number is required.')
-      .isInt({min: 0, max: 33})
+      .isInt({ min: 0, max: 33 })
       .withMessage('Order number must be an integer between 0 and 33.'),
     check('romType')
       .not()
@@ -397,7 +411,7 @@ httpRouter.put(
       .withMessage('ROM type is required.')
       .matches(/^(core|hack)$/i)
       .withMessage('ROM type must either be a core or a hack.')
-      .isLength({min: 4, max: 5})
+      .isLength({ min: 4, max: 5 })
       .withMessage('ROM type must be either 4 or 5 characters.'),
     check('fileName')
       .not()
@@ -405,21 +419,23 @@ httpRouter.put(
       .withMessage('File name is required.')
       .isString()
       .withMessage('File name must be a string.')
-      .isLength({min: 3, max: 80})
+      .isLength({ min: 3, max: 80 })
       .withMessage('File name must be between 3 and 80 characters.'),
     check('fileSize')
       .not()
       .isEmpty()
       .withMessage('File size is required.')
-      .isInt({min: 64, max: 12000000})
-      .withMessage('File size must be a number (in kilobytes) between 64 and 12000000.'),
+      .isInt({ min: 64, max: 12000000 })
+      .withMessage(
+        'File size must be a number (in kilobytes) between 64 and 12000000.'
+      ),
     check('fileType')
       .not()
       .isEmpty()
       .withMessage('File type is required.')
       .isAlphanumeric()
       .withMessage('File type must only contain letters with optional numbers.')
-      .isLength({min: 2, max: 3})
+      .isLength({ min: 2, max: 3 })
       .withMessage('File type must be between 2 and 3 characters.')
       .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
       .withMessage('Invalid file extension.'),
@@ -433,7 +449,7 @@ httpRouter.put(
       .not()
       .isEmpty()
       .withMessage('Generation is required.')
-      .isInt({min: 1, max: 8})
+      .isInt({ min: 1, max: 8 })
       .withMessage('Generation must be a number between 1 and 8.'),
     check('boxArtUrl')
       .not()
@@ -447,7 +463,7 @@ httpRouter.put(
       .withMessage('Game name is required.')
       .isString()
       .withMessage('Game name must be a string.')
-      .isLength({min: 2, max: 56})
+      .isLength({ min: 2, max: 56 })
       .withMessage('Game name must be between 2 and 56 characters.'),
     check('region')
       .not()
@@ -457,7 +473,7 @@ httpRouter.put(
       .withMessage('Region must be a string.')
       .isAlpha()
       .withMessage('Region must only contain letters.')
-      .isLength({min: 3, max: 10})
+      .isLength({ min: 3, max: 10 })
       .withMessage('Region must be between 3 and 10 characters.'),
     check('platform')
       .not()
@@ -465,11 +481,11 @@ httpRouter.put(
       .withMessage('Platform is required.')
       .isString()
       .withMessage('Platform must be a string.')
-      .isLength({min: 2, max: 50})
+      .isLength({ min: 2, max: 50 })
       .withMessage('Platform must be between 2 and 50 characters.'),
     check('genre')
       .optional()
-      .isLength({min: 2, max: 20})
+      .isLength({ min: 2, max: 20 })
       .withMessage('Genre must be between 2 and 20 characters.')
       .isString()
       .withMessage('Genre must be a string.'),
@@ -491,7 +507,7 @@ httpRouter.put(
       .withMessage('Description is required.')
       .isString()
       .withMessage('Description must be a string.')
-      .isLength({min: 5, max: 8000})
+      .isLength({ min: 5, max: 8000 })
       .withMessage('Description must be between 5 and 8000 characters.')
   ],
   auth,
@@ -501,7 +517,9 @@ httpRouter.put(
       try {
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
-        return res.status(404).json({success: false, message: 'ROM not found.'});
+        return res
+          .status(404)
+          .json({ success: false, message: 'ROM not found.' });
       }
       req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
       if (req.body.romType) {
@@ -543,21 +561,21 @@ httpRouter.put(
       } = updateRomData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({success: false, errors: errors.array()});
+        return res.status(406).json({ success: false, errors: errors.array() });
       }
-      await getRomById({_id: id}, req, res, fetchedRom => {
+      await getRomById({ _id: id }, req, res, fetchedRom => {
         const isOwnUser =
           fetchedRom.userId.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          Rom.updateRom({_id: id}, updateRomData, {}, (err, rom) => {
+          Rom.updateRom({ _id: id }, updateRomData, {}, (err, rom) => {
             if (err) {
               switch (err.name) {
                 case 'CastError':
-                  return res.status(404).json({success: false, ...err});
+                  return res.status(404).json({ success: false, ...err });
                 case 'ValidationError':
-                  return res.status(406).json({success: false, ...err});
+                  return res.status(406).json({ success: false, ...err });
                 default:
-                  return res.status(500).json({success: false, ...err});
+                  return res.status(500).json({ success: false, ...err });
               }
             }
             if (!rom) {
@@ -566,7 +584,7 @@ httpRouter.put(
                 message: 'Error 404: ROM not found.'
               });
             }
-            rom = {_id: rom._id, ...updateRomData};
+            rom = { _id: rom._id, ...updateRomData };
             return res.status(200).json(rom);
           });
         } else {
@@ -602,7 +620,9 @@ httpRouter.patch(
       try {
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
-        return res.status(404).json({success: false, message: 'ROM not found.'});
+        return res
+          .status(404)
+          .json({ success: false, message: 'ROM not found.' });
       }
       const query = req.body;
       if (req.body.dateReleased) {
@@ -636,24 +656,24 @@ httpRouter.patch(
       if (!isValid) {
         return res
           .status(406)
-          .json({success: false, message: 'Data not valid.'});
+          .json({ success: false, message: 'Data not valid.' });
       }
       if (new ValidatePatchRequest(req).validateRomPatch(res)) {
         return;
       }
-      await getRomById({_id: id}, req, res, fetchedRom => {
+      await getRomById({ _id: id }, req, res, fetchedRom => {
         const isOwnUser =
           fetchedRom.userId.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          Rom.patchRom({_id: id}, {$set: query}, (err, status) => {
+          Rom.patchRom({ _id: id }, { $set: query }, (err, status) => {
             if (err) {
               switch (err.name) {
                 case 'CastError':
-                  return res.status(404).json({success: false, ...err});
+                  return res.status(404).json({ success: false, ...err });
                 case 'ValidationError':
-                  return res.status(406).json({success: false, ...err});
+                  return res.status(406).json({ success: false, ...err });
                 default:
-                  return res.status(500).json({success: false, ...err});
+                  return res.status(500).json({ success: false, ...err });
               }
             }
             if (!status) {
@@ -662,7 +682,7 @@ httpRouter.patch(
                 message: 'Bad gateway.'
               });
             }
-            getRomById({_id: id}, req, res, rom => {
+            getRomById({ _id: id }, req, res, rom => {
               return res.status(200).json(rom);
             });
           });
@@ -690,18 +710,19 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'ROM not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
     }
-    await getRomById({_id: id}, req, res, (rom) => {
-      const isOwnUser =
-        rom.userId.toString() === req.user['_id'].toString();
+    await getRomById({ _id: id }, req, res, rom => {
+      const isOwnUser = rom.userId.toString() === req.user['_id'].toString();
       if (isOwnUser) {
-        Rom.deleteRom({_id: id}, (err, status) => {
+        Rom.deleteRom({ _id: id }, (err, status) => {
           if (err) {
             if (err.name === 'CastError') {
-              return res.status(404).json({success: false, ...err});
+              return res.status(404).json({ success: false, ...err });
             }
-            return res.status(500).json({success: false, ...err});
+            return res.status(500).json({ success: false, ...err });
           }
           if (!status) {
             return res.status(502).json({
@@ -736,7 +757,7 @@ httpRouter.delete('/', auth, async (req, res, next) => {
     const deleteCore = req.query['core'];
     const deleteHacks = req.query['hacks'];
     await getAllRoms(
-      {userId: req.user['_id']},
+      { userId: req.user['_id'] },
       req,
       res,
       roms => {
@@ -746,21 +767,21 @@ httpRouter.delete('/', auth, async (req, res, next) => {
           let query = {};
           let message = '';
           if (Boolean(deleteCore) && Boolean(deleteHacks)) {
-            query = {userId: req.user['_id']};
+            query = { userId: req.user['_id'] };
             message = 'All ROMs successfully deleted!';
           } else if (Boolean(deleteCore)) {
-            query = {userId: req.user['_id'], romType: 'core'};
+            query = { userId: req.user['_id'], romType: 'core' };
             message = 'All core ROMs have been deleted.';
           } else if (Boolean(deleteHacks)) {
-            query = {userId: req.user['_id'], romType: 'hack'};
+            query = { userId: req.user['_id'], romType: 'hack' };
             message = 'All ROM hacks have been deleted.';
           } else {
-            query = {userId: req.user['_id']};
+            query = { userId: req.user['_id'] };
             message = 'All ROMs successfully deleted!';
           }
           Rom.deleteAllRoms(query, (err, status) => {
             if (err) {
-              return res.status(500).json({success: false, ...err});
+              return res.status(500).json({ success: false, ...err });
             }
             if (!status) {
               return res.status(502).json({
@@ -810,9 +831,11 @@ httpRouter.head('/:id', auth, async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'ROM not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
     }
-    await getRomById({_id: id}, req, res, () => {
+    await getRomById({ _id: id }, req, res, () => {
       return res.status(200);
     });
   } catch (err) {
@@ -840,14 +863,22 @@ httpRouter.post('/core', auth, async (req, res, next) => {
   try {
     await Rom.postCore(romsData[0], req.user, (err, roms) => {
       if (err) {
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
       if (!roms) {
-        return res.status(502).json({success: false, message: 'Bad gateway.'});
+        return res
+          .status(502)
+          .json({ success: false, message: 'Bad gateway.' });
       }
-      getAllRoms({userId: req.user['_id']}, req, res, (fetchedRoms) => {
-        return res.status(201).json(fetchedRoms);
-      }, 0);
+      getAllRoms(
+        { userId: req.user['_id'] },
+        req,
+        res,
+        fetchedRoms => {
+          return res.status(201).json(fetchedRoms);
+        },
+        0
+      );
     });
   } catch (err) {
     next(err);
@@ -862,14 +893,22 @@ httpRouter.post('/hacks', auth, async (req, res, next) => {
   try {
     await Rom.postHacks(romsData[1], req.user, (err, roms) => {
       if (err) {
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
       if (!roms) {
-        return res.status(502).json({success: false, message: 'Bad gateway.'});
+        return res
+          .status(502)
+          .json({ success: false, message: 'Bad gateway.' });
       }
-      getAllRoms({userId: req.user['_id']}, req, res, (fetchedRoms) => {
-        return res.status(201).json(fetchedRoms);
-      }, 0);
+      getAllRoms(
+        { userId: req.user['_id'] },
+        req,
+        res,
+        fetchedRoms => {
+          return res.status(201).json(fetchedRoms);
+        },
+        0
+      );
     });
   } catch (err) {
     next(err);
@@ -878,12 +917,24 @@ httpRouter.post('/hacks', auth, async (req, res, next) => {
 
 httpRouter.all('/*', async (req, res, next) => {
   try {
-    const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'];
+    const methods = [
+      'GET',
+      'POST',
+      'PUT',
+      'PATCH',
+      'DELETE',
+      'HEAD',
+      'OPTIONS'
+    ];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(', '));
-      return await res.status(405).json({success: false, message: 'Method not allowed.'});
+      return await res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
     } else {
-      return await res.status(501).json({success: false, message: 'Method not implemented.'});
+      return await res
+        .status(501)
+        .json({ success: false, message: 'Method not implemented.' });
     }
   } catch (err) {
     next(err);

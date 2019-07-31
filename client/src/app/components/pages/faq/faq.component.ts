@@ -5,7 +5,7 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-faq',
@@ -14,12 +14,11 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class FaqComponent implements OnInit, AfterContentInit {
   emulatorUrl: string;
-  @ViewChild('cookies', {static: true}) cookiesElement: ElementRef;
-  @ViewChild('browserCompatibility', {static: true})
+  @ViewChild('cookies', { static: true }) cookiesElement: ElementRef;
+  @ViewChild('browserCompatibility', { static: true })
   browserCompatibilityElement: ElementRef;
 
-  constructor(private route: ActivatedRoute) {
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.emulatorUrl = 'https://www.retroarch.com';

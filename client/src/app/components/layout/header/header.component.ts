@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {AuthService} from '../../../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 import HtmlRoute from '../../../interfaces/HtmlRoute';
 import Route from '../../../interfaces/Route';
 
@@ -19,47 +19,46 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.routes = [
       {
         routerLink: ['/', 'home'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: {exact: true},
+        routerLinkActiveOptions: { exact: true },
         navLinkText: 'Home'
       },
       {
         routerLink: ['/', 'roms'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: {exact: false},
+        routerLinkActiveOptions: { exact: false },
         navLinkText: 'ROMs'
       },
       {
         routerLink: ['/', 'natures'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: {exact: true},
+        routerLinkActiveOptions: { exact: true },
         navLinkText: 'Natures'
       },
       {
         routerLink: ['/', 'faq'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: {exact: true},
+        routerLinkActiveOptions: { exact: true },
         navLinkText: 'FAQ'
       },
       {
         routerLink: ['/', 'ratings'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: {exact: true},
+        routerLinkActiveOptions: { exact: true },
         navLinkText: 'Rate'
       },
       {
         routerLink: ['/', 'docs'],
         routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: {exact: true},
+        routerLinkActiveOptions: { exact: true },
         navLinkText: 'Docs'
-      },
+      }
     ];
     this.routeKey = '_routerState';
     this.loggedOutRoutes = [
@@ -130,13 +129,11 @@ export class HeaderComponent implements OnInit {
 
   isRoutes(routes: Route[], loggedIn: boolean): boolean {
     let isOneOfRoutes: boolean = false;
-    routes.forEach(
-      (route: Route): void => {
-        if (this.isUrl(route.url, route.pathMatch)) {
-          isOneOfRoutes = true;
-        }
+    routes.forEach((route: Route): void => {
+      if (this.isUrl(route.url, route.pathMatch)) {
+        isOneOfRoutes = true;
       }
-    );
+    });
     return loggedIn ? isOneOfRoutes : isOneOfRoutes && this.isLoggedOut();
   }
 }

@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const {sanitizeBody} = require('express-validator/filter');
-const {check, validationResult} = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
+const { check, validationResult } = require('express-validator/check');
 const url = require('url');
 const moment = require('moment');
 const Rating = require('../../models/Rating');
@@ -9,63 +9,87 @@ const auth = require('../../middleware/auth');
 
 const httpRouter = express.Router();
 
-
-
 function getRating(query, req, res, callback) {
   return Rating.getRating(query, (err, rating) => {
     if (err) {
       if (err.name === 'CastError') {
-        return res.status(404).json({success: false, ...err});
+        return res.status(404).json({ success: false, ...err });
       } else {
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
     }
     if (!rating) {
       return res
         .status(404)
-        .json({success: false, message: 'Rating not found.'});
+        .json({ success: false, message: 'Rating not found.' });
     }
     return callback(rating);
   });
 }
 
-httpRouter.post('/', [
-  sanitizeBody(['rating', 'message', 'dateTime']).trim().escape(),
-  check('message').optional().isLength({max: 1000}).withMessage('Rating message can only be 1000 characters at max.').isString().withMessage('Message must be a string.'),
-  check('rating').not().isEmpty().withMessage('Rating is required.').isInt({min: 1, max: 10}).withMessage('Rating must be in between 1 and 10.')
-], async (req, res, next) => {
-  try {
-    const newRating = new Rating({
-      rating: req.body.rating,
-      message: req.body.message || ''
-    });
-    const {rating, message, dateTime} = newRating;
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(406).json({ success: false, errors: errors.array() })
-    }
-    await Rating.addRating(newRating, (err, rating) => {
-      if (err) {
-        if (err.name === 'ValidationError') {
-          return res.status(406).json({success: false, ...err});
+httpRouter.post(
+  '/',
+  [
+    sanitizeBody(['rating', 'message', 'dateTime'])
+      .trim()
+      .escape(),
+    check('message')
+      .optional()
+      .isLength({ max: 1000 })
+      .withMessage('Rating message can only be 1000 characters at max.')
+      .isString()
+      .withMessage('Message must be a string.'),
+    check('rating')
+      .not()
+      .isEmpty()
+      .withMessage('Rating is required.')
+      .isInt({ min: 1, max: 10 })
+      .withMessage('Rating must be in between 1 and 10.')
+  ],
+  async (req, res, next) => {
+    try {
+      const newRating = new Rating({
+        rating: req.body.rating,
+        message: req.body.message || ''
+      });
+      const { rating, message, dateTime } = newRating;
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(406).json({ success: false, errors: errors.array() });
+      }
+      await Rating.addRating(newRating, (err, rating) => {
+        if (err) {
+          if (err.name === 'ValidationError') {
+            return res.status(406).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
         }
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!rating) {
-        return res.status(502).json({success: false, message: 'Bad gateway.'});
-      }
-      res.append('Created-At-Route', `${url.format({
-        protocol: req.protocol,
-        host: req.get('host'),
-        pathname: req.originalUrl
-      })}/${rating._id}`);
-      res.append('Created-At', moment().subtract(7, 'hours').format());
-      return res.status(201).json(rating);
-    });
-  } catch (err) {
-    next(err);
+        if (!rating) {
+          return res
+            .status(502)
+            .json({ success: false, message: 'Bad gateway.' });
+        }
+        res.append(
+          'Created-At-Route',
+          `${url.format({
+            protocol: req.protocol,
+            host: req.get('host'),
+            pathname: req.originalUrl
+          })}/${rating._id}`
+        );
+        res.append(
+          'Created-At',
+          moment()
+            .subtract(7, 'hours')
+            .format()
+        );
+        return res.status(201).json(rating);
+      });
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 httpRouter.get('/:id', auth, async (req, res, next) => {
   try {
@@ -73,9 +97,11 @@ httpRouter.get('/:id', auth, async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'Rating not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
     }
-    await Rating.getRating({_id: id}, (err, rating) => {
+    await Rating.getRating({ _id: id }, (err, rating) => {
       if (err) {
         if (err.name === 'CastError') {
           return res.status(404).json({ success: false, ...err });
@@ -83,7 +109,9 @@ httpRouter.get('/:id', auth, async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!rating) {
-        return res.status(404).json({ success: false, message: 'Rating not found.' });
+        return res
+          .status(404)
+          .json({ success: false, message: 'Rating not found.' });
       }
       return res.status(200).json(rating);
     });
@@ -103,7 +131,9 @@ httpRouter.get('/', auth, async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!ratings) {
-        return res.status(502).json({ success: false, message: 'Bad gateway.' });
+        return res
+          .status(502)
+          .json({ success: false, message: 'Bad gateway.' });
       }
       return res.status(200).json(ratings);
     }, limit);
@@ -118,10 +148,12 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'Rating not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
     }
-    await getRating({_id: id}, req, res, () => {
-      Rating.deleteRating({_id: id}, (err, status) => {
+    await getRating({ _id: id }, req, res, () => {
+      Rating.deleteRating({ _id: id }, (err, status) => {
         if (err) {
           if (err.name === 'CastError') {
             return res.status(404).json({ success: false, ...err });
@@ -129,12 +161,13 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
           return res.status(500).json({ success: false, ...err });
         }
         if (!status) {
-          return res.status(404).json({ success: false, message: 'Rating not found.' });
+          return res
+            .status(404)
+            .json({ success: false, message: 'Rating not found.' });
         }
         return res.status(200).json({ success: true, ...status });
       });
     });
-
   } catch (err) {
     next(err);
   }
@@ -147,12 +180,14 @@ httpRouter.delete('/', auth, async (req, res, next) => {
         return res.status(500).json({ success: false, ...err });
       }
       if (!status) {
-        return res.status(502).json({ success: false, message: 'Bad gateway.' });
+        return res
+          .status(502)
+          .json({ success: false, message: 'Bad gateway.' });
       }
       return res.status(200).json({ success: true, ...status });
     });
   } catch (err) {
-    next (err);
+    next(err);
   }
 });
 
@@ -170,7 +205,9 @@ httpRouter.head('/:id', auth, async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'Rating not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
     }
     await getRating({ _id: id }, req, res, () => {
       return res.status(200);
@@ -185,9 +222,13 @@ httpRouter.all('/*', async (req, res, next) => {
     const methods = ['GET', 'POST', 'DELETE'];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(', '));
-      return await res.status(405).json({success: false, message: 'Method not allowed.'});
+      return await res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
     } else {
-      return await res.status(501).json({success: false, message: 'Method not implemented.'});
+      return await res
+        .status(501)
+        .json({ success: false, message: 'Method not implemented.' });
     }
   } catch (err) {
     next(err);
@@ -195,4 +236,3 @@ httpRouter.all('/*', async (req, res, next) => {
 });
 
 module.exports = httpRouter;
-

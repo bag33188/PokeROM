@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Browser from '../../../../interfaces/Browser';
-import {ModalContentComponent} from '../modal/modal-content.component';
+import { ModalContentComponent } from '../modal/modal-content.component';
 
 @Component({
   selector: 'app-faq-tabset',
@@ -11,8 +11,7 @@ import {ModalContentComponent} from '../modal/modal-content.component';
 export class TabsetComponent implements OnInit {
   browsers: Browser[];
 
-  constructor(private modalService: NgbModal) {
-  }
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
     this.browsers = [

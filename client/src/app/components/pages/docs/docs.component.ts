@@ -5,10 +5,10 @@ import {
   ViewChild,
   AfterContentInit
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {ApiService} from '../../../services/api.service';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../../services/api.service';
 import ApiVersion from '../../../models/ApiVersion';
-import {environment} from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-docs',
@@ -20,10 +20,9 @@ export class DocsComponent implements OnInit, AfterContentInit {
   apiVersion: string;
   apiUrl: string;
   httpVerbs: string[];
-  @ViewChild('register', {static: true}) registerElement: ElementRef;
+  @ViewChild('register', { static: true }) registerElement: ElementRef;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {
-  }
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.sourceCodeUrl = 'https://github.com/bag33188/PokeROM';

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-faq-modal-content',
@@ -9,9 +9,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 export class ModalContentComponent implements OnInit {
   @Input() reasons: string[];
 
-  constructor(public activeModal: NgbActiveModal) {
-  }
+  constructor(public activeModal: NgbActiveModal) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-jumbotron',
@@ -6,11 +6,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./jumbotron.component.scss']
 })
 export class JumbotronComponent implements OnInit {
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   loggedIn(): boolean {
     return !!localStorage.getItem('user');

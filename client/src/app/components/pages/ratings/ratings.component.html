@@ -20,24 +20,44 @@
       </div>
       <div class="form-group">
         <label for="message">Feedback</label>
-        <textarea name="message" id="message" class="form-control" [(ngModel)]="message" placeholder="Optional" maxlength="1000"></textarea>
+        <textarea
+          name="message"
+          id="message"
+          class="form-control"
+          [(ngModel)]="message"
+          placeholder="Optional"
+          maxlength="1000"
+        ></textarea>
         <div class="alert alert-danger" [hidden]="message.length <= 1000">
-          Feedback message is to too long. It can only be 1000 characters at max.
+          Feedback message is to too long. It can only be 1000 characters at
+          max.
         </div>
         <p class="mt-2">Current Length: {{ message.length }} (Max: 1000)</p>
       </div>
       <div id="submit-container-flex">
         <div>
-         <input type="submit" value="Submit!" class="btn btn-success" [disabled]="!rateHasChanged || message.length > 1000" />
+          <input
+            type="submit"
+            value="Submit!"
+            class="btn btn-success"
+            [disabled]="!rateHasChanged || message.length > 1000"
+          />
         </div>
         <div>
-          <span class="ml-3 alert alert-warning p-2" [hidden]="rateHasChanged">Please choose a rating.</span>
+          <span class="ml-3 alert alert-warning p-2" [hidden]="rateHasChanged"
+            >Please choose a rating.</span
+          >
         </div>
       </div>
-      <div class="alert alert-danger mt-3" [hidden]="!isError">Oops, there was an error while trying to submit your rating. Please try again later.</div>
+      <div class="alert alert-danger mt-3" [hidden]="!isError">
+        Oops, there was an error while trying to submit your rating. Please try
+        again later.
+      </div>
     </form>
     <div *ngIf="formSubmitted">
-      <h3 id="thx-msg" class="text-center">Thank you for your feedback&nbsp;</h3>
+      <h3 id="thx-msg" class="text-center">
+        Thank you for your feedback&nbsp;
+      </h3>
     </div>
   </div>
   <app-ratings-alert></app-ratings-alert>

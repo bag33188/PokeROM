@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -18,8 +18,8 @@ import Alert from '../../../interfaces/Alert';
   styleUrls: ['./cookies-alert.component.scss'],
   animations: [
     trigger('fadeOut', [
-      state('in', style({opacity: 1})),
-      transition(':leave', animate(555, style({opacity: 0})))
+      state('in', style({ opacity: 1 })),
+      transition(':leave', animate(555, style({ opacity: 0 })))
     ])
   ]
 })
@@ -28,8 +28,7 @@ export class CookiesAlertComponent implements OnInit {
   cookiesOk: boolean = false;
   faInfoCircle: IconDefinition;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.faInfoCircle = faInfoCircle;
@@ -40,12 +39,13 @@ export class CookiesAlertComponent implements OnInit {
           'I hate to interrupt, but I am required to tell you that this site uses cookies to store your login token for authentication. Click the (x) icon on the top right corner of this alert to close this annoying piece of garbage.'
       }
     ];
-    if (!sessionStorage.getItem('cookiesOk') || !JSON.parse(sessionStorage.getItem('cookiesOk'))) {
+    if (
+      !sessionStorage.getItem('cookiesOk') ||
+      !JSON.parse(sessionStorage.getItem('cookiesOk'))
+    ) {
       sessionStorage.setItem('cookiesOk', 'false');
     }
-    this.cookiesOk = JSON.parse(sessionStorage.getItem(
-      'cookiesOk'
-    ));
+    this.cookiesOk = JSON.parse(sessionStorage.getItem('cookiesOk'));
   }
 
   closeAlert(alert: Alert): void {

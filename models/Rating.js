@@ -22,7 +22,10 @@ const ratingSchema = new Schema({
   },
   dateTime: {
     type: Date,
-    required: [true, 'A date and time is required for when the rating was made.'],
+    required: [
+      true,
+      'A date and time is required for when the rating was made.'
+    ],
     default: setDate(7)
   }
 });
@@ -30,10 +33,12 @@ const ratingSchema = new Schema({
 const Rating = (module.exports = mongoose.model('Rating', ratingSchema));
 
 module.exports.getRatings = (callback, limit) => {
-  Rating.find(callback).sort({
-    rating: 1,
-    dateTime: -1
-  }).limit(parseInt(limit));
+  Rating.find(callback)
+    .sort({
+      rating: 1,
+      dateTime: -1
+    })
+    .limit(parseInt(limit));
 };
 
 module.exports.getRating = (query, callback) => {

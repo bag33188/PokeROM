@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const url = require('url');
 const moment = require('moment');
-const {sanitizeBody} = require('express-validator/filter');
-const {check, validationResult} = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
+const { check, validationResult } = require('express-validator/check');
 const Nature = require('../../models/Nature');
 const natureData = require('../../database/data.json')[2];
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
@@ -16,15 +16,15 @@ function getNature(query, req, res, callback) {
   return Nature.getNature(query, (err, nature) => {
     if (err) {
       if (err.name === 'CastError') {
-        return res.status(404).json({success: false, ...err});
+        return res.status(404).json({ success: false, ...err });
       } else {
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
     }
     if (!nature) {
       return res
         .status(404)
-        .json({success: false, message: 'Error 404: nature not found.'});
+        .json({ success: false, message: 'Error 404: nature not found.' });
     }
     return callback(nature);
   });
@@ -34,11 +34,11 @@ function getNature(query, req, res, callback) {
  * @summary Get all Natures.
  * @description Gets all Natures in the database.
  */
-httpRouter.get('/',  async (req, res, next) => {
+httpRouter.get('/', async (req, res, next) => {
   try {
     await Nature.getNatures((err, natures) => {
       if (err) {
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
       if (!natures) {
         return res.status(502).json({
@@ -58,26 +58,28 @@ httpRouter.get('/',  async (req, res, next) => {
  * @description Gets a single nature from the database.
  * @param {string} id The id of the nature to get.
  */
-httpRouter.get('/:id',  async (req, res, next) => {
+httpRouter.get('/:id', async (req, res, next) => {
   try {
     let id;
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'Nature not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
     }
-    await Nature.getNature({_id: id}, (err, nature) => {
+    await Nature.getNature({ _id: id }, (err, nature) => {
       if (err) {
         if (err.name === 'CastError') {
-          return res.status(404).json({success: false, ...err});
+          return res.status(404).json({ success: false, ...err });
         } else {
-          return res.status(500).json({success: false, ...err});
+          return res.status(500).json({ success: false, ...err });
         }
       }
       if (!nature) {
         return res
           .status(404)
-          .json({success: false, message: 'Error 404: nature not found.'});
+          .json({ success: false, message: 'Error 404: nature not found.' });
       }
       return res.status(200).json(nature);
     });
@@ -103,7 +105,7 @@ httpRouter.post(
       .withMessage('The name of the nature is required.')
       .isString()
       .withMessage('Name must be a string.')
-      .isLength({min: 3, max: 20})
+      .isLength({ min: 3, max: 20 })
       .withMessage(
         'The name of the nature must be between 3 and 10 characters.'
       ),
@@ -113,7 +115,7 @@ httpRouter.post(
       .withMessage('The increased stat of the nature is required.')
       .isString()
       .withMessage('Up must be a string.')
-      .isLength({min: 4, max: 20})
+      .isLength({ min: 4, max: 20 })
       .withMessage(
         'The increased stat of the nature must be between 4 and 20 characters.'
       ),
@@ -123,13 +125,13 @@ httpRouter.post(
       .withMessage('The decreased stat of the nature is required.')
       .isString()
       .withMessage('Down must be a string.')
-      .isLength({min: 4, max: 20})
+      .isLength({ min: 4, max: 20 })
       .withMessage(
         'The decreased stat of the nature must be between 4 and 20 characters.'
       ),
     check('flavor')
       .optional()
-      .isLength({min: 4, max: 14})
+      .isLength({ min: 4, max: 14 })
       .withMessage(
         'The flavor of the nature must be between 4 and 14 characters.'
       )
@@ -141,7 +143,7 @@ httpRouter.post(
       .withMessage('he usage for the nature is required')
       .isString()
       .withMessage('Usage must be a string.')
-      .isLength({min: 5, max: 40})
+      .isLength({ min: 5, max: 40 })
       .withMessage(
         'The usage for the nature must be in between 5 and 40 characters.'
       )
@@ -155,17 +157,17 @@ httpRouter.post(
         flavor: req.body.flavor,
         usage: req.body.usage
       });
-      const {name, up, down, flavor, usage} = nature;
+      const { name, up, down, flavor, usage } = nature;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({success: false, errors: errors.array()});
+        return res.status(406).json({ success: false, errors: errors.array() });
       }
       await Nature.addNature(nature, (err, nature) => {
         if (err) {
           if (err.name === 'ValidationError') {
-            return res.status(406).json({success: false, ...err});
+            return res.status(406).json({ success: false, ...err });
           } else {
-            return res.status(500).json({success: false, ...err});
+            return res.status(500).json({ success: false, ...err });
           }
         }
         if (!nature) {
@@ -181,7 +183,12 @@ httpRouter.post(
             pathname: req.originalUrl
           })}/${nature._id}`
         );
-        res.append('Created-At', moment().subtract(7, 'hours').format());
+        res.append(
+          'Created-At',
+          moment()
+            .subtract(7, 'hours')
+            .format()
+        );
         return res.status(201).json(nature);
       });
     } catch (err) {
@@ -208,7 +215,7 @@ httpRouter.put(
       .withMessage('The name of the nature is required.')
       .isString()
       .withMessage('Name must be a string.')
-      .isLength({min: 3, max: 20})
+      .isLength({ min: 3, max: 20 })
       .withMessage(
         'The name of the nature must be between 3 and 10 characters.'
       ),
@@ -218,7 +225,7 @@ httpRouter.put(
       .withMessage('The increased stat of the nature is required.')
       .isString()
       .withMessage('Up must be a string.')
-      .isLength({min: 4, max: 20})
+      .isLength({ min: 4, max: 20 })
       .withMessage(
         'The increased stat of the nature must be between 4 and 20 characters.'
       ),
@@ -228,13 +235,13 @@ httpRouter.put(
       .withMessage('The decreased stat of the nature is required.')
       .isString()
       .withMessage('Down must be a string.')
-      .isLength({min: 4, max: 20})
+      .isLength({ min: 4, max: 20 })
       .withMessage(
         'The decreased stat of the nature must be between 4 and 20 characters.'
       ),
     check('flavor')
       .optional()
-      .isLength({min: 4, max: 14})
+      .isLength({ min: 4, max: 14 })
       .withMessage(
         'The flavor of the nature must be between 4 and 14 characters.'
       )
@@ -246,7 +253,7 @@ httpRouter.put(
       .withMessage('The usage for the nature is required.')
       .isString()
       .withMessage('Usage must be a string.')
-      .isLength({min: 5, max: 40})
+      .isLength({ min: 5, max: 40 })
       .withMessage(
         'The usage for the nature must be in between 5 and 40 characters.'
       )
@@ -257,7 +264,9 @@ httpRouter.put(
       try {
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
-        return res.status(404).json({success: false, message: 'Nature not found.'});
+        return res
+          .status(404)
+          .json({ success: false, message: 'Nature not found.' });
       }
       const updateData = {
         name: req.body.name,
@@ -266,24 +275,24 @@ httpRouter.put(
         flavor: req.body.flavor,
         usage: req.body.usage
       };
-      const {name, up, down, flavor, usage} = updateData;
+      const { name, up, down, flavor, usage } = updateData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({success: false, errors: errors.array()});
+        return res.status(406).json({ success: false, errors: errors.array() });
       }
       await Nature.updateNature(
-        {_id: id},
+        { _id: id },
         updateData,
         {},
         (err, updatedNature) => {
           if (err) {
             switch (err.name) {
               case 'CastError':
-                return res.status(404).json({success: false, ...err});
+                return res.status(404).json({ success: false, ...err });
               case 'ValidationError':
-                return res.status(406).json({success: false, ...err});
+                return res.status(406).json({ success: false, ...err });
               default:
-                return res.status(500).json({success: false, ...err});
+                return res.status(500).json({ success: false, ...err });
             }
           }
           if (!updatedNature) {
@@ -292,7 +301,7 @@ httpRouter.put(
               message: 'Error 404: nature not found.'
             });
           }
-          getNature({_id: id}, req, res, nature => {
+          getNature({ _id: id }, req, res, nature => {
             return res.status(200).json(nature);
           });
         }
@@ -322,7 +331,9 @@ httpRouter.patch(
       try {
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
-        return res.status(404).json({success: false, message: 'Nature not found.'});
+        return res
+          .status(404)
+          .json({ success: false, message: 'Nature not found.' });
       }
       const query = req.body;
       let isValid = true;
@@ -343,20 +354,20 @@ httpRouter.patch(
       if (!isValid) {
         return res
           .status(406)
-          .json({success: false, message: 'Data not valid.'});
+          .json({ success: false, message: 'Data not valid.' });
       }
       if (new ValidatePatchRequest(req).validateNaturePatch(res)) {
         return;
       }
-      await Nature.patchNature({_id: id}, {$set: query}, (err, status) => {
+      await Nature.patchNature({ _id: id }, { $set: query }, (err, status) => {
         if (err) {
           switch (err.name) {
             case 'CastError':
-              return res.status(404).json({success: false, ...err});
+              return res.status(404).json({ success: false, ...err });
             case 'ValidationError':
-              return res.status(406).json({success: false, ...err});
+              return res.status(406).json({ success: false, ...err });
             default:
-              return res.status(500).json({success: false, ...err});
+              return res.status(500).json({ success: false, ...err });
           }
         }
         if (!status) {
@@ -365,7 +376,7 @@ httpRouter.patch(
             message: 'Bad gateway.'
           });
         }
-        getNature({_id: id}, req, res, nature => {
+        getNature({ _id: id }, req, res, nature => {
           return res.status(200).json(nature);
         });
       });
@@ -386,15 +397,17 @@ httpRouter.delete('/:id', async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'Nature not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
     }
-    getNature({_id: id}, req, res, () => {
-      Nature.deleteNature({_id: id}, (err, status) => {
+    getNature({ _id: id }, req, res, () => {
+      Nature.deleteNature({ _id: id }, (err, status) => {
         if (err) {
           if (err.name === 'CastError') {
-            return res.status(404).json({success: false, ...err});
+            return res.status(404).json({ success: false, ...err });
           }
-          return res.status(500).json({success: false, ...err});
+          return res.status(500).json({ success: false, ...err });
         }
         if (!status) {
           return res.status(502).json({
@@ -402,7 +415,7 @@ httpRouter.delete('/:id', async (req, res, next) => {
             message: 'Bad gateway.'
           });
         }
-        return res.status(200).json({success: true, ...status});
+        return res.status(200).json({ success: true, ...status });
       });
     });
   } catch (err) {
@@ -418,7 +431,7 @@ httpRouter.delete('/', async (req, res, next) => {
   try {
     Nature.deleteAllNatures((err, status) => {
       if (err) {
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
       if (!status) {
         return res.status(502).json({
@@ -459,9 +472,11 @@ httpRouter.head('/:id', async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'Nature not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
     }
-    await getNature({_id: id}, req, res, () => {
+    await getNature({ _id: id }, req, res, () => {
       return res.status(200);
     });
   } catch (err) {
@@ -477,7 +492,7 @@ httpRouter.post('/all', async (req, res, next) => {
   try {
     await Nature.postAll(natureData, (err, natures) => {
       if (err) {
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
       if (!natures) {
         return res.status(502).json({
@@ -487,7 +502,7 @@ httpRouter.post('/all', async (req, res, next) => {
       }
       Nature.getNatures((err, natures) => {
         if (err) {
-          return res.status(500).json({success: false, ...err});
+          return res.status(500).json({ success: false, ...err });
         }
         if (!natures) {
           return res.status(502).json({
@@ -508,9 +523,13 @@ httpRouter.all('/*', async (req, res, next) => {
     const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(', '));
-      return await res.status(405).json({success: false, message: 'Method not allowed.'});
+      return await res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
     } else {
-      return await res.status(501).json({success: false, message: 'Method not implemented.'});
+      return await res
+        .status(501)
+        .json({ success: false, message: 'Method not implemented.' });
     }
   } catch (err) {
     next(err);

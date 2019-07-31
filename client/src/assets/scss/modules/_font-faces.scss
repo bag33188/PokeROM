@@ -3,61 +3,80 @@
 @import '../variables';
 @import '../functions';
 
-$roboto-font-data:
-'Roboto' 'Roboto Bold' normal bold $roboto-bold2 $roboto-bold,
-'Roboto' 'Roboto' normal normal $roboto-regular2 $roboto-regular,
-'Roboto Condensed' 'Roboto Condensed Light Italic' italic 300 $roboto-condensed-light-italic2 $roboto-condensed-light-italic,
-'Roboto' 'Roboto Bold Italic' italic bold $roboto-bold-italic2 $roboto-bold-italic,
-'Roboto Condensed' 'Roboto Condensed Bold' normal bold $roboto-condensed-bold2 $roboto-condensed-bold,
-'Roboto' 'Roboto Thin Italic' italic 100 $roboto-thin-italic2 $roboto-thin-italic,
-'Roboto Condensed' 'Roboto Condensed Regular' normal normal $roboto-condensed-regular2 $roboto-condensed-regular,
-'Roboto' 'Roboto Thin' normal 100 $roboto-thin2 $roboto-thin2,
-'Roboto' 'Roboto Light Italic' italic 300 $roboto-light-italic2 $roboto-light-italic,
-'Roboto Condensed' 'Roboto Condensed Italic' italic normal $roboto-condensed-italic2 $roboto-condensed-italic,
-'Roboto' 'Roboto Light' normal 300 $roboto-light2 $roboto-light,
-'Roboto Condensed' 'Roboto Condensed Regular' normal 300 $roboto-condensed2 $roboto-condensed,
-'Roboto' 'Roboto Black' normal 900 $roboto-black2 $roboto-black,
-'Roboto' 'Roboto Medium' normal 500 $roboto-medium2 $roboto-medium,
-'Roboto' 'Roboto Medium Italic' italic 500 $roboto-medium-italic2 $roboto-medium-italic,
-'Roboto Condensed' 'Roboto Condensed Bold Italic' italic bold $roboto-condensed-bold-italic2 $roboto-condensed-bold-italic,
-'Roboto' 'Roboto Black Italic' italic 900 $roboto-black-italic2 $roboto-black-italic,
-'Roboto' 'Roboto Italic' italic normal $roboto-italic2 $roboto-italic;
+$roboto-font-data: 'Roboto' 'Roboto Bold' normal bold $roboto-bold2 $roboto-bold,
+  'Roboto' 'Roboto' normal normal $roboto-regular2 $roboto-regular,
+  'Roboto Condensed' 'Roboto Condensed Light Italic' italic 300
+    $roboto-condensed-light-italic2 $roboto-condensed-light-italic,
+  'Roboto' 'Roboto Bold Italic' italic bold $roboto-bold-italic2
+    $roboto-bold-italic,
+  'Roboto Condensed' 'Roboto Condensed Bold' normal bold $roboto-condensed-bold2
+    $roboto-condensed-bold,
+  'Roboto' 'Roboto Thin Italic' italic 100 $roboto-thin-italic2
+    $roboto-thin-italic,
+  'Roboto Condensed' 'Roboto Condensed Regular' normal normal
+    $roboto-condensed-regular2 $roboto-condensed-regular,
+  'Roboto' 'Roboto Thin' normal 100 $roboto-thin2 $roboto-thin2,
+  'Roboto' 'Roboto Light Italic' italic 300 $roboto-light-italic2
+    $roboto-light-italic,
+  'Roboto Condensed' 'Roboto Condensed Italic' italic normal
+    $roboto-condensed-italic2 $roboto-condensed-italic,
+  'Roboto' 'Roboto Light' normal 300 $roboto-light2 $roboto-light,
+  'Roboto Condensed' 'Roboto Condensed Regular' normal 300 $roboto-condensed2
+    $roboto-condensed,
+  'Roboto' 'Roboto Black' normal 900 $roboto-black2 $roboto-black,
+  'Roboto' 'Roboto Medium' normal 500 $roboto-medium2 $roboto-medium,
+  'Roboto' 'Roboto Medium Italic' italic 500 $roboto-medium-italic2
+    $roboto-medium-italic,
+  'Roboto Condensed' 'Roboto Condensed Bold Italic' italic bold
+    $roboto-condensed-bold-italic2 $roboto-condensed-bold-italic,
+  'Roboto' 'Roboto Black Italic' italic 900 $roboto-black-italic2
+    $roboto-black-italic,
+  'Roboto' 'Roboto Italic' italic normal $roboto-italic2 $roboto-italic;
 
-@each $font-name, $local1, $font-style, $font-weight, $font-woff2-url, $font-woff1-url in $roboto-font-data {
-  $local2: str-replace(str-replace($font-woff1-url, '#{$roboto-font-url-prefix}/', ''), '.woff', '');
+@each $font-name, $local1, $font-style, $font-weight, $font-woff2-url,
+  $font-woff1-url in $roboto-font-data
+{
+  $local2: str-replace(
+    str-replace($font-woff1-url, '#{$roboto-font-url-prefix}/', ''),
+    '.woff',
+    ''
+  );
   @font-face {
     font-family: $font-name;
     font-style: $font-style;
     font-weight: $font-weight;
-    src:
-    local($local1),
-    local($local2),
-    url($font-woff2-url) format('woff2'),
-    url($font-woff1-url) format('woff');
+    src: local($local1), local($local2), url($font-woff2-url) format('woff2'),
+      url($font-woff1-url) format('woff');
   }
 }
 
-$arial-font-data:
-'Arial' 'Arial Bold' normal bold $arial-bold2 $arial-bold,
-'Arial Narrow' 'Arial Narrow' italic bold $arial-narrow-bold-italic2 $arial-narrow-bold-italic,
-'Arial' 'Arial Narrow Bold Italic' italic bold $arial-bold-italic2 $arial-bold-italic,
-'Arial' 'Arial' normal normal $arial2 $arial,
-'Arial' 'Arial Black' normal 900 $arial-black2 $arial-black,
-'Arial Narrow' 'Arial Narrow' normal normal $arial-narrow2 $arial-narrow,
-'Arial Narrow' 'Arial Narrow Italic' italic normal $arial-narrow-italic2 $arial-narrow-italic,
-'Arial Narrow' 'Arial Narrow Bold' normal bold $arial-narrow-bold2 $arial-narrow-bold,
-'Arial' 'Arial Italic' italic normal $arial-italic2 $arial-italic;
+$arial-font-data: 'Arial' 'Arial Bold' normal bold $arial-bold2 $arial-bold,
+  'Arial Narrow' 'Arial Narrow' italic bold $arial-narrow-bold-italic2
+    $arial-narrow-bold-italic,
+  'Arial' 'Arial Narrow Bold Italic' italic bold $arial-bold-italic2
+    $arial-bold-italic,
+  'Arial' 'Arial' normal normal $arial2 $arial,
+  'Arial' 'Arial Black' normal 900 $arial-black2 $arial-black,
+  'Arial Narrow' 'Arial Narrow' normal normal $arial-narrow2 $arial-narrow,
+  'Arial Narrow' 'Arial Narrow Italic' italic normal $arial-narrow-italic2
+    $arial-narrow-italic,
+  'Arial Narrow' 'Arial Narrow Bold' normal bold $arial-narrow-bold2
+    $arial-narrow-bold,
+  'Arial' 'Arial Italic' italic normal $arial-italic2 $arial-italic;
 
-@each $font-name, $local1, $font-style, $font-weight, $font-woff2-url, $font-woff1-url in $arial-font-data {
-  $local2: str-replace(str-replace($font-woff2-url, '#{$arial-font-url-prefix}/', ''), '.woff2', '');
+@each $font-name, $local1, $font-style, $font-weight, $font-woff2-url,
+  $font-woff1-url in $arial-font-data
+{
+  $local2: str-replace(
+    str-replace($font-woff2-url, '#{$arial-font-url-prefix}/', ''),
+    '.woff2',
+    ''
+  );
   @font-face {
     font-family: $font-name;
     font-style: $font-style;
     font-weight: $font-weight;
-    src:
-    local($local1),
-    local($local2),
-    url($font-woff2-url) format('woff2'),
-    url($font-woff1-url) format('woff');
+    src: local($local1), local($local2), url($font-woff2-url) format('woff2'),
+      url($font-woff1-url) format('woff');
   }
 }

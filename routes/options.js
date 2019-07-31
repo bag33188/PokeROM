@@ -20,9 +20,13 @@ httpRouter.all('/*', async (req, res, next) => {
     const methods = ['OPTIONS'];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(''));
-      return await res.status(405).json({success: false, message: 'Method not allowed.'});
+      return await res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
     } else {
-      return await res.status(501).json({success: false, message: 'Method not implemented.'});
+      return await res
+        .status(501)
+        .json({ success: false, message: 'Method not implemented.' });
     }
   } catch (err) {
     next(err);

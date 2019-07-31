@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import ProgrammingLanguage from '../../../../interfaces/ProgrammingLanguage';
 
 @Component({
@@ -10,8 +10,7 @@ export class ProgrammingLanguagesComponent implements OnInit, OnDestroy {
   codingLanguagesUsed: ProgrammingLanguage[];
   isCollapsed: boolean;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.isCollapsed = true;

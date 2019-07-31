@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   FormGroup,
   FormControl,
@@ -7,7 +7,7 @@ import {
   AbstractControl,
   FormBuilder
 } from '@angular/forms';
-import {AuthService} from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import LoggedUser from '../../../models/LoggedUser';
 import RegisteredUser from '../../../models/RegisteredUser';
 import sanitizeXSS from '../../../sanitation/sanitizeXSS';
@@ -44,8 +44,7 @@ export class LoginComponent implements OnInit {
     String.prototype.sanitizeXSS = sanitizeXSS;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login(): void {
     const user: LoggedUser = {

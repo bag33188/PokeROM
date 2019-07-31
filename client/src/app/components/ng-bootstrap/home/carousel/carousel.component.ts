@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import he from 'he';
 import CarouselSlide from '../../../../interfaces/CarouselSlide';
 import Images from '../../../../enums/images.enum';
@@ -12,8 +12,7 @@ export class CarouselComponent implements OnInit {
   images: typeof Images;
   carouselData: CarouselSlide[];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.images = Images;

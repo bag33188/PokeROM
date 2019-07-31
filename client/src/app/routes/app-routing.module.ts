@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
-import {routes} from './routes';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
 
 @NgModule({
   imports: [
@@ -10,5 +10,4 @@ import {routes} from './routes';
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

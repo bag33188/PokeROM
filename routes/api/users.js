@@ -4,8 +4,8 @@ const config = require('config');
 const url = require('url');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const {sanitizeBody} = require('express-validator/filter');
-const {check, validationResult} = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
+const { check, validationResult } = require('express-validator/check');
 const secret = config.get('secret');
 const User = require('../../models/User');
 const Rom = require('../../models/Rom');
@@ -22,15 +22,14 @@ function getUserById(query, req, res, callback) {
   return User.getUserById(query, (err, user) => {
     if (err) {
       if (err.name === 'CastError') {
-        return res.status(404).json({success: false, ...err});
+        return res.status(404).json({ success: false, ...err });
       }
-      return res.status(500).json({success: false, ...err});
+      return res.status(500).json({ success: false, ...err });
     }
     if (!user) {
-
       return res
         .status(404)
-        .json({success: false, message: 'Error 404: user not found.'});
+        .json({ success: false, message: 'Error 404: user not found.' });
     }
     return callback(user);
   });
@@ -44,7 +43,7 @@ httpRouter.get('/', auth, async (req, res, next) => {
   try {
     await User.getAllUsers((err, users) => {
       if (err) {
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
       if (!users) {
         return res.status(502).json({
@@ -70,19 +69,21 @@ httpRouter.get('/:id', auth, async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'User not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found.' });
     }
-    await User.getUserById({_id: id}, (err, user) => {
+    await User.getUserById({ _id: id }, (err, user) => {
       if (err) {
         if (err.name === 'CastError') {
-          return res.status(404).json({success: false, ...err});
+          return res.status(404).json({ success: false, ...err });
         }
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
       if (!user) {
         return res
           .status(404)
-          .json({success: false, message: 'Error 404: user not found.'});
+          .json({ success: false, message: 'Error 404: user not found.' });
       }
       return res.status(200).json(user);
     });
@@ -104,9 +105,10 @@ httpRouter.post(
       .escape(),
     check('name')
       .optional()
-      .isLength({max: 100})
+      .isLength({ max: 100 })
       .withMessage('Name can only be 100 characters at max.')
-      .isString().withMessage('Name must be a string.'),
+      .isString()
+      .withMessage('Name must be a string.'),
     check('email')
       .not()
       .isEmpty()
@@ -117,19 +119,21 @@ httpRouter.post(
       .not()
       .isEmpty()
       .withMessage('Username is required.')
-      .isString().withMessage('Name must be a string.')
+      .isString()
+      .withMessage('Name must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({min: 5, max: 22})
+      .isLength({ min: 5, max: 22 })
       .withMessage('Username must be between 5 and 22 characters.'),
     check('password')
       .not()
       .isEmpty()
       .withMessage('Password is required.')
-      .isString().withMessage('Name must be a string.')
-      .isLength({min: 8, max: 256})
+      .isString()
+      .withMessage('Name must be a string.')
+      .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(pwdRegex)
@@ -143,19 +147,19 @@ httpRouter.post(
         username: req.body.username,
         password: req.body.password
       });
-      const {name, email, username, password} = newUser;
+      const { name, email, username, password } = newUser;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({success: false, errors: errors.array()});
+        return res.status(406).json({ success: false, errors: errors.array() });
       }
       await User.addUser(
         newUser,
         (err, user) => {
           if (err) {
             if (err.name === 'ValidationError') {
-              return res.status(406).json({success: false, ...err});
+              return res.status(406).json({ success: false, ...err });
             }
-            return res.status(500).json({success: false, ...err});
+            return res.status(500).json({ success: false, ...err });
           }
           if (!user) {
             return res.status(500).json({
@@ -167,7 +171,9 @@ httpRouter.post(
               return res.status(500).json({ success: false, ...err });
             }
             if (!roms) {
-              return res.status(502).json({ success: false, message: 'Bad gateway.' });
+              return res
+                .status(502)
+                .json({ success: false, message: 'Bad gateway.' });
             }
             return console.log(`Core ROMs added for user '${user.username}'.`);
           });
@@ -176,7 +182,9 @@ httpRouter.post(
               return res.status(500).json({ success: false, ...err });
             }
             if (!roms) {
-              return res.status(502).json({ success: false, message: 'Bad gateway.' });
+              return res
+                .status(502)
+                .json({ success: false, message: 'Bad gateway.' });
             }
             return console.log(`ROM Hacks added for user '${user.username}'.`);
           });
@@ -190,10 +198,15 @@ httpRouter.post(
               })
               .replace('/register', '')}/${user._id}`
           );
-          res.append('Created-At', moment().subtract(7, 'hours').format());
+          res.append(
+            'Created-At',
+            moment()
+              .subtract(7, 'hours')
+              .format()
+          );
           return res
             .status(201)
-            .json({success: true, message: 'User successfully registered!'});
+            .json({ success: true, message: 'User successfully registered!' });
         },
         [
           () => {
@@ -215,8 +228,7 @@ httpRouter.post(
       next(err);
     }
   }
-)
-;
+);
 
 /**
  * @summary Authenticate User.
@@ -233,19 +245,21 @@ httpRouter.post(
       .not()
       .isEmpty()
       .withMessage('Username is required.')
-      .isString().withMessage('Name must be a string.')
+      .isString()
+      .withMessage('Name must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({min: 5, max: 22})
+      .isLength({ min: 5, max: 22 })
       .withMessage('Username must be between 5 and 22 characters.'),
     check('password')
       .not()
       .isEmpty()
       .withMessage('Password is required.')
-      .isString().withMessage('Name must be a string.')
-      .isLength({min: 8, max: 256})
+      .isString()
+      .withMessage('Name must be a string.')
+      .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(pwdRegex)
@@ -253,10 +267,10 @@ httpRouter.post(
   ],
   async (req, res, next) => {
     try {
-      const {username, password} = req.body;
+      const { username, password } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({success: false, errors: errors.array()});
+        return res.status(406).json({ success: false, errors: errors.array() });
       }
       let isValid = true;
       Object.keys(req.body).forEach(field => {
@@ -265,17 +279,19 @@ httpRouter.post(
         }
       });
       if (!isValid) {
-        return res.status(406).json({success: false, message: 'Data not valid.'});
+        return res
+          .status(406)
+          .json({ success: false, message: 'Data not valid.' });
       }
       await User.getUserByUsername(username, (err, user) => {
         if (err) {
           switch (err.name) {
             case 'CastError':
-              return res.status(404).json({success: false, ...err});
+              return res.status(404).json({ success: false, ...err });
             case 'ValidationError':
-              return res.status(406).json({success: false, ...err});
+              return res.status(406).json({ success: false, ...err });
             default:
-              return res.status(500).json({success: false, ...err});
+              return res.status(500).json({ success: false, ...err });
           }
         }
         if (!user)
@@ -286,10 +302,10 @@ httpRouter.post(
         // check entered if password matches username's password
         User.comparePassword(password, user.password, (err, isMatch) => {
           if (err) {
-            return res.status(403).json({success: false, ...err});
+            return res.status(403).json({ success: false, ...err });
           }
           if (isMatch) {
-            const token = jwt.sign({data: user}, secret, {
+            const token = jwt.sign({ data: user }, secret, {
               expiresIn: 604800 // 1 week (in seconds); formula: [60s*60m*24h*7d]
             });
             return res.status(200).json({
@@ -305,7 +321,7 @@ httpRouter.post(
           }
           return res
             .status(403)
-            .json({success: false, message: 'Error: wrong password.'});
+            .json({ success: false, message: 'Error: wrong password.' });
         });
       });
     } catch (err) {
@@ -329,9 +345,10 @@ httpRouter.put(
       .escape(),
     check('name')
       .optional()
-      .isLength({max: 100})
+      .isLength({ max: 100 })
       .withMessage('Name can only be 100 characters at max.')
-      .isString().withMessage('Name must be a string.'),
+      .isString()
+      .withMessage('Name must be a string.'),
     check('email')
       .not()
       .isEmpty()
@@ -342,19 +359,21 @@ httpRouter.put(
       .not()
       .isEmpty()
       .withMessage('Username is required.')
-      .isString().withMessage('Name must be a string.')
+      .isString()
+      .withMessage('Name must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({min: 5, max: 22})
+      .isLength({ min: 5, max: 22 })
       .withMessage('Username must be between 5 and 22 characters.'),
     check('password')
       .not()
       .isEmpty()
       .withMessage('Password is required.')
-      .isString().withMessage('Name must be a string.')
-      .isLength({min: 8, max: 256})
+      .isString()
+      .withMessage('Name must be a string.')
+      .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
       .matches(pwdRegex)
@@ -366,28 +385,30 @@ httpRouter.put(
       try {
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
-        return res.status(404).json({success: false, message: 'User not found.'});
+        return res
+          .status(404)
+          .json({ success: false, message: 'User not found.' });
       }
       const userData = req.body;
       let name = req.body.name;
       if (!name) {
         name = null;
       }
-      const {email, username, password} = userData;
+      const { email, username, password } = userData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(406).json({success: false, errors: errors.array()});
+        return res.status(406).json({ success: false, errors: errors.array() });
       }
       if (req.user['_id'].toString() === id.toString()) {
-        await User.updateUser({_id: id}, userData, {}, (err, user) => {
+        await User.updateUser({ _id: id }, userData, {}, (err, user) => {
           if (err) {
             switch (err.name) {
               case 'CastError':
-                return res.status(404).json({success: false, ...err});
+                return res.status(404).json({ success: false, ...err });
               case 'ValidationError':
-                return res.status(406).json({success: false, ...err});
+                return res.status(406).json({ success: false, ...err });
               default:
-                return res.status(500).json({success: false, ...err});
+                return res.status(500).json({ success: false, ...err });
             }
           }
           if (!user) {
@@ -396,7 +417,7 @@ httpRouter.put(
               message: 'Error 404: user not found.'
             });
           }
-          getUserById({_id: id}, req, res, user => {
+          getUserById({ _id: id }, req, res, user => {
             return res.status(200).json({
               success: true,
               user: {
@@ -409,7 +430,7 @@ httpRouter.put(
           });
         });
       } else {
-        getUserById({_id: id}, req, res, () => {
+        getUserById({ _id: id }, req, res, () => {
           return res.status(403).json({
             success: false,
             message: 'You cannot update this user.'
@@ -442,7 +463,9 @@ httpRouter.patch(
       try {
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
-        return res.status(404).json({success: false, message: 'User not found.'});
+        return res
+          .status(404)
+          .json({ success: false, message: 'User not found.' });
       }
       const query = req.body;
       const pwRegex = pwdRegex;
@@ -461,21 +484,21 @@ httpRouter.patch(
       if (!isValid) {
         return res
           .status(406)
-          .json({success: false, message: 'Data not valid.'});
+          .json({ success: false, message: 'Data not valid.' });
       }
       if (new ValidatePatchRequest(req).validateUserPatch(res)) {
         return;
       }
       if (req.user['_id'].toString() === id.toString()) {
-        await User.patchUser({_id: id}, {$set: query}, (err, status) => {
+        await User.patchUser({ _id: id }, { $set: query }, (err, status) => {
           if (err) {
             switch (err.name) {
               case 'CastError':
-                return res.status(404).json({success: false, ...err});
+                return res.status(404).json({ success: false, ...err });
               case 'ValidationError':
-                return res.status(406).json({success: false, ...err});
+                return res.status(406).json({ success: false, ...err });
               default:
-                return res.status(500).json({success: false, ...err});
+                return res.status(500).json({ success: false, ...err });
             }
           }
           if (!status) {
@@ -484,7 +507,7 @@ httpRouter.patch(
               message: 'Bad gateway.'
             });
           }
-          getUserById({_id: id}, req, res, user => {
+          getUserById({ _id: id }, req, res, user => {
             return res.status(200).json({
               success: true,
               user: {
@@ -497,7 +520,7 @@ httpRouter.patch(
           });
         });
       } else {
-        getUserById({_id: id}, req, res, () => {
+        getUserById({ _id: id }, req, res, () => {
           return res.status(403).json({
             success: false,
             message: 'You cannot patch this user.'
@@ -519,9 +542,9 @@ httpRouter.delete('/', auth, async (req, res, next) => {
     await User.deleteAllUsers((err, status) => {
       if (err) {
         if (err.name === 'CastError') {
-          return res.status(404).json({success: false, ...err});
+          return res.status(404).json({ success: false, ...err });
         }
-        return res.status(500).json({success: false, ...err});
+        return res.status(500).json({ success: false, ...err });
       }
       if (!status) {
         return res.status(502).json({
@@ -531,7 +554,7 @@ httpRouter.delete('/', auth, async (req, res, next) => {
       }
       Rom.deleteAllRoms({}, (err, romsStatus) => {
         if (err) {
-          return res.status(500).json({success: false, ...err});
+          return res.status(500).json({ success: false, ...err });
         }
         if (!romsStatus) {
           return res.status(500).json({
@@ -561,16 +584,18 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'User not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found.' });
     }
     if (req.user['_id'].toString() === id.toString()) {
-      getUserById({_id: id}, req, res, () => {
-        User.deleteUser({_id: id}, (err, status) => {
+      getUserById({ _id: id }, req, res, () => {
+        User.deleteUser({ _id: id }, (err, status) => {
           if (err) {
             if (err.name === 'CastError') {
-              return res.status(404).json({success: false, ...err});
+              return res.status(404).json({ success: false, ...err });
             }
-            return res.status(500).json({success: false, ...err});
+            return res.status(500).json({ success: false, ...err });
           }
           if (!status) {
             return res.status(502).json({
@@ -578,12 +603,12 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
               message: 'Bad gateway.'
             });
           }
-          Rom.deleteAllRoms({userId: id}, (err, romsStatus) => {
+          Rom.deleteAllRoms({ userId: id }, (err, romsStatus) => {
             if (err) {
               if (err.name === 'CastError') {
-                return res.status(404).json({success: false, ...err});
+                return res.status(404).json({ success: false, ...err });
               }
-              return res.status(500).json({success: false, ...err});
+              return res.status(500).json({ success: false, ...err });
             }
             if (!romsStatus) {
               return res.status(404).json({
@@ -600,7 +625,7 @@ httpRouter.delete('/:id', auth, async (req, res, next) => {
         });
       });
     } else {
-      getUserById({_id: id}, req, res, () => {
+      getUserById({ _id: id }, req, res, () => {
         return res.status(403).json({
           success: false,
           message: 'You cannot delete this user.'
@@ -634,9 +659,11 @@ httpRouter.head('/:id', auth, async (req, res, next) => {
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch {
-      return res.status(404).json({success: false, message: 'User not found.'});
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found.' });
     }
-    await getUserById({_id: id}, req, res, () => {
+    await getUserById({ _id: id }, req, res, () => {
       return res.status(200);
     });
   } catch (err) {
@@ -646,12 +673,24 @@ httpRouter.head('/:id', auth, async (req, res, next) => {
 
 httpRouter.all('/*', async (req, res, next) => {
   try {
-    const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD' ,'OPTIONS'];
+    const methods = [
+      'GET',
+      'POST',
+      'PUT',
+      'PATCH',
+      'DELETE',
+      'HEAD',
+      'OPTIONS'
+    ];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(', '));
-      return await res.status(405).json({success: false, message: 'Method not allowed.'});
+      return await res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
     } else {
-      return await res.status(501).json({success: false, message: 'Method not implemented.'});
+      return await res
+        .status(501)
+        .json({ success: false, message: 'Method not implemented.' });
     }
   } catch (err) {
     next(err);

@@ -4,7 +4,6 @@
     [boundaryLinks]="pageWidth > 600 && romsData.length > 0"
     [directionLinks]="pageWidth > 600 && romsData.length > 0"
     [collectionSize]="romsData.length"
-    #numPages
     [pageSize]="itemsPerPage"
     [(page)]="currentPage"
     (pageChange)="onPageChange(currentPage)"

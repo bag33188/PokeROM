@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -13,16 +13,15 @@ import {
   styleUrls: ['./toast.component.scss'],
   animations: [
     trigger('fadeOut', [
-      state('in', style({opacity: 1})),
-      transition(':leave', animate(555, style({opacity: 0})))
+      state('in', style({ opacity: 1 })),
+      transition(':leave', animate(555, style({ opacity: 0 })))
     ])
   ]
 })
 export class ToastComponent implements OnInit {
   show: boolean;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     if (!localStorage.getItem('show-toast')) {

@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, HostListener} from '@angular/core';
-import {faDownload, IconDefinition} from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Rom from '../../../../models/Rom';
 
 @Component({
@@ -26,8 +26,7 @@ export class RomDownloadComponent implements OnInit {
     }
   }
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.faDownload = faDownload;

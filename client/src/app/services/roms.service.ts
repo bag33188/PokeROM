@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import Rom from '../models/Rom';
-import {environment} from '../../environments/environment';
-import {CookiesService} from './cookies.service';
+import { environment } from '../../environments/environment';
+import { CookiesService } from './cookies.service';
 
 /*
  * headers.append(name: string, value: string | string[])
@@ -20,8 +20,7 @@ export class RomsService {
   constructor(
     private http: HttpClient,
     private cookieService: CookiesService
-  ) {
-  }
+  ) {}
 
   /**
    * @summary Get all ROMs.
@@ -31,7 +30,11 @@ export class RomsService {
    * @param perPage Pagination: how many per page.
    * @returns An observable (rom array).
    */
-  public getAllRoms(limit?: number, page?: number, perPage?: number): Observable<Rom[]> {
+  public getAllRoms(
+    limit?: number,
+    page?: number,
+    perPage?: number
+  ): Observable<Rom[]> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
@@ -58,7 +61,7 @@ export class RomsService {
       Authorization: this.cookieService.getCookie('token_id')
     });
     const url: string = `${this.romsUrl}/${id}`;
-    return this.http.get<Rom>(url, {headers});
+    return this.http.get<Rom>(url, { headers });
   }
 
   /**
@@ -72,7 +75,7 @@ export class RomsService {
       Authorization: this.cookieService.getCookie('token_id'),
       'Content-Type': 'application/json'
     });
-    return this.http.post<Rom>(this.romsUrl, rom, {headers});
+    return this.http.post<Rom>(this.romsUrl, rom, { headers });
   }
 
   /**
@@ -88,7 +91,7 @@ export class RomsService {
       'Content-Type': 'application/json'
     });
     const url: string = `${this.romsUrl}/${id}`;
-    return this.http.put<Rom>(url, rom, {headers});
+    return this.http.put<Rom>(url, rom, { headers });
   }
 
   /**
@@ -120,7 +123,7 @@ export class RomsService {
       Authorization: this.cookieService.getCookie('token_id')
     });
     const url: string = `$${this.romsUrl}/${id}`;
-    return this.http.delete<any>(url, {headers});
+    return this.http.delete<any>(url, { headers });
   }
 
   /**
@@ -144,7 +147,7 @@ export class RomsService {
     } else {
       url = this.romsUrl;
     }
-    return this.http.delete<any>(url, {headers});
+    return this.http.delete<any>(url, { headers });
   }
 
   /**
@@ -156,7 +159,7 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
-    return this.http.head<void>(this.romsUrl, {headers});
+    return this.http.head<void>(this.romsUrl, { headers });
   }
 
   /**
@@ -170,7 +173,7 @@ export class RomsService {
       Authorization: this.cookieService.getCookie('token_id')
     });
     const url: string = `${this.romsUrl}/${id}`;
-    return this.http.head<void>(url, {headers});
+    return this.http.head<void>(url, { headers });
   }
 
   /**

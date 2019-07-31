@@ -30,7 +30,7 @@ app.use(logger);
 // define what directory to look in for serving static file(s)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use(express.urlencoded({extended: false})); // extended: true
+app.use(express.urlencoded({ extended: false })); // extended: true
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors);
@@ -70,9 +70,13 @@ app.all('/*', async (req, res, next) => {
     const methods = ['GET', 'OPTIONS'];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(', '));
-      return await res.status(405).json({success: false, message: 'Method not allowed.'});
+      return await res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
     } else {
-      return await res.status(501).json({success: false, message: 'Method not implemented.'});
+      return await res
+        .status(501)
+        .json({ success: false, message: 'Method not implemented.' });
     }
   } catch (err) {
     next(err);

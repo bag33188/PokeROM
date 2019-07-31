@@ -19,15 +19,13 @@ const romSchema = new Schema({
     type: String,
     required: [true, 'ROM type is required.'],
     minlength: [4, 'ROM type is too short (must be at least 4 characters).'],
-    maxlength: [
-      5,
-      'ROM type is too long (can only 5 characters at max).'
-    ],
+    maxlength: [5, 'ROM type is too long (can only 5 characters at max).'],
     validate: {
-      validator: function (v) {
+      validator: function(v) {
         return !(v.toLowerCase() !== 'core' && v.toLowerCase() !== 'hack');
       },
-      message: props => `${props.value} is not a valid ROM type. ROM type can only be "core" or "hack".`
+      message: props =>
+        `${props.value} is not a valid ROM type. ROM type can only be "core" or "hack".`
     }
   },
   fileName: {
@@ -55,7 +53,7 @@ const romSchema = new Schema({
     type: String,
     required: [true, 'File type is required.'],
     validate: {
-      validator: function (v) {
+      validator: function(v) {
         return /^(?:\.?(gb[ca]?|[n3]ds|xci))$/i.test(v);
       },
       message: props => `${props.value} is not a valid file type`
@@ -70,7 +68,7 @@ const romSchema = new Schema({
       'URL is too long (must be between 8 and 1000 characters).'
     ],
     validate: {
-      validator: function (v) {
+      validator: function(v) {
         return urlRegex.test(v);
       },
       message: props => `${props.value} is not a valid URL.`
@@ -91,7 +89,7 @@ const romSchema = new Schema({
       'URL is too long (must be between 8 and 1000 characters).'
     ],
     validate: {
-      validator: function (v) {
+      validator: function(v) {
         return urlRegex.test(v);
       },
       message: props => `${props.value} is not a valid URL.`
@@ -158,7 +156,7 @@ const romSchema = new Schema({
     type: String,
     required: [true, 'A logo URL is required.'],
     validate: {
-      validator: function (v) {
+      validator: function(v) {
         return urlRegex.test(v);
       },
       message: props => `${props.value} is not a valid URL.`
@@ -180,7 +178,7 @@ module.exports.getAllRoms = (query, callback, limit) => {
   // make sure to parse limit as integer
   Rom.find(query, callback)
     .limit(parseInt(limit))
-    .sort({orderNumber: 1});
+    .sort({ orderNumber: 1 });
 };
 
 /**
@@ -286,9 +284,7 @@ module.exports.patchRom = (idQuery, query, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.postCore = (coreRoms, user, callback) => {
-  coreRoms.forEach((rom) =>
-    rom.userId = user['_id']
-  );
+  coreRoms.forEach(rom => (rom.userId = user['_id']));
   Rom.insertMany(coreRoms, callback);
 };
 

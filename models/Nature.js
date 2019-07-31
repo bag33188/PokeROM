@@ -128,7 +128,7 @@ module.exports.addNature = (newNature, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.updateNature = (query, natureData, options, callback) => {
-  const {name, up, down, flavor, usage} = natureData;
+  const { name, up, down, flavor, usage } = natureData;
   const natureQuery = {
     name,
     up,

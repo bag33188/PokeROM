@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {RatingService} from '../../../services/rating.service';
+import { Component, OnInit } from '@angular/core';
+import { RatingService } from '../../../services/rating.service';
 import Rating from '../../../models/Rating';
 import sanitizeXSS from '../../../sanitation/sanitizeXSS';
-import {LoggerService} from '../../../services/logger.service';
+import { LoggerService } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-ratings',
@@ -20,7 +20,10 @@ export class RatingsComponent implements OnInit {
   rate: number;
   isError: boolean;
 
-  constructor(private ratingService: RatingService, private logger: LoggerService) {
+  constructor(
+    private ratingService: RatingService,
+    private logger: LoggerService
+  ) {
     String.prototype.sanitizeXSS = sanitizeXSS;
   }
 
@@ -65,7 +68,8 @@ export class RatingsComponent implements OnInit {
           this.formValid = true;
           this.formSubmitted = true;
           this.isError = false;
-        }, (err: any): void => {
+        },
+        (err: any): void => {
           this.isError = true;
           console.error(err);
         }

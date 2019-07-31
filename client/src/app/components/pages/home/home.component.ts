@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterContentInit} from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +8,7 @@ import {Component, OnInit, AfterContentInit} from '@angular/core';
 export class HomeComponent implements OnInit, AfterContentInit {
   accHeading: string;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.accHeading = 'What would you like to know about?';

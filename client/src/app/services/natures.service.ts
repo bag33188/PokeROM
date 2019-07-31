@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import Nature from '../models/Nature';
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
 
 const headers: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json'
@@ -14,8 +14,7 @@ const headers: HttpHeaders = new HttpHeaders({
 export class NaturesService {
   private naturesUrl: string = `${environment.apiUrl}/natures`;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   /**
    * @summary Get all natures.
