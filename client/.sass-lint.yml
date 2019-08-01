@@ -14,7 +14,7 @@ rules:
     - 1
     - convention: zero
   brace-style:
-    - 0
+    - 1
     - allow-single-line: true
   class-name-format:
     - 1

@@ -3,7 +3,8 @@
 @import '../variables';
 @import '../functions';
 
-$roboto-font-data: 'Roboto' 'Roboto Bold' normal bold $roboto-bold2 $roboto-bold,
+$roboto-font-data:
+  'Roboto' 'Roboto Bold' normal bold $roboto-bold2 $roboto-bold,
   'Roboto' 'Roboto' normal normal $roboto-regular2 $roboto-regular,
   'Roboto Condensed' 'Roboto Condensed Light Italic' italic 300
     $roboto-condensed-light-italic2 $roboto-condensed-light-italic,
@@ -33,9 +34,7 @@ $roboto-font-data: 'Roboto' 'Roboto Bold' normal bold $roboto-bold2 $roboto-bold
     $roboto-black-italic,
   'Roboto' 'Roboto Italic' italic normal $roboto-italic2 $roboto-italic;
 
-@each $font-name, $local1, $font-style, $font-weight, $font-woff2-url,
-  $font-woff1-url in $roboto-font-data
-{
+@each $font-name, $local1, $font-style, $font-weight, $font-woff2-url, $font-woff1-url in $roboto-font-data {
   $local2: str-replace(
     str-replace($font-woff1-url, '#{$roboto-font-url-prefix}/', ''),
     '.woff',
@@ -50,7 +49,8 @@ $roboto-font-data: 'Roboto' 'Roboto Bold' normal bold $roboto-bold2 $roboto-bold
   }
 }
 
-$arial-font-data: 'Arial' 'Arial Bold' normal bold $arial-bold2 $arial-bold,
+$arial-font-data:
+  'Arial' 'Arial Bold' normal bold $arial-bold2 $arial-bold,
   'Arial Narrow' 'Arial Narrow' italic bold $arial-narrow-bold-italic2
     $arial-narrow-bold-italic,
   'Arial' 'Arial Narrow Bold Italic' italic bold $arial-bold-italic2
@@ -64,9 +64,7 @@ $arial-font-data: 'Arial' 'Arial Bold' normal bold $arial-bold2 $arial-bold,
     $arial-narrow-bold,
   'Arial' 'Arial Italic' italic normal $arial-italic2 $arial-italic;
 
-@each $font-name, $local1, $font-style, $font-weight, $font-woff2-url,
-  $font-woff1-url in $arial-font-data
-{
+@each $font-name, $local1, $font-style, $font-weight, $font-woff2-url, $font-woff1-url in $arial-font-data {
   $local2: str-replace(
     str-replace($font-woff2-url, '#{$arial-font-url-prefix}/', ''),
     '.woff2',
