@@ -20,12 +20,12 @@ export class JwtInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap(
-        (event: HttpEvent<any>) => {
+        (event: HttpEvent<any>): void => {
           if (event instanceof HttpResponse) {
             // do stuff with response
           }
         },
-        (err: any) => {
+        (err: any): void => {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
               this.router.navigate(['/', 'login']);
