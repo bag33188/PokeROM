@@ -18,6 +18,22 @@ const httpRouter = express.Router();
 const fieldsToSanitize = ['name', 'email', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
+function convertUnitOfTimeToSeconds(value, unit) {
+  value = parseInt(value, 10);
+  switch (unit) {
+    case 'minutes':
+      return value * 60;
+    case 'hours':
+      return value * 60 ** 2;
+    case 'days':
+      return value * 60 ** 2 * 24;
+    case 'weeks':
+      return value * 60 ** 2 * 24 * 7;
+    default:
+      return value;
+  }
+}
+
 function getUserById(query, req, res, callback) {
   return User.getUserById(query, (err, user) => {
     if (err) {
@@ -310,7 +326,7 @@ httpRouter.post(
           }
           if (isMatch) {
             const token = jwt.sign({ data: user }, secret, {
-              expiresIn: 604800 // 1 week (in seconds); formula: [60s*60m*24h*7d]
+              expiresIn: convertUnitOfTimeToSeconds(1, 'weeks')
             });
             return res.status(200).json({
               success: true,
