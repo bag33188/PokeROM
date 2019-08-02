@@ -77,7 +77,6 @@ cd ~/Projects/PokeROM && git status # git
 # $ sudo kill <mongod_command_pid>
 
 # MongoDB Compass
-
 mongodb+srv://broccolini33188:Sullivan@pokerom-cluster-voflm.gcp.mongodb.net/test
 
 # Heroku
