@@ -1,0 +1,29 @@
+@ECHO OFF
+
+:: ========================
+:: Open Repositories Script
+:: ========================
+
+REM.||(
+  Windows Batchfile
+  -----------------
+  This script cannot be run on a Unix machine.
+  Batch is a scripting language invented for DOS.
+  It has no compatibility with OSX or Linux.
+  This file can only be run on a Windows machine.
+)
+
+REM :: MPWC&_};(U9@'@7qE5^^3>+g\V(^nBzL*4Mu^f+&>WPhEe9v#4W:xq~DT7+RL-+zd:phx]4=
+
+:OPEN_REPOS
+    REM PokeROM main repository
+    START "" https://github.com/bag33188/PokeROM
+    REM PokeROM Setup repository
+    START "" https://github.com/bag33188/PokeROM-Setup
+    REM Bcrypt.JS Password Hash Generator repository
+    START "" https://github.com/bag33188/pw-hash-gen
+    REM Website Loading Bar NPM Package repository
+    START "" https://github.com/bag33188/progressive-loading-bar
+    REM Go up one directory
+    CD ..
+EXIT /B 0
