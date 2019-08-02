@@ -26,6 +26,16 @@ paths:
           required: false
           description: '(Optional) For pagination: the number of ROMs per page.'
           type: number
+        - in: query
+          name: core
+          required: false
+          description: '(Optional) Get only the Core ROMs.'
+          type: boolean
+        - in: query
+          name: hacks
+          required: false
+          description: '(Optional) Get only the ROM Hacks.'
+          type: boolean
       responses:
         200:
           description: A single ROMs array.

@@ -110,16 +110,28 @@ function getAllRoms(query, req, res, callback, limit) {
  */
 httpRouter.get(
   '/',
-  [sanitizeQuery(['limit', 'per_page', 'page'])],
+  [sanitizeQuery(['limit', 'per_page', 'page', 'getAllCore', 'getAllHacks'])],
   auth,
   async (req, res, next) => {
     try {
+      const getAllCore = req.query['core'];
+      const getAllHacks = req.query['hacks'];
+      let query;
+      if (Boolean(getAllCore) && Boolean(getAllHacks)) {
+        query = { userId: req.user['_id'] };
+      } else if (Boolean(getAllCore)) {
+        query = { userId: req.user['_id'], romType: 'core' };
+      } else if (Boolean(getAllHacks)) {
+        query = { userId: req.user['_id'], romType: 'hack' };
+      } else {
+        query = { userId: req.user['_id'] };
+      }
       let limit = req.query['_limit'];
       if (!limit) {
         limit = 0;
       }
       await Rom.getAllRoms(
-        { userId: req.user['_id'] },
+        query,
         (err, roms) => {
           if (err) {
             return res.status(500).json({ success: false, ...err });
@@ -328,7 +340,10 @@ httpRouter.post(
       }
       const newRom = new Rom({
         userId: req.user['_id'],
-        orderNumber: parseInt(req.sanitize(req.body.orderNumber.toString()), 10),
+        orderNumber: parseInt(
+          req.sanitize(req.body.orderNumber.toString()),
+          10
+        ),
         romType: req.sanitize(req.body.romType),
         fileName: req.sanitize(req.body.fileName),
         fileSize: parseInt(req.sanitize(req.body.fileSize.toString()), 10),
@@ -539,7 +554,10 @@ httpRouter.put(
       }
       const updateRomData = {
         userId: req.user['_id'],
-        orderNumber: parseInt(req.sanitize(req.body.orderNumber.toString()), 10),
+        orderNumber: parseInt(
+          req.sanitize(req.body.orderNumber.toString()),
+          10
+        ),
         romType: req.sanitize(req.body.romType),
         fileName: req.sanitize(req.body.fileName),
         fileSize: parseInt(req.sanitize(req.body.fileSize.toString()), 10),
