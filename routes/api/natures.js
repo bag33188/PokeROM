@@ -338,13 +338,7 @@ httpRouter.patch(
       const query = req.body;
       let isValid = true;
       for (const field of Object.keys(req.body)) {
-        if (
-          field !== 'name' &&
-          field !== 'up' &&
-          field !== 'down' &&
-          field !== 'flavor' &&
-          field !== 'usage'
-        ) {
+        if (!fieldsToSanitize.includes(field)) {
           isValid = false;
           break;
         } else {

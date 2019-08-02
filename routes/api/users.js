@@ -471,12 +471,7 @@ httpRouter.patch(
       const pwRegex = pwdRegex;
       let isValid = true;
       for (let field of Object.keys(req.body)) {
-        if (
-          field !== 'name' &&
-          field !== 'email' &&
-          field !== 'username' &&
-          field !== 'password'
-        ) {
+        if (!fieldsToSanitize.includes(field)) {
           isValid = false;
           break;
         } else isValid = !(field === 'password' && pwRegex.test(field));

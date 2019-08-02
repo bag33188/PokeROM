@@ -25,7 +25,9 @@ const fieldsToSanitize = [
   'platform',
   'region',
   'generation',
-  'gameName'
+  'gameName',
+  'orderNumber',
+  'romType'
 ];
 const dateRegex = /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/;
 
@@ -629,24 +631,9 @@ httpRouter.patch(
         req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
       }
       let isValid = true;
+      const fields = [...fieldsToSanitize, 'orderNumber', 'romType'];
       for (const field of Object.keys(req.body)) {
-        if (
-          field !== 'orderNumber' &&
-          field !== 'fileSize' &&
-          field !== 'fileType' &&
-          field !== 'fileName' &&
-          field !== 'dateReleased' &&
-          field !== 'description' &&
-          field !== 'genre' &&
-          field !== 'gameName' &&
-          field !== 'downloadLink' &&
-          field !== 'platform' &&
-          field !== 'region' &&
-          field !== 'generation' &&
-          field !== 'boxArtUrl' &&
-          field !== 'logoUrl' &&
-          field !== 'romType'
-        ) {
+        if (!fields.includes(field)) {
           isValid = false;
           break;
         } else {
