@@ -1,8 +1,9 @@
-import { Component, isDevMode } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from './services/logger.service';
 import { ApiService } from './services/api.service';
 import ApiVersion from './models/ApiVersion';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -52,13 +53,13 @@ export class AppComponent {
   }
 
   changeTitleIfDevEnv(): void {
-    if (!isDevMode()) {
+    if (!environment.production) {
       document.title = `${this.title} (Beta)`;
     }
   }
 
   getApiVersionIfDevEnv(): void {
-    if (!isDevMode()) {
+    if (!environment.production) {
       this.apiService.getApiVersion().subscribe(
         (res: ApiVersion): void => {
           this.logger.log(`API Version: ${res.apiVersion}`);

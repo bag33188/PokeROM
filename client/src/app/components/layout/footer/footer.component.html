@@ -1,11 +1,11 @@
 <footer class="mb-4 pb-4">
   <p id="footer" class="text-center">
-    <ng-container [ngSwitch]="!isDevMode">
+    <ng-container [ngSwitch]="!environment.production">
       <span *ngSwitchCase="true">{{ appName }} (Beta)</span>
       <span *ngSwitchCase="false">{{ appName }}</span>
       <span *ngSwitchDefault>{{ appName }} Web App</span>
     </ng-container>
-    | &copy; {{ getYear() }} Broccolini<span *ngIf="!isDevMode"
+    | &copy; {{ getYear() }} Broccolini<span *ngIf="!environment.production"
       >/bag33188</span
     >
     |

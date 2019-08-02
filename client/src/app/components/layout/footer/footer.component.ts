@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, isDevMode } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import Environment from '../../../interfaces/Environment';
 
 @Component({
   selector: 'app-footer',
@@ -7,14 +9,13 @@ import { Component, OnInit, Input, isDevMode } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   @Input() appName: string;
-  isDevMode: boolean;
+  environment: Environment;
 
   constructor() {
-    this.isDevMode = isDevMode();
+    this.environment = environment;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getYear(): number {
     const now: Date = new Date();
