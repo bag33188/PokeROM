@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, isDevMode } from '@angular/core';
 import {
   trigger,
   state,
@@ -12,7 +12,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import * as $ from 'jquery';
 import Alert from '../../../interfaces/Alert';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-beta-version-alert',
@@ -35,7 +34,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.faExclamationTriangle = faExclamationTriangle;
-    this.isBeta = !environment.production;
+    this.isBeta = !isDevMode();
     this.setBetaVersionAlert();
     this.getBetaVersionAlert();
   }
