@@ -352,7 +352,7 @@ class ValidatePatchRequest {
           .status(406)
           .json({ success: false, message: 'Password must be a string.' });
       }
-      if (this.req.body.password.length < 8 || this.req.body.password > 256) {
+      if (this.req.body.password.length < 8 || this.req.body.password.length > 256) {
         return res
           .status(406)
           .json({
@@ -361,7 +361,7 @@ class ValidatePatchRequest {
           });
       }
       if (
-        !/(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi.test(
+        /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi.test(
           this.req.body.password
         )
       ) {
