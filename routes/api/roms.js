@@ -117,11 +117,9 @@ httpRouter.get(
       const getAllCore = req.query['core'];
       const getAllHacks = req.query['hacks'];
       let query;
-      if (Boolean(getAllCore) && Boolean(getAllHacks)) {
-        query = { userId: req.user['_id'] };
-      } else if (Boolean(getAllCore)) {
+      if (Boolean(getAllCore) && !Boolean(getAllHacks)) {
         query = { userId: req.user['_id'], romType: 'core' };
-      } else if (Boolean(getAllHacks)) {
+      } else if (Boolean(getAllHacks) && !Boolean(getAllCore)) {
         query = { userId: req.user['_id'], romType: 'hack' };
       } else {
         query = { userId: req.user['_id'] };
@@ -796,13 +794,10 @@ httpRouter.delete(
           if (isOwnUser) {
             let query = {};
             let message = '';
-            if (Boolean(deleteCore) && Boolean(deleteHacks)) {
-              query = { userId: req.user['_id'] };
-              message = 'All ROMs successfully deleted!';
-            } else if (Boolean(deleteCore)) {
+            if (Boolean(deleteCore) && !Boolean(deleteHacks)) {
               query = { userId: req.user['_id'], romType: 'core' };
               message = 'All core ROMs have been deleted.';
-            } else if (Boolean(deleteHacks)) {
+            } else if (Boolean(deleteHacks) && !Boolean(deleteCore)) {
               query = { userId: req.user['_id'], romType: 'hack' };
               message = 'All ROM hacks have been deleted.';
             } else {
