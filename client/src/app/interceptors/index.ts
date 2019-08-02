@@ -5,7 +5,7 @@ import { TokenInterceptor } from './token.interceptor';
 
 export const interceptorProviders: {
   provide: InjectionToken<HttpInterceptor[]>;
-  useClass: any;
+  useClass: typeof HttpsInterceptor | typeof TokenInterceptor;
   multi: boolean;
 }[] = [
   { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
