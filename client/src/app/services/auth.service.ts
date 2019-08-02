@@ -13,8 +13,6 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
   private authUrl: string = `${environment.apiUrl}/users/authenticate`;
-  private authToken: string;
-  private user: User;
 
   constructor(
     private http: HttpClient,
@@ -35,6 +33,10 @@ export class AuthService {
     return this.http.post<RegisteredUser>(this.authUrl, user, { headers });
   }
 
+  public loadToken(): string {
+    return this.cookieService.getCookie('token_id');
+  }
+
   /**
    * @summary Stores the user data in local storage and the JWT as a cookie.
    * @param token The Bearer token (aka the JWT).
@@ -44,8 +46,6 @@ export class AuthService {
   public storeData(token: string, user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
     this.cookieService.setCookie('token_id', token, 7);
-    this.authToken = token;
-    this.user = user;
   }
 
   /**
@@ -63,8 +63,6 @@ export class AuthService {
    * @description Clears local storage, sets authToken and user to null, and clears the token_id cookie.
    */
   public logout(): void {
-    this.authToken = null;
-    this.user = null;
     localStorage.clear();
     this.cookieService.setCookie('token_id', '', 0);
   }
