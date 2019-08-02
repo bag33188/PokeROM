@@ -274,7 +274,7 @@ httpRouter.post(
       }
       let isValid;
       for (const field of Object.keys(req.body)) {
-        if (['username', 'password'].includes(field)) {
+        if (!['username', 'password'].includes(field)) {
           isValid = false;
           break;
         } else {
