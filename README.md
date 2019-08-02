@@ -39,42 +39,46 @@ This app is deployed to [heroku][Heroku] at [https://pokerom-broccolini.herokuap
 # Windows
 
 # Using Git Bash
-cd /c/MongoDB/bin && ./mongod.exe --dbpath=../data
-cd /c/MongoDB/bin && ./mongo.exe
-cd ~/Projects/PokeROM && npm run dev
-cd ~/Projects/PokeROM/client && ng serve --open
-cd ~/Projects/PokeROM && git status
+cd /c/MongoDB/bin && ./mongod --dbpath=../data # mongod
+cd /c/MongoDB/bin && ./mongo # mongo shell
+cd ~/Projects/PokeROM && npm run dev # api
+cd ~/Projects/PokeROM/client && ng serve --open # angular website
+cd ~/Projects/PokeROM && git status # git
 
-/c/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
+/c/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js # load data
 
-/c/MongoDB/bin/mongo "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan
+/c/MongoDB/bin/mongo "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan # prod mongo shell
 
 # Not using git Bash
-CD C:\MongoDB\bin && mongod.exe --dbpath=..\data
-CD C:\MongoDB\bin && mongo.exe
-CD %USERPROFILE%\Projects\PokeROM && npm run dev
-CD %USERPROFILE%\Projects\PokeROM\client && ng serve --open
-CD %USERPROFILE%\Projects\PokeROM && git status
+CD C:\MongoDB\bin && mongod.exe --dbpath=..\data REM mongod
+CD C:\MongoDB\bin && mongo.exe REM mongo shell
+CD %USERPROFILE%\Projects\PokeROM && npm run dev REM api
+CD %USERPROFILE%\Projects\PokeROM\client && ng serve --open REM angular website
+CD %USERPROFILE%\Projects\PokeROM && git status REM git
 
-C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js
+C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js # load data
 
-C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan
+C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan # prod mongo shell
 
 # OSX
-~/mongodb/bin/mongod
-~/mongodb/bin/mongo
-cd ~/Projects/PokeROM && npm run dev
-cd ~/Projects/PokeROM/client && ng serve --open
-cd ~/Projects/PokeROM && git status
+~/mongodb/bin/mongod # mongod
+~/mongodb/bin/mongo # mongo shell
+cd ~/Projects/PokeROM && npm run dev # api
+cd ~/Projects/PokeROM/client && ng serve --open # angular website
+cd ~/Projects/PokeROM && git status # git
 
-~/mongodb/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
+~/mongodb/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js # load data
 
-~/mongodb/bin/mongo "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan
+~/mongodb/bin/mongo "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan # prod mongo shell
 
 # to kill mongod process
 # ----------------------
 # $ sudo lsof -iTCP -sTCP:LISTEN -n -P
 # $ sudo kill <mongod_command_pid>
+
+# MongoDB Compass
+
+mongodb+srv://broccolini33188:Sullivan@pokerom-cluster-voflm.gcp.mongodb.net/test
 
 # Heroku
 heroku config:set PROD_MONGODB=mongodb+srv://broccolini33188:Sullivan@pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms?retryWrites=true&w=majority
