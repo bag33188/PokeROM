@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import {
   HttpEvent,
   HttpInterceptor,
@@ -7,7 +7,6 @@ import {
 } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { environment } from '../../environments/environment';
 
 @Injectable()
 export class HttpsInterceptor implements HttpInterceptor {
@@ -16,7 +15,7 @@ export class HttpsInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let httpsReq: HttpRequest<any>;
-    if (environment.production) {
+    if (isDevMode()) {
       // console.warn('HttpsInterceptor Activated!');
       // clone request and replace 'http://' with 'https://' at the same time
       httpsReq = req.clone({
