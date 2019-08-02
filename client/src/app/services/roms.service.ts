@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import Rom from '../models/Rom';
 import { environment } from '../../environments/environment';
-import { CookiesService } from './cookies.service';
 
 /*
  * headers.append(name: string, value: string | string[])
@@ -17,10 +16,7 @@ import { CookiesService } from './cookies.service';
 export class RomsService {
   private romsUrl: string = `${environment.apiUrl}/roms`;
 
-  constructor(
-    private http: HttpClient,
-    private cookieService: CookiesService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   /**
    * @summary Get all ROMs.
@@ -143,7 +139,7 @@ export class RomsService {
     if (hacks) {
       httpParams = httpParams.append('hacks', JSON.stringify(hacks));
     }
-    return this.http.delete<any>(this.romsUrl, {params: httpParams });
+    return this.http.delete<any>(this.romsUrl, { params: httpParams });
   }
 
   /**

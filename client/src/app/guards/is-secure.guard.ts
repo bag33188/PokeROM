@@ -11,7 +11,8 @@ export class IsSecureGuard implements CanActivate {
         window.location.protocol.length
       )}`;
       return false;
+    } else {
+      return true;
     }
-    return true;
   }
 }

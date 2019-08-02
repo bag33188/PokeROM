@@ -5,11 +5,12 @@ import {
   HttpHandler,
   HttpRequest
 } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class HttpsInterceptor implements HttpInterceptor {
+  constructor() {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
