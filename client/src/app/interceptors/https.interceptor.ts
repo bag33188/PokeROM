@@ -5,7 +5,6 @@ import {
   HttpHandler,
   HttpRequest
 } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -17,7 +16,6 @@ export class HttpsInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     let httpsReq: HttpRequest<any>;
     if (environment.production) {
-      // console.warn('HttpsInterceptor Activated!');
       // clone request and replace 'http://' with 'https://' at the same time
       httpsReq = req.clone({
         url: req.url.replace('http://', 'https://')
