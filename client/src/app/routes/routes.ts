@@ -44,6 +44,6 @@ export const routes: Routes = [
   { path: 'docs', component: DocsComponent, canActivate: [IsSecureGuard] },
   { path: '404', component: NotFoundComponent, canActivate: [IsSecureGuard] },
   { path: '**', component: NotFoundComponent, canActivate: [IsSecureGuard] }
-  // { path: '**', redirectTo: '/404', canActivate: [IsSecureGuard]},
+  // { path: '**', redirectTo: '/404', canActivate: [IsSecureGuard] },
   // { path: '404', component: NotFoundComponent, canActivate: [IsSecureGuard] }
 ];
