@@ -177,7 +177,11 @@ httpRouter.get(
  */
 httpRouter.get(
   '/:id',
-  [sanitizeParam('id')].trim().escape(),
+  [
+    sanitizeParam('id')
+      .trim()
+      .escape()
+  ],
   auth,
   async (req, res, next) => {
     try {
