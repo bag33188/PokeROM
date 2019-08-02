@@ -2,7 +2,11 @@ const express = require('express');
 const url = require('url');
 const mongoose = require('mongoose');
 const moment = require('moment');
-const { sanitizeBody } = require('express-validator/filter');
+const {
+  sanitizeBody,
+  sanitizeParam,
+  sanitizeQuery
+} = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
@@ -104,55 +108,60 @@ function getAllRoms(query, req, res, callback, limit) {
  * @param {number} page (Optional) For pagination: the page number to go to.
  * @param {number} per_page (Optional) For pagination: the number of ROMs per page.
  */
-httpRouter.get('/', auth, async (req, res, next) => {
-  try {
-    let limit = req.query['_limit'];
-    if (!limit) {
-      limit = 0;
+httpRouter.get(
+  '/',
+  [sanitizeQuery(['limit', 'per_page', 'page'])],
+  auth,
+  async (req, res, next) => {
+    try {
+      let limit = req.query['_limit'];
+      if (!limit) {
+        limit = 0;
+      }
+      await Rom.getAllRoms(
+        { userId: req.user['_id'] },
+        (err, roms) => {
+          if (err) {
+            return res.status(500).json({ success: false, ...err });
+          }
+          if (!roms) {
+            return res.status(502).json({
+              success: false,
+              message: 'Bad gateway.'
+            });
+          }
+          let perPage = parseInt(req.query['per_page']);
+          if (!perPage) {
+            perPage = 14;
+          }
+          const pageCount = Math.ceil(roms.length / perPage);
+          let page = parseInt(req.query['page']);
+          if (!page || (!page && !perPage)) {
+            return res.status(200).json(roms);
+          }
+          if (page > pageCount) {
+            page = pageCount;
+          }
+          const paginationFormulaResult = roms.slice(
+            page * perPage - perPage,
+            page * perPage
+          );
+          res.status(200).json(paginationFormulaResult);
+        },
+        limit
+      );
+    } catch (err) {
+      next(err);
     }
-    await Rom.getAllRoms(
-      { userId: req.user['_id'] },
-      (err, roms) => {
-        if (err) {
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!roms) {
-          return res.status(502).json({
-            success: false,
-            message: 'Bad gateway.'
-          });
-        }
-        let perPage = parseInt(req.query['per_page']);
-        if (!perPage) {
-          perPage = 14;
-        }
-        const pageCount = Math.ceil(roms.length / perPage);
-        let page = parseInt(req.query['page']);
-        if (!page || (!page && !perPage)) {
-          return res.status(200).json(roms);
-        }
-        if (page > pageCount) {
-          page = pageCount;
-        }
-        const paginationFormulaResult = roms.slice(
-          page * perPage - perPage,
-          page * perPage
-        );
-        res.status(200).json(paginationFormulaResult);
-      },
-      limit
-    );
-  } catch (err) {
-    next(err);
   }
-});
+);
 
 /**
  * @summary Get Single ROM.
  * @description Get a single ROM from the database.
  * @param {number} id The ID of the ROM to get.
  */
-httpRouter.get('/:id', auth, async (req, res, next) => {
+httpRouter.get('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
   try {
     let id;
     try {
@@ -319,21 +328,21 @@ httpRouter.post(
       }
       const newRom = new Rom({
         userId: req.user['_id'],
-        orderNumber: req.body.orderNumber,
-        romType: req.body.romType,
-        fileName: req.body.fileName,
-        fileSize: req.body.fileSize,
-        fileType: req.body.fileType,
-        downloadLink: req.body.downloadLink,
-        generation: req.body.generation,
-        boxArtUrl: req.body.boxArtUrl,
-        gameName: req.body.gameName,
-        region: req.body.region,
-        platform: req.body.platform,
-        description: req.body.description,
-        genre: req.body.genre,
-        dateReleased: req.body.dateReleased,
-        logoUrl: req.body.logoUrl
+        orderNumber: parseInt(req.sanitize(req.body.orderNumber.toString()), 10),
+        romType: req.sanitize(req.body.romType),
+        fileName: req.sanitize(req.body.fileName),
+        fileSize: parseInt(req.sanitize(req.body.fileSize.toString()), 10),
+        fileType: req.sanitize(req.body.fileType),
+        downloadLink: req.sanitize(req.body.downloadLink),
+        generation: parseInt(req.sanitize(req.body.generation.toString()), 10),
+        boxArtUrl: req.sanitize(req.body.boxArtUrl),
+        gameName: req.sanitize(req.body.gameName),
+        region: req.sanitize(req.body.region),
+        platform: req.sanitize(req.body.platform),
+        description: req.sanitize(req.body.description),
+        genre: req.sanitize(req.body.genre) || null,
+        dateReleased: req.sanitize(req.body.dateReleased),
+        logoUrl: req.sanitize(req.body.logoUrl)
       });
       const {
         orderNumber,
@@ -401,6 +410,7 @@ httpRouter.put(
     sanitizeBody(fieldsToSanitize)
       .trim()
       .escape(),
+    sanitizeParam('id'),
     check('orderNumber')
       .not()
       .isEmpty()
@@ -529,21 +539,21 @@ httpRouter.put(
       }
       const updateRomData = {
         userId: req.user['_id'],
-        orderNumber: req.body.orderNumber,
-        romType: req.body.romType,
-        fileName: req.body.fileName,
-        fileSize: req.body.fileSize,
-        fileType: req.body.fileType,
-        downloadLink: req.body.downloadLink,
-        generation: req.body.generation,
-        boxArtUrl: req.body.boxArtUrl,
-        gameName: req.body.gameName,
-        region: req.body.region,
-        platform: req.body.platform,
-        description: req.body.description,
-        genre: req.body.genre,
-        dateReleased: req.body.dateReleased,
-        logoUrl: req.body.logoUrl
+        orderNumber: parseInt(req.sanitize(req.body.orderNumber.toString()), 10),
+        romType: req.sanitize(req.body.romType),
+        fileName: req.sanitize(req.body.fileName),
+        fileSize: parseInt(req.sanitize(req.body.fileSize.toString()), 10),
+        fileType: req.sanitize(req.body.fileType),
+        downloadLink: req.sanitize(req.body.downloadLink),
+        generation: parseInt(req.sanitize(req.body.generation.toString()), 10),
+        boxArtUrl: req.sanitize(req.body.boxArtUrl),
+        gameName: req.sanitize(req.body.gameName),
+        region: req.sanitize(req.body.region),
+        platform: req.sanitize(req.body.platform),
+        description: req.sanitize(req.body.description),
+        genre: req.sanitize(req.body.genre) || null,
+        dateReleased: req.sanitize(req.body.dateReleased),
+        logoUrl: req.sanitize(req.body.logoUrl)
       };
       const {
         orderNumber,
@@ -613,7 +623,8 @@ httpRouter.patch(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .escape()
+      .escape(),
+    sanitizeParam('id')
   ],
   auth,
   async (req, res, next) => {
@@ -638,6 +649,11 @@ httpRouter.patch(
           break;
         } else {
           isValid = true;
+          if (typeof field === typeof 0) {
+            parseInt(req.sanitize(field.toString()), 10);
+          } else {
+            req.sanitize(field);
+          }
         }
       }
       if (!isValid) {
@@ -691,83 +707,28 @@ httpRouter.patch(
  * @description Deletes a single ROM in the database.
  * @param {string} id The ID of the ROM to delete.
  */
-httpRouter.delete('/:id', auth, async (req, res, next) => {
-  try {
-    let id;
+httpRouter.delete(
+  '/:id',
+  [sanitizeParam('id')],
+  auth,
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
-    }
-    await getRomById({ _id: id }, req, res, rom => {
-      const isOwnUser = rom.userId.toString() === req.user['_id'].toString();
-      if (isOwnUser) {
-        Rom.deleteRom({ _id: id }, (err, status) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!status) {
-            return res.status(502).json({
-              success: false,
-              message: 'Bad gateway.'
-            });
-          }
-          return res.status(200).json({
-            success: true,
-            message: 'ROM successfully deleted!',
-            ...status
-          });
-        });
-      } else {
-        return res.status(403).json({
-          success: false,
-          message: `You cannot delete this user's ROM.`
-        });
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res
+          .status(404)
+          .json({ success: false, message: 'ROM not found.' });
       }
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-
-/**
- * @summary Delete all ROMs.
- * @description Deletes all ROMs in the database.
- */
-httpRouter.delete('/', auth, async (req, res, next) => {
-  try {
-    const deleteCore = req.query['core'];
-    const deleteHacks = req.query['hacks'];
-    await getAllRoms(
-      { userId: req.user['_id'] },
-      req,
-      res,
-      roms => {
-        const isOwnUser =
-          roms[0].userId.toString() === req.user['_id'].toString();
+      await getRomById({ _id: id }, req, res, rom => {
+        const isOwnUser = rom.userId.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          let query = {};
-          let message = '';
-          if (Boolean(deleteCore) && Boolean(deleteHacks)) {
-            query = { userId: req.user['_id'] };
-            message = 'All ROMs successfully deleted!';
-          } else if (Boolean(deleteCore)) {
-            query = { userId: req.user['_id'], romType: 'core' };
-            message = 'All core ROMs have been deleted.';
-          } else if (Boolean(deleteHacks)) {
-            query = { userId: req.user['_id'], romType: 'hack' };
-            message = 'All ROM hacks have been deleted.';
-          } else {
-            query = { userId: req.user['_id'] };
-            message = 'All ROMs successfully deleted!';
-          }
-          Rom.deleteAllRoms(query, (err, status) => {
+          Rom.deleteRom({ _id: id }, (err, status) => {
             if (err) {
+              if (err.name === 'CastError') {
+                return res.status(404).json({ success: false, ...err });
+              }
               return res.status(500).json({ success: false, ...err });
             }
             if (!status) {
@@ -778,23 +739,88 @@ httpRouter.delete('/', auth, async (req, res, next) => {
             }
             return res.status(200).json({
               success: true,
-              message,
+              message: 'ROM successfully deleted!',
               ...status
             });
           });
         } else {
           return res.status(403).json({
             success: false,
-            message: 'You cannot delete ROMs for this user.'
+            message: `You cannot delete this user's ROM.`
           });
         }
-      },
-      1
-    );
-  } catch (err) {
-    next(err);
+      });
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
+
+/**
+ * @summary Delete all ROMs.
+ * @description Deletes all ROMs in the database.
+ */
+httpRouter.delete(
+  '/',
+  [sanitizeQuery(['deleteCore', 'deleteHacks'])],
+  auth,
+  async (req, res, next) => {
+    try {
+      const deleteCore = req.query['core'];
+      const deleteHacks = req.query['hacks'];
+      await getAllRoms(
+        { userId: req.user['_id'] },
+        req,
+        res,
+        roms => {
+          const isOwnUser =
+            roms[0].userId.toString() === req.user['_id'].toString();
+          if (isOwnUser) {
+            let query = {};
+            let message = '';
+            if (Boolean(deleteCore) && Boolean(deleteHacks)) {
+              query = { userId: req.user['_id'] };
+              message = 'All ROMs successfully deleted!';
+            } else if (Boolean(deleteCore)) {
+              query = { userId: req.user['_id'], romType: 'core' };
+              message = 'All core ROMs have been deleted.';
+            } else if (Boolean(deleteHacks)) {
+              query = { userId: req.user['_id'], romType: 'hack' };
+              message = 'All ROM hacks have been deleted.';
+            } else {
+              query = { userId: req.user['_id'] };
+              message = 'All ROMs successfully deleted!';
+            }
+            Rom.deleteAllRoms(query, (err, status) => {
+              if (err) {
+                return res.status(500).json({ success: false, ...err });
+              }
+              if (!status) {
+                return res.status(502).json({
+                  success: false,
+                  message: 'Bad gateway.'
+                });
+              }
+              return res.status(200).json({
+                success: true,
+                message,
+                ...status
+              });
+            });
+          } else {
+            return res.status(403).json({
+              success: false,
+              message: 'You cannot delete ROMs for this user.'
+            });
+          }
+        },
+        1
+      );
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 /**
  * @summary Get Head Info.
@@ -812,7 +838,7 @@ httpRouter.head('/', auth, async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/roms/:id route.
  */
-httpRouter.head('/:id', auth, async (req, res, next) => {
+httpRouter.head('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
   try {
     let id;
     try {

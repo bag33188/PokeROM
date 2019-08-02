@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   name: {
     type: String,
+    required: false,
     minlength: [1, 'Name is too short.'],
     maxlength: [100, 'Name is too long.']
   },

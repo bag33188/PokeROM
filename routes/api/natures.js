@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const url = require('url');
 const moment = require('moment');
-const { sanitizeBody } = require('express-validator/filter');
+const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const Nature = require('../../models/Nature');
 const natureData = require('../../database/data.json')[2];
@@ -58,7 +58,7 @@ httpRouter.get('/', async (req, res, next) => {
  * @description Gets a single nature from the database.
  * @param {string} id The id of the nature to get.
  */
-httpRouter.get('/:id', async (req, res, next) => {
+httpRouter.get('/:id', [sanitizeParam('id')], async (req, res, next) => {
   try {
     let id;
     try {
@@ -151,11 +151,11 @@ httpRouter.post(
   async (req, res, next) => {
     try {
       const nature = new Nature({
-        name: req.body.name,
-        up: req.body.up,
-        down: req.body.down,
-        flavor: req.body.flavor,
-        usage: req.body.usage
+        name: req.sanitize(req.body.name),
+        up: req.sanitize(req.body.up),
+        down: req.sanitize(req.body.down),
+        flavor: req.sanitize(req.body.flavor) || null,
+        usage: req.sanitize(req.body.usage)
       });
       const { name, up, down, flavor, usage } = nature;
       const errors = validationResult(req);
@@ -209,6 +209,7 @@ httpRouter.put(
     sanitizeBody(fieldsToSanitize)
       .trim()
       .escape(),
+    sanitizeParam('id'),
     check('name')
       .not()
       .isEmpty()
@@ -269,11 +270,11 @@ httpRouter.put(
           .json({ success: false, message: 'Nature not found.' });
       }
       const updateData = {
-        name: req.body.name,
-        up: req.body.up,
-        down: req.body.down,
-        flavor: req.body.flavor,
-        usage: req.body.usage
+        name: req.sanitize(req.body.name),
+        up: req.sanitize(req.body.up),
+        down: req.sanitize(req.body.down),
+        flavor: req.sanitize(req.body.flavor) || null,
+        usage: req.sanitize(req.body.usage)
       };
       const { name, up, down, flavor, usage } = updateData;
       const errors = validationResult(req);
@@ -323,7 +324,8 @@ httpRouter.patch(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .escape()
+      .escape(),
+    sanitizeParam('id')
   ],
   async (req, res, next) => {
     try {
@@ -343,6 +345,7 @@ httpRouter.patch(
           break;
         } else {
           isValid = true;
+          req.sanitize(field);
         }
       }
       if (!isValid) {
@@ -385,7 +388,7 @@ httpRouter.patch(
  * @description Deletes a single nature from the database.
  * @param {string} id The id of the nature to delete.
  */
-httpRouter.delete('/:id', async (req, res, next) => {
+httpRouter.delete('/:id', [sanitizeParam('id')], async (req, res, next) => {
   try {
     let id;
     try {
@@ -460,7 +463,7 @@ httpRouter.head('/', async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/natures/:id route.
  */
-httpRouter.head('/:id', async (req, res, next) => {
+httpRouter.head('/:id', [sanitizeParam('id')], async (req, res, next) => {
   try {
     let id;
     try {

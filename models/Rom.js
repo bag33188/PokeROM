@@ -145,6 +145,7 @@ const romSchema = new Schema({
   },
   genre: {
     type: String,
+    required: false,
     minlength: [2, 'Genre is too short (must be between 2 and 20 characters).'],
     maxlength: [20, 'Genre is too long (must be between 2 and 20 characters).']
   },

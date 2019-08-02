@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
+const expressSanitizer = require('express-sanitizer');
 const logger = require('./middleware/logger');
 const swaggerDoc = require('./docs/swaggerDoc');
 const connectDB = require('./config/db');
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // extended: true
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(expressSanitizer());
 app.use(cors);
 
 // routing middleware

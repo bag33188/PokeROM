@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { sanitizeBody } = require('express-validator/filter');
+const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const url = require('url');
 const moment = require('moment');
@@ -49,10 +49,13 @@ httpRouter.post(
   async (req, res, next) => {
     try {
       const newRating = new Rating({
-        rating: req.body.rating,
-        message: req.body.message || ''
+        rating: req.sanitize(req.body.rating),
+        message: req.sanitize(req.body.message) || null
       });
-      const { rating, message, dateTime } = newRating;
+      const { rating, message } = newRating;
+      if (req.body.dateTime) {
+        req.body.dateTime = req.sanitize(req.body.dateTime.toString());
+      }
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(406).json({ success: false, errors: errors.array() });
@@ -91,7 +94,7 @@ httpRouter.post(
   }
 );
 
-httpRouter.get('/:id', auth, async (req, res, next) => {
+httpRouter.get('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
   try {
     let id;
     try {
@@ -142,36 +145,41 @@ httpRouter.get('/', auth, async (req, res, next) => {
   }
 });
 
-httpRouter.delete('/:id', auth, async (req, res, next) => {
-  try {
-    let id;
+httpRouter.delete(
+  '/:id',
+  [sanitizeParam('id')],
+  auth,
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Rating not found.' });
-    }
-    await getRating({ _id: id }, req, res, () => {
-      Rating.deleteRating({ _id: id }, (err, status) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res
+          .status(404)
+          .json({ success: false, message: 'Rating not found.' });
+      }
+      await getRating({ _id: id }, req, res, () => {
+        Rating.deleteRating({ _id: id }, (err, status) => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
           }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!status) {
-          return res
-            .status(404)
-            .json({ success: false, message: 'Rating not found.' });
-        }
-        return res.status(200).json({ success: true, ...status });
+          if (!status) {
+            return res
+              .status(404)
+              .json({ success: false, message: 'Rating not found.' });
+          }
+          return res.status(200).json({ success: true, ...status });
+        });
       });
-    });
-  } catch (err) {
-    next(err);
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 httpRouter.delete('/', auth, async (req, res, next) => {
   try {
@@ -199,7 +207,7 @@ httpRouter.head('/', auth, async (req, res, next) => {
   }
 });
 
-httpRouter.head('/:id', auth, async (req, res, next) => {
+httpRouter.head('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
   try {
     let id;
     try {

@@ -4,7 +4,7 @@ const config = require('config');
 const url = require('url');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const { sanitizeBody } = require('express-validator/filter');
+const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const secret = config.get('secret');
 const User = require('../../models/User');
@@ -63,7 +63,7 @@ httpRouter.get('/', auth, async (req, res, next) => {
  * @description Gets a single user from the database.
  * @param {string} id The ID of the User to get.
  */
-httpRouter.get('/:id', auth, async (req, res, next) => {
+httpRouter.get('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
   try {
     let id;
     try {
@@ -142,10 +142,10 @@ httpRouter.post(
   async (req, res, next) => {
     try {
       let newUser = new User({
-        name: req.body.name || 'No Name',
-        email: req.body.email,
-        username: req.body.username,
-        password: req.body.password
+        name: req.sanitize(req.body.name) || null,
+        email: req.sanitize(req.body.email),
+        username: req.sanitize(req.body.username),
+        password: req.sanitize(req.body.password)
       });
       const { name, email, username, password } = newUser;
       const errors = validationResult(req);
@@ -272,12 +272,16 @@ httpRouter.post(
       if (!errors.isEmpty()) {
         return res.status(406).json({ success: false, errors: errors.array() });
       }
-      let isValid = true;
-      Object.keys(req.body).forEach(field => {
-        if (field !== 'username' && field !== 'password') {
+      let isValid;
+      for (const field of Object.keys(req.body)) {
+        if (['username', 'password'].includes(field)) {
           isValid = false;
+          break;
+        } else {
+          isValid = true;
+          req.sanitize(field);
         }
-      });
+      }
       if (!isValid) {
         return res
           .status(406)
@@ -343,9 +347,10 @@ httpRouter.put(
     sanitizeBody(fieldsToSanitize)
       .trim()
       .escape(),
+    sanitizeParam('id'),
     check('name')
       .optional()
-      .isLength({ max: 100 })
+      .isLength({ min: 1, max: 100 })
       .withMessage('Name can only be 100 characters at max.')
       .isString()
       .withMessage('Name must be a string.'),
@@ -389,12 +394,13 @@ httpRouter.put(
           .status(404)
           .json({ success: false, message: 'User not found.' });
       }
-      const userData = req.body;
-      let name = req.body.name;
-      if (!name) {
-        name = null;
-      }
-      const { email, username, password } = userData;
+      const userData = {
+        name: req.sanitize(req.body.name) || null,
+        email: req.sanitize(req.body.email),
+        username: req.sanitize(req.body.username),
+        password: req.sanitize(req.body.password)
+      };
+      const { name, email, username, password } = userData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(406).json({ success: false, errors: errors.array() });
@@ -419,13 +425,10 @@ httpRouter.put(
           }
           getUserById({ _id: id }, req, res, user => {
             return res.status(200).json({
-              success: true,
-              user: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                username: user.username
-              }
+              id: user._id,
+              name: user.name,
+              email: user.email,
+              username: user.username
             });
           });
         });
@@ -454,7 +457,8 @@ httpRouter.patch(
   [
     sanitizeBody(fieldsToSanitize)
       .trim()
-      .escape()
+      .escape(),
+    sanitizeParam('id')
   ],
   auth,
   async (req, res, next) => {
@@ -468,13 +472,15 @@ httpRouter.patch(
           .json({ success: false, message: 'User not found.' });
       }
       const query = req.body;
-      const pwRegex = pwdRegex;
       let isValid = true;
       for (let field of Object.keys(req.body)) {
         if (!fieldsToSanitize.includes(field)) {
           isValid = false;
           break;
-        } else isValid = !(field === 'password' && pwRegex.test(field));
+        } else {
+          isValid = !(field === 'password' && pwdRegex.test(field));
+          req.sanitize(field);
+        }
       }
       if (!isValid) {
         return res
@@ -573,64 +579,69 @@ httpRouter.delete('/', auth, async (req, res, next) => {
  * @description Deletes a single user from the database.
  * @param {string} id The ID of the User to remove.
  */
-httpRouter.delete('/:id', auth, async (req, res, next) => {
-  try {
-    let id;
+httpRouter.delete(
+  '/:id',
+  [sanitizeParam('id')],
+  auth,
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'User not found.' });
-    }
-    if (req.user['_id'].toString() === id.toString()) {
-      getUserById({ _id: id }, req, res, () => {
-        User.deleteUser({ _id: id }, (err, status) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!status) {
-            return res.status(502).json({
-              success: false,
-              message: 'Bad gateway.'
-            });
-          }
-          Rom.deleteAllRoms({ userId: id }, (err, romsStatus) => {
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res
+          .status(404)
+          .json({ success: false, message: 'User not found.' });
+      }
+      if (req.user['_id'].toString() === id.toString()) {
+        getUserById({ _id: id }, req, res, () => {
+          User.deleteUser({ _id: id }, (err, status) => {
             if (err) {
               if (err.name === 'CastError') {
                 return res.status(404).json({ success: false, ...err });
               }
               return res.status(500).json({ success: false, ...err });
             }
-            if (!romsStatus) {
-              return res.status(404).json({
+            if (!status) {
+              return res.status(502).json({
                 success: false,
-                message: 'Error 404: user not found.'
+                message: 'Bad gateway.'
               });
             }
-            return res.status(200).json({
-              success: true,
-              message: 'User successfully deleted!',
-              ...status
+            Rom.deleteAllRoms({ userId: id }, (err, romsStatus) => {
+              if (err) {
+                if (err.name === 'CastError') {
+                  return res.status(404).json({ success: false, ...err });
+                }
+                return res.status(500).json({ success: false, ...err });
+              }
+              if (!romsStatus) {
+                return res.status(404).json({
+                  success: false,
+                  message: 'Error 404: user not found.'
+                });
+              }
+              return res.status(200).json({
+                success: true,
+                message: 'User successfully deleted!',
+                ...status
+              });
             });
           });
         });
-      });
-    } else {
-      getUserById({ _id: id }, req, res, () => {
-        return res.status(403).json({
-          success: false,
-          message: 'You cannot delete this user.'
+      } else {
+        getUserById({ _id: id }, req, res, () => {
+          return res.status(403).json({
+            success: false,
+            message: 'You cannot delete this user.'
+          });
         });
-      });
+      }
+    } catch (err) {
+      next(err);
     }
-  } catch (err) {
-    next(err);
   }
-});
+);
 
 /**
  * @summary Get Head Info.
@@ -648,7 +659,7 @@ httpRouter.head('/', auth, async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/users/:id route.
  */
-httpRouter.head('/:id', auth, async (req, res, next) => {
+httpRouter.head('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
   try {
     let id;
     try {
