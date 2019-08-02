@@ -9,23 +9,41 @@ import { FaqComponent } from '../components/pages/faq/faq.component';
 import { NaturesComponent } from '../components/pages/natures/natures.component';
 import { DocsComponent } from '../components/pages/docs/docs.component';
 import { RatingsComponent } from '../components/pages/ratings/ratings.component';
+import { IsSecureGuard } from '../guards/is-secure.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'roms', component: RomsComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+    canActivate: [IsSecureGuard]
+  },
+  { path: 'home', component: HomeComponent, canActivate: [IsSecureGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [IsSecureGuard] },
+  {
+    path: 'roms',
+    component: RomsComponent,
+    canActivate: [AuthGuard, IsSecureGuard]
+  },
   {
     path: 'roms/info/:id',
     component: RomInfoComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, IsSecureGuard]
   },
-  { path: 'faq', component: FaqComponent },
-  { path: 'natures', component: NaturesComponent },
-  { path: 'ratings', component: RatingsComponent },
-  { path: 'docs', component: DocsComponent },
-  { path: '404', component: NotFoundComponent },
-  { path: '**', component: NotFoundComponent }
-  // { path: '**', redirectTo: '/404' },
-  // { path: '404', component: NotFoundComponent }
+  { path: 'faq', component: FaqComponent, canActivate: [IsSecureGuard] },
+  {
+    path: 'natures',
+    component: NaturesComponent,
+    canActivate: [IsSecureGuard]
+  },
+  {
+    path: 'ratings',
+    component: RatingsComponent,
+    canActivate: [IsSecureGuard]
+  },
+  { path: 'docs', component: DocsComponent, canActivate: [IsSecureGuard] },
+  { path: '404', component: NotFoundComponent, canActivate: [IsSecureGuard] },
+  { path: '**', component: NotFoundComponent, canActivate: [IsSecureGuard] }
+  // { path: '**', redirectTo: '/404', canActivate: [IsSecureGuard]},
+  // { path: '404', component: NotFoundComponent, canActivate: [IsSecureGuard] }
 ];
