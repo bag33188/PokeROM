@@ -110,7 +110,11 @@ function getAllRoms(query, req, res, callback, limit) {
  */
 httpRouter.get(
   '/',
-  [sanitizeQuery(['limit', 'per_page', 'page', 'getAllCore', 'getAllHacks'])],
+  [
+    sanitizeQuery(['limit', 'per_page', 'page', 'getAllCore', 'getAllHacks'])
+      .trim()
+      .escape()
+  ],
   auth,
   async (req, res, next) => {
     try {
@@ -171,41 +175,46 @@ httpRouter.get(
  * @description Get a single ROM from the database.
  * @param {number} id The ID of the ROM to get.
  */
-httpRouter.get('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
-  try {
-    let id;
+httpRouter.get(
+  '/:id',
+  [sanitizeParam('id')].trim().escape(),
+  auth,
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
-    }
-    await Rom.getRomById({ _id: id }, (err, rom) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        }
-        return res.status(500).json({ success: false, ...err });
-      } else if (!rom) {
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
         return res
           .status(404)
-          .json({ success: false, message: 'Error 404: ROM not found.' });
-      } else {
-        if (req.user['_id'].toString() === rom.userId.toString()) {
-          return res.status(200).json(rom);
-        } else {
-          return res.status(403).json({
-            success: false,
-            message: `You cannot get this user's ROM.`
-          });
-        }
+          .json({ success: false, message: 'ROM not found.' });
       }
-    });
-  } catch (err) {
-    next(err);
+      await Rom.getRomById({ _id: id }, (err, rom) => {
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
+        } else if (!rom) {
+          return res
+            .status(404)
+            .json({ success: false, message: 'Error 404: ROM not found.' });
+        } else {
+          if (req.user['_id'].toString() === rom.userId.toString()) {
+            return res.status(200).json(rom);
+          } else {
+            return res.status(403).json({
+              success: false,
+              message: `You cannot get this user's ROM.`
+            });
+          }
+        }
+      });
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 /**
  * @summary Add ROM.
@@ -423,7 +432,9 @@ httpRouter.put(
     sanitizeBody(fieldsToSanitize)
       .trim()
       .escape(),
-    sanitizeParam('id'),
+    sanitizeParam('id')
+      .trim()
+      .escape(),
     check('orderNumber')
       .not()
       .isEmpty()
@@ -641,6 +652,8 @@ httpRouter.patch(
       .trim()
       .escape(),
     sanitizeParam('id')
+      .trim()
+      .escape()
   ],
   auth,
   async (req, res, next) => {
@@ -725,7 +738,11 @@ httpRouter.patch(
  */
 httpRouter.delete(
   '/:id',
-  [sanitizeParam('id')],
+  [
+    sanitizeParam('id')
+      .trim()
+      .escape()
+  ],
   auth,
   async (req, res, next) => {
     try {
@@ -778,7 +795,11 @@ httpRouter.delete(
  */
 httpRouter.delete(
   '/',
-  [sanitizeQuery(['deleteCore', 'deleteHacks'])],
+  [
+    sanitizeQuery(['deleteCore', 'deleteHacks'])
+      .trim()
+      .escape()
+  ],
   auth,
   async (req, res, next) => {
     try {
@@ -851,23 +872,32 @@ httpRouter.head('/', auth, async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/roms/:id route.
  */
-httpRouter.head('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
-  try {
-    let id;
+httpRouter.head(
+  '/:id',
+  [
+    sanitizeParam('id')
+      .trim()
+      .escape()
+  ],
+  auth,
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res
+          .status(404)
+          .json({ success: false, message: 'ROM not found.' });
+      }
+      await getRomById({ _id: id }, req, res, () => {
+        return res.status(200);
+      });
+    } catch (err) {
+      next(err);
     }
-    await getRomById({ _id: id }, req, res, () => {
-      return res.status(200);
-    });
-  } catch (err) {
-    next(err);
   }
-});
+);
 
 /**
  * @summary Get Options.

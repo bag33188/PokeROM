@@ -58,35 +58,43 @@ httpRouter.get('/', async (req, res, next) => {
  * @description Gets a single nature from the database.
  * @param {string} id The id of the nature to get.
  */
-httpRouter.get('/:id', [sanitizeParam('id')], async (req, res, next) => {
-  try {
-    let id;
+httpRouter.get(
+  '/:id',
+  [
+    sanitizeParam('id')
+      .trim()
+      .escape()
+  ],
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Nature not found.' });
-    }
-    await Nature.getNature({ _id: id }, (err, nature) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        } else {
-          return res.status(500).json({ success: false, ...err });
-        }
-      }
-      if (!nature) {
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
         return res
           .status(404)
-          .json({ success: false, message: 'Error 404: nature not found.' });
+          .json({ success: false, message: 'Nature not found.' });
       }
-      return res.status(200).json(nature);
-    });
-  } catch (err) {
-    next(err);
+      await Nature.getNature({ _id: id }, (err, nature) => {
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          } else {
+            return res.status(500).json({ success: false, ...err });
+          }
+        }
+        if (!nature) {
+          return res
+            .status(404)
+            .json({ success: false, message: 'Error 404: nature not found.' });
+        }
+        return res.status(200).json(nature);
+      });
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 /**
  * @summary Add Nature
@@ -209,7 +217,9 @@ httpRouter.put(
     sanitizeBody(fieldsToSanitize)
       .trim()
       .escape(),
-    sanitizeParam('id'),
+    sanitizeParam('id')
+      .trim()
+      .escape(),
     check('name')
       .not()
       .isEmpty()
@@ -326,6 +336,8 @@ httpRouter.patch(
       .trim()
       .escape(),
     sanitizeParam('id')
+      .trim()
+      .escape()
   ],
   async (req, res, next) => {
     try {
@@ -388,37 +400,45 @@ httpRouter.patch(
  * @description Deletes a single nature from the database.
  * @param {string} id The id of the nature to delete.
  */
-httpRouter.delete('/:id', [sanitizeParam('id')], async (req, res, next) => {
-  try {
-    let id;
+httpRouter.delete(
+  '/:id',
+  [
+    sanitizeParam('id')
+      .trim()
+      .escape()
+  ],
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Nature not found.' });
-    }
-    getNature({ _id: id }, req, res, () => {
-      Nature.deleteNature({ _id: id }, (err, status) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res
+          .status(404)
+          .json({ success: false, message: 'Nature not found.' });
+      }
+      getNature({ _id: id }, req, res, () => {
+        Nature.deleteNature({ _id: id }, (err, status) => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
           }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!status) {
-          return res.status(502).json({
-            success: false,
-            message: 'Bad gateway.'
-          });
-        }
-        return res.status(200).json({ success: true, ...status });
+          if (!status) {
+            return res.status(502).json({
+              success: false,
+              message: 'Bad gateway.'
+            });
+          }
+          return res.status(200).json({ success: true, ...status });
+        });
       });
-    });
-  } catch (err) {
-    next(err);
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 /**
  * @summary Delete All Natures
@@ -463,23 +483,31 @@ httpRouter.head('/', async (req, res, next) => {
  * @summary Get Single Head Info.
  * @description Get's specific head info for /api/natures/:id route.
  */
-httpRouter.head('/:id', [sanitizeParam('id')], async (req, res, next) => {
-  try {
-    let id;
+httpRouter.head(
+  '/:id',
+  [
+    sanitizeParam('id')
+      .trim()
+      .escape()
+  ],
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Nature not found.' });
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res
+          .status(404)
+          .json({ success: false, message: 'Nature not found.' });
+      }
+      await getNature({ _id: id }, req, res, () => {
+        return res.status(200);
+      });
+    } catch (err) {
+      next(err);
     }
-    await getNature({ _id: id }, req, res, () => {
-      return res.status(200);
-    });
-  } catch (err) {
-    next(err);
   }
-});
+);
 
 /**
  * @summary Add All Natures

@@ -94,34 +94,43 @@ httpRouter.post(
   }
 );
 
-httpRouter.get('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
-  try {
-    let id;
+httpRouter.get(
+  '/:id',
+  [
+    sanitizeParam('id')
+      .trim()
+      .escape()
+  ],
+  auth,
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Rating not found.' });
-    }
-    await Rating.getRating({ _id: id }, (err, rating) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        }
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!rating) {
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
         return res
           .status(404)
           .json({ success: false, message: 'Rating not found.' });
       }
-      return res.status(200).json(rating);
-    });
-  } catch (err) {
-    next(err);
+      await Rating.getRating({ _id: id }, (err, rating) => {
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
+        }
+        if (!rating) {
+          return res
+            .status(404)
+            .json({ success: false, message: 'Rating not found.' });
+        }
+        return res.status(200).json(rating);
+      });
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 httpRouter.get('/', auth, async (req, res, next) => {
   try {
@@ -147,7 +156,11 @@ httpRouter.get('/', auth, async (req, res, next) => {
 
 httpRouter.delete(
   '/:id',
-  [sanitizeParam('id')],
+  [
+    sanitizeParam('id')
+      .trim()
+      .escape()
+  ],
   auth,
   async (req, res, next) => {
     try {
@@ -207,23 +220,32 @@ httpRouter.head('/', auth, async (req, res, next) => {
   }
 });
 
-httpRouter.head('/:id', [sanitizeParam('id')], auth, async (req, res, next) => {
-  try {
-    let id;
+httpRouter.head(
+  '/:id',
+  [
+    sanitizeParam('id')
+      .trim()
+      .escape()
+  ],
+  auth,
+  async (req, res, next) => {
     try {
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Rating not found.' });
+      let id;
+      try {
+        id = mongoose.Types.ObjectId(req.params.id);
+      } catch {
+        return res
+          .status(404)
+          .json({ success: false, message: 'Rating not found.' });
+      }
+      await getRating({ _id: id }, req, res, () => {
+        return res.status(200);
+      });
+    } catch (err) {
+      next(err);
     }
-    await getRating({ _id: id }, req, res, () => {
-      return res.status(200);
-    });
-  } catch (err) {
-    next(err);
   }
-});
+);
 
 httpRouter.all('/*', async (req, res, next) => {
   try {
