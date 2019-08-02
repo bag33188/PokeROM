@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import Rom from '../models/Rom';
 import { environment } from '../../environments/environment';
@@ -28,26 +28,41 @@ export class RomsService {
    * @param limit The number of roms to limit.
    * @param page Pagination: page number.
    * @param perPage Pagination: how many per page.
+   * @param core If wanting to get all core ROMs, set to true.
+   * @param hacks If wanting to get all ROM hacks, set to true.
    * @returns An observable (rom array).
    */
   public getAllRoms(
     limit?: number,
     page?: number,
-    perPage?: number
+    perPage?: number,
+    core?: boolean,
+    hacks?: boolean
   ): Observable<Rom[]> {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
+    let httpParams: HttpParams = new HttpParams();
+
     if (limit) {
-      const url: string = `${this.romsUrl}?_limit=${limit}`;
-      return this.http.get<Rom[]>(url, {
-        headers
-      });
-    } else {
-      return this.http.get<Rom[]>(this.romsUrl, {
-        headers
-      });
+      httpParams = httpParams.append('_limit', limit.toString());
     }
+    if (page) {
+      httpParams = httpParams.append('page', page.toString());
+    }
+    if (perPage) {
+      httpParams = httpParams.append('per_page', perPage.toString());
+    }
+    if (core) {
+      httpParams = httpParams.append('core', JSON.stringify(core));
+    }
+    if (hacks) {
+      httpParams = httpParams.append('hacks', JSON.stringify(hacks));
+    }
+    return this.http.get<Rom[]>(this.romsUrl, {
+      headers,
+      params: httpParams
+    });
   }
 
   /**
@@ -137,17 +152,14 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: this.cookieService.getCookie('token_id')
     });
-    let url: string = '';
-    if (core && hacks) {
-      url = this.romsUrl;
-    } else if (core) {
-      url = `${this.romsUrl}?core=true`;
-    } else if (hacks) {
-      url = `${this.romsUrl}?hacks=true`;
-    } else {
-      url = this.romsUrl;
+    let httpParams: HttpParams = new HttpParams();
+    if (core) {
+      httpParams = httpParams.append('core', JSON.stringify(core));
     }
-    return this.http.delete<any>(url, { headers });
+    if (hacks) {
+      httpParams = httpParams.append('hacks', JSON.stringify(hacks));
+    }
+    return this.http.delete<any>(this.romsUrl, { headers, params: httpParams });
   }
 
   /**
