@@ -7,6 +7,7 @@ import { RomsModule } from './components/roms/roms.module';
 import { NgBootstrapModule } from './components/ng-bootstrap/ng-bootstrap.module';
 import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,7 @@ import { AppComponent } from './app.component';
     RomsModule,
     NgBootstrapModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
