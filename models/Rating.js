@@ -38,7 +38,7 @@ module.exports.getRatings = (callback, limit) => {
       rating: 1,
       dateTime: -1
     })
-    .limit(parseInt(limit));
+    .limit(parseInt(limit, 10));
 };
 
 module.exports.getRating = (query, callback) => {
