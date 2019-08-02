@@ -1,7 +1,9 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class IsSecureGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): boolean {
     if (!isDevMode() && location.protocol !== 'https:') {
