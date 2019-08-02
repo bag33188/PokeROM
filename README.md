@@ -47,7 +47,7 @@ cd ~/Projects/PokeROM && git status
 
 /c/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
 
-/c/MongoDB/bin/mongo "mongodb+srv://pokerom-ng2of.gcp.mongodb.net/pkmn-roms" --username bag33188 --password Sullivan
+/c/MongoDB/bin/mongo "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan
 
 # Not using git Bash
 CD C:\MongoDB\bin && mongod.exe --dbpath=..\data
@@ -58,7 +58,7 @@ CD %USERPROFILE%\Projects\PokeROM && git status
 
 C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js
 
-C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-ng2of.gcp.mongodb.net/pkmn-roms" --username bag33188 --password Sullivan
+C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan
 
 # OSX
 ~/mongodb/bin/mongod
@@ -69,7 +69,7 @@ cd ~/Projects/PokeROM && git status
 
 ~/mongodb/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js
 
-~/mongodb/bin/mongo "mongodb+srv://pokerom-cluster-ng2of.mongodb.net/pkmn-roms" --username bag33188 --password Sullivan
+~/mongodb/bin/mongo "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan
 
 # to kill mongod process
 # ----------------------
@@ -77,7 +77,7 @@ cd ~/Projects/PokeROM && git status
 # $ sudo kill <mongod_command_pid>
 
 # Heroku
-heroku config:set PROD_MONGODB=mongodb+srv://bag33188:Sullivan@pokerom-ng2of.gcp.mongodb.net/pkmn-roms?retryWrites=true&w=majority&ssl=true
+heroku config:set PROD_MONGODB=mongodb+srv://broccolini33188:Sullivan@pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms?retryWrites=true&w=majority
 
 heroku logs --tail
 git push heroku master
