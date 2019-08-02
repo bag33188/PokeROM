@@ -8,7 +8,6 @@ import {
   NgbPaginationModule,
   NgbAlertModule
 } from '@ng-bootstrap/ng-bootstrap';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgBootstrapModule } from '../ng-bootstrap/ng-bootstrap.module';
@@ -56,9 +55,7 @@ import { RatingsComponent } from './ratings/ratings.component';
   providers: [
     AuthService,
     AuthGuard,
-    RomsService,
-    JwtHelperService,
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
+    RomsService
   ]
 })
 export class PagesModule {}
