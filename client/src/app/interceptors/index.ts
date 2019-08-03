@@ -4,7 +4,7 @@ import { HttpsInterceptor } from './https.interceptor';
 import { TokenInterceptor } from './token.interceptor';
 import { JwtInterceptor } from './jwt.interceptor';
 
-const interceptorProviders: {
+const httpInterceptorProviders: {
   provide: InjectionToken<HttpInterceptor[]>;
   useClass:
     | typeof HttpsInterceptor
@@ -25,4 +25,4 @@ const interceptorProviders: {
   }
 ];
 
-export default interceptorProviders;
+export default httpInterceptorProviders;

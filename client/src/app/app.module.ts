@@ -7,7 +7,7 @@ import { RomsModule } from './components/roms/roms.module';
 import { NgBootstrapModule } from './components/ng-bootstrap/ng-bootstrap.module';
 import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
-import interceptorProviders from './interceptors';
+import httpInterceptorProviders from './interceptors';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
     ApiService,
     JwtHelperService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    interceptorProviders
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
