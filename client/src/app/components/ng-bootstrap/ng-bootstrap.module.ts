@@ -15,7 +15,7 @@ import { ProgrammingLanguagesComponent } from './docs/programming-languages/prog
 import { RatingComponent } from './ratings/rating/rating.component';
 import { ModalContentComponent } from './faq/modal/modal-content.component';
 import { AlertComponent } from './ratings/alert/alert.component';
-import { DeleteUserBtnComponent } from './faq/delete-btn/delete-user-btn.component';
+import { DeleteUserBtnComponent } from './faq/delete-user-btn/delete-user-btn.component';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 
