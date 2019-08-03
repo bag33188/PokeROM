@@ -78,46 +78,51 @@ export class RegisterComponent implements OnInit {
       username: this.Username.value,
       password: this.Password.value
     };
-    this.userService.registerUser(user).subscribe(
-      (data: { success: boolean; message: string }): void => {
-        if (data.success) {
-          this.router.navigate(['/', 'login']);
-          this.registerFail = '';
-        } else {
-          this.registerFail = 'Incorrect Registration';
-        }
-      },
-      (err: any): never => {
-        const keys: string[] = ['error', 'message', 'errors', 'msg'];
-        if (err[keys[0]][keys[1]]) {
-          switch (err[keys[0]][keys[1]]) {
-            case 'User with email already registered.':
-              this.registerFail = 'User with email already exists';
-              break;
-            case 'User with username already exists.':
-              this.registerFail = 'User with username already exists';
-              break;
-            default:
-              this.registerFail = 'Registration Failure';
-              break;
+    if (/[<>/\\'"&]/g.test(user.username)) {
+      this.registerFail =
+        'Username can only contain letters, numbers, or underscores.';
+    } else {
+      this.userService.registerUser(user).subscribe(
+        (data: { success: boolean; message: string }): void => {
+          if (data.success) {
+            this.router.navigate(['/', 'login']);
+            this.registerFail = '';
+          } else {
+            this.registerFail = 'Incorrect Registration';
           }
-        }
-        if (err[keys[0]][keys[2]]) {
-          err[keys[0]][keys[2]].forEach((error: any): void => {
-            if (
-              error[keys[3]] ===
-              'Username can only contain letters, numbers, or underscores.'
-            ) {
-              this.registerFail =
-                'Username can only contain letters, numbers, or underscores.';
-            } else {
-              this.registerFail = 'Registration Failure';
+        },
+        (err: any): never => {
+          const keys: string[] = ['error', 'message', 'errors', 'msg'];
+          if (err[keys[0]][keys[1]]) {
+            switch (err[keys[0]][keys[1]]) {
+              case 'User with email already registered.':
+                this.registerFail = 'User with email already exists';
+                break;
+              case 'User with username already exists.':
+                this.registerFail = 'User with username already exists';
+                break;
+              default:
+                this.registerFail = 'Registration Failure';
+                break;
             }
-          });
+          }
+          if (err[keys[0]][keys[2]]) {
+            err[keys[0]][keys[2]].forEach((error: any): void => {
+              if (
+                error[keys[3]] ===
+                'Username can only contain letters, numbers, or underscores.'
+              ) {
+                this.registerFail =
+                  'Username can only contain letters, numbers, or underscores.';
+              } else {
+                this.registerFail = 'Registration Failure';
+              }
+            });
+          }
+          throw err;
         }
-        throw err;
-      }
-    );
+      );
+    }
   }
 
   sanitizeData(): void {
