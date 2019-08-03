@@ -240,7 +240,7 @@ class ValidatePatchRequest {
       ) {
         return res
           .status(406)
-          .json({ success: false, message: 'Invalid URL.' });
+          .json({ success: false, message: 'Invalid Date; must be in the format of MM/DD/YYYY.' });
       }
     }
     if (this.req.body.description || this.req.body.description === '') {
