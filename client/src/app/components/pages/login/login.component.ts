@@ -65,7 +65,12 @@ export class LoginComponent implements OnInit {
         }
       },
       (err: any): never => {
-        this.loginFail = 'Incorrect Login';
+        const key: string = 'status';
+        if (err[key] === 404) {
+          this.loginFail = 'User does not exist';
+        } else {
+          this.loginFail = 'Incorrect Login';
+        }
         throw err;
       }
     );
