@@ -4,8 +4,7 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  AbstractControl,
-  FormBuilder
+  AbstractControl
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import LoggedUser from '../../../models/LoggedUser';
