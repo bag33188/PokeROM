@@ -49,10 +49,10 @@
         <app-faq-tabset></app-faq-tabset>
       </ng-container>
       <ng-container>
-        <div *ngIf="!authService.loggedOut()">
+        <div *ngIf="!authService.loggedOut()" class="mt-3">
           <h2>How do I Delete my Account?</h2>
           <p>
-            Simple:
+            Simple:&nbsp;
             <button class="btn btn-danger" (click)="deleteCurrentUser()">
               Delete User!
             </button>

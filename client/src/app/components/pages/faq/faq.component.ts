@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-faq',
@@ -23,7 +24,8 @@ export class FaqComponent implements OnInit, AfterContentInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public authService: AuthService
+    public authService: AuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -47,7 +49,7 @@ export class FaqComponent implements OnInit, AfterContentInit {
 
   deleteCurrentUser(): void {
     const key: string = 'id';
-    this.authService
+    this.userService
       .deleteUser(JSON.parse(localStorage.getItem('user'))[key])
       .subscribe(
         (): void => {

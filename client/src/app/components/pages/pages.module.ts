@@ -25,6 +25,7 @@ import { RomsModule } from '../roms/roms.module';
 import { DocsComponent } from './docs/docs.component';
 import { RatingsComponent } from './ratings/ratings.component';
 import { RegisterComponent } from './register/register.component';
+import { UserService } from '../../services/user.service';
 
 @NgModule({
   declarations: [
@@ -54,10 +55,6 @@ import { RegisterComponent } from './register/register.component';
     NgBootstrapModule,
     FontAwesomeModule
   ],
-  providers: [
-    AuthService,
-    AuthGuard,
-    RomsService
-  ]
+  providers: [AuthService, AuthGuard, RomsService, UserService]
 })
 export class PagesModule {}

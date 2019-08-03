@@ -10,6 +10,7 @@ import {
 import { AuthService } from '../../../services/auth.service';
 import User from '../../../models/User';
 import sanitizeXSS from '../../../sanitation/sanitizeXSS';
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-register',
@@ -56,7 +57,7 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) {
     String.prototype.sanitizeXSS = sanitizeXSS;
   }
 
@@ -73,7 +74,7 @@ export class RegisterComponent implements OnInit {
       username: this.Username.value,
       password: this.Password.value
     };
-    this.authService.registerUser(user).subscribe(
+    this.userService.registerUser(user).subscribe(
       (data: { success: boolean; message: string }): void => {
         if (data.success) {
           this.router.navigate(['/', 'login']);
