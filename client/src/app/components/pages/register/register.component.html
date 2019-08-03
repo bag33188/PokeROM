@@ -11,6 +11,7 @@
             id="name"
             name="name"
             formControlName="name"
+            autocomplete="name"
           />
           <div
             [hidden]="!(Name.touched && Name.invalid)"
@@ -86,7 +87,7 @@
             id="password"
             name="password"
             formControlName="password"
-            autocomplete="current-password"
+            autocomplete="new-password"
           />
           <div
             [hidden]="!(Password.touched && Password.invalid)"
