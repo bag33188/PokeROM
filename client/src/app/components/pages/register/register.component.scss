@@ -1,11 +1,6 @@
 @import '../../../../assets/scss/variables';
 @import '../../../../assets/scss/mixins';
 
-#login-fail {
-  color: $red;
-  font-size: 2rem;
-}
-
 #form-container {
   // mixins
   @include responsive-width(100px, 992px, 45vw);
