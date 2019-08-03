@@ -679,9 +679,7 @@ httpRouter.patch(
         ...fieldsToSanitize,
         'downloadLink',
         'logoUrl',
-        'boxArtUrl',
-        'orderNumber',
-        'romType'
+        'boxArtUrl'
       ];
       for (const field of Object.keys(req.body)) {
         if (!fields.includes(field)) {
