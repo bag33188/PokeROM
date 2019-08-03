@@ -24,6 +24,7 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { RomsModule } from '../roms/roms.module';
 import { DocsComponent } from './docs/docs.component';
 import { RatingsComponent } from './ratings/ratings.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RatingsComponent } from './ratings/ratings.component';
     FaqComponent,
     NaturesComponent,
     DocsComponent,
-    RatingsComponent
+    RatingsComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,

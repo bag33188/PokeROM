@@ -33,57 +33,6 @@
       </div>
     </ng-container>
     <ng-container>
-      <h2 class="text-center mt-4 mb-4" id="register" #register>
-        Register as a User
-      </h2>
-      <div>
-        <span class="underline"
-          >UI registration functionality not yet implemented, please use the
-          method below for registering yourself as a new user.</span
-        >
-        <br />
-        To register as a user, you must first visit the
-        <strong>API Documentation</strong> page at
-        <code>/api/docs/{{ apiVersion }}</code> (linked
-        <a href="{{ apiUrl }}/docs/{{ apiVersion }}" target="_blank">here</a>).
-        <br />
-        There, you will you need to scroll down to the
-        <strong>Users</strong> section and expand the
-        <code>/api/users/register</code> section.
-        <br />
-        Then click the <kbd>Try it out</kbd> button.
-        <br />
-        You should then see a textbox with something like this in it:
-        <br />
-        <code class="json-code-block">
-          {{
-            '{\r\n&nbsp;&nbsp;&nbsp;&nbsp;"name":"string",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"email":"string",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"username":"string",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"password":"string"\r\n}'
-          }}
-        </code>
-        <br />
-        This is known as <strong>JSON</strong> (JavaScript Object Notation).<br />
-        Now just replace the other
-        <code>string</code> parts with your own information (remember to NOT
-        delete the <b>&quot;</b>s). <br />Here's an example:<br />
-        <code class="json-code-block">
-          {{
-            '{\r\n&nbsp;&nbsp;&nbsp;&nbsp;"name":"John Doe",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"email":"jdoe123@gmail.com",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"username":"john_doe",\r\n&nbsp;&nbsp;&nbsp;&nbsp;"password":"12345678"\r\n}'
-          }}
-        </code>
-        <br />
-        Then click the <kbd>Execute</kbd> button.
-        <br />
-        Done! You are now registered as a user!
-        <br />
-        You should be able to login using that information and have all the core
-        Pok&eacute;mon ROMs and the 2 ROM hacks (Pok&eacute;mon Prism and
-        Pok&eacute;mon Ash Gray).
-        <br />
-        If you get any errors when registering, read what they are, and fix your
-        data so that they match the registration criteria.
-      </div>
-    </ng-container>
-    <ng-container>
       <h2 class="text-center mt-4 mb-4">Application Development Information</h2>
       <div>
         <h3>Stack Info</h3>

@@ -48,6 +48,21 @@
         </h2>
         <app-faq-tabset></app-faq-tabset>
       </ng-container>
+      <ng-container>
+        <div *ngIf="!authService.loggedOut()">
+          <h2>How do I Delete my Account?</h2>
+          <p>
+            Simple:
+            <button class="btn btn-danger" (click)="deleteCurrentUser()">
+              Delete User!
+            </button>
+          </p>
+          <div class="alert alert-danger" [hidden]="!isErrorDeleting">
+            Oops, there was an error while trying to delete your user. Please
+            try again later.
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

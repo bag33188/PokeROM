@@ -37,6 +37,23 @@ export class AuthService {
     return this.cookieService.getCookie('token_id');
   }
 
+  public registerUser(
+    user: User
+  ): Observable<{ success: boolean; message: string }> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<{ success: boolean; message: string }>(
+      this.authUrl.replace('authenticate', 'register'),
+      user,
+      { headers }
+    );
+  }
+
+  public deleteUser(id: string): Observable<any> {
+    return this.http.delete<any>(this.authUrl.replace('authenticate', id));
+  }
+
   /**
    * @summary Stores the user data in local storage and the JWT as a cookie.
    * @param token The Bearer token (aka the JWT).

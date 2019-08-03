@@ -10,6 +10,7 @@ import { NaturesComponent } from '../components/pages/natures/natures.component'
 import { DocsComponent } from '../components/pages/docs/docs.component';
 import { RatingsComponent } from '../components/pages/ratings/ratings.component';
 import { IsSecureGuard } from '../guards/is-secure.guard';
+import { RegisterComponent } from '../components/pages/register/register.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,11 @@ export const routes: Routes = [
   },
   { path: 'home', component: HomeComponent, canActivate: [IsSecureGuard] },
   { path: 'login', component: LoginComponent, canActivate: [IsSecureGuard] },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [IsSecureGuard]
+  },
   {
     path: 'roms',
     component: RomsComponent,

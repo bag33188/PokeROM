@@ -44,7 +44,11 @@ export class LoginComponent implements OnInit {
     String.prototype.sanitizeXSS = sanitizeXSS;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!this.authService.loggedOut()) {
+      this.authService.logout();
+    }
+  }
 
   login(): void {
     const user: LoggedUser = {

@@ -31,12 +31,14 @@
         </li>
       </ul>
       <div class="ml-auto my-2 my-lg-0">
-        <a
-          class="btn btn-primary nav-item"
-          [routerLink]="['/', 'login']"
-          *ngIf="isRoutes(loggedOutRoutes, false)"
-          >Login</a
-        >
+        <div class="btn-group" *ngIf="isRoutes(loggedOutRoutes, false)">
+          <a class="btn btn-primary nav-item" [routerLink]="['/', 'login']"
+            >Login</a
+          >
+          <a class="btn btn-primary nav-item" [routerLink]="['/', 'register']"
+            >Register</a
+          >
+        </div>
         <button
           class="btn btn-primary nav-item"
           (click)="logout()"
