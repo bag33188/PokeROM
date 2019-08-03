@@ -71,12 +71,13 @@
         </button>
       </div>
     </fieldset>
-    <div class="alert alert-danger mt-4" *ngIf="loginFail">
-      {{ loginFail }}
-    </div>
+
     <div class="alert alert-info mt-2">
       Don't have an account, register
       <a [routerLink]="['/', 'register']">here</a>!
+    </div>
+    <div class="alert alert-danger mt-2" *ngIf="loginFail">
+      {{ loginFail }}
     </div>
   </form>
 </div>

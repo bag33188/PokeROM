@@ -5,5 +5,7 @@
   font-weight: bolder;
 }
 #delete-usr-btn-container {
-  cursor: pointer;
+  label {
+    cursor: pointer !important;
+  }
 }
