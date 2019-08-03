@@ -88,17 +88,32 @@ export class RegisterComponent implements OnInit {
         }
       },
       (err: any): never => {
-        const keys: string[] = ['error', 'message'];
-        switch (err[keys[0]][keys[1]]) {
-          case 'User with email already registered.':
-            this.registerFail = 'User with email already exists';
-            break;
-          case 'User with username already exists.':
-            this.registerFail = 'User with username already exists';
-            break;
-          default:
-            this.registerFail = 'Incorrect Registration';
-            break;
+        const keys: string[] = ['error', 'message', 'errors', 'msg'];
+        if (err[keys[0]][keys[1]]) {
+          switch (err[keys[0]][keys[1]]) {
+            case 'User with email already registered.':
+              this.registerFail = 'User with email already exists';
+              break;
+            case 'User with username already exists.':
+              this.registerFail = 'User with username already exists';
+              break;
+            default:
+              this.registerFail = 'Registration Failure';
+              break;
+          }
+        }
+        if (err[keys[0]][keys[2]]) {
+          err[keys[0]][keys[2]].forEach((error: any): void => {
+            if (
+              error[keys[3]] ===
+              'Username can only contain letters, numbers, or underscores.'
+            ) {
+              this.registerFail =
+                'Username can only contain letters, numbers, or underscores.';
+            } else {
+              this.registerFail = 'Registration Failure';
+            }
+          });
         }
         throw err;
       }
@@ -108,7 +123,7 @@ export class RegisterComponent implements OnInit {
   sanitizeData(): void {
     this.Name.setValue(this.Name.value.sanitizeXSS(true));
     this.Email.setValue(this.Email.value.sanitizeXSS(false));
-    this.Username.setValue(this.Username.value.sanitizeXSS(true));
+    this.Username.setValue(this.Username.value.sanitizeXSS(false));
     this.Password.setValue(this.Password.value.sanitizeXSS(false));
   }
 }
