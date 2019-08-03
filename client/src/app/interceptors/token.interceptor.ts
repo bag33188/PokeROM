@@ -12,14 +12,14 @@ import { AuthService } from '../services/auth.service';
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) {}
   intercept(
-    request: HttpRequest<any>,
+    req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    request = request.clone({
+    req = req.clone({
       setHeaders: {
         Authorization: this.auth.loadToken()
       }
     });
-    return next.handle(request);
+    return next.handle(req);
   }
 }
