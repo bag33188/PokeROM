@@ -10,7 +10,7 @@ import {
 import { AuthService } from '../../../services/auth.service';
 import User from '../../../models/User';
 import sanitizeXSS from '../../../sanitation/sanitizeXSS';
-import {UserService} from "../../../services/user.service";
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -57,7 +57,11 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
 
-  constructor(private authService: AuthService, private router: Router, private userService: UserService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private userService: UserService
+  ) {
     String.prototype.sanitizeXSS = sanitizeXSS;
   }
 
@@ -85,13 +89,16 @@ export class RegisterComponent implements OnInit {
       },
       (err: any): never => {
         const keys: string[] = ['error', 'message'];
-        if (
-          err[keys[0]][keys[1]] === 'User with email already registered.' ||
-          err[keys[0]][keys[1]] === 'User with username already exists.'
-        ) {
-          this.registerFail = 'User already exists';
-        } else {
-          this.registerFail = 'Incorrect Registration';
+        switch (err[keys[0]][keys[1]]) {
+          case 'User with email already registered.':
+            this.registerFail = 'User with email already exists';
+            break;
+          case 'User with username already exists.':
+            this.registerFail = 'User with username already exists';
+            break;
+          default:
+            this.registerFail = 'Incorrect Registration';
+            break;
         }
         throw err;
       }
