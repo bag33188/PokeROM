@@ -27,6 +27,7 @@
     "dev": "nodemon server",
     "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./ratings.sh && bash ./version.sh && bash ./options.sh",
     "prod": "cd scripts && bash ./production.sh",
+    "pack": "cd scripts && bash ./package_app.sh",
     "open-sites": "cd scripts && open_sites.bat",
     "open-repos": "cd scripts && open_repos.bat"
   },
