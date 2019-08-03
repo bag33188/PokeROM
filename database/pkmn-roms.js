@@ -624,9 +624,10 @@ insertRomsQuery = db.roms.insertMany(
       fileSize: 4194304,
       fileType: '3ds',
       downloadLink:
-        'https://z3qigw.sn.files.1drv.com/y4mQD8s_-mqNL5ntdbVhjOGvSTNS2to0vArn8LiDgg1FFLBiqil10aEZRTvbLcY6J9TTzxc3VYRxEPttIfa-K0VnwNILEjxDt3n29BPqkEyhXqkm3BRCI8nJRJmL023oUnCxdRlViyDSZA64tVnu8BbyUZprjMjbhL9hemGC12EtMUNMEZGuE6_7nqLUlV8R1J6o9zEcZbSMSVaWYM6mbO0QQ?width=1200&height=1095&cropmode=none',
+        'https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106547&authkey=AOheDwtEMuimfFc',
       generation: 7,
-      boxArtUrl: 'https://z3qigw.sn.files.1drv.com/y4mQD8s_-mqNL5ntdbVhjOGvSTNS2to0vArn8LiDgg1FFLBiqil10aEZRTvbLcY6J9TTzxc3VYRxEPttIfa-K0VnwNILEjxDt3n29BPqkEyhXqkm3BRCI8nJRJmL023oUnCxdRlViyDSZA64tVnu8BbyUZprjMjbhL9hemGC12EtMUNMEZGuE6_7nqLUlV8R1J6o9zEcZbSMSVaWYM6mbO0QQ?width=1200&height=1095&cropmode=none',
+      boxArtUrl:
+        'https://z3qigw.sn.files.1drv.com/y4mQD8s_-mqNL5ntdbVhjOGvSTNS2to0vArn8LiDgg1FFLBiqil10aEZRTvbLcY6J9TTzxc3VYRxEPttIfa-K0VnwNILEjxDt3n29BPqkEyhXqkm3BRCI8nJRJmL023oUnCxdRlViyDSZA64tVnu8BbyUZprjMjbhL9hemGC12EtMUNMEZGuE6_7nqLUlV8R1J6o9zEcZbSMSVaWYM6mbO0QQ?width=1200&height=1095&cropmode=none',
       gameName: 'Pokémon Ultra Sun Version',
       region: 'Alola',
       platform: 'New Nintendo 3DS',
