@@ -1,7 +1,7 @@
 {
   "name": "pokerom",
   "version": "1.0.0",
-  "description": "The back-end/server side for the pokerom website.",
+  "description": "The back-end/server side for the PokeROM website.",
   "licenses": [
     {
       "type": "ISC",
