@@ -5,9 +5,8 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-faq',
@@ -19,18 +18,11 @@ export class FaqComponent implements OnInit, AfterContentInit {
   @ViewChild('cookies', { static: true }) cookiesElement: ElementRef;
   @ViewChild('browserCompatibility', { static: true })
   browserCompatibilityElement: ElementRef;
-  isErrorDeleting: boolean;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    public authService: AuthService,
-    private userService: UserService
-  ) {}
+  constructor(private route: ActivatedRoute, public authService: AuthService) {}
 
   ngOnInit() {
     this.emulatorUrl = 'https://www.retroarch.com';
-    this.isErrorDeleting = false;
   }
 
   ngAfterContentInit() {
@@ -45,22 +37,5 @@ export class FaqComponent implements OnInit, AfterContentInit {
         window.scrollTo(0, 0);
         break;
     }
-  }
-
-  deleteCurrentUser(): void {
-    const key: string = 'id';
-    this.userService
-      .deleteUser(JSON.parse(localStorage.getItem('user'))[key])
-      .subscribe(
-        (): void => {
-          this.isErrorDeleting = false;
-          this.router.navigate(['/', 'home']);
-          this.authService.logout();
-        },
-        (err: any): void => {
-          this.isErrorDeleting = true;
-          console.error(err);
-        }
-      );
   }
 }

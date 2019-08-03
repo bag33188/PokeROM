@@ -15,6 +15,9 @@ import { ProgrammingLanguagesComponent } from './docs/programming-languages/prog
 import { RatingComponent } from './ratings/rating/rating.component';
 import { ModalContentComponent } from './faq/modal/modal-content.component';
 import { AlertComponent } from './ratings/alert/alert.component';
+import { DeleteUserBtnComponent } from './faq/delete-btn/delete-user-btn.component';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { AlertComponent } from './ratings/alert/alert.component';
     JumbotronComponent,
     ProgrammingLanguagesComponent,
     RatingComponent,
-    AlertComponent
+    AlertComponent,
+    DeleteUserBtnComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [CommonModule, NgbModule, BrowserModule, RouterModule],
@@ -43,7 +47,9 @@ import { AlertComponent } from './ratings/alert/alert.component';
     JumbotronComponent,
     ProgrammingLanguagesComponent,
     RatingComponent,
-    AlertComponent
-  ]
+    AlertComponent,
+    DeleteUserBtnComponent
+  ],
+  providers: [AuthService, UserService]
 })
 export class NgBootstrapModule {}

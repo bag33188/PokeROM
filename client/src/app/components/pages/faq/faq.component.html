@@ -52,10 +52,8 @@
         <div *ngIf="!authService.loggedOut()" class="mt-3">
           <h2>How do I Delete my Account?</h2>
           <p>
-            Simple:&nbsp;
-            <button class="btn btn-danger" (click)="deleteCurrentUser()">
-              Delete User!
-            </button>
+            <span class="font-weight-bold">Simple:&nbsp;</span>
+            <app-faq-delete-user-btn></app-faq-delete-user-btn>
           </p>
           <div class="alert alert-danger" [hidden]="!isErrorDeleting">
             Oops, there was an error while trying to delete your user. Please
