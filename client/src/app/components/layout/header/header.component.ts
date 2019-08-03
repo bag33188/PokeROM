@@ -52,13 +52,13 @@ export class HeaderComponent implements OnInit {
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
         navLinkText: 'Rate'
-      },
+      } /*,
       {
         routerLink: ['/', 'docs'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
         navLinkText: 'Docs'
-      }
+      }*/
     ];
     this.routeKey = '_routerState';
     this.loggedOutRoutes = [
