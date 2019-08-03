@@ -9,55 +9,58 @@
       <legend class="pt-2 pb-2 text-center">Login</legend>
       <div class="border rounded" id="border-container">
         <div class="form-group">
-          <label for="username" class="font-weight-bold">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            id="username"
-            name="username"
-            formControlName="username"
-            autocomplete="username"
-          />
-          <div
-            [hidden]="!(Username.touched && Username.invalid)"
-            class="alert alert-warning"
-          >
-            <div [hidden]="!Username.errors?.required">
-              Username is required.
+          <ng-container>
+            <label for="username" class="font-weight-bold">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              formControlName="username"
+              autocomplete="username"
+            />
+            <div
+              [hidden]="!(Username.touched && Username.invalid)"
+              class="alert alert-warning"
+            >
+              <div [hidden]="!Username.errors?.required">
+                Username is required.
+              </div>
+              <div [hidden]="!Username.errors?.minlength">
+                Username is too short ({{ Username.value.length }}).
+              </div>
+              <div [hidden]="!Username.errors?.maxlength">
+                Username is too long ({{ Username.value.length }}).
+              </div>
             </div>
-            <div [hidden]="!Username.errors?.minlength">
-              Username is too short ({{ Username.value.length }}).
+          </ng-container>
+          <ng-container>
+            <label for="password" class="font-weight-bold">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              formControlName="password"
+              autocomplete="current-password"
+            />
+            <div
+              [hidden]="!(Password.touched && Password.invalid)"
+              class="alert alert-warning"
+            >
+              <div [hidden]="!Password.errors?.required">
+                Password is required.
+              </div>
+              <div [hidden]="!Password.errors?.minlength">
+                Password is too short ({{ Password.value.length }}).
+              </div>
+              <div [hidden]="!Password.errors?.maxlength">
+                Password is too long ({{ Password.value.length }}).
+              </div>
             </div>
-            <div [hidden]="!Username.errors?.maxlength">
-              Username is too long ({{ Username.value.length }}).
-            </div>
-          </div>
+          </ng-container>
         </div>
-        <div class="form-group">
-          <label for="password" class="font-weight-bold">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            name="password"
-            formControlName="password"
-            autocomplete="current-password"
-          />
-          <div
-            [hidden]="!(Password.touched && Password.invalid)"
-            class="alert alert-warning"
-          >
-            <div [hidden]="!Password.errors?.required">
-              Password is required.
-            </div>
-            <div [hidden]="!Password.errors?.minlength">
-              Password is too short ({{ Password.value.length }}).
-            </div>
-            <div [hidden]="!Password.errors?.maxlength">
-              Password is too long ({{ Password.value.length }}).
-            </div>
-          </div>
-        </div>
+
         <button
           type="submit"
           class="btn btn-success"

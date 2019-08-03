@@ -19,32 +19,31 @@ import { UserService } from '../../../services/user.service';
 })
 export class RegisterComponent implements OnInit {
   registerFail: string;
-  registerForm: FormGroup = new FormGroup({
-    name: new FormControl('', [
-      Validators.minLength(1),
-      Validators.maxLength(100)
-    ]),
-    email: new FormControl('', [
-      Validators.minLength(1),
-      Validators.maxLength(50),
-      Validators.email,
-      Validators.required
-    ]),
-    username: new FormControl('', [
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(22)
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(256)
-    ])
+  registerForm: FormGroup = this.fb.group({
+    name: ['', [Validators.minLength(1), Validators.maxLength(100)]],
+    email: [
+      '',
+      [
+        Validators.minLength(1),
+        Validators.maxLength(50),
+        Validators.email,
+        Validators.required
+      ]
+    ],
+    username: [
+      '',
+      [Validators.required, Validators.minLength(5), Validators.maxLength(22)]
+    ],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(8), Validators.maxLength(256)]
+    ]
   });
 
   get Username(): AbstractControl {
     return this.registerForm.get('username');
   }
+
   get Name(): AbstractControl {
     return this.registerForm.get('name');
   }
@@ -60,7 +59,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private fb: FormBuilder
   ) {
     String.prototype.sanitizeXSS = sanitizeXSS;
   }
