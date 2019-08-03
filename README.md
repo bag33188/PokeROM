@@ -49,7 +49,7 @@ cd ~/Projects/PokeROM && git status # git
 
 /c/MongoDB/bin/mongo "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan # prod mongo shell
 
-# Not using git Bash
+# Using Command Prompt
 CD C:\MongoDB\bin && mongod.exe --dbpath=..\data REM mongod
 CD C:\MongoDB\bin && mongo.exe REM mongo shell
 CD %USERPROFILE%\Projects\PokeROM && npm run dev REM api
@@ -58,7 +58,7 @@ CD %USERPROFILE%\Projects\PokeROM && git status REM git
 
 C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js # load data
 
-C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan # prod mongo shell
+C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan REM prod mongo shell
 
 # OSX
 ~/mongodb/bin/mongod # mongod
