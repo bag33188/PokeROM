@@ -56,7 +56,7 @@ CD %USERPROFILE%\Projects\PokeROM && npm run dev REM api
 CD %USERPROFILE%\Projects\PokeROM\client && ng serve --open REM angular website
 CD %USERPROFILE%\Projects\PokeROM && git status REM git
 
-C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js # load data
+C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js REM load data
 
 C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms" --username broccolini33188 --password Sullivan REM prod mongo shell
 
