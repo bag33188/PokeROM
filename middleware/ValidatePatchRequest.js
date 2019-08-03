@@ -117,7 +117,7 @@ class ValidatePatchRequest {
     }
     if (this.req.body.downloadLink || this.req.body.downloadLink === '') {
       if (
-        !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))$/i.test(
+        !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i.test(
           this.req.body.downloadLink
         )
       ) {
@@ -146,7 +146,7 @@ class ValidatePatchRequest {
     }
     if (this.req.body.boxArtUrl || this.req.body.boxArtUrl === '') {
       if (
-        !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))$/i.test(
+        !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i.test(
           this.req.body.boxArtUrl
         )
       ) {
@@ -223,7 +223,7 @@ class ValidatePatchRequest {
     }
     if (this.req.body.logoUrl || this.req.body.logoUrl === '') {
       if (
-        !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))$/i.test(
+        !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i.test(
           this.req.body.logoUrl
         )
       ) {

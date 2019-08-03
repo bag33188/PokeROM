@@ -675,7 +675,14 @@ httpRouter.patch(
         req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
       }
       let isValid = true;
-      const fields = [...fieldsToSanitize, 'orderNumber', 'romType'];
+      const fields = [
+        ...fieldsToSanitize,
+        'downloadLink',
+        'logoUrl',
+        'boxArtUrl',
+        'orderNumber',
+        'romType'
+      ];
       for (const field of Object.keys(req.body)) {
         if (!fields.includes(field)) {
           isValid = false;
