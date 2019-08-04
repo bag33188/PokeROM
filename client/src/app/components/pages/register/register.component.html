@@ -41,7 +41,7 @@
               name="email"
               formControlName="email"
               autocomplete="email"
-              placeholder="Just enter a fake one..."
+              placeholder="Required (just enter a fake one)"
             />
             <div
               [hidden]="!(Email.touched && Email.invalid)"
@@ -70,6 +70,7 @@
               name="username"
               formControlName="username"
               autocomplete="username"
+              placeholder="Required"
             />
             <div
               [hidden]="!(Username.touched && Username.invalid)"
@@ -97,6 +98,7 @@
               name="password"
               formControlName="password"
               autocomplete="new-password"
+              placeholder="Required"
             />
             <div
               [hidden]="!(Password.touched && Password.invalid)"
@@ -127,11 +129,11 @@
         </button>
       </div>
     </fieldset>
-    <div class="alert alert-info mt-2">
+    <div class="alert alert-info mt-2 mb-2">
       Already have an account? Click
       <a [routerLink]="['/', 'login']">here</a> to login.
     </div>
-    <div class="alert alert-danger mt-2" *ngIf="registerFail">
+    <div class="alert alert-danger mt-1" *ngIf="registerFail">
       {{ registerFail }}
     </div>
   </form>

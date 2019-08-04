@@ -30,3 +30,10 @@
     display: none !important;
   }
 }
+
+.nav-link {
+  @media only all and (max-width: 575px) {
+    padding-bottom: 6px !important;
+    padding-top: 6px !important;
+  }
+}
