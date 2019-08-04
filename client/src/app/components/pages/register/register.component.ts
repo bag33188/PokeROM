@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   FormGroup,
@@ -16,7 +16,7 @@ import { UserService } from '../../../services/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, AfterContentInit {
   registerFail: string;
   registerForm: FormGroup = this.fb.group({
     name: ['', [Validators.minLength(1), Validators.maxLength(100)]],
@@ -68,6 +68,10 @@ export class RegisterComponent implements OnInit {
     if (!this.authService.loggedOut()) {
       this.authService.logout();
     }
+  }
+
+  ngAfterContentInit() {
+    window.scrollTo(0, 0);
   }
 
   register(): void {
