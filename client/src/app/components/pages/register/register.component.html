@@ -25,10 +25,10 @@
               class="alert alert-warning"
             >
               <div [hidden]="!Name.errors?.minlength">
-                Name is too short ({{ Name.value.length }}).
+                Name is too short (min: 1, current: {{ Name.value.length }}).
               </div>
               <div [hidden]="!Name.errors?.maxlength">
-                Name is too long ({{ Name.value.length }}).
+                Name is too long (max: 100, current: {{ Name.value.length }}).
               </div>
             </div>
           </ng-container>
@@ -51,10 +51,10 @@
                 Email is required.
               </div>
               <div [hidden]="!Email.errors?.minlength">
-                Email is too short ({{ Email.value.length }}).
+                Email is too short (min: 1, current: {{ Email.value.length }}).
               </div>
               <div [hidden]="!Email.errors?.maxlength">
-                Email is too long ({{ Email.value.length }}).
+                Email is too long (max: 50, current: {{ Email.value.length }}).
               </div>
               <div [hidden]="!Email.errors?.email">
                 Invalid email.
@@ -79,10 +79,12 @@
                 Username is required.
               </div>
               <div [hidden]="!Username.errors?.minlength">
-                Username is too short ({{ Username.value.length }}).
+                Username is too short (min: 5, current:
+                {{ Username.value.length }}).
               </div>
               <div [hidden]="!Username.errors?.maxlength">
-                Username is too long ({{ Username.value.length }}).
+                Username is too long (max: 22, current:
+                {{ Username.value.length }}).
               </div>
             </div>
           </ng-container>
@@ -104,10 +106,12 @@
                 Password is required.
               </div>
               <div [hidden]="!Password.errors?.minlength">
-                Password is too short ({{ Password.value.length }}).
+                Password is too short (min: 8, current:
+                {{ Password.value.length }}).
               </div>
               <div [hidden]="!Password.errors?.maxlength">
-                Password is too long ({{ Password.value.length }}).
+                Password is too long (max: 256, current:
+                {{ Password.value.length }}).
               </div>
             </div>
           </ng-container>
