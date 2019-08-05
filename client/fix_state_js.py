@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-'''This file fixes a bug in the Angular AOT Compiler.'''
+'''This program fixes a bug in the Angular AOT Compiler.'''
 
 import sys # import system module
 import fileinput # import fileinput module
