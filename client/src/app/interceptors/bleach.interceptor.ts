@@ -24,7 +24,7 @@ export class BleachInterceptor implements HttpInterceptor {
       map(
         (event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
-            const sanitizeBody: () => void = () => {
+            const sanitizeBody: () => void = (): void => {
               const body: any = event.body;
               if (Array.isArray(body)) {
                 return body.forEach((obj: any): void => {
