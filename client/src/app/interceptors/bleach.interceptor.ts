@@ -24,18 +24,18 @@ export class BleachInterceptor implements HttpInterceptor {
       map(
         (event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
-            const sanitizeBody = () => {
-              const body = event.body;
+            const sanitizeBody: () => void = () => {
+              const body: any = event.body;
               if (Array.isArray(body)) {
-                return body.forEach(obj => {
-                  obj = Object.keys(obj).forEach(key => {
+                return body.forEach((obj: any): void => {
+                  obj = Object.keys(obj).forEach((key: string): void => {
                     if (typeof obj[key] === typeof 'string') {
                       obj[key] = he.decode(obj[key]).sanitizeXSS(false);
                     }
                   });
                 });
               } else {
-                return Object.keys(body).forEach(key => {
+                return Object.keys(body).forEach((key: string): void => {
                   if (typeof key === typeof 'string') {
                     he.decode(key).sanitizeXSS(false);
                   }
