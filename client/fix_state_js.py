@@ -48,8 +48,8 @@ def fix_state_js():
     # tell the user that the fix has been applied
     print('Fix applied!')
   else:
-    # tell the user that the fix has been udone.
-    print('Fix has been udone.')
+    # tell the user that the fix has been undone.
+    print('Fix has been undone.')
 
 # call function
 fix_state_js()
