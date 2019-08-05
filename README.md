@@ -114,6 +114,7 @@ git push heroku master
   * YAML
   * Shell/Bash
   * Batch
+  * Python
   * SVG
   * Markdown
 

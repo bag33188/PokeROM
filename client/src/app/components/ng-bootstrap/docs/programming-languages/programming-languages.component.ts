@@ -61,6 +61,11 @@ export class ProgrammingLanguagesComponent implements OnInit, OnDestroy {
         fileExt: '.bat'
       },
       {
+        name: 'Python',
+        fullName: 'Python 3',
+        fileExt: '.py'
+      },
+      {
         name: 'SVG',
         fullName: 'Scalable Vector Graphics',
         fileExt: '.svg'

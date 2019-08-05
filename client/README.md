@@ -4,7 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## IMPORTANT!
 
-**IN `./node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js`, REPLACE `if (this.modifiedResourceFiles === undefined || !this.metadata.has(sf))` WITH `if (this.modifiedResourceFiles === undefined || this.modifiedResourceFiles === null || !this.metadata.has(sf))`**
+Run the `state_js_fix.py` file with **Python 3** to fix the `aot compiler` when using `ng serve --aot`.
+
+Download Python 3 here: [https://www.python.org/downloads/](https://www.python.org/downloads/)
 
 ## Development server
 
