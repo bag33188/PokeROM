@@ -18,7 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const routeParams: string[] = req.urlWithParams
       .replace(
-        /http(s?):\/\/(localhost:5000|pokerom-broccolini.herokuapp.com)\//,
+        /http(s?):\/\/(localhost:5000|pokerom-broccolini\.herokuapp\.com)\//,
         ''
       )
       .split('/');
