@@ -63,7 +63,7 @@ def fix_state_js():
     # successfuly exit app
     sys.exit(exit_code)
 
-  # exception block for catching errors
+  # exception block for catching a file not found error
   except FileNotFoundError:
 
     print('Error: file not found')
@@ -74,6 +74,7 @@ def fix_state_js():
     # exit app on error
     sys.exit(exit_code)
 
+  # exception block for catching general errors
   except Exception:
 
     print('An error occured while trying to apply/undo the fix.')
