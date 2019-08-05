@@ -15,6 +15,7 @@ there's a problem when you don't know why it is working.
 - [Pok&eacute;ROM](#pokeacuterom)
   - [About](#about)
   - [Setup Information](#setup-information)
+  - [IMPORTANT!](#important)
   - [Commands](#commands)
   - [Browser Compatibility](#browser-compatibility)
   - [Notes](#notes)
@@ -38,7 +39,6 @@ This app is deployed to [heroku][Heroku] at [https://pokerom-broccolini.herokuap
 Run the `client/state_js_fix.py` file with **Python 3** to fix the `aot compiler` when using `ng serve --aot`.
 
 Download Python 3 here: [https://www.python.org/downloads/](https://www.python.org/downloads/)
-
 
 ## Commands
 
