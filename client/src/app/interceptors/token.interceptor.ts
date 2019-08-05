@@ -8,22 +8,25 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { environment } from '../../environments/environment';
-import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthService, private route: ActivatedRoute) {}
+  constructor(private auth: AuthService) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const routeKey: string = '_routerState';
+    const routeParams: string[] = req.urlWithParams
+      .replace(
+        /http(s?):\/\/(localhost:5000|pokerom-broccolini.herokuapp.com)\//,
+        ''
+      )
+      .split('/');
+    console.log(routeParams);
     const authUrls: string[] = [
       `${environment.apiUrl}/roms`,
       `${environment.apiUrl}/roms/${
-        this.route.snapshot[routeKey].url.split('/')[3]
-          ? this.route.snapshot[routeKey].url.split('/')[3]
-          : ''
+        routeParams[1] === 'roms' && routeParams[2] ? routeParams[2] : ''
       }`
     ];
     if (authUrls.includes(req.url)) {
