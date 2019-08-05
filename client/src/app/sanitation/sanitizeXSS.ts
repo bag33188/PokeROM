@@ -2,12 +2,12 @@ import he from 'he';
 
 declare global {
   interface String {
-    sanitizeXSS(replaceSpecialChars: boolean, encode?: boolean): string;
+    sanitizeXSS(replaceSpecialChars?: boolean, encode?: boolean): string;
   }
 }
 
 String.prototype.sanitizeXSS = function(
-  replaceSpecialChars: boolean,
+  replaceSpecialChars?: boolean,
   encode?: boolean
 ): string {
   let checkXSS: RegExp;
