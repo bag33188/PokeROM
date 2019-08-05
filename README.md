@@ -36,7 +36,11 @@ This app is deployed to [heroku][Heroku] at [https://pokerom-broccolini.herokuap
 
 ## IMPORTANT!
 
-Run the `client/state_js_fix.py` file with **Python 3** to fix the `aot compiler` when using `ng serve --aot`.
+Run this command: `cd client && npm run fix-aot-bug-{win|mac}`; where you type `win` if you're on Windows or `osx` if your on Mac.
+
+This will fix an issue with Angular's AOT Compiler when using `ng serve --aot`.
+
+**You will need Python 3 installed and added to your path!**
 
 Download Python 3 here: [https://www.python.org/downloads/](https://www.python.org/downloads/)
 
