@@ -49,7 +49,7 @@ Download Python 3 here: [https://www.python.org/downloads/](https://www.python.o
 cd /c/MongoDB/bin && ./mongod --dbpath=../data # mongod
 cd /c/MongoDB/bin && ./mongo # mongo shell
 cd ~/Projects/PokeROM && npm run api # api
-cd ~/Projects/PokeROM/client && ng serve --open # angular website
+cd ~/Projects/PokeROM && npm run client # angular website
 cd ~/Projects/PokeROM && git status # git
 
 /c/MongoDB/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js # load data
@@ -60,7 +60,7 @@ cd ~/Projects/PokeROM && git status # git
 CD C:\MongoDB\bin && mongod.exe --dbpath=..\data REM mongod
 CD C:\MongoDB\bin && mongo.exe REM mongo shell
 CD %USERPROFILE%\Projects\PokeROM && npm run api REM api
-CD %USERPROFILE%\Projects\PokeROM\client && ng serve --open REM angular website
+CD %USERPROFILE%\Projects\PokeROM && ng npm run client REM angular website
 CD %USERPROFILE%\Projects\PokeROM && git status REM git
 
 C:\MongoDB\bin\mongo.exe %USERPROFILE%\Projects\PokeROM\database\pkmn-roms.js REM load data
@@ -71,7 +71,7 @@ C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pk
 ~/mongodb/bin/mongod # mongod
 ~/mongodb/bin/mongo # mongo shell
 cd ~/Projects/PokeROM && npm run api # api
-cd ~/Projects/PokeROM/client && ng serve --open # angular website
+cd ~/Projects/PokeROM && npm run client # angular website
 cd ~/Projects/PokeROM && git status # git
 
 ~/mongodb/bin/mongo ~/Projects/PokeROM/database/pkmn-roms.js # load data
