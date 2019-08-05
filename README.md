@@ -33,6 +33,13 @@ This app is deployed to [heroku][Heroku] at [https://pokerom-broccolini.herokuap
 
 > See [PokeROM-Setup][PokeROM Setup Repo] for more information on how to run this app on your machine.
 
+## IMPORTANT!
+
+Run the `client/state_js_fix.py` file with **Python 3** to fix the `aot compiler` when using `ng serve --aot`.
+
+Download Python 3 here: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+
 ## Commands
 
 ```bash
