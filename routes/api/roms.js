@@ -352,15 +352,25 @@ httpRouter.post(
       const newRom = new Rom({
         userId: req.user['_id'],
         orderNumber: parseInt(
-          req.sanitize(req.body.orderNumber.toString()),
+          req.sanitize(
+            req.body.orderNumber ? req.body.orderNumber.toString() : ''
+          ),
           10
         ),
         romType: req.sanitize(req.body.romType),
         fileName: req.sanitize(req.body.fileName),
-        fileSize: parseInt(req.sanitize(req.body.fileSize.toString()), 10),
+        fileSize: parseInt(
+          req.sanitize(req.body.fileSize ? req.body.fileSize.toString() : ''),
+          10
+        ),
         fileType: req.sanitize(req.body.fileType),
         downloadLink: req.sanitize(req.body.downloadLink),
-        generation: parseInt(req.sanitize(req.body.generation.toString()), 10),
+        generation: parseInt(
+          req.sanitize(
+            req.body.generation ? req.body.generation.toString() : ''
+          ),
+          10
+        ),
         boxArtUrl: req.sanitize(req.body.boxArtUrl),
         gameName: req.sanitize(req.body.gameName),
         region: req.sanitize(req.body.region),
@@ -568,15 +578,25 @@ httpRouter.put(
       const updateRomData = {
         userId: req.user['_id'],
         orderNumber: parseInt(
-          req.sanitize(req.body.orderNumber.toString()),
+          req.sanitize(
+            req.body.orderNumber ? req.body.orderNumber.toString() : ''
+          ),
           10
         ),
         romType: req.sanitize(req.body.romType),
         fileName: req.sanitize(req.body.fileName),
-        fileSize: parseInt(req.sanitize(req.body.fileSize.toString()), 10),
+        fileSize: parseInt(
+          req.sanitize(req.body.fileSize ? req.body.fileSize.toString() : ''),
+          10
+        ),
         fileType: req.sanitize(req.body.fileType),
         downloadLink: req.sanitize(req.body.downloadLink),
-        generation: parseInt(req.sanitize(req.body.generation.toString()), 10),
+        generation: parseInt(
+          req.sanitize(
+            req.body.generation ? req.body.generation.toString() : ''
+          ),
+          10
+        ),
         boxArtUrl: req.sanitize(req.body.boxArtUrl),
         gameName: req.sanitize(req.body.gameName),
         region: req.sanitize(req.body.region),
