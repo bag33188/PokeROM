@@ -2,8 +2,8 @@
 
 '''This file fixes a bug in the Angular AOT Compiler.'''
 
-# import fileinput module
-import fileinput
+import sys # import system module
+import fileinput # import fileinput module
 
 # create fix_state_js function
 def fix_state_js():
@@ -14,42 +14,75 @@ def fix_state_js():
 
   print('Fixing state.js ... ')
 
-  # define vars
-  filepath = './node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js'
-  text_to_search = 'if (this.modifiedResourceFiles === undefined || !this.metadata.has(sf))'
-  replacement_text = 'if (this.modifiedResourceFiles === undefined || this.modifiedResourceFiles === null || !this.metadata.has(sf))'
-  fix_applied = False
+  # create exit code var
+  exit_code = None
 
-  # open up file stream (read and write) and create backup of file
-  with fileinput.FileInput(filepath, inplace=True, backup='.bak') as file:
-    # loop through each line in file
-    for line in file:
-      # apply fix
-      if (text_to_search in line):
-        # replace text and end line without newline
-        print(line.replace(text_to_search, replacement_text), end='')
-        # set to true
-        fix_applied = True
-      # check if fix has already been applied
-      elif (replacement_text in line):
-        # undo fix
-        print(line.replace(replacement_text, text_to_search), end='')
-        # set to false
-        fix_applied = False
-      else:
-        # print other lines
-        print(line, end='')
+  # encapsulate main functionality in try block
+  try:
 
-  # close the file stream
-  fileinput.close()
+    # define vars
+    filepath = './node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js'
+    text_to_search = 'if (this.modifiedResourceFiles === undefined || !this.metadata.has(sf))'
+    replacement_text = 'if (this.modifiedResourceFiles === undefined || this.modifiedResourceFiles === null || !this.metadata.has(sf))'
+    fix_applied = False
 
-  # if fix has been applied
-  if fix_applied:
-    # tell the user that the fix has been applied
-    print('Fix applied!')
-  else:
-    # tell the user that the fix has been undone.
-    print('Fix has been undone.')
+    # open up file stream (read and write) and create backup of file
+    with fileinput.FileInput(filepath, inplace=True, backup='.bak') as file:
+      # loop through each line in file
+      for line in file:
+        # apply fix
+        if (text_to_search in line):
+          # replace text and end line without newline
+          print(line.replace(text_to_search, replacement_text), end='')
+          # set to true
+          fix_applied = True
+        # check if fix has already been applied
+        elif (replacement_text in line):
+          # undo fix
+          print(line.replace(replacement_text, text_to_search), end='')
+          # set to false
+          fix_applied = False
+        else:
+          # print other lines
+          print(line, end='')
+
+    # close the file stream
+    fileinput.close()
+
+    # if fix has been applied
+    if fix_applied:
+      # tell the user that the fix has been applied
+      print('Fix applied!')
+    else:
+      # tell the user that the fix has been undone.
+      print('Fix has been undone.')
+
+    # set exit code to 0 (success)
+    exit_code = 0
+
+    # successfuly exit app
+    sys.exit(exit_code)
+
+  # exception block for catching errors
+  except FileNotFoundError:
+
+    print('Error: file not found')
+
+    # set exit code to 1 (error)
+    exit_code = 1
+
+    # exit app on error
+    sys.exit(exit_code)
+
+  except Exception:
+
+    print('An error occured while trying to apply/undo the fix.')
+
+    # set exit code to 1 (error)
+    exit_code = 1
+
+    # exit app on error
+    sys.exit(exit_code)
 
 # call function
 fix_state_js()
