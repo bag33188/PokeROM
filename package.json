@@ -25,8 +25,8 @@
   "scripts": {
     "start": "node server",
     "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./ratings.sh && bash ./version.sh && bash ./options.sh",
-    "dev": "nodemon server",
     "prod": "cd scripts && bash ./production.sh",
+    "api": "nodemon server",
     "client": "cd client && ng serve --aot --open && cd ..",
     "db-win": "C:/MongoDB/bin/mongod.exe --dbpath=C:/MongoDB/data",
     "db-osx": "~/mongodb/bin/mongod",

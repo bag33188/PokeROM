@@ -48,7 +48,7 @@ Download Python 3 here: [https://www.python.org/downloads/](https://www.python.o
 # Using Git Bash
 cd /c/MongoDB/bin && ./mongod --dbpath=../data # mongod
 cd /c/MongoDB/bin && ./mongo # mongo shell
-cd ~/Projects/PokeROM && npm run dev # api
+cd ~/Projects/PokeROM && npm run api # api
 cd ~/Projects/PokeROM/client && ng serve --open # angular website
 cd ~/Projects/PokeROM && git status # git
 
@@ -59,7 +59,7 @@ cd ~/Projects/PokeROM && git status # git
 # Using Command Prompt
 CD C:\MongoDB\bin && mongod.exe --dbpath=..\data REM mongod
 CD C:\MongoDB\bin && mongo.exe REM mongo shell
-CD %USERPROFILE%\Projects\PokeROM && npm run dev REM api
+CD %USERPROFILE%\Projects\PokeROM && npm run api REM api
 CD %USERPROFILE%\Projects\PokeROM\client && ng serve --open REM angular website
 CD %USERPROFILE%\Projects\PokeROM && git status REM git
 
@@ -70,7 +70,7 @@ C:\MongoDB\bin\mongo.exe "mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pk
 # OSX
 ~/mongodb/bin/mongod # mongod
 ~/mongodb/bin/mongo # mongo shell
-cd ~/Projects/PokeROM && npm run dev # api
+cd ~/Projects/PokeROM && npm run api # api
 cd ~/Projects/PokeROM/client && ng serve --open # angular website
 cd ~/Projects/PokeROM && git status # git
 
