@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import ProgrammingLanguage from '../../../../interfaces/ProgrammingLanguage';
+import { ProgrammingLanguage } from '../../../../interfaces/ProgrammingLanguage';
 
 @Component({
   selector: 'app-docs-programming-languages',

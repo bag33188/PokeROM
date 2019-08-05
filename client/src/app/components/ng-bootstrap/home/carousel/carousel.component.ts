@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import he from 'he';
-import CarouselSlide from '../../../../interfaces/CarouselSlide';
-import Images from '../../../../enums/images.enum';
+import { CarouselSlide } from '../../../../interfaces/CarouselSlide';
+import { Images } from '../../../../enums/images.enum';
 
 @Component({
   selector: 'app-home-carousel',

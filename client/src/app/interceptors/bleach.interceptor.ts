@@ -7,14 +7,14 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import sanitizeXSS from '../sanitation/sanitizeXSS';
+import '../sanitation/sanitizeXSS';
 import { map } from 'rxjs/operators';
 import he from 'he';
 
 @Injectable()
 export class BleachInterceptor implements HttpInterceptor {
   constructor() {
-    String.prototype.sanitizeXSS = sanitizeXSS;
+
   }
   intercept(
     req: HttpRequest<any>,

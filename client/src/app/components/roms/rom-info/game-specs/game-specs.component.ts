@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faGamepad, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import Rom from '../../../../models/Rom';
+import { Rom } from '../../../../models/Rom';
 
 @Component({
   selector: 'app-game-specs',

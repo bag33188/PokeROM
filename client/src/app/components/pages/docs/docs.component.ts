@@ -6,7 +6,7 @@ import {
   AfterContentInit
 } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
-import ApiVersion from '../../../models/ApiVersion';
+import { ApiVersion } from '../../../models/ApiVersion';
 import { environment } from '../../../../environments/environment';
 
 @Component({

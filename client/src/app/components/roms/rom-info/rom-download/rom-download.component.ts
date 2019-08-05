@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import Rom from '../../../../models/Rom';
+import { Rom } from '../../../../models/Rom';
 
 @Component({
   selector: 'app-rom-download',

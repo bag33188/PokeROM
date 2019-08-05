@@ -1,8 +1,8 @@
 <div
   #betaVerAlert
   *ngFor="let alert of alerts"
-  [@fadeOut]="'in'"
   id="beta-version-alert-container"
+  [@fadeOut]="'in'"
   (window:load)="setBetaVersionAlertId(betaVerAlert)"
 >
   <ngb-alert

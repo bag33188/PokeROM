@@ -3,7 +3,7 @@ import {
   faCompactDisc,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
-import Rom from '../../../../models/Rom';
+import { Rom } from '../../../../models/Rom';
 import { SizeConversionService } from '../../../../services/size-conversion.service';
 
 @Component({

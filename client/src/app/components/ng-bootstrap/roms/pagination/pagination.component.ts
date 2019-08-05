@@ -6,7 +6,7 @@ import {
   EventEmitter,
   HostListener
 } from '@angular/core';
-import Rom from '../../../../models/Rom';
+import { Rom } from '../../../../models/Rom';
 
 @Component({
   selector: 'app-roms-pagination',

@@ -7,9 +7,9 @@ import {
   AbstractControl
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import LoggedUser from '../../../models/LoggedUser';
-import RegisteredUser from '../../../models/RegisteredUser';
-import sanitizeXSS from '../../../sanitation/sanitizeXSS';
+import { LoggedUser } from '../../../models/LoggedUser';
+import { RegisteredUser } from '../../../models/RegisteredUser';
+import '../../../sanitation/sanitizeXSS';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(private authService: AuthService, private router: Router) {
-    String.prototype.sanitizeXSS = sanitizeXSS;
+
   }
 
   ngOnInit() {

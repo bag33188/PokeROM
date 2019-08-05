@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
 
+## IMPORTANT!
+
+**IN `./node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js`, REPLACE `if (this.modifiedResourceFiles === undefined || !this.metadata.has(sf))` WITH `if (this.modifiedResourceFiles === undefined || this.modifiedResourceFiles === null || !this.metadata.has(sf))`**
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -34,4 +38,8 @@ https://github.hubspot.com/pace/docs/welcome/
 
 npx ivy-ngcc
 
-<!-- jQuery('#your_element_id_here').css('font-size'); -->
+# jQuery - Get rem/em base font size (in px)
+
+```javascript
+  jQuery('#your_element_id_here').css('font-size');
+```

@@ -1,4 +1,4 @@
-class Nature {
+export class Nature {
   _id?: string;
   name: string;
   up: string;
@@ -6,4 +6,4 @@ class Nature {
   flavor: string;
   usage: string;
 }
-export default Nature;
+

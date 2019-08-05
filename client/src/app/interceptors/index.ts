@@ -5,7 +5,7 @@ import { TokenInterceptor } from './token.interceptor';
 import { JwtInterceptor } from './jwt.interceptor';
 import { BleachInterceptor } from './bleach.interceptor';
 
-const httpInterceptorProviders: {
+export const httpInterceptorProviders: {
   provide: InjectionToken<HttpInterceptor[]>;
   useClass:
     | typeof HttpsInterceptor
@@ -31,5 +31,3 @@ const httpInterceptorProviders: {
     multi: true
   }
 ];
-
-export default httpInterceptorProviders;

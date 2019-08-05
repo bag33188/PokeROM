@@ -7,8 +7,8 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import User from '../../../models/User';
-import sanitizeXSS from '../../../sanitation/sanitizeXSS';
+import { User } from '../../../models/User';
+import '../../../sanitation/sanitizeXSS';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     private userService: UserService,
     private fb: FormBuilder
   ) {
-    String.prototype.sanitizeXSS = sanitizeXSS;
+
   }
 
   ngOnInit() {

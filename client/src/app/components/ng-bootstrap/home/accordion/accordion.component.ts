@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
-import Raphnet from '../../../../enums/raphnet.enum';
+import { Raphnet } from '../../../../enums/raphnet.enum';
 
 @Component({
   selector: 'app-home-accordion',

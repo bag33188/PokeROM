@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import Rom from '../../../../models/Rom';
+import { Rom } from '../../../../models/Rom';
 
 @Component({
   selector: 'app-game-logo',

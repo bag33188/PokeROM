@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import ApiVersion from '../models/ApiVersion';
+import { ApiVersion } from '../models/ApiVersion';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 

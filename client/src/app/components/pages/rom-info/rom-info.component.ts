@@ -7,7 +7,7 @@ import {
 import he from 'he';
 import { RomsService } from '../../../services/roms.service';
 import { AuthService } from '../../../services/auth.service';
-import Rom from '../../../models/Rom';
+import { Rom } from '../../../models/Rom';
 
 @Component({
   selector: 'app-rom-info',

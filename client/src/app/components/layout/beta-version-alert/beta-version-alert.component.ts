@@ -11,7 +11,7 @@ import {
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import * as $ from 'jquery';
-import Alert from '../../../interfaces/Alert';
+import { Alert } from '../../../interfaces/Alert';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -46,6 +46,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
 
   getBetaVersionAlert(): void {
     this.alerts = JSON.parse(sessionStorage.getItem('beta-version-alert'));
+    console.log()
   }
 
   setBetaVersionAlert(): void {
@@ -81,9 +82,9 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
         // fade out alert during 1 second
         $('#' + this.betaVerAlertId).fadeOut(
           1000,
-          function(): void {
+          (): void => {
             this.closeAlert(this.alerts[0]);
-          }.bind(this, BetaVersionAlertComponent) // bind `this` to component
+          } // bind `this` to component
         );
       }, 2015); // 2.015 seconds
     }

@@ -1,4 +1,3 @@
-interface NgClasses {
+export interface NgClasses {
   [index: string]: boolean;
 }
-export default NgClasses;

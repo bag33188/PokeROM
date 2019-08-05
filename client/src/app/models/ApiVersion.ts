@@ -1,4 +1,3 @@
-class ApiVersion {
+export class ApiVersion {
   apiVersion: string;
 }
-export default ApiVersion;

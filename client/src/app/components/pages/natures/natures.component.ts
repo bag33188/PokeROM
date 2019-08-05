@@ -7,7 +7,7 @@ import {
   faHeart,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
-import Nature from '../../../models/Nature';
+import { Nature } from '../../../models/Nature';
 import { NaturesService } from '../../../services/natures.service';
 
 @Component({

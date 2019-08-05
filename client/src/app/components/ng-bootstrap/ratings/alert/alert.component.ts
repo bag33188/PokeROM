@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Alert from '../../../../interfaces/Alert';
+import { Alert } from '../../../../interfaces/Alert';
 import {
   trigger,
   state,

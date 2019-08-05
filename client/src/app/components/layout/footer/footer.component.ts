@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import Environment from '../../../interfaces/Environment';
+import { Environment } from '../../../interfaces/Environment';
 
 @Component({
   selector: 'app-footer',

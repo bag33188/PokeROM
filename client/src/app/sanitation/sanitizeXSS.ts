@@ -1,3 +1,5 @@
+export {};
+
 import he from 'he';
 
 declare global {
@@ -25,5 +27,3 @@ String.prototype.sanitizeXSS = function(
   }
   return sanitizedStr;
 };
-
-export default String.prototype.sanitizeXSS;

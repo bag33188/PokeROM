@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from './services/logger.service';
 import { ApiService } from './services/api.service';
-import ApiVersion from './models/ApiVersion';
+import { ApiVersion } from './models/ApiVersion';
 import { environment } from '../environments/environment';
 
 @Component({

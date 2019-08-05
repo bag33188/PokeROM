@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faInfo, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import Rom from '../../../models/Rom';
-import NgClasses from '../../../interfaces/NgClasses';
+import { Rom } from '../../../models/Rom';
+import { NgClasses } from '../../../interfaces/NgClasses';
 import { SizeConversionService } from '../../../services/size-conversion.service';
 
 @Component({

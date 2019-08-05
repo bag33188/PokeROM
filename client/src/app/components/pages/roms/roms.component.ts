@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { RomsService } from '../../../services/roms.service';
-import Rom from '../../../models/Rom';
+import { Rom } from '../../../models/Rom';
 
 @Component({
   selector: 'app-roms',

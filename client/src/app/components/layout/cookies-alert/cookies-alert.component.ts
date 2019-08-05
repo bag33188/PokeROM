@@ -10,7 +10,7 @@ import {
   faInfoCircle,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
-import Alert from '../../../interfaces/Alert';
+import { Alert } from '../../../interfaces/Alert';
 
 @Component({
   selector: 'app-cookies-alert',

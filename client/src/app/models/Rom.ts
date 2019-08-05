@@ -1,4 +1,4 @@
-class Rom {
+export class Rom {
   _id?: string;
   userId?: string;
   orderNumber: number;
@@ -17,4 +17,4 @@ class Rom {
   dateReleased: Date;
   logoUrl: string;
 }
-export default Rom;
+
