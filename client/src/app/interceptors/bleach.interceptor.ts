@@ -13,9 +13,7 @@ import he from 'he';
 
 @Injectable()
 export class BleachInterceptor implements HttpInterceptor {
-  constructor() {
-
-  }
+  constructor() {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
