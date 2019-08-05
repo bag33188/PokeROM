@@ -26,6 +26,9 @@ export class TokenInterceptor implements HttpInterceptor {
       `${environment.apiUrl}/roms`,
       `${environment.apiUrl}/roms/${
         routeParams[1] === 'roms' && routeParams[2] ? routeParams[2] : ''
+      }`,
+      `${environment.apiUrl}/users/${
+        routeParams[1] === 'users' && routeParams[2] ? routeParams[2] : ''
       }`
     ];
     if (authUrls.includes(req.url)) {
