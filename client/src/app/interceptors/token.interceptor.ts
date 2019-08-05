@@ -22,7 +22,6 @@ export class TokenInterceptor implements HttpInterceptor {
         ''
       )
       .split('/');
-    console.log(routeParams);
     const authUrls: string[] = [
       `${environment.apiUrl}/roms`,
       `${environment.apiUrl}/roms/${
