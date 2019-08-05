@@ -46,7 +46,6 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
 
   getBetaVersionAlert(): void {
     this.alerts = JSON.parse(sessionStorage.getItem('beta-version-alert'));
-    console.log()
   }
 
   setBetaVersionAlert(): void {
