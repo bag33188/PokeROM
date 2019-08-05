@@ -2,8 +2,10 @@
 
 """This file fixes a bug in the Angular AOT compiler."""
 
+# import fileinput module
 import fileinput
 
+# create fix_state_js function
 def fix_state_js():
   """
   The purpose of this function is to fix a major bug in the Angular AOT compiler.
