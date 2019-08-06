@@ -1,18 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
 import { take } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-faq-delete-user-btn',
   templateUrl: './delete-user-btn.component.html',
   styleUrls: ['./delete-user-btn.component.scss']
 })
-export class DeleteUserBtnComponent implements OnInit, OnDestroy {
+export class DeleteUserBtnComponent implements OnInit {
   isErrorDeleting: boolean;
-  deleteUserSub: Subscription;
   constructor(
     public authService: AuthService,
     private userService: UserService,
@@ -25,7 +23,7 @@ export class DeleteUserBtnComponent implements OnInit, OnDestroy {
   deleteCurrentUser(): void {
     const key: string = 'id';
 
-    this.deleteUserSub = this.userService
+    this.userService
       .deleteUser(JSON.parse(localStorage.getItem('user'))[key])
       .pipe(take(1))
       .subscribe(
@@ -39,9 +37,5 @@ export class DeleteUserBtnComponent implements OnInit, OnDestroy {
           console.error(err);
         }
       );
-  }
-
-  ngOnDestroy() {
-    this.deleteUserSub.unsubscribe();
   }
 }
