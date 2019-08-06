@@ -34,6 +34,8 @@ function convertUnitOfTimeToSeconds(value, unit) {
   }
 }
 
+const routesWithParams = ['authenticate', 'register'];
+
 function getUserById(query, req, res, callback) {
   return User.getUserById(query, (err, user) => {
     if (err) {
@@ -91,6 +93,11 @@ httpRouter.get(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res
@@ -310,7 +317,7 @@ httpRouter.post(
       if (!isValid) {
         return res
           .status(406)
-          .json({ success: false, message: 'Data not valid.' });
+          .json({ success: false, message: 'Body contains invalid fields.' });
       }
       await User.getUserByUsername(username, (err, user) => {
         if (err) {
@@ -415,6 +422,11 @@ httpRouter.put(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res
@@ -494,6 +506,11 @@ httpRouter.patch(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res
@@ -612,6 +629,11 @@ httpRouter.delete(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res
@@ -696,6 +718,11 @@ httpRouter.head(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res

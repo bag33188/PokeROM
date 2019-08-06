@@ -16,6 +16,8 @@ const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 
 const httpRouter = express.Router();
 
+const routesWithParams = ['core', 'hacks'];
+
 // console.log(all_routes(httpRouter));
 
 // define array with fields to sanitize
@@ -187,6 +189,11 @@ httpRouter.get(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res
@@ -565,6 +572,11 @@ httpRouter.put(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res
@@ -684,6 +696,11 @@ httpRouter.patch(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res
@@ -717,7 +734,7 @@ httpRouter.patch(
       if (!isValid) {
         return res
           .status(406)
-          .json({ success: false, message: 'Data not valid.' });
+          .json({ success: false, message: 'Body contains invalid fields.' });
       }
       if (new ValidatePatchRequest(req).validateRomPatch(res)) {
         return;
@@ -777,6 +794,11 @@ httpRouter.delete(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res
@@ -913,6 +935,11 @@ httpRouter.head(
     try {
       let id;
       try {
+        if (routesWithParams.includes(req.params.id)) {
+          return res
+            .status(405)
+            .json({ success: false, message: 'Method not allowed.' });
+        }
         id = mongoose.Types.ObjectId(req.params.id);
       } catch {
         return res

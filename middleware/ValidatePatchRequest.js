@@ -4,42 +4,49 @@ class ValidatePatchRequest {
   }
 
   validateRomPatch(res) {
+    let errors = [];
     if (this.req.body.orderNumber) {
       if (!parseInt(this.req.body.orderNumber, 10)) {
-        return res.status(406).json({
-          success: false,
-          message: 'Order number must be an integer from 0 to 88.'
+        errors.push({
+          location: 'body',
+          param: 'orderNumber',
+          msg: 'Order number must be an integer from 0 to 88.'
         });
       }
       if (
         parseInt(this.req.body.orderNumber, 10) &&
         (this.req.body.orderNumber > 88 || this.req.body.orderNumber < 0)
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'Order number must be an integer from 0 to 88.'
+        errors.push({
+          location: 'body',
+          param: 'orderNumber',
+          msg: 'Order number must be an integer from 0 to 88.'
         });
       }
     }
     if (this.req.body.romType) {
       if (typeof this.req.body.romType !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'ROM type must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'romType',
+          msg: 'ROM type must be a string.'
+        });
       }
       if (this.req.body.romType.length < 4 || this.req.body.romType > 5) {
-        return res.status(406).json({
-          success: false,
-          message: 'ROM type must be in between 4 and 5 characters.'
+        errors.push({
+          location: 'body',
+          param: 'romType',
+          msg: 'ROM type must be in between 4 and 5 characters.'
         });
       }
       if (
         this.req.body.romType.toLowerCase() !== 'core' &&
         this.req.body.romType.toLowerCase() !== 'hack'
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'ROM type can only be a core or hack.'
+        errors.push({
+          location: 'body',
+          param: 'romType',
+          msg: 'ROM type can only be a core or hack.'
         });
       }
       this.req.body.romType = this.req.body.romType.toLowerCase();
@@ -50,57 +57,70 @@ class ValidatePatchRequest {
         this.req.body.fileName.length > 80 ||
         this.req.body.fileName === ''
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'File name must be between 3 and 80 characters.'
+        errors.push({
+          location: 'body',
+          param: 'fileName',
+          msg: 'File name must be between 3 and 80 characters.'
         });
       }
       if (typeof this.req.body.fileName !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'File name must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'fileName',
+          msg: 'File name must be a string.'
+        });
       }
     }
     if (this.req.body.fileSize) {
       if (!parseInt(this.req.body.fileSize, 10)) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'File size must be a number.' });
+        errors.push({
+          location: 'body',
+          param: 'fileSize',
+          msg: 'File size must be a number.'
+        });
       }
       if (
         parseInt(this.req.body.fileSize, 10) &&
         (this.req.body.fileSize > 12000000 || this.req.body.fileSize < 64)
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'File size must be in between 64 and 12000000 kilobytes'
+        errors.push({
+          location: 'body',
+          param: 'fileSize',
+          msg: 'File size must be in between 64 and 12000000 kilobytes'
         });
       }
     }
     if (this.req.body.fileType || this.req.body.fileType === '') {
       if (!/^[a-zA-Z0-9]*$/.test(this.req.body.fileType)) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'File type must be alphanumeric.' });
+        errors.push({
+          location: 'body',
+          param: 'fileType',
+          msg: 'File type must be alphanumeric.'
+        });
       }
       if (
         this.req.body.fileType.length < 2 ||
         this.req.body.fileType.length > 3
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'File type must be in between 2 and 3 characters.'
+        errors.push({
+          location: 'body',
+          param: 'fileType',
+          msg: 'File type must be in between 2 and 3 characters.'
         });
       }
       if (/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i.test(this.req.body.fileType)) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Invalid file type extension.' });
+        errors.push({
+          location: 'body',
+          param: 'fileType',
+          msg: 'Invalid file type extension.'
+        });
       }
-      if (typeof this.req.body.fileName !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'File name must be a string.' });
+      if (typeof this.req.body.fileType !== 'string') {
+        errors.push({
+          location: 'body',
+          param: 'fileType',
+          msg: 'File name must be a string.'
+        });
       }
     }
     if (this.req.body.downloadLink || this.req.body.downloadLink === '') {
@@ -109,24 +129,29 @@ class ValidatePatchRequest {
           this.req.body.downloadLink
         )
       ) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Invalid URL.' });
+        errors.push({
+          location: 'body',
+          param: 'downloadLink',
+          msg: 'Invalid URL.'
+        });
       }
     }
     if (this.req.body.generation) {
       if (!parseInt(this.req.body.generation, 10)) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Generation must be a number.' });
+        errors.push({
+          location: 'body',
+          param: 'generation',
+          msg: 'Generation must be a number.'
+        });
       }
       if (
         parseInt(this.req.body.generation, 10) &&
         (this.req.body.generation > 8 || this.req.body.generation < 1)
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'Generation must be in between 1 and 8'
+        errors.push({
+          location: 'body',
+          param: 'generation',
+          msg: 'Generation must be in between 1 and 8'
         });
       }
     }
@@ -136,64 +161,77 @@ class ValidatePatchRequest {
           this.req.body.boxArtUrl
         )
       ) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Invalid URL.' });
+        errors.push({
+          location: 'body',
+          param: 'boxArtUrl',
+          msg: 'Invalid URL.'
+        });
       }
     }
     if (this.req.body.gameName || this.req.body.gameName === '') {
       if (typeof this.req.body.gameName !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Game name must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'gameName',
+          msg: 'Game name must be a string.'
+        });
       }
       if (
         this.req.body.gameName.length < 2 ||
         this.req.body.gameName.length > 56
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'Game name must be in between 2 and 56 characters..'
+        errors.push({
+          location: 'body',
+          param: 'gameName',
+          msg: 'Game name must be in between 2 and 56 characters..'
         });
       }
     }
     if (this.req.body.region || this.req.body.region === '') {
       if (!/^[a-zA-Z]$/.test(this.req.body.region)) {
-        return res.status(406).json({
-          success: false,
-          message: 'Region must only contain alpha characters.'
+        errors.push({
+          location: 'body',
+          param: 'region',
+          msg: 'Region must only contain alpha characters.'
         });
       }
       if (this.req.body.region.length < 3 || this.req.body.region > 10) {
-        return res.status(406).json({
-          success: false,
-          message: 'Region must be between 3 and 10 characters.'
+        errors.push({
+          location: 'body',
+          param: 'region',
+          msg: 'Region must be between 3 and 10 characters.'
         });
       }
     }
     if (this.req.body.platform || this.req.body.platform === '') {
       if (typeof this.req.body.platform !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Platform must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'platform',
+          msg: 'Platform must be a string.'
+        });
       }
       if (this.req.body.platform.length < 2 || this.req.body.platform > 50) {
-        return res.status(406).json({
-          success: false,
-          message: 'Platform must be between 2 and 50 characters.'
+        errors.push({
+          location: 'body',
+          param: 'platform',
+          msg: 'Platform must be between 2 and 50 characters.'
         });
       }
     }
     if (this.req.body.genre || this.req.body.genre === '') {
       if (typeof this.req.body.genre !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Genre must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'genre',
+          msg: 'Genre must be a string.'
+        });
       }
       if (this.req.body.genre.length > 20) {
-        return res.status(406).json({
-          success: false,
-          message: 'Genre must be less than 20 characters.'
+        errors.push({
+          location: 'body',
+          param: 'genre',
+          msg: 'Genre must be less than 20 characters.'
         });
       }
     }
@@ -203,9 +241,11 @@ class ValidatePatchRequest {
           this.req.body.logoUrl
         )
       ) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Invalid URL.' });
+        errors.push({
+          location: 'body',
+          param: 'logoUrl',
+          msg: 'Invalid URL.'
+        });
       }
     }
     if (this.req.body.dateReleased || this.req.body.dateReleased === '') {
@@ -214,118 +254,145 @@ class ValidatePatchRequest {
           this.req.body.dateReleased
         )
       ) {
-        return res
-          .status(406)
-          .json({
-            success: false,
-            message: 'Invalid Date; must be in the format of MM/DD/YYYY.'
-          });
+        errors.push({
+          location: 'body',
+          param: 'dateReleased',
+          msg: 'Invalid Date; must be in the format of MM/DD/YYYY.'
+        });
       }
     }
     if (this.req.body.description || this.req.body.description === '') {
       if (typeof this.req.body.description !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Description must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'description',
+          msg: 'Description must be a string.'
+        });
       }
       if (
         this.req.body.description.length < 5 ||
         this.req.body.description.length > 8000
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'Description must be between 5 and 8000 characters.'
+        errors.push({
+          location: 'body',
+          param: 'description',
+          msg: 'Description must be between 5 and 8000 characters.'
         });
       }
+    }
+    if (errors.length > 0) {
+      return res.status(406).json({ success: false, errors });
     }
   }
 
   validateNaturePatch(res) {
+    let errors = [];
     if (this.req.body.usage || this.req.body.usage === '') {
       if (typeof this.req.body.usage !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Usage must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'usage',
+          msg: 'Usage must be a string.'
+        });
       }
       if (this.req.body.usage.length < 5 || this.req.body.usage.length > 50) {
-        return res.status(406).json({
-          success: false,
-          message:
+        errors.push({
+          location: 'body',
+          param: 'usage',
+          msg:
             'The usage for the nature must be in between 5 and 40 characters.'
         });
       }
     }
     if (this.req.body.flavor || this.req.body.flavor === '') {
       if (typeof this.req.body.flavor !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'flavor must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'flavor',
+          msg: 'Flavor must be a string.'
+        });
       }
       if (this.req.body.flavor.length > 14) {
-        return res.status(406).json({
-          success: false,
-          message:
-            'The flavor for the nature must be less than 14 characters.'
+        errors.push({
+          location: 'body',
+          param: 'flavor',
+          msg: 'The flavor for the nature must be less than 14 characters.'
         });
       }
     }
     if (this.req.body.down || this.req.body.down === '') {
       if (typeof this.req.body.down !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Down must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'down',
+          msg: 'Down must be a string.'
+        });
       }
       if (this.req.body.down.length < 4 || this.req.body.down.length > 20) {
-        return res.status(406).json({
-          success: false,
-          message:
+        errors.push({
+          location: 'body',
+          param: 'down',
+          msg:
             'The decreased stat of the nature must be between 4 and 20 characters.'
         });
       }
     }
     if (this.req.body.up || this.req.body.up === '') {
       if (typeof this.req.body.up !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Up must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'up',
+          msg: 'Up must be a string.'
+        });
       }
       if (this.req.body.up.length < 4 || this.req.body.up.length > 20) {
-        return res.status(406).json({
-          success: false,
-          message:
+        errors.push({
+          location: 'body',
+          param: 'up',
+          msg:
             'The increased stat of the nature must be between 4 and 20 characters.'
         });
       }
     }
     if (this.req.body.name || this.req.body.name === '') {
       if (typeof this.req.body.name !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Name must be a string.' });
-      }
-      if (this.req.body.up.length < 3 || this.req.body.up.length > 20) {
-        return res.status(406).json({
-          success: false,
-          message: 'Name must be between 3 and 20 characters.'
+        errors.push({
+          location: 'body',
+          param: 'name',
+          msg: 'Name must be a string.'
         });
       }
+      if (this.req.body.name.length < 3 || this.req.body.name.length > 20) {
+        errors.push({
+          location: 'body',
+          param: 'name',
+          msg: 'Name must be between 3 and 20 characters.'
+        });
+      }
+    }
+    if (errors.length > 0) {
+      return res.status(406).json({ success: false, errors });
     }
   }
 
   validateUserPatch(res) {
+    let errors = [];
     if (this.req.body.password || this.req.body.password === '') {
       if (typeof this.req.body.password !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Password must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'password',
+          msg: 'Password must be a string.'
+        });
       }
       if (
         this.req.body.password.length < 8 ||
         this.req.body.password.length > 256
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'Password must be between 8 and 256 characters.'
+        errors.push({
+          location: 'body',
+          param: 'password',
+          msg: 'Password must be between 8 and 256 characters.'
         });
       }
       if (
@@ -333,28 +400,33 @@ class ValidatePatchRequest {
           this.req.body.password
         )
       ) {
-        return res.status(406).json({
-          success: false,
-          message: 'Password contains invalid characters.'
+        errors.push({
+          location: 'body',
+          param: 'password',
+          msg: 'Password contains invalid characters.'
         });
       }
     }
     if (this.req.body.username || this.req.body.username === '') {
       if (typeof this.req.body.username !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Username must be a string.' });
+        errors.push({
+          location: 'body',
+          param: 'username',
+          msg: 'Username must be a string.'
+        });
       }
       if (!/^(?:([A-Za-z0-9_])*)$/.test(this.req.body.username)) {
-        return res.status(406).json({
-          success: false,
-          message: 'Username can only contain letters, numbers, or underscores.'
+        errors.push({
+          location: 'body',
+          param: 'username',
+          msg: 'Username can only contain letters, numbers, or underscores.'
         });
       }
       if (this.req.body.username.length < 5 || this.req.body.username > 22) {
-        return res.status(406).json({
-          success: false,
-          message: 'Username must be between 5 and 22 characters.'
+        errors.push({
+          location: 'body',
+          param: 'username',
+          msg: 'Username must be between 5 and 22 characters.'
         });
       }
     }
@@ -364,23 +436,31 @@ class ValidatePatchRequest {
           this.req.body.email
         )
       ) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Invalid email.' });
+        errors.push({
+          location: 'body',
+          param: 'email',
+          msg: 'Invalid email.'
+        });
       }
     }
     if (this.req.body.name || this.req.body.name === '') {
       if (typeof this.req.body.name !== 'string') {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Name must be a string.' });
-      }
-      if (this.req.body.name.length > 100) {
-        return res.status(406).json({
-          success: false,
-          message: 'Name can only be 100 characters at max.'
+        errors.push({
+          location: 'body',
+          param: 'name',
+          msg: 'Name must be a string.'
         });
       }
+      if (this.req.body.name.length > 100) {
+        errors.push({
+          location: 'body',
+          param: 'name',
+          msg: 'Name can only be 100 characters at max.'
+        });
+      }
+    }
+    if (errors.length > 0) {
+      return res.status(406).json({ success: false, errors });
     }
   }
 }
