@@ -48,13 +48,10 @@ export class AuthService {
     this.cookieService.setCookie('token_id', token.replace('Bearer ', ''), 7);
   }
 
-  /**
-   * @summary Checks if the JWT is expired.
-   * @returns True if the JWT is expired, false if it's not.
-   */
   public loggedOut(): boolean {
-    return this.jwtHelper.isTokenExpired(
-      this.cookieService.getCookie('token_id')
+    return (
+      this.jwtHelper.isTokenExpired(this.cookieService.getCookie('token_id')) ||
+      this.cookieService.getCookie('token_id') === ''
     );
   }
 
