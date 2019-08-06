@@ -60,14 +60,12 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     private router: Router,
     private userService: UserService,
     private fb: FormBuilder
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
-    if (!this.authService.loggedOut()) {
+    setTimeout((): void => {
       this.authService.logout();
-    }
+    }, 442);
   }
 
   ngAfterContentInit() {
