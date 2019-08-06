@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
-'''This program fixes a bug in the Angular AOT Compiler.'''
+"""This program fixes a bug in the Angular AOT Compiler."""
 
 import sys # import system module
 import fileinput # import fileinput module
 
 # create fix_state_js function
 def fix_state_js():
-  '''
+  """
   The purpose of this function is to fix a major bug in the Angular AOT Compiler.
   This function will backup and then modify the `state.js` file in `./node_modules/@angular/compiler-cli/src/ngtsc/incremental/src`.
-  '''
+  """
 
   print('Fixing state.js ... ')
 
