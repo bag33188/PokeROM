@@ -261,7 +261,7 @@ class ValidatePatchRequest {
           .status(406)
           .json({ success: false, message: 'flavor must be a string.' });
       }
-      if (this.req.body.usage.flavor > 14) {
+      if (this.req.body.flavor.length > 14) {
         return res.status(406).json({
           success: false,
           message:
