@@ -12,13 +12,15 @@ import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CookiesService } from '../services/cookies.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
     private jwtHelper: JwtHelperService,
-    private cookieService: CookiesService
+    private cookieService: CookiesService,
+    private authService: AuthService
   ) {}
   intercept(
     req: HttpRequest<any>,
@@ -28,15 +30,11 @@ export class JwtInterceptor implements HttpInterceptor {
       tap(
         (event: HttpEvent<any>): void => {
           if (event instanceof HttpResponse) {
-            if (
-              this.jwtHelper.isTokenExpired(
-                this.cookieService.getCookie('token_id')
-              ) ||
-              this.cookieService.getCookie('token_id') === ''
-            ) {
-              localStorage.clear();
-              this.cookieService.setCookie('token_id', '', 0);
-              this.router.navigate(['/', 'login']);
+            if (!/(natures|ratings)/.test(event.url)) {
+              if (this.authService.loggedOut()) {
+                this.authService.logout();
+                this.router.navigate(['/', 'login']);
+              }
             }
           }
         },
