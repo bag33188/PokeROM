@@ -5,8 +5,8 @@ class ValidatePatchRequest {
 
   validateRomPatch(res) {
     let errors = [];
-    if (this.req.body.orderNumber) {
-      if (!parseInt(this.req.body.orderNumber, 10)) {
+    if (this.req.body.orderNumber !== undefined) {
+      if (typeof this.req.body.orderNumber !== 'number') {
         errors.push({
           location: 'body',
           param: 'orderNumber',
@@ -24,7 +24,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.romType) {
+    if (this.req.body.romType !== undefined) {
       if (typeof this.req.body.romType !== 'string') {
         errors.push({
           location: 'body',
@@ -51,7 +51,7 @@ class ValidatePatchRequest {
       }
       this.req.body.romType = this.req.body.romType.toLowerCase();
     }
-    if (this.req.body.fileName || this.req.body.fileName === '') {
+    if (this.req.body.fileName !== undefined) {
       if (
         this.req.body.fileName.length < 3 ||
         this.req.body.fileName.length > 80 ||
@@ -71,8 +71,8 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.fileSize) {
-      if (!parseInt(this.req.body.fileSize, 10)) {
+    if (this.req.body.fileSize !== undefined) {
+      if (typeof this.req.body.fileSize !== 'number') {
         errors.push({
           location: 'body',
           param: 'fileSize',
@@ -90,7 +90,14 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.fileType || this.req.body.fileType === '') {
+    if (this.req.body.fileType !== undefined) {
+      if (typeof this.req.body.fileType !== 'string') {
+        errors.push({
+          location: 'body',
+          param: 'fileType',
+          msg: 'File Type must be a string.'
+        });
+      }
       if (!/^[a-zA-Z0-9]*$/.test(this.req.body.fileType)) {
         errors.push({
           location: 'body',
@@ -123,7 +130,14 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.downloadLink || this.req.body.downloadLink === '') {
+    if (this.req.body.downloadLink !== undefined) {
+      if (typeof this.req.body.downloadLink !== 'string') {
+        errors.push({
+          location: 'body',
+          param: 'downloadLink',
+          msg: 'Download link must be a string'
+        });
+      }
       if (
         !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i.test(
           this.req.body.downloadLink
@@ -136,8 +150,8 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.generation) {
-      if (!parseInt(this.req.body.generation, 10)) {
+    if (this.req.body.generation !== undefined) {
+      if (typeof this.req.body.generation !== 'number') {
         errors.push({
           location: 'body',
           param: 'generation',
@@ -155,7 +169,14 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.boxArtUrl || this.req.body.boxArtUrl === '') {
+    if (this.req.body.boxArtUrl !== undefined) {
+      if (typeof this.req.body.boxArtUrl !== 'string') {
+        errors.push({
+          location: 'body',
+          param: 'boxArtUrl',
+          msg: 'Box art URL must be a string'
+        });
+      }
       if (
         !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i.test(
           this.req.body.boxArtUrl
@@ -168,7 +189,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.gameName || this.req.body.gameName === '') {
+    if (this.req.body.gameName !== undefined) {
       if (typeof this.req.body.gameName !== 'string') {
         errors.push({
           location: 'body',
@@ -187,7 +208,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.region || this.req.body.region === '') {
+    if (this.req.body.region !== undefined) {
       if (!/^[a-zA-Z]$/.test(this.req.body.region)) {
         errors.push({
           location: 'body',
@@ -203,7 +224,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.platform || this.req.body.platform === '') {
+    if (this.req.body.platform !== undefined) {
       if (typeof this.req.body.platform !== 'string') {
         errors.push({
           location: 'body',
@@ -219,7 +240,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.genre || this.req.body.genre === '') {
+    if (this.req.body.genre !== undefined) {
       if (typeof this.req.body.genre !== 'string') {
         errors.push({
           location: 'body',
@@ -235,7 +256,14 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.logoUrl || this.req.body.logoUrl === '') {
+    if (this.req.body.logoUrl !== undefined) {
+      if (typeof this.req.body.logoUrl !== 'string') {
+        errors.push({
+          location: 'body',
+          param: 'logoUrl',
+          msg: 'Logo URL must be a string.'
+        });
+      }
       if (
         !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i.test(
           this.req.body.logoUrl
@@ -248,7 +276,14 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.dateReleased || this.req.body.dateReleased === '') {
+    if (this.req.body.dateReleased !== undefined) {
+      if (typeof this.req.body.dateReleased !== 'string') {
+        errors.push({
+          location: 'body',
+          param: 'dateReleased',
+          msg: 'Date released must be a string'
+        });
+      }
       if (
         !/^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/.test(
           this.req.body.dateReleased
@@ -261,7 +296,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.description || this.req.body.description === '') {
+    if (this.req.body.description !== undefined) {
       if (typeof this.req.body.description !== 'string') {
         errors.push({
           location: 'body',
@@ -287,7 +322,7 @@ class ValidatePatchRequest {
 
   validateNaturePatch(res) {
     let errors = [];
-    if (this.req.body.usage || this.req.body.usage === '') {
+    if (this.req.body.usage !== undefined) {
       if (typeof this.req.body.usage !== 'string') {
         errors.push({
           location: 'body',
@@ -304,7 +339,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.flavor || this.req.body.flavor === '') {
+    if (this.req.body.flavor !== undefined) {
       if (typeof this.req.body.flavor !== 'string') {
         errors.push({
           location: 'body',
@@ -320,7 +355,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.down || this.req.body.down === '') {
+    if (this.req.body.down !== undefined) {
       if (typeof this.req.body.down !== 'string') {
         errors.push({
           location: 'body',
@@ -337,7 +372,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.up || this.req.body.up === '') {
+    if (this.req.body.up !== undefined) {
       if (typeof this.req.body.up !== 'string') {
         errors.push({
           location: 'body',
@@ -354,7 +389,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.name || this.req.body.name === '') {
+    if (this.req.body.name !== undefined) {
       if (typeof this.req.body.name !== 'string') {
         errors.push({
           location: 'body',
@@ -377,7 +412,7 @@ class ValidatePatchRequest {
 
   validateUserPatch(res) {
     let errors = [];
-    if (this.req.body.password || this.req.body.password === '') {
+    if (this.req.body.password !== undefined) {
       if (typeof this.req.body.password !== 'string') {
         errors.push({
           location: 'body',
@@ -407,7 +442,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.username || this.req.body.username === '') {
+    if (this.req.body.username !== undefined) {
       if (typeof this.req.body.username !== 'string') {
         errors.push({
           location: 'body',
@@ -430,7 +465,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.email || this.req.body.email === '') {
+    if (this.req.body.email !== undefined) {
       if (
         !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
           this.req.body.email
@@ -443,7 +478,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.name || this.req.body.name === '') {
+    if (this.req.body.name !== undefined) {
       if (typeof this.req.body.name !== 'string') {
         errors.push({
           location: 'body',
