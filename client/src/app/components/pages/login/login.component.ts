@@ -39,14 +39,10 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  constructor(private authService: AuthService, private router: Router) {
-
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    if (!this.authService.loggedOut()) {
-      this.authService.logout();
-    }
+    setTimeout((): void => this.authService.logout(), 442);
   }
 
   login(): void {
