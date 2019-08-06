@@ -265,7 +265,7 @@ class ValidatePatchRequest {
         return res.status(406).json({
           success: false,
           message:
-            'The flavor for the nature must be greater than 14 characters.'
+            'The flavor for the nature must be less than 14 characters.'
         });
       }
     }
