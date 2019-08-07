@@ -31,6 +31,13 @@ app.use(logger);
 // define what directory to look in for serving static file(s)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400) {
+    res.status(400).json({ success: false, message: 'Invalid JSON.' });
+  } else {
+    next();
+  }
+});
 app.use(express.urlencoded({ extended: false })); // extended: true
 app.use(passport.initialize());
 app.use(passport.session());
