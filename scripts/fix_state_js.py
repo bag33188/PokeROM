@@ -9,7 +9,7 @@ import fileinput # import fileinput module
 def fix_state_js():
   """
   The purpose of this function is to fix a major bug in the Angular AOT Compiler.
-  This function will backup and then modify the `state.js` file in `./node_modules/@angular/compiler-cli/src/ngtsc/incremental/src`.
+  This function will backup and then modify the `state.js` file in `./client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src`.
   """
 
   print('Fixing state.js ... ')
@@ -21,7 +21,7 @@ def fix_state_js():
   try:
 
     # define vars
-    filepath = './node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js'
+    filepath = './client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js'
     text_to_search = 'if (this.modifiedResourceFiles === undefined || !this.metadata.has(sf))'
     replacement_text = 'if (this.modifiedResourceFiles === undefined || this.modifiedResourceFiles === null || !this.metadata.has(sf))'
     fix_applied = False
