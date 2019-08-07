@@ -37,7 +37,7 @@ def move_script_tags():
       # if script tags exist in line
       if script_tags:
         # set new script tags to joined array and add defer attr to each script element
-        new_script_tags = ''.join(script_tags).replace('></script>', ' defer="defer"></script>')
+        new_script_tags = ''.join(script_tags).replace('></script>', ' type="text/javascript" defer="defer"></script>')
 
     # close file from reading
     index_file.close()
@@ -51,7 +51,7 @@ def move_script_tags():
         # find place where ending head tag and unclosed link tag is
         if '.css"></head>' in line:
           # replace previous text with new script tags and closing link tag
-          print(line.replace('.css"></head>', f'.css" />{new_script_tags}</head>'), end='')
+          print(line.replace('.css"></head>', f'.css" type="text/css" />{new_script_tags}</head>'), end='')
         # check if script tags are in current line
         elif script_tags:
           # remove script tags from bottom of file
