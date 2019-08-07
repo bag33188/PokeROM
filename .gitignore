@@ -11,6 +11,7 @@
 .DS_Store
 Thumbs.db
 _MACOSX
+bash.exe.stackdump
 
 # Project File(s)
 *.code-workspace
