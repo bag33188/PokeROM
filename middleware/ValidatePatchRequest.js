@@ -3,6 +3,18 @@ class ValidatePatchRequest {
     this.req = req;
   }
 
+  sortErrors(errorsArr, propKey) {
+    errorsArr.sort(function(a, b) {
+      if (a[propKey] < b[propKey]) {
+        return -1;
+      } else if (a[propKey] > b[propKey]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
   validateRomPatch(res) {
     let errors = [];
     if (this.req.body.orderNumber !== undefined) {
@@ -315,6 +327,7 @@ class ValidatePatchRequest {
         });
       }
     }
+    this.sortErrors(errors, 'param');
     if (errors.length > 0) {
       return res.status(406).json({ success: false, errors });
     }
@@ -405,6 +418,7 @@ class ValidatePatchRequest {
         });
       }
     }
+    this.sortErrors(errors, 'param');
     if (errors.length > 0) {
       return res.status(406).json({ success: false, errors });
     }
@@ -494,6 +508,7 @@ class ValidatePatchRequest {
         });
       }
     }
+    this.sortErrors(errors, 'param');
     if (errors.length > 0) {
       return res.status(406).json({ success: false, errors });
     }
