@@ -30,7 +30,8 @@ export class JwtInterceptor implements HttpInterceptor {
       tap(
         (event: HttpEvent<any>): void => {
           if (event instanceof HttpResponse) {
-            if (!/(natures|ratings)/.test(event.url)) {
+            const romsApiRouteRegex: RegExp = /(?:(\/api\/roms(\/)?)((?:#?([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})){4})?)/;
+            if (romsApiRouteRegex.test(event.url)) {
               if (this.authService.loggedOut()) {
                 this.authService.logout();
                 this.router.navigate(['/', 'login']);
@@ -41,6 +42,7 @@ export class JwtInterceptor implements HttpInterceptor {
         (err: any): void => {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
+              console.log('hello');
               this.router.navigate(['/', 'login']);
             }
           }

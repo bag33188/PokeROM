@@ -21,14 +21,20 @@ const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|
 function convertUnitOfTimeToSeconds(value, unit) {
   value = parseInt(value, 10);
   switch (unit) {
+    case 'minute':
     case 'minutes':
       return value * 60;
+    case 'hour':
     case 'hours':
       return value * 60 ** 2;
+    case 'day':
     case 'days':
       return value * 60 ** 2 * 24;
+    case 'week':
     case 'weeks':
       return value * 60 ** 2 * 24 * 7;
+    case 'second':
+    case 'seconds':
     default:
       return value;
   }
@@ -342,7 +348,7 @@ httpRouter.post(
           }
           if (isMatch) {
             const token = jwt.sign({ data: user }, secret, {
-              expiresIn: convertUnitOfTimeToSeconds(1, 'weeks')
+              expiresIn: convertUnitOfTimeToSeconds(1, 'week')
             });
             return res.status(200).json({
               success: true,
