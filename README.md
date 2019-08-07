@@ -88,8 +88,6 @@ npm run db-prod # run prod db shell
 npm run load-data # load default data set into local db
 ```
 
-> Source Code Pro Fonts: [download][source code pro fonts download]
-
 ## Browser Compatibility
 
 | Browser         | Chrome    | Opera    | Safari      | Firefox    | Edge    | IE           |
@@ -101,18 +99,19 @@ npm run load-data # load default data set into local db
 1. If on Windows, install and use **[Git Bash](https://git-scm.com/ 'Git SCM')**.
 2. Languages Used:
 
-- HTML
-- CSS
-- JavaScript
-- SCSS
-- TypeScript
-- JSON
-- YAML
-- Shell/Bash
-- Batch
-- Python
-- SVG
-- Markdown
+    - HTML
+    - CSS
+    - JavaScript
+    - SCSS
+    - TypeScript
+    - JSON
+    - YAML
+    - Shell/Bash
+    - Batch
+    - Python
+    - SVG
+    - Markdown
+3. Source Code Pro Fonts: [download][source code pro fonts download]
 
 ---
 
