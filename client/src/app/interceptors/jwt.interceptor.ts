@@ -42,7 +42,6 @@ export class JwtInterceptor implements HttpInterceptor {
         (err: any): void => {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
-              console.log('hello');
               this.router.navigate(['/', 'login']);
             }
           }
