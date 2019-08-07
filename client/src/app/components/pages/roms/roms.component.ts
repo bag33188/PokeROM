@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { RomsService } from '../../../services/roms.service';
 import { Rom } from '../../../models/Rom';
+import he from 'he';
 
 @Component({
   selector: 'app-roms',
@@ -30,6 +31,10 @@ export class RomsComponent implements OnInit, AfterContentInit {
     const limit: number = this.limit;
     this.romsService.getAllRoms(limit).subscribe(
       (roms: Rom[]): void => {
+        roms.forEach((rom: Rom): void => {
+          rom.gameName = he.decode(rom.gameName);
+          rom.description = he.decode(rom.description);
+        });
         this.romsData = roms;
         this.loading = false;
         if (!this.loading && this.romsData.length === 0) {

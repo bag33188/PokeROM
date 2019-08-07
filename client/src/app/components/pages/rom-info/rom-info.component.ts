@@ -63,6 +63,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
         if (!rom.genre) {
           rom.genre = 'N/A';
         }
+        rom.gameName = he.decode(rom.gameName);
         rom.description = he.decode(rom.description);
         this.rom = rom;
         this.loading = false;
