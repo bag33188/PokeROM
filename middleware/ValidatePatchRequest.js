@@ -248,11 +248,11 @@ class ValidatePatchRequest {
           msg: 'Genre must be a string.'
         });
       }
-      if (this.req.body.genre.length > 20) {
+      if (this.req.body.genre.length > 20 && this.req.body.genre.length < 2) {
         errors.push({
           location: 'body',
           param: 'genre',
-          msg: 'Genre must be less than 20 characters.'
+          msg: 'Genre must be in between 2 and 20 characters.'
         });
       }
     }
@@ -347,7 +347,7 @@ class ValidatePatchRequest {
           msg: 'Flavor must be a string.'
         });
       }
-      if (this.req.body.flavor.length > 14) {
+      if (this.req.body.flavor.length > 14 && this.req.body.flavor.length < 4) {
         errors.push({
           location: 'body',
           param: 'flavor',
@@ -397,11 +397,11 @@ class ValidatePatchRequest {
           msg: 'Name must be a string.'
         });
       }
-      if (this.req.body.name.length < 3 || this.req.body.name.length > 20) {
+      if (this.req.body.name.length < 1 || this.req.body.name.length > 20) {
         errors.push({
           location: 'body',
           param: 'name',
-          msg: 'Name must be between 3 and 20 characters.'
+          msg: 'Name must be between 1 and 20 characters.'
         });
       }
     }
