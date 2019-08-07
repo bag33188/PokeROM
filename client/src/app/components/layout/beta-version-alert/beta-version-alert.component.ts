@@ -80,12 +80,12 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
       setTimeout((): void => {
         // fade out alert during 1 second
         $('#' + this.betaVerAlertId).fadeOut(
-          1000,
+          800,
           function(): void {
             this.closeAlert(this.alerts[0]);
           }.bind(this, BetaVersionAlertComponent) // bind `this` to component
         );
-      }, 3000); // 2.015 seconds
+      }, 2555);
     }
   }
 

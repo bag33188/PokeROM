@@ -17,6 +17,10 @@ export class RomsComponent implements OnInit, AfterContentInit {
   noRomsMsg: string = '';
   limit: number = 35;
 
+  static jumpToTop(): void {
+    window.scrollTo(0, 0);
+  }
+
   constructor(private romsService: RomsService) {}
 
   ngOnInit(): void {
@@ -24,7 +28,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    this.jumpToTop();
+    RomsComponent.jumpToTop();
   }
 
   getRoms(): void {
@@ -49,10 +53,6 @@ export class RomsComponent implements OnInit, AfterContentInit {
 
   onPageChange(paginateNum: number): void {
     this.pageSize = paginateNum;
-    this.jumpToTop();
-  }
-
-  jumpToTop(): void {
-    window.scrollTo(0, 0);
+    RomsComponent.jumpToTop();
   }
 }
