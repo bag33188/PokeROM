@@ -3,7 +3,7 @@ const path = require('path');
 const passport = require('passport');
 const expressSanitizer = require('express-sanitizer');
 const logger = require('./middleware/logger');
-const swaggerDoc = require('./docs/swaggerDoc');
+const swaggerDoc = require('./docs/swagger-doc');
 const connectDB = require('./config/db');
 const cors = require('./config/cors');
 const roms = require('./routes/api/roms');
@@ -12,6 +12,7 @@ const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
+const jsonSyntax = require('./middleware/json-syntax');
 
 require('./config/passport')(passport); // configure passport
 
@@ -31,13 +32,7 @@ app.use(logger);
 // define what directory to look in for serving static file(s)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use((err, req, res, next) => {
-  if (err instanceof SyntaxError && err.status === 400) {
-    res.status(400).json({ success: false, message: 'Invalid JSON.' });
-  } else {
-    next();
-  }
-});
+app.use(jsonSyntax);
 app.use(express.urlencoded({ extended: false })); // extended: true
 app.use(passport.initialize());
 app.use(passport.session());

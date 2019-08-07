@@ -1,6 +1,6 @@
 const express = require('express');
 // const xml = require('xml');
-const swaggerDoc = require('../../docs/swaggerDoc');
+const swaggerDoc = require('../../docs/swagger-doc');
 const Version = require('../../models/Version');
 
 const httpRouter = express.Router();
