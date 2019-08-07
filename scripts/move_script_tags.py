@@ -74,7 +74,11 @@ def move_script_tags():
 
   # catch file not found error
   except FileNotFoundError:
-    print ('Error, index.html file not found.')
+    print('Error, index.html file not found.')
+
+  # catch general exception
+  except Exception:
+    print('An error occured.')
 
 # call function
 move_script_tags()
