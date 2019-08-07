@@ -20,7 +20,7 @@ export class BleachInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       map(
-        (event: HttpEvent<any>) => {
+        (event: HttpEvent<any>): HttpEvent<any> => {
           if (event instanceof HttpResponse) {
             const sanitizeBody: () => void = (): void => {
               const body: any = event.body;
