@@ -56,12 +56,12 @@ def move_script_tags():
         elif script_tags:
           # remove script tags from bottom of file
           print(line.replace(script_tags[0], '')
-                .replace(script_tags[1], '')
-                .replace(script_tags[2], '')
-                .replace(script_tags[3], '')
-                .replace(script_tags[4], '')
-                .replace(script_tags[5], '')
-          , end='')
+                    .replace(script_tags[1], '')
+                    .replace(script_tags[2], '')
+                    .replace(script_tags[3], '')
+                    .replace(script_tags[4], '')
+                    .replace(script_tags[5], '')
+                , end='')
         # otherwise...
         else:
           # print the other lines
