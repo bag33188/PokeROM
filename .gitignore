@@ -20,6 +20,9 @@ bash.exe.stackdump
 .idea
 .vscode
 
+# Backup Files
+public/index.html.bak
+
 # Created by https://www.gitignore.io/api/node
 # Edit at https://www.gitignore.io/?templates=node
 

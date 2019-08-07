@@ -30,6 +30,8 @@ production() {
     rm -rf assets
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
+    python ../scripts/move_script_tags.py
+    python3 ../scripts/move_script_tags.py
     cd ..
     rm -rf client/dist
     valid=0
