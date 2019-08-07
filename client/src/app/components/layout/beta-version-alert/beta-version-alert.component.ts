@@ -76,7 +76,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
       this.isBeta &&
       sessionStorage.getItem('beta-version-alert') !== JSON.stringify([])
     ) {
-      // close alert after 3 seconds
+      // close alert after 2.555 seconds
       setTimeout((): void => {
         // fade out alert during 1 second
         $('#' + this.betaVerAlertId).fadeOut(

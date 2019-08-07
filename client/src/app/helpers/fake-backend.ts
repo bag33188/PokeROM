@@ -1,21 +1,25 @@
 import { User } from '../models/User';
 
-function getUser(): User | {} {
-  return localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user'))
-    : {};
-}
+export abstract class FakeBackend {
+  protected constructor() {}
 
-function addUser(newUser: User): User | {} {
-  localStorage.setItem('user', JSON.stringify(newUser));
-  return getUser();
-}
+  public static getUser(): User | {} {
+    return localStorage.getItem('user')
+      ? JSON.parse(localStorage.getItem('user'))
+      : {};
+  }
 
-function updateUser(updatedUser: User): User | {} {
-  localStorage.setItem('user', JSON.stringify(updatedUser));
-  return getUser();
-}
+  public static addUser(newUser: User): User | {} {
+    localStorage.setItem('user', JSON.stringify(newUser));
+    return FakeBackend.getUser();
+  }
 
-function deleteUser(): void {
-  localStorage.setItem('user', JSON.stringify({}));
+  public static updateUser(updatedUser: User): User | {} {
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+    return FakeBackend.getUser();
+  }
+
+  public static deleteUser(): void {
+    localStorage.setItem('user', JSON.stringify({}));
+  }
 }
