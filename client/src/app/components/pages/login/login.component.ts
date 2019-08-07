@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           const returnUrl: string = this.route.snapshot.queryParamMap.get(
             'returnUrl'
           );
-          this.router.navigate([returnUrl || '/']);
+          this.router.navigate([returnUrl || '/roms']);
           this.loginFail = '';
         } else {
           this.loginFail = 'Incorrect Login';
