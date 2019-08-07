@@ -14,7 +14,8 @@ const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
-require('./config/passport')(passport); // configure passport
+// configure passport
+require('./config/passport')(passport);
 
 // connect to database
 connectDB();
