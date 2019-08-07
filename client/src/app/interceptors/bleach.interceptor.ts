@@ -35,7 +35,7 @@ export class BleachInterceptor implements HttpInterceptor {
               } else {
                 return Object.keys(body).forEach((key: string): void => {
                   if (typeof body[key] === 'string') {
-                    he.decode(body[key]).sanitizeXSS();
+                    body[key] = he.decode(body[key]).sanitizeXSS();
                   }
                 });
               }
