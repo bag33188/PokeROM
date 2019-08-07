@@ -11,7 +11,7 @@ def move_script_tags():
   The purpose of this function is to:
     1. move the script tags from the `public/index.html` from the bottom to the top
     2. add the defer attributes to each one of those script tags
-    3. close of the link tag with the main stylesheet attached to it 
+    3. close of the link tag with the main stylesheet attached to it
   """
 
   print('Moving around script tags in index.html ... ')
@@ -29,7 +29,7 @@ def move_script_tags():
 
   # wrap file i/o logic in try block
   try:
-  
+
     # loop through each line in file
     for line in index_file:
       # store script tags in var
