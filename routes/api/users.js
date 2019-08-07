@@ -537,7 +537,7 @@ httpRouter.patch(
       if (!isValid) {
         return res
           .status(406)
-          .json({ success: false, message: 'Data not valid.' });
+          .json({ success: false, message: 'Body contains invalid fields.' });
       }
       if (new ValidatePatchRequest(req).validateUserPatch(res)) {
         return;
