@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormGroup,
   FormControl,
@@ -39,7 +39,11 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     setTimeout((): void => this.authService.logout(), 442);
@@ -54,7 +58,10 @@ export class LoginComponent implements OnInit {
       (data: RegisteredUser): void => {
         if (data.success) {
           this.authService.storeData(data.token, data.user);
-          this.router.navigate(['/', 'roms']);
+          const returnUrl: string = this.route.snapshot.queryParamMap.get(
+            'returnUrl'
+          );
+          this.router.navigate([returnUrl || '/']);
           this.loginFail = '';
         } else {
           this.loginFail = 'Incorrect Login';
