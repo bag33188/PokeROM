@@ -394,14 +394,14 @@ class ValidatePatchRequest {
         errors.push({
           location: 'body',
           param: 'name',
-          msg: 'Name must be a string.'
+          msg: 'Name of Nature must be a string.'
         });
       }
-      if (this.req.body.name.length < 1 || this.req.body.name.length > 20) {
+      if (this.req.body.name.length < 3 || this.req.body.name.length > 20) {
         errors.push({
           location: 'body',
           param: 'name',
-          msg: 'Name must be between 1 and 20 characters.'
+          msg: 'Name of Nature must be between 3 and 20 characters.'
         });
       }
     }
@@ -486,11 +486,11 @@ class ValidatePatchRequest {
           msg: 'Name must be a string.'
         });
       }
-      if (this.req.body.name.length > 100) {
+      if (this.req.body.name.length < 1 || this.req.body.name.length > 100) {
         errors.push({
           location: 'body',
           param: 'name',
-          msg: 'Name can only be 100 characters at max.'
+          msg: 'Name must be in between 1 and 100 characters.'
         });
       }
     }
