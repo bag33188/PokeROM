@@ -21,7 +21,7 @@ const romSchema = new Schema({
     minlength: [4, 'ROM type is too short (must be at least 4 characters).'],
     maxlength: [5, 'ROM type is too long (can only 5 characters at max).'],
     validate: {
-      validator: function(v) {
+      validator: (v) => {
         return !(v.toLowerCase() !== 'core' && v.toLowerCase() !== 'hack');
       },
       message: props =>
@@ -53,7 +53,7 @@ const romSchema = new Schema({
     type: String,
     required: [true, 'File type is required.'],
     validate: {
-      validator: function(v) {
+      validator: (v) => {
         return /^(?:\.?(gb[ca]?|[n3]ds|xci))$/i.test(v);
       },
       message: props => `${props.value} is not a valid file type`
@@ -68,7 +68,7 @@ const romSchema = new Schema({
       'URL is too long (must be between 8 and 1000 characters).'
     ],
     validate: {
-      validator: function(v) {
+      validator: (v) => {
         return urlRegex.test(v);
       },
       message: props => `${props.value} is not a valid URL.`
@@ -89,7 +89,7 @@ const romSchema = new Schema({
       'URL is too long (must be between 8 and 1000 characters).'
     ],
     validate: {
-      validator: function(v) {
+      validator: (v) => {
         return urlRegex.test(v);
       },
       message: props => `${props.value} is not a valid URL.`
@@ -157,7 +157,7 @@ const romSchema = new Schema({
     type: String,
     required: [true, 'A logo URL is required.'],
     validate: {
-      validator: function(v) {
+      validator: (v) => {
         return urlRegex.test(v);
       },
       message: props => `${props.value} is not a valid URL.`

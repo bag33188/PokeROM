@@ -3,6 +3,7 @@ const path = require('path');
 const passport = require('passport');
 const expressSanitizer = require('express-sanitizer');
 const logger = require('./middleware/logger');
+const jsonSyntax = require('./middleware/json-syntax');
 const swaggerDoc = require('./docs/swagger-doc');
 const connectDB = require('./config/db');
 const cors = require('./config/cors');
@@ -12,7 +13,6 @@ const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
-const jsonSyntax = require('./middleware/json-syntax');
 
 require('./config/passport')(passport); // configure passport
 

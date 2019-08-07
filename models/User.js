@@ -16,7 +16,7 @@ const userSchema = new Schema({
     minlength: [3, 'Email is too short.'],
     maxlength: [55, 'Email is too long.'],
     validate: {
-      validator: function(v) {
+      validator: (v) => {
         return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
           v
         );
@@ -36,7 +36,7 @@ const userSchema = new Schema({
     minlength: [8, 'Password must be at least 10 characters.'],
     maxlength: [256, 'Password must be less than 256 characters.'] //,
     // validate: {
-    //   validator: function(v) {
+    //   validator: (v) => {
     //     return !/(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi.test(
     //       v
     //     );
