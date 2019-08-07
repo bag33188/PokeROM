@@ -12,7 +12,7 @@ export class ProgrammingLanguagesComponent implements OnInit, OnDestroy {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.isCollapsed = true;
     this.codingLanguagesUsed = [
       {

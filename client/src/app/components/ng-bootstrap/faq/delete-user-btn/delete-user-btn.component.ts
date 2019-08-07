@@ -17,7 +17,7 @@ export class DeleteUserBtnComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.isErrorDeleting = false;
   }
   deleteCurrentUser(): void {

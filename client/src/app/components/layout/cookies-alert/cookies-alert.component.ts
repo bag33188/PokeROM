@@ -30,7 +30,7 @@ export class CookiesAlertComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.faInfoCircle = faInfoCircle;
     this.alerts = [
       {

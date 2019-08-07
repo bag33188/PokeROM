@@ -10,7 +10,7 @@ import { LoggerService } from '../../../services/logger.service';
 export class NotFoundComponent implements OnInit {
   constructor(private logger: LoggerService, private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.logger.error(`Error 404: Page Not Found - "${this.pathName()}"`);
   }
 

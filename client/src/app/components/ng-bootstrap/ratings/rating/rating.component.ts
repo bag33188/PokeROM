@@ -11,7 +11,7 @@ export class RatingComponent implements OnInit {
   @Output() currentRateHover: EventEmitter<number> = new EventEmitter();
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.rate = 0;
   }
 

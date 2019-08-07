@@ -62,11 +62,11 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     private fb: FormBuilder
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     setTimeout((): void => this.authService.logout(), 442);
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     window.scrollTo(0, 0);
   }
 

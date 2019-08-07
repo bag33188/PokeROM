@@ -15,7 +15,7 @@ export class FooterComponent implements OnInit {
     this.environment = environment;
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   getYear(): number {
     const now: Date = new Date();

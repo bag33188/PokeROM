@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.routes = [
       {
         routerLink: ['/', 'home'],

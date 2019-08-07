@@ -9,7 +9,7 @@ import { LoggerService } from '../../../services/logger.service';
 export class BodyComponent implements OnInit {
   constructor(private logger: LoggerService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Log to console if current browser is incompatible with custom CSS scrollbar
     // using the navigator object.
     //

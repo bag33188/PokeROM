@@ -11,5 +11,5 @@ export class GameNameComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 }

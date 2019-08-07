@@ -13,7 +13,7 @@ export class PopupComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.romHackTxtIdentifier = /(?:(\s?)(\(ROM Hack\)))/i;
     setTimeout((): boolean => (this.isRomHack = this.romType === 'hack'), 555);
   }

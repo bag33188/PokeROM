@@ -23,7 +23,7 @@ export class DocsComponent implements OnInit, AfterContentInit {
 
   constructor(private apiService: ApiService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sourceCodeUrl = 'https://github.com/bag33188/PokeROM';
     this.httpVerbs = [
       'GET',
@@ -38,7 +38,7 @@ export class DocsComponent implements OnInit, AfterContentInit {
     this.getApiVersion();
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     window.scrollTo(0, 0);
   }
 

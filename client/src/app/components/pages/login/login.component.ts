@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     setTimeout((): void => this.authService.logout(), 442);
   }
 

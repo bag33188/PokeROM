@@ -14,7 +14,7 @@ export class AccordionComponent implements OnInit {
     this.config.type = 'light';
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.raphnet = Raphnet;
   }
 }

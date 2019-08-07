@@ -28,7 +28,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.faLongArrowAltLeft = faLongArrowAltLeft;
     this.id = this.route.snapshot.paramMap.get('id');
     this.loading = true;
@@ -53,7 +53,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     this.getRom(this.id);
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     window.scrollTo(0, 0);
   }
 

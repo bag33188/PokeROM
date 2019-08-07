@@ -13,7 +13,7 @@ export class GameDescriptionComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.faFileAlt = faFileAlt;
     setTimeout((): void => {
       if (this.rom.description) {

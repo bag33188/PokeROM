@@ -14,7 +14,7 @@ export class CarouselComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.images = Images;
     this.carouselData = [
       {

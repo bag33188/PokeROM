@@ -23,7 +23,7 @@ export class ToastComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!localStorage.getItem('show-toast')) {
       localStorage.setItem('show-toast', 'true');
     }

@@ -13,7 +13,7 @@ export class GameSpecsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.faGamepad = faGamepad;
   }
 }

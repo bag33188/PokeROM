@@ -33,14 +33,14 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.faExclamationTriangle = faExclamationTriangle;
     this.isBeta = !environment.production;
     this.setBetaVersionAlert();
     this.getBetaVersionAlert();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.fadeOutAlert();
   }
 

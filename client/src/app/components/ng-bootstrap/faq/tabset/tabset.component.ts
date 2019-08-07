@@ -13,7 +13,7 @@ export class TabsetComponent implements OnInit {
 
   constructor(private modalService: NgbModal) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.browsers = [
       {
         browser: 'Chrome',

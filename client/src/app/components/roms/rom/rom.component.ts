@@ -15,7 +15,7 @@ export class RomComponent implements OnInit {
 
   constructor(public sizeConverter: SizeConversionService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.faInfo = faInfo;
   }
 

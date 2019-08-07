@@ -17,7 +17,7 @@ export class RomSpecsComponent implements OnInit {
 
   constructor(public sizeConverter: SizeConversionService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.faCompactDisc = faCompactDisc;
   }
 

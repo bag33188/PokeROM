@@ -11,7 +11,7 @@ export class GameLogoComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   imgAlt(altValue: string): string {
     return `${altValue.replace(/[\\s:]/g, '-').replace(/\\xe9/g, 'e')}-logo`;

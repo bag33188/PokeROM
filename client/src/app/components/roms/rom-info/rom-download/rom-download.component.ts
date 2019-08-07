@@ -28,7 +28,7 @@ export class RomDownloadComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.faDownload = faDownload;
     this.disableBtnIfMobileOrTablet();
   }

@@ -23,7 +23,7 @@ export class RatingsComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.message = '';
     this.formValid = true;
     this.formSubmitted = false;

@@ -21,11 +21,11 @@ export class FaqComponent implements OnInit, AfterContentInit {
 
   constructor(private route: ActivatedRoute, public authService: AuthService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.emulatorUrl = 'https://www.retroarch.com';
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     switch (this.route.snapshot.fragment) {
       case 'browser-compatibility':
         this.browserCompatibilityElement.nativeElement.scrollIntoView();

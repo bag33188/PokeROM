@@ -18,11 +18,11 @@ export class RomsComponent implements OnInit, AfterContentInit {
 
   constructor(private romsService: RomsService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getRoms();
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.jumpToTop();
   }
 
