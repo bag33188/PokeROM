@@ -44,7 +44,10 @@ class ValidatePatchRequest {
           msg: 'ROM type must be a string.'
         });
       }
-      if (this.req.body.romType.length < 4 || this.req.body.romType > 5) {
+      if (
+        typeof this.req.body.romType === 'string' &&
+        (this.req.body.romType.length < 4 || this.req.body.romType > 5)
+      ) {
         errors.push({
           location: 'body',
           param: 'romType',
@@ -65,9 +68,10 @@ class ValidatePatchRequest {
     }
     if (this.req.body.fileName !== undefined) {
       if (
-        this.req.body.fileName.length < 3 ||
-        this.req.body.fileName.length > 80 ||
-        this.req.body.fileName === ''
+        typeof this.req.body.filename === 'string' &&
+        (this.req.body.fileName.length < 3 ||
+          this.req.body.fileName.length > 80 ||
+          this.req.body.fileName === '')
       ) {
         errors.push({
           location: 'body',
@@ -118,8 +122,8 @@ class ValidatePatchRequest {
         });
       }
       if (
-        this.req.body.fileType.length < 2 ||
-        this.req.body.fileType.length > 3
+        typeof this.req.body.fileType === 'string' &&
+        (this.req.body.fileType.length < 2 || this.req.body.fileType.length > 3)
       ) {
         errors.push({
           location: 'body',
@@ -210,8 +214,9 @@ class ValidatePatchRequest {
         });
       }
       if (
-        this.req.body.gameName.length < 2 ||
-        this.req.body.gameName.length > 56
+        typeof this.req.body.gameName === 'string' &&
+        (this.req.body.gameName.length < 2 ||
+          this.req.body.gameName.length > 56)
       ) {
         errors.push({
           location: 'body',
@@ -228,7 +233,10 @@ class ValidatePatchRequest {
           msg: 'Region must only contain alpha characters.'
         });
       }
-      if (this.req.body.region.length < 3 || this.req.body.region > 10) {
+      if (
+        typeof this.req.body.region === 'string' &&
+        (this.req.body.region.length < 3 || this.req.body.region > 10)
+      ) {
         errors.push({
           location: 'body',
           param: 'region',
@@ -244,7 +252,10 @@ class ValidatePatchRequest {
           msg: 'Platform must be a string.'
         });
       }
-      if (this.req.body.platform.length < 2 || this.req.body.platform > 50) {
+      if (
+        typeof this.req.body.platform === 'string' &&
+        (this.req.body.platform.length < 2 || this.req.body.platform > 50)
+      ) {
         errors.push({
           location: 'body',
           param: 'platform',
@@ -260,7 +271,10 @@ class ValidatePatchRequest {
           msg: 'Genre must be a string.'
         });
       }
-      if (this.req.body.genre.length > 20 && this.req.body.genre.length < 2) {
+      if (
+        typeof this.req.body.genre &&
+        (this.req.body.genre.length > 20 && this.req.body.genre.length < 2)
+      ) {
         errors.push({
           location: 'body',
           param: 'genre',
@@ -317,8 +331,9 @@ class ValidatePatchRequest {
         });
       }
       if (
-        this.req.body.description.length < 5 ||
-        this.req.body.description.length > 8000
+        typeof this.req.body.description === 'string' &&
+        (this.req.body.description.length < 5 ||
+          this.req.body.description.length > 8000)
       ) {
         errors.push({
           location: 'body',
@@ -343,7 +358,10 @@ class ValidatePatchRequest {
           msg: 'Usage must be a string.'
         });
       }
-      if (this.req.body.usage.length < 5 || this.req.body.usage.length > 50) {
+      if (
+        typeof this.req.body.usage === 'string' &&
+        (this.req.body.usage.length < 5 || this.req.body.usage.length > 50)
+      ) {
         errors.push({
           location: 'body',
           param: 'usage',
@@ -360,7 +378,10 @@ class ValidatePatchRequest {
           msg: 'Flavor must be a string.'
         });
       }
-      if (this.req.body.flavor.length > 14 && this.req.body.flavor.length < 4) {
+      if (
+        typeof this.req.body.flavor === 'string' &&
+        (this.req.body.flavor.length > 14 && this.req.body.flavor.length < 4)
+      ) {
         errors.push({
           location: 'body',
           param: 'flavor',
@@ -376,7 +397,10 @@ class ValidatePatchRequest {
           msg: 'Down must be a string.'
         });
       }
-      if (this.req.body.down.length < 4 || this.req.body.down.length > 20) {
+      if (
+        typeof this.req.body.down === 'string' &&
+        (this.req.body.down.length < 4 || this.req.body.down.length > 20)
+      ) {
         errors.push({
           location: 'body',
           param: 'down',
@@ -393,7 +417,10 @@ class ValidatePatchRequest {
           msg: 'Up must be a string.'
         });
       }
-      if (this.req.body.up.length < 4 || this.req.body.up.length > 20) {
+      if (
+        typeof this.req.body.up === 'string' &&
+        (this.req.body.up.length < 4 || this.req.body.up.length > 20)
+      ) {
         errors.push({
           location: 'body',
           param: 'up',
@@ -435,8 +462,9 @@ class ValidatePatchRequest {
         });
       }
       if (
-        this.req.body.password.length < 8 ||
-        this.req.body.password.length > 256
+        typeof this.req.body.password === 'string' &&
+        (this.req.body.password.length < 8 ||
+          this.req.body.password.length > 256)
       ) {
         errors.push({
           location: 'body',
@@ -471,7 +499,10 @@ class ValidatePatchRequest {
           msg: 'Username can only contain letters, numbers, or underscores.'
         });
       }
-      if (this.req.body.username.length < 5 || this.req.body.username > 22) {
+      if (
+        typeof this.req.body.username === 'string' &&
+        (this.req.body.username.length < 5 || this.req.body.username > 22)
+      ) {
         errors.push({
           location: 'body',
           param: 'username',
@@ -500,7 +531,10 @@ class ValidatePatchRequest {
           msg: 'Name must be a string.'
         });
       }
-      if (this.req.body.name.length < 1 || this.req.body.name.length > 100) {
+      if (
+        typeof this.req.body.name === 'string' &&
+        (this.req.body.name.length < 1 || this.req.body.name.length > 100)
+      ) {
         errors.push({
           location: 'body',
           param: 'name',
