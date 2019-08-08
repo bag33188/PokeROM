@@ -39,7 +39,7 @@ def move_script_tags():
       # if script tags exist in line
       if script_tags:
         # set new script tags to joined array and add defer attr to each script element
-        new_script_tags = '\n'.join(script_tags).replace('></script>', ' type="text/javascript" defer="defer"></script>')
+        new_script_tags = '\n'.join(script_tags).replace('></script>', ' defer></script>').replace('src="', 'type="text/javascript" src="')
 
     # close file from reading
     index_file.close()
@@ -54,14 +54,15 @@ def move_script_tags():
         script_tags = script_tag_regex.findall(line)
         # do various checks that depend on formatting
         # if the link tag and the closing head tag on the same line
-        if '.css">' in line and '</head>' in line:
-          print(line.replace('.css"></head>', f'.css" type="text/css" />\n{new_script_tags}\n</head>'), end='')
+        if ('.css">' in line and '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:
+          print(line.replace('.css"></head>', f'.css" />\n{new_script_tags}\n</head>')
+                    .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), end='')
         # if the link tag is not on the same line as the head tag
-        elif '</head>' in line and '.css">' not in line:
+        elif '</head>' in line and ('.css">' not in line and '<link rel="stylesheet" href="styles.' not in line):
           print(line.replace('</head>', f'{new_script_tags}\n</head>'), end='')
         # if the head tag is not on the same line as the link tag (different condition)
-        elif '.css">' in line and '</head>' not in line:
-          print (line.replace('.css">', '.css" type="text/css" />\n'), end='')
+        elif ('.css">' in line and '<link rel="stylesheet" href="styles.' in line) and '</head>' not in line:
+          print (line.replace('.css">', '.css" />\n').replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), end='')
         # check if script tags are in current line
         elif script_tags:
           # remove script tags from bottom of file
