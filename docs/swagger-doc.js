@@ -39,7 +39,12 @@ const specs = swaggerJsDoc(swaggerDefinition);
  * @param {object} app expressJS app object.
  */
 const apiDocs = app =>
-  app.use(`/api/docs/${version}`, auth, swaggerUi.serve, swaggerUi.setup(specs));
+  app.use(
+    `/api/docs/${version}`,
+    auth,
+    swaggerUi.serve,
+    swaggerUi.setup(specs)
+  );
 
 // export docs and version
 module.exports = [apiDocs, version];
