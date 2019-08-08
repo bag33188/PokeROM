@@ -22,7 +22,6 @@ import { AuthService } from '../../services/auth.service';
 import { RomsService } from '../../services/roms.service';
 import { AuthGuard } from '../../guards/auth.guard';
 import { RomsModule } from '../roms/roms.module';
-import { DocsComponent } from './docs/docs.component';
 import { RatingsComponent } from './ratings/ratings.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from '../../services/user.service';
@@ -37,7 +36,6 @@ import { SpinnerComponent } from '../spinner/spinner.component';
     LoginComponent,
     FaqComponent,
     NaturesComponent,
-    DocsComponent,
     RatingsComponent,
     RegisterComponent,
     SpinnerComponent

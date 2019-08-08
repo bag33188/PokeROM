@@ -3,5 +3,5 @@ definitions:
   Version:
     type: object
     properties:
-      apiVersion:
+      api_version:
         type: string

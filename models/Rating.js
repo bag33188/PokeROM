@@ -20,7 +20,7 @@ const ratingSchema = new Schema({
     required: false,
     maxlength: [1000, 'Rating message can only be 1000 characters at max.']
   },
-  dateTime: {
+  date_time: {
     type: Date,
     required: [
       true,
@@ -36,7 +36,7 @@ module.exports.getRatings = (callback, limit) => {
   Rating.find(callback)
     .sort({
       rating: 1,
-      dateTime: -1
+      date_time: -1
     })
     .limit(parseInt(limit, 10));
 };

@@ -670,7 +670,7 @@ httpRouter.delete(
                 message: 'Bad gateway.'
               });
             }
-            Rom.deleteAllRoms({ userId: id }, (err, romsStatus) => {
+            Rom.deleteAllRoms({ user_id: id }, (err, romsStatus) => {
               if (err) {
                 if (err.name === 'CastError') {
                   return res.status(404).json({ success: false, ...err });

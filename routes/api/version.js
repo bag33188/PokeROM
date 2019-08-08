@@ -13,10 +13,10 @@ const httpRouter = express.Router();
 httpRouter.get('/', async (req, res, next) => {
   try {
     const [, version] = swaggerDoc;
-    // const apiVersion = JSON.stringify(Version.getApiVersion(version));
-    // await res.status(200).send(xml(JSON.parse(apiVersion)));
-    const apiVersion = Version.getApiVersion(version);
-    await res.status(200).json(apiVersion);
+    // const api_version = JSON.stringify(Version.getApiVersion(version));
+    // await res.status(200).send(xml(JSON.parse(api_version)));
+    const api_version = Version.getApiVersion(version);
+    await res.status(200).json(api_version);
   } catch (err) {
     next(err);
   }

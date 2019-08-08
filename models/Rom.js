@@ -5,17 +5,17 @@ const Schema = mongoose.Schema;
 
 // create schema
 const romSchema = new Schema({
-  userId: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: [true, 'User ID is required.']
   },
-  orderNumber: {
+  order_number: {
     type: Number,
     required: [true, 'Order number is required.'],
     min: [0, 'Order number must not be negative.'],
     max: [88, 'Order number cannot exceed 88.']
   },
-  romType: {
+  rom_type: {
     type: String,
     required: [true, 'ROM type is required.'],
     minlength: [4, 'ROM type is too short (must be at least 4 characters).'],
@@ -28,7 +28,7 @@ const romSchema = new Schema({
         `${props.value} is not a valid ROM type. ROM type can only be "core" or "hack".`
     }
   },
-  fileName: {
+  file_name: {
     type: String,
     required: [true, 'File name is required.'],
     minlength: [
@@ -40,7 +40,7 @@ const romSchema = new Schema({
       'File name is too long (must be between 3 and 80 characters).'
     ]
   },
-  fileSize: {
+  file_size: {
     type: Number,
     required: [true, 'File size is required.'],
     min: [64, 'File too small (must be between 64 and 12000000 Kilobytes).'],
@@ -49,7 +49,7 @@ const romSchema = new Schema({
       'File too large (must be between 64 and 12000000 Kilobytes).'
     ]
   },
-  fileType: {
+  file_type: {
     type: String,
     required: [true, 'File type is required.'],
     validate: {
@@ -59,7 +59,7 @@ const romSchema = new Schema({
       message: props => `${props.value} is not a valid file type`
     }
   },
-  downloadLink: {
+  download_link: {
     type: String,
     required: [true, 'Download link is required.'],
     minlength: [8, 'URL is too short (must be between 8 and 1000 characters).'],
@@ -80,7 +80,7 @@ const romSchema = new Schema({
     min: [1, 'Generation must be between 1 and 8 (must be between 1 and 8).'],
     max: [8, 'Generation must be between 1 and 8 (must be between 1 and 8).']
   },
-  boxArtUrl: {
+  box_art_url: {
     type: String,
     required: [true, 'Box art URL is required.'],
     minlength: [8, 'URL is too short (must be between 8 and 1000 characters).'],
@@ -95,7 +95,7 @@ const romSchema = new Schema({
       message: props => `${props.value} is not a valid URL.`
     }
   },
-  gameName: {
+  game_name: {
     type: String,
     required: [true, 'Game name is required.'],
     minlength: [
@@ -149,11 +149,11 @@ const romSchema = new Schema({
     minlength: [2, 'Genre is too short (must be between 2 and 20 characters).'],
     maxlength: [20, 'Genre is too long (must be between 2 and 20 characters).']
   },
-  dateReleased: {
+  date_released: {
     type: Date,
     required: [true, 'Date released is required.']
   },
-  logoUrl: {
+  logo_url: {
     type: String,
     required: [true, 'A logo URL is required.'],
     validate: {
@@ -179,7 +179,7 @@ module.exports.getAllRoms = (query, callback, limit) => {
   // make sure to parse limit as integer
   Rom.find(query, callback)
     .limit(parseInt(limit))
-    .sort({ orderNumber: 1 });
+    .sort({ order_number: 1 });
 };
 
 /**
@@ -212,36 +212,36 @@ module.exports.addRom = (newRom, callback) => {
  */
 module.exports.updateRom = (query, romData, options, callback) => {
   const {
-    orderNumber,
-    fileName,
-    fileSize,
-    fileType,
-    downloadLink,
+    order_number,
+    file_name,
+    file_size,
+    file_type,
+    download_link,
     generation,
-    boxArtUrl,
-    gameName,
+    box_art_url,
+    game_name,
     region,
     platform,
     description,
     genre,
-    dateReleased,
-    logoUrl
+    date_released,
+    logo_url
   } = romData;
   const updateQuery = {
-    orderNumber,
-    fileName,
-    fileSize,
-    fileType,
-    downloadLink,
+    order_number,
+    file_name,
+    file_size,
+    file_type,
+    download_link,
     generation,
-    boxArtUrl,
-    gameName,
+    box_art_url,
+    game_name,
     region,
     platform,
     description,
     genre,
-    dateReleased,
-    logoUrl
+    date_released,
+    logo_url
   };
   Rom.findOneAndUpdate(query, updateQuery, options, callback);
 };
@@ -285,7 +285,7 @@ module.exports.patchRom = (idQuery, query, callback) => {
  * @param {any} callback The callback function.
  */
 module.exports.postCore = (coreRoms, user, callback) => {
-  coreRoms.forEach(rom => (rom.userId = user['_id']));
+  coreRoms.forEach(rom => (rom.user_id = user['_id']));
   Rom.insertMany(coreRoms, callback);
 };
 
@@ -298,7 +298,7 @@ module.exports.postCore = (coreRoms, user, callback) => {
  */
 module.exports.postHacks = (romHacks, user, callback) => {
   romHacks.forEach(romHack => {
-    romHack.userId = user['_id'];
+    romHack.user_id = user['_id'];
   });
   Rom.insertMany(romHacks, callback);
 };

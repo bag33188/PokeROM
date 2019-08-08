@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 // create mongoose schema
 const versionSchema = new Schema(
   {
-    apiVersion: String
+    api_version: String
   },
   {
     _id: false,
@@ -23,10 +23,10 @@ const Version = (module.exports = mongoose.model('Version', versionSchema));
 /**
  * @summary Get API Version
  * @description Gets the API's version.
- * @param {string} apiVersion The API's version.
+ * @param {string} api_version The API's version.
  * @returns {Version} Version object.
  */
-module.exports.getApiVersion = apiVersion => {
-  const version = new Version({ apiVersion });
+module.exports.getApiVersion = api_version => {
+  const version = new Version({ api_version });
   return version;
 };

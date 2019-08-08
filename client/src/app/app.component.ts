@@ -62,7 +62,7 @@ export class AppComponent {
     if (!environment.production) {
       this.apiService.getApiVersion().subscribe(
         (res: ApiVersion): void => {
-          this.logger.log(`API Version: ${res.apiVersion}`);
+          this.logger.log(`API Version: ${res.api_version}`);
         },
         (err: any): never => {
           throw err;

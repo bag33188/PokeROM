@@ -9,7 +9,7 @@ definitions:
       message:
         type: string
         required: false
-      dateTime:
+      date_time:
         type: string
         required: false
         autoGen: true

@@ -1,3 +1,3 @@
 export class ApiVersion {
-  apiVersion: string;
+  api_version: string;
 }

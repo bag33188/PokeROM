@@ -3,34 +3,34 @@ definitions:
   Rom:
     type: object
     properties:
-      userId:
+      user_id:
         type: string
         required: true
-      orderNumber:
+      order_number:
         type: integer
         required: true
-      romType:
+      rom_type:
         type: string
         required: true
-      fileSize:
+      file_size:
         type: integer
         required: true
-      fileType:
+      file_type:
         type: string
         required: true
-      fileName:
+      file_name:
         type: string
         required: true
-      downloadLink:
+      download_link:
         type: string
         required: true
       generation:
         type: integer
         required: true
-      boxArtUrl:
+      box_art_url:
         type: string
         required: true
-      gameName:
+      game_name:
         type: string
         required: true
       region:
@@ -45,9 +45,9 @@ definitions:
       genre:
         type: string
         required: false
-      dateReleased:
+      date_released:
         type: string
         required: true
-      logoUrl:
+      logo_url:
         type: string
         required: true

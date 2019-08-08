@@ -17,151 +17,151 @@ class ValidatePatchRequest {
 
   validateRomPatch(res) {
     let errors = [];
-    if (this.req.body.orderNumber !== undefined) {
-      if (typeof this.req.body.orderNumber !== 'number') {
+    if (this.req.body.order_number !== undefined) {
+      if (typeof this.req.body.order_number !== 'number') {
         errors.push({
           location: 'body',
-          param: 'orderNumber',
+          param: 'order_number',
           msg: 'Order number must be an integer from 0 to 88.'
         });
       }
       if (
-        parseInt(this.req.body.orderNumber, 10) &&
-        (this.req.body.orderNumber > 88 || this.req.body.orderNumber < 0)
+        parseInt(this.req.body.order_number, 10) &&
+        (this.req.body.order_number > 88 || this.req.body.order_number < 0)
       ) {
         errors.push({
           location: 'body',
-          param: 'orderNumber',
+          param: 'order_number',
           msg: 'Order number must be an integer from 0 to 88.'
         });
       }
     }
-    if (this.req.body.romType !== undefined) {
-      if (typeof this.req.body.romType !== 'string') {
+    if (this.req.body.rom_type !== undefined) {
+      if (typeof this.req.body.rom_type !== 'string') {
         errors.push({
           location: 'body',
-          param: 'romType',
+          param: 'rom_type',
           msg: 'ROM type must be a string.'
         });
       }
       if (
-        typeof this.req.body.romType === 'string' &&
-        (this.req.body.romType.length < 4 || this.req.body.romType > 5)
+        typeof this.req.body.rom_type === 'string' &&
+        (this.req.body.rom_type.length < 4 || this.req.body.rom_type > 5)
       ) {
         errors.push({
           location: 'body',
-          param: 'romType',
+          param: 'rom_type',
           msg: 'ROM type must be in between 4 and 5 characters.'
         });
       }
       if (
-        this.req.body.romType.toLowerCase() !== 'core' &&
-        this.req.body.romType.toLowerCase() !== 'hack'
+        this.req.body.rom_type.toLowerCase() !== 'core' &&
+        this.req.body.rom_type.toLowerCase() !== 'hack'
       ) {
         errors.push({
           location: 'body',
-          param: 'romType',
+          param: 'rom_type',
           msg: 'ROM type can only be a core or hack.'
         });
       }
-      this.req.body.romType = this.req.body.romType.toLowerCase();
+      this.req.body.rom_type = this.req.body.rom_type.toLowerCase();
     }
-    if (this.req.body.fileName !== undefined) {
+    if (this.req.body.file_name !== undefined) {
       if (
         typeof this.req.body.filename === 'string' &&
-        (this.req.body.fileName.length < 3 ||
-          this.req.body.fileName.length > 80 ||
-          this.req.body.fileName === '')
+        (this.req.body.file_name.length < 3 ||
+          this.req.body.file_name.length > 80 ||
+          this.req.body.file_name === '')
       ) {
         errors.push({
           location: 'body',
-          param: 'fileName',
+          param: 'file_name',
           msg: 'File name must be between 3 and 80 characters.'
         });
       }
-      if (typeof this.req.body.fileName !== 'string') {
+      if (typeof this.req.body.file_name !== 'string') {
         errors.push({
           location: 'body',
-          param: 'fileName',
+          param: 'file_name',
           msg: 'File name must be a string.'
         });
       }
     }
-    if (this.req.body.fileSize !== undefined) {
-      if (typeof this.req.body.fileSize !== 'number') {
+    if (this.req.body.file_size !== undefined) {
+      if (typeof this.req.body.file_size !== 'number') {
         errors.push({
           location: 'body',
-          param: 'fileSize',
+          param: 'file_size',
           msg: 'File size must be a number.'
         });
       }
       if (
-        parseInt(this.req.body.fileSize, 10) &&
-        (this.req.body.fileSize > 12000000 || this.req.body.fileSize < 64)
+        parseInt(this.req.body.file_size, 10) &&
+        (this.req.body.file_size > 12000000 || this.req.body.file_size < 64)
       ) {
         errors.push({
           location: 'body',
-          param: 'fileSize',
+          param: 'file_size',
           msg: 'File size must be in between 64 and 12000000 kilobytes'
         });
       }
     }
-    if (this.req.body.fileType !== undefined) {
-      if (typeof this.req.body.fileType !== 'string') {
+    if (this.req.body.file_type !== undefined) {
+      if (typeof this.req.body.file_type !== 'string') {
         errors.push({
           location: 'body',
-          param: 'fileType',
+          param: 'file_type',
           msg: 'File Type must be a string.'
         });
       }
-      if (!/^[a-zA-Z0-9]*$/.test(this.req.body.fileType)) {
+      if (!/^[a-zA-Z0-9]*$/.test(this.req.body.file_type)) {
         errors.push({
           location: 'body',
-          param: 'fileType',
+          param: 'file_type',
           msg: 'File type must be alphanumeric.'
         });
       }
       if (
-        typeof this.req.body.fileType === 'string' &&
-        (this.req.body.fileType.length < 2 || this.req.body.fileType.length > 3)
+        typeof this.req.body.file_type === 'string' &&
+        (this.req.body.file_type.length < 2 || this.req.body.file_type.length > 3)
       ) {
         errors.push({
           location: 'body',
-          param: 'fileType',
+          param: 'file_type',
           msg: 'File type must be in between 2 and 3 characters.'
         });
       }
-      if (/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i.test(this.req.body.fileType)) {
+      if (/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i.test(this.req.body.file_type)) {
         errors.push({
           location: 'body',
-          param: 'fileType',
+          param: 'file_type',
           msg: 'Invalid file type extension.'
         });
       }
-      if (typeof this.req.body.fileType !== 'string') {
+      if (typeof this.req.body.file_type !== 'string') {
         errors.push({
           location: 'body',
-          param: 'fileType',
+          param: 'file_type',
           msg: 'File name must be a string.'
         });
       }
     }
-    if (this.req.body.downloadLink !== undefined) {
-      if (typeof this.req.body.downloadLink !== 'string') {
+    if (this.req.body.download_link !== undefined) {
+      if (typeof this.req.body.download_link !== 'string') {
         errors.push({
           location: 'body',
-          param: 'downloadLink',
+          param: 'download_link',
           msg: 'Download link must be a string'
         });
       }
       if (
         !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i.test(
-          this.req.body.downloadLink
+          this.req.body.download_link
         )
       ) {
         errors.push({
           location: 'body',
-          param: 'downloadLink',
+          param: 'download_link',
           msg: 'Invalid URL.'
         });
       }
@@ -185,42 +185,42 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.boxArtUrl !== undefined) {
-      if (typeof this.req.body.boxArtUrl !== 'string') {
+    if (this.req.body.box_art_url !== undefined) {
+      if (typeof this.req.body.box_art_url !== 'string') {
         errors.push({
           location: 'body',
-          param: 'boxArtUrl',
+          param: 'box_art_url',
           msg: 'Box art URL must be a string'
         });
       }
       if (
         !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i.test(
-          this.req.body.boxArtUrl
+          this.req.body.box_art_url
         )
       ) {
         errors.push({
           location: 'body',
-          param: 'boxArtUrl',
+          param: 'box_art_url',
           msg: 'Invalid URL.'
         });
       }
     }
-    if (this.req.body.gameName !== undefined) {
-      if (typeof this.req.body.gameName !== 'string') {
+    if (this.req.body.game_name !== undefined) {
+      if (typeof this.req.body.game_name !== 'string') {
         errors.push({
           location: 'body',
-          param: 'gameName',
+          param: 'game_name',
           msg: 'Game name must be a string.'
         });
       }
       if (
-        typeof this.req.body.gameName === 'string' &&
-        (this.req.body.gameName.length < 2 ||
-          this.req.body.gameName.length > 56)
+        typeof this.req.body.game_name === 'string' &&
+        (this.req.body.game_name.length < 2 ||
+          this.req.body.game_name.length > 56)
       ) {
         errors.push({
           location: 'body',
-          param: 'gameName',
+          param: 'game_name',
           msg: 'Game name must be in between 2 and 56 characters..'
         });
       }
@@ -282,42 +282,42 @@ class ValidatePatchRequest {
         });
       }
     }
-    if (this.req.body.logoUrl !== undefined) {
-      if (typeof this.req.body.logoUrl !== 'string') {
+    if (this.req.body.logo_url !== undefined) {
+      if (typeof this.req.body.logo_url !== 'string') {
         errors.push({
           location: 'body',
-          param: 'logoUrl',
+          param: 'logo_url',
           msg: 'Logo URL must be a string.'
         });
       }
       if (
         !/^(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i.test(
-          this.req.body.logoUrl
+          this.req.body.logo_url
         )
       ) {
         errors.push({
           location: 'body',
-          param: 'logoUrl',
+          param: 'logo_url',
           msg: 'Invalid URL.'
         });
       }
     }
-    if (this.req.body.dateReleased !== undefined) {
-      if (typeof this.req.body.dateReleased !== 'string') {
+    if (this.req.body.date_released !== undefined) {
+      if (typeof this.req.body.date_released !== 'string') {
         errors.push({
           location: 'body',
-          param: 'dateReleased',
+          param: 'date_released',
           msg: 'Date released must be a string'
         });
       }
       if (
         !/^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/.test(
-          this.req.body.dateReleased
+          this.req.body.date_released
         )
       ) {
         errors.push({
           location: 'body',
-          param: 'dateReleased',
+          param: 'date_released',
           msg: 'Invalid Date; must be in the format of MM/DD/YYYY.'
         });
       }

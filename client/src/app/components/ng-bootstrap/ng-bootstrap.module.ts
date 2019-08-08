@@ -11,7 +11,6 @@ import { JumbotronComponent } from './home/jumbotron/jumbotron.component';
 import { PopupComponent } from './rom-info/popup/popup.component';
 import { ToastComponent } from './faq/toast/toast.component';
 import { SvgComponent } from './faq/toast/svg/svg.component';
-import { ProgrammingLanguagesComponent } from './docs/programming-languages/programming-languages.component';
 import { RatingComponent } from './ratings/rating/rating.component';
 import { ModalContentComponent } from './faq/modal/modal-content.component';
 import { AlertComponent } from './ratings/alert/alert.component';
@@ -30,7 +29,6 @@ import { UserService } from '../../services/user.service';
     ToastComponent,
     SvgComponent,
     JumbotronComponent,
-    ProgrammingLanguagesComponent,
     RatingComponent,
     AlertComponent,
     DeleteUserBtnComponent
@@ -45,7 +43,6 @@ import { UserService } from '../../services/user.service';
     PopupComponent,
     ToastComponent,
     JumbotronComponent,
-    ProgrammingLanguagesComponent,
     RatingComponent,
     AlertComponent,
     DeleteUserBtnComponent

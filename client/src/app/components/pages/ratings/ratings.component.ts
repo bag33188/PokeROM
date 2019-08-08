@@ -53,7 +53,7 @@ export class RatingsComponent implements OnInit {
     this.rating = {
       rating: this.currentRate,
       message: this.message.sanitizeXSS(false, false),
-      dateTime: new Date()
+      date_time: new Date()
     };
     if (this.currentRate === 0) {
       this.formValid = false;

@@ -22,18 +22,18 @@ const routesWithParams = ['core', 'hacks'];
 
 // define array with fields to sanitize
 const fieldsToSanitize = [
-  'fileSize',
-  'fileType',
-  'fileName',
-  'dateReleased',
+  'file_size',
+  'file_type',
+  'file_name',
+  'date_released',
   'description',
   'genre',
   'platform',
   'region',
   'generation',
-  'gameName',
-  'orderNumber',
-  'romType'
+  'game_name',
+  'order_number',
+  'rom_type'
 ];
 const dateRegex = /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/;
 
@@ -68,7 +68,7 @@ function getRomById(query, req, res, callback) {
         .status(404)
         .json({ success: false, message: 'Error 404: ROM not found.' });
     } else {
-      if (req.user['_id'].toString() === fetchedRom.userId.toString()) {
+      if (req.user['_id'].toString() === fetchedRom.user_id.toString()) {
         return callback(fetchedRom);
       } else {
         return res
@@ -124,11 +124,11 @@ httpRouter.get(
       const getAllHacks = req.query['hacks'];
       let query;
       if (Boolean(getAllCore) && !Boolean(getAllHacks)) {
-        query = { userId: req.user['_id'], romType: 'core' };
+        query = { user_id: req.user['_id'], rom_type: 'core' };
       } else if (Boolean(getAllHacks) && !Boolean(getAllCore)) {
-        query = { userId: req.user['_id'], romType: 'hack' };
+        query = { user_id: req.user['_id'], rom_type: 'hack' };
       } else {
-        query = { userId: req.user['_id'] };
+        query = { user_id: req.user['_id'] };
       }
       let limit = req.query['_limit'];
       if (!limit) {
@@ -211,7 +211,7 @@ httpRouter.get(
             .status(404)
             .json({ success: false, message: 'Error 404: ROM not found.' });
         } else {
-          if (req.user['_id'].toString() === rom.userId.toString()) {
+          if (req.user['_id'].toString() === rom.user_id.toString()) {
             return res.status(200).json(rom);
           } else {
             return res.status(403).json({
@@ -238,13 +238,13 @@ httpRouter.post(
     sanitizeBody(fieldsToSanitize)
       .trim()
       .escape(),
-    check('orderNumber')
+    check('order_number')
       .not()
       .isEmpty()
       .withMessage('Order number is required.')
       .isInt({ min: 0, max: 33 })
       .withMessage('Order number must be an integer between 0 and 33.'),
-    check('romType')
+    check('rom_type')
       .not()
       .isEmpty()
       .withMessage('ROM type is required.')
@@ -252,7 +252,7 @@ httpRouter.post(
       .withMessage('ROM type must either be a core or a hack.')
       .isLength({ min: 4, max: 5 })
       .withMessage('ROM type must be either 4 or 5 characters.'),
-    check('fileName')
+    check('file_name')
       .not()
       .isEmpty()
       .withMessage('File name is required.')
@@ -260,7 +260,7 @@ httpRouter.post(
       .withMessage('File name must be a string.')
       .isLength({ min: 3, max: 80 })
       .withMessage('File name must be between 3 and 80 characters.'),
-    check('fileSize')
+    check('file_size')
       .not()
       .isEmpty()
       .withMessage('File size is required.')
@@ -268,7 +268,7 @@ httpRouter.post(
       .withMessage(
         'File size must be a number (in kilobytes) between 64 and 12000000.'
       ),
-    check('fileType')
+    check('file_type')
       .not()
       .isEmpty()
       .withMessage('File type is required.')
@@ -278,7 +278,7 @@ httpRouter.post(
       .withMessage('File type must be between 2 and 3 characters.')
       .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
       .withMessage('Invalid file extension.'),
-    check('downloadLink')
+    check('download_link')
       .not()
       .isEmpty()
       .withMessage('Download link is required.')
@@ -290,13 +290,13 @@ httpRouter.post(
       .withMessage('Generation is required.')
       .isInt({ min: 1, max: 8 })
       .withMessage('Generation must be a number between 1 and 8.'),
-    check('boxArtUrl')
+    check('box_art_url')
       .not()
       .isEmpty()
       .withMessage('Box art URL is required.')
       .isURL()
       .withMessage('Box art URL must be a valid URL.'),
-    check('gameName')
+    check('game_name')
       .not()
       .isEmpty()
       .withMessage('Game name is required.')
@@ -328,13 +328,13 @@ httpRouter.post(
       .withMessage('Genre must be between 2 and 20 characters.')
       .isString()
       .withMessage('Genre must be a string.'),
-    check('logoUrl')
+    check('logo_url')
       .not()
       .isEmpty()
       .withMessage('A logo URL is required.')
       .isURL()
       .withMessage('Logo URL must be a valid URL.'),
-    check('dateReleased')
+    check('date_released')
       .not()
       .isEmpty()
       .withMessage('Date released is required.')
@@ -352,56 +352,56 @@ httpRouter.post(
   auth,
   async (req, res, next) => {
     try {
-      req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
-      if (req.body.romType) {
-        req.body.romType = req.body.romType.toLowerCase();
+      req.body.date_released = convertToDateFormat(req.body.date_released);
+      if (req.body.rom_type) {
+        req.body.rom_type = req.body.rom_type.toLowerCase();
       }
       const newRom = new Rom({
-        userId: req.user['_id'],
-        orderNumber: parseInt(
+        user_id: req.user['_id'],
+        order_number: parseInt(
           req.sanitize(
-            req.body.orderNumber ? req.body.orderNumber.toString() : ''
+            req.body.order_number ? req.body.order_number.toString() : ''
           ),
           10
         ),
-        romType: req.sanitize(req.body.romType),
-        fileName: req.sanitize(req.body.fileName),
-        fileSize: parseInt(
-          req.sanitize(req.body.fileSize ? req.body.fileSize.toString() : ''),
+        rom_type: req.sanitize(req.body.rom_type),
+        file_name: req.sanitize(req.body.file_name),
+        file_size: parseInt(
+          req.sanitize(req.body.file_size ? req.body.file_size.toString() : ''),
           10
         ),
-        fileType: req.sanitize(req.body.fileType),
-        downloadLink: req.sanitize(req.body.downloadLink),
+        file_type: req.sanitize(req.body.file_type),
+        download_link: req.sanitize(req.body.download_link),
         generation: parseInt(
           req.sanitize(
             req.body.generation ? req.body.generation.toString() : ''
           ),
           10
         ),
-        boxArtUrl: req.sanitize(req.body.boxArtUrl),
-        gameName: req.sanitize(req.body.gameName),
+        box_art_url: req.sanitize(req.body.box_art_url),
+        game_name: req.sanitize(req.body.game_name),
         region: req.sanitize(req.body.region),
         platform: req.sanitize(req.body.platform),
         description: req.sanitize(req.body.description),
         genre: req.sanitize(req.body.genre) || null,
-        dateReleased: req.sanitize(req.body.dateReleased),
-        logoUrl: req.sanitize(req.body.logoUrl)
+        date_released: req.sanitize(req.body.date_released),
+        logo_url: req.sanitize(req.body.logo_url)
       });
       const {
-        orderNumber,
-        fileName,
-        fileSize,
-        fileType,
-        downloadLink,
+        order_number,
+        file_name,
+        file_size,
+        file_type,
+        download_link,
         generation,
-        boxArtUrl,
-        gameName,
+        box_art_url,
+        game_name,
         region,
         platform,
         description,
         genre,
-        dateReleased,
-        logoUrl
+        date_released,
+        logo_url
       } = newRom;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -456,13 +456,13 @@ httpRouter.put(
     sanitizeParam('id')
       .trim()
       .escape(),
-    check('orderNumber')
+    check('order_number')
       .not()
       .isEmpty()
       .withMessage('Order number is required.')
       .isInt({ min: 0, max: 33 })
       .withMessage('Order number must be an integer between 0 and 33.'),
-    check('romType')
+    check('rom_type')
       .not()
       .isEmpty()
       .withMessage('ROM type is required.')
@@ -470,7 +470,7 @@ httpRouter.put(
       .withMessage('ROM type must either be a core or a hack.')
       .isLength({ min: 4, max: 5 })
       .withMessage('ROM type must be either 4 or 5 characters.'),
-    check('fileName')
+    check('file_name')
       .not()
       .isEmpty()
       .withMessage('File name is required.')
@@ -478,7 +478,7 @@ httpRouter.put(
       .withMessage('File name must be a string.')
       .isLength({ min: 3, max: 80 })
       .withMessage('File name must be between 3 and 80 characters.'),
-    check('fileSize')
+    check('file_size')
       .not()
       .isEmpty()
       .withMessage('File size is required.')
@@ -486,7 +486,7 @@ httpRouter.put(
       .withMessage(
         'File size must be a number (in kilobytes) between 64 and 12000000.'
       ),
-    check('fileType')
+    check('file_type')
       .not()
       .isEmpty()
       .withMessage('File type is required.')
@@ -496,7 +496,7 @@ httpRouter.put(
       .withMessage('File type must be between 2 and 3 characters.')
       .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
       .withMessage('Invalid file extension.'),
-    check('downloadLink')
+    check('download_link')
       .not()
       .isEmpty()
       .withMessage('Download link is required.')
@@ -508,13 +508,13 @@ httpRouter.put(
       .withMessage('Generation is required.')
       .isInt({ min: 1, max: 8 })
       .withMessage('Generation must be a number between 1 and 8.'),
-    check('boxArtUrl')
+    check('box_art_url')
       .not()
       .isEmpty()
       .withMessage('Box art URL is required.')
       .isURL()
       .withMessage('Box art URL must be a valid URL.'),
-    check('gameName')
+    check('game_name')
       .not()
       .isEmpty()
       .withMessage('Game name is required.')
@@ -546,13 +546,13 @@ httpRouter.put(
       .withMessage('Genre must be between 2 and 20 characters.')
       .isString()
       .withMessage('Genre must be a string.'),
-    check('logoUrl')
+    check('logo_url')
       .not()
       .isEmpty()
       .withMessage('A logo URL is required.')
       .isURL()
       .withMessage('Logo URL must be a valid URL.'),
-    check('dateReleased')
+    check('date_released')
       .not()
       .isEmpty()
       .withMessage('Date released is required.')
@@ -583,56 +583,56 @@ httpRouter.put(
           .status(404)
           .json({ success: false, message: 'ROM not found.' });
       }
-      req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
-      if (req.body.romType) {
-        req.body.romType = req.body.romType.toLowerCase();
+      req.body.date_released = convertToDateFormat(req.body.date_released);
+      if (req.body.rom_type) {
+        req.body.rom_type = req.body.rom_type.toLowerCase();
       }
       const updateRomData = {
-        userId: req.user['_id'],
-        orderNumber: parseInt(
+        user_id: req.user['_id'],
+        order_number: parseInt(
           req.sanitize(
-            req.body.orderNumber ? req.body.orderNumber.toString() : ''
+            req.body.order_number ? req.body.order_number.toString() : ''
           ),
           10
         ),
-        romType: req.sanitize(req.body.romType),
-        fileName: req.sanitize(req.body.fileName),
-        fileSize: parseInt(
-          req.sanitize(req.body.fileSize ? req.body.fileSize.toString() : ''),
+        rom_type: req.sanitize(req.body.rom_type),
+        file_name: req.sanitize(req.body.file_name),
+        file_size: parseInt(
+          req.sanitize(req.body.file_size ? req.body.file_size.toString() : ''),
           10
         ),
-        fileType: req.sanitize(req.body.fileType),
-        downloadLink: req.sanitize(req.body.downloadLink),
+        file_type: req.sanitize(req.body.file_type),
+        download_link: req.sanitize(req.body.download_link),
         generation: parseInt(
           req.sanitize(
             req.body.generation ? req.body.generation.toString() : ''
           ),
           10
         ),
-        boxArtUrl: req.sanitize(req.body.boxArtUrl),
-        gameName: req.sanitize(req.body.gameName),
+        box_art_url: req.sanitize(req.body.box_art_url),
+        game_name: req.sanitize(req.body.game_name),
         region: req.sanitize(req.body.region),
         platform: req.sanitize(req.body.platform),
         description: req.sanitize(req.body.description),
         genre: req.sanitize(req.body.genre) || null,
-        dateReleased: req.sanitize(req.body.dateReleased),
-        logoUrl: req.sanitize(req.body.logoUrl)
+        date_released: req.sanitize(req.body.date_released),
+        logo_url: req.sanitize(req.body.logo_url)
       };
       const {
-        orderNumber,
-        fileName,
-        fileSize,
-        fileType,
-        downloadLink,
+        order_number,
+        file_name,
+        file_size,
+        file_type,
+        download_link,
         generation,
-        boxArtUrl,
-        gameName,
+        box_art_url,
+        game_name,
         region,
         platform,
         description,
         genre,
-        dateReleased,
-        logoUrl
+        date_released,
+        logo_url
       } = updateRomData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -640,7 +640,7 @@ httpRouter.put(
       }
       await getRomById({ _id: id }, req, res, fetchedRom => {
         const isOwnUser =
-          fetchedRom.userId.toString() === req.user['_id'].toString();
+          fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
           Rom.updateRom({ _id: id }, updateRomData, {}, (err, rom) => {
             if (err) {
@@ -708,15 +708,15 @@ httpRouter.patch(
           .json({ success: false, message: 'ROM not found.' });
       }
       const query = req.body;
-      if (req.body.dateReleased) {
-        req.body.dateReleased = convertToDateFormat(req.body.dateReleased);
+      if (req.body.date_released) {
+        req.body.date_released = convertToDateFormat(req.body.date_released);
       }
       let isValid = true;
       const fields = [
         ...fieldsToSanitize,
-        'downloadLink',
-        'logoUrl',
-        'boxArtUrl'
+        'download_link',
+        'logo_url',
+        'box_art_url'
       ];
       for (const field of Object.keys(req.body)) {
         if (!fields.includes(field)) {
@@ -741,7 +741,7 @@ httpRouter.patch(
       }
       await getRomById({ _id: id }, req, res, fetchedRom => {
         const isOwnUser =
-          fetchedRom.userId.toString() === req.user['_id'].toString();
+          fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
           Rom.patchRom({ _id: id }, { $set: query }, (err, status) => {
             if (err) {
@@ -806,7 +806,7 @@ httpRouter.delete(
           .json({ success: false, message: 'ROM not found.' });
       }
       await getRomById({ _id: id }, req, res, rom => {
-        const isOwnUser = rom.userId.toString() === req.user['_id'].toString();
+        const isOwnUser = rom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
           Rom.deleteRom({ _id: id }, (err, status) => {
             if (err) {
@@ -857,23 +857,23 @@ httpRouter.delete(
       const deleteCore = req.query['core'];
       const deleteHacks = req.query['hacks'];
       await getAllRoms(
-        { userId: req.user['_id'] },
+        { user_id: req.user['_id'] },
         req,
         res,
         roms => {
           const isOwnUser =
-            roms[0].userId.toString() === req.user['_id'].toString();
+            roms[0].user_id.toString() === req.user['_id'].toString();
           if (isOwnUser) {
             let query = {};
             let message = '';
             if (Boolean(deleteCore) && !Boolean(deleteHacks)) {
-              query = { userId: req.user['_id'], romType: 'core' };
+              query = { user_id: req.user['_id'], rom_type: 'core' };
               message = 'All core ROMs have been deleted.';
             } else if (Boolean(deleteHacks) && !Boolean(deleteCore)) {
-              query = { userId: req.user['_id'], romType: 'hack' };
+              query = { user_id: req.user['_id'], rom_type: 'hack' };
               message = 'All ROM hacks have been deleted.';
             } else {
-              query = { userId: req.user['_id'] };
+              query = { user_id: req.user['_id'] };
               message = 'All ROMs successfully deleted!';
             }
             Rom.deleteAllRoms(query, (err, status) => {
@@ -983,7 +983,7 @@ httpRouter.post('/core', auth, async (req, res, next) => {
           .json({ success: false, message: 'Bad gateway.' });
       }
       getAllRoms(
-        { userId: req.user['_id'] },
+        { user_id: req.user['_id'] },
         req,
         res,
         fetchedRoms => {
@@ -1013,7 +1013,7 @@ httpRouter.post('/hacks', auth, async (req, res, next) => {
           .json({ success: false, message: 'Bad gateway.' });
       }
       getAllRoms(
-        { userId: req.user['_id'] },
+        { user_id: req.user['_id'] },
         req,
         res,
         fetchedRoms => {

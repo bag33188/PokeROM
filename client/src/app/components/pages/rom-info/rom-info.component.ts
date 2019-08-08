@@ -33,20 +33,20 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.isError = false;
     this.rom = {
-      orderNumber: 0,
-      romType: '',
-      gameName: '',
-      fileSize: 0,
+      order_number: 0,
+      rom_type: '',
+      game_name: '',
+      file_size: 0,
       generation: 0,
-      dateReleased: new Date(),
-      fileType: '',
+      date_released: new Date(),
+      file_type: '',
       genre: '',
       description: '',
-      downloadLink: '',
+      download_link: '',
       region: '',
-      logoUrl: '',
-      boxArtUrl: '',
-      fileName: '',
+      logo_url: '',
+      box_art_url: '',
+      file_name: '',
       platform: ''
     };
     this.getRom(this.id);
@@ -62,7 +62,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
         if (!rom.genre) {
           rom.genre = 'N/A';
         }
-        rom.gameName = he.decode(rom.gameName);
+        rom.game_name = he.decode(rom.game_name);
         rom.description = he.decode(rom.description);
         this.rom = rom;
         this.loading = false;

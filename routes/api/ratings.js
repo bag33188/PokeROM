@@ -30,7 +30,7 @@ function getRating(query, req, res, callback) {
 httpRouter.post(
   '/',
   [
-    sanitizeBody(['rating', 'message', 'dateTime'])
+    sanitizeBody(['rating', 'message', 'date_time'])
       .trim()
       .escape(),
     check('message')
@@ -53,8 +53,8 @@ httpRouter.post(
         message: req.sanitize(req.body.message) || null
       });
       const { rating, message } = newRating;
-      if (req.body.dateTime) {
-        req.body.dateTime = req.sanitize(req.body.dateTime.toString());
+      if (req.body.date_time) {
+        req.body.date_time = req.sanitize(req.body.date_time.toString());
       }
       const errors = validationResult(req);
       if (!errors.isEmpty()) {

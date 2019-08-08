@@ -36,7 +36,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
     this.romsService.getAllRoms(limit).subscribe(
       (roms: Rom[]): void => {
         roms.forEach((rom: Rom): void => {
-          rom.gameName = he.decode(rom.gameName);
+          rom.game_name = he.decode(rom.game_name);
           rom.description = he.decode(rom.description);
         });
         this.romsData = roms;
