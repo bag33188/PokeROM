@@ -1,25 +1,27 @@
-<div
-  id="spinner-container"
-  class="d-flex justify-content-center align-items-center"
-  *ngIf="loading"
->
-  <img [src]="images.SPINNER" alt="spinner" class="align-self-center" />
-</div>
-<div class="justify-content-center mt-4 roms-flex" *ngIf="!loading">
-  <h2 *ngIf="romsData.length === 0" class="text-center" id="no-roms-heading">
-    {{ noRomsMsg }}
-  </h2>
-  <div class="container-grid">
-    <app-rom
-      *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
-      class="card card-container border rounded"
-      [rom]="rom"
-    ></app-rom>
+<ng-container>
+  <div
+    id="spinner-container"
+    class="d-flex justify-content-center align-items-center"
+    [hidden]="!loading"
+  >
+    <img [src]="images.SPINNER" alt="spinner" class="align-self-center" />
   </div>
-  <app-roms-pagination
-    [romsData]="romsData"
-    [currentPage]="currentPage"
-    [itemsPerPage]="itemsPerPage"
-    (paginate)="onPageChange($event)"
-  ></app-roms-pagination>
-</div>
+  <div class="justify-content-center mt-4 roms-flex" [hidden]="loading">
+    <h2 *ngIf="romsData.length === 0" class="text-center" id="no-roms-heading">
+      {{ noRomsMsg }}
+    </h2>
+    <div class="container-grid">
+      <app-rom
+        *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
+        class="card card-container border rounded"
+        [rom]="rom"
+      ></app-rom>
+    </div>
+    <app-roms-pagination
+      [romsData]="romsData"
+      [currentPage]="currentPage"
+      [itemsPerPage]="itemsPerPage"
+      (paginate)="onPageChange($event)"
+    ></app-roms-pagination>
+  </div>
+</ng-container>

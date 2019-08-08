@@ -2,11 +2,11 @@
   <div
     id="spinner-container"
     class="d-flex justify-content-center align-items-center"
-    *ngIf="loading"
+    [hidden]="!loading"
   >
     <img [src]="images.SPINNER" alt="spinner" class="align-self-center" />
   </div>
-  <div id="rom-info-container" class="mt-4" *ngIf="!loading">
+  <div id="rom-info-container" class="mt-4" [hidden]="loading">
     <div id="back-btn-container">
       <button
         type="button"
