@@ -73,9 +73,8 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
         this.loading = false;
         this.isError = true;
         const errKey: string = 'status';
-        console.log(err);
         if (err[errKey]) {
-          if (err[errKey].status === 404) {
+          if (err[errKey] === 404) {
             this.router.navigate(['/', '404', this.id]);
           }
         }
