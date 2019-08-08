@@ -14,87 +14,80 @@ def move_script_tags():
     3. close of the link tag with the main stylesheet attached to it
   """
 
-  # wrap everything in try block to avoid python 2 errors
+  print('Moving around script tags in index.html ... ')
+
+  # create vars
+  filepath = '../public/index.html'
+
+  # regex for identifying script tags
+  script_tag_regex = re.compile(r'(<script src=\"(?:runtime|polyfills-es5|polyfills|main|vendor|scripts)\.(?:#?(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(?:\snomodule)?><\/script>)')
+
+  new_script_tags = ''
+
+  # wrap file I/O logic in try block
   try:
 
-    print('Moving around script tags in index.html ... ')
+    # the first file I/O operation will store the script tags in a variable
 
-    # create vars
-    filepath = '../public/index.html'
+    # open index.html file for reading
+    index_file = open(filepath, 'r')
 
-    # regex for identifying script tags
-    script_tag_regex = re.compile(r'(<script src=\"(?:runtime|polyfills-es5|polyfills|main|vendor|scripts)\.(?:#?(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(?:\snomodule)?><\/script>)')
+    # loop through each line in file
+    for line in index_file:
+      # store script tags in var
+      script_tags = script_tag_regex.findall(line)
+      # if script tags exist in line
+      if script_tags:
+        # set new script tags to joined array and add defer attr to each script element
+        new_script_tags = '\n'.join(script_tags).replace('></script>', ' defer></script>').replace('src="', 'type="text/javascript" src="')
 
-    new_script_tags = ''
+    # close file from reading
+    index_file.close()
 
-    # wrap file I/O logic in try block
-    try:
+    # the second file I/O operation will move around the script tags regardless of formatting and close of the link tag
 
-      # the first file I/O operation will store the script tags in a variable
-
-      # open index.html file for reading
-      index_file = open(filepath, 'r')
-
+    # use fileinput to open up index.html file and create backup before editing
+    with fileinput.FileInput(filepath, inplace=True, backup='.bak') as file:
       # loop through each line in file
-      for line in index_file:
-        # store script tags in var
+      for line in file:
+        # store script tags in variable
         script_tags = script_tag_regex.findall(line)
-        # if script tags exist in line
-        if script_tags:
-          # set new script tags to joined array and add defer attr to each script element
-          new_script_tags = '\n'.join(script_tags).replace('></script>', ' defer></script>').replace('src="', 'type="text/javascript" src="')
+        # do various checks that depend on formatting
+        # if the link tag and the closing head tag on the same line
+        if ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:
+          print(line.replace('.css"></head>', f'.css" />\n{new_script_tags}\n</head>')
+                    .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), end='')
+        # if the link tag is not on the same line as the head tag
+        elif '</head>' in line and ('.css">' not in line or '<link rel="stylesheet" href="styles.' not in line):
+          print(line.replace('</head>', f'{new_script_tags}\n</head>'), end='')
+        # if the head tag is not on the same line as the link tag (different condition)
+        elif ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' not in line:
+          print (line.replace('.css">', '.css" />\n').replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), end='')
+        # check if script tags are in current line
+        elif script_tags:
+          # remove script tags from bottom of file
+          print(line.replace(script_tags[0], '')
+                    .replace(script_tags[1], '')
+                    .replace(script_tags[2], '')
+                    .replace(script_tags[3], '')
+                    .replace(script_tags[4], '')
+                    .replace(script_tags[5], '')
+                , end='')
+        # otherwise...
+        else:
+          # print the other lines
+          print(line, end='')
 
-      # close file from reading
-      index_file.close()
+    # close the fileinput stream
+    fileinput.close()
 
-      # the second file I/O operation will move around the script tags regardless of formatting and close of the link tag
+    print('Done!')
 
-      # use fileinput to open up index.html file and create backup before editing
-      with fileinput.FileInput(filepath, inplace=True, backup='.bak') as file:
-        # loop through each line in file
-        for line in file:
-          # store script tags in variable
-          script_tags = script_tag_regex.findall(line)
-          # do various checks that depend on formatting
-          # if the link tag and the closing head tag on the same line
-          if ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:
-            print(line.replace('.css"></head>', f'.css" />\n{new_script_tags}\n</head>')
-                      .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), end='')
-          # if the link tag is not on the same line as the head tag
-          elif '</head>' in line and ('.css">' not in line or '<link rel="stylesheet" href="styles.' not in line):
-            print(line.replace('</head>', f'{new_script_tags}\n</head>'), end='')
-          # if the head tag is not on the same line as the link tag (different condition)
-          elif ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' not in line:
-            print (line.replace('.css">', '.css" />\n').replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), end='')
-          # check if script tags are in current line
-          elif script_tags:
-            # remove script tags from bottom of file
-            print(line.replace(script_tags[0], '')
-                      .replace(script_tags[1], '')
-                      .replace(script_tags[2], '')
-                      .replace(script_tags[3], '')
-                      .replace(script_tags[4], '')
-                      .replace(script_tags[5], '')
-                  , end='')
-          # otherwise...
-          else:
-            # print the other lines
-            print(line, end='')
+  # catch file not found error
+  except FileNotFoundError:
+    print('Error, index.html file not found.')
 
-      # close the fileinput stream
-      fileinput.close()
-
-      print('Done!')
-
-    # catch file not found error
-    except FileNotFoundError:
-      print('Error, index.html file not found.')
-
-    # general exception
-    except Exception:
-      print('An error occured.')
-
-  # catch general exception
+  # general exception
   except Exception:
     print('An error occured.')
 
