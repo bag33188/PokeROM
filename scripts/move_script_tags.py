@@ -72,7 +72,7 @@ def move_script_tags():
         elif ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' not in line:
           print(line.replace('.css">', '.css" />\n')
                     .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), 
-                  end='')
+                end='')
         # check if script tags are in current line
         elif script_tags:
           # remove script tags from bottom of file
