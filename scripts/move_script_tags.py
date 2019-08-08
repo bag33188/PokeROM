@@ -48,10 +48,13 @@ def move_script_tags():
 
     # use fileinput to open up index.html file and create backup before editing
     with fileinput.FileInput(filepath, inplace=True, backup='.bak') as file:
+
       # loop through each line in file
       for line in file:
+
         # store script tags in variable
         script_tags = script_tag_regex.findall(line)
+        
         # do various checks that depend on formatting
         # if the link tag and the closing head tag on the same line
         if ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:

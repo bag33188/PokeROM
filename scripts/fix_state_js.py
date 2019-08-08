@@ -28,8 +28,10 @@ def fix_state_js():
 
     # open up file stream (read and write) and create backup of file
     with fileinput.FileInput(filepath, inplace=True, backup='.bak') as file:
+
       # loop through each line in file
       for line in file:
+        
         # apply fix
         if (text_to_search in line):
           # replace text and end line without newline
