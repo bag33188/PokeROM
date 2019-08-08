@@ -8,7 +8,6 @@ import he from 'he';
 import { RomsService } from '../../../services/roms.service';
 import { AuthService } from '../../../services/auth.service';
 import { Rom } from '../../../models/Rom';
-import { Images } from '../../../enums/images.enum';
 
 @Component({
   selector: 'app-rom-info',
@@ -21,7 +20,6 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   loading: boolean = true;
   isError: boolean;
   faLongArrowAltLeft: IconDefinition;
-  images: typeof Images = Images;
 
   constructor(
     private romService: RomsService,

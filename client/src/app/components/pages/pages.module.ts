@@ -26,6 +26,7 @@ import { DocsComponent } from './docs/docs.component';
 import { RatingsComponent } from './ratings/ratings.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from '../../services/user.service';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UserService } from '../../services/user.service';
     NaturesComponent,
     DocsComponent,
     RatingsComponent,
-    RegisterComponent
+    RegisterComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,

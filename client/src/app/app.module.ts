@@ -26,6 +26,7 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     httpInterceptorProviders
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -9,7 +9,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Nature } from '../../../models/Nature';
 import { NaturesService } from '../../../services/natures.service';
-import { Images } from '../../../enums/images.enum';
 
 @Component({
   selector: 'app-natures',
@@ -25,7 +24,6 @@ export class NaturesComponent implements OnInit, AfterContentInit {
   faArrowDown: IconDefinition;
   faSignLanguage: IconDefinition;
   faHeart: IconDefinition;
-  images: typeof Images = Images;
   loading: boolean = true;
   isError: boolean = false;
 
