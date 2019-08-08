@@ -24,11 +24,13 @@ def move_script_tags():
 
   new_script_tags = ''
 
-  # open index.html file for reading
-  index_file = open(filepath, 'r')
-
   # wrap file i/o logic in try block
   try:
+
+    # the first file I/O operation will store the script tags in a variable
+
+    # open index.html file for reading
+    index_file = open(filepath, 'r')
 
     # loop through each line in file
     for line in index_file:
@@ -37,10 +39,12 @@ def move_script_tags():
       # if script tags exist in line
       if script_tags:
         # set new script tags to joined array and add defer attr to each script element
-        new_script_tags = ''.join(script_tags).replace('></script>', ' type="text/javascript" defer="defer"></script>')
+        new_script_tags = '\n'.join(script_tags).replace('></script>', ' type="text/javascript" defer="defer"></script>')
 
     # close file from reading
     index_file.close()
+
+    # the second file I/O operation will move around the script tags regardless of formatting and close of the link tag
 
     # use fileinput to open up index.html file and create backup before editing
     with fileinput.FileInput(filepath, inplace=True, backup='.bak') as file:
@@ -48,10 +52,16 @@ def move_script_tags():
       for line in file:
         # store script tags in variable
         script_tags = script_tag_regex.findall(line)
-        # find place where ending head tag and unclosed link tag is
-        if '.css"></head>' in line:
-          # replace previous text with new script tags and closing link tag
-          print(line.replace('.css"></head>', f'.css" type="text/css" />{new_script_tags}</head>'), end='')
+        # do various checks that depend on formatting
+        # if the link tag and the closing head tag on the same line
+        if '.css">' in line and '</head>' in line:
+          print(line.replace('.css"></head>', f'.css" type="text/css" />\n{new_script_tags}\n</head>'), end='')
+        # if the link tag is not on the same line as the head tag
+        elif '</head>' in line and '.css">' not in line:
+          print(line.replace('</head>', f'{new_script_tags}\n</head>'), end='')
+        # if the head tag is not on the same line as the link tag (different condition)
+        elif '.css">' in line and '</head>' not in line:
+          print (line.replace('.css">', '.css" type="text/css" />\n'), end='')
         # check if script tags are in current line
         elif script_tags:
           # remove script tags from bottom of file
