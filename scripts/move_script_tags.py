@@ -27,7 +27,7 @@ def move_script_tags():
 
     new_script_tags = ''
 
-    # wrap file i/o logic in try block
+    # wrap file I/O logic in try block
     try:
 
       # the first file I/O operation will store the script tags in a variable
