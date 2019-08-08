@@ -8,6 +8,7 @@ import he from 'he';
 import { RomsService } from '../../../services/roms.service';
 import { AuthService } from '../../../services/auth.service';
 import { Rom } from '../../../models/Rom';
+import { Images } from '../../../enums/images.enum';
 
 @Component({
   selector: 'app-rom-info',
@@ -17,9 +18,10 @@ import { Rom } from '../../../models/Rom';
 export class RomInfoComponent implements OnInit, AfterContentInit {
   rom: Rom;
   id: string;
-  loading: boolean;
+  loading: boolean = true;
   isError: boolean;
   faLongArrowAltLeft: IconDefinition;
+  images: typeof Images = Images;
 
   constructor(
     private romService: RomsService,
@@ -31,7 +33,6 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   ngOnInit(): void {
     this.faLongArrowAltLeft = faLongArrowAltLeft;
     this.id = this.route.snapshot.paramMap.get('id');
-    this.loading = true;
     this.isError = false;
     this.rom = {
       orderNumber: 0,

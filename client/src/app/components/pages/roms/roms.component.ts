@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { RomsService } from '../../../services/roms.service';
 import { Rom } from '../../../models/Rom';
 import he from 'he';
+import { Images } from '../../../enums/images.enum';
 
 @Component({
   selector: 'app-roms',
@@ -16,6 +17,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
   loading: boolean = true;
   noRomsMsg: string = '';
   limit: number = 35;
+  images: typeof Images = Images;
 
   static jumpToTop(): void {
     window.scrollTo(0, 0);
@@ -46,6 +48,8 @@ export class RomsComponent implements OnInit, AfterContentInit {
         }
       },
       (err: any): never => {
+        this.loading = false;
+        this.noRomsMsg = 'No ROMs to Show (Error loading ROMs)';
         throw err;
       }
     );

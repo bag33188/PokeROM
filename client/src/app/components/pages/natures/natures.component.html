@@ -1,7 +1,14 @@
 <div class="container mt-4" id="natures-container">
   <h1>Natures</h1>
   <hr />
-  <table id="natures" class="table border rounded">
+  <div
+    id="spinner-container"
+    class="d-flex justify-content-center align-items-center"
+    *ngIf="loading"
+  >
+    <img [src]="images.SPINNER" alt="spinner" class="align-self-center" />
+  </div>
+  <table id="natures" class="table border rounded" *ngIf="!loading">
     <thead>
       <tr>
         <th *ngFor="let header of headers; let i = index">
