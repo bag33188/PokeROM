@@ -86,6 +86,11 @@ npm run db-osx # run dev db on mac
 npm run db-shell # run dev db shell
 npm run db-prod # run prod db shell
 npm run load-data # load default data set into local db
+
+# to kill mongod process
+# ----------------------
+sudo lsof -iTCP -sTCP:LISTEN -n -P
+sudo kill <mongod_command_pid>
 ```
 
 ## Browser Compatibility
