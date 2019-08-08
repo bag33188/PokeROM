@@ -1,10 +1,13 @@
 <div class="p-2">
   <div
-    id="spinner-container"
-    class="d-flex justify-content-center align-items-center"
+    class="d-flex justify-content-center align-items-center spinner-container"
     *ngIf="loading"
   >
-    <img [src]="images.SPINNER" alt="spinner" class="align-self-center" />
+    <img
+      [src]="images.SPINNER"
+      alt="spinner"
+      class="spinner align-self-center"
+    />
   </div>
   <div class="alert alert-danger mt-4 pt-2" [hidden]="!isError">
     Oops, looks like there was an error while trying to load your ROM

@@ -1,36 +1,41 @@
-<div class="container mt-4" id="natures-container">
-  <h1>Natures</h1>
-  <hr />
+<ng-contaienr>
   <div
-    id="spinner-container"
-    class="d-flex justify-content-center align-items-center"
+    class="d-flex justify-content-center align-items-center spinner-container"
     *ngIf="loading"
   >
-    <img [src]="images.SPINNER" alt="spinner" class="align-self-center" />
+    <img
+      [src]="images.SPINNER"
+      alt="spinner"
+      class="spinner align-self-center"
+    />
   </div>
-  <div class="alert alert-danger" [hidden]="!isError">
-    Oops, there was a problem while trying to load the natures.<br />Please try
-    again later.
+  <div class="container mt-4" id="natures-container">
+    <h1>Natures</h1>
+    <hr />
+    <div class="alert alert-danger" [hidden]="!isError">
+      Oops, there was a problem while trying to load the natures.<br />Please
+      try again later.
+    </div>
+    <table id="natures" class="table border rounded" *ngIf="!loading">
+      <thead>
+        <tr>
+          <th *ngFor="let header of headers; let i = index">
+            <div class="header-icon-container">
+              <fa-icon [icon]="icons[i]" class="mr-2"></fa-icon>
+            </div>
+            <span class="header-text">{{ header }}</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let nature of natures">
+          <td>{{ nature.name }}</td>
+          <td>{{ nature.up }}</td>
+          <td>{{ nature.down }}</td>
+          <td>{{ nature.flavor || 'N/A' }}</td>
+          <td>{{ nature.usage }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <table id="natures" class="table border rounded" *ngIf="!loading">
-    <thead>
-      <tr>
-        <th *ngFor="let header of headers; let i = index">
-          <div class="header-icon-container">
-            <fa-icon [icon]="icons[i]" class="mr-2"></fa-icon>
-          </div>
-          <span class="header-text">{{ header }}</span>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let nature of natures">
-        <td>{{ nature.name }}</td>
-        <td>{{ nature.up }}</td>
-        <td>{{ nature.down }}</td>
-        <td>{{ nature.flavor || 'N/A' }}</td>
-        <td>{{ nature.usage }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+</ng-contaienr>

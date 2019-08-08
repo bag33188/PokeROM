@@ -1,10 +1,13 @@
 <ng-container>
   <div
-    id="spinner-container"
-    class="d-flex justify-content-center align-items-center"
+    class="d-flex justify-content-center align-items-center spinner-container"
     *ngIf="loading"
   >
-    <img [src]="images.SPINNER" alt="spinner" class="align-self-center" />
+    <img
+      [src]="images.SPINNER"
+      alt="spinner"
+      class="spinner align-self-center"
+    />
   </div>
   <div class="justify-content-center mt-4 roms-flex" *ngIf="!loading">
     <h2 *ngIf="romsData.length === 0" class="text-center" id="no-roms-heading">

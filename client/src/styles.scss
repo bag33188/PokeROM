@@ -24,8 +24,14 @@ html {
   cursor: not-allowed;
 }
 
-// a {
-//   .disabled {
-//     cursor: not-allowed !important;
-//   }
-// }
+.spinner {
+  height: auto;
+  width: 8rem;
+}
+
+.spinner-container {
+  height: unquote('#{$calc-height}');
+  left: 50%;
+  margin-left: -64px;
+  position: absolute;
+}
