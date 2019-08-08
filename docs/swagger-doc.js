@@ -1,7 +1,6 @@
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerDefinition = require('./swagger-definition.json');
-const auth = require('../middleware/auth');
 
 // Swagger Definition: swagger doc info object
 // Like the one described here: https://swagger.io/specification/#infoObject
@@ -39,12 +38,7 @@ const specs = swaggerJsDoc(swaggerDefinition);
  * @param {object} app expressJS app object.
  */
 const apiDocs = app =>
-  app.use(
-    `/api/docs/${version}`,
-    auth,
-    swaggerUi.serve,
-    swaggerUi.setup(specs)
-  );
+  app.use(`/api/docs/${version}`, swaggerUi.serve, swaggerUi.setup(specs));
 
 // export docs and version
 module.exports = [apiDocs, version];
