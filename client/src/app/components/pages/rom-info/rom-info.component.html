@@ -6,6 +6,10 @@
   >
     <img [src]="images.SPINNER" alt="spinner" class="align-self-center" />
   </div>
+  <div class="alert alert-danger mt-4 pt-2" [hidden]="!isError">
+    Oops, looks like there was an error while trying to load your ROM
+    information.<br />Please try again later.
+  </div>
   <div id="rom-info-container" class="mt-4" *ngIf="!loading">
     <div id="back-btn-container">
       <button

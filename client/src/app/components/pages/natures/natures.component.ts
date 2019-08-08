@@ -27,6 +27,7 @@ export class NaturesComponent implements OnInit, AfterContentInit {
   faHeart: IconDefinition;
   images: typeof Images = Images;
   loading: boolean = true;
+  isError: boolean = false;
 
   constructor(private naturesService: NaturesService) {}
 
@@ -66,9 +67,11 @@ export class NaturesComponent implements OnInit, AfterContentInit {
       (res: Nature[]): void => {
         this.natures = res;
         this.loading = false;
+        this.isError = false;
       },
       (err: any): never => {
-        this.loading = true;
+        this.loading = false;
+        this.isError = true;
         throw err;
       }
     );

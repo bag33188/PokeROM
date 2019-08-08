@@ -8,6 +8,10 @@
   >
     <img [src]="images.SPINNER" alt="spinner" class="align-self-center" />
   </div>
+  <div class="alert alert-danger" [hidden]="!isError">
+    Oops, there was a problem while trying to load the natures.<br />Please try
+    again later.
+  </div>
   <table id="natures" class="table border rounded" *ngIf="!loading">
     <thead>
       <tr>
