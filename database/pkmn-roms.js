@@ -6,8 +6,8 @@
 // 2. <path_to_mongo> <path_to_this_file>.js
 
 // connect to mongodb
-// conn = new Mongo();
-// printjson(conn);
+conn = new Mongo();
+printjson(conn);
 
 // connect to/create pkmn-roms database
 db = conn.getDB('pkmn-roms');

@@ -113,13 +113,14 @@ npm run load-data # load default data set into local db
     - Markdown
 3. Source Code Pro Fonts: [download][source code pro fonts download]
 
----
-
-> _**Enjoy!**_
-
 [heroku]: https://www.heroku.com/ 'Heroku Website'
 [pokerom website]: https://pokerom-broccolini.herokuapp.com 'https://pokerom-broccolini.herokuapp.com'
 [mongodb atlas cloud]: https://cloud.mongodb.com 'MongoDB Atlas Cloud Document DB'
 [pokerom setup repo]: https://github.com/bag33188/PokeROM-Setup 'PokeROM-Setup Github Repository'
 [source code pro fonts download]: https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA 'Source Code Pro Fonts Download (Direct Download)'
+
+---
+
+> _**Enjoy!**_
+
 [comment]: # 'End README.md'
