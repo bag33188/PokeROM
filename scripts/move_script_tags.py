@@ -17,11 +17,14 @@ def move_script_tags():
   print('Moving around script tags in index.html ... ')
 
   # create vars
+
+  # file path var
   filepath = '../public/index.html'
 
   # regex for identifying script tags
   script_tag_regex = re.compile(r'(<script src=\"(?:runtime|polyfills-es5|polyfills|main|vendor|scripts)\.(?:#?(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(?:\snomodule)?><\/script>)')
 
+  # future script tag string from joined script tag strings array
   new_script_tags = ''
 
   # wrap file I/O logic in try block
@@ -56,6 +59,7 @@ def move_script_tags():
         script_tags = script_tag_regex.findall(line)
         
         # do various checks that depend on formatting
+      
         # if the link tag and the closing head tag on the same line
         if ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:
           print(line.replace('.css"></head>', f'.css" />\n{new_script_tags}\n</head>')
