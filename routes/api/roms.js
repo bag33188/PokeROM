@@ -12,7 +12,7 @@ const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
-const cache = require('../../middleware/cache');
+const [cache, clearCache] = require('../../middleware/cache');
 // const all_routes = require('express-list-endpoints');
 
 const httpRouter = express.Router();
@@ -436,6 +436,7 @@ httpRouter.post(
             .subtract(7, 'hours')
             .format()
         );
+        clearCache();
         return res.status(201).json(rom);
       });
     } catch (err) {
@@ -663,6 +664,8 @@ httpRouter.put(
               });
             }
             rom = { _id: rom._id, ...updateRomData };
+            clearCache();
+
             return res.status(200).json(rom);
           });
         } else {
@@ -764,6 +767,8 @@ httpRouter.patch(
               });
             }
             getRomById({ _id: id }, req, res, rom => {
+              clearCache();
+
               return res.status(200).json(rom);
             });
           });
@@ -824,6 +829,8 @@ httpRouter.delete(
                 message: 'Bad gateway.'
               });
             }
+            clearCache();
+
             return res.status(200).json({
               success: true,
               message: 'ROM successfully deleted!',
@@ -889,6 +896,8 @@ httpRouter.delete(
                   message: 'Bad gateway.'
                 });
               }
+              clearCache();
+
               return res.status(200).json({
                 success: true,
                 message,
@@ -990,6 +999,7 @@ httpRouter.post('/core', auth, async (req, res, next) => {
         req,
         res,
         fetchedRoms => {
+          clearCache();
           return res.status(201).json(fetchedRoms);
         },
         0
@@ -1020,6 +1030,7 @@ httpRouter.post('/hacks', auth, async (req, res, next) => {
         req,
         res,
         fetchedRoms => {
+          clearCache();
           return res.status(201).json(fetchedRoms);
         },
         0

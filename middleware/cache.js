@@ -18,4 +18,8 @@ function cache(duration) {
   };
 }
 
-module.exports = cache;
+function clearCache() {
+  mcache.clear();
+}
+
+module.exports = [cache, clearCache];

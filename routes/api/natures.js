@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator/check');
 const Nature = require('../../models/Nature');
 const natureData = require('../../database/data.json')[2];
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
-const cache = require('../../middleware/cache');
+const [cache, clearCache] = require('../../middleware/cache');
 
 const httpRouter = express.Router();
 
@@ -204,6 +204,7 @@ httpRouter.post(
             .subtract(7, 'hours')
             .format()
         );
+        clearCache();
         return res.status(201).json(nature);
       });
     } catch (err) {
@@ -325,6 +326,7 @@ httpRouter.put(
             });
           }
           getNature({ _id: id }, req, res, nature => {
+            clearCache();
             return res.status(200).json(nature);
           });
         }
@@ -403,6 +405,7 @@ httpRouter.patch(
           });
         }
         getNature({ _id: id }, req, res, nature => {
+          clearCache();
           return res.status(200).json(nature);
         });
       });
@@ -453,6 +456,7 @@ httpRouter.delete(
               message: 'Bad gateway.'
             });
           }
+          clearCache();
           return res.status(200).json({ success: true, ...status });
         });
       });
@@ -478,6 +482,7 @@ httpRouter.delete('/', async (req, res, next) => {
           message: 'Bad gateway.'
         });
       }
+      clearCache();
       return res.status(200).json({
         success: true,
         message: 'All Natures successfuly deleted!',
@@ -562,6 +567,7 @@ httpRouter.post('/all', async (req, res, next) => {
             message: 'Bad gateway.'
           });
         }
+        clearCache();
         return res.status(201).json(natures);
       });
     });
