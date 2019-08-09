@@ -59,10 +59,12 @@ app.get('/', async (req, res, next) => {
 
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static(path.join(__dirname, 'public')), {
-    maxage: 0,
-    etag: true
-  });
+  app.use(
+    express.static(path.join(__dirname, 'public'), {
+      maxage: 0,
+      etag: true
+    })
+  );
 
   app.get('*', async (req, res, next) => {
     try {
