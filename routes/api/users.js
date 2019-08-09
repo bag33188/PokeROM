@@ -11,6 +11,7 @@ const User = require('../../models/User');
 const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
+const [cache, clearCache] = require('../../middleware/cache');
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
 
 const httpRouter = express.Router();
@@ -63,7 +64,7 @@ function getUserById(query, req, res, callback) {
  * @summary Get all Users.
  * @description Gets all users in the database.
  */
-httpRouter.get('/', auth, async (req, res, next) => {
+httpRouter.get('/', cache(14), auth, async (req, res, next) => {
   try {
     await User.getAllUsers((err, users) => {
       if (err) {
@@ -89,6 +90,7 @@ httpRouter.get('/', auth, async (req, res, next) => {
  */
 httpRouter.get(
   '/:id',
+  cache(14),
   [
     sanitizeParam('id')
       .trim()
@@ -251,6 +253,7 @@ httpRouter.post(
               .subtract(7, 'hours')
               .format()
           );
+          clearCache(req);
           return res
             .status(201)
             .json({ success: true, message: 'User successfully registered!' });
@@ -478,6 +481,7 @@ httpRouter.put(
             });
           }
           getUserById({ _id: id }, req, res, user => {
+            clearCache(req);
             return res.status(200).json({
               id: user._id,
               name: user.name,
@@ -570,6 +574,7 @@ httpRouter.patch(
             });
           }
           getUserById({ _id: id }, req, res, user => {
+            clearCache(req);
             return res.status(200).json(user);
           });
         });
@@ -615,6 +620,7 @@ httpRouter.delete('/', auth, async (req, res, next) => {
             success: false
           });
         }
+        clearCache(req);
         return res.status(200).json({
           success: true,
           message: 'All users successfully deleted!',
@@ -683,6 +689,7 @@ httpRouter.delete(
                   message: 'Error 404: user not found.'
                 });
               }
+              clearCache(req);
               return res.status(200).json({
                 success: true,
                 message: 'User successfully deleted!',

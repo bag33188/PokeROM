@@ -2,7 +2,27 @@ const mcache = require('memory-cache');
 
 function cache(duration) {
   return (req, res, next) => {
-    const key = `__express__${req.originalUrl}`;
+    let key = `__express__${req.originalUrl}`;
+    const routeParams = ['all', 'core', 'hacks', 'id'];
+    routeParams.forEach(param => {
+      if (req.params[param] || req.originalUrl.includes(param)) {
+        key = key.replace('/' + (req.params[param] || param), '');
+      }
+    });
+    const queryParams = ['_limit', 'core', 'hacks', 'page', 'per_page'];
+    if (Object.keys(req.query).length > 0) {
+      queryParams.forEach(param => {
+        if (req.query[param]) {
+          key = key
+            .replace(req.query[param], '')
+            .replace(param, '')
+            .replace('?', '')
+            .replace(/&/g, '')
+            .replace(/=/g, '');
+        }
+      });
+    }
+    console.log(key);
     const cachedBody = mcache.get(key);
     if (cachedBody) {
       res.send(cachedBody);
@@ -19,7 +39,34 @@ function cache(duration) {
 }
 
 function clearCache(req) {
-  mcache.del(`__express__${req.originalUrl}`);
+  let key = `__express__${req.originalUrl}`;
+  const routeParams = [
+    'all',
+    'core',
+    'hacks',
+    'id',
+    'register',
+    'authenticate'
+  ];
+  routeParams.forEach(param => {
+    if (req.params[param] || req.originalUrl.includes(param)) {
+      key = key.replace('/' + (req.params[param] || param), '');
+    }
+  });
+  const queryParams = ['hacks', 'core'];
+  if (Object.keys(req.query).length > 0) {
+    queryParams.forEach(param => {
+      if (req.query[param]) {
+        key = key
+          .replace(req.query[param], '')
+          .replace(param, '')
+          .replace('?', '')
+          .replace(/&/g, '')
+          .replace(/=/g, '');
+      }
+    });
+  }
+  mcache.del(key);
 }
 
 module.exports = [cache, clearCache];

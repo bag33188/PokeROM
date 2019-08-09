@@ -6,6 +6,7 @@ const url = require('url');
 const moment = require('moment');
 const Rating = require('../../models/Rating');
 const auth = require('../../middleware/auth');
+const [cache, clearCache] = require('../../middleware/cache');
 
 const httpRouter = express.Router();
 
@@ -86,6 +87,7 @@ httpRouter.post(
             .subtract(7, 'hours')
             .format()
         );
+        clearCache(req);
         return res.status(201).json(rating);
       });
     } catch (err) {
@@ -96,6 +98,7 @@ httpRouter.post(
 
 httpRouter.get(
   '/:id',
+  cache(10),
   [
     sanitizeParam('id')
       .trim()
@@ -132,7 +135,7 @@ httpRouter.get(
   }
 );
 
-httpRouter.get('/', auth, async (req, res, next) => {
+httpRouter.get('/', cache(10), auth, async (req, res, next) => {
   try {
     let limit = req.query['_limit'];
     if (!limit) {
@@ -185,6 +188,7 @@ httpRouter.delete(
               .status(404)
               .json({ success: false, message: 'Rating not found.' });
           }
+          clearCache(req);
           return res.status(200).json({ success: true, ...status });
         });
       });
@@ -205,6 +209,7 @@ httpRouter.delete('/', auth, async (req, res, next) => {
           .status(502)
           .json({ success: false, message: 'Bad gateway.' });
       }
+      clearCache(req);
       return res.status(200).json({ success: true, ...status });
     });
   } catch (err) {
