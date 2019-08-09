@@ -63,6 +63,11 @@ export class AppComponent {
       this.apiService.getApiVersion().subscribe(
         (res: ApiVersion): void => {
           this.logger.log(`API Version: ${res.api_version}`);
+          caches.open('api_version').then(
+            async (cache: Cache): Promise<void> => {
+              return await cache.add(`${environment.apiUrl}/version`);
+            }
+          );
         },
         (err: any): never => {
           throw err;
