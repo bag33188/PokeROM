@@ -2,10 +2,7 @@ const mcache = require('memory-cache');
 
 function cache(duration) {
   return (req, res, next) => {
-    const key = `__express__${req.protocol +
-      '://' +
-      req.get('host') +
-      req.originalUrl}`;
+    const key = `__express__${req.originalUrl}`;
     const cachedBody = mcache.get(key);
     if (cachedBody) {
       res.send(cachedBody);
@@ -22,9 +19,7 @@ function cache(duration) {
 }
 
 function clearCache(req) {
-  mcache.del(
-    `__express__${req.protocol + '://' + req.get('host') + req.originalUrl}`
-  );
+  mcache.del(`__express__${req.originalUrl}`);
 }
 
 module.exports = [cache, clearCache];
