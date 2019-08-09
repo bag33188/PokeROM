@@ -44,6 +44,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(expressSanitizer());
 app.use(cors);
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'must-revalidate');
+  next();
+});
 
 // routing middleware
 app.use('/options', options);
