@@ -31,11 +31,7 @@ apiDocs(app);
 // middleware
 app.use(logger);
 // define what directory to look in for serving static file(s)
-app.use(
-  express.static(path.join(__dirname, 'public'), {
-    etag: true
-  })
-);
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(jsonSyntax);
 app.use(express.urlencoded({ extended: false })); // extended: true
@@ -43,10 +39,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(expressSanitizer());
 app.use(cors);
-app.use((req, res, next) => {
-  res.set('Cache-Control', 'no-store');
-  next();
-});
 
 // routing middleware
 app.use('/options', options);
@@ -67,11 +59,7 @@ app.get('/', async (req, res, next) => {
 
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(
-    express.static(path.join(__dirname, 'public'), {
-      etag: true
-    })
-  );
+  app.use(express.static(path.join(__dirname, 'public')));
 
   app.get('*', async (req, res, next) => {
     try {

@@ -18,13 +18,9 @@ function cache(duration) {
     }
     const cachedBody = mcache.get(key);
     if (cachedBody) {
-      res.set('Cache-Control', `public, max-age=${duration * 1000}`);
-
       res.send(cachedBody);
       return;
     } else {
-      res.set('Cache-Control', `public, max-age=${duration * 1000}`);
-
       res.sendResponse = res.send;
       res.send = body => {
         mcache.put(key, body, duration * 1000);
