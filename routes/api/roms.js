@@ -436,7 +436,7 @@ httpRouter.post(
             .subtract(7, 'hours')
             .format()
         );
-        clearCache();
+        clearCache(req);
         return res.status(201).json(rom);
       });
     } catch (err) {
@@ -664,7 +664,7 @@ httpRouter.put(
               });
             }
             rom = { _id: rom._id, ...updateRomData };
-            clearCache();
+            clearCache(req);
 
             return res.status(200).json(rom);
           });
@@ -767,7 +767,7 @@ httpRouter.patch(
               });
             }
             getRomById({ _id: id }, req, res, rom => {
-              clearCache();
+              clearCache(req);
 
               return res.status(200).json(rom);
             });
@@ -829,7 +829,7 @@ httpRouter.delete(
                 message: 'Bad gateway.'
               });
             }
-            clearCache();
+            clearCache(req);
 
             return res.status(200).json({
               success: true,
@@ -896,7 +896,7 @@ httpRouter.delete(
                   message: 'Bad gateway.'
                 });
               }
-              clearCache();
+              clearCache(req);
 
               return res.status(200).json({
                 success: true,
@@ -999,7 +999,7 @@ httpRouter.post('/core', auth, async (req, res, next) => {
         req,
         res,
         fetchedRoms => {
-          clearCache();
+          clearCache(req);
           return res.status(201).json(fetchedRoms);
         },
         0
@@ -1030,7 +1030,7 @@ httpRouter.post('/hacks', auth, async (req, res, next) => {
         req,
         res,
         fetchedRoms => {
-          clearCache();
+          clearCache(req);
           return res.status(201).json(fetchedRoms);
         },
         0

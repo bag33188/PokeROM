@@ -204,7 +204,7 @@ httpRouter.post(
             .subtract(7, 'hours')
             .format()
         );
-        clearCache();
+        clearCache(req);
         return res.status(201).json(nature);
       });
     } catch (err) {
@@ -326,7 +326,7 @@ httpRouter.put(
             });
           }
           getNature({ _id: id }, req, res, nature => {
-            clearCache();
+            clearCache(req);
             return res.status(200).json(nature);
           });
         }
@@ -405,7 +405,7 @@ httpRouter.patch(
           });
         }
         getNature({ _id: id }, req, res, nature => {
-          clearCache();
+          clearCache(req);
           return res.status(200).json(nature);
         });
       });
@@ -456,7 +456,7 @@ httpRouter.delete(
               message: 'Bad gateway.'
             });
           }
-          clearCache();
+          clearCache(req);
           return res.status(200).json({ success: true, ...status });
         });
       });
@@ -482,7 +482,7 @@ httpRouter.delete('/', async (req, res, next) => {
           message: 'Bad gateway.'
         });
       }
-      clearCache();
+      clearCache(req);
       return res.status(200).json({
         success: true,
         message: 'All Natures successfuly deleted!',
@@ -567,7 +567,7 @@ httpRouter.post('/all', async (req, res, next) => {
             message: 'Bad gateway.'
           });
         }
-        clearCache();
+        clearCache(req);
         return res.status(201).json(natures);
       });
     });

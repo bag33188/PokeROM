@@ -18,8 +18,8 @@ function cache(duration) {
   };
 }
 
-function clearCache() {
-  mcache.clear();
+function clearCache(req) {
+  mcache.delete(`__express__${req.originUrl || req.url}`);
 }
 
 module.exports = [cache, clearCache];
