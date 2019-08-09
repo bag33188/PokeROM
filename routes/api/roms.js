@@ -12,6 +12,7 @@ const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
+const cache = require('../../middleware/cache');
 // const all_routes = require('express-list-endpoints');
 
 const httpRouter = express.Router();
@@ -112,6 +113,7 @@ function getAllRoms(query, req, res, callback, limit) {
  */
 httpRouter.get(
   '/',
+  cache(20),
   [
     sanitizeQuery(['limit', 'per_page', 'page', 'getAllCore', 'getAllHacks'])
       .trim()
@@ -179,6 +181,7 @@ httpRouter.get(
  */
 httpRouter.get(
   '/:id',
+  cache(20),
   [
     sanitizeParam('id')
       .trim()

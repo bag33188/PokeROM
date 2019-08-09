@@ -7,6 +7,7 @@ const { check, validationResult } = require('express-validator/check');
 const Nature = require('../../models/Nature');
 const natureData = require('../../database/data.json')[2];
 const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
+const cache = require('../../middleware/cache');
 
 const httpRouter = express.Router();
 
@@ -35,7 +36,7 @@ function getNature(query, req, res, callback) {
  * @summary Get all Natures.
  * @description Gets all Natures in the database.
  */
-httpRouter.get('/', async (req, res, next) => {
+httpRouter.get('/', cache(10), async (req, res, next) => {
   try {
     await Nature.getNatures((err, natures) => {
       if (err) {
