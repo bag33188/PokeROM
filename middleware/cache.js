@@ -19,7 +19,6 @@ function cache(duration) {
         }
       });
     }
-    console.log(key);
     const cachedBody = mcache.get(key);
     if (cachedBody) {
       res.send(cachedBody);
