@@ -1,21 +1,31 @@
 <ng-container>
   <app-spinner [loading]="loading"></app-spinner>
   <div class="justify-content-center mt-4 roms-flex" *ngIf="!loading">
-    <h2 *ngIf="romsData.length === 0" class="text-center" id="no-roms-heading">
+    <h2
+      *ngIf="romsData.length === 0 && !isError"
+      class="text-center"
+      id="no-roms-heading"
+    >
       {{ noRomsMsg }}
     </h2>
-    <div class="container-grid">
-      <app-rom
-        *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
-        class="card card-container border rounded"
-        [rom]="rom"
-      ></app-rom>
+    <div class="alert alert-danger mt-2" *ngIf="isError">
+      Oops, there was an error while trying to load your ROMs. Please try again
+      later.
     </div>
-    <app-roms-pagination
-      [romsData]="romsData"
-      [currentPage]="currentPage"
-      [itemsPerPage]="itemsPerPage"
-      (paginate)="onPageChange($event)"
-    ></app-roms-pagination>
+    <div *ngIf="!isError">
+      <div class="container-grid">
+        <app-rom
+          *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
+          class="card card-container border rounded"
+          [rom]="rom"
+        ></app-rom>
+      </div>
+      <app-roms-pagination
+        [romsData]="romsData"
+        [currentPage]="currentPage"
+        [itemsPerPage]="itemsPerPage"
+        (paginate)="onPageChange($event)"
+      ></app-roms-pagination>
+    </div>
   </div>
 </ng-container>

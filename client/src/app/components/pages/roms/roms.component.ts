@@ -16,6 +16,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
   loading: boolean = true;
   noRomsMsg: string = '';
   limit: number = 35;
+  isError: boolean = false;
 
   static jumpToTop(): void {
     window.scrollTo(0, 0);
@@ -35,6 +36,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
     const limit: number = this.limit;
     this.romsService.getAllRoms(limit).subscribe(
       (roms: Rom[]): void => {
+        this.isError = false;
         roms.forEach((rom: Rom): void => {
           rom.game_name = he.decode(rom.game_name);
           rom.description = he.decode(rom.description);
@@ -46,8 +48,9 @@ export class RomsComponent implements OnInit, AfterContentInit {
         }
       },
       (err: any): never => {
+        this.isError = true;
         this.loading = false;
-        this.noRomsMsg = 'No ROMs to Show (Error loading ROMs)';
+        this.noRomsMsg = '';
         throw err;
       }
     );

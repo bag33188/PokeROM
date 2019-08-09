@@ -7,7 +7,7 @@
       Oops, there was a problem while trying to load the natures.<br />Please
       try again later.
     </div>
-    <table id="natures" class="table border rounded" *ngIf="!loading">
+    <table id="natures" class="table border rounded" *ngIf="!loading && !isError">
       <thead>
         <tr>
           <th *ngFor="let header of headers; let i = index">
