@@ -1,6 +1,6 @@
 <div class="p-2">
   <app-spinner [loading]="loading"></app-spinner>
-  <div class="alert alert-danger mt-4 pt-2" [hidden]="!isError">
+  <div class="alert alert-danger mt-4 pt-2" *ngIf="isError">
     Oops, looks like there was an error while trying to load your ROM
     information.<br />Please try again later.
   </div>
