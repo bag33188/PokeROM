@@ -20,4 +20,12 @@ export class ApiService {
   public getApiVersion(): Observable<ApiVersion> {
     return this.http.get<ApiVersion>(this.apiVersionUrl);
   }
+
+  public storeApiVersionInCache(): void {
+    caches.open('api_version').then(
+      async (cache: Cache): Promise<void> => {
+        return await cache.add(`${environment.apiUrl}/version`);
+      }
+    );
+  }
 }

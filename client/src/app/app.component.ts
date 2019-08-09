@@ -50,7 +50,7 @@ export class AppComponent {
   ) {
     this.changeTitleIfDevEnv();
     this.getApiVersionIfDevEnv();
-    this.storeApiVersionInCache();
+    apiService.storeApiVersionInCache();
   }
 
   changeTitleIfDevEnv(): void {
@@ -70,14 +70,6 @@ export class AppComponent {
         }
       );
     }
-  }
-
-  storeApiVersionInCache(): void {
-    caches.open('api_version').then(
-      async (cache: Cache): Promise<void> => {
-        return await cache.add(`${environment.apiUrl}/version`);
-      }
-    );
   }
 
   isHomePage(): boolean {
