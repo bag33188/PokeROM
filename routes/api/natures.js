@@ -62,6 +62,7 @@ httpRouter.get('/', cache(10), async (req, res, next) => {
  */
 httpRouter.get(
   '/:id',
+  cache(10),
   [
     sanitizeParam('id')
       .trim()
