@@ -33,7 +33,6 @@ app.use(logger);
 // define what directory to look in for serving static file(s)
 app.use(
   express.static(path.join(__dirname, 'public'), {
-    maxage: 0,
     etag: true
   })
 );
@@ -45,7 +44,7 @@ app.use(passport.session());
 app.use(expressSanitizer());
 app.use(cors);
 app.use((req, res, next) => {
-  res.set('Cache-Control', 'must-revalidate');
+  res.set('Cache-Control', 'no-store');
   next();
 });
 
@@ -70,7 +69,6 @@ if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(
     express.static(path.join(__dirname, 'public'), {
-      maxage: 0,
       etag: true
     })
   );
