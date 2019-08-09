@@ -3,12 +3,9 @@ const mcache = require('memory-cache');
 function cache(duration) {
   return (req, res, next) => {
     let key = `__express__${req.originalUrl}`;
-    const routeParams = ['all', 'core', 'hacks', 'id'];
-    routeParams.forEach(param => {
-      if (req.params[param] || req.originalUrl.includes(param)) {
-        key = key.replace('/' + (req.params[param] || param), '');
-      }
-    });
+    if (req.params['id']) {
+      key = key.replace('/' + req.params['id'], '');
+    }
     const queryParams = ['_limit', 'core', 'hacks', 'page', 'per_page'];
     if (Object.keys(req.query).length > 0) {
       queryParams.forEach(param => {
