@@ -33,7 +33,7 @@ import { environment } from '../environments/environment';
     `,
     `
       #container-wrapper {
-        display: block;
+        display: initial;
         margin: var(--mp-prop-val);
         padding: var(--mp-prop-val);
       }
