@@ -42,14 +42,12 @@ function clearCache(req) {
   const queryParams = ['hacks', 'core'];
   if (Object.keys(req.query).length > 0) {
     queryParams.forEach(param => {
-      if (req.query[param]) {
-        key = key
-          .replace(req.query[param], '')
-          .replace(param, '')
-          .replace('?', '')
-          .replace(/&/g, '')
-          .replace(/=/g, '');
-      }
+      key = key
+        .replace(req.query[param], '')
+        .replace(param, '')
+        .replace('?', '')
+        .replace(/&/g, '')
+        .replace(/=/g, '');
     });
   }
   mcache.del(key);
