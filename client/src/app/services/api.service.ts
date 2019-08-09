@@ -22,6 +22,7 @@ export class ApiService {
   }
 
   public storeApiVersionInCache(): void {
+    const caches: CacheStorage = new CacheStorage();
     caches.open('api_version').then(
       async (cache: Cache): Promise<void> => {
         return await cache.add(`${environment.apiUrl}/version`);
