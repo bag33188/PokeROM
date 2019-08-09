@@ -1,6 +1,5 @@
 const express = require('express');
 // const xml = require('xml');
-const cache = require('../../middleware/cache');
 const swaggerDoc = require('../../docs/swagger-doc');
 const Version = require('../../models/Version');
 
@@ -11,7 +10,7 @@ const httpRouter = express.Router();
  * @summary Get API Version.
  * @description Gets the API's version.
  */
-httpRouter.get('/', cache(14), async (req, res, next) => {
+httpRouter.get('/', async (req, res, next) => {
   try {
     const [, version] = swaggerDoc;
     // const api_version = JSON.stringify(Version.getApiVersion(version));
