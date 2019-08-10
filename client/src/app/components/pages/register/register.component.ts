@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
-    setTimeout((): void => this.authService.logout(), 442);
+    setTimeout((): void => this.authService.logout(), 100);
   }
 
   ngAfterContentInit(): void {
