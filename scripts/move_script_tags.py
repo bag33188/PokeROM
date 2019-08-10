@@ -2,8 +2,8 @@
 
 """This program moves around the script tags in the `public/index.html` file."""
 
-import fileinput # import fileinput module
 import re # import regular expression module
+import fileinput # import fileinput module
 
 # define move_script_tags function
 def move_script_tags():

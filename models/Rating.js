@@ -8,27 +8,32 @@ function setDate(offset) {
 
 const Schema = mongoose.Schema;
 
-const ratingSchema = new Schema({
-  rating: {
-    type: Number,
-    required: [true, 'A rating number is required.'],
-    min: [1, 'Rating must be at least 1.'],
-    max: [10, 'Rating can only be 10 at max.']
+const ratingSchema = new Schema(
+  {
+    rating: {
+      type: Number,
+      required: [true, 'A rating number is required.'],
+      min: [1, 'Rating must be at least 1.'],
+      max: [10, 'Rating can only be 10 at max.']
+    },
+    message: {
+      type: String,
+      required: false,
+      maxlength: [1000, 'Rating message can only be 1000 characters at max.']
+    },
+    date_time: {
+      type: Date,
+      required: [
+        true,
+        'A date and time is required for when the rating was made.'
+      ],
+      default: setDate(7)
+    }
   },
-  message: {
-    type: String,
-    required: false,
-    maxlength: [1000, 'Rating message can only be 1000 characters at max.']
-  },
-  date_time: {
-    type: Date,
-    required: [
-      true,
-      'A date and time is required for when the rating was made.'
-    ],
-    default: setDate(7)
+  {
+    versionKey: false
   }
-});
+);
 
 const Rating = (module.exports = mongoose.model('Rating', ratingSchema));
 

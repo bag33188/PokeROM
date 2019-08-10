@@ -3,47 +3,52 @@ const bcrypt = require('bcryptjs');
 
 const Schema = mongoose.Schema;
 // create schema
-const userSchema = new Schema({
-  name: {
-    type: String,
-    required: false,
-    minlength: [1, 'Name is too short.'],
-    maxlength: [100, 'Name is too long.']
-  },
-  email: {
-    type: String,
-    required: [true, 'Email is required.'],
-    minlength: [3, 'Email is too short.'],
-    maxlength: [55, 'Email is too long.'],
-    validate: {
-      validator: (v) => {
-        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-          v
-        );
-      },
-      message: props => `${props.value} is not a valid email.`
+const userSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: false,
+      minlength: [1, 'Name is too short.'],
+      maxlength: [100, 'Name is too long.']
+    },
+    email: {
+      type: String,
+      required: [true, 'Email is required.'],
+      minlength: [3, 'Email is too short.'],
+      maxlength: [55, 'Email is too long.'],
+      validate: {
+        validator: v => {
+          return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+            v
+          );
+        },
+        message: props => `${props.value} is not a valid email.`
+      }
+    },
+    username: {
+      type: String,
+      required: [true, 'A username is required.'],
+      minlength: [5, 'Username must be at least 5 characters.'],
+      maxlength: [22, 'Username must be less than 22 characters.']
+    },
+    password: {
+      type: String,
+      required: [true, 'A password is required.'],
+      minlength: [8, 'Password must be at least 10 characters.'],
+      maxlength: [256, 'Password must be less than 256 characters.'] //,
+      // validate: {
+      //   validator: (v) => {
+      //     return !/(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi.test(
+      //       v
+      //     );
+      //   }
+      // }
     }
   },
-  username: {
-    type: String,
-    required: [true, 'A username is required.'],
-    minlength: [5, 'Username must be at least 5 characters.'],
-    maxlength: [22, 'Username must be less than 22 characters.']
-  },
-  password: {
-    type: String,
-    required: [true, 'A password is required.'],
-    minlength: [8, 'Password must be at least 10 characters.'],
-    maxlength: [256, 'Password must be less than 256 characters.'] //,
-    // validate: {
-    //   validator: (v) => {
-    //     return !/(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi.test(
-    //       v
-    //     );
-    //   }
-    // }
+  {
+    versionKey: false
   }
-});
+);
 
 // create User model
 const User = (module.exports = mongoose.model('User', userSchema));
