@@ -368,26 +368,13 @@ httpRouter.post(
       }
       const newRom = new Rom({
         user_id: req.user['_id'],
-        order_number: parseInt(
-          req.sanitize(
-            req.body.order_number ? req.body.order_number.toString() : ''
-          ),
-          10
-        ),
+        order_number: req.body.order_number,
         rom_type: req.sanitize(req.body.rom_type),
         file_name: req.sanitize(req.body.file_name),
-        file_size: parseInt(
-          req.sanitize(req.body.file_size ? req.body.file_size.toString() : ''),
-          10
-        ),
+        file_size: req.body.file_size,
         file_type: req.sanitize(req.body.file_type),
         download_link: req.sanitize(req.body.download_link),
-        generation: parseInt(
-          req.sanitize(
-            req.body.generation ? req.body.generation.toString() : ''
-          ),
-          10
-        ),
+        generation: req.body.generation,
         box_art_url: req.sanitize(req.body.box_art_url),
         game_name: req.sanitize(req.body.game_name),
         region: req.sanitize(req.body.region),
@@ -396,7 +383,7 @@ httpRouter.post(
         genre: req.sanitize(req.body.genre) || null,
         date_released: req.sanitize(req.body.date_released),
         logo_url: req.sanitize(req.body.logo_url),
-        is_favorite: Boolean(req.sanitize(req.body.is_favorite.toString())) || false
+        is_favorite: req.body.is_favorite
       });
       const {
         order_number,
@@ -608,26 +595,13 @@ httpRouter.put(
       }
       const updateRomData = {
         user_id: req.user['_id'],
-        order_number: parseInt(
-          req.sanitize(
-            req.body.order_number ? req.body.order_number.toString() : ''
-          ),
-          10
-        ),
+        order_number: req.body.order_number,
         rom_type: req.sanitize(req.body.rom_type),
         file_name: req.sanitize(req.body.file_name),
-        file_size: parseInt(
-          req.sanitize(req.body.file_size ? req.body.file_size.toString() : ''),
-          10
-        ),
+        file_size: req.body.file_size,
         file_type: req.sanitize(req.body.file_type),
         download_link: req.sanitize(req.body.download_link),
-        generation: parseInt(
-          req.sanitize(
-            req.body.generation ? req.body.generation.toString() : ''
-          ),
-          10
-        ),
+        generation: req.body.generation,
         box_art_url: req.sanitize(req.body.box_art_url),
         game_name: req.sanitize(req.body.game_name),
         region: req.sanitize(req.body.region),
@@ -636,7 +610,7 @@ httpRouter.put(
         genre: req.sanitize(req.body.genre) || null,
         date_released: req.sanitize(req.body.date_released),
         logo_url: req.sanitize(req.body.logo_url),
-        is_favorite: Boolean(req.sanitize(req.body.is_favorite.toString())) || false
+        is_favorite: req.body.is_favorite
       };
       const {
         order_number,
@@ -655,6 +629,8 @@ httpRouter.put(
         logo_url,
         is_favorite
       } = updateRomData;
+      console.log(updateRomData)
+
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(406).json({ success: false, errors: errors.array() });

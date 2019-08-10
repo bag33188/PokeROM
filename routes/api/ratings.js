@@ -50,7 +50,7 @@ httpRouter.post(
   async (req, res, next) => {
     try {
       const newRating = new Rating({
-        rating: req.sanitize(req.body.rating),
+        rating: req.body.rating,
         message: req.sanitize(req.body.message) || null
       });
       const { rating, message } = newRating;

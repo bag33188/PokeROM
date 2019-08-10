@@ -132,7 +132,8 @@ class ValidatePatchRequest {
       }
       if (
         typeof this.req.body.file_type === 'string' &&
-        (this.req.body.file_type.length < 2 || this.req.body.file_type.length > 3)
+        (this.req.body.file_type.length < 2 ||
+          this.req.body.file_type.length > 3)
       ) {
         errors.push({
           location: 'body',
@@ -281,7 +282,7 @@ class ValidatePatchRequest {
         });
       }
       if (
-        typeof this.req.body.genre &&
+        typeof this.req.body.genre === 'string' &&
         (this.req.body.genre.length > 20 && this.req.body.genre.length < 2)
       ) {
         errors.push({

@@ -60,11 +60,12 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   getRom(id: string): void {
     this.romService.getRom(id).subscribe(
       (rom: Rom): void => {
-        if (!rom.genre) {
+        const { game_name, description, genre }: Rom = rom;
+        if (!genre) {
           rom.genre = 'N/A';
         }
-        rom.game_name = he.decode(rom.game_name);
-        rom.description = he.decode(rom.description);
+        rom.game_name = he.decode(game_name);
+        rom.description = he.decode(description);
         this.rom = rom;
         this.loading = false;
         this.isError = false;
