@@ -48,6 +48,9 @@ function clearCache(req) {
         .replace(/=/g, '');
     });
   }
+  if (req.params['id']) {
+    mcache.del(key.replace(`/${req.params['id']}`, ''));
+  }
   mcache.del(key);
 }
 
