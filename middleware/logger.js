@@ -30,7 +30,7 @@ function findUTCTimeOffset() {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  console.log(`Logger time offset: ${findUTCTimeOffset()}`);
+  console.log(`UTC time offset: ${findUTCTimeOffset()}`);
 }
 
 module.exports = logger;
