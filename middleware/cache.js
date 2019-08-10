@@ -6,14 +6,12 @@ function cache(duration) {
     const queryParams = ['_limit', 'core', 'hacks', 'page', 'per_page'];
     if (Object.keys(req.query).length > 0) {
       queryParams.forEach(param => {
-        if (req.query[param]) {
-          key = key
-            .replace(req.query[param], '')
-            .replace(param, '')
-            .replace('?', '')
-            .replace(/&/g, '')
-            .replace(/=/g, '');
-        }
+        key = key
+          .replace(req.query[param], '')
+          .replace(param, '')
+          .replace('?', '')
+          .replace(/&/g, '')
+          .replace(/=/g, '');
       });
     }
     const cachedBody = mcache.get(key);
