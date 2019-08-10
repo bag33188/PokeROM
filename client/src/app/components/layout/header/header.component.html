@@ -32,15 +32,15 @@
       </ul>
       <div class="ml-auto">
         <div class="btn-group" *ngIf="isRoutes(loggedOutRoutes, false)">
-          <a class="btn btn-primary nav-item" [routerLink]="['/', 'login']"
+          <a class="btn btn-outline-light nav-item" [routerLink]="['/', 'login']"
             >Login</a
           >
-          <a class="btn btn-primary nav-item" [routerLink]="['/', 'register']"
+          <a class="btn btn-outline-light nav-item" [routerLink]="['/', 'register']"
             >Register</a
           >
         </div>
         <button
-          class="btn btn-primary nav-item"
+          class="btn btn-outline-light nav-item"
           (click)="logout()"
           *ngIf="!isUrl('/login', 'full') && !isLoggedOut()"
         >
