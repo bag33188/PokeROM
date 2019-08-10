@@ -33,7 +33,7 @@ function cache(duration) {
 
 function clearCache(req) {
   let key = `__express__${req.originalUrl}`;
-  const routeParams = ['all', 'core', 'hacks', 'register', 'authenticate'];
+  const routeParams = ['all', 'core', 'hacks', 'register'];
   routeParams.forEach(param => {
     if (req.originalUrl.includes(`/${param}`)) {
       key = key.replace(`/${param}`, '');
