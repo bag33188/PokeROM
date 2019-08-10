@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RatingService } from '../../../services/rating.service';
 import { Rating } from '../../../models/Rating';
-import '../../../sanitation/sanitizeXSS';
+import sanitizeXSS from '../../../sanitation/sanitizeXSS';
 
 @Component({
   selector: 'app-ratings',
@@ -20,7 +20,7 @@ export class RatingsComponent implements OnInit {
   isError: boolean;
 
   constructor(private ratingService: RatingService) {
-
+    String.prototype.sanitizeXSS = sanitizeXSS;
   }
 
   ngOnInit(): void {

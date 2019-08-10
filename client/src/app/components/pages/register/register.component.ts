@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/User';
-import '../../../sanitation/sanitizeXSS';
 import { UserService } from '../../../services/user.service';
+import sanitizeXSS from '../../../sanitation/sanitizeXSS';
 
 @Component({
   selector: 'app-register',
@@ -60,7 +60,9 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     private router: Router,
     private userService: UserService,
     private fb: FormBuilder
-  ) {}
+  ) {
+    String.prototype.sanitizeXSS = sanitizeXSS;
+  }
 
   ngOnInit(): void {
     setTimeout((): void => this.authService.logout(), 442);
