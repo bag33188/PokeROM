@@ -6,21 +6,6 @@ const swaggerDefinition = require('./swagger-definition.json');
 // Like the one described here: https://swagger.io/specification/#infoObject
 // './docs/**/*.yml'
 
-switch (process.env.NODE_ENV) {
-  case undefined:
-  case 'development':
-    swaggerDefinition.swaggerDefinition.info.contact.url =
-      'http://localhost:4200/docs';
-    break;
-  case 'production':
-    swaggerDefinition.swaggerDefinition.info.contact.url =
-      'https://pokerom-broccolini.herokuapp.com/docs';
-    break;
-  default:
-    swaggerDefinition.swaggerDefinition.info.contact.url = '/docs';
-    break;
-}
-
 // get api docs version
 const version = swaggerDefinition.swaggerDefinition.info.version;
 
