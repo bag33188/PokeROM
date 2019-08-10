@@ -97,7 +97,7 @@ romsCollection = db.createCollection('roms', {
         game_name: {
           bsonType: 'string',
           minLength: 3,
-          maxLength: 50
+          maxLength: 42
         },
         region: {
           bsonType: 'string',
