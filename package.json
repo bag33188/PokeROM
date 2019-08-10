@@ -31,7 +31,7 @@
     "db-win": "mongod --dbpath=C:/MongoDB/data",
     "db-osx": "mongod",
     "db-shell": "mongo",
-    "db-prod": "mongo \"mongodb+srv://pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms\" --username broccolini33188 --password Sullivan",
+    "db-prod": "mongo \"mongodb+srv://pokerom-cluster-voflm.azure.mongodb.net/pkmn-roms\" --username broccolini33188 --password Sullivan",
     "load-data": "mongo ~/Projects/PokeROM/database/pkmn-roms.js",
     "pack": "cd scripts && bash ./package_app.sh",
     "move-script-tags-win": "cd scripts && python move_script_tags.py",

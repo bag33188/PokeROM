@@ -48,7 +48,7 @@ Download Python 3 here: [https://www.python.org/downloads/](https://www.python.o
 
 ```bash
 # set prod db
-heroku config:set PROD_MONGODB=mongodb+srv://broccolini33188:Sullivan@pokerom-cluster-voflm.gcp.mongodb.net/pkmn-roms?retryWrites=true&w=majority
+heroku config:set PROD_MONGODB=mongodb+srv://broccolini33188:Sullivan@pokerom-cluster-voflm.azure.mongodb.net/pkmn-roms?retryWrites=true&w=majority
 
 # see app logs
 heroku logs --tail
