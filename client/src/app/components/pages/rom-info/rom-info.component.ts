@@ -47,7 +47,8 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
       logo_url: '',
       box_art_url: '',
       file_name: '',
-      platform: ''
+      platform: '',
+      is_favorite: false
     };
     this.getRom(this.id);
   }

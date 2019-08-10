@@ -51,3 +51,6 @@ definitions:
       logo_url:
         type: string
         required: true
+      is_favorite:
+        type: boolean
+        required: true

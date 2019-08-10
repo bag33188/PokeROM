@@ -162,6 +162,11 @@ const romSchema = new Schema({
       },
       message: props => `${props.value} is not a valid URL.`
     }
+  },
+  is_favorite: {
+    type: Boolean,
+    required: [true, 'is_favorite is required.'],
+    default: false
   }
 });
 

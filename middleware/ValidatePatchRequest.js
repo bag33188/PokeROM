@@ -17,6 +17,15 @@ class ValidatePatchRequest {
 
   validateRomPatch(res) {
     let errors = [];
+    if (this.req.body.is_favorite !== undefined) {
+      if (typeof this.req.body.is_favorite !== 'boolean') {
+        errors.push({
+          location: 'body',
+          param: 'is_favorite',
+          msg: 'is_favorite must be a boolean.'
+        });
+      }
+    }
     if (this.req.body.order_number !== undefined) {
       if (typeof this.req.body.order_number !== 'number') {
         errors.push({

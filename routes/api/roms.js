@@ -34,7 +34,8 @@ const fieldsToSanitize = [
   'generation',
   'game_name',
   'order_number',
-  'rom_type'
+  'rom_type',
+  'is_favorite'
 ];
 const dateRegex = /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/;
 
@@ -350,7 +351,13 @@ httpRouter.post(
       .isString()
       .withMessage('Description must be a string.')
       .isLength({ min: 5, max: 8000 })
-      .withMessage('Description must be between 5 and 8000 characters.')
+      .withMessage('Description must be between 5 and 8000 characters.'),
+    check('is_favorite')
+      .not()
+      .isEmpty()
+      .withMessage('is_favorite is required.')
+      .isBoolean()
+      .withMessage('is_favorite must be a boolean (true or false)')
   ],
   auth,
   async (req, res, next) => {
@@ -388,7 +395,8 @@ httpRouter.post(
         description: req.sanitize(req.body.description),
         genre: req.sanitize(req.body.genre) || null,
         date_released: req.sanitize(req.body.date_released),
-        logo_url: req.sanitize(req.body.logo_url)
+        logo_url: req.sanitize(req.body.logo_url),
+        is_favorite: Boolean(req.sanitize(req.body.is_favorite.toString())) || false
       });
       const {
         order_number,
@@ -404,7 +412,8 @@ httpRouter.post(
         description,
         genre,
         date_released,
-        logo_url
+        logo_url,
+        is_favorite
       } = newRom;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -569,7 +578,13 @@ httpRouter.put(
       .isString()
       .withMessage('Description must be a string.')
       .isLength({ min: 5, max: 8000 })
-      .withMessage('Description must be between 5 and 8000 characters.')
+      .withMessage('Description must be between 5 and 8000 characters.'),
+    check('is_favorite')
+      .not()
+      .isEmpty()
+      .withMessage('is_favorite is required.')
+      .isBoolean()
+      .withMessage('is_favorite must be a boolean (true or false)')
   ],
   auth,
   async (req, res, next) => {
@@ -620,7 +635,8 @@ httpRouter.put(
         description: req.sanitize(req.body.description),
         genre: req.sanitize(req.body.genre) || null,
         date_released: req.sanitize(req.body.date_released),
-        logo_url: req.sanitize(req.body.logo_url)
+        logo_url: req.sanitize(req.body.logo_url),
+        is_favorite: Boolean(req.sanitize(req.body.is_favorite.toString())) || false
       };
       const {
         order_number,
@@ -636,7 +652,8 @@ httpRouter.put(
         description,
         genre,
         date_released,
-        logo_url
+        logo_url,
+        is_favorite
       } = updateRomData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {

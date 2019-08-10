@@ -16,5 +16,6 @@ export class Rom {
   genre?: string;
   date_released: Date;
   logo_url: string;
+  is_favorite: boolean;
 }
 
