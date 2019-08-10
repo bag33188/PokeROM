@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 21;
+  z-index: 22;
 }
 
 .navbar-brand {
@@ -28,12 +28,5 @@
   width: 74px;
   @media only all and (max-width: 575px) {
     display: none !important;
-  }
-}
-
-.nav-link {
-  @media only all and (max-width: 575px) {
-    padding-bottom: 6px !important;
-    padding-top: 6px !important;
   }
 }
