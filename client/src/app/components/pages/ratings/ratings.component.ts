@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RatingService } from '../../../services/rating.service';
 import { Rating } from '../../../models/Rating';
 import sanitizeXSS from '../../../sanitation/sanitizeXSS';
+import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-ratings',
@@ -66,7 +67,7 @@ export class RatingsComponent implements OnInit {
         },
         (err: any): void => {
           this.isError = true;
-          console.error(err);
+          logger.error(err);
         }
       );
     }

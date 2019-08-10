@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LoggerService {
-  constructor() {}
+export abstract class LoggerService {
+  protected constructor() {}
 
   /**
    * @summary Log msg to console.
@@ -12,7 +12,7 @@ export class LoggerService {
    * @param msg The message to log.
    * @returns nothing (void).
    */
-  public log(...msg: any[]): void {
+  public static log(...msg: any[]): void {
     console.log(...msg);
   }
 
@@ -22,7 +22,7 @@ export class LoggerService {
    * @param msg The error message to log.
    * @returns nothing (void).
    */
-  public error(...msg: any[]): void {
+  public static error(...msg: any[]): void {
     console.error(...msg);
   }
 
@@ -32,7 +32,7 @@ export class LoggerService {
    * @param msg The warning to log.
    * @returns nothing (void).
    */
-  public warn(...msg: any[]): void {
+  public static warn(...msg: any[]): void {
     console.warn(...msg);
   }
 
@@ -42,7 +42,7 @@ export class LoggerService {
    * @param msg The info msg to log.
    * @returns nothing (void).
    */
-  public info(...msg: any[]): void {
+  public static info(...msg: any[]): void {
     console.info(...msg);
   }
 
@@ -51,7 +51,7 @@ export class LoggerService {
    * @description Clears the console.
    * @returns nothing (void).
    */
-  public clear(): void {
+  public static clear(): void {
     console.clear();
   }
 }

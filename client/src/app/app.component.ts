@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LoggerService } from './services/logger.service';
+import { LoggerService as logger } from './services/logger.service';
 import { ApiService } from './services/api.service';
 import { ApiVersion } from './models/ApiVersion';
 import { environment } from '../environments/environment';
@@ -44,7 +44,6 @@ export class AppComponent {
   readonly title: string = 'PokéROM';
 
   constructor(
-    private logger: LoggerService,
     private apiService: ApiService,
     private route: ActivatedRoute
   ) {
@@ -65,7 +64,7 @@ export class AppComponent {
     if (!environment.production) {
       this.apiService.getApiVersion().subscribe(
         (res: ApiVersion): void => {
-          this.logger.log(`API Version: ${res.api_version}`);
+          logger.log(`API Version: ${res.api_version}`);
         },
         (err: any): never => {
           throw err;

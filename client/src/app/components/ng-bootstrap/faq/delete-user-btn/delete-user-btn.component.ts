@@ -3,6 +3,7 @@ import { UserService } from '../../../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
 import { take } from 'rxjs/operators';
+import { LoggerService as logger } from '../../../../services/logger.service';
 
 @Component({
   selector: 'app-faq-delete-user-btn',
@@ -34,7 +35,7 @@ export class DeleteUserBtnComponent implements OnInit {
         },
         (err: any): void => {
           this.isErrorDeleting = true;
-          console.error(err);
+          logger.error(err);
         }
       );
   }

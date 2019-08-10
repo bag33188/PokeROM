@@ -4,7 +4,7 @@ import {
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import { Rom } from '../../../../models/Rom';
-import { SizeConversionService } from '../../../../services/size-conversion.service';
+import { UnitConversionService } from '../../../../services/unit-conversion.service';
 
 @Component({
   selector: 'app-rom-specs',
@@ -15,7 +15,7 @@ export class RomSpecsComponent implements OnInit {
   @Input() rom: Rom;
   faCompactDisc: IconDefinition;
 
-  constructor(public sizeConverter: SizeConversionService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.faCompactDisc = faCompactDisc;
@@ -25,7 +25,7 @@ export class RomSpecsComponent implements OnInit {
     const [file_size, file_type]: [
       number,
       string
-    ] = this.sizeConverter.convertRomSize(romFileSize);
+    ] = UnitConversionService.convertRomSize(romFileSize);
     return [file_size, file_type];
   }
 }

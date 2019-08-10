@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { faInfo, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Rom } from '../../../models/Rom';
 import { NgClasses } from '../../../interfaces/NgClasses';
-import { SizeConversionService } from '../../../services/size-conversion.service';
+import { UnitConversionService } from '../../../services/unit-conversion.service';
 
 @Component({
   selector: 'app-rom',
@@ -13,7 +13,7 @@ export class RomComponent implements OnInit {
   @Input() rom: Rom;
   faInfo: IconDefinition;
 
-  constructor(public sizeConverter: SizeConversionService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.faInfo = faInfo;
@@ -30,7 +30,7 @@ export class RomComponent implements OnInit {
     const [file_size, file_type]: [
       number,
       string
-    ] = this.sizeConverter.convertRomSize(romFileSize);
+    ] = UnitConversionService.convertRomSize(romFileSize);
     return [file_size, file_type];
   }
 
