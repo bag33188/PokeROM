@@ -62,7 +62,7 @@ def move_script_tags():
       
         # if the link tag and the closing head tag on the same line
         if ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:
-          print(line.replace('.css"></head>', f'.css" />\n{new_script_tags}\n</head>')
+          print(line.replace('.css"></head>', f'.css" />\n\n{new_script_tags}\n</head>')
                     .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), 
                 end='')
         # if the link tag is not on the same line as the head tag
@@ -70,7 +70,7 @@ def move_script_tags():
           print(line.replace('</head>', f'{new_script_tags}\n</head>'), end='')
         # if the head tag is not on the same line as the link tag (different condition)
         elif ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' not in line:
-          print(line.replace('.css">', '.css" />\n')
+          print(line.replace('.css">', '.css" />\n\n')
                     .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), 
                 end='')
         # check if script tags are in current line

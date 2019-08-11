@@ -27,6 +27,7 @@ production() {
     rm *map
     rm *ico
     rm *txt
+    rm *bak
     rm -rf assets
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
