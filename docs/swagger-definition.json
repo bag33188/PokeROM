@@ -1,0 +1,28 @@
+{
+  "swaggerDefinition": {
+    "info": {
+      "title": "PokéROM API Documentation",
+      "description": "<p><span>The API documentation for <strong>Pok&eacute;ROM</strong> (the website).</span><br/><a href=\"/\" target=\"_self\">Home</a><span>&nbsp;|&nbsp;</span><a href=\"/api/docs/%VERSION%\" target=\"_self\">Docs</a></p>",
+      "termsOfService": "https://1drv.ms/t/s!AmuGEkjVxD0JhslDktOegP93OxrK_g?e=55mFBA",
+      "contact": {
+        "name": "API Support",
+        "url": "https://github.com/bag33188/PokeROM/issues",
+        "email": "bglatman@callutheran.edu"
+      },
+      "license": {
+        "name": "ISC",
+        "url": "https://opensource.org/licenses/ISC"
+      },
+      "version": "v1"
+    },
+    "securityDefinitions": {
+      "bearerAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "scheme": "bearer",
+        "in": "header"
+      }
+    }
+  },
+  "apis": ["./docs/definitions/*.yml", "./docs/paths/*.yml"]
+}
