@@ -1,0 +1,80 @@
+{
+  "name": "pokerom",
+  "version": "1.0.0",
+  "description": "The back-end/server side for the PokeROM website.",
+  "licenses": [
+    {
+      "type": "ISC",
+      "url": "https://opensource.org/licenses/ISC"
+    },
+    {
+      "type": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  ],
+  "homepage": "https://github.com/bag33188/Pokemon-ROMs-Project#readme",
+  "bugs": {
+    "url": "https://github.com/bag33188/Pokemon-ROMs-Project/issues",
+    "email": "bglatman@callutheran.edu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bag33188/Pokemon-ROMs-Project.git"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./ratings.sh && bash ./version.sh && bash ./options.sh",
+    "prod": "cd scripts && bash ./production.sh",
+    "api": "nodemon server",
+    "client": "cd client && ng serve --open && cd ..",
+    "db-win": "mongod --dbpath=C:/MongoDB/data",
+    "db-osx": "mongod",
+    "db-shell": "mongo",
+    "db-prod": "mongo \"mongodb+srv://pokerom-cluster-voflm.azure.mongodb.net/pkmn-roms\" --username broccolini33188 --password Sullivan",
+    "load-data": "mongo ~/Projects/PokeROM/database/pkmn-roms.js",
+    "pack": "cd scripts && bash ./package_app.sh",
+    "move-script-tags-win": "cd scripts && python move_script_tags.py",
+    "move-script-tags-osx": "cd scripts && python3 move_script_tags.py",
+    "open-sites": "cd scripts && open_sites.bat",
+    "open-repos": "cd scripts && open_repos.bat"
+  },
+  "private": true,
+  "author": "bag33188",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.5",
+    "body-parser": "^1.19.0",
+    "config": "^3.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-cache-controller": "^1.1.0",
+    "express-list-endpoints": "latest",
+    "express-sanitizer": "^1.0.5",
+    "express-validator": "^5.3.1",
+    "global-tunnel": "^1.2.0",
+    "gridfs-stream": "^1.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "memory-cache": "^0.2.0",
+    "method-override": "^3.0.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.6.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "swagger-jsdoc": "^3.2.9",
+    "swagger-ui-express": "^4.0.7",
+    "uuid": "^3.3.2",
+    "xml": "^1.0.1"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "jsdoc": "^3.6.3",
+    "nodemon": "^1.19.1",
+    "prettier": "1.18.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "endOfLine": "lf"
+  }
+}
