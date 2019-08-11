@@ -65,7 +65,7 @@ production() {
     done
     git push
     git push heroku master
-  ) && printf "\r\n" && read -n 1 -s -r -p "Press any key to exit" && echo -e "\r\n"
+  ) && printf "\r\n" && read -n 1 -s -r -p "Done! Press any key to exit" && echo -e "\r\n"
 }
 
 production
