@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import he from 'he';
-import sanitizeXSS from '../sanitation/sanitize-xss';
-import removeStrings from '../sanitation/remove-strings';
+import sanitizeXSS from '../helpers/sanitize-xss';
+import removeStrings from '../helpers/remove-strings';
 
 @Injectable()
 export class BleachInterceptor implements HttpInterceptor {

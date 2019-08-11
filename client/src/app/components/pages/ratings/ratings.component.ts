@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RatingService } from '../../../services/rating.service';
 import { Rating } from '../../../models/Rating';
-import sanitizeXSS from '../../../sanitation/sanitize-xss';
-import removeStrings from '../../../sanitation/remove-strings';
+import sanitizeXSS from '../../../helpers/sanitize-xss';
+import removeStrings from '../../../helpers/remove-strings';
 import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({

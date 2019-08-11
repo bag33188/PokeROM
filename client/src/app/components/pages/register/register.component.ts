@@ -9,8 +9,8 @@ import {
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
-import sanitizeXSS from '../../../sanitation/sanitize-xss';
-import removeStrings from '../../../sanitation/remove-strings';
+import sanitizeXSS from '../../../helpers/sanitize-xss';
+import removeStrings from '../../../helpers/remove-strings';
 
 @Component({
   selector: 'app-register',
