@@ -57,10 +57,10 @@ def fix_state_js():
     # if fix has been applied
     if fix_applied:
       # tell the user that the fix has been applied
-      print('Fix applied!')
+      print('Fix applied!', end='\n\n')
     else:
       # tell the user that the fix has been undone.
-      print('Fix has been undone.')
+      print('Fix has been undone.', end='\n\n')
 
     # set exit code to 0 (success)
     exit_code = 0
@@ -71,7 +71,7 @@ def fix_state_js():
   # exception block for catching a file not found error
   except FileNotFoundError:
 
-    print('Error: file not found')
+    print('Error: file not found', end='\n\n')
 
     # set exit code to 1 (error)
     exit_code = 1
@@ -82,7 +82,7 @@ def fix_state_js():
   # exception block for catching general errors
   except Exception:
 
-    print('An error occurred while trying to apply/undo the fix.')
+    print('An error occurred while trying to apply/undo the fix.', end='\n\n')
 
     # set exit code to 1 (error)
     exit_code = 1

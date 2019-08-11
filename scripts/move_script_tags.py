@@ -95,15 +95,15 @@ def move_script_tags():
     # close the fileinput stream
     fileinput.close()
 
-    print('Done!')
+    print('Done!', end='\n\n')
 
   # catch file not found error
   except FileNotFoundError:
-    print('Error, index.html file not found.')
+    print('Error, index.html file not found.', end='\n\n')
 
   # general exception
   except Exception:
-    print('An error occured.')
+    print('An error occurred.', end='\n\n')
 
 # call function
 move_script_tags()

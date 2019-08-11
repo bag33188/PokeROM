@@ -39,15 +39,15 @@ def add_manifest_json():
     # close file stream
     manifest_json.close()
 
-    print ('Done!')
+    print ('Done!', end='\n\n')
 
   # catch file not found exception
   except FileNotFoundError:
-    print('Error: file not found.')
+    print('Error: file not found.', end='\n\n')
 
   # catch general exception
   except Exception:
-    print('An error occurred.')
+    print('An error occurred.', end='\n\n')
 
 # call main function
 add_manifest_json()
