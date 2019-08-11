@@ -1,9 +1,0 @@
-@import '../../../../../assets/scss/variables';
-
-#logo {
-  background-color: $white;
-  height: 20vh;
-  @media only all and (max-width: 547px) {
-    height: 15vh;
-  }
-}
