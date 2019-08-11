@@ -28,6 +28,7 @@ production() {
     rm *ico
     rm *txt
     rm *bak
+    rm *bak1
     rm *json
     rm -rf assets
     mv ../client/dist/pokerom/*.* ./
