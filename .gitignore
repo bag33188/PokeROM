@@ -5,7 +5,7 @@
 # git commit -m "fixed untracked files"
 # git push
 
-### General ###
+# ### General ###
 
 # System File(s)/Folder(s)
 .DS_Store
