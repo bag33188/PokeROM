@@ -23,6 +23,6 @@
 .browser-icon {
   display: none;
   @media only all and (max-width: 767px) {
-    display: inherit;
+    display: initial;
   }
 }
