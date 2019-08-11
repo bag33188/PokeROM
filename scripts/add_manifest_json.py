@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
-"""This program adds a manifest.json file into the `../public` folder."""
+"""This program adds a manifest.json file into the `../public` folder and links it in the `../public/index.html` file."""
+
+import fileinput # import fileinput module
 
 # define main function
 def add_manifest_json():
   """
   This purpose of this function is to write a new file called `manifest.json` (or an existing `manifest.json`)
-  and put the necessary data inside of it.
+  and put the necessary data inside of it. Then it links the `manifest.json` file to the `index.html` file.
   """
 
   print('Adding manifest.json ... ')
@@ -38,6 +40,25 @@ def add_manifest_json():
 
     # close file stream
     manifest_json.close()
+
+    # create vars
+    filepath = '../public/index.html'
+    text_to_search = '<link rel="icon" type="image/x-icon" href="favicon.ico" />'
+    replacement_text = '<link rel="icon" type="image/x-icon" href="favicon.ico" />\n<link rel="manifest" href="manifest.json" />'
+
+    # open up index.html file and create backup
+    with fileinput.FileInput(filepath, inplace=True, backup='.bak1') as file:
+
+      # loop through each line in file
+      for line in file:
+
+        # check for favicon link
+        if '<link rel="icon" type="image/x-icon" href="favicon.ico" />' in line:
+          # replace text
+          print(line.replace(text_to_search, replacement_text), end='')
+        else:
+          # print other line
+          print(line, end='')
 
     print ('Done!', end='\n\n')
 
