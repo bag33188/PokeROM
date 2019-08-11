@@ -34,8 +34,8 @@ production() {
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
     python ../scripts/move_script_tags.py
-    python3 ../scripts/move_script_tags.py
     python ../scripts/add_manifest_json.py
+    python3 ../scripts/move_script_tags.py
     python3 ../scripts/add_manifest_json.py
     cd ..
     rm -rf client/dist
