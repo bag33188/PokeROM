@@ -12,10 +12,10 @@ String.prototype.removeStrings = function(replaceContent: boolean): string {
       /(?:('.*')|(".*")|(`(.?\n?)+`))/,
       'gim'
     );
-    sanitizedStr = sanitizedStr.replace(detectStrings, '');
+    sanitizedStr = this.replace(detectStrings, '');
   } else {
     const detectStringChars: RegExp = new RegExp(/(?:(["'`]))/, 'gim');
-    sanitizedStr = sanitizedStr.replace(detectStringChars, '');
+    sanitizedStr = this.replace(detectStringChars, '');
   }
   return sanitizedStr;
 };
