@@ -82,7 +82,7 @@ def fix_state_js():
   # exception block for catching general errors
   except Exception:
 
-    print('An error occured while trying to apply/undo the fix.')
+    print('An error occurred while trying to apply/undo the fix.')
 
     # set exit code to 1 (error)
     exit_code = 1
