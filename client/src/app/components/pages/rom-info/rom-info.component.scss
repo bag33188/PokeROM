@@ -18,7 +18,7 @@
  * |                            |                      |
  * |                            |                      |
  * |----------------------------|----------------------|
- * |       game-download        |                      |
+ * |       rom-download         |                      |
  * |===================================================|
  *
  * Responsive:
@@ -39,7 +39,7 @@
  * |         rom-specs          |
  * |                            |
  * |----------------------------|
- * |       game-download        |
+ * |        rom-download        |
  * |============================|
  */
 
@@ -49,7 +49,7 @@
     'game-logo game-logo'
     'game-description game-specs'
     'game-description rom-specs'
-    'game-download .';
+    'rom-download .';
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 0.5fr fit-content(em(188px)) fit-content(188px) 2.6rem;
   margin: 30px;
@@ -59,7 +59,7 @@
       'game-description'
       'game-specs'
       'rom-specs'
-      'game-download';
+      'rom-download';
     grid-template-columns: 1fr;
     grid-template-rows:
       0.5fr
@@ -91,8 +91,8 @@
   }
 }
 
-#game-download {
-  grid-area: 'game-download';
+#rom-download {
+  grid-area: 'rom-download';
   grid-column: 1;
   grid-row: 4;
   @media only all and (max-width: 938px) {
