@@ -1,6 +1,10 @@
 <div id="tabset-container" class="border rounded">
   <ngb-tabset>
-    <ngb-tab [title]="browsers[0].browser">
+    <ngb-tab>
+      <ng-template ngbTabTitle
+        ><span class="browser-title-text">{{ browsers[0].browser }}</span
+        ><fa-icon [icon]="faChrome" class="browser-icon"></fa-icon
+      ></ng-template>
       <ng-template ngbTabContent>
         <p class="pt-2">
           Status: <span class="compatible">{{ browsers[0].status }}</span
@@ -15,7 +19,11 @@
         </p>
       </ng-template>
     </ngb-tab>
-    <ngb-tab [title]="browsers[1].browser">
+    <ngb-tab>
+      <ng-template ngbTabTitle
+        ><span class="browser-title-text">{{ browsers[1].browser }}</span
+        ><fa-icon [icon]="faOpera" class="browser-icon"></fa-icon
+      ></ng-template>
       <ng-template ngbTabContent>
         <p class="pt-2">
           Status: <span class="compatible">{{ browsers[1].status }}</span
@@ -28,7 +36,11 @@
         </p>
       </ng-template>
     </ngb-tab>
-    <ngb-tab [title]="browsers[2].browser">
+    <ngb-tab>
+      <ng-template ngbTabTitle
+        ><span class="browser-title-text">{{ browsers[2].browser }}</span
+        ><fa-icon [icon]="faSafari" class="browser-icon"></fa-icon
+      ></ng-template>
       <ng-template ngbTabContent>
         <p class="pt-2">
           Status: <span class="compatible">{{ browsers[2].status }}</span
@@ -43,7 +55,11 @@
         </p>
       </ng-template>
     </ngb-tab>
-    <ngb-tab [title]="browsers[3].browser">
+    <ngb-tab>
+      <ng-template ngbTabTitle
+        ><span class="browser-title-text">{{ browsers[3].browser }}</span
+        ><fa-icon [icon]="faFirefox" class="browser-icon"></fa-icon
+      ></ng-template>
       <ng-template ngbTabContent>
         <p class="pt-2">
           Status: <span class="compatible">{{ browsers[3].status }}</span
@@ -58,7 +74,11 @@
         </p>
       </ng-template>
     </ngb-tab>
-    <ngb-tab [title]="browsers[4].browser">
+    <ngb-tab>
+      <ng-template ngbTabTitle
+        ><span class="browser-title-text">{{ browsers[4].browser }}</span
+        ><fa-icon [icon]="faEdge" class="browser-icon"></fa-icon
+      ></ng-template>
       <ng-template ngbTabContent
         ><p class="pt-2">
           Status: <span class="compatible">{{ browsers[4].status }}</span
@@ -72,7 +92,10 @@
       >
     </ngb-tab>
     <ngb-tab>
-      <ng-template ngbTabTitle>{{ browsers[5].browser }}</ng-template>
+      <ng-template ngbTabTitle
+        ><span class="browser-title-text">{{ browsers[5].browser }}</span
+        ><fa-icon [icon]="faInternetExplorer" class="browser-icon"></fa-icon
+      ></ng-template>
       <ng-template ngbTabContent>
         <p class="pt-2">
           Status: <span class="incompatible">{{ browsers[5].status }}</span

@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Browser } from '../../../../interfaces/Browser';
 import { ModalContentComponent } from '../modal/modal-content.component';
+import {
+  faChrome,
+  faFirefox,
+  faInternetExplorer,
+  faOpera,
+  faEdge,
+  faSafari,
+  IconDefinition
+} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-faq-tabset',
@@ -10,6 +19,12 @@ import { ModalContentComponent } from '../modal/modal-content.component';
 })
 export class TabsetComponent implements OnInit {
   browsers: Browser[];
+  faChrome: IconDefinition = faChrome;
+  faFirefox: IconDefinition = faFirefox;
+  faInternetExplorer: IconDefinition = faInternetExplorer;
+  faOpera: IconDefinition = faOpera;
+  faEdge: IconDefinition = faEdge;
+  faSafari: IconDefinition = faSafari;
 
   constructor(private modalService: NgbModal) {}
 

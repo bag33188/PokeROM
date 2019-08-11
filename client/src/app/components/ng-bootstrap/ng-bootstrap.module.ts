@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AccordionComponent } from './home/accordion/accordion.component';
 import { CarouselComponent } from './home/carousel/carousel.component';
 import { PaginationComponent } from './roms/pagination/pagination.component';
@@ -34,7 +35,13 @@ import { UserService } from '../../services/user.service';
     DeleteUserBtnComponent
   ],
   entryComponents: [ModalContentComponent],
-  imports: [CommonModule, NgbModule, BrowserModule, RouterModule],
+  imports: [
+    CommonModule,
+    NgbModule,
+    BrowserModule,
+    RouterModule,
+    FontAwesomeModule
+  ],
   exports: [
     AccordionComponent,
     CarouselComponent,
