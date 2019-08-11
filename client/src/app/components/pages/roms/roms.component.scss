@@ -69,6 +69,7 @@
     'rom-3 rom-4';
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr minmax(min-content, auto);
+  margin-top: 1.7rem;
   padding: 20px 0 2rem;
   width: 70vw;
   @media only all and (max-width: 916px) {

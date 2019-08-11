@@ -1,6 +1,6 @@
 <ng-container>
   <app-spinner [loading]="loading"></app-spinner>
-  <div class="justify-content-center mt-4 roms-flex" *ngIf="!loading">
+  <div class="justify-content-center roms-flex" *ngIf="!loading">
     <h2
       *ngIf="romsData.length === 0 && !isError"
       class="text-center"
