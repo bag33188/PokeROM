@@ -1,3 +1,5 @@
-.underline {
-  text-decoration: underline;
+#eacute {
+  &::before {
+    content: '\E9';
+  }
 }

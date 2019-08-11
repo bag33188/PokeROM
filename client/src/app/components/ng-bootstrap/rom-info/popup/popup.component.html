@@ -5,13 +5,13 @@
     [popoverTitle]="popTitle"
     placement="bottom"
     triggers="mouseenter:mouseleave"
-  >
-    {{ game_name }}
+  >∏
+    {{ gameName }}
   </span>
-  <ng-template #notRomHack>{{ game_name }}</ng-template>
+  <ng-template #notRomHack>{{ gameName }}</ng-template>
   <ng-template #popContent
-    >This ROM (<span class="underline">{{ removeRomHackText(game_name) }}</span
-    >) is not part of the core series of Pok&eacute;mon games, it is a
+    >This ROM (<span class="underline">{{ removeRomHackText(gameName) }}</span
+    >) is not part of the core series of Pok<span id="eacute"></span>mon games, it is a
     <span class="font-italic">ROM hack</span>.</ng-template
   >
   <ng-template #popTitle
