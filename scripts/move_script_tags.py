@@ -65,14 +65,17 @@ def move_script_tags():
           print(line.replace('.css"></head>', f'.css" />\n\n{new_script_tags}\n</head>')
                     .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), 
                 end='')
+
         # if the link tag is not on the same line as the head tag
         elif '</head>' in line and ('.css">' not in line or '<link rel="stylesheet" href="styles.' not in line):
           print(line.replace('</head>', f'{new_script_tags}\n</head>'), end='')
+
         # if the head tag is not on the same line as the link tag (different condition)
         elif ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' not in line:
           print(line.replace('.css">', '.css" />\n\n')
                     .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), 
                 end='')
+
         # check if script tags are in current line
         elif script_tags:
           # remove script tags from bottom of file
@@ -83,6 +86,7 @@ def move_script_tags():
                     .replace(script_tags[4], '')
                     .replace(script_tags[5], ''), 
                   end='')
+
         # otherwise...
         else:
           # print the other lines

@@ -38,12 +38,15 @@ def fix_state_js():
           print(line.replace(text_to_search, replacement_text), end='')
           # set to true
           fix_applied = True
+
         # check if fix has already been applied
         elif (replacement_text in line):
           # undo fix
           print(line.replace(replacement_text, text_to_search), end='')
           # set to false
           fix_applied = False
+
+        # otherwise
         else:
           # print other lines
           print(line, end='')
