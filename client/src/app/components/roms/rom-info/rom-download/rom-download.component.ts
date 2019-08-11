@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { Rom } from '../../../../models/Rom';
 
 @Component({
   selector: 'app-rom-download',
@@ -8,7 +7,7 @@ import { Rom } from '../../../../models/Rom';
   styleUrls: ['./rom-download.component.scss']
 })
 export class RomDownloadComponent implements OnInit {
-  @Input() rom: Rom;
+  @Input() downloadLink: string;
   btnDisabled: boolean;
   faDownload: IconDefinition;
 

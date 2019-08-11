@@ -5,7 +5,7 @@
       class="mr-3 ml-1"
       id="description-icon"
     ></fa-icon
-    >{{ isRomHack(rom.game_name) ? '' : 'Pokemon.com ' }}Description
+    >{{ isRomHack(gameName) ? '' : 'Pokemon.com ' }}Description
   </h4>
-  <p id="description" class="rounded" [innerHTML]="rom.description"></p>
+  <p id="description" class="rounded" [innerHTML]="description"></p>
 </ng-container>

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Rom } from '../../../../models/Rom';
 
 @Component({
   selector: 'app-game-name',
@@ -7,7 +6,8 @@ import { Rom } from '../../../../models/Rom';
   styleUrls: ['./game-name.component.scss']
 })
 export class GameNameComponent implements OnInit {
-  @Input() rom: Rom;
+  @Input() gameName: string;
+  @Input() romType: string;
 
   constructor() {}
 

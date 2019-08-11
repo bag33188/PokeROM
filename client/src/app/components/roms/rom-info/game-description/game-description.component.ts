@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faFileAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { Rom } from '../../../../models/Rom';
 
 @Component({
   selector: 'app-game-description',
@@ -8,7 +7,8 @@ import { Rom } from '../../../../models/Rom';
   styleUrls: ['./game-description.component.scss']
 })
 export class GameDescriptionComponent implements OnInit {
-  @Input() rom: Rom;
+  @Input() description: string;
+  @Input() gameName: string;
   faFileAlt: IconDefinition;
 
   constructor() {}
@@ -16,14 +16,14 @@ export class GameDescriptionComponent implements OnInit {
   ngOnInit(): void {
     this.faFileAlt = faFileAlt;
     setTimeout((): void => {
-      if (this.rom.description) {
-        this.rom.description = this.changeUrlToLink(this.rom.description);
+      if (this.description) {
+        this.description = this.changeUrlToLink(this.description);
       }
     }, 555);
   }
 
-  isRomHack(rom_type: string): boolean {
-    return rom_type === 'hack';
+  isRomHack(romType: string): boolean {
+    return romType === 'hack';
   }
 
   changeUrlToLink(description: string): string {

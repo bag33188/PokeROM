@@ -3,7 +3,6 @@ import {
   faCompactDisc,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
-import { Rom } from '../../../../models/Rom';
 import { UnitConversionService } from '../../../../services/unit-conversion.service';
 
 @Component({
@@ -12,7 +11,10 @@ import { UnitConversionService } from '../../../../services/unit-conversion.serv
   styleUrls: ['./rom-specs.component.scss']
 })
 export class RomSpecsComponent implements OnInit {
-  @Input() rom: Rom;
+  @Input() fileType: string;
+  @Input() fileSize: number;
+  @Input() fileName: string;
+  @Input() platform: string;
   faCompactDisc: IconDefinition;
 
   constructor() {}
@@ -22,10 +24,10 @@ export class RomSpecsComponent implements OnInit {
   }
 
   fileData(romFileSize: number): [number, string] {
-    const [file_size, file_type]: [
+    const [fileSize, fileType]: [
       number,
       string
     ] = UnitConversionService.convertRomSize(romFileSize);
-    return [file_size, file_type];
+    return [fileSize, fileType];
   }
 }
