@@ -12,22 +12,8 @@ export class GameDescriptionComponent implements OnInit {
   faFileAlt: IconDefinition;
 
   constructor() {}
-
-  ngOnInit(): void {
-    this.faFileAlt = faFileAlt;
-    setTimeout((): void => {
-      if (this.description) {
-        this.description = this.changeUrlToLink(this.description);
-      }
-    }, 555);
-  }
-
-  isRomHack(romType: string): boolean {
-    return romType === 'hack';
-  }
-
-  changeUrlToLink(description: string): string {
-    const urlRegex: RegExp = /(?:[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))/i;
+  static changeUrlToLink(description: string): string {
+    const urlRegex: RegExp = /(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))/i;
     if (urlRegex.test(description)) {
       const url: string = description.match(urlRegex)[0];
       return description.replace(
@@ -37,5 +23,19 @@ export class GameDescriptionComponent implements OnInit {
     } else {
       return description;
     }
+  }
+  ngOnInit(): void {
+    this.faFileAlt = faFileAlt;
+    setTimeout((): void => {
+      if (this.description) {
+        this.description = GameDescriptionComponent.changeUrlToLink(
+          this.description
+        );
+      }
+    }, 555);
+  }
+
+  isRomHack(romType: string): boolean {
+    return romType === 'hack';
   }
 }
