@@ -65,7 +65,7 @@ def fix_state_js():
     # set exit code to 0 (success)
     exit_code = 0
 
-    # successfuly exit app
+    # successfully exit app
     sys.exit(exit_code)
 
   # exception block for catching a file not found error
