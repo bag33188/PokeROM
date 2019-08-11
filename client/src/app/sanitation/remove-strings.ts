@@ -8,14 +8,14 @@ declare global {
 String.prototype.removeStrings = function(replaceContent: boolean): string {
   let sanitizedStr: string = '';
   if (replaceContent) {
-    const detectStringChars: RegExp = new RegExp(/(?:(["'`]))/, 'gim');
-    sanitizedStr = sanitizedStr.replace(detectStringChars, '');
-  } else {
     const detectStrings: RegExp = new RegExp(
       /(?:('.*')|(".*")|(`(.?\n?)+`))/,
       'gim'
     );
     sanitizedStr = sanitizedStr.replace(detectStrings, '');
+  } else {
+    const detectStringChars: RegExp = new RegExp(/(?:(["'`]))/, 'gim');
+    sanitizedStr = sanitizedStr.replace(detectStringChars, '');
   }
   return sanitizedStr;
 };
