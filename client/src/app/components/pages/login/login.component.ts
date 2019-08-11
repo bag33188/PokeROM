@@ -9,7 +9,8 @@ import {
 import { AuthService } from '../../../services/auth.service';
 import { LoggedUser } from '../../../models/LoggedUser';
 import { RegisteredUser } from '../../../models/RegisteredUser';
-import sanitizeXSS from '../../../sanitation/sanitizeXSS';
+import sanitizeXSS from '../../../sanitation/sanitize-xss';
+import removeStrings from '../../../sanitation/remove-strings';
 
 @Component({
   selector: 'app-login',
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     String.prototype.sanitizeXSS = sanitizeXSS;
+    String.prototype.removeStrings = removeStrings;
   }
 
   ngOnInit(): void {
@@ -82,7 +84,9 @@ export class LoginComponent implements OnInit {
   }
 
   sanitizeData(): void {
-    this.Username.setValue(this.Username.value.sanitizeXSS(true));
+    this.Username.setValue(
+      this.Username.value.sanitizeXSS(true).removeStrings(true)
+    );
     this.Password.setValue(this.Password.value.sanitizeXSS(false));
   }
 }

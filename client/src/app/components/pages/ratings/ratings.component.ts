@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RatingService } from '../../../services/rating.service';
 import { Rating } from '../../../models/Rating';
-import sanitizeXSS from '../../../sanitation/sanitizeXSS';
+import sanitizeXSS from '../../../sanitation/sanitize-xss';
+import removeStrings from '../../../sanitation/remove-strings';
 import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class RatingsComponent implements OnInit {
 
   constructor(private ratingService: RatingService) {
     String.prototype.sanitizeXSS = sanitizeXSS;
+    String.prototype.removeStrings = removeStrings;
   }
 
   ngOnInit(): void {
@@ -53,7 +55,7 @@ export class RatingsComponent implements OnInit {
   submitRating(): void {
     this.rating = {
       rating: this.currentRate,
-      message: this.message.sanitizeXSS(false, false),
+      message: this.message.sanitizeXSS(false, false).removeStrings(false),
       date_time: new Date()
     };
     if (this.currentRate === 0) {

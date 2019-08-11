@@ -6,6 +6,7 @@ declare global {
   }
 }
 
+// tslint:disable-next-line:only-arrow-functions
 String.prototype.sanitizeXSS = function(
   replaceSpecialChars?: boolean,
   encode?: boolean

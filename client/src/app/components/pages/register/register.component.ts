@@ -9,7 +9,8 @@ import {
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
-import sanitizeXSS from '../../../sanitation/sanitizeXSS';
+import sanitizeXSS from '../../../sanitation/sanitize-xss';
+import removeStrings from '../../../sanitation/remove-strings';
 
 @Component({
   selector: 'app-register',
@@ -62,6 +63,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     private fb: FormBuilder
   ) {
     String.prototype.sanitizeXSS = sanitizeXSS;
+    String.prototype.removeStrings = removeStrings;
   }
 
   ngOnInit(): void {
@@ -127,9 +129,13 @@ export class RegisterComponent implements OnInit, AfterContentInit {
   }
 
   sanitizeData(): void {
-    this.Name.setValue(this.Name.value.sanitizeXSS(true));
-    this.Email.setValue(this.Email.value.sanitizeXSS(false));
-    this.Username.setValue(this.Username.value.sanitizeXSS(false));
+    this.Name.setValue(this.Name.value.sanitizeXSS(true).removeStrings(false));
+    this.Email.setValue(
+      this.Email.value.sanitizeXSS(false).removeStrings(true)
+    );
+    this.Username.setValue(
+      this.Username.value.sanitizeXSS(false).removeStrings(true)
+    );
     this.Password.setValue(this.Password.value.sanitizeXSS(false));
   }
 }

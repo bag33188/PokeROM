@@ -9,12 +9,14 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import he from 'he';
-import sanitizeXSS from '../sanitation/sanitizeXSS';
+import sanitizeXSS from '../sanitation/sanitize-xss';
+import removeStrings from '../sanitation/remove-strings';
 
 @Injectable()
 export class BleachInterceptor implements HttpInterceptor {
   constructor() {
     String.prototype.sanitizeXSS = sanitizeXSS;
+    String.prototype.removeStrings = removeStrings;
   }
   intercept(
     req: HttpRequest<any>,
@@ -30,14 +32,20 @@ export class BleachInterceptor implements HttpInterceptor {
                 return body.forEach((obj: any): void => {
                   obj = Object.keys(obj).forEach((key: string): void => {
                     if (typeof obj[key] === 'string') {
-                      obj[key] = he.decode(obj[key]).sanitizeXSS();
+                      obj[key] = he
+                        .decode(obj[key])
+                        .sanitizeXSS()
+                        .removeStrings(false);
                     }
                   });
                 });
               } else {
                 return Object.keys(body).forEach((key: string): void => {
                   if (typeof body[key] === 'string') {
-                    body[key] = he.decode(body[key]).sanitizeXSS();
+                    body[key] = he
+                      .decode(body[key])
+                      .sanitizeXSS()
+                      .removeStrings(false);
                   }
                 });
               }
