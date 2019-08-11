@@ -27,11 +27,11 @@ export class RomComponent implements OnInit {
   }
 
   fileData(romFileSize: number): [number, string] {
-    const [file_size, file_type]: [
+    const [fileSize, fileType]: [
       number,
       string
     ] = UnitConversionService.convertRomSize(romFileSize);
-    return [file_size, file_type];
+    return [fileSize, fileType];
   }
 
   /**
