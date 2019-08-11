@@ -1,118 +1,52 @@
 <div id="tabset-container" class="border rounded">
   <ngb-tabset>
-    <ngb-tab>
+    <ngb-tab *ngFor="let browser of browsers">
       <ng-template ngbTabTitle
-        ><span class="browser-title-text">{{ browsers[0].browser }}</span
-        ><fa-icon [icon]="faChrome" class="browser-icon"></fa-icon
+        ><span class="browser-title-text">{{ browser.browser }}</span
+        ><fa-icon [icon]="browser.icon" class="browser-icon"></fa-icon
       ></ng-template>
       <ng-template ngbTabContent>
-        <p class="pt-2">
-          Status: <span class="compatible">{{ browsers[0].status }}</span
+        <p class="pt-2 mb-0">
+          Status:
+          <span
+            [ngClass]="{
+              compatible: browser.status.toLowerCase() === 'compatible',
+              incompatible: browser.status.toLowerCase() === 'incompatible'
+            }"
+            >{{ browser.status }}</span
           >.
           <br />
-          Details: This app works on
-          <span class="font-italic">Chrome</span> browsers released
-          <span class="font-weight-bold">from early 2017 to now</span
-          >&nbsp;(minimum version requirement:
-          <span class="underline">Chrome {{ browsers[0].minVersion }}</span
-          >).
+          <span
+            *ngIf="
+              browser.status.toLowerCase() === 'compatible';
+              else incompatible
+            "
+          >
+            Details: This app works on
+            <span class="font-italic">{{ browser.browser }}</span> browsers
+            released
+            <span class="font-weight-bold"
+              >from early {{ browser.minYear.join(' ') }} to now</span
+            >&nbsp;(minimum version requirement:
+            <span class="underline"
+              >{{ browser.browser }} {{ browser.minVersion }}</span
+            >).
+          </span>
         </p>
+        <ng-template #incompatible>
+          {{ browser.browser }} is not compatible with this app.
+          <span *ngIf="browser.browser === 'Internet Explorer'">
+            <br />
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-primary mt-2"
+              (click)="open()"
+            >
+              Why is IE incompatible?
+            </button>
+          </span>
+        </ng-template>
       </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle
-        ><span class="browser-title-text">{{ browsers[1].browser }}</span
-        ><fa-icon [icon]="faOpera" class="browser-icon"></fa-icon
-      ></ng-template>
-      <ng-template ngbTabContent>
-        <p class="pt-2">
-          Status: <span class="compatible">{{ browsers[1].status }}</span
-          >.<br />Details: This app works on
-          <span class="font-italic">Opera</span> versions
-          <span class="font-weight-bold">from late 2017 to now</span
-          >&nbsp;(minimum version requirement:
-          <span class="underline">Opera {{ browsers[1].minVersion }}</span
-          >).
-        </p>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle
-        ><span class="browser-title-text">{{ browsers[2].browser }}</span
-        ><fa-icon [icon]="faSafari" class="browser-icon"></fa-icon
-      ></ng-template>
-      <ng-template ngbTabContent>
-        <p class="pt-2">
-          Status: <span class="compatible">{{ browsers[2].status }}</span
-          >.
-          <br />
-          Details: This app works on
-          <span class="font-italic">Safari</span> versions
-          <span class="font-weight-bold">from mid-2017 to now</span
-          >&nbsp;(minimum version requirement:
-          <span class="underline">Safari {{ browsers[2].minVersion }}</span
-          >).
-        </p>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle
-        ><span class="browser-title-text">{{ browsers[3].browser }}</span
-        ><fa-icon [icon]="faFirefox" class="browser-icon"></fa-icon
-      ></ng-template>
-      <ng-template ngbTabContent>
-        <p class="pt-2">
-          Status: <span class="compatible">{{ browsers[3].status }}</span
-          >.
-          <br />
-          Details: This app works on
-          <span class="font-italic">Firefox</span> versions from
-          <span class="font-weight-bold">from early 2017 to now</span>(minimum
-          version requirement:
-          <span class="underline">Firefox {{ browsers[3].minVersion }}</span
-          >).
-        </p>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle
-        ><span class="browser-title-text">{{ browsers[4].browser }}</span
-        ><fa-icon [icon]="faEdge" class="browser-icon"></fa-icon
-      ></ng-template>
-      <ng-template ngbTabContent
-        ><p class="pt-2">
-          Status: <span class="compatible">{{ browsers[4].status }}</span
-          >.<br />Details: This app works on
-          <span class="font-italic">Edge</span> versions
-          <span class="font-weight-bold">from late 2017 to now</span
-          >&nbsp;(minimum version requirement:
-          <span class="underline">Edge {{ browsers[4].minVersion }}</span
-          >).
-        </p></ng-template
-      >
-    </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle
-        ><span class="browser-title-text">{{ browsers[5].browser }}</span
-        ><fa-icon [icon]="faInternetExplorer" class="browser-icon"></fa-icon
-      ></ng-template>
-      <ng-template ngbTabContent>
-        <p class="pt-2">
-          Status: <span class="incompatible">{{ browsers[5].status }}</span
-          >.<br />Details: This app is
-          <span class="font-weight-bold">NOT</span> compatible with
-          <span id="ie" placement="top" ngbTooltip="booooooo!"
-            >Internet Explorer</span
-          >. Please use another browser.
-        </p>
-        <button
-          type="button"
-          class="btn btn-sm btn-outline-primary"
-          (click)="open()"
-        >
-          Why is IE incompatible?
-        </button></ng-template
-      >
     </ngb-tab>
   </ngb-tabset>
 </div>

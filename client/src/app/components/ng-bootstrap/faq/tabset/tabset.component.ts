@@ -33,32 +33,44 @@ export class TabsetComponent implements OnInit {
       {
         browser: 'Chrome',
         status: 'Compatible',
-        minVersion: 58
+        minVersion: 58,
+        minYear: ['early', 2017],
+        icon: this.faChrome
       },
       {
         browser: 'Opera',
         status: 'Compatible',
-        minVersion: 44
+        minVersion: 44,
+        minYear: ['late', 2017],
+        icon: this.faOpera
       },
       {
         browser: 'Safari',
         status: 'Compatible',
-        minVersion: 10.1
+        minVersion: 10.1,
+        minYear: ['mid', 2017],
+        icon: this.faSafari
       },
       {
         browser: 'Firefox',
         status: 'Compatible',
-        minVersion: 54
+        minVersion: 54,
+        minYear: ['early', 2017],
+        icon: this.faFirefox
       },
       {
         browser: 'Edge',
         status: 'Compatible',
-        minVersion: 16
+        minVersion: 16,
+        minYear: ['late', 2017],
+        icon: this.faEdge
       },
       {
         browser: 'Internet Explorer',
         status: 'Incompatible',
-        minVersion: null
+        minVersion: null,
+        minYear: null,
+        icon: this.faInternetExplorer
       }
     ];
   }
