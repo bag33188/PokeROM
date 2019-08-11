@@ -1,0 +1,17 @@
+---
+definitions:
+  User:
+    type: object
+    properties:
+      name:
+        type: string
+        required: false
+      email:
+        type: string
+        required: true
+      username:
+        type: string
+        required: true
+      password:
+        type: string
+        required: true
