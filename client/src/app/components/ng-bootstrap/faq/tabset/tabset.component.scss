@@ -1,0 +1,22 @@
+@import '../../../../../assets/scss/variables';
+
+#tabset-container {
+  background-color: $white;
+  padding: 1.5rem;
+}
+
+.compatible {
+  color: $success-green;
+}
+
+.incompatible {
+  color: $dark-red;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+#ie {
+  background-color: $yellow;
+}

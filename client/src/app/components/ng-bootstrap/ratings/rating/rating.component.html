@@ -1,0 +1,10 @@
+<ng-container>
+  <label for="rating">Rating:</label>
+  <div id="spacing"></div>
+  <ngb-rating
+    id="rating"
+    [(rate)]="rate"
+    (rateChange)="outputRating($event)"
+    (hover)="outputRatingHover($event)"
+  ></ngb-rating>
+</ng-container>

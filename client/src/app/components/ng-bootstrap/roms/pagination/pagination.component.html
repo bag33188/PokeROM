@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center pt-4">
+  <ngb-pagination
+    aria-label="ROMs pagination"
+    [boundaryLinks]="pageWidth > 600 && romsData.length > 0"
+    [directionLinks]="pageWidth > 600 && romsData.length > 0"
+    [collectionSize]="romsData.length"
+    [pageSize]="itemsPerPage"
+    [(page)]="currentPage"
+    (pageChange)="onPageChange(currentPage)"
+  >
+    <ng-template *ngIf="pageWidth > 600" ngbPaginationPrevious
+      >Prev</ng-template
+    >
+    <ng-template *ngIf="pageWidth > 600" ngbPaginationNext
+      >Next</ng-template
+    ></ngb-pagination
+  >
+</div>

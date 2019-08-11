@@ -1,0 +1,20 @@
+<div *ngFor="let alert of alerts" [@fadeOut]="'in'">
+  <ngb-alert
+    *ngIf="!cookiesOk"
+    [dismissible]="true"
+    [type]="alert.type"
+    class="font-weight-bold"
+    id="cookies-alert"
+    (close)="closeAlert(alert)"
+  >
+    <fa-icon [icon]="faInfoCircle" class="mr-2"></fa-icon
+    >{{ alert.message }} You can find out more by visiting the
+    <span class="underline">Cookies section</span> on the
+    <a
+      [routerLink]="['/', 'faq']"
+      fragment="cookies"
+      (click)="closeAlert(alert)"
+      >FAQ page</a
+    >.
+  </ngb-alert>
+</div>

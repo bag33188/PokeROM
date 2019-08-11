@@ -1,0 +1,10 @@
+<div id="delete-usr-btn-container" class="btn-group btn-group-toggle">
+  <label class="btn-outline-danger" ngbButtonLabel>
+    <input
+      type="checkbox"
+      [valueUnChecked]="true"
+      ngbButton
+      (change)="deleteCurrentUser()"
+    /><span class="oblique bolder">Delete User!</span>
+  </label>
+</div>

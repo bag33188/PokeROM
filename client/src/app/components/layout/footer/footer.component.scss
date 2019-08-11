@@ -1,0 +1,20 @@
+@import '../../../../assets/scss/variables';
+
+#footer {
+  bottom: 0;
+  color: $white;
+  height: 2rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 4px;
+  position: fixed;
+  width: 100%;
+  z-index: 21;
+  @media only all and (max-width: 414px) {
+    font-size: 11px;
+  }
+}
+
+a {
+  color: $white;
+}

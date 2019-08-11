@@ -1,0 +1,164 @@
+@import '../../../../assets/scss/functions';
+
+/*
+ * CSS Grid Layout:
+ *
+ * Full:
+ * |===================================================|
+ * |                     game-logo                     |
+ * |                                                   |
+ * |----------------------------|----------------------|
+ * |                            |                      |
+ * |                            |      game-specs      |
+ * |                            |                      |
+ * |                            |                      |
+ * |      game-description      |----------------------|
+ * |                            |                      |
+ * |                            |      rom-specs       |
+ * |                            |                      |
+ * |                            |                      |
+ * |----------------------------|----------------------|
+ * |       game-download        |                      |
+ * |===================================================|
+ *
+ * Responsive:
+ * |============================|
+ * |         game-logo          |
+ * |                            |
+ * |----------------------------|
+ * |                            |
+ * |      game-description      |
+ * |                            |
+ * |                            |
+ * |----------------------------|
+ * |                            |
+ * |        game-specs          |
+ * |                            |
+ * |----------------------------|
+ * |                            |
+ * |         rom-specs          |
+ * |                            |
+ * |----------------------------|
+ * |       game-download        |
+ * |============================|
+ */
+
+#rom-container {
+  display: grid;
+  grid-template-areas:
+    'game-logo game-logo'
+    'game-description game-specs'
+    'game-description rom-specs'
+    'game-download .';
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 0.5fr fit-content(em(188px)) fit-content(188px) 2.6rem;
+  margin: 30px;
+  @media only all and (max-width: 938px) {
+    grid-template-areas:
+      'game-logo'
+      'game-description'
+      'game-specs'
+      'rom-specs'
+      'game-download';
+    grid-template-columns: 1fr;
+    grid-template-rows:
+      0.5fr
+      fit-content(em(308px, 16px))
+      15.5rem
+      fit-content(17.5rem)
+      fit-content(5.5rem);
+    margin: 0 auto;
+  }
+}
+
+#game-logo {
+  grid-area: 'game-logo';
+  grid-column: 1 / 2;
+  grid-row: 1;
+  @media only all and (max-width: 938px) {
+    text-align: center;
+  }
+}
+
+#game-description {
+  grid-area: 'game-description';
+  grid-column: 1;
+  grid-row: 2 / 4;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: center;
+  }
+}
+
+#game-download {
+  grid-area: 'game-download';
+  grid-column: 1;
+  grid-row: 4;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 5;
+    text-align: center;
+  }
+}
+
+#game-specs {
+  grid-area: 'game-specs';
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 34px;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 0;
+  }
+}
+
+#rom-specs {
+  grid-area: 'rom-specs';
+  grid-column: 2;
+  grid-row: 3;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 4;
+  }
+}
+
+/*
+ * CSS Flexbox Alignment:
+ * |==================================================|
+ * | back-btn-ctnr  | heading-ctnr   | dummy-ctnr     |
+ * |==================================================|
+ */
+
+#rom-info-container {
+  display: flex;
+  flex-direction: row;
+}
+
+#back-btn-container {
+  align-self: auto;
+  flex: 2 0 auto;
+  margin-left: 30px;
+  order: 1;
+  @media only all and (max-width: 938px) {
+    margin-left: 0;
+  }
+}
+
+#title-container {
+  align-self: auto;
+  flex: 2 0 auto;
+  order: 2;
+  text-align: center;
+}
+
+#dummy-container {
+  align-self: auto;
+  flex: 2 0 auto;
+  margin-right: 30px;
+  order: 3;
+  @media only all and (max-width: 938px) {
+    margin-right: 0;
+  }
+}

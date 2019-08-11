@@ -1,0 +1,32 @@
+@import '../../../../../assets/scss/variables';
+@import '../../../../../assets/scss/functions';
+
+%white {
+  color: set-text-color($carousel-bg);
+  z-index: -1;
+}
+
+h3 {
+  @extend %white;
+  padding: 0 0.5em;
+  z-index: -1;
+}
+
+.carousel-caption {
+  @media only all and (max-height: 537px) {
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+img {
+  filter: brightness(55%);
+  height: unquote('#{$calc-height}');
+  object-fit: cover;
+  position: static;
+  width: 100%;
+  @media all {
+    height: unquote('#{$calc-height}');
+  }
+}

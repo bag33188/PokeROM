@@ -1,0 +1,26 @@
+<ng-container>
+  <div class="text-center bg-pkmn" id="carousel-container">
+    <app-home-carousel></app-home-carousel>
+  </div>
+  <div class="w-100 bg-light">
+    <app-home-jumbotron></app-home-jumbotron>
+    <hr class="m-0 p-0 bg-white" />
+    <div class="pt-4 pb-4 bg-info text-light">
+      <h3 class="text-center mt-2 mb-4 display-5">{{ accHeading }}</h3>
+      <app-home-accordion></app-home-accordion>
+    </div>
+    <hr class="m-0 p-0 bg-white" />
+    <div class="bg-info text-light">
+      <p class="pt-4 text-center" id="more-info-container">
+        Visit the <a [routerLink]="['/', 'faq']" class="white-link">FAQ</a> page
+        for more details about this website, including
+        <a
+          [routerLink]="['/', 'faq']"
+          fragment="browser-compatibility"
+          class="white-link"
+          >browser compatibility</a
+        >.
+      </p>
+    </div>
+  </div>
+</ng-container>

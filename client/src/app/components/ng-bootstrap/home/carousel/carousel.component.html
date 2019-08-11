@@ -1,0 +1,21 @@
+<div class="mt-2">
+  <ngb-carousel
+    *ngIf="images"
+    interval="5000"
+    [pauseOnHover]="false"
+    [showNavigationIndicators]="false"
+  >
+    <ng-template
+      ngbSlide
+      *ngFor="let carouselSlide of carouselData; index as i"
+    >
+      <img [src]="carouselSlide.image" alt="slide-{{ i + 1 }}" />
+      <div class="carousel-caption">
+        <h3 class="white">
+          {{ carouselSlide.heading }}
+        </h3>
+        <p class="white">{{ carouselSlide.caption }}</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>

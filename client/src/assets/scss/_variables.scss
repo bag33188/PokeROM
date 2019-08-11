@@ -1,0 +1,100 @@
+// _variables.scss
+
+// colors
+$red: #f00;
+$yellow: #ff0;
+$gray: #808080;
+$almost-black: #333;
+$light-gray: #d3d3d3;
+$very-light-gray: #ccc;
+$light-crimson: #d6300a;
+$dark-red: #8b0000;
+$white: #fff;
+$black: #000;
+$success-green: #006400;
+$dark-gray: #343a40;
+$bg-pkmn: #424242;
+$carousel-bg: #343940;
+$scrollbar-bg-color-light: #ffe621;
+$scrollbar-bg-color-dark: #e6bc2f; // #dbb800;
+$scrollbar-thumb-bg-color: #daa520;
+$fav-color: #148b42;
+$ufo-green: #8fff00;
+$proton-purple: #8a2be2;
+$navbar-bg-color: #343a40;
+$svg-blue: #4691f6;
+$clear: rgba(255, 255, 255, 0);
+// opacity colors
+$scrollbar-thumb-shadow-gray: rgba(0, 0, 0, 0.5);
+$scrollbar-track-shadow-color: rgba(0, 0, 0, 0.4);
+
+// urls
+// img urls
+$bg-img: '/assets/images/background.png';
+$bg-carousel: '/assets/images/carousel_bg.png';
+// font urls
+// Roboto
+$roboto-font-url-prefix: '/assets/fonts/Roboto';
+$roboto-regular: '#{$roboto-font-url-prefix}/Roboto-Regular.woff';
+$roboto-regular2: '#{$roboto-font-url-prefix}/Roboto-Regular.woff2';
+$roboto-bold: '#{$roboto-font-url-prefix}/Roboto-Bold.woff';
+$roboto-bold2: '#{$roboto-font-url-prefix}/Roboto-Bold.woff2';
+$roboto-condensed-light-italic: '#{$roboto-font-url-prefix}/RobotoCondensed-LightItalic.woff';
+$roboto-condensed-light-italic2: '#{$roboto-font-url-prefix}/RobotoCondensed-LightItalic.woff2';
+$roboto-bold-italic: '#{$roboto-font-url-prefix}/Roboto-BoldItalic.woff';
+$roboto-bold-italic2: '#{$roboto-font-url-prefix}/Roboto-BoldItalic.woff2';
+$roboto-condensed-bold: '#{$roboto-font-url-prefix}/RobotoCondensed-Bold.woff';
+$roboto-condensed-bold2: '#{$roboto-font-url-prefix}/RobotoCondensed-Bold.woff2';
+$roboto-thin-italic: '#{$roboto-font-url-prefix}/Roboto-ThinItalic.woff';
+$roboto-thin-italic2: '#{$roboto-font-url-prefix}/Roboto-ThinItalic.woff2';
+$roboto-condensed-regular: '#{$roboto-font-url-prefix}/RobotoCondensed-Regular.woff';
+$roboto-condensed-regular2: '#{$roboto-font-url-prefix}/RobotoCondensed-Regular.woff2';
+$roboto-thin: '#{$roboto-font-url-prefix}/Roboto-Thin.woff';
+$roboto-thin2: '#{$roboto-font-url-prefix}/Roboto-Thin.woff2';
+$roboto-light-italic: '#{$roboto-font-url-prefix}/Roboto-LightItalic.woff';
+$roboto-light-italic2: '#{$roboto-font-url-prefix}/Roboto-LightItalic.woff2';
+$roboto-condensed-italic: '#{$roboto-font-url-prefix}/RobotoCondensed-Italic.woff';
+$roboto-condensed-italic2: '#{$roboto-font-url-prefix}/RobotoCondensed-Italic.woff2';
+$roboto-light: '#{$roboto-font-url-prefix}/Roboto-Light.woff';
+$roboto-light2: '#{$roboto-font-url-prefix}/Roboto-Light.woff2';
+$roboto-condensed: '#{$roboto-font-url-prefix}/RobotoCondensed-Light.woff';
+$roboto-condensed2: '#{$roboto-font-url-prefix}/RobotoCondensed-Light.woff2';
+$roboto-black: '#{$roboto-font-url-prefix}/Roboto-Black.woff';
+$roboto-black2: '#{$roboto-font-url-prefix}/Roboto-Black.woff2';
+$roboto-medium: '#{$roboto-font-url-prefix}/Roboto-Medium.woff';
+$roboto-medium2: '#{$roboto-font-url-prefix}/Roboto-Medium.woff2';
+$roboto-medium-italic: '#{$roboto-font-url-prefix}/Roboto-MediumItalic.woff';
+$roboto-medium-italic2: '#{$roboto-font-url-prefix}/Roboto-MediumItalic.woff2';
+$roboto-condensed-bold-italic: '#{$roboto-font-url-prefix}/RobotoCondensed-BoldItalic.woff';
+$roboto-condensed-bold-italic2: '#{$roboto-font-url-prefix}/RobotoCondensed-BoldItalic.woff2';
+$roboto-black-italic: '#{$roboto-font-url-prefix}/Roboto-BlackItalic.woff';
+$roboto-black-italic2: '#{$roboto-font-url-prefix}/Roboto-BlackItalic.woff2';
+$roboto-italic: '#{$roboto-font-url-prefix}/Roboto-Italic.woff';
+$roboto-italic2: '#{$roboto-font-url-prefix}/Roboto-Italic.woff2';
+// Arial
+$arial-font-url-prefix: '/assets/fonts/Arial';
+$arial-bold: '#{$arial-font-url-prefix}/Arial-BoldMT.woff';
+$arial-narrow-bold-italic: '#{$arial-font-url-prefix}/ArialNarrow-BoldItalic.woff';
+$arial-bold-italic: '#{$arial-font-url-prefix}/Arial-BoldItalicMT.woff';
+$arial: '#{$arial-font-url-prefix}/ArialMT.woff';
+$arial-black: '#{$arial-font-url-prefix}/Arial-Black.woff';
+$arial-narrow: '#{$arial-font-url-prefix}/ArialNarrow.woff';
+$arial-narrow-italic: '#{$arial-font-url-prefix}/ArialNarrow-Italic.woff';
+$arial-narrow-bold: '#{$arial-font-url-prefix}/ArialNarrow-Bold.woff';
+$arial-italic: '#{$arial-font-url-prefix}/Arial-ItalicMT.woff';
+$arial-bold2: '#{$arial-font-url-prefix}/Arial-BoldMT.woff2';
+$arial-narrow-bold-italic2: '#{$arial-font-url-prefix}/ArialNarrow-BoldItalic.woff2';
+$arial-bold-italic2: '#{$arial-font-url-prefix}/Arial-BoldItalicMT.woff2';
+$arial2: '#{$arial-font-url-prefix}/ArialMT.woff2';
+$arial-black2: '#{$arial-font-url-prefix}/Arial-Black.woff2';
+$arial-narrow2: '#{$arial-font-url-prefix}/ArialNarrow.woff2';
+$arial-narrow-italic2: '#{$arial-font-url-prefix}/ArialNarrow-Italic.woff2';
+$arial-narrow-bold2: '#{$arial-font-url-prefix}/ArialNarrow-Bold.woff2';
+$arial-italic2: '#{$arial-font-url-prefix}/Arial-ItalicMT.woff2';
+
+// sizes
+$footer-height: 2rem;
+$header-height: 56px;
+
+// calculations
+$calc-height: calc(100vh - (#{$header-height} + #{$footer-height}));

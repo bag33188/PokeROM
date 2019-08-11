@@ -1,0 +1,58 @@
+<div id="acc-container" class="ml-3 mr-3 text-dark">
+  <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+    <ngb-panel>
+      <ng-template ngbPanelTitle>
+        <span class="black">What does this Website Include?</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        This website has all Core Pok&eacute;mon Game ROMs, as well as some ROM
+        Hacks.
+        <br /><br />
+        <span class="font-weight-bold">ROM Hacks Include:</span>
+        <ul>
+          <li>Pok&eacute;mon Prism</li>
+          <li>Pok&eacute;mon Ash Gray</li>
+          <!-- <li>
+            Pok&eacute;mon Genesis (<span class="font-italic">Coming Soon</span
+            >)
+          </li> -->
+        </ul>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel>
+      <ng-template ngbPanelTitle type="success">
+        <span class="black">Where did I get these ROMs?</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        Every single ROM that you will see, download, or read about on this
+        website has been dumped directly from its own cartridge.
+        <br />
+        For starters, to dump the GB and GBC ROMs, I used my N64 controller's
+        Transfer Pak along with Raphet's
+        <a [href]="raphnet.SOFTWARE" target="_blank">Adapter Management tool</a>
+        (using Raphnet's
+        <a [href]="raphnet.PRODUCT" target="_blank">N64 to USB adapter</a>) to
+        read and dump the ROM from the cartridge. <br /><br />
+        Next, I used my R4 along with a GBA backup tool to dump the ROM on all
+        GBA cartridges.
+        <br /><br />
+        For all NDS and 3DS core games, I used my CFW 3DS and GodMode9 to dump
+        those ROMs from their respective cartridges.
+        <br /><br />
+        Finally, I recently hacked my Switch, and was thus able to dump the
+        Pok&eacute;mon Lets Go Pikachu and Eevee ROMs.
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel>
+      <ng-template ngbPanelTitle>
+        <span class="black">Are these ROMs Free?</span>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        Absolutely! Each and every ROM is free and backed by a no-adware/virus
+        guarantee!<br />You won't ever have to deal with those pesky installers
+        or even survey scams.<br />This site contains direct download links
+        only. All the ROMs come from my cloud database.
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>

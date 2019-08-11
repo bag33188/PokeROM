@@ -1,0 +1,29 @@
+<ng-container>
+  <div class="jumbotron bg-info text-light">
+    <h1 class="display-4">Welcome to the world of Pok&eacute;ROM!</h1>
+    <p class="lead">
+      Here, you can find all of the core Pok&eacute;mon ROMs.
+    </p>
+    <hr class="my-4 bg-light" />
+    <p>
+      Play em' on your emus, catch em' all, and
+      <span class="font-weight-bold" ngbTooltip="yeah I said it!"
+        >screw gen V!</span
+      >&nbsp;(Gen V ROMs are included)
+    </p>
+    <a
+      class="btn btn-outline-light btn-lg"
+      [routerLink]="['/', 'register']"
+      role="button"
+      *ngIf="!loggedIn()"
+      >Sign Up!</a
+    >
+    <a
+      class="btn btn-outline-light btn-lg"
+      [routerLink]="['/', 'roms']"
+      role="button"
+      *ngIf="loggedIn()"
+      >ROMs!</a
+    >
+  </div>
+</ng-container>

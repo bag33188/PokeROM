@@ -1,0 +1,13 @@
+<div id="list-container">
+  <ul class="list-group">
+    <li class="list-group-item active bg-red">
+      <fa-icon [icon]="faCompactDisc" class="mr-2"></fa-icon>ROM Info
+    </li>
+    <li class="list-group-item">File Type: {{ rom.file_type }}</li>
+    <li class="list-group-item">
+      File Size: {{ fileData(rom.file_size)[0] }}{{ fileData(rom.file_size)[1] }}
+    </li>
+    <li class="list-group-item">Platform: {{ rom.platform }}</li>
+    <li class="list-group-item">File Name: {{ rom.file_name }}</li>
+  </ul>
+</div>

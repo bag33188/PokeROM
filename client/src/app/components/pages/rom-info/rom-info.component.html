@@ -1,0 +1,39 @@
+<div class="p-2">
+  <app-spinner [loading]="loading"></app-spinner>
+  <div class="alert alert-danger mt-4 pt-2" *ngIf="isError">
+    Oops, looks like there was an error while trying to load your ROM
+    information.<br />Please try again later.
+  </div>
+  <div id="rom-info-container" class="mt-4" *ngIf="!loading && !isError">
+    <div id="back-btn-container">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [routerLink]="['/', 'roms']"
+      >
+        <fa-icon [icon]="faLongArrowAltLeft"></fa-icon>
+      </button>
+    </div>
+    <div id="title-container">
+      <h1>ROM Info</h1>
+    </div>
+    <div id="dummy-container">
+      <div style="width: 40px;">
+        <!-- dummy div -->
+      </div>
+    </div>
+  </div>
+  <ng-container>
+    <app-game-name [rom]="rom"></app-game-name>
+    <div id="rom-container">
+      <app-game-logo id="game-logo" [rom]="rom"></app-game-logo>
+      <app-game-description
+        id="game-description"
+        [rom]="rom"
+      ></app-game-description>
+      <app-rom-download id="game-download" [rom]="rom"></app-rom-download>
+      <app-game-specs id="game-specs" [rom]="rom"></app-game-specs>
+      <app-rom-specs id="rom-specs" [rom]="rom"></app-rom-specs>
+    </div>
+  </ng-container>
+</div>
