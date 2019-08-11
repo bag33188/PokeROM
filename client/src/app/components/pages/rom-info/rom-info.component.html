@@ -24,16 +24,39 @@
     </div>
   </div>
   <ng-container>
-    <app-game-name [rom]="rom"></app-game-name>
+    <app-game-name
+      [gameName]="rom.game_name"
+      [romType]="rom.rom_type"
+    ></app-game-name>
     <div id="rom-container">
-      <app-game-logo id="game-logo" [rom]="rom"></app-game-logo>
+      <app-game-logo
+        id="game-logo"
+        [logoUrl]="rom.logo_url"
+        [gameName]="rom.game_name"
+      ></app-game-logo>
       <app-game-description
         id="game-description"
-        [rom]="rom"
+        [description]="rom.description"
+        [gameName]="rom.game_name"
       ></app-game-description>
-      <app-rom-download id="game-download" [rom]="rom"></app-rom-download>
-      <app-game-specs id="game-specs" [rom]="rom"></app-game-specs>
-      <app-rom-specs id="rom-specs" [rom]="rom"></app-rom-specs>
+      <app-rom-download
+        id="game-download"
+        [downloadLink]="rom.download_link"
+      ></app-rom-download>
+      <app-game-specs
+        id="game-specs"
+        [region]="rom.region"
+        [dateReleased]="rom.date_released"
+        [genre]="rom.genre"
+        [generation]="rom.generation"
+      ></app-game-specs>
+      <app-rom-specs
+        id="rom-specs"
+        [platform]="rom.platform"
+        [fileName]="rom.file_name"
+        [fileSize]="rom.file_size"
+        [fileType]="rom.file_type"
+      ></app-rom-specs>
     </div>
   </ng-container>
 </div>
