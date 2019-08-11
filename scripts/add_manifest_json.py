@@ -18,8 +18,8 @@ def add_manifest_json():
     manifest_data = (
                       '{\n'
                       '\t"manifest_version": 2,\n'
-                      '\t"version": "1.0.0",\n'
                       '\t"name": "PokeROM",\n'
+                      '\t"version": "1.0.0",\n'
                       '\t"author": "Broccolini",\n'
                       '\t"description": "A web application that contains all the core Pokemon ROMs as well as some ROM hacks.",\n'
                       '\t"keywords": ["PokeROM", "Pokemon", "ROM", "ROMs", "core"],\n'
