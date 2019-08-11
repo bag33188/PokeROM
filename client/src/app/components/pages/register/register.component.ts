@@ -117,6 +117,10 @@ export class RegisterComponent implements OnInit, AfterContentInit {
               ) {
                 this.registerFail =
                   'Username can only contain letters, numbers, or underscores.';
+              } else if (
+                error[keys[3]] === 'Password contains invalid characters.'
+              ) {
+                this.registerFail = 'Password contains invalid characters.';
               } else {
                 this.registerFail = 'Registration Failure';
               }
