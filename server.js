@@ -34,8 +34,8 @@ app.use(logger);
 // define what directory to look in for serving static file(s)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use(jsonSyntax);
 app.use(express.urlencoded({ extended: false })); // extended: true
+app.use(jsonSyntax);
 app.use(cacheControl);
 app.use(passport.initialize());
 app.use(passport.session());
