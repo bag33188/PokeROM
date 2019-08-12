@@ -54,10 +54,10 @@ def add_manifest_json():
 
         # check for favicon link
         if '<link rel="icon" type="image/x-icon" href="favicon.ico" />' in line:
-          # replace text
+          # replace text to add in manifest link (goes below favicon link)
           print(line.replace(text_to_search, replacement_text), end='')
         else:
-          # print other line
+          # print other lines
           print(line, end='')
 
     print ('Done!', end='\n\n')
