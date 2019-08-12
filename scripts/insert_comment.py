@@ -7,8 +7,9 @@ from fileinput import FileInput # import fileinput module
 # define main function
 def insert_comment():
   """
-  This function inserts a comment right below the `<!DOCTYPE html>` declaration in the `../public/index.html` file.
-  It will also convert a lowercase `<!doctype html>` to an uppercase `<!DOCTYPE html>` if it needs to.
+  This function inserts a very importantcomment right below the `<!DOCTYPE html>` declaration in the
+  `../public/index.html` file. It will also convert a lowercase `<!doctype html>` to an uppercase `<!DOCTYPE html>`
+  if it needs to.
   """
 
   print('Inserting comment into index.html ... ')
@@ -22,7 +23,7 @@ def insert_comment():
     replacement_text = '<!DOCTYPE html>\n<!-- May the source be with you! -->\n'
 
     # use fileinput to edit file
-    with FileInput(filepath, inplace=True) as file:
+    with FileInput(filepath, inplace=True, backup='.bak1') as file:
 
       # loop thru each line in file
       for line in file:
