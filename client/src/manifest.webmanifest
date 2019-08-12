@@ -1,6 +1,6 @@
 {
-  "name": "PokeROM",
-  "short_name": "pokerom",
+  "name": "PokéROM",
+  "short_name": "PokéROM",
   "theme_color": "#b80000",
   "background_color": "#b80000",
   "display": "standalone",
