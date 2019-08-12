@@ -33,12 +33,12 @@ apiDocs(app);
 app.use(logger);
 // define what directory to look in for serving static file(s)
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(
-  cacheControl({
-    public: true,
-    maxAge: 0
-  })
-);
+// app.use(
+//   cacheControl({
+//     public: true,
+//     maxAge: 0
+//   })
+// );
 app.use(express.json());
 app.use(jsonSyntax);
 app.use(express.urlencoded({ extended: false })); // extended: true
