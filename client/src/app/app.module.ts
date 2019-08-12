@@ -9,6 +9,8 @@ import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './interceptors';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +20,10 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
     PagesModule,
     LayoutModule,
     RomsModule,
-    NgBootstrapModule
+    NgBootstrapModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
   providers: [
     ApiService,

@@ -25,7 +25,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets/images",
-              "src/assets/fonts"
+              "src/assets/fonts",
+              "src/assets/icons",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss",
@@ -67,7 +69,9 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
@@ -97,7 +101,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss"
