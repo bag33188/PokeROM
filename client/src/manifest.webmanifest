@@ -1,8 +1,8 @@
 {
   "name": "PokeROM",
   "short_name": "pokerom",
-  "theme_color": "#4d0101",
-  "background_color": "#4d0101",
+  "theme_color": "#b80000",
+  "background_color": "#b80000",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
