@@ -3,7 +3,7 @@ class ValidatePatchRequest {
     this.req = req;
   }
 
-  sortErrors(errorsArr, propKey) {
+  static sortErrors(errorsArr, propKey) {
     errorsArr.sort(function(a, b) {
       if (a[propKey] < b[propKey]) {
         return -1;
@@ -352,7 +352,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    this.sortErrors(errors, 'param');
+    ValidatePatchRequest.sortErrors(errors, 'param');
     if (errors.length > 0) {
       return res.status(406).json({ success: false, errors });
     }
@@ -455,7 +455,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    this.sortErrors(errors, 'param');
+    ValidatePatchRequest.sortErrors(errors, 'param');
     if (errors.length > 0) {
       return res.status(406).json({ success: false, errors });
     }
@@ -552,7 +552,7 @@ class ValidatePatchRequest {
         });
       }
     }
-    this.sortErrors(errors, 'param');
+    ValidatePatchRequest.sortErrors(errors, 'param');
     if (errors.length > 0) {
       return res.status(406).json({ success: false, errors });
     }
