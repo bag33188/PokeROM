@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1565638813625,
+  "timestamp": 1565639058382,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -162,7 +162,7 @@
     "/assets/fonts/Roboto/RobotoCondensed-LightItalic.woff2": "8a8b4a4c840cd7694c4355413ab3a25a8e35fe59",
     "/assets/fonts/Roboto/RobotoCondensed-Regular.woff": "9ebe05390522b182a482c0e1860ca8474e67d4e1",
     "/assets/fonts/Roboto/RobotoCondensed-Regular.woff2": "d680fc16443ca6ac0a8dc7fcbcf66c3a99136fdb",
-    "/assets/icons/apple-touch-icon.png": "eb62004e276e9b2b0f72deb5de8f43e7b8f82cbd",
+    "/assets/icons/apple-touch-icon.png": "40e4f140d0ba36fe47039f906da28bd9e92ed6d8",
     "/assets/icons/icon-128x128.png": "2619194919f00652a9e37afa9843a5070ddb6e93",
     "/assets/icons/icon-144x144.png": "0e03e4d6164a13dc3d7a20da954379166c8b33d8",
     "/assets/icons/icon-152x152.png": "92e1b4278dfa291ef091387869e7a63bab732b9c",
