@@ -3,7 +3,7 @@
 """This program moves around the script tags in the `public/index.html` file."""
 
 import re # import regular expression module
-import fileinput # import fileinput module
+from fileinput import FileInput # import fileinput module
 
 # define move_script_tags function
 def move_script_tags():
@@ -50,7 +50,7 @@ def move_script_tags():
     # the second file I/O operation will move around the script tags regardless of formatting and close of the link tag
 
     # use fileinput to open up index.html file and create backup before editing
-    with fileinput.FileInput(filepath, inplace=True, backup='.bak') as file:
+    with FileInput(filepath, inplace=True, backup='.bak') as file:
 
       # loop through each line in file
       for line in file:

@@ -3,7 +3,7 @@
 """This program fixes a bug in the Angular AOT Compiler."""
 
 import sys # import system module
-import fileinput # import fileinput module
+from fileinput import FileInput # import fileinput module
 
 # create fix_state_js function
 def fix_state_js():
@@ -27,7 +27,7 @@ def fix_state_js():
     fix_applied = False
 
     # open up file stream (read and write) and create backup of file
-    with fileinput.FileInput(filepath, inplace=True, backup='.bak') as file:
+    with FileInput(filepath, inplace=True, backup='.bak') as file:
 
       # loop through each line in file
       for line in file:
