@@ -1,4 +1,5 @@
 const mcache = require('memory-cache');
+const cacheControl = require('express-cache-controller');
 
 function removeURIComponents(req, method, key) {
   let queryParams = [];
@@ -73,4 +74,11 @@ function clearCache(req) {
   }
 }
 
-module.exports = [cache, clearCache];
+module.exports = [
+  cache,
+  clearCache,
+  cacheControl({
+    public: true,
+    maxAge: 0
+  })
+];

@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
-const cacheControl = require('express-cache-controller');
 const expressSanitizer = require('express-sanitizer');
+const [, , cacheControl] = require('./middleware/cache');
 const logger = require('./middleware/logger');
 const jsonSyntax = require('./middleware/json-syntax');
 const swaggerDoc = require('./docs/swagger-doc');
@@ -33,12 +33,7 @@ apiDocs(app);
 app.use(logger);
 // define what directory to look in for serving static file(s)
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(
-  cacheControl({
-    public: true,
-    maxAge: 0
-  })
-);
+app.use(cacheControl);
 app.use(express.json());
 app.use(jsonSyntax);
 app.use(express.urlencoded({ extended: false })); // extended: true
