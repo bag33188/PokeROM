@@ -6,6 +6,18 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
+  "lang": "en-US",
+  "description": "A web app that contains all the core Pokemon ROMs.",
+  "categories": [
+    "Pokemon",
+    "ROMs",
+    "core",
+    "hacks",
+    "PokeROM"
+  ],
+  "serviceWorker": {
+    "src": "ngsw-worker.js"
+  },
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
