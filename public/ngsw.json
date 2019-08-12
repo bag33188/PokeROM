@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1565637240405,
+  "timestamp": 1565638813625,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -79,6 +79,7 @@
         "/assets/fonts/Roboto/RobotoCondensed-LightItalic.woff2",
         "/assets/fonts/Roboto/RobotoCondensed-Regular.woff",
         "/assets/fonts/Roboto/RobotoCondensed-Regular.woff2",
+        "/assets/icons/apple-touch-icon.png",
         "/assets/icons/icon-128x128.png",
         "/assets/icons/icon-144x144.png",
         "/assets/icons/icon-152x152.png",
@@ -161,6 +162,7 @@
     "/assets/fonts/Roboto/RobotoCondensed-LightItalic.woff2": "8a8b4a4c840cd7694c4355413ab3a25a8e35fe59",
     "/assets/fonts/Roboto/RobotoCondensed-Regular.woff": "9ebe05390522b182a482c0e1860ca8474e67d4e1",
     "/assets/fonts/Roboto/RobotoCondensed-Regular.woff2": "d680fc16443ca6ac0a8dc7fcbcf66c3a99136fdb",
+    "/assets/icons/apple-touch-icon.png": "eb62004e276e9b2b0f72deb5de8f43e7b8f82cbd",
     "/assets/icons/icon-128x128.png": "2619194919f00652a9e37afa9843a5070ddb6e93",
     "/assets/icons/icon-144x144.png": "0e03e4d6164a13dc3d7a20da954379166c8b33d8",
     "/assets/icons/icon-152x152.png": "92e1b4278dfa291ef091387869e7a63bab732b9c",
@@ -184,7 +186,7 @@
     "/fontawesome-webfont.af7ae505a9eed503f8b8.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
     "/fontawesome-webfont.b06871f281fee6b241d6.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
     "/fontawesome-webfont.fee66e712a8a08eef580.woff": "28b782240b3e76db824e12c02754a9731a167527",
-    "/index.html": "42d23a17ff13b2eaf490e2bb3772c019364145c3",
+    "/index.html": "7c7223b73a270c289cdbf9ab6f47290f145419d3",
     "/main.fd5582beb5aac3a0afa6.js": "9e5a579d95020b2ecd4c3dd05d42ee7c50401a92",
     "/polyfills-es5.42ff182080c193d4c80d.js": "d357ff95651f495da80d76dfb1e7088c3af73164",
     "/polyfills.e5eef260008d5514eb7b.js": "df37fb9005533e7beafa8777055b120733793167",
