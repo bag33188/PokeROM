@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <ng-container>
+  <div *ngIf="!loading">
     <app-game-name
       [gameName]="rom.game_name"
       [romType]="rom.rom_type"
@@ -58,5 +58,5 @@
         [fileType]="rom.file_type"
       ></app-rom-specs>
     </div>
-  </ng-container>
+  </div>
 </div>
