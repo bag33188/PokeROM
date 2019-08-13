@@ -17,6 +17,7 @@ def insert_comment():
   # use try block in case file is not found
   try:
 
+    # define very important comment constant
     IMPORTANT_COMMENT = '<!-- May the source be with you! -->'
 
     # define vars
