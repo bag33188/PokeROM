@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1565715968313,
+  "timestamp": 1565716204401,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -177,7 +177,7 @@
     "/assets/icons/icon-72x72.png": "d966066bee6d93ed439cfe2c6d1b01aba81a04e4",
     "/assets/icons/icon-96x96.png": "49257b6caa721509a26f90a5d8fd82a6d1599929",
     "/assets/icons/mstile-150x150.png": "ab1d4c3416ebdcf904f2fc70fec7b838448cfdf7",
-    "/assets/icons/safari-pinned-tab.svg": "1ce2da343dd5c359254af311b5e5a8d4f2ba1d11",
+    "/assets/icons/safari-pinned-tab.svg": "c1cb906c65288f986f44f852b837cc6862dff6df",
     "/assets/icons/touch-icon-ipad-retina.png": "c1b6d13b4c2985748364edddbe2eda7ca6b3829a",
     "/assets/icons/touch-icon-ipad.png": "827a992b0ca241de7ed034bca9f1f62682b74172",
     "/assets/icons/touch-icon-iphone-retina.png": "007f984e62944766c3a8b09e8491ae33c5cd388b",
