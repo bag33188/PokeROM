@@ -19,17 +19,6 @@ const httpRouter = express.Router();
 
 const routesWithParams = ['core', 'hacks'];
 
-function toBoolean(value) {
-  switch (value) {
-    case 'true':
-      return true;
-    case 'false':
-      return false;
-    default:
-      break;
-  }
-}
-
 // console.log(all_routes(httpRouter));
 
 // define array with fields to sanitize
@@ -66,6 +55,17 @@ function convertToDateFormat(date) {
     dateArr.unshift(year);
     const formattedDate = dateArr.join(',');
     return new Date(formattedDate);
+  }
+}
+
+function toBoolean(value) {
+  switch (value) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default:
+      break;
   }
 }
 
