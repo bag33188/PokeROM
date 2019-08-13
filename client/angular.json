@@ -27,7 +27,8 @@
               "src/assets/images",
               "src/assets/fonts",
               "src/assets/icons",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/browserconfig.xml"
             ],
             "styles": [
               "src/styles.scss",
