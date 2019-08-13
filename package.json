@@ -32,7 +32,7 @@
     "db-osx": "mongod",
     "db-shell": "mongo",
     "db-prod": "mongo \"mongodb+srv://pokerom-cluster-voflm.azure.mongodb.net/pkmn-roms\" --username broccolini33188 --password Sullivan",
-    "load-data": "mongo ~/Projects/PokeROM/database/pkmn-roms.js",
+    "load-db": "mongo ~/Projects/PokeROM/database/pkmn-roms.js",
     "pack": "cd scripts && bash ./package_app.sh",
     "move-script-tags-win": "cd scripts && python move_script_tags.py",
     "move-script-tags-osx": "cd scripts && python3 move_script_tags.py",
