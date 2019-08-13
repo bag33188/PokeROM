@@ -23,8 +23,8 @@ export class ApiService {
 
   public storeApiVersionInCache(): void {
     caches.open('api_version').then(
-      async (cache: Cache): Promise<void> => {
-        return await cache.add(`${environment.apiUrl}/version`);
+      (cache: Cache): Promise<void> => {
+        return cache.add(`${environment.apiUrl}/version`);
       }
     );
   }

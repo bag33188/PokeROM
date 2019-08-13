@@ -22,7 +22,7 @@ def move_script_tags():
   filepath = '../public/index.html'
 
   # regex for identifying script tags
-  script_tag_regex = re.compile(r'(<script src=\"(?:runtime|polyfills-es5|polyfills|main|vendor|scripts)\.(?:#?(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(?:\snomodule)?><\/script>)')
+  script_tag_regex = re.compile(r'(<script src=\"(?:runtime|runtime-es(?:2017|2018|5)|polyfills|polyfills-es(?:2017|2018|5)|main|main-es(?:2017|2018|5)|vendor-es(?:2017|2018|5)|vendor|scripts)\.(?:#?(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(?:\stype="module")?(?:\snomodule)?><\/script>)')
 
   # future script tag string from joined script tag strings array
   new_script_tags = ''
@@ -78,15 +78,27 @@ def move_script_tags():
 
         # check if script tags are in current line
         elif script_tags:
-          # remove script tags from bottom of file
-          print(line.replace(script_tags[0], '')
-                    .replace(script_tags[1], '')
-                    .replace(script_tags[2], '')
-                    .replace(script_tags[3], '')
-                    .replace(script_tags[4], '')
-                    .replace(script_tags[5], ''), 
+          if len(script_tags) == 9:
+            # remove script tags from bottom of file
+            print(line.replace(script_tags[0], '')
+                      .replace(script_tags[1], '')
+                      .replace(script_tags[2], '')
+                      .replace(script_tags[3], '')
+                      .replace(script_tags[4], '')
+                      .replace(script_tags[5], '')
+                      .replace(script_tags[6], '')
+                      .replace(script_tags[7], '')
+                      .replace(script_tags[8], ''),
                   end='')
-
+          else:
+            # remove script tags from bottom of file
+            print(line.replace(script_tags[0], '')
+                      .replace(script_tags[1], '')
+                      .replace(script_tags[2], '')
+                      .replace(script_tags[3], '')
+                      .replace(script_tags[4], '')
+                      .replace(script_tags[5], ''),
+                  end='')
         # otherwise...
         else:
           # print the other lines
