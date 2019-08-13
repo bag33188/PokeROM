@@ -36,4 +36,12 @@ export class PaginationComponent implements OnInit {
     this.pageSize = this.itemsPerPage * (pageNum - 1);
     this.paginate.emit(this.pageSize);
   }
+
+  changeSizeOfPagination(): 'sm' | '' {
+    if (this.pageWidth <= 339) {
+      return 'sm';
+    } else {
+      return '';
+    }
+  }
 }

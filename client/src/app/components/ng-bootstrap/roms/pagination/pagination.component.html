@@ -8,6 +8,7 @@
     [(page)]="currentPage"
     (pageChange)="onPageChange(currentPage)"
     [disabled]="romsData.length === 0"
+    [size]="changeSizeOfPagination()"
   >
     <ng-template *ngIf="pageWidth > 600" ngbPaginationPrevious
       >Prev</ng-template
