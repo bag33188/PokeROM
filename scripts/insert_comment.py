@@ -7,7 +7,7 @@ from fileinput import FileInput # import fileinput module
 # define main function
 def insert_comment():
   """
-  This function inserts a very importantcomment right below the `<!DOCTYPE html>` declaration in the
+  This function inserts a very important comment right below the `<!DOCTYPE html>` declaration in the
   `../public/index.html` file. It will also convert a lowercase `<!doctype html>` to an uppercase `<!DOCTYPE html>`
   if it needs to.
   """
