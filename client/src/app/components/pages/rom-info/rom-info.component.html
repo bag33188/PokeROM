@@ -1,6 +1,10 @@
 <div class="p-2">
   <app-spinner [loading]="loading"></app-spinner>
-  <div class="alert alert-danger mt-4 pt-2" *ngIf="isError">
+  <div
+    class="alert alert-danger ml-4 mr-4 text-center"
+    id="rom-info-err"
+    *ngIf="isError"
+  >
     Oops, looks like there was an error while trying to load your ROM
     information.<br />Please try again later.
   </div>
@@ -19,7 +23,7 @@
     </div>
     <div id="dummy-container"></div>
   </div>
-  <div *ngIf="!loading">
+  <div *ngIf="!loading && !isError">
     <app-game-name
       [gameName]="rom.game_name"
       [romType]="rom.rom_type"
