@@ -17,10 +17,12 @@ def insert_comment():
   # use try block in case file is not found
   try:
 
+    IMPORTANT_COMMENT = '<!-- May the source be with you! -->'
+
     # define vars
     filepath = '../public/index.html'
     text_to_search = '<!DOCTYPE html>'
-    replacement_text = '<!DOCTYPE html>\n<!-- May the source be with you! -->\n'
+    replacement_text = f'<!DOCTYPE html>\n{IMPORTANT_COMMENT}\n'
 
     # use fileinput to edit file
     with FileInput(filepath, inplace=True, backup='.bak1') as file:
