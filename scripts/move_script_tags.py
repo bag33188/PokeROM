@@ -22,7 +22,7 @@ def move_script_tags():
   filepath = '../public/index.html'
 
   # regex for identifying script tags
-  script_tag_regex = re.compile(r'(<script src=\"(?:runtime|runtime-es(?:2017|2018|5)|polyfills|polyfills-es(?:2017|2018|5)|main|main-es(?:2017|2018|5)|vendor-es(?:2017|2018|5)|vendor|scripts)\.(?:#?(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(?:\stype="module")?(?:\snomodule)?><\/script>)')
+  script_tag_regex = re.compile(r'(<script src=\"(?:runtime|runtime-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|polyfills|polyfills-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|main|main-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|vendor-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|vendor|scripts|scripts-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest)))\.(?:#?(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(?:\stype="module")?(?:\snomodule)?><\/script>)')
 
   # future script tag string from joined script tag strings array
   new_script_tags = ''
@@ -78,7 +78,7 @@ def move_script_tags():
 
         # check if script tags are in current line
         elif script_tags:
-          if len(script_tags) == 9:
+          if len(script_tags) > 5:
             # remove script tags from bottom of file
             print(line.replace(script_tags[0], '')
                       .replace(script_tags[1], '')
