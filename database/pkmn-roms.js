@@ -1,16 +1,16 @@
 conn = new Mongo();
 printjson(conn);
 
-// db = conn.getDB('pkmn-roms');
 db = db.getSiblingDB('pkmn-roms');
 printjson(db);
 
-dbUserInsertQuery = db.createUser({
-  user: 'Broccolini',
-  pwd: '12345678',
-  roles: ['readWrite', 'dbAdmin']
-});
-printjson(dbUserInsertQuery);
+// uncomment the following if running locally for the first time
+// dbUserInsertQuery = db.createUser({
+//   user: 'Broccolini',
+//   pwd: '12345678',
+//   roles: ['readWrite', 'dbAdmin']
+// });
+// printjson(dbUserInsertQuery);
 
 romsCollection = db.createCollection('roms', {
   validator: {
