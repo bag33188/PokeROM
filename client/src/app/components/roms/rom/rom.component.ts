@@ -26,7 +26,7 @@ export class RomComponent implements OnInit {
       .replace(/('|[\(\)])/g, '')}-box-art`;
   }
 
-  fileData(romFileSize: number): [number, string] {
+  fileSizeData(romFileSize: number): [number, string] {
     const [fileSize, fileType]: [
       number,
       string
@@ -62,7 +62,7 @@ export class RomComponent implements OnInit {
     }
   }
 
-  convertToRomanNumeral(generation: number): string | number {
-    return UnitConversionService.romanize(generation);
+  romanize(generation: number): string | number {
+    return UnitConversionService.convertIntegerToRomanNumeral(generation);
   }
 }

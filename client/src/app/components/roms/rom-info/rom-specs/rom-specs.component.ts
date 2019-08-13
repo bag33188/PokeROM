@@ -23,7 +23,7 @@ export class RomSpecsComponent implements OnInit {
     this.faCompactDisc = faCompactDisc;
   }
 
-  fileData(romFileSize: number): [number, string] {
+  fileSizeData(romFileSize: number): [number, string] {
     const [fileSize, fileType]: [
       number,
       string

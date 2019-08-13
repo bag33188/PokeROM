@@ -26,7 +26,7 @@ export abstract class UnitConversionService {
     return seconds * 1000;
   }
 
-  public static romanize(num: number): string | number {
+  public static convertIntegerToRomanNumeral(num: number): string | number {
     if (isNaN(num)) {
       return NaN;
     } else {
