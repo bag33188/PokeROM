@@ -22,7 +22,7 @@ def add_browserconfig():
                       '\t\t<tile>\n'
                       '\t\t\t<square150x150logo src="assets/icons/mstile-150x150.png"/>\n'
                       '\t\t\t<TileColor>#ffffff</TileColor>\n'
-                      '\t\t</title>\n'
+                      '\t\t</tile>\n'
                       '\t</msapplication>\n'
                       '</browserconfig>\n'
                     )

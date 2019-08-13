@@ -4,6 +4,6 @@
 		<tile>
 			<square150x150logo src="assets/icons/mstile-150x150.png"/>
 			<TileColor>#ffffff</TileColor>
-		</title>
+		</tile>
 	</msapplication>
 </browserconfig>
