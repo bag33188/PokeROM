@@ -28,7 +28,7 @@ It is exactly what it sounds like, a website that has all of the core Pok&eacute
 
 This app is deployed to [heroku][heroku] at [https://pokerom-broccolini.herokuapp.com][pokerom website], and uses [MongoDB Atlas][mongodb atlas cloud] as a cloud database.
 
-Run ` ls-files | wc -l` to count how many files are in this repo.
+Run `git ls-files | wc -l` to count how many files are in this repo.
 
 ## Setup Information
 
