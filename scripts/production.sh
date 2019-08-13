@@ -34,6 +34,7 @@ production() {
     rm -rf assets
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
+    printf "\n"
     if [[ "$OSTYPE" == "darwin"* ]]; then
       python3 ../scripts/move_script_tags.py
       python3 ../scripts/insert_comment.py
@@ -74,7 +75,7 @@ production() {
     done
     git push
     git push heroku master
-  ) && printf "\r\n" && read -n 1 -s -r -p "Done! Press any key to exit" && echo -e "\r\n"
+  ) && echo -e "\r\n" && read -n 1 -s -r -p "Done! Press any key to exit" && echo -e "\r\n"
 }
 
 production
