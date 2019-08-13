@@ -5,15 +5,12 @@ printjson(conn);
 db = db.getSiblingDB('pkmn-roms');
 printjson(db);
 
-// uncomment the following if running this script locally for the first time
-//--------------------------
-// dbUserInsertQuery = db.createUser({
-//   user: 'Broccolini',
-//   pwd: '12345678',
-//   roles: ['readWrite', 'dbAdmin']
-// });
-// printjson(dbUserInsertQuery);
-//--------------------------
+dbUserInsertQuery = db.createUser({
+  user: 'Broccolini',
+  pwd: '12345678',
+  roles: ['readWrite', 'dbAdmin']
+});
+printjson(dbUserInsertQuery);
 
 romsCollection = db.createCollection('roms', {
   validator: {
