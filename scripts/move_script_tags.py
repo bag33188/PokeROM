@@ -78,7 +78,7 @@ def move_script_tags():
 
         # check if script tags are in current line
         elif script_tags:
-          if len(script_tags) > 5:
+          if len(script_tags) == 9:
             # remove script tags from bottom of file
             print(line.replace(script_tags[0], '')
                       .replace(script_tags[1], '')
