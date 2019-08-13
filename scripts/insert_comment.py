@@ -43,6 +43,9 @@ def insert_comment():
         else:
           print(line, end='')
 
+    # close file stream
+    FileInput().close()
+
     print('Done!', end='\n\n')
 
   # catch file not found error
@@ -50,8 +53,8 @@ def insert_comment():
     print('Error: file not found.', end='\n\n')
 
   # catch general exception
-  except Exception:
-    print('An error occurred.', end='\n\n')
+  except Exception as e:
+    print(f'An error occurred: {str(e)}', end='\n\n')
 
 # call main function
 insert_comment()

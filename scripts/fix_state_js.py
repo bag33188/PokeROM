@@ -52,7 +52,7 @@ def fix_state_js():
           print(line, end='')
 
     # close the file stream
-    fileinput.close()
+    FileInput().close()
 
     # if fix has been applied
     if fix_applied:
@@ -80,9 +80,9 @@ def fix_state_js():
     sys.exit(exit_code)
 
   # exception block for catching general errors
-  except Exception:
+  except Exception as e:
 
-    print('An error occurred while trying to apply/undo the fix.', end='\n\n')
+    print(f'An error occurred while trying to apply/undo the fix: {str(e)}', end='\n\n')
 
     # set exit code to 1 (error)
     exit_code = 1

@@ -63,7 +63,7 @@ def move_script_tags():
         # if the link tag and the closing head tag on the same line
         if ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:
           print(line.replace('.css"></head>', f'.css" />\n\n{new_script_tags}\n</head>')
-                    .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), 
+                    .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'),
                 end='')
 
         # if the link tag is not on the same line as the head tag
@@ -73,7 +73,7 @@ def move_script_tags():
         # if the head tag is not on the same line as the link tag (different condition)
         elif ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' not in line:
           print(line.replace('.css">', '.css" />\n\n')
-                    .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'), 
+                    .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'),
                 end='')
 
         # check if script tags are in current line
@@ -93,7 +93,7 @@ def move_script_tags():
           print(line, end='')
 
     # close the fileinput stream
-    fileinput.close()
+    FileInput().close()
 
     print('Done!', end='\n\n')
 
@@ -102,8 +102,8 @@ def move_script_tags():
     print('Error, index.html file not found.', end='\n\n')
 
   # general exception
-  except Exception:
-    print('An error occurred.', end='\n\n')
+  except Exception as e:
+    print(f'An error occurred: {str(e)}', end='\n\n')
 
 # call function
 move_script_tags()

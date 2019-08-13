@@ -30,13 +30,19 @@ production() {
     rm *bak
     rm *bak1
     rm *json
+    rm *xml
     rm -rf assets
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
-    python ../scripts/move_script_tags.py
-    python ../scripts/insert_comment.py
-    python3 ../scripts/move_script_tags.py
-    python3 ../scripts/insert_comment.py
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      python3 ../scripts/move_script_tags.py
+      python3 ../scripts/insert_comment.py
+      python3 ../scripts/add_browserconfig.py
+    else
+      python ../scripts/move_script_tags.py
+      python ../scripts/insert_comment.py
+      python ../scripts/add_browserconfig.py
+    fi
     cd ..
     rm -rf client/dist
     valid=0

@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1565653263328,
+  "timestamp": 1565663465217,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -88,6 +88,7 @@
         "/assets/icons/icon-512x512.png",
         "/assets/icons/icon-72x72.png",
         "/assets/icons/icon-96x96.png",
+        "/assets/icons/mstile-150x150.png",
         "/assets/images/background.png",
         "/assets/images/carousel_bg.png",
         "/assets/images/carousel_img_00.png",
@@ -171,6 +172,7 @@
     "/assets/icons/icon-512x512.png": "d1cbc45980a7c4efd2c4e760be8dd92cd22f29ea",
     "/assets/icons/icon-72x72.png": "727260ff75d669f06c0cb1673bd57b8da13272e6",
     "/assets/icons/icon-96x96.png": "b0323bf9dd48817025e1e47a00e14558fb26c0bc",
+    "/assets/icons/mstile-150x150.png": "ab1d4c3416ebdcf904f2fc70fec7b838448cfdf7",
     "/assets/images/background.png": "eae3c4ac133de0f0c381925494f41894847a2a0c",
     "/assets/images/carousel_bg.png": "f3b7e41e569f1d91136a607d9bbaabe194aea100",
     "/assets/images/carousel_img_00.png": "88b0abfa303c3727a1c108a5bfaf6cd7c3bdf8dd",
