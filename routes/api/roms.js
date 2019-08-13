@@ -19,6 +19,17 @@ const httpRouter = express.Router();
 
 const routesWithParams = ['core', 'hacks'];
 
+function toBoolean(value) {
+  switch (value) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default:
+      break;
+  }
+}
+
 // console.log(all_routes(httpRouter));
 
 // define array with fields to sanitize
@@ -126,9 +137,9 @@ httpRouter.get(
       const getAllCore = req.query['core'];
       const getAllHacks = req.query['hacks'];
       let query;
-      if (Boolean(getAllCore) && !Boolean(getAllHacks)) {
+      if (toBoolean(getAllCore) && !toBoolean(getAllHacks)) {
         query = { user_id: req.user['_id'], rom_type: 'core' };
-      } else if (Boolean(getAllHacks) && !Boolean(getAllCore)) {
+      } else if (toBoolean(getAllHacks) && !toBoolean(getAllCore)) {
         query = { user_id: req.user['_id'], rom_type: 'hack' };
       } else {
         query = { user_id: req.user['_id'] };
@@ -869,10 +880,10 @@ httpRouter.delete(
           if (isOwnUser) {
             let query = {};
             let message = '';
-            if (Boolean(deleteCore) && !Boolean(deleteHacks)) {
+            if (toBoolean(deleteCore) && !toBoolean(deleteHacks)) {
               query = { user_id: req.user['_id'], rom_type: 'core' };
               message = 'All core ROMs have been deleted.';
-            } else if (Boolean(deleteHacks) && !Boolean(deleteCore)) {
+            } else if (toBoolean(deleteHacks) && !toBoolean(deleteCore)) {
               query = { user_id: req.user['_id'], rom_type: 'hack' };
               message = 'All ROM hacks have been deleted.';
             } else {
