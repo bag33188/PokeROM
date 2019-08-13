@@ -1,7 +1,7 @@
 conn = new Mongo();
 printjson(conn);
 
-db = conn.getDB('pkmn-roms');
+// db = conn.getDB('pkmn-roms');
 db = db.getSiblingDB('pkmn-roms');
 printjson(db);
 
@@ -82,7 +82,7 @@ romsCollection = db.createCollection('roms', {
           minLength: 8,
           maxLength: 1000,
           pattern:
-            '^(?:[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#;=]{2,256}.[a-zA-Z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&//=;]*))$',
+            '^(?:(http(s)?)://(www.)?[a-zA-Z0-9@:%._+~#;=]{2,256}.[a-zA-Z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&//=;]*))$',
           description:
             'download_link is required and needs to be a valid URL string between 8 and 1000 characters.'
         },
@@ -98,7 +98,7 @@ romsCollection = db.createCollection('roms', {
           minLength: 8,
           maxLength: 1000,
           pattern:
-            '^(?:[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#;=]{2,256}.[a-zA-Z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&//=;]*))$',
+            '^(?:(http(s)?)://(www.)?[a-zA-Z0-9@:%._+~#;=]{2,256}.[a-zA-Z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&//=;]*))$',
           description:
             'box_art_url is required and needs to be a valid URL string between 8 and 1000 characters.'
         },
@@ -144,7 +144,7 @@ romsCollection = db.createCollection('roms', {
         logo_url: {
           bsonType: 'string',
           pattern:
-            '^(?:[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#;=]{2,256}.[a-zA-Z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&//=;]*))$',
+            '^(?:(http(s)?)://(www.)?[a-zA-Z0-9@:%._+~#;=]{2,256}.[a-zA-Z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&//=;]*))$',
           description:
             'logo_url is required and needs to be a valid URL string between 8 and 1000 characters.'
         },
