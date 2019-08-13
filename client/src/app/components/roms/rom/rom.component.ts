@@ -61,4 +61,8 @@ export class RomComponent implements OnInit {
         return regularSizedImgClasses;
     }
   }
+
+  convertToRomanNumeral(generation: number): string | number {
+    return UnitConversionService.romanize(generation);
+  }
 }
