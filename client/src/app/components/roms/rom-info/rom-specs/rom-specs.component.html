@@ -3,11 +3,11 @@
     <li class="list-group-item active bg-red">
       <fa-icon [icon]="faCompactDisc" class="mr-2"></fa-icon>ROM Info
     </li>
-    <li class="list-group-item">File Type: {{ fileType }}</li>
+    <li class="list-group-item">File Name: {{ fileName }}</li>
     <li class="list-group-item">
       File Size: {{ fileData(fileSize).join('') }}
     </li>
+    <li class="list-group-item">File Type: {{ fileType }}</li>
     <li class="list-group-item">Platform: {{ platform }}</li>
-    <li class="list-group-item">File Name: {{ fileName }}</li>
   </ul>
 </div>
