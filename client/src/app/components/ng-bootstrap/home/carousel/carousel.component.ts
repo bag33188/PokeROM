@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import he from 'he';
 import { CarouselSlide } from '../../../../interfaces/CarouselSlide';
 import { Images } from '../../../../enums/images.enum';
+import { UnitConversionService } from '../../../../services/unit-conversion.service';
 
 @Component({
   selector: 'app-home-carousel',
@@ -9,6 +10,9 @@ import { Images } from '../../../../enums/images.enum';
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
+  static interval: number = UnitConversionService.convertSecondsToMilliseconds(
+    4.8
+  );
   images: typeof Images;
   carouselData: CarouselSlide[];
 
@@ -43,5 +47,8 @@ export class CarouselComponent implements OnInit {
         )
       }
     ];
+  }
+  getInterval(): number {
+    return CarouselComponent.interval;
   }
 }
