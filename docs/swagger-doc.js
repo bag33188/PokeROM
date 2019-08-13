@@ -9,10 +9,14 @@ const swaggerDefinition = require('./swagger-definition.json');
 // get api docs version
 const version = swaggerDefinition.swaggerDefinition.info.version;
 
-swaggerDefinition.swaggerDefinition.info.description = swaggerDefinition.swaggerDefinition.info.description.replace(
-  '%VERSION%',
-  version
-);
+function parseVersion() {
+  return swaggerDefinition.swaggerDefinition.info.description.replace(
+    '%VERSION%',
+    version
+  );
+}
+
+swaggerDefinition.swaggerDefinition.info.description = parseVersion();
 
 // define swagger entity
 const specs = swaggerJsDoc(swaggerDefinition);
