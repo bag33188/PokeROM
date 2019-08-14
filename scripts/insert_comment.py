@@ -29,11 +29,21 @@ def insert_comment():
     with FileInput(filepath, inplace=True, backup='.bak1') as file:
 
       # loop thru each line in file
-      for line in file:
+      for index, line in enumerate(file):
 
         # add comment
         if text_to_search in line:
-          print(line.replace(text_to_search, replacement_text), end='')
+
+          # check if doctype declaration is on its own line
+          if len(line.strip()) == 15:
+            # if so, strip the line of any trailing and/or leading whitespace/tabs
+            line = line.strip()
+            # then insert the comment
+            print(line.replace(text_to_search, replacement_text), end='')
+          # otherwise
+          else:
+            # skip string trimming and insert comment
+            print(line.replace(text_to_search, replacement_text), end='')
 
         # replace declaration and add comment
         elif text_to_search.lower() in line:
