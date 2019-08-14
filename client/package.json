@@ -24,7 +24,7 @@
     "lint-all": "npm run lint-ts & npm run lint-scss",
     "fix-aot-bug-win": "python ../scripts/fix_state_js.py",
     "fix-aot-bug-osx": "python3 ../scripts/fix_state_js.py",
-    "serve-app": "http-server dist/pokerom -p 4200"
+    "serve-app": "http-server -p 4200 -c-1 dist/pokerom"
   },
   "private": true,
   "dependencies": {
