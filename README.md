@@ -111,6 +111,7 @@ sudo kill <mongod_command_pid>
     - TypeScript
     - JSON
     - YAML
+    - XML
     - Shell/Bash
     - Batch
     - Python
