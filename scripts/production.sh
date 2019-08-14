@@ -21,17 +21,8 @@ production() {
   cd ../client
   ng build --prod && (
     cd ../public
-    rm *html
-    rm *css
-    rm *js
-    rm *map
-    rm *ico
-    rm *txt
-    rm *bak
-    rm *bak1
-    rm *json
-    rm *xml
     rm -rf assets
+    rm *
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
     printf "\n"
