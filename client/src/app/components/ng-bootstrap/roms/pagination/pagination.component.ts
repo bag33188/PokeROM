@@ -37,11 +37,11 @@ export class PaginationComponent implements OnInit {
     this.paginate.emit(this.pageSize);
   }
 
-  changeSizeOfPagination(): 'sm' | '' {
+  changeSizeOfPagination(): 'sm' | '-' {
     if (this.pageWidth <= 339) {
       return 'sm';
     } else {
-      return '';
+      return '-';
     }
   }
 }
