@@ -6,7 +6,6 @@ import re # import regular expression module
 from fileinput import FileInput # import fileinput module
 
 
-
 # define move_script_tags function
 def move_script_tags():
   """
