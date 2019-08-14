@@ -29,11 +29,9 @@ production() {
     mv ../client/dist/pokerom/assets ./
     printf "\n"
     if [[ "$OSTYPE" == "darwin"* ]]; then
-      python3 ../scripts/move_script_tags.py
-      python3 ../scripts/insert_comment.py
+      python3 ../scripts/fix_index_html.py
     else
-      python ../scripts/move_script_tags.py
-      python ../scripts/insert_comment.py
+      python ../scripts/fix_index_html.py
     fi
     cd ..
     rm -rf client/dist
