@@ -60,10 +60,6 @@ function getUserById(query, req, res, callback) {
   });
 }
 
-/**
- * @summary Get all Users.
- * @description Gets all users in the database.
- */
 httpRouter.get('/', cache(14), auth, async (req, res, next) => {
   try {
     await User.getAllUsers((err, users) => {
@@ -83,11 +79,7 @@ httpRouter.get('/', cache(14), auth, async (req, res, next) => {
   }
 });
 
-/**
- * @summary Get single User.
- * @description Gets a single user from the database.
- * @param {string} id The ID of the User to get.
- */
+
 httpRouter.get(
   '/:id',
   cache(14),
@@ -141,11 +133,7 @@ httpRouter.get(
   }
 );
 
-/**
- * @summary Register user.
- * @description Adds a user to the database to be registered.
- * @param {User} newUser The user data to add.
- */
+
 httpRouter.post(
   '/register',
   [
@@ -280,11 +268,6 @@ httpRouter.post(
   }
 );
 
-/**
- * @summary Authenticate User.
- * @description Authenticates a user from its username and password.
- * @param {object} userLogin The login data to authenticate.
- */
 httpRouter.post(
   '/authenticate',
   [
@@ -384,12 +367,7 @@ httpRouter.post(
   }
 );
 
-/**
- * @summary Update User
- * @description Updates a user in the database.
- * @param {string} id The id of the user to update.
- * @param {User} userData The user data to update with.
- */
+
 httpRouter.put(
   '/:id',
   auth,
@@ -504,12 +482,7 @@ httpRouter.put(
   }
 );
 
-/**
- * @summary Patch User
- * @description Partially updates a user.
- * @param {string} id The id of the user to update.
- * @param {object} userData The user data to update with.
- */
+
 httpRouter.patch(
   '/:id',
   [
@@ -592,10 +565,7 @@ httpRouter.patch(
   }
 );
 
-/**
- * @summary Delete All Users.
- * @description Deletes all users in the database.
- */
+
 httpRouter.delete('/', auth, async (req, res, next) => {
   try {
     await User.deleteAllUsers((err, status) => {
@@ -633,11 +603,7 @@ httpRouter.delete('/', auth, async (req, res, next) => {
   }
 });
 
-/**
- * @summary Delete Single User.
- * @description Deletes a single user from the database.
- * @param {string} id The ID of the User to remove.
- */
+
 httpRouter.delete(
   '/:id',
   [
@@ -712,10 +678,7 @@ httpRouter.delete(
   }
 );
 
-/**
- * @summary Get Head Info.
- * @description Get's header info for entire /api/users route.
- */
+
 httpRouter.head('/', auth, async (req, res, next) => {
   try {
     await res.status(200);

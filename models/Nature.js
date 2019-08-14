@@ -62,11 +62,6 @@ const natureSchema = new Schema(
 // create ROM model
 const Nature = (module.exports = mongoose.model('Nature', natureSchema));
 
-/**
- * @summary Get All Natures
- * @description Gets all natures from the database.
- * @param {Response} callback The callback function.
- */
 module.exports.getNatures = callback => {
   Nature.find(callback).sort({
     up: 1,
@@ -74,64 +69,26 @@ module.exports.getNatures = callback => {
   });
 };
 
-/**
- * @summary Get Single Nature.
- * @description Gets a single nature from the database.
- * @param {object} query The query to grab the nature with (usually the ID query).
- * @param {Response} callback The callback function.
- */
 module.exports.getNature = (query, callback) => {
   Nature.findById(query, callback);
 };
 
-/**
- * @summary Patch Nature.
- * @description Partially updates a nature in the database.
- * @param {object} idQuery The ID query that finds the nature to partially update.
- * @param {object} query The data to update the nature with.
- * @param {Response} callback The callback function.
- */
 module.exports.patchNature = (idQuery, query, callback) => {
   Nature.updateOne(idQuery, query, callback);
 };
 
-/**
- * @summary Delete Nature
- * @description Deletes one nature in the database.
- * @param {object} query The id query for locating which nature to delete.
- * @param {Response} callback The callback function
- */
 module.exports.deleteNature = (query, callback) => {
   Nature.deleteOne(query, callback);
 };
 
-/**
- * @summary Delete All Natures
- * @description Deletes all natures in the database.
- * @param {any} callback The callback function.
- */
 module.exports.deleteAllNatures = callback => {
   Nature.deleteMany(callback);
 };
 
-/**
- * @summary Add Nature
- * @description Adds a nature to the database.
- * @param {Nature} newNature The new nature to add.
- * @param {Response} callback The callback function.
- */
 module.exports.addNature = (newNature, callback) => {
   Nature.create(newNature, callback);
 };
 
-/**
- * @summary Update Nature
- * @description Updates a nature in the database.
- * @param {object} query The query to find the nature.
- * @param {Nature} natureData The data to update the nature with.
- * @param {object} options Any options (none in this case).
- * @param {any} callback The callback function.
- */
 module.exports.updateNature = (query, natureData, options, callback) => {
   const { name, up, down, flavor, usage } = natureData;
   const natureQuery = {
@@ -144,11 +101,6 @@ module.exports.updateNature = (query, natureData, options, callback) => {
   Nature.findOneAndUpdate(query, natureQuery, options, callback);
 };
 
-/**
- * @summary Post All Natures
- * @description Adds all natures to the database.
- * @param {Array<Nature>} allNatures The natures array containing all natures.
- */
 module.exports.postAll = (allNatures, callback) => {
   Nature.insertMany(allNatures, callback);
 };

@@ -3,10 +3,6 @@ const express = require('express');
 const httpRouter = express.Router();
 
 // get backend options
-/**
- * @summary Get backend options.
- * @description Gets supported options for entire backend.
- */
 httpRouter.options('/', async (req, res, next) => {
   try {
     await res.status(204);

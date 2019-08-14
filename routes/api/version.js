@@ -6,10 +6,6 @@ const Version = require('../../models/Version');
 const httpRouter = express.Router();
 
 // get api version
-/**
- * @summary Get API Version.
- * @description Gets the API's version.
- */
 httpRouter.get('/', async (req, res, next) => {
   try {
     const [, version] = swaggerDoc;

@@ -190,13 +190,6 @@ const romSchema = new Schema(
 // create ROM model
 const Rom = (module.exports = mongoose.model('Rom', romSchema));
 
-/**
- * @summary Get all ROMs.
- * @description Gets all ROMs from the database and can apply optional limit.
- * @param {object} query The query to get all roms by.
- * @param {any} callback The callback function.
- * @param {string} limit The number of ROMs to limit.
- */
 module.exports.getAllRoms = (query, callback, limit) => {
   // make sure to parse limit as integer
   Rom.find(query, callback)
@@ -204,34 +197,14 @@ module.exports.getAllRoms = (query, callback, limit) => {
     .sort({ order_number: 1 });
 };
 
-/**
- * @summary Get ROM by ID.
- * @description Gets a single ROM from the database by its ID.
- * @param {object} query The query for getting a single ROM.
- * @param {any} callback The callback function.
- */
 module.exports.getRomById = (query, callback) => {
   Rom.findById(query, callback);
 };
 
-/**
- * @summary Add ROM.
- * @description Adds a ROM to the database.
- * @param {object} newRom The new ROM data to add to the database.
- * @param {any} callback The callback function.
- */
 module.exports.addRom = (newRom, callback) => {
   Rom.create(newRom, callback);
 };
 
-/**
- * @summary Update ROM.
- * @description Update's a single ROM in the database.
- * @param {object} query The query to update with.
- * @param {object} romData The rom data to update with.
- * @param {object} options N/A.
- * @param {any} callback The callback function.
- */
 module.exports.updateRom = (query, romData, options, callback) => {
   const {
     order_number,
@@ -268,56 +241,23 @@ module.exports.updateRom = (query, romData, options, callback) => {
   Rom.findOneAndUpdate(query, updateQuery, options, callback);
 };
 
-/**
- * @summary Delete ROM.
- * @description Deletes a ROM in the database.
- * @param {object} query The query to delete with.
- * @param {any} callback The callback function.
- */
 module.exports.deleteRom = (query, callback) => {
   Rom.findOneAndDelete(query, callback);
 };
 
-/**
- * @summary Delete All ROMs.
- * @description Delete's all ROMs in the database.
- * @param query The deletion query.
- * @param {any} callback The callback function.
- */
 module.exports.deleteAllRoms = (query, callback) => {
   Rom.deleteMany(query, callback);
 };
 
-/**
- * @summary Patch ROM.
- * @description Partially updates a ROM.
- * @param {object} idQuery The ID query to partially update with.
- * @param {object} query The data to partially update with.
- * @param {any} callback The callback function.
- */
 module.exports.patchRom = (idQuery, query, callback) => {
   Rom.updateOne(idQuery, query, callback);
 };
 
-/**
- * @summary Post Core ROMs.
- * @description Adds all core ROMs to the database.
- * @param {Array<Rom>} coreRoms The core ROMs array.
- * @param {User} user The user object.
- * @param {any} callback The callback function.
- */
 module.exports.postCore = (coreRoms, user, callback) => {
   coreRoms.forEach(rom => (rom.user_id = user['_id']));
   Rom.insertMany(coreRoms, callback);
 };
 
-/**
- * @summary Post ROM Hacks.
- * @description Adds some ROM Hacks to the database.
- * @param {Array<Rom>} romHacks The ROM Hacks array.
- * @param {User} user The user object.
- * @param {any} callback The callback function.
- */
 module.exports.postHacks = (romHacks, user, callback) => {
   romHacks.forEach(romHack => {
     romHack.user_id = user['_id'];

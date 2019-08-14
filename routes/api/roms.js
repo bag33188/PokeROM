@@ -39,12 +39,7 @@ const fieldsToSanitize = [
 ];
 const dateRegex = /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/;
 
-/**
- * @summary Convert input date.
- * @description Converts JSON date to date valid for UTC conversion.
- * @param {string} date The date string.
- * @returns {Date|undefined} A valid UTC date from the input date string or nothing.
- */
+
 function convertToDateFormat(date) {
   if (date) {
     let dateArr = date.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
@@ -116,13 +111,7 @@ function getAllRoms(query, req, res, callback, limit) {
   );
 }
 
-/**
- * @summary Get all ROMs.
- * @description Gets all ROMs in the database.
- * @param {number} _limit (Optional) The number of ROMs to limit when getting all ROMs.
- * @param {number} page (Optional) For pagination: the page number to go to.
- * @param {number} per_page (Optional) For pagination: the number of ROMs per page.
- */
+
 httpRouter.get(
   '/',
   cache(20),
@@ -186,11 +175,7 @@ httpRouter.get(
   }
 );
 
-/**
- * @summary Get Single ROM.
- * @description Get a single ROM from the database.
- * @param {number} id The ID of the ROM to get.
- */
+
 httpRouter.get(
   '/:id',
   cache(20),
@@ -242,11 +227,6 @@ httpRouter.get(
   }
 );
 
-/**
- * @summary Add ROM.
- * @description Adds a ROM to the database.
- * @param {Rom} newRom The ROM data to add.
- */
 httpRouter.post(
   '/',
   [
@@ -452,12 +432,7 @@ httpRouter.post(
   }
 );
 
-/**
- * @summary Update ROM.
- * @description Updates a ROM in the database.
- * @param {number} id The ID of the ROM to update.
- * @param {Rom} romData The ROM data to update with.
- */
+
 httpRouter.put(
   '/:id',
   [
@@ -685,12 +660,6 @@ httpRouter.put(
   }
 );
 
-/**
- * @summary Partially Update ROM.
- * @description Partially updates a ROM in the database.
- * @param {number} id The ID of the ROM to partially update.
- * @param {object} query The ROM data to partially update with.
- */
 httpRouter.patch(
   '/:id',
   [
@@ -789,11 +758,6 @@ httpRouter.patch(
   }
 );
 
-/**
- * @summary Delete single ROM.
- * @description Deletes a single ROM in the database.
- * @param {string} id The ID of the ROM to delete.
- */
 httpRouter.delete(
   '/:id',
   [
@@ -854,10 +818,6 @@ httpRouter.delete(
   }
 );
 
-/**
- * @summary Delete all ROMs.
- * @description Deletes all ROMs in the database.
- */
 httpRouter.delete(
   '/',
   [
@@ -923,10 +883,7 @@ httpRouter.delete(
   }
 );
 
-/**
- * @summary Get Head Info.
- * @description Get's header info for entire /api/roms route.
- */
+
 httpRouter.head('/', auth, async (req, res, next) => {
   try {
     await res.status(200);
@@ -935,10 +892,7 @@ httpRouter.head('/', auth, async (req, res, next) => {
   }
 });
 
-/**
- * @summary Get Single Head Info.
- * @description Get's specific head info for /api/roms/:id route.
- */
+
 httpRouter.head(
   '/:id',
   [
@@ -971,10 +925,7 @@ httpRouter.head(
   }
 );
 
-/**
- * @summary Get Options.
- * @description Get supported options for this endpoint.
- */
+
 httpRouter.options('/', auth, async (req, res, next) => {
   try {
     await res.status(204);
@@ -983,10 +934,7 @@ httpRouter.options('/', auth, async (req, res, next) => {
   }
 });
 
-/**
- * @summary Post Core ROMs.
- * @description Adds Core ROMs to the Database.
- */
+
 httpRouter.post('/core', auth, async (req, res, next) => {
   try {
     await Rom.postCore(romsData[0], req.user, (err, roms) => {
@@ -1014,10 +962,7 @@ httpRouter.post('/core', auth, async (req, res, next) => {
   }
 });
 
-/**
- * @summary Post ROM Hacks.
- * @description Adds Pokemon ROM Hacks.
- */
+
 httpRouter.post('/hacks', auth, async (req, res, next) => {
   try {
     await Rom.postHacks(romsData[1], req.user, (err, roms) => {

@@ -32,10 +32,6 @@ function getNature(query, req, res, callback) {
   });
 }
 
-/**
- * @summary Get all Natures.
- * @description Gets all Natures in the database.
- */
 httpRouter.get('/', cache(10), async (req, res, next) => {
   try {
     await Nature.getNatures((err, natures) => {
@@ -55,11 +51,6 @@ httpRouter.get('/', cache(10), async (req, res, next) => {
   }
 });
 
-/**
- * @summary Get single nature.
- * @description Gets a single nature from the database.
- * @param {string} id The id of the nature to get.
- */
 httpRouter.get(
   '/:id',
   cache(10),
@@ -104,11 +95,6 @@ httpRouter.get(
   }
 );
 
-/**
- * @summary Add Nature
- * @description Adds a nature to the database.
- * @param {Nature} newNature The new nature to add to the database.
- */
 httpRouter.post(
   '/',
   [
@@ -214,12 +200,6 @@ httpRouter.post(
   }
 );
 
-/**
- * @summary Update Nature
- * @description Updates a nature in the database.
- * @param {string} id The id of the nature to update.
- * @param {Nature} natureData The nature data to update with.
- */
 httpRouter.put(
   '/:id',
   [
@@ -338,12 +318,6 @@ httpRouter.put(
   }
 );
 
-/**
- * @summary Patch Nature.
- * @description Partially updates a nature in the database.
- * @param {object} partialNature The partial data to update with.
- * @param {string} id The id of the nature to patch/partially update.
- */
 httpRouter.patch(
   '/:id',
   [
@@ -416,11 +390,6 @@ httpRouter.patch(
   }
 );
 
-/**
- * @summary Delete Nature
- * @description Deletes a single nature from the database.
- * @param {string} id The id of the nature to delete.
- */
 httpRouter.delete(
   '/:id',
   [
@@ -467,10 +436,6 @@ httpRouter.delete(
   }
 );
 
-/**
- * @summary Delete All Natures
- * @description Deletes all natures in the database.
- */
 httpRouter.delete('/', async (req, res, next) => {
   try {
     Nature.deleteAllNatures((err, status) => {
@@ -495,10 +460,6 @@ httpRouter.delete('/', async (req, res, next) => {
   }
 });
 
-/**
- * @summary Get Head Info.
- * @description Get's header info for entire /api/natures route.
- */
 httpRouter.head('/', async (req, res, next) => {
   try {
     await res.status(200);
@@ -507,10 +468,6 @@ httpRouter.head('/', async (req, res, next) => {
   }
 });
 
-/**
- * @summary Get Single Head Info.
- * @description Get's specific head info for /api/natures/:id route.
- */
 httpRouter.head(
   '/:id',
   [
@@ -542,10 +499,6 @@ httpRouter.head(
   }
 );
 
-/**
- * @summary Add All Natures
- * @description Adds all natures to the database.
- */
 httpRouter.post('/all', async (req, res, next) => {
   try {
     await Nature.postAll(natureData, (err, natures) => {

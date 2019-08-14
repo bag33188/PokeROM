@@ -53,34 +53,15 @@ const userSchema = new Schema(
 // create User model
 const User = (module.exports = mongoose.model('User', userSchema));
 
-/**
- * @summary Get user by ID.
- * @description Gets a single user by its ID.
- * @param {object} query The ID query for getting the user.
- * @param {any} callback The callback function.
- */
 module.exports.getUserById = (query, callback) => {
   User.findById(query, callback);
 };
 
-/**
- * @summary Get user by username.
- * @description Gets a user by their username.
- * @param {string} username The username of the user to find.
- * @param {any} callback The callback function.
- */
 module.exports.getUserByUsername = (username, callback) => {
   const query = { username: username };
   User.findOne(query, callback);
 };
 
-/**
- * @summary Add user.
- * @description Adds a user to the database.
- * @param {User} newUser The new user data.
- * @param {any} callback The callback function.
- * @param errCallbacks An array that contains the errors for existing email and username.
- */
 module.exports.addUser = (newUser, callback, errCallbacks) => {
   // check if user already exists
   User.findOne({ email: newUser.email }) // check email first
@@ -115,13 +96,6 @@ module.exports.addUser = (newUser, callback, errCallbacks) => {
     .catch(err => console.log(err));
 };
 
-/**
- * @summary Compare password.
- * @description Compares the entered password with the corresponding user's password.
- * @param {string} candidatePassword The password to compare.
- * @param {string} hash The hashed password.
- * @param {any} callback The callback function.
- */
 module.exports.comparePassword = (candidatePassword, hash, callback) => {
   bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
     if (err) {
@@ -131,42 +105,18 @@ module.exports.comparePassword = (candidatePassword, hash, callback) => {
   });
 };
 
-/**
- * @summary Delete all users.
- * @description Deletes all users in the database.
- * @param {any} callback The callback function.
- */
 module.exports.deleteAllUsers = callback => {
   User.deleteMany(callback);
 };
 
-/**
- * @summary Delete single user.
- * @description Deletes a single user in the database.
- * @param {string} id The ID of the user to delete.
- * @param {any} callback The callback function.
- */
 module.exports.deleteUser = (id, callback) => {
   User.findOneAndDelete(id, callback);
 };
 
-/**
- * @summary Get all users.
- * @description Gets all users in the database.
- * @param {any} callback The callback function.
- */
 module.exports.getAllUsers = callback => {
   User.find(callback);
 };
 
-/**
- * @summry Update User
- * @description Updates a user in the database.
- * @param {string} query The id query to update with.
- * @param {User} userData The user data to update with.
- * @param {object} options Any update options (not using any here).
- * @param {Resonse} callback The callback function.
- */
 module.exports.updateUser = (query, userData, options, callback) => {
   const { name, email, username, password } = userData;
   const userQuery = {
@@ -186,13 +136,6 @@ module.exports.updateUser = (query, userData, options, callback) => {
   });
 };
 
-/**
- * @summary Patch User
- * @description Partially updates a user in the database.
- * @param {object} idQuery The id query to partially update the user.
- * @param {object} userQuery The user data to partially update the user with.
- * @param {any} callback The callback function.
- */
 module.exports.patchUser = (idQuery, userQuery, callback) => {
   if (!userQuery['$set'].password) {
     User.updateOne(idQuery, userQuery, callback);
