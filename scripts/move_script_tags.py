@@ -2,6 +2,7 @@
 
 """This program moves around the script tags in the `public/index.html` file."""
 
+import sys # import system module
 import re # import regular expression module
 from fileinput import FileInput # import fileinput module
 
@@ -41,7 +42,7 @@ def move_script_tags():
     # loop through each line in file
     for line in index_file:
 
-      # store script tags in var
+      # store script tags in list
       script_tags = SCRIPT_TAG_REGEX.findall(line)
 
       # if script tags exist in line
@@ -58,7 +59,8 @@ def move_script_tags():
     # close file from reading
     index_file.close()
 
-    # the second file I/O operation will move around the script tags regardless of formatting and close of the link tag
+    # the second file I/O operation wil move around the script tags regardless of formatting and close
+    # off the stylesheet link tag and add its proper mime type
 
     # use fileinput to open up index.html file and create backup before editing
     with FileInput(filepath, inplace=True, backup='.bak') as file:
@@ -66,26 +68,24 @@ def move_script_tags():
       # loop through each line in file
       for line in file:
 
-        # store script tags in variable
+        # store script tags in list variable
         script_tags = SCRIPT_TAG_REGEX.findall(line)
 
         # do various checks that depend on formatting
 
         # if the link tag and the closing head tag on the same line
         if ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:
-          print(line.replace('.css"></head>', f'.css" />\n\n{new_script_tags}\n</head>')
-                    .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'),
-                end='')
+          sys.stdout.write(line.replace('.css"></head>', f'.css" />\n\n{new_script_tags}\n</head>')
+                               .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'))
 
         # if the link tag is not on the same line as the head tag
         elif '</head>' in line and ('.css">' not in line or '<link rel="stylesheet" href="styles.' not in line):
-          print(line.replace('</head>', f'{new_script_tags}\n</head>'), end='')
+          sys.stdout.write(line.replace('</head>', f'{new_script_tags}\n</head>'))
 
         # if the head tag is not on the same line as the link tag (different condition)
         elif ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' not in line:
-          print(line.replace('.css">', '.css" />\n\n')
-                    .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'),
-                end='')
+          sys.stdout.write(line.replace('.css">', '.css" />\n\n')
+                               .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'))
 
         # check if script tags are in current line
         elif script_tags:
@@ -96,12 +96,12 @@ def move_script_tags():
             line = line.replace(script_tags[i], '')
 
           # write changes
-          print (line, end='')
+          sys.stdout.write(line)
 
         # otherwise...
         else:
           # print the other lines
-          print(line, end='')
+          sys.stdout.write(line)
 
     # close the fileinput stream
     FileInput().close()
