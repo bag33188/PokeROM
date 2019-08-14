@@ -7,11 +7,12 @@ import {
   keyframes,
   query,
   group,
-  animateChild
+  animateChild,
+  AnimationTriggerMetadata
 } from '@angular/animations';
 
-export const flyin = [
-  trigger('flyin', [
+export const flyInAnimation: AnimationTriggerMetadata[] = [
+  trigger('flyIn', [
     state('in', style({ transform: 'translateX(0)' })),
     transition('void => *', [
       style({ transform: 'translateX(-100%)' }),
@@ -20,7 +21,7 @@ export const flyin = [
   ])
 ];
 
-export const rotateIn = [
+export const rotateInAnimation: AnimationTriggerMetadata[] = [
   trigger('rotateIn', [
     state('in', style({ transform: 'translateX(0)' })),
     transition('void => *', [
@@ -30,7 +31,7 @@ export const rotateIn = [
   ])
 ];
 
-export const flyFromBottom = [
+export const flyFromBottomAnimation: AnimationTriggerMetadata[] = [
   trigger('flyFromBottom', [
     state('in', style({ transform: 'translateY(0)' })),
     transition('void => *', [
@@ -40,7 +41,7 @@ export const flyFromBottom = [
   ])
 ];
 
-export const flyItems = [
+export const flyItemsAnimation: AnimationTriggerMetadata[] = [
   trigger('flyItems', [
     state('in', style({ transform: 'translateX(0)' })),
     transition('void => *', [
@@ -64,28 +65,30 @@ export const flyItems = [
   ])
 ];
 // Routable animations
-export const slideInAnimation = trigger('routeAnimation', [
-  transition('heroes <=> hero', [
-    style({ position: 'relative' }),
-    query(':enter, :leave', [
-      style({
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%'
-      })
-    ]),
-    query(':enter', [style({ left: '-100%' })]),
-    query(':leave', animateChild()),
-    group([
-      query(':leave', [animate('300ms ease-out', style({ left: '100%' }))]),
-      query(':enter', [animate('300ms ease-out', style({ left: '0%' }))])
-    ]),
-    query(':enter', animateChild())
+export const slideInAnimation: AnimationTriggerMetadata[] = [
+  trigger('routeAnimation', [
+    transition('heroes <=> hero', [
+      style({ position: 'relative' }),
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%'
+        })
+      ]),
+      query(':enter', [style({ left: '-100%' })]),
+      query(':leave', animateChild()),
+      group([
+        query(':leave', [animate('300ms ease-out', style({ left: '100%' }))]),
+        query(':enter', [animate('300ms ease-out', style({ left: '0%' }))])
+      ]),
+      query(':enter', animateChild())
+    ])
   ])
-]);
+];
 
-export const flipAnimation = [
+export const flipAnimation: AnimationTriggerMetadata[] = [
   trigger('flipState', [
     state(
       'active',
@@ -101,5 +104,19 @@ export const flipAnimation = [
     ),
     transition('active => inactive', animate('400ms ease-out')),
     transition('inactive => active', animate('400ms ease-in'))
+  ])
+];
+
+export const fadeOutAnimation: AnimationTriggerMetadata[] = [
+  trigger('fadeOut', [
+    state('in', style({ opacity: 1 })),
+    transition(':leave', animate(555, style({ opacity: 0 })))
+  ])
+];
+
+export const fadeInAnimation: AnimationTriggerMetadata[] = [
+  trigger('fadeInt', [
+    state('out', style({ opacity: 0 })),
+    transition(':leave', animate(555, style({ opacity: 1 })))
   ])
 ];
