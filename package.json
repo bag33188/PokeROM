@@ -38,7 +38,7 @@
     "move-script-tags-osx": "cd scripts && python3 move_script_tags.py",
     "open-sites": "cd scripts && open_sites.bat",
     "open-repos": "cd scripts && open_repos.bat",
-    "count-files-git": "git ls-files | wc -l"
+    "count-files-git": "cd scripts && ruby count_files_git.rb"
   },
   "private": true,
   "author": "bag33188",

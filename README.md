@@ -114,9 +114,11 @@ sudo kill <mongod_command_pid>
     - XML
     - Shell/Bash
     - Batch
-    - Python
+    - Python (3)
+    - Ruby
     - SVG
     - Markdown
+
 3. Source Code Pro Fonts: [download][source code pro fonts download]
 
 [heroku]: https://www.heroku.com/ 'Heroku Website'
