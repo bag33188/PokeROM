@@ -21,10 +21,8 @@ def move_script_tags():
   # file path var
   filepath = '../public/index.html'
 
-  # (<script src=\"(vendor|polyfills|main|scripts|runtime)(-?(?:(es(201)?[56789])|latest))?\.(?:#?([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(\snomodule)?(\stype=\"module\")?><\/script>)
-
   # regex for identifying script tags
-  script_tag_regex = re.compile(r'(<script src=\"(?:runtime|runtime-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|polyfills|polyfills-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|main|main-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|vendor-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|vendor|scripts|scripts-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest)))\.(?:#?(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(?:\stype="module")?(?:\snomodule)?><\/script>)')
+  script_tag_regex = re.compile(r'(<script src=\"(?:runtime|polyfills|main|vendor|scripts)(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest))?\.(?:#?(?:[\da-fA-F]{2}){3}){3}(?:[\da-fA-F]){2}\.js\"(?:\stype="module")?(?:\snomodule)?><\/script>)')
 
   # future script tag string from joined script tag strings array
   new_script_tags = ''
@@ -59,9 +57,9 @@ def move_script_tags():
 
         # store script tags in variable
         script_tags = script_tag_regex.findall(line)
-        
+
         # do various checks that depend on formatting
-      
+
         # if the link tag and the closing head tag on the same line
         if ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:
           print(line.replace('.css"></head>', f'.css" />\n\n{new_script_tags}\n</head>')
