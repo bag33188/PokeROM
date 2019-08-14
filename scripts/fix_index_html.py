@@ -61,7 +61,9 @@ class FixIndexHtml:
               script_tags[index] = script_tag.replace('src="', 'type="text/javascript" src="')
 
           # set new script tags to joined array and add the defer attr to each script element
-          new_script_tags = '\n'.join(script_tags).replace('></script>', ' defer></script>')
+          new_script_tags = ('\n'.join(script_tags).replace('></script>', ' defer></script>')
+                                                   .replace('type="module" ', '')
+                                                   .replace('<script src="', '<script type="module" src="'))
 
       # close file from reading
       index_file.close()
@@ -165,6 +167,7 @@ class FixIndexHtml:
 
           # replace declaration and add comment
           elif text_to_search.lower() in line:
+            line = line.strip()
             sys.stdout.write(line.replace(text_to_search.lower(), replacement_text))
 
           # print other lines
