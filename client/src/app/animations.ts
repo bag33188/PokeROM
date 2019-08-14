@@ -84,3 +84,22 @@ export const slideInAnimation = trigger('routeAnimation', [
     query(':enter', animateChild())
   ])
 ]);
+
+export const flipAnimation = [
+  trigger('flipState', [
+    state(
+      'active',
+      style({
+        transform: 'rotateY(180deg)'
+      })
+    ),
+    state(
+      'inactive',
+      style({
+        transform: 'rotateY(0)'
+      })
+    ),
+    transition('active => inactive', animate('400ms ease-out')),
+    transition('inactive => active', animate('400ms ease-in'))
+  ])
+];
