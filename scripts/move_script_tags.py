@@ -5,14 +5,16 @@
 import re # import regular expression module
 from fileinput import FileInput # import fileinput module
 
+
+
 # define move_script_tags function
 def move_script_tags():
   """
   The purpose of this function is to:
     1. move the script tags from the `public/index.html` from the bottom to the top
     2. add the defer attributes to each one of those script tags
-    3. add the type="text/javascript" mime-type attribute to script tags that don't have type="module"
-    4. close of the link tag with the main stylesheet attached to it
+    3. add the `type="text/javascript"` mime-type attribute to script tags that don't have `type="module"`
+    4. close of the link tag with the main stylesheet attached to it and add `type="text/css"`
   """
 
   print('Moving around script tags in index.html ... ')
@@ -89,29 +91,14 @@ def move_script_tags():
         # check if script tags are in current line
         elif script_tags:
 
-          # check if not using es5 compilation
-          if len(script_tags) == 9:
+          # loop thru script tags in bottom of file
+          for i in range(len(script_tags)):
             # remove script tags from bottom of file
-            print(line.replace(script_tags[0], '')
-                      .replace(script_tags[1], '')
-                      .replace(script_tags[2], '')
-                      .replace(script_tags[3], '')
-                      .replace(script_tags[4], '')
-                      .replace(script_tags[5], '')
-                      .replace(script_tags[6], '')
-                      .replace(script_tags[7], '')
-                      .replace(script_tags[8], ''),
-                  end='')
-          # otherwise...
-          else:
-            # remove script tags from bottom of file
-            print(line.replace(script_tags[0], '')
-                      .replace(script_tags[1], '')
-                      .replace(script_tags[2], '')
-                      .replace(script_tags[3], '')
-                      .replace(script_tags[4], '')
-                      .replace(script_tags[5], ''),
-                  end='')
+            line = line.replace(script_tags[i], '')
+
+          # write changes
+          print (line, end='')
+
         # otherwise...
         else:
           # print the other lines
