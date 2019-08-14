@@ -20,14 +20,16 @@ def fix_state_js():
   # encapsulate main functionality in try block
   try:
 
+    # define filepath constant
+    FILEPATH = '../client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js'
+
     # define vars
-    filepath = '../client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js'
     text_to_search = 'if (this.modifiedResourceFiles === undefined || !this.metadata.has(sf))'
     replacement_text = 'if (this.modifiedResourceFiles === undefined || this.modifiedResourceFiles === null || !this.metadata.has(sf))'
     fix_applied = False
 
     # open up file stream (read and write) and create backup of file
-    with FileInput(filepath, inplace=True, backup='.bak') as file:
+    with FileInput(FILEPATH, inplace=True, backup='.bak') as file:
 
       # loop through each line in file
       for line in file:
