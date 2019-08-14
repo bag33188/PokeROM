@@ -147,7 +147,7 @@ class FixIndexHtml:
       with FileInput(self.filepath, inplace=True, backup='.bak1') as file:
 
         # loop thru each line in file
-        for index, line in enumerate(file):
+        for line in file:
 
           # add comment
           if text_to_search in line:
@@ -183,6 +183,7 @@ class FixIndexHtml:
     # catch general exception
     except Exception as err:
       print(f'An error occurred: {str(err)}', end='\n\n')
+
 
 # apply fixes to index.html file
 index_html = FixIndexHtml('../public/index.html')
