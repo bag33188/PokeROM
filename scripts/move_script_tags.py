@@ -21,6 +21,8 @@ def move_script_tags():
   # file path var
   filepath = '../public/index.html'
 
+  # (<script src=\"(vendor|polyfills|main|scripts|runtime)(-?(?:(es(201)?[56789])|latest))?\.(?:#?([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(\snomodule)?(\stype=\"module\")?><\/script>)
+
   # regex for identifying script tags
   script_tag_regex = re.compile(r'(<script src=\"(?:runtime|runtime-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|polyfills|polyfills-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|main|main-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|vendor-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest))|vendor|scripts|scripts-(?:(?:es(?:2016|2017|2018|2019|2020|2015|5|6|7|8|9))|(?:latest)))\.(?:#?(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})(?:[\da-fA-F]{2})){3}[\da-fA-F]{2}\.js\"(?:\stype="module")?(?:\snomodule)?><\/script>)')
 
