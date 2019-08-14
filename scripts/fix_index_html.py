@@ -91,7 +91,7 @@ class FixIndexHtml:
 
           # if the head tag is not on the same line as the link tag (different condition)
           elif ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' not in line:
-            sys.stdout.write(line.replace('.css">', '.css" />\n\n')
+            sys.stdout.write(line.replace('.css">', '.css" />\n')
                                  .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'))
 
           # check if script tags are in current line
@@ -120,8 +120,8 @@ class FixIndexHtml:
       print('Error, index.html file not found.', end='\n\n')
 
     # general exception
-    except Exception as e:
-      print(f'An error occurred: {str(e)}', end='\n\n')
+    except Exception as err:
+      print(f'An error occurred: {str(err)}', end='\n\n')
 
   # define insert_comment method
   def insert_comment(self):
@@ -157,19 +157,19 @@ class FixIndexHtml:
               # if so, strip the line of any trailing and/or leading whitespace/tabs
               line = line.strip()
               # then insert the comment
-              print(line.replace(text_to_search, replacement_text), end='')
+              sys.stdout.write(line.replace(text_to_search, replacement_text))
             # otherwise
             else:
               # skip string trimming and insert comment
-              print(line.replace(text_to_search, replacement_text), end='')
+              sys.stdout.write(line.replace(text_to_search, replacement_text))
 
           # replace declaration and add comment
           elif text_to_search.lower() in line:
-            print(line.replace(text_to_search.lower(), replacement_text), end='')
+            sys.stdout.write(line.replace(text_to_search.lower(), replacement_text))
 
           # print other lines
           else:
-            print(line, end='')
+            sys.stdout.write(line)
 
       # close file stream
       FileInput().close()
@@ -181,10 +181,10 @@ class FixIndexHtml:
       print('Error: file not found.', end='\n\n')
 
     # catch general exception
-    except Exception as e:
-      print(f'An error occurred: {str(e)}', end='\n\n')
+    except Exception as err:
+      print(f'An error occurred: {str(err)}', end='\n\n')
 
-# run fixes on index.html file
+# apply fixes to index.html file
 index_html = FixIndexHtml('../public/index.html')
 index_html.move_script_tags()
 index_html.insert_comment()
