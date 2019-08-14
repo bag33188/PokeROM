@@ -11,7 +11,7 @@ const { check, validationResult } = require('express-validator/check');
 const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
-const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
+const ValidatePatchRequest = require('../../middleware/validate-patch-request');
 const [cache, clearCache] = require('../../middleware/cache');
 // const all_routes = require('express-list-endpoints');
 

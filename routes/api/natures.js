@@ -6,7 +6,7 @@ const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check, validationResult } = require('express-validator/check');
 const Nature = require('../../models/Nature');
 const natureData = require('../../database/data.json')[2];
-const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
+const ValidatePatchRequest = require('../../middleware/validate-patch-request');
 const [cache, clearCache] = require('../../middleware/cache');
 
 const httpRouter = express.Router();

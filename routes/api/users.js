@@ -12,7 +12,7 @@ const Rom = require('../../models/Rom');
 const auth = require('../../middleware/auth');
 const romsData = require('../../database/data.json');
 const [cache, clearCache] = require('../../middleware/cache');
-const ValidatePatchRequest = require('../../middleware/ValidatePatchRequest');
+const ValidatePatchRequest = require('../../middleware/validate-patch-request');
 
 const httpRouter = express.Router();
 
