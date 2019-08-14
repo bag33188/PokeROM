@@ -37,12 +37,20 @@ def move_script_tags():
 
     # loop through each line in file
     for line in index_file:
+
       # store script tags in var
       script_tags = SCRIPT_TAG_REGEX.findall(line)
+
       # if script tags exist in line
       if script_tags:
-        # set new script tags to joined array and add defer attr to each script element
-        new_script_tags = '\n'.join(script_tags).replace('></script>', ' defer></script>').replace('src="', 'type="text/javascript" src="')
+
+        # add text/javascript mime type if type="module" does not exist in script tag
+        for script_tag in script_tags:
+          if 'type="module"' not in script_tag:
+            script_tags[script_tags.index(script_tag)] = script_tag.replace('src="', 'type="text/javascript" src="')
+
+        # set new script tags to joined array and add the defer attr to each script element
+        new_script_tags = '\n'.join(script_tags).replace('></script>', ' defer></script>')
 
     # close file from reading
     index_file.close()
