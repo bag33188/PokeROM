@@ -49,9 +49,9 @@ def move_script_tags():
       if script_tags:
 
         # add text/javascript mime type if type="module" does not exist in script tag
-        for script_tag in script_tags:
+        for index, script_tag in enumerate(script_tags):
           if 'type="module"' not in script_tag:
-            script_tags[script_tags.index(script_tag)] = script_tag.replace('src="', 'type="text/javascript" src="')
+            script_tags[index] = script_tag.replace('src="', 'type="text/javascript" src="')
 
         # set new script tags to joined array and add the defer attr to each script element
         new_script_tags = '\n'.join(script_tags).replace('></script>', ' defer></script>')
