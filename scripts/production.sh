@@ -4,6 +4,7 @@
 # Production Script
 # =================
 
+# shellcheck disable=SC2188
 << --MULTILINE-COMMENT--
 Permissions (Unix)
 ------------------
@@ -18,10 +19,11 @@ $ chmod 755 ./production.sh
 --MULTILINE-COMMENT--
 
 production() {
-  cd ../client
+  cd ../client || return
   ng build --prod && (
     cd ../public
     rm -rf assets
+    # shellcheck disable=SC2035
     rm *
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
@@ -36,14 +38,14 @@ production() {
     cd ..
     rm -rf client/dist
     valid=0
-    while [[ true ]]; do
+    while true; do
       git status
-      read -p "Add files: " files
-      git add ${files}
-      read -p "Commit Message: " commit_msg
+      read -r -p "Add files: " files
+      git add "${files}"
+      read -r -p "Commit Message: " commit_msg
       git commit -m "$commit_msg"
-      while [[ true ]]; do
-        read -p "Done? (y/n) " is_done
+      while true; do
+        read -r -p "Done? (y/n) " is_done
         if [[ ${is_done} == 'y' ]]; then
           valid=1
           break
