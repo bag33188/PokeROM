@@ -21,8 +21,8 @@ def move_script_tags():
   # file path var
   filepath = '../public/index.html'
 
-  # regex for identifying script tags
-  script_tag_regex = re.compile(r'(<script src=\"(?:runtime|polyfills|main|vendor|scripts)(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest))?\.(?:#?(?:[\da-fA-F]{2}){3}){3}(?:[\da-fA-F]){2}\.js\"(?:\stype="module")?(?:\snomodule)?><\/script>)')
+  # regex for identifying script tags (constant)
+  SCRIPT_TAG_REGEX = re.compile(r'(<script src=\"(?:runtime|polyfills|main|vendor|scripts)(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest))?\.(?:#?(?:[\da-fA-F]{2}){3}){3}(?:[\da-fA-F]){2}\.js\"(?:\stype="module")?(?:\snomodule)?><\/script>)')
 
   # future script tag string from joined script tag strings array
   new_script_tags = ''
@@ -38,7 +38,7 @@ def move_script_tags():
     # loop through each line in file
     for line in index_file:
       # store script tags in var
-      script_tags = script_tag_regex.findall(line)
+      script_tags = SCRIPT_TAG_REGEX.findall(line)
       # if script tags exist in line
       if script_tags:
         # set new script tags to joined array and add defer attr to each script element
@@ -56,7 +56,7 @@ def move_script_tags():
       for line in file:
 
         # store script tags in variable
-        script_tags = script_tag_regex.findall(line)
+        script_tags = SCRIPT_TAG_REGEX.findall(line)
 
         # do various checks that depend on formatting
 
