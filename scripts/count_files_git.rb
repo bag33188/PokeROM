@@ -11,8 +11,15 @@ Notes1:
 
 # define main function
 def count_files_git()
+  puts 'Counting files on github ... '
+  print "\n"
+
+  print 'Number of files: '
   # execute commands to count files on github
-	system('cd .. && git ls-files | wc -l')
+	num_files = system('cd .. && git ls-files | wc -l')
+
+	print "\n"
+	puts 'Done!'
 end
 
 # call main function
