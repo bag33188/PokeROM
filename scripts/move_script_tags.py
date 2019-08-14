@@ -78,6 +78,8 @@ def move_script_tags():
 
         # check if script tags are in current line
         elif script_tags:
+
+          # check if not using es5 compilation
           if len(script_tags) == 9:
             # remove script tags from bottom of file
             print(line.replace(script_tags[0], '')
@@ -90,6 +92,7 @@ def move_script_tags():
                       .replace(script_tags[7], '')
                       .replace(script_tags[8], ''),
                   end='')
+          # otherwise...
           else:
             # remove script tags from bottom of file
             print(line.replace(script_tags[0], '')
