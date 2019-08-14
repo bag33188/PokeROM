@@ -11,18 +11,20 @@ def move_script_tags():
   The purpose of this function is to:
     1. move the script tags from the `public/index.html` from the bottom to the top
     2. add the defer attributes to each one of those script tags
-    3. close of the link tag with the main stylesheet attached to it
+    3. add the type="text/javascript" mime-type attribute to script tags that don't have type="module"
+    4. close of the link tag with the main stylesheet attached to it
   """
 
   print('Moving around script tags in index.html ... ')
+
+  # regex for identifying script tags (constant)
+  # use https://regexr.com for testing regular expressions
+  SCRIPT_TAG_REGEX = re.compile(r'((?:<script src=\")(?:(?:runtime|polyfills|main|vendor|scripts)(?:-?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:(?:#?(?:[\da-fA-F]{2}){3}){3}(?:[\da-fA-F]){2})(?:\.js\")(?:(?:\stype="module")?(?:\snomodule)?)(?:><\/script>))')
 
   # create vars
 
   # file path var
   filepath = '../public/index.html'
-
-  # regex for identifying script tags (constant)
-  SCRIPT_TAG_REGEX = re.compile(r'(<script src=\"(?:runtime|polyfills|main|vendor|scripts)(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest))?\.(?:#?(?:[\da-fA-F]{2}){3}){3}(?:[\da-fA-F]){2}\.js\"(?:\stype="module")?(?:\snomodule)?><\/script>)')
 
   # future script tag string from joined script tag strings array
   new_script_tags = ''
