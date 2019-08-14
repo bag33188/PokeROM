@@ -20,7 +20,7 @@ import {
   ]
 })
 export class AlertComponent implements OnInit {
-  alerts: Alert[];
+  public alerts: Alert[];
 
   constructor() {}
 
@@ -36,7 +36,7 @@ export class AlertComponent implements OnInit {
     this.alerts = JSON.parse(sessionStorage.getItem('rating-alert'));
   }
 
-  closeAlert(alert: Alert): void {
+  public closeAlert(alert: Alert): void {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
     sessionStorage.setItem('rating-alert', JSON.stringify([]));
   }

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./svg.component.scss']
 })
 export class SvgComponent implements OnInit {
-  svgMetadata: { [index: string]: string };
+  public svgMetadata: { [index: string]: string };
   constructor() {}
   ngOnInit(): void {
     this.svgMetadata = {

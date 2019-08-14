@@ -8,8 +8,8 @@ import { Environment } from '../../../interfaces/Environment';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  @Input() appName: string;
-  environment: Environment;
+  @Input() public appName: string;
+  public environment: Environment;
 
   constructor() {
     this.environment = environment;
@@ -17,7 +17,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getYear(): number {
+  public getYear(): number {
     const now: Date = new Date();
     const year: number = now.getFullYear(); // now.getUTCFullYear()
     return year;

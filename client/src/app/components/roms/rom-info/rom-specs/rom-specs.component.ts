@@ -11,11 +11,11 @@ import { UnitConversionService } from '../../../../services/unit-conversion.serv
   styleUrls: ['./rom-specs.component.scss']
 })
 export class RomSpecsComponent implements OnInit {
-  @Input() fileType: string;
-  @Input() fileSize: number;
-  @Input() fileName: string;
-  @Input() platform: string;
-  faCompactDisc: IconDefinition;
+  @Input() public fileType: string;
+  @Input() public fileSize: number;
+  @Input() public fileName: string;
+  @Input() public platform: string;
+  public faCompactDisc: IconDefinition;
 
   constructor() {}
 
@@ -23,7 +23,7 @@ export class RomSpecsComponent implements OnInit {
     this.faCompactDisc = faCompactDisc;
   }
 
-  fileSizeData(romFileSize: number): [number, string] {
+  public fileSizeData(romFileSize: number): [number, string] {
     const [fileSize, fileType]: [
       number,
       string

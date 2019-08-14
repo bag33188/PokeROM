@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./game-name.component.scss']
 })
 export class GameNameComponent implements OnInit {
-  @Input() gameName: string;
-  @Input() romType: string;
+  @Input() public gameName: string;
+  @Input() public romType: string;
 
   constructor() {}
 

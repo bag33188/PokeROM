@@ -7,8 +7,8 @@ import { Images } from '../../enums/images.enum';
   styleUrls: ['./spinner.component.scss']
 })
 export class SpinnerComponent implements OnInit {
-  images: typeof Images;
-  @Input() loading: boolean;
+  public images: typeof Images;
+  @Input() public loading: boolean;
 
   constructor() {}
 

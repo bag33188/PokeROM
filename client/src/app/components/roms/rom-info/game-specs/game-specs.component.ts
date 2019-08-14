@@ -7,11 +7,11 @@ import { faGamepad, IconDefinition } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./game-specs.component.scss']
 })
 export class GameSpecsComponent implements OnInit {
-  @Input() genre: string;
-  @Input() generation: number;
-  @Input() region: string;
-  @Input() dateReleased: Date;
-  faGamepad: IconDefinition;
+  @Input() public genre: string;
+  @Input() public generation: number;
+  @Input() public region: string;
+  @Input() public dateReleased: Date;
+  public faGamepad: IconDefinition;
 
   constructor() {}
 

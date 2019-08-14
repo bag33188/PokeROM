@@ -24,9 +24,9 @@ import { Alert } from '../../../interfaces/Alert';
   ]
 })
 export class CookiesAlertComponent implements OnInit {
-  alerts: Alert[];
-  cookiesOk: boolean = false;
-  faInfoCircle: IconDefinition;
+  public alerts: Alert[];
+  public cookiesOk: boolean = false;
+  public faInfoCircle: IconDefinition;
 
   constructor() {}
 
@@ -48,7 +48,7 @@ export class CookiesAlertComponent implements OnInit {
     this.cookiesOk = JSON.parse(sessionStorage.getItem('cookiesOk'));
   }
 
-  closeAlert(alert: Alert): void {
+  public closeAlert(alert: Alert): void {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
     sessionStorage.setItem('cookiesOk', 'true');
   }

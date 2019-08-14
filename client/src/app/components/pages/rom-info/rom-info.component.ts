@@ -15,11 +15,11 @@ import { Rom } from '../../../models/Rom';
   styleUrls: ['./rom-info.component.scss']
 })
 export class RomInfoComponent implements OnInit, AfterContentInit {
-  rom: Rom;
-  id: string;
-  loading: boolean = true;
-  isError: boolean;
-  faLongArrowAltLeft: IconDefinition;
+  public rom: Rom;
+  private id: string;
+  public loading: boolean = true;
+  public isError: boolean;
+  public faLongArrowAltLeft: IconDefinition;
 
   constructor(
     private romService: RomsService,
@@ -57,7 +57,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     window.scrollTo(0, 0);
   }
 
-  getRom(id: string): void {
+  private getRom(id: string): void {
     this.romService.getRom(id).subscribe(
       (rom: Rom): void => {
         const { game_name, description, genre }: Rom = rom;
@@ -84,7 +84,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     );
   }
 
-  logOut(): void {
+  private logOut(): void {
     this.authService.logout();
     this.router.navigate(['/']);
   }

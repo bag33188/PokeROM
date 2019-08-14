@@ -18,8 +18,8 @@ import removeStrings from '../../../helpers/remove-strings';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit, AfterContentInit {
-  registerFail: string;
-  registerForm: FormGroup = this.fb.group({
+  public registerFail: string;
+  public registerForm: FormGroup = this.fb.group({
     name: ['', [Validators.minLength(1), Validators.maxLength(100)]],
     email: [
       '',
@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     window.scrollTo(0, 0);
   }
 
-  register(): void {
+  public register(): void {
     const user: User = {
       name: this.Name.value,
       email: this.Email.value,
@@ -132,7 +132,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     }
   }
 
-  sanitizeData(): void {
+  public sanitizeData(): void {
     this.Name.setValue(this.Name.value.sanitizeXSS(true).removeStrings(false));
     this.Email.setValue(
       this.Email.value.sanitizeXSS(false).removeStrings(false)

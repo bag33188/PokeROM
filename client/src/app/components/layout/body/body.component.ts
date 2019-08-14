@@ -8,7 +8,7 @@ import { LoggerService as logger } from '../../../services/logger.service';
 })
 export class BodyComponent implements OnInit {
   constructor() {}
-  static isWebKitBrowser(): boolean {
+  private static isWebKitBrowser(): boolean {
     return (
       /(?:(WebKit))/i.test(navigator.appVersion) &&
       !/Edge/.test(navigator.userAgent)

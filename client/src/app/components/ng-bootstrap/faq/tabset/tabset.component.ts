@@ -18,13 +18,13 @@ import {
   styleUrls: ['./tabset.component.scss']
 })
 export class TabsetComponent implements OnInit {
-  browsers: Browser[];
-  faChrome: IconDefinition = faChrome;
-  faFirefox: IconDefinition = faFirefox;
-  faInternetExplorer: IconDefinition = faInternetExplorer;
-  faOpera: IconDefinition = faOpera;
-  faEdge: IconDefinition = faEdge;
-  faSafari: IconDefinition = faSafari;
+  public browsers: Browser[];
+  public faChrome: IconDefinition = faChrome;
+  public faFirefox: IconDefinition = faFirefox;
+  public faInternetExplorer: IconDefinition = faInternetExplorer;
+  public faOpera: IconDefinition = faOpera;
+  public faEdge: IconDefinition = faEdge;
+  public faSafari: IconDefinition = faSafari;
 
   constructor(private modalService: NgbModal) {}
 
@@ -75,7 +75,7 @@ export class TabsetComponent implements OnInit {
     ];
   }
 
-  open() {
+  public openModal() {
     const modalRef = this.modalService.open(ModalContentComponent);
     modalRef.componentInstance.reasons = [
       'It does not support CSS grid',

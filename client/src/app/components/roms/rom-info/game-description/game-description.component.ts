@@ -7,9 +7,9 @@ import { faFileAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./game-description.component.scss']
 })
 export class GameDescriptionComponent implements OnInit {
-  @Input() description: string;
-  @Input() gameName: string;
-  faFileAlt: IconDefinition;
+  @Input() public description: string;
+  @Input() public gameName: string;
+  public faFileAlt: IconDefinition;
 
   constructor() {}
   static changeUrlToLink(description: string): string {
@@ -35,7 +35,7 @@ export class GameDescriptionComponent implements OnInit {
     }, 555);
   }
 
-  isRomHack(romType: string): boolean {
+  public isRomHack(romType: string): boolean {
     return romType === 'hack';
   }
 }

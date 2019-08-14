@@ -10,11 +10,11 @@ import { UnitConversionService } from '../../../../services/unit-conversion.serv
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
-  static interval: number = UnitConversionService.convertSecondsToMilliseconds(
+  private static interval: number = UnitConversionService.convertSecondsToMilliseconds(
     4.8
   );
-  images: typeof Images;
-  carouselData: CarouselSlide[];
+  public images: typeof Images;
+  public carouselData: CarouselSlide[];
 
   constructor() {}
 
@@ -48,7 +48,7 @@ export class CarouselComponent implements OnInit {
       }
     ];
   }
-  getInterval(): number {
+  public getInterval(): number {
     return CarouselComponent.interval;
   }
 }

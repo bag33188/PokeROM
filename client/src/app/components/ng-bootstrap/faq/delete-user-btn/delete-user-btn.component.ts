@@ -11,7 +11,7 @@ import { LoggerService as logger } from '../../../../services/logger.service';
   styleUrls: ['./delete-user-btn.component.scss']
 })
 export class DeleteUserBtnComponent implements OnInit {
-  isErrorDeleting: boolean;
+  public isErrorDeleting: boolean;
   constructor(
     public authService: AuthService,
     private userService: UserService,
@@ -21,7 +21,7 @@ export class DeleteUserBtnComponent implements OnInit {
   ngOnInit(): void {
     this.isErrorDeleting = false;
   }
-  deleteCurrentUser(): void {
+  public deleteCurrentUser(): void {
     const key: string = 'id';
 
     this.userService

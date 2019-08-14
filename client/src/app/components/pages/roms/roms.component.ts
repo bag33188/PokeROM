@@ -9,16 +9,16 @@ import he from 'he';
   styleUrls: ['./roms.component.scss']
 })
 export class RomsComponent implements OnInit, AfterContentInit {
-  romsData: Rom[] = [];
-  currentPage: number = 1;
-  itemsPerPage: number = 4;
-  pageSize: number;
-  loading: boolean = true;
-  noRomsMsg: string = '';
-  limit: number = 35;
-  isError: boolean = false;
+  public romsData: Rom[] = [];
+  public currentPage: number = 1;
+  public itemsPerPage: number = 4;
+  private pageSize: number;
+  public loading: boolean = true;
+  public noRomsMsg: string = '';
+  private limit: number = 35;
+  public isError: boolean = false;
 
-  static jumpToTop(): void {
+  private static jumpToTop(): void {
     window.scrollTo(0, 0);
   }
 
@@ -32,7 +32,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
     RomsComponent.jumpToTop();
   }
 
-  getRoms(): void {
+  private getRoms(): void {
     const limit: number = this.limit;
     this.romsService.getAllRoms(limit).subscribe(
       (roms: Rom[]): void => {
@@ -56,7 +56,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
     );
   }
 
-  onPageChange(paginateNum: number): void {
+  public onPageChange(paginateNum: number): void {
     this.pageSize = paginateNum;
     RomsComponent.jumpToTop();
   }

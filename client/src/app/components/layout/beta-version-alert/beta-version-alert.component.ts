@@ -26,10 +26,10 @@ import { environment } from '../../../../environments/environment';
   ]
 })
 export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
-  isBeta: boolean;
-  alerts: Alert[];
-  betaVerAlertId: string;
-  faExclamationTriangle: IconDefinition;
+  public isBeta: boolean;
+  public alerts: Alert[];
+  private betaVerAlertId: string;
+  public faExclamationTriangle: IconDefinition;
 
   constructor() {}
 
@@ -44,11 +44,11 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
     this.fadeOutAlert();
   }
 
-  getBetaVersionAlert(): void {
+  private getBetaVersionAlert(): void {
     this.alerts = JSON.parse(sessionStorage.getItem('beta-version-alert'));
   }
 
-  setBetaVersionAlert(): void {
+  private setBetaVersionAlert(): void {
     const betaVersionAlert: Alert = {
       type: 'danger',
       message: 'THIS WEB APP IS STILL IN BETA VERSION'
@@ -66,12 +66,12 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
     }
   }
 
-  closeAlert(alert: Alert): void {
+  public closeAlert(alert: Alert): void {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
     sessionStorage.setItem('beta-version-alert', JSON.stringify(this.alerts));
   }
 
-  fadeOutAlert(): void {
+  private fadeOutAlert(): void {
     if (
       this.isBeta &&
       sessionStorage.getItem('beta-version-alert') !== JSON.stringify([])
@@ -89,7 +89,7 @@ export class BetaVersionAlertComponent implements OnInit, AfterViewInit {
     }
   }
 
-  setBetaVersionAlertId(element: HTMLDivElement): void {
+  public setBetaVersionAlertId(element: HTMLDivElement): void {
     this.betaVerAlertId = element.id;
   }
 }

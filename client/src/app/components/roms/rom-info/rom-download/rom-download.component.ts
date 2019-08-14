@@ -7,12 +7,12 @@ import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./rom-download.component.scss']
 })
 export class RomDownloadComponent implements OnInit {
-  @Input() downloadLink: string;
-  btnDisabled: boolean;
-  faDownload: IconDefinition;
+  @Input() public downloadLink: string;
+  public btnDisabled: boolean;
+  public faDownload: IconDefinition;
 
   @HostListener('window:resize')
-  disableBtnIfMobileOrTablet(): boolean {
+  public disableBtnIfMobileOrTablet(): boolean {
     if (
       /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
       /Android/i.test(navigator.userAgent)

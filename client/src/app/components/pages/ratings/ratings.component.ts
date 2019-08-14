@@ -11,15 +11,15 @@ import { LoggerService as logger } from '../../../services/logger.service';
   styleUrls: ['./ratings.component.scss']
 })
 export class RatingsComponent implements OnInit {
-  currentRate: number = 0;
-  rating: Rating;
-  message: string;
-  formValid: boolean;
-  formSubmitted: boolean;
-  rateHasChanged: boolean;
-  currentRateHover: number;
-  rate: number;
-  isError: boolean;
+  public currentRate: number = 0;
+  private rating: Rating;
+  public message: string;
+  public formValid: boolean;
+  public formSubmitted: boolean;
+  public rateHasChanged: boolean;
+  public currentRateHover: number;
+  public rate: number;
+  public isError: boolean;
 
   constructor(private ratingService: RatingService) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -36,15 +36,15 @@ export class RatingsComponent implements OnInit {
     this.isError = false;
   }
 
-  setRating(rate: number): void {
+  public setRating(rate: number): void {
     this.currentRate = rate;
     this.rate = rate;
   }
 
-  setRatingHover(rate: number) {
+  public setRatingHover(rate: number) {
     this.currentRateHover = rate;
   }
-  resetRating(): void {
+  public resetRating(): void {
     if (!this.rateHasChanged) {
       this.currentRateHover = 0;
     } else {
@@ -52,7 +52,7 @@ export class RatingsComponent implements OnInit {
     }
   }
 
-  submitRating(): void {
+  public submitRating(): void {
     this.rating = {
       rating: this.currentRate,
       message: this.message.sanitizeXSS(false, false).removeStrings(false),

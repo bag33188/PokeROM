@@ -6,10 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
-  @Input() romType: string;
-  @Input() gameName: string;
-  isRomHack: boolean;
-  romHackTxtIdentifier: RegExp;
+  @Input() public romType: string;
+  @Input() public gameName: string;
+  public isRomHack: boolean;
+  private romHackTxtIdentifier: RegExp;
 
   constructor() {}
 
@@ -18,7 +18,7 @@ export class PopupComponent implements OnInit {
     setTimeout((): boolean => (this.isRomHack = this.romType === 'hack'), 555);
   }
 
-  removeRomHackText(gameName: string): string {
+  public removeRomHackText(gameName: string): string {
     return gameName.replace(this.romHackTxtIdentifier, '');
   }
 }

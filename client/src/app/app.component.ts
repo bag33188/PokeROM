@@ -41,7 +41,7 @@ import { environment } from '../environments/environment';
   ]
 })
 export class AppComponent {
-  readonly title: string = 'PokéROM';
+  public readonly title: string = 'PokéROM';
 
   constructor(
     private apiService: ApiService,
@@ -54,13 +54,13 @@ export class AppComponent {
     }
   }
 
-  changeTitleIfDevEnv(): void {
+  private changeTitleIfDevEnv(): void {
     if (!environment.production) {
       document.title = `${this.title} (Beta)`;
     }
   }
 
-  getApiVersionIfDevEnv(): void {
+  private getApiVersionIfDevEnv(): void {
     if (!environment.production) {
       this.apiService.getApiVersion().subscribe(
         (res: ApiVersion): void => {
@@ -73,7 +73,7 @@ export class AppComponent {
     }
   }
 
-  isHomePage(): boolean {
+  public isHomePage(): boolean {
     const routeKey: string = '_routerState';
     return this.route[routeKey].snapshot.url === '/home';
   }

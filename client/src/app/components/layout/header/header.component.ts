@@ -10,10 +10,10 @@ import { Route } from '../../../interfaces/Route';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  routeKey: string;
-  loggedOutRoutes: Route[];
-  loggedInRoutes: Route[];
-  routes: HtmlRoute[];
+  private routeKey: string;
+  public loggedOutRoutes: Route[];
+  private loggedInRoutes: Route[];
+  public routes: HtmlRoute[];
 
   constructor(
     private authService: AuthService,
@@ -52,13 +52,7 @@ export class HeaderComponent implements OnInit {
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
         navLinkText: 'Rate'
-      } /*,
-      {
-        routerLink: ['/', 'docs'],
-        routerLinkActive: ['yellow'],
-        routerLinkActiveOptions: { exact: true },
-        navLinkText: 'Docs'
-      }*/
+      }
     ];
     this.routeKey = '_routerState';
     this.loggedOutRoutes = [
@@ -103,7 +97,7 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
-  isUrl(url: string, pathMatch: string): boolean {
+  public isUrl(url: string, pathMatch: string): boolean {
     switch (pathMatch) {
       case 'full':
         return this.route[this.routeKey].snapshot.url === url;
@@ -116,18 +110,18 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  isLoggedOut(): boolean {
+  public isLoggedOut(): boolean {
     return this.authService.loggedOut();
   }
 
-  logout(): void {
+  public logout(): void {
     this.authService.logout();
     if (this.isRoutes(this.loggedInRoutes, true)) {
       this.router.navigate(['/', 'home']);
     }
   }
 
-  isRoutes(routes: Route[], loggedIn: boolean): boolean {
+  public isRoutes(routes: Route[], loggedIn: boolean): boolean {
     let isOneOfRoutes: boolean = false;
     routes.forEach((route: Route): void => {
       if (this.isUrl(route.url, route.pathMatch)) {

@@ -10,7 +10,7 @@ export class JumbotronComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  loggedIn(): boolean {
+  public loggedIn(): boolean {
     return !!localStorage.getItem('user');
   }
 }

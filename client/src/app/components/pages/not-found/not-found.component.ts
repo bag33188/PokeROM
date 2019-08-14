@@ -14,7 +14,7 @@ export class NotFoundComponent implements OnInit {
     logger.error(`Error 404: Page Not Found - "${this.pathName()}"`);
   }
 
-  pathName(): string {
+  public pathName(): string {
     if (/\/404/.test(location.pathname)) {
       return this.route.snapshot.url.join('/').replace('404', '');
     } else {

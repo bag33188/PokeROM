@@ -10,8 +10,8 @@ import { UnitConversionService } from '../../../services/unit-conversion.service
   styleUrls: ['./rom.component.scss']
 })
 export class RomComponent implements OnInit {
-  @Input() rom: Rom;
-  faInfo: IconDefinition;
+  @Input() public rom: Rom;
+  public faInfo: IconDefinition;
 
   constructor() {}
 
@@ -19,14 +19,14 @@ export class RomComponent implements OnInit {
     this.faInfo = faInfo;
   }
 
-  imgAlt(altValue: string): string {
+  public imgAlt(altValue: string): string {
     return `${altValue
       .replace(/[\s:]/g, '-')
       .replace(/\xe9/g, 'e')
       .replace(/('|[\(\)])/g, '')}-box-art`;
   }
 
-  fileSizeData(romFileSize: number): [number, string] {
+  public fileSizeData(romFileSize: number): [number, string] {
     const [fileSize, fileType]: [
       number,
       string
@@ -39,7 +39,7 @@ export class RomComponent implements OnInit {
    * @description Checks if the game is Pokemon Green, Pokemon Let's Go Pikachu, and/or Pokemon Lets Go Eevee.
    * @param altValue The alt value of the image.
    */
-  applyClassesForGameImgSize(altValue: string): NgClasses {
+  public applyClassesForGameImgSize(altValue: string): NgClasses {
     const overSizedImgClasses: NgClasses = {
       'oversized-img': true,
       'card-img-top': true,
@@ -62,7 +62,7 @@ export class RomComponent implements OnInit {
     }
   }
 
-  romanize(generation: number): string | number {
+  public romanize(generation: number): string | number {
     return UnitConversionService.convertIntegerToRomanNumeral(generation);
   }
 }

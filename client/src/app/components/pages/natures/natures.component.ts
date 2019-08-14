@@ -16,16 +16,16 @@ import { NaturesService } from '../../../services/natures.service';
   styleUrls: ['./natures.component.scss']
 })
 export class NaturesComponent implements OnInit, AfterContentInit {
-  natures: Nature[] = [];
-  headers: string[];
-  icons: IconDefinition[];
-  faLeaf: IconDefinition;
-  faArrowUp: IconDefinition;
-  faArrowDown: IconDefinition;
-  faSignLanguage: IconDefinition;
-  faHeart: IconDefinition;
-  loading: boolean = true;
-  isError: boolean = false;
+  public natures: Nature[] = [];
+  public headers: string[];
+  public icons: IconDefinition[];
+  public faLeaf: IconDefinition;
+  public faArrowUp: IconDefinition;
+  public faArrowDown: IconDefinition;
+  public faSignLanguage: IconDefinition;
+  public faHeart: IconDefinition;
+  public loading: boolean = true;
+  public isError: boolean = false;
 
   constructor(private naturesService: NaturesService) {}
 
@@ -43,7 +43,7 @@ export class NaturesComponent implements OnInit, AfterContentInit {
     window.scrollTo(0, 0);
   }
 
-  setHeaders(): void {
+  private setHeaders(): void {
     this.headers = [
       'Nature',
       'Increased Stat',
@@ -60,7 +60,7 @@ export class NaturesComponent implements OnInit, AfterContentInit {
     ];
   }
 
-  setNatures(): void {
+  private setNatures(): void {
     this.naturesService.getAllNatures().subscribe(
       (res: Nature[]): void => {
         this.natures = res;

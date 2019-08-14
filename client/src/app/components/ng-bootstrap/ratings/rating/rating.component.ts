@@ -6,20 +6,20 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./rating.component.scss']
 })
 export class RatingComponent implements OnInit {
-  rate: number;
-  @Output() currentRate: EventEmitter<number> = new EventEmitter();
-  @Output() currentRateHover: EventEmitter<number> = new EventEmitter();
+  public rate: number;
+  @Output() private currentRate: EventEmitter<number> = new EventEmitter();
+  @Output() private currentRateHover: EventEmitter<number> = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {
     this.rate = 0;
   }
 
-  outputRating(rate: number): void {
+  public outputRating(rate: number): void {
     this.currentRate.emit(rate);
   }
 
-  outputRatingHover(rate: number): void {
+  public outputRatingHover(rate: number): void {
     this.currentRateHover.emit(rate);
   }
 }

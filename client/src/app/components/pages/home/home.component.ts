@@ -6,7 +6,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterContentInit {
-  accHeading: string;
+  public accHeading: string;
 
   constructor() {}
 

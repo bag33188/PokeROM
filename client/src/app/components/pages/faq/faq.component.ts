@@ -14,10 +14,10 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit, AfterContentInit {
-  emulatorUrl: string;
-  @ViewChild('cookies', { static: true }) cookiesElement: ElementRef;
+  public emulatorUrl: string;
+  @ViewChild('cookies', { static: true }) private cookiesElement: ElementRef;
   @ViewChild('browserCompatibility', { static: true })
-  browserCompatibilityElement: ElementRef;
+  private browserCompatibilityElement: ElementRef;
 
   constructor(private route: ActivatedRoute, public authService: AuthService) {}
 

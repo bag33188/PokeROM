@@ -18,8 +18,8 @@ import removeStrings from '../../../helpers/remove-strings';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginFail: string;
-  loginForm: FormGroup = new FormGroup({
+  public loginFail: string;
+  public loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [
       Validators.required,
       Validators.minLength(5),
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     setTimeout((): void => this.authService.logout(), 88);
   }
 
-  login(): void {
+  public login(): void {
     const user: LoggedUser = {
       username: this.Username.value,
       password: this.Password.value
@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  sanitizeData(): void {
+  public sanitizeData(): void {
     this.Username.setValue(
       this.Username.value.sanitizeXSS(true).removeStrings(false)
     );

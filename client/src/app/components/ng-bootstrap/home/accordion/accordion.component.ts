@@ -8,7 +8,7 @@ import { Raphnet } from '../../../../enums/raphnet.enum';
   styleUrls: ['./accordion.component.scss']
 })
 export class AccordionComponent implements OnInit {
-  raphnet: typeof Raphnet;
+  public raphnet: typeof Raphnet;
 
   constructor(private config: NgbAccordionConfig) {
     this.config.type = 'light';
