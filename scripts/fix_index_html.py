@@ -121,7 +121,7 @@ class FixIndexHtml:
 
     # general exception
     except Exception as err:
-      print(f'An error occurred: {str(err)}', end='\n\n')
+      print(f'An error occurred:\n{str(err)}', end='\n\n')
 
   # define insert_comment method
   def insert_comment(self):
@@ -182,7 +182,7 @@ class FixIndexHtml:
 
     # catch general exception
     except Exception as err:
-      print(f'An error occurred: {str(err)}', end='\n\n')
+      print(f'An error occurred:\n{str(err)}', end='\n\n')
 
 
 # apply fixes to index.html file
