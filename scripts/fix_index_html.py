@@ -178,7 +178,7 @@ class FixIndexHtml:
 
     # catch file not found error
     except FileNotFoundError:
-      print('Error: file not found.', end='\n\n')
+      print('Error: index.html file not found.', end='\n\n')
 
     # catch general exception
     except Exception as err:
