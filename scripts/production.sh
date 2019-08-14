@@ -68,7 +68,7 @@ production() {
     git push heroku master
     printf "\r\n"
     npm run count-files-git
-  ) && echo -e "\r\n" && read -n 1 -s -r -p "Done! Press any key to exit" && echo -e "\r\n"
+  ) && echo -e "\r\n" && read -n 1 -s -r -p "Press any key to exit" && echo -e "\r\n"
 }
 
 production
