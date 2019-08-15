@@ -11,7 +11,8 @@ import {
   filterAnimation,
   flyInOutAnimation,
   flyOutAnimation,
-  openCloseAnimation
+  openCloseAnimation,
+  shrinkOutAnimation
 } from './animations';
 
 export {
@@ -27,5 +28,6 @@ export {
   filterAnimation,
   flyInOutAnimation,
   flyOutAnimation,
-  openCloseAnimation
+  openCloseAnimation,
+  shrinkOutAnimation
 };

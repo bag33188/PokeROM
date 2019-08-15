@@ -230,3 +230,13 @@ export const openCloseAnimation: AnimationTriggerMetadata[] = [
     ])
   ])
 ];
+
+export const shrinkOutAnimation: AnimationTriggerMetadata[] = [
+  trigger('shrinkOut', [
+    state('in', style({ height: '*' })),
+    transition('* => void', [
+      style({ height: '*' }),
+      animate(250, style({ height: 0 }))
+    ])
+  ])
+];
