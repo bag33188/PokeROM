@@ -9,7 +9,7 @@ Notes1:
   * Must have ruby installed
 =end
 
-# define main function
+# define count_files_git function
 def count_files_git()
   puts 'Counting files on github ... '
   print "\n"
@@ -22,5 +22,5 @@ def count_files_git()
 	puts 'Done!'
 end
 
-# call main function
+# call count_files_git function
 count_files_git()

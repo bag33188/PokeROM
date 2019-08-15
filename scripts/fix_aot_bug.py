@@ -5,8 +5,8 @@
 import sys # import system module
 from fileinput import FileInput # import fileinput module
 
-# create fix_state_js function
-def fix_state_js():
+# create fix_aot_bug function
+def fix_aot_bug():
   """
   The purpose of this function is to fix a major bug in the Angular AOT Compiler.
   This function will backup and then modify the `state.js` file in `../client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src`.
@@ -93,4 +93,4 @@ def fix_state_js():
     sys.exit(exit_code)
 
 # call function
-fix_state_js()
+fix_aot_bug()
