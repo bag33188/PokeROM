@@ -64,19 +64,13 @@
   }
 }
 
-// Clearfix mixin
-/*
-%clearfix {
-  *zoom: 1;
-  &:before, &:after {
-    content: " ";
-    display: table;
-  }
+@mixin clearfix {
   &:after {
     clear: both;
+    content: '';
+    display: table;
   }
 }
-*/
 
 //Animation mixin setup
 @mixin keyframes($animation-name) {
@@ -148,4 +142,24 @@
   margin-left: $left;
   margin-right: $right;
   margin-top: $top;
+}
+
+@mixin arrow($direction, $size, $color) {
+  @if $direction == up {
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+  } @else if $direction == down {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+  } @else if $direction == right {
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    border-top: $size solid transparent;
+  } @else if $direction == left {
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+    border-top: $size solid transparent;
+  }
 }
