@@ -34,7 +34,7 @@ This app is deployed to [heroku][heroku] at [https://pokerom-broccolini.herokuap
 
 ## IMPORTANT!
 
-Run this command: `cd client && npm run fix-aot-bug-{win|osx}`; where you replace `{win|osx}` with `win` if you're on Windows or `osx` if you're on a Mac.
+Run this command: `cd client && npm run fix-aot-bug-{win|osx|linux}`; where you replace `{win|osx|linux}` with `win` if you're on Windows, `osx` if you're on a Mac, or `linux` if you're running a linux distribution.
 
 This will fix an issue with Angular's AOT Compiler when using `ng serve --aot`.
 
