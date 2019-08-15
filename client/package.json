@@ -22,9 +22,7 @@
     "lint-ts": "ng lint",
     "lint-scss": "./node_modules/.bin/sass-lint -c ./.sass-lint.yml -v -q",
     "lint-all": "npm run lint-ts & npm run lint-scss",
-    "fix-aot-bug-win": "python ../scripts/fix_aot_bug.py",
-    "fix-aot-bug-osx": "python3 ../scripts/fix_aot_bug.py",
-    "fix-aot-bug-linux": "python3 ../scripts/fix_aot_bug.py",
+    "fix-aot-bug": "cd ../scripts && bash ./fix_aot_bug.sh",
     "serve-app": "http-server -p 4200 -c-1 dist/pokerom"
   },
   "private": true,

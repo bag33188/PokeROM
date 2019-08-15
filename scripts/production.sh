@@ -22,7 +22,7 @@ production() {
   cd ../client || return
   ng build --prod && (
     cd ../public
-    rm -rf assets
+    rm -R assets
     # shellcheck disable=SC2035
     rm *
     mv ../client/dist/pokerom/*.* ./
@@ -34,7 +34,7 @@ production() {
       python ../scripts/fix_index_html.py
     fi
     cd ..
-    rm -rf client/dist
+    rm -R client/dist
     valid=0
     while true; do
       git status

@@ -14,7 +14,7 @@
   ],
   "homepage": "https://github.com/bag33188/Pokemon-ROMs-Project#readme",
   "bugs": {
-    "url": "https://github.com/bag33188/Pokemon-ROMs-Project/issues",
+    "ur| returnl": "https://github.com/bag33188/Pokemon-ROMs-Project/issues",
     "email": "bglatman@callutheran.edu"
   },
   "repository": {
@@ -28,20 +28,14 @@
     "prod": "cd scripts && bash ./production.sh",
     "api": "nodemon server",
     "client": "cd client && ng serve --open && cd ..",
-    "db-win": "mongod --dbpath=C:/MongoDB/data",
-    "db-osx": "mongod",
-    "db-start-linux": "sudo service mongod start",
-    "db-stop-linux": "sudo service mongod stop",
-    "db-restart-linux": "sudo service mongod restart",
+    "db": "cd scripts && bash ./db.sh",
     "db-shell": "mongo",
     "db-prod": "mongo \"mongodb+srv://pokerom-cluster-voflm.azure.mongodb.net/pkmn-roms\" --username broccolini33188 --password Sullivan",
     "load-db": "mongo ~/Projects/PokeROM/database/pkmn-roms.js",
     "pack": "cd scripts && bash ./package_app.sh",
-    "move-script-tags-win": "cd scripts && python move_script_tags.py",
-    "move-script-tags-osx": "cd scripts && python3 move_script_tags.py",
+    "count-files-git": "cd scripts && ruby count_files_git.rb",
     "open-sites": "cd scripts && open_sites.bat",
-    "open-repos": "cd scripts && open_repos.bat",
-    "count-files-git": "cd scripts && ruby count_files_git.rb"
+    "open-repos": "cd scripts && open_repos.bat"
   },
   "private": true,
   "author": "bag33188",
