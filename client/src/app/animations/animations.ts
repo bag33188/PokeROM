@@ -8,6 +8,7 @@ import {
   query,
   group,
   animateChild,
+  stagger,
   AnimationTriggerMetadata
 } from '@angular/animations';
 
@@ -21,12 +22,25 @@ export const flyInAnimation: AnimationTriggerMetadata[] = [
   ])
 ];
 
-export const rotateInAnimation: AnimationTriggerMetadata[] = [
-  trigger('rotateIn', [
+export const flyOutAnimation: AnimationTriggerMetadata[] = [
+  trigger('flyOut', [
+    state('out', style({ transform: 'translateX(-100%)' })),
+    transition('void => *', [
+      style({ transform: 'translateX(0)' }),
+      animate('700ms ease-out')
+    ])
+  ])
+];
+
+export const flyInOutAnimation: AnimationTriggerMetadata[] = [
+  trigger('flyInOut', [
     state('in', style({ transform: 'translateX(0)' })),
     transition('void => *', [
-      style({ transform: 'rotate(-180deg)' }),
-      animate('700ms ease-out')
+      style({ transform: 'translateX(-100%)' }),
+      animate(100)
+    ]),
+    transition('* => void', [
+      animate(100, style({ transform: 'translateX(100%)' }))
     ])
   ])
 ];
@@ -64,6 +78,15 @@ export const flyItemsAnimation: AnimationTriggerMetadata[] = [
     ])
   ])
 ];
+
+export const toggleSlideAnimation: AnimationTriggerMetadata[] = [
+  trigger('slide', [
+    state('left', style({ transform: 'translateX(0)' })),
+    state('right', style({ transform: 'translateX(-50%)' })),
+    transition('* => *', animate(300))
+  ])
+];
+
 // Routable animations
 export const slideInAnimation: AnimationTriggerMetadata[] = [
   trigger('routeAnimation', [
@@ -88,6 +111,30 @@ export const slideInAnimation: AnimationTriggerMetadata[] = [
   ])
 ];
 
+export const fadeOutAnimation: AnimationTriggerMetadata[] = [
+  trigger('fadeOut', [
+    state('in', style({ opacity: 1 })),
+    transition(':leave', animate(555, style({ opacity: 0 })))
+  ])
+];
+
+export const fadeInAnimation: AnimationTriggerMetadata[] = [
+  trigger('fadeInt', [
+    state('out', style({ opacity: 0 })),
+    transition(':leave', animate(555, style({ opacity: 1 })))
+  ])
+];
+
+export const rotateInAnimation: AnimationTriggerMetadata[] = [
+  trigger('rotateIn', [
+    state('in', style({ transform: 'translateX(0)' })),
+    transition('void => *', [
+      style({ transform: 'rotate(-180deg)' }),
+      animate('700ms ease-out')
+    ])
+  ])
+];
+
 export const flipAnimation: AnimationTriggerMetadata[] = [
   trigger('flipState', [
     state(
@@ -107,16 +154,79 @@ export const flipAnimation: AnimationTriggerMetadata[] = [
   ])
 ];
 
-export const fadeOutAnimation: AnimationTriggerMetadata[] = [
-  trigger('fadeOut', [
-    state('in', style({ opacity: 1 })),
-    transition(':leave', animate(555, style({ opacity: 0 })))
+export const filterAnimation: AnimationTriggerMetadata[] = [
+  trigger('filterAnimation', [
+    transition(':enter, * => 0, * => -1', []),
+    transition(':increment', [
+      query(
+        ':enter',
+        [
+          style({ opacity: 0, width: '0px' }),
+          stagger(50, [
+            animate('300ms ease-out', style({ opacity: 1, width: '*' }))
+          ])
+        ],
+        { optional: true }
+      )
+    ]),
+    transition(':decrement', [
+      query(':leave', [
+        stagger(50, [
+          animate('300ms ease-out', style({ opacity: 0, width: '0px' }))
+        ])
+      ])
+    ])
   ])
 ];
 
-export const fadeInAnimation: AnimationTriggerMetadata[] = [
-  trigger('fadeInt', [
-    state('out', style({ opacity: 0 })),
-    transition(':leave', animate(555, style({ opacity: 1 })))
+export const openCloseAnimation: AnimationTriggerMetadata[] = [
+  trigger('openClose', [
+    state(
+      'open',
+      style({
+        height: '200px',
+        opacity: 1,
+        backgroundColor: 'yellow'
+      })
+    ),
+    state(
+      'close',
+      style({
+        height: '100px',
+        opacity: 0.5,
+        backgroundColor: 'green'
+      })
+    ),
+    transition('* => active', [
+      animate(
+        '2s',
+        keyframes([
+          style({ backgroundColor: 'blue', offset: 0 }),
+          style({ backgroundColor: 'red', offset: 0.8 }),
+          style({ backgroundColor: 'orange', offset: 1.0 })
+        ])
+      )
+    ]),
+    transition('* => inactive', [
+      animate(
+        '2s',
+        keyframes([
+          style({ backgroundColor: 'orange', offset: 0 }),
+          style({ backgroundColor: 'red', offset: 0.2 }),
+          style({ backgroundColor: 'blue', offset: 1.0 })
+        ])
+      )
+    ]),
+    transition('* => *', [
+      animate(
+        '1s',
+        keyframes([
+          style({ opacity: 0.1, offset: 0.1 }),
+          style({ opacity: 0.6, offset: 0.2 }),
+          style({ opacity: 1, offset: 0.5 }),
+          style({ opacity: 0.2, offset: 0.7 })
+        ])
+      )
+    ])
   ])
 ];

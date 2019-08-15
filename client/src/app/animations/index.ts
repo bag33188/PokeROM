@@ -6,7 +6,12 @@ import {
   flyInAnimation,
   flyItemsAnimation,
   rotateInAnimation,
-  slideInAnimation
+  slideInAnimation,
+  toggleSlideAnimation,
+  filterAnimation,
+  flyInOutAnimation,
+  flyOutAnimation,
+  openCloseAnimation
 } from './animations';
 
 export {
@@ -17,5 +22,10 @@ export {
   flyFromBottomAnimation,
   flipAnimation,
   rotateInAnimation,
-  slideInAnimation
+  slideInAnimation,
+  toggleSlideAnimation,
+  filterAnimation,
+  flyInOutAnimation,
+  flyOutAnimation,
+  openCloseAnimation
 };
