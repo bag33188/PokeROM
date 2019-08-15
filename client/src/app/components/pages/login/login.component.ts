@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout((): void => this.authService.logout(), 88);
+    setTimeout((): void => AuthService.logout(), 88);
   }
 
   public login(): void {
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticateUser(user).subscribe(
       (data: RegisteredUser): void => {
         if (data.success) {
-          this.authService.storeData(data.token, data.user);
+          AuthService.storeData(data.token, data.user);
           const returnUrl: string = this.route.snapshot.queryParamMap.get(
             'returnUrl'
           );

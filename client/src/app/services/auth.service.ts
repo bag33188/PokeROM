@@ -14,11 +14,29 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   private authUrl: string = `${environment.apiUrl}/users/authenticate`;
 
-  constructor(
-    private http: HttpClient,
-    public jwtHelper: JwtHelperService,
-    private cookieService: CookiesService
-  ) {}
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {}
+
+  public static loadToken(): string {
+    return CookiesService.getCookie('token_id');
+  }
+  /**
+   * @summary Logs out the user.
+   * @description Clears local storage, sets authToken and user to null, and clears the token_id cookie.
+   */
+  public static logout(): void {
+    localStorage.clear();
+    CookiesService.setCookie('token_id', '', 0);
+  }
+  /**
+   * @summary Stores the user data in local storage and the JWT as a cookie.
+   * @param token The Bearer token (aka the JWT).
+   * @param user The user data.
+   * @returns nothing (void).
+   */
+  public static storeData(token: string, user: User): void {
+    localStorage.setItem('user', JSON.stringify(user));
+    CookiesService.setCookie('token_id', token.replace('Bearer ', ''), 7);
+  }
 
   /**
    * @summary Authenticates a User.
@@ -33,34 +51,10 @@ export class AuthService {
     return this.http.post<RegisteredUser>(this.authUrl, user, { headers });
   }
 
-  public loadToken(): string {
-    return this.cookieService.getCookie('token_id');
-  }
-
-  /**
-   * @summary Stores the user data in local storage and the JWT as a cookie.
-   * @param token The Bearer token (aka the JWT).
-   * @param user The user data.
-   * @returns nothing (void).
-   */
-  public storeData(token: string, user: User): void {
-    localStorage.setItem('user', JSON.stringify(user));
-    this.cookieService.setCookie('token_id', token.replace('Bearer ', ''), 7);
-  }
-
   public loggedOut(): boolean {
     return (
-      this.jwtHelper.isTokenExpired(this.cookieService.getCookie('token_id')) ||
-      this.cookieService.getCookie('token_id') === ''
+      this.jwtHelper.isTokenExpired(CookiesService.getCookie('token_id')) ||
+      CookiesService.getCookie('token_id') === ''
     );
-  }
-
-  /**
-   * @summary Logs out the user.
-   * @description Clears local storage, sets authToken and user to null, and clears the token_id cookie.
-   */
-  public logout(): void {
-    localStorage.clear();
-    this.cookieService.setCookie('token_id', '', 0);
   }
 }

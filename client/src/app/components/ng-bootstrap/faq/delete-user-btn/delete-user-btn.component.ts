@@ -31,7 +31,7 @@ export class DeleteUserBtnComponent implements OnInit {
         (): void => {
           this.isErrorDeleting = false;
           this.router.navigate(['/', 'home']);
-          this.authService.logout();
+          AuthService.logout();
         },
         (err: any): void => {
           this.isErrorDeleting = true;

@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthService) {}
+  constructor() {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -34,7 +34,7 @@ export class TokenInterceptor implements HttpInterceptor {
     if (authUrls.includes(req.url)) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.auth.loadToken()}`
+          Authorization: `Bearer ${AuthService.loadToken()}`
         }
       });
     }

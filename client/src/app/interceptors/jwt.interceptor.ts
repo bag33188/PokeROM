@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { CookiesService } from '../services/cookies.service';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
@@ -19,7 +18,6 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
     private jwtHelper: JwtHelperService,
-    private cookieService: CookiesService,
     private authService: AuthService
   ) {}
   intercept(
@@ -33,7 +31,7 @@ export class JwtInterceptor implements HttpInterceptor {
             const romsApiRouteRegex: RegExp = /(?:(\/api\/roms(\/)?)((?:#?([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})){4})?)/;
             if (romsApiRouteRegex.test(event.url)) {
               if (this.authService.loggedOut()) {
-                this.authService.logout();
+                AuthService.logout();
                 this.router.navigate(['/', 'login']);
               }
             }

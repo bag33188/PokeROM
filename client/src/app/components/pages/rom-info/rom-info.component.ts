@@ -85,7 +85,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   }
 
   private logOut(): void {
-    this.authService.logout();
+    AuthService.logout();
     this.router.navigate(['/']);
   }
 }

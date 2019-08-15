@@ -12,7 +12,7 @@ export class CookiesService {
    * @param cookieName The name of the cookie to get.
    * @returns The cookie.
    */
-  public getCookie(cookieName: string): string {
+  public static getCookie(cookieName: string): string {
     const name: string = `${cookieName}=`;
     const decodedCookie: string = decodeURIComponent(document.cookie);
     const cookieArray: string[] = decodedCookie.split(';');
@@ -36,7 +36,7 @@ export class CookiesService {
    * @param expireDays How many days until the cookie expires.
    * @returns nothing (void).
    */
-  public setCookie(
+  public static setCookie(
     cookieName: string,
     cookieValue: string,
     expireDays: number
@@ -60,13 +60,13 @@ export class CookiesService {
     expireDays: number,
     callbacks: any[]
   ): void {
-    const cookie: string = this.getCookie(cookieName);
+    const cookie: string = CookiesService.getCookie(cookieName);
     if (cookie !== '') {
       callbacks[0]();
     } else {
       callbacks[1]();
       if (cookie !== '' && cookie != null) {
-        this.setCookie(cookieName, cookie, expireDays);
+        CookiesService.setCookie(cookieName, cookie, expireDays);
       }
     }
   }
