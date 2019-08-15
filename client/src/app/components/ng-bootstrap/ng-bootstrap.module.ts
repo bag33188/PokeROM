@@ -18,6 +18,8 @@ import { AlertComponent } from './ratings/alert/alert.component';
 import { DeleteUserBtnComponent } from './faq/delete-user-btn/delete-user-btn.component';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { LoggerService } from '../../services/logger.service';
+import { UnitConversionService } from '../../services/unit-conversion.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,6 @@ import { UserService } from '../../services/user.service';
     AlertComponent,
     DeleteUserBtnComponent
   ],
-  providers: [AuthService, UserService]
+  providers: [AuthService, UserService, LoggerService, UnitConversionService]
 })
 export class NgBootstrapModule {}
