@@ -9,6 +9,10 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { BetaVersionAlertComponent } from './beta-version-alert/beta-version-alert.component';
 import { CookiesAlertComponent } from './cookies-alert/cookies-alert.component';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+import { LoggerService } from '../../services/logger.service';
+import { UnitConversionService } from '../../services/unit-conversion.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,7 @@ import { CookiesAlertComponent } from './cookies-alert/cookies-alert.component';
     BrowserAnimationsModule,
     FontAwesomeModule
   ],
+  providers: [AuthService, UserService, LoggerService, UnitConversionService],
   exports: [BodyComponent, FooterComponent, HeaderComponent]
 })
 export class LayoutModule {}

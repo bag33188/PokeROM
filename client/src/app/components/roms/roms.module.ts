@@ -11,6 +11,7 @@ import { GameLogoComponent } from './rom-info/game-logo/game-logo.component';
 import { GameNameComponent } from './rom-info/game-name/game-name.component';
 import { RomSpecsComponent } from './rom-info/rom-specs/rom-specs.component';
 import { RomDownloadComponent } from './rom-info/rom-download/rom-download.component';
+import { UnitConversionService } from '../../services/unit-conversion.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { RomDownloadComponent } from './rom-info/rom-download/rom-download.compo
     GameNameComponent,
     RomSpecsComponent,
     RomDownloadComponent
-  ]
+  ],
+  providers: [UnitConversionService]
 })
 export class RomsModule {}

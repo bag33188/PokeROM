@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export abstract class UnitConversionService {
-  protected constructor() {}
+export class UnitConversionService {
+  constructor() {}
 
   /**
    * @summary Convert size of ROM.

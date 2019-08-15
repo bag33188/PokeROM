@@ -26,6 +26,9 @@ import { RatingsComponent } from './ratings/ratings.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from '../../services/user.service';
 import { SpinnerComponent } from '../spinner/spinner.component';
+import { NaturesService } from '../../services/natures.service';
+import { LoggerService } from '../../services/logger.service';
+import { RatingService } from '../../services/rating.service';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,14 @@ import { SpinnerComponent } from '../spinner/spinner.component';
     NgBootstrapModule,
     FontAwesomeModule
   ],
-  providers: [AuthService, AuthGuard, RomsService, UserService]
+  providers: [
+    AuthService,
+    AuthGuard,
+    RomsService,
+    UserService,
+    NaturesService,
+    LoggerService,
+    RatingService
+  ]
 })
 export class PagesModule {}
