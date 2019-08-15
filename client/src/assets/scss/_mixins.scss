@@ -22,3 +22,22 @@
     margin: $margin;
   }
 }
+
+@mixin add-font-face($font-data, $font-url-prefix) {
+  @each $font-name, $local1, $font-style, $font-weight, $font-woff2-url,
+    $font-woff1-url in $font-data
+  {
+    $local2: str-replace(
+      str-replace($font-woff1-url, '#{$font-url-prefix}/', ''),
+      '.woff',
+      ''
+    );
+    @font-face {
+      font-family: $font-name;
+      font-style: $font-style;
+      font-weight: $font-weight;
+      src: local($local1), local($local2), url($font-woff2-url) format('woff2'),
+        url($font-woff1-url) format('woff');
+    }
+  }
+}
