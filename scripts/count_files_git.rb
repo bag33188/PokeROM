@@ -5,6 +5,7 @@ Count Files Git Ruby Script
 ---------------------------
 To run:
   ruby count_files_git.rb
+
 Notes1:
   * Must have ruby installed
 =end
