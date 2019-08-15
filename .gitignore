@@ -116,4 +116,8 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# Binaries
+bin
+bin/*
+
 # End of https://www.gitignore.io/api/node

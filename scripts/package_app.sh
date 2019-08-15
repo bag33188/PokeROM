@@ -20,8 +20,9 @@ $ chmod 755 ./package_app.sh
 package_app() {
     cd ..
     npm pack
-    rm ~/Projects/pokerom*.tgz
-    mv pokerom*.tgz ~/Projects
+    rm -R bin
+    mkdir bin
+    mv pokerom*.tgz bin/
 }
 
 package_app
