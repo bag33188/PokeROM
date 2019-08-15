@@ -28,7 +28,7 @@ production() {
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
     printf "\n"
-    if [[ "$OSTYPE" == "darwin"* ]]; then
+    if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux"* ]]; then
       python3 ../scripts/fix_index_html.py
     else
       python ../scripts/fix_index_html.py
