@@ -8,7 +8,6 @@
 
 - [Pok&eacute;ROM](#pokeacuterom)
   - [About](#about)
-  - [Setup Information](#setup-information)
   - [IMPORTANT!](#important)
   - [Commands](#commands)
     - [Heroku](#heroku)
