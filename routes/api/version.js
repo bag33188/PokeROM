@@ -22,7 +22,7 @@ httpRouter.all('/*', async (req, res, next) => {
   try {
     const methods = ['GET', 'HEAD'];
     if (methods.includes(req.method)) {
-      res.set('Allow', methods.join(''));
+      res.set('Allow', methods.join(', '));
       return await res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
