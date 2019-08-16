@@ -26,6 +26,7 @@ import { environment } from '../environments/environment';
   `,
   styles: [
     `
+      /* CSS Global Variables/Custom Properties */
       ::ng-deep :root {
         --default-box-sizing: border-box;
         --container-wrapper-display: block;
