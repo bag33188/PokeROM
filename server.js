@@ -71,7 +71,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.all('/*', async (req, res, next) => {
   try {
-    const methods = ['GET', 'OPTIONS'];
+    const methods = ['GET', 'HEAD', 'OPTIONS'];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(', '));
       return await res

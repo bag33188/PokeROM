@@ -13,7 +13,7 @@ httpRouter.options('/', async (req, res, next) => {
 
 httpRouter.all('/*', async (req, res, next) => {
   try {
-    const methods = ['OPTIONS'];
+    const methods = ['OPTIONS', 'HEAD'];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(''));
       return await res

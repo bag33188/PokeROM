@@ -20,7 +20,7 @@ httpRouter.get('/', async (req, res, next) => {
 
 httpRouter.all('/*', async (req, res, next) => {
   try {
-    const methods = ['GET'];
+    const methods = ['GET', 'HEAD'];
     if (methods.includes(req.method)) {
       res.set('Allow', methods.join(''));
       return await res
