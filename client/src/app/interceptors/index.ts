@@ -14,7 +14,7 @@ export const httpInterceptorProviders: {
     | typeof BleachInterceptor;
   multi: boolean;
 }[] = [
-  { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
+  // { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
