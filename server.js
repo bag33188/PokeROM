@@ -24,15 +24,12 @@ connectDB();
 // define app from express js
 const app = express();
 
-const [apiDocs] = swaggerDoc;
-
 // setup swagger docs
+const [apiDocs, apiVersion] = swaggerDoc;
 apiDocs(app);
 
 // middleware
 app.use(logger);
-// define what directory to look in for serving static file(s)
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // extended: true
 app.use(jsonSyntax);
@@ -50,15 +47,6 @@ app.use('/api/users', users);
 app.use('/api/natures', natures);
 app.use('/api/version', version);
 
-// index route
-app.get('/', async (req, res, next) => {
-  try {
-    await res.render('index');
-  } catch (err) {
-    next(err);
-  }
-});
-
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static(path.join(__dirname, 'public')));
@@ -66,6 +54,15 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', async (req, res, next) => {
     try {
       await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    } catch (err) {
+      next(err);
+    }
+  });
+} else {
+  // index route
+  app.get('/', async (req, res, next) => {
+    try {
+      await res.redirect(`/api/docs/${apiVersion}`);
     } catch (err) {
       next(err);
     }
