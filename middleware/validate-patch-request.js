@@ -2,7 +2,7 @@ class ValidatePatchRequest {
   constructor() {}
 
   static sortErrors(errorsArr, propKey) {
-    errorsArr.sort(function(a, b) {
+    errorsArr.sort((a, b) => {
       if (a[propKey] < b[propKey]) {
         return -1;
       } else if (a[propKey] > b[propKey]) {
