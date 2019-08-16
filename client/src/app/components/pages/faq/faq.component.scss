@@ -10,9 +10,7 @@
   font-size: 1.1rem;
 }
 
-#code-icon {
-  display: initial;
-  @media only all and (max-width: 421px) {
-    display: none;
-  }
+#open-source-answer {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }

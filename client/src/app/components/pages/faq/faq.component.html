@@ -43,8 +43,25 @@
         </p>
       </ng-container>
       <ng-container>
+        <h2 class="mt-3">
+          Open Source&nbsp;<i class="fa fa-code" id="code-icon"></i>
+        </h2>
+        <p>
+          <span class="question">Is this project open source?</span>
+          <br />
+          <span class="answer" id="open-source-answer"
+            >Yes, but the
+            <a href="https://www.github.com/" target="_blank">Github</a>
+            repository is private. (<a [href]="repoUrl" target="_blank">{{
+              repoUrl
+            }}</a
+            >)</span
+          >
+        </p>
+      </ng-container>
+      <ng-container>
         <h2 id="browser-compatibility" #browserCompatibility>
-          Browser Compatibility&nbsp;<i class="fa fa-code" id="code-icon"></i>
+          Browser Compatibility
         </h2>
         <app-faq-tabset></app-faq-tabset>
       </ng-container>
