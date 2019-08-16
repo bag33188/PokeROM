@@ -82,6 +82,9 @@ npm run db-shell # run dev db shell
 npm run db-prod # run prod db shell
 npm run load-data # load default data set into local db
 
+# MongoDB Compass Connection String
+mongodb+srv://broccolini33188:Sullivan@pokerom-cluster-voflm.azure.mongodb.net/test
+
 # to kill mongod process
 # ----------------------
 sudo lsof -iTCP -sTCP:LISTEN -n -P
