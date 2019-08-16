@@ -39,7 +39,6 @@ const fieldsToSanitize = [
 ];
 const dateRegex = /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/;
 
-
 function convertToDateFormat(date) {
   if (date) {
     let dateArr = date.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
@@ -111,7 +110,6 @@ function getAllRoms(query, req, res, callback, limit) {
   );
 }
 
-
 httpRouter.get(
   '/',
   cache(20),
@@ -174,7 +172,6 @@ httpRouter.get(
     }
   }
 );
-
 
 httpRouter.get(
   '/:id',
@@ -432,7 +429,6 @@ httpRouter.post(
   }
 );
 
-
 httpRouter.put(
   '/:id',
   [
@@ -615,7 +611,7 @@ httpRouter.put(
         logo_url,
         is_favorite
       } = updateRomData;
-      console.log(updateRomData)
+      console.log(updateRomData);
 
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -670,6 +666,7 @@ httpRouter.patch(
       .trim()
       .escape()
   ],
+  ValidatePatchRequest.validateRomPatch,
   auth,
   async (req, res, next) => {
     try {
@@ -715,9 +712,9 @@ httpRouter.patch(
           .status(406)
           .json({ success: false, message: 'Body contains invalid fields.' });
       }
-      if (new ValidatePatchRequest(req).validateRomPatch(res)) {
-        return;
-      }
+      // if (new ValidatePatchRequest(req).validateRomPatch(res)) {
+      //   return;
+      // }
       await getRomById({ _id: id }, req, res, fetchedRom => {
         const isOwnUser =
           fetchedRom.user_id.toString() === req.user['_id'].toString();
@@ -883,7 +880,6 @@ httpRouter.delete(
   }
 );
 
-
 httpRouter.head('/', auth, async (req, res, next) => {
   try {
     await res.status(200);
@@ -891,7 +887,6 @@ httpRouter.head('/', auth, async (req, res, next) => {
     next(err);
   }
 });
-
 
 httpRouter.head(
   '/:id',
@@ -925,7 +920,6 @@ httpRouter.head(
   }
 );
 
-
 httpRouter.options('/', auth, async (req, res, next) => {
   try {
     await res.status(204);
@@ -933,7 +927,6 @@ httpRouter.options('/', auth, async (req, res, next) => {
     next(err);
   }
 });
-
 
 httpRouter.post('/core', auth, async (req, res, next) => {
   try {
@@ -961,7 +954,6 @@ httpRouter.post('/core', auth, async (req, res, next) => {
     next(err);
   }
 });
-
 
 httpRouter.post('/hacks', auth, async (req, res, next) => {
   try {

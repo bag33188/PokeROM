@@ -328,6 +328,7 @@ httpRouter.patch(
       .trim()
       .escape()
   ],
+  ValidatePatchRequest.validateNaturePatch,
   async (req, res, next) => {
     try {
       let id;
@@ -358,9 +359,6 @@ httpRouter.patch(
         return res
           .status(406)
           .json({ success: false, message: 'Body contains invalid fields.' });
-      }
-      if (new ValidatePatchRequest(req).validateNaturePatch(res)) {
-        return;
       }
       await Nature.patchNature({ _id: id }, { $set: query }, (err, status) => {
         if (err) {

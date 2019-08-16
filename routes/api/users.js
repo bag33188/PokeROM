@@ -79,7 +79,6 @@ httpRouter.get('/', cache(14), auth, async (req, res, next) => {
   }
 });
 
-
 httpRouter.get(
   '/:id',
   cache(14),
@@ -132,7 +131,6 @@ httpRouter.get(
     }
   }
 );
-
 
 httpRouter.post(
   '/register',
@@ -367,7 +365,6 @@ httpRouter.post(
   }
 );
 
-
 httpRouter.put(
   '/:id',
   auth,
@@ -482,7 +479,6 @@ httpRouter.put(
   }
 );
 
-
 httpRouter.patch(
   '/:id',
   [
@@ -493,6 +489,7 @@ httpRouter.patch(
       .trim()
       .escape()
   ],
+  ValidatePatchRequest.validateUserPatch,
   auth,
   async (req, res, next) => {
     try {
@@ -524,9 +521,6 @@ httpRouter.patch(
         return res
           .status(406)
           .json({ success: false, message: 'Body contains invalid fields.' });
-      }
-      if (new ValidatePatchRequest(req).validateUserPatch(res)) {
-        return;
       }
       if (req.user['_id'].toString() === id.toString()) {
         await User.patchUser({ _id: id }, { $set: query }, (err, status) => {
@@ -565,7 +559,6 @@ httpRouter.patch(
   }
 );
 
-
 httpRouter.delete('/', auth, async (req, res, next) => {
   try {
     await User.deleteAllUsers((err, status) => {
@@ -602,7 +595,6 @@ httpRouter.delete('/', auth, async (req, res, next) => {
     next(err);
   }
 });
-
 
 httpRouter.delete(
   '/:id',
@@ -677,7 +669,6 @@ httpRouter.delete(
     }
   }
 );
-
 
 httpRouter.head('/', auth, async (req, res, next) => {
   try {
