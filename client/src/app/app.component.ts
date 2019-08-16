@@ -26,16 +26,19 @@ import { environment } from '../environments/environment';
   `,
   styles: [
     `
-      /* CSS Global Vars */
       ::ng-deep :root {
-        --mp-prop-val: auto;
+        --default-box-sizing: border-box;
+        --container-wrapper-display: block;
+        --default-margin-value: auto;
+        --default-padding-value: initial;
       }
     `,
     `
       #container-wrapper {
-        display: initial;
-        margin: var(--mp-prop-val);
-        padding: var(--mp-prop-val);
+        box-sizing: var(--default-box-sizing);
+        display: var(--container-wrapper-display);
+        margin: var(--default-margin-value);
+        padding: var(--default-padding-value);
       }
     `
   ]
@@ -43,10 +46,7 @@ import { environment } from '../environments/environment';
 export class AppComponent {
   public readonly title: string = 'PokéROM';
 
-  constructor(
-    private apiService: ApiService,
-    private route: ActivatedRoute
-  ) {
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {
     this.changeTitleIfDevEnv();
     this.getApiVersionIfDevEnv();
     if (location.protocol === 'https:') {
