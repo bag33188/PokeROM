@@ -8,9 +8,9 @@ export class IsSecureGuard implements CanActivate {
   constructor() {}
   canActivate(route: ActivatedRouteSnapshot): boolean {
     if (!isDevMode() && window.location.protocol !== 'https:') {
-      // window.location.href = `https:${window.location.href.substring(
-      //   window.location.protocol.length
-      // )}`;
+      window.location.href = `https:${window.location.href.substring(
+        window.location.protocol.length
+      )}`;
       return false;
     } else {
       return true;
