@@ -98,7 +98,7 @@ httpRouter.get(
             .json({ success: false, message: 'Method not allowed.' });
         }
         id = mongoose.Types.ObjectId(req.params.id);
-      } catch {
+      } catch (e) {
         return res
           .status(404)
           .json({ success: false, message: 'User not found.' });
@@ -421,7 +421,7 @@ httpRouter.put(
             .json({ success: false, message: 'Method not allowed.' });
         }
         id = mongoose.Types.ObjectId(req.params.id);
-      } catch {
+      } catch (e) {
         return res
           .status(404)
           .json({ success: false, message: 'User not found.' });
@@ -501,7 +501,7 @@ httpRouter.patch(
             .json({ success: false, message: 'Method not allowed.' });
         }
         id = mongoose.Types.ObjectId(req.params.id);
-      } catch {
+      } catch (e) {
         return res
           .status(404)
           .json({ success: false, message: 'User not found.' });
@@ -614,7 +614,7 @@ httpRouter.delete(
             .json({ success: false, message: 'Method not allowed.' });
         }
         id = mongoose.Types.ObjectId(req.params.id);
-      } catch {
+      } catch (e) {
         return res
           .status(404)
           .json({ success: false, message: 'User not found.' });
@@ -700,7 +700,7 @@ httpRouter.head(
             .json({ success: false, message: 'Method not allowed.' });
         }
         id = mongoose.Types.ObjectId(req.params.id);
-      } catch {
+      } catch (e) {
         return res
           .status(404)
           .json({ success: false, message: 'User not found.' });

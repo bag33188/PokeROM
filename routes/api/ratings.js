@@ -110,7 +110,7 @@ httpRouter.get(
       let id;
       try {
         id = mongoose.Types.ObjectId(req.params.id);
-      } catch {
+      } catch (e) {
         return res
           .status(404)
           .json({ success: false, message: 'Rating not found.' });
@@ -170,7 +170,7 @@ httpRouter.delete(
       let id;
       try {
         id = mongoose.Types.ObjectId(req.params.id);
-      } catch {
+      } catch (e) {
         return res
           .status(404)
           .json({ success: false, message: 'Rating not found.' });
@@ -238,7 +238,7 @@ httpRouter.head(
       let id;
       try {
         id = mongoose.Types.ObjectId(req.params.id);
-      } catch {
+      } catch (e) {
         return res
           .status(404)
           .json({ success: false, message: 'Rating not found.' });
