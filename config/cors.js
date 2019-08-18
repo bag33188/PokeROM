@@ -31,7 +31,7 @@ const corsConfig = cors({
   optionsSuccessStatus: 204,
   origin:
     process.env.NODE_ENV === 'production'
-      ? 'https://pokerom-broccolini.herokuapp.com'
+      ? 'https://pokerom.dev'
       : 'http://localhost:4200'
 });
 

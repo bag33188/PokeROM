@@ -88,7 +88,7 @@ app.all('/*', async (req, res, next) => {
 });
 
 // port
-const PORT = process.env.PORT || 5000;
+const PORT = 50000;
 
 // start server
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

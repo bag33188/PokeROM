@@ -64,7 +64,7 @@ production() {
      esac
     done
     git push
-    git push heroku master
+    # git push heroku master
     npm run pack
     printf "\r\n"
     npm run count-files-git

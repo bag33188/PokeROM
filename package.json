@@ -23,7 +23,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "node server",
+    "start": "NODE_ENV=production node server",
     "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./ratings.sh && bash ./version.sh && bash ./options.sh",
     "prod": "cd scripts && bash ./production.sh",
     "api": "nodemon server",
