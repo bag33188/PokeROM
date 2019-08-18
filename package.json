@@ -23,7 +23,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=production node server",
+    "start": "NODE_ENV=production forever server.js",
     "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./ratings.sh && bash ./version.sh && bash ./options.sh",
     "prod": "cd scripts && bash ./production.sh",
     "api": "nodemon server",
@@ -51,6 +51,7 @@
     "express-list-endpoints": "latest",
     "express-sanitizer": "^1.0.5",
     "express-validator": "^5.3.1",
+    "forever": "^1.0.0",
     "global-tunnel": "^1.2.0",
     "gridfs-stream": "^1.1.1",
     "jsonwebtoken": "^8.5.1",
