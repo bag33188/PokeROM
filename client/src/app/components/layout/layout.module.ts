@@ -7,7 +7,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { BetaVersionAlertComponent } from './beta-version-alert/beta-version-alert.component';
 import { CookiesAlertComponent } from './cookies-alert/cookies-alert.component';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
@@ -19,7 +18,6 @@ import { UnitConversionService } from '../../services/unit-conversion.service';
     FooterComponent,
     HeaderComponent,
     BodyComponent,
-    BetaVersionAlertComponent,
     CookiesAlertComponent
   ],
   imports: [
