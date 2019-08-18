@@ -39,12 +39,12 @@ production() {
     while true; do
       git status
       read -r -p "Add files: " files
-      git add "${files}"
+      git add $files
       read -r -p "Commit Message: " commit_msg
       git commit -m "$commit_msg"
       while true; do
         read -r -p "Done? (y/n) " is_done
-        if [[ ${is_done} == 'y' ]]; then
+        if [[ ${ihttp://localhost:4200/assets/images/carousel_img_03.pngs_done} == 'y' ]]; then
           valid=1
           break
         elif [[ ${is_done} == 'n' ]]; then
