@@ -82,9 +82,9 @@ def fix_aot_bug():
     sys.exit(exit_code)
 
   # exception block for catching general errors
-  except Exception as e:
+  except Exception as err:
 
-    print(f'An error occurred while trying to apply/undo the fix: {str(e)}', end='\n\n')
+    print(f'An error occurred while trying to apply/undo the fix: {str(err)}', end='\n\n')
 
     # set exit code to 1 (error)
     exit_code = 1
