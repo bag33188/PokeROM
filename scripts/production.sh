@@ -27,7 +27,7 @@ production() {
     rm *
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
-    printf "\n"
+    printf "\r\n"
     if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux"* ]]; then
       python3 ../scripts/fix_index_html.py
     else
@@ -39,6 +39,7 @@ production() {
     while true; do
       git status
       read -r -p "Add files: " files
+      # shellcheck disable=SC2086
       git add $files
       read -r -p "Commit Message: " commit_msg
       git commit -m "$commit_msg"
@@ -59,8 +60,6 @@ production() {
         1 )
           break ;;
         2 )
-          continue ;;
-        * )
           continue ;;
      esac
     done
