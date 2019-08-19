@@ -13,11 +13,11 @@ Notes:
 require 'date'
 
 class AddLicenses
-  def initialize(filepath)
-    @filepath = filepath
+  def initialize(name)
+    @name = name
   end
 
-  def add_isc_license(name)
+  def get_isc_license(name)
     isc_license = "
     ISC LICENSE
 
@@ -32,7 +32,7 @@ class AddLicenses
     return isc_license
   end
 
-  def add_mit_license(name)
+  def get_mit_license(name)
     mit_license = "
     MIT LICENSE
 
@@ -49,12 +49,12 @@ class AddLicenses
     return mit_license
   end
 
-  def write_file()
-    file = File.open(@filepath, 'w')
-    file.write(add_isc_license('Broccolini') + "\n\n" + add_mit_license('Broccolini'))
+  def write_file(filepath)
+    file = File.open(filepath, 'w')
+    file.write(get_isc_license(@name) + "\n\n" + get_mit_license(@name))
     file.close
   end
 end
 
-licenses = AddLicenses.new '../public/LICENSE'
-licenses.write_file()
+licenses = AddLicenses.new 'Broccolini'
+licenses.write_file('../public/LICENSE')
