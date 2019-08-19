@@ -11,6 +11,9 @@ export class IsSecureGuard implements CanActivate {
       window.location.href = `https:${window.location.href.substring(
         window.location.protocol.length
       )}`;
+      if (window.location.hostname.indexOf('www') === 0) {
+        window.location.href = window.location.href.replace('www.', '');
+      }
       return false;
     } else {
       return true;
