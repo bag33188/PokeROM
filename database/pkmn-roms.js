@@ -1,8 +1,8 @@
 conn = new Mongo();
 printjson(conn);
 
-database = db.getSiblingDB('pkmn-roms');
-printjson(database);
+db = db.getSiblingDB('pkmn-roms');
+printjson(db);
 
 adminUser = db.createUser({
   user: 'admin',
