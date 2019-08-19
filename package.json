@@ -30,7 +30,7 @@
     "api": "nodemon server",
     "client": "cd client && ng serve --open && cd ..",
     "db": "cd scripts && bash ./db.sh",
-    "db-shell": "mongo \"mongodb://admin:123456@localhost/pkmn-roms?authSource=admin\"",
+    "db-shell": "mongo",
     "db-prod": "mongo \"mongodb://admin:123456@192.64.114.215/pkmn-roms?authSource=admin\"",
     "load-db": "mongo database/pkmn-roms.js",
     "pack": "cd scripts && bash ./package_app.sh",
