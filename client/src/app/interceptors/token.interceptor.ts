@@ -17,18 +17,19 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const routeParams: string[] = req.urlWithParams
-      .replace(
-        /http(s?):\/\/(localhost:5000|pokerom-broccolini\.herokuapp\.com)\//,
-        ''
-      )
+      .replace(environment.apiUrl.replace('/api', '/'), '')
       .split('/');
     const authUrls: string[] = [
       `${environment.apiUrl}/roms`,
       `${environment.apiUrl}/roms/${
-        routeParams[1] === 'roms' && routeParams[2] ? routeParams[2] : ''
+        routeParams[1] === 'roms' && routeParams[2] !== undefined
+          ? routeParams[2]
+          : ''
       }`,
       `${environment.apiUrl}/users/${
-        routeParams[1] === 'users' && routeParams[2] ? routeParams[2] : ''
+        routeParams[1] === 'users' && routeParams[2] !== undefined
+          ? routeParams[2]
+          : ''
       }`
     ];
     if (authUrls.includes(req.url)) {
