@@ -2,3 +2,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/pokerom/public_html/
+    - /usr/bin/node server.js
+
