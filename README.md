@@ -39,26 +39,6 @@ Download Python 3 here: [https://www.python.org/downloads/](https://www.python.o
 
 ## Commands
 
-### Heroku
-
-```bash
-# set prod db
-heroku config:set PROD_MONGODB=mongodb+srv://broccolini33188:Sullivan@pokerom-cluster-voflm.azure.mongodb.net/pkmn-roms?retryWrites=true&w=majority
-
-# see app logs
-heroku logs --tail
-
-# push to heroku
-git push heroku master
-
-# clear build cache
-heroku plugins:install heroku-repo
-heroku repo:purge_cache -a pokerom-broccolini
-git commit --allow-empty -am "Purge cache"
-heroku git:remote -a pokerom-broccolini
-git push heroku master
-```
-
 ### Angular
 
 ```bash
@@ -81,9 +61,6 @@ npm run db-osx # run dev db on mac
 npm run db-shell # run dev db shell
 npm run db-prod # run prod db shell
 npm run load-data # load default data set into local db
-
-# MongoDB Compass Connection String
-mongodb+srv://broccolini33188:Sullivan@pokerom-cluster-voflm.azure.mongodb.net/test
 
 # to kill mongod process
 # ----------------------
