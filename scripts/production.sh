@@ -33,6 +33,7 @@ production() {
     else
       python ../scripts/fix_index_html.py
     fi
+    ruby ../scripts/add_licenses.rb
     cd ..
     rm -R client/dist
     valid=0
