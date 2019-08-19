@@ -4,11 +4,12 @@ printjson(conn);
 db = db.getSiblingDB('pkmn-roms');
 printjson(db);
 
-db.createUser({
+adminUser = db.createUser({
   user: 'admin',
   pwd: '123456',
   roles: [{ role: 'admin', db: 'admin' }]
 });
+printjson(adminUser);
 
 romsCollection = db.createCollection('roms', {
   validator: {
