@@ -17,6 +17,8 @@ class AddLicenses
 
   # create constructor
   def initialize(name)
+     print "Adding licenses ... \n"
+
     # initiate name property (@ = class variable)
     @name = name
   end
@@ -72,6 +74,8 @@ class AddLicenses
     file.write(get_isc_license(@name) + "\n\n" + get_mit_license(@name))
     # close the file stream
     file.close
+
+    puts "Done!\n\n"
   end
 end
 
