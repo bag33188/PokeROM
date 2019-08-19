@@ -7,7 +7,8 @@ printjson(db);
 adminUser = db.createUser({
   user: 'admin',
   pwd: '123456',
-  roles: [{ role: 'admin', db: 'admin' }]
+  db: 'admin',
+  roles: [{ role: 'root', db: 'admin' }]
 });
 printjson(adminUser);
 

@@ -31,7 +31,7 @@
     "client": "cd client && ng serve --open && cd ..",
     "db": "cd scripts && bash ./db.sh",
     "db-shell": "mongo",
-    "db-prod": "mongo \"mongodb://admin:123456@192.64.114.215/pkmn-roms?authSource=admin\"",
+    "db-prod": "mongo --username admin --password 123456 --authenticationDatabase admin --host 192.64.114.215",
     "load-db": "mongo database/pkmn-roms.js",
     "pack": "cd scripts && bash ./package_app.sh",
     "count-files-git": "cd scripts && ruby count_files_git.rb",

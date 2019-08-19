@@ -19,7 +19,7 @@ export class HttpsInterceptor implements HttpInterceptor {
     if (environment.production) {
       // clone request and replace 'http://' with 'https://' at the same time
       httpsReq = req.clone({
-        url: req.url.replace('http://', 'https://').replace('www.', '')
+        url: req.url.replace('http://', 'https://')
       });
     } else {
       httpsReq = req.clone({
