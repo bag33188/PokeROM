@@ -77,7 +77,7 @@ sudo kill <mongod_command_pid>
 ## Notes
 
 1. If on Windows, install and use **[Git Bash](https://git-scm.com/ 'Git SCM')**.
-2. Languages Used:
+2. Languages Used (_14 total_):
 
     - HTML
     - CSS
