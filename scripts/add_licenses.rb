@@ -46,7 +46,7 @@ class AddLicenses
     # create new file or open existing one from filepath parameter
     file = File.open(filepath, 'w')
     # write licenses to file; concat with double new line
-    file.write(get_isc_license(@name) + "\n\n" + get_mit_license(@name))
+    file.write(get_isc_license(@name) + "\n\n\n" + get_mit_license(@name))
     # close the file stream
     file.close
 
