@@ -34,7 +34,7 @@ This will fix an issue with Angular's AOT Compiler when using `ng serve --aot`.
 
 **You will need Python 3 installed and added to your path!**
 
-Download Python 3 here: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+Download Python 3 here: [https://www.python.org/downloads/][python3-download]
 
 ## Commands
 
@@ -75,7 +75,7 @@ sudo kill <mongod_command_pid>
 
 ## Notes
 
-1. If on Windows, install and use **[Git Bash](https://git-scm.com/ 'Git SCM')**.
+1. If on Windows, install and use **[Git Bash][git-scm]**.
 2. Languages Used (_14 total_):
 
     - HTML
@@ -95,11 +95,9 @@ sudo kill <mongod_command_pid>
 
 3. Source Code Pro Fonts: [download][source code pro fonts download]
 
-[heroku]: https://www.heroku.com/ 'Heroku Website'
-[pokerom website]: https://pokerom-broccolini.herokuapp.com 'https://pokerom-broccolini.herokuapp.com'
-[mongodb atlas cloud]: https://cloud.mongodb.com 'MongoDB Atlas Cloud Document DB'
-[pokerom setup repo]: https://github.com/bag33188/PokeROM-Setup 'PokeROM-Setup Github Repository'
-[source code pro fonts download]: https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA 'Source Code Pro Fonts Download (Direct Download)'
+[python3-download]: <https://www.python.org/downloads/> 'Download Python 3'
+[git-scm]: <https://git-scm.com> 'Git Version Control Website'
+[source code pro fonts download]: <https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA> 'Source Code Pro Fonts Download (Direct Download)'
 
 ---
 
