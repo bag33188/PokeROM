@@ -10,7 +10,6 @@
   - [About](#about)
   - [IMPORTANT!](#important)
   - [Commands](#commands)
-    - [Heroku](#heroku)
     - [Angular](#angular)
     - [ExpressJS](#expressjs)
     - [MongoDB](#mongodb)
@@ -25,7 +24,7 @@ This repository is a full-stack web-application. It uses the MEAN stack (MongoDB
 
 It is exactly what it sounds like, a website that has all of the core Pok&eacute;mon ROMs.
 
-This app is deployed to [heroku][heroku] at [https://pokerom-broccolini.herokuapp.com][pokerom website], and uses [MongoDB Atlas][mongodb atlas cloud] as a cloud database.
+This app is deployed at [pokerom.dev](http://pokerom.dev).
 
 ## IMPORTANT!
 
