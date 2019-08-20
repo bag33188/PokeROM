@@ -16,7 +16,9 @@
 }
 
 .header-icon-container {
+  display: none;
   @media only all and (max-width: 991px) {
+    display: initial;
     text-align: center;
   }
 }
