@@ -13,8 +13,6 @@ REM.||(
   This file can only be run on a Windows machine.
 )
 
-REM :: MPWC&_};(U9@'@7qE5^^3>+g\V(^nBzL*4Mu^f+&>WPhEe9v#4W:xq~DT7+RL-+zd:phx]4=
-
 :OPEN_SITES
   REM PokeROM Github page
   START "" https://github.com/bag33188/PokeROM
