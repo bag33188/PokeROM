@@ -16,7 +16,8 @@ const connectDB = async () => {
         sslValidate: true,
         sslCA: ca,
         sslKey: key,
-        sslCert: key
+        sslCert: key,
+        sslPass: 'Broccolini33188'
       });
     } else {
       await mongoose.connect(db, {
