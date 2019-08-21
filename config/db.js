@@ -11,7 +11,12 @@ const connectDB = async () => {
   try {
     await mongoose.connect(db, {
       useNewUrlParser: true,
-      promiseLibrary: bluebird
+      promiseLibrary: bluebird,
+      ssl: true,
+      sslValidate: true,
+      sslCA: ca,
+      sslKey: key,
+      sslCert: key
     });
     console.log(`Connected to database ${config.mongoURI}`);
   } catch (err) {
@@ -19,14 +24,6 @@ const connectDB = async () => {
     // process.exit(1);
   }
 };
-
-if (process.env.NODE_ENV === 'production') {
-  mongoose.ssl = true;
-  mongoose.sslValidate = true;
-  mongoose.sslCA = ca;
-  mongoose.sslKey = key;
-  mongoose.sslCert = key;
-}
 
 // use to avoid deprecation
 mongoose.set('useFindAndModify', false);
