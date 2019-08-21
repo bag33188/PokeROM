@@ -197,15 +197,15 @@ class FixIndexHtml:
 
     # define main const
     POSITIVE_SSL_HTML = (
-                          '<!--'
-                          '\t<script type="text/javascript"> //<![CDATA['
-                          '\tvar tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");'
-                          '\tdocument.write(unescape("%3Cscript src=\'" + tlJsHost + "trustlogo/javascript/trustlogo.js\' type=\'text/javascript\'%\3E%3C/script%\3E"));'
-                          '\t//]]></script>'
-                          '\t<script language="JavaScript" type="text/javascript">'
-                          '\t\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");'
-                          '\t</script>'
-                          '-->'
+                          '<!--\n'
+                          '\t<script type="text/javascript"> //<![CDATA[\n'
+                          '\tvar tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");\n'
+                          '\tdocument.write(unescape("%3Cscript src=\'" + tlJsHost + "trustlogo/javascript/trustlogo.js\' type=\'text/javascript\'%\3E%3C/script%\3E"));\n'
+                          '\t//]]></script>\n'
+                          '\t<script language="JavaScript" type="text/javascript">\n'
+                          '\t\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");\n'
+                          '\t</script>\n'
+                          '-->\n'
                         )
 
     # use fileinput to edit file
@@ -214,7 +214,7 @@ class FixIndexHtml:
       for line in file:
         # check if line has body
         if '</body>' in line:
-          print(line.replace('</body>', f'{POSITIVE_SSL_HTML}\n</body>'), end='')
+          print(line.replace('</body>', f'{POSITIVE_SSL_HTML}</body>'), end='')
         else:
           # otherwise print other lines
           print(line, end='')
