@@ -14,7 +14,6 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit, AfterContentInit {
-  public repoUrl: string;
   public emulatorUrl: string;
   @ViewChild('cookies', { static: true }) private cookiesElement: ElementRef;
   @ViewChild('browserCompatibility', { static: true })
@@ -23,7 +22,6 @@ export class FaqComponent implements OnInit, AfterContentInit {
   constructor(private route: ActivatedRoute, public authService: AuthService) {}
 
   ngOnInit(): void {
-    this.repoUrl = 'https://github.com/bag33188/PokeROM';
     this.emulatorUrl = 'https://www.retroarch.com';
   }
 

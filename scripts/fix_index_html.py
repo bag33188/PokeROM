@@ -119,7 +119,7 @@ class FixIndexHtml:
 
     # catch file not found error
     except FileNotFoundError:
-      print('Error, index.html file not found.', end='\n\n')
+      print(f'Error, index.html file not found (looking in `{self.filepath}`.)', end='\n\n')
 
     # general exception
     except Exception as err:
@@ -181,7 +181,7 @@ class FixIndexHtml:
 
     # catch file not found error
     except FileNotFoundError:
-      print('Error: index.html file not found.', end='\n\n')
+      print(f'Error, index.html file not found (looking in `{self.filepath}`.)', end='\n\n')
 
     # catch general exception
     except Exception as err:
@@ -190,36 +190,52 @@ class FixIndexHtml:
   # define add_positive_ssl_trusted_logo method
   def add_positive_ssl_trusted_logo(self):
     """
-    This method adds the PositiveSSL trusted logo script to the bottom of the `../public/index.html` file as a comment.
+    This method adds the PositiveSSL trusted logo script to the bottom of the
+    `../public/index.html` file as a comment.
     """
 
     print('Inserting PositiveSSL trusted logo as comment ... ')
 
     # define main const
     POSITIVE_SSL_HTML = (
-                          '<!--\n'
-                          '\t<script type="text/javascript"> //<![CDATA[\n'
-                          '\tvar tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");\n'
-                          '\tdocument.write(unescape("%3Cscript src=\'" + tlJsHost + "trustlogo/javascript/trustlogo.js\' type=\'text/javascript\'%\3E%3C/script%\3E"));\n'
-                          '\t//]]></script>\n'
-                          '\t<script language="JavaScript" type="text/javascript">\n'
-                          '\t\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");\n'
-                          '\t</script>\n'
-                          '-->\n'
+                          '\t<!--\n'
+                          '\t\t<script type="text/javascript"> //<![CDATA[\n'
+                          '\t\tvar tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");\n'
+                          '\t\tdocument.write(unescape("%3Cscript src=\'" + tlJsHost + "trustlogo/javascript/trustlogo.js\' type=\'text/javascript\'%\3E%3C/script%\3E"));\n'
+                          '\t\t//]]></script>\n'
+                          '\t\t<script language="JavaScript" type="text/javascript">\n'
+                          '\t\t\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");\n'
+                          '\t\t</script>\n'
+                          '\t-->\n'
                         )
+    # encapsulate file I/O logic in try-except block in case of errors
+    try:
 
-    # use fileinput to edit file
-    with FileInput(self.filepath, inplace=True, backup='.bak2') as file:\
-      # loop thru each line in file
-      for line in file:
-        # check if line has body
-        if '</body>' in line:
-          print(line.replace('</body>', f'{POSITIVE_SSL_HTML}</body>'), end='')
-        else:
-          # otherwise print other lines
-          print(line, end='')
+      # use fileinput to edit file
+      with FileInput(self.filepath, inplace=True, backup='.bak2') as file:
 
-    print('Done!', end='\n\n')
+        # loop thru each line in file
+        for line in file:
+
+          # check if line has body
+          if '</head>' in line:
+            # print the line
+            print(line.replace('</head>', f'{POSITIVE_SSL_HTML}</head>'), end='')
+
+          # otherwise...
+          else:
+            # print other lines
+            print(line, end='')
+
+      print('Done!', end='\n\n')
+
+    # catch file not found error
+    except FileNotFoundError:
+      print(f'Error, index.html file not found (looking in `{self.filepath}`.)', end='\n\n')
+
+    # catch general exception
+    except Exception as err:
+      print(f'An error occurred:\n{str(err)}', end='\n\n')
 
 # apply fixes to index.html file
 index_html = FixIndexHtml('../public/index.html')
