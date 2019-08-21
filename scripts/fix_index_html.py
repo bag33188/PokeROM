@@ -187,8 +187,42 @@ class FixIndexHtml:
     except Exception as err:
       print(f'An error occurred:\n{str(err)}', end='\n\n')
 
+  # define add_positive_ssl_trusted_logo method
+  def add_positive_ssl_trusted_logo(self):
+    """
+    This method adds the PositiveSSL trusted logo script to the bottom of the `../public/index.html` file as a comment.
+    """
+
+    print('Inserting PositiveSSL trusted logo as comment ... ')
+
+    # define main const
+    POSITIVE_SSL_HTML = (
+                          '<!--'
+                          '\t<script type="text/javascript"> //<![CDATA['
+                          '\tvar tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");'
+                          '\tdocument.write(unescape("%3Cscript src=\'" + tlJsHost + "trustlogo/javascript/trustlogo.js\' type=\'text/javascript\'%\3E%3C/script%\3E"));'
+                          '\t//]]></script>'
+                          '\t<script language="JavaScript" type="text/javascript">'
+                          '\t\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");'
+                          '\t</script>'
+                          '-->'
+                        )
+
+    # use fileinput to edit file
+    with FileInput(self.filepath, inplace=True, backup='.bak2') as file:\
+      # loop thru each line in file
+      for line in file:
+        # check if line has body
+        if '</body>' in line:
+          print(line.replace('</body>', f'{POSITIVE_SSL_HTML}\n</body>'), end='')
+        else:
+          # otherwise print other lines
+          print(line, end='')
+
+    print('Done!', end='\n\n')
 
 # apply fixes to index.html file
 index_html = FixIndexHtml('../public/index.html')
 index_html.move_script_tags()
 index_html.insert_comment()
+index_html.add_positive_ssl_trusted_logo()
