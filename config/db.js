@@ -10,21 +10,21 @@ const key = fs.readFileSync('auth/mongodb.pem');
 const connectDB = async () => {
   try {
     if (process.env.NODE_ENV === 'production') {
-    await mongoose.connect(db, {
-      useNewUrlParser: true,
-      promiseLibrary: bluebird,
-      ssl: true,
-      sslValidate: true,
-      sslCA: ca,
-      sslKey: key,
-      sslCert: key
-    });
-    } else {    await mongoose.connect(db, {
-
-           useNewUrlParser: true,
-      promiseLibrary: bluebird
-
-    })}
+      await mongoose.connect(db, {
+        useNewUrlParser: true,
+        promiseLibrary: bluebird,
+        ssl: true,
+        sslValidate: true,
+        sslCA: ca,
+        sslKey: key,
+        sslCert: key
+      });
+    } else {
+      await mongoose.connect(db, {
+        useNewUrlParser: true,
+        promiseLibrary: bluebird
+      });
+    }
     console.log(`Connected to database ${config.mongoURI}`);
   } catch (err) {
     console.error(`Database error: ${err}`);
