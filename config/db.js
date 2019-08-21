@@ -4,12 +4,11 @@ const bluebird = require('bluebird');
 const db = config.get('mongoURI');
 const fs = require('fs');
 
-const ca = fs.readFileSync('ssl/mongodb.crt');
-const key = fs.readFileSync('ssl/mongodb.pem');
-
 const connectDB = async () => {
   try {
     if (process.env.NODE_ENV === 'production') {
+      const ca = fs.readFileSync('ssl/mongodb.crt');
+      const key = fs.readFileSync('ssl/mongodb.pem');
       await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird,
