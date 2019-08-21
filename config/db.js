@@ -1,8 +1,8 @@
+const fs = require('fs');
 const mongoose = require('mongoose');
 const config = require('config');
 const bluebird = require('bluebird');
 const db = config.get('mongoURI');
-const fs = require('fs');
 
 const connectDB = async () => {
   try {
