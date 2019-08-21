@@ -87,6 +87,9 @@ function getRomById(query, req, res, callback) {
 }
 
 function getAllRoms(query, req, res, callback, limit) {
+  if (!limit) {
+    limit = 0;
+  }
   return Rom.getAllRoms(
     query,
     (err, roms) => {
