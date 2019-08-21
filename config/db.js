@@ -3,11 +3,22 @@ const config = require('config');
 const bluebird = require('bluebird');
 const db = config.get('mongoURI');
 
+const fs = require('fs');
+let ca = fs.readFileSync('config/mongodb.crt')
+let key = fs.readFileSync('config/mongodb.pem')
+
 const connectDB = async () => {
   try {
     await mongoose.connect(db, {
       useNewUrlParser: true,
-      promiseLibrary: bluebird
+      promiseLibrary: bluebird,
+      
+ssl: true,
+        sslValidate:true,
+        sslCA: ca,
+        sslKey: key,
+sslCert:key
+    
     });
     console.log(`Connected to database ${config.mongoURI}`);
   } catch (err) {
