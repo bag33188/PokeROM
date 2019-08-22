@@ -12,7 +12,7 @@ const userSchema = new Schema(
       maxlength: [100, 'Name is too long.']
     },
     email: {
-      type: String,
+      type: [String, null],
       required: false,
       minlength: [4, 'Email is too short.'],
       maxlength: [55, 'Email is too long.'],
