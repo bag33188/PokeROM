@@ -13,8 +13,8 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      required: [true, 'Email is required.'],
-      minlength: [3, 'Email is too short.'],
+      required: false,
+      minlength: [4, 'Email is too short.'],
       maxlength: [55, 'Email is too long.'],
       validate: {
         validator: v => {

@@ -41,20 +41,17 @@
               name="email"
               formControlName="email"
               autocomplete="email"
-              placeholder="Required (just enter a fake one)"
+              placeholder="Optional"
             />
             <div
               [hidden]="!(Email.touched && Email.invalid)"
               class="alert alert-warning"
             >
-              <div [hidden]="!Email.errors?.required">
-                Email is required.
-              </div>
               <div [hidden]="!Email.errors?.minlength">
-                Email is too short (min: 1, current: {{ Email.value.length }}).
+                Email is too short (min: 4, current: {{ Email.value.length }}).
               </div>
               <div [hidden]="!Email.errors?.maxlength">
-                Email is too long (max: 50, current: {{ Email.value.length }}).
+                Email is too long (max: 55, current: {{ Email.value.length }}).
               </div>
               <div [hidden]="!Email.errors?.email">
                 Invalid email.

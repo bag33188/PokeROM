@@ -145,9 +145,8 @@ httpRouter.post(
       .isString()
       .withMessage('Name must be a string.'),
     check('email')
-      .not()
-      .isEmpty()
-      .withMessage('Email is required.')
+      .optional()
+      .isLength({ min: 4, max: 55 })
       .isEmail()
       .withMessage('A valid email is required.'),
     check('username')
@@ -178,7 +177,7 @@ httpRouter.post(
     try {
       let newUser = new User({
         name: req.sanitize(req.body.name) || null,
-        email: req.sanitize(req.body.email),
+        email: req.sanitize(req.body.email) || null,
         username: req.sanitize(req.body.username),
         password: req.sanitize(req.body.password)
       });

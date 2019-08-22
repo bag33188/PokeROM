@@ -169,13 +169,13 @@ usersCollection = db.createCollection('users', {
             'name can only be a string between 1 and 100 characters or null.'
         },
         email: {
-          bsonType: 'string',
-          minLength: 3,
+          bsonType: ['string', 'null'],
+          minLength: 4,
           maxLength: 55,
           pattern:
             '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
           description:
-            'email is required and must be valid email string between 3 and 55 characters.'
+            'email is required and must be valid email string between 4 and 55 characters.'
         },
         username: {
           bsonType: 'string',

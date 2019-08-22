@@ -23,12 +23,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     name: ['', [Validators.minLength(1), Validators.maxLength(100)]],
     email: [
       '',
-      [
-        Validators.minLength(1),
-        Validators.maxLength(50),
-        Validators.email,
-        Validators.required
-      ]
+      [Validators.email, Validators.minLength(4), Validators.maxLength(55)]
     ],
     username: [
       '',
