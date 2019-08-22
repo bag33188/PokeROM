@@ -703,9 +703,7 @@ httpRouter.patch(
           break;
         } else {
           isValid = true;
-          if (typeof field === typeof 0) {
-            parseInt(req.sanitize(field.toString()), 10);
-          } else {
+          if (typeof field === 'string') {
             req.sanitize(field);
           }
         }
