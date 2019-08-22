@@ -21,10 +21,6 @@ export class RegisterComponent implements OnInit, AfterContentInit {
   public registerFail: string;
   public registerForm: FormGroup = this.fb.group({
     name: ['', [Validators.minLength(1), Validators.maxLength(100)]],
-    email: [
-      '',
-      [Validators.email, Validators.minLength(4), Validators.maxLength(55)]
-    ],
     username: [
       '',
       [Validators.required, Validators.minLength(5), Validators.maxLength(22)]
@@ -41,10 +37,6 @@ export class RegisterComponent implements OnInit, AfterContentInit {
 
   get Name(): AbstractControl {
     return this.registerForm.get('name');
-  }
-
-  get Email(): AbstractControl {
-    return this.registerForm.get('email');
   }
 
   get Password(): AbstractControl {
@@ -72,7 +64,6 @@ export class RegisterComponent implements OnInit, AfterContentInit {
   public register(): void {
     const user: User = {
       name: this.Name.value,
-      email: this.Email.value,
       username: this.Username.value,
       password: this.Password.value
     };
@@ -92,16 +83,10 @@ export class RegisterComponent implements OnInit, AfterContentInit {
         (err: any): never => {
           const keys: string[] = ['error', 'message', 'errors', 'msg'];
           if (err[keys[0]][keys[1]]) {
-            switch (err[keys[0]][keys[1]]) {
-              case 'User with email already registered.':
-                this.registerFail = 'User with email already exists';
-                break;
-              case 'User with username already exists.':
-                this.registerFail = 'User with username already exists';
-                break;
-              default:
-                this.registerFail = 'Registration Failure';
-                break;
+            if (err[keys[0]][keys[1]] === 'User with username already exists.') {
+              this.registerFail = 'User with username already exists';
+            } else {
+              this.registerFail = 'Registration Failure';
             }
           }
           if (err[keys[0]][keys[2]]) {
@@ -129,9 +114,6 @@ export class RegisterComponent implements OnInit, AfterContentInit {
 
   public sanitizeData(): void {
     this.Name.setValue(this.Name.value.sanitizeXSS(true).removeStrings(false));
-    this.Email.setValue(
-      this.Email.value.sanitizeXSS(false).removeStrings(false)
-    );
     this.Username.setValue(
       this.Username.value.sanitizeXSS(false).removeStrings(false)
     );

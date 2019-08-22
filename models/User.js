@@ -11,20 +11,6 @@ const userSchema = new Schema(
       minlength: [1, 'Name is too short.'],
       maxlength: [100, 'Name is too long.']
     },
-    email: {
-      type: [String, null],
-      required: false,
-      minlength: [4, 'Email is too short.'],
-      maxlength: [55, 'Email is too long.'],
-      validate: {
-        validator: v => {
-          return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-            v
-          );
-        },
-        message: props => `${props.value} is not a valid email.`
-      }
-    },
     username: {
       type: String,
       required: [true, 'A username is required.'],
@@ -108,10 +94,9 @@ module.exports.getAllUsers = callback => {
 };
 
 module.exports.updateUser = (query, userData, options, callback) => {
-  const { name, email, username, password } = userData;
+  const { name, username, password } = userData;
   const userQuery = {
     name,
-    email,
     username,
     password
   };

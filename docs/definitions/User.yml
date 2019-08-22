@@ -6,9 +6,6 @@ definitions:
       name:
         type: string
         required: false
-      email:
-        type: string
-        required: true
       username:
         type: string
         required: true

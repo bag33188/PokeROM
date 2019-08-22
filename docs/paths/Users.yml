@@ -136,8 +136,6 @@ paths:
                     type: string
                   name:
                     type: string
-                  email:
-                    type: string
                   username:
                     type: string
         400:
@@ -188,8 +186,6 @@ paths:
                   _id:
                     type: string
                   name:
-                    type: string
-                  email:
                     type: string
                   username:
                     type: string
@@ -291,7 +287,7 @@ paths:
         406:
           description: Not acceptable JSON body.
         500:
-          description: User with email already registered or user with username already exists.
+          description: User with username already exists or internal server error.
   '/api/users/authenticate':
     post:
       tags:
@@ -332,8 +328,6 @@ paths:
                   _id:
                     type: string
                   name:
-                    type: string
-                  email:
                     type: string
                   username:
                     type: string

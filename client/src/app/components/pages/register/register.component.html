@@ -33,32 +33,6 @@
             </div>
           </ng-container>
           <ng-container>
-            <label for="email" class="font-weight-bold">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              name="email"
-              formControlName="email"
-              autocomplete="email"
-              placeholder="Optional"
-            />
-            <div
-              [hidden]="!(Email.touched && Email.invalid)"
-              class="alert alert-warning"
-            >
-              <div [hidden]="!Email.errors?.minlength">
-                Email is too short (min: 4, current: {{ Email.value.length }}).
-              </div>
-              <div [hidden]="!Email.errors?.maxlength">
-                Email is too long (max: 55, current: {{ Email.value.length }}).
-              </div>
-              <div [hidden]="!Email.errors?.email">
-                Invalid email.
-              </div>
-            </div>
-          </ng-container>
-          <ng-container>
             <label for="username" class="font-weight-bold">Username</label>
             <input
               type="text"

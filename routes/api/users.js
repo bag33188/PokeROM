@@ -16,7 +16,7 @@ const ValidatePatchRequest = require('../../middleware/validate-patch-request');
 
 const httpRouter = express.Router();
 
-const fieldsToSanitize = ['name', 'email', 'username', 'password'];
+const fieldsToSanitize = ['name', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
 function convertUnitOfTimeToSeconds(value, unit) {
@@ -144,11 +144,6 @@ httpRouter.post(
       .withMessage('Name can only be 100 characters at max.')
       .isString()
       .withMessage('Name must be a string.'),
-    check('email')
-      .optional()
-      .isLength({ min: 4, max: 55 })
-      .isEmail()
-      .withMessage('A valid email is required.'),
     check('username')
       .not()
       .isEmpty()
@@ -177,11 +172,10 @@ httpRouter.post(
     try {
       let newUser = new User({
         name: req.sanitize(req.body.name) || null,
-        email: req.sanitize(req.body.email) || null,
         username: req.sanitize(req.body.username),
         password: req.sanitize(req.body.password)
       });
-      const { name, email, username, password } = newUser;
+      const { name, username, password } = newUser;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(406).json({ success: false, errors: errors.array() });
@@ -339,7 +333,6 @@ httpRouter.post(
               user: {
                 id: user._id,
                 name: user.name,
-                email: user.email,
                 username: user.username
               }
             });
@@ -371,12 +364,6 @@ httpRouter.put(
       .withMessage('Name can only be 100 characters at max.')
       .isString()
       .withMessage('Name must be a string.'),
-    check('email')
-      .not()
-      .isEmpty()
-      .withMessage('Email is required.')
-      .isEmail()
-      .withMessage('A valid email is required.'),
     check('username')
       .not()
       .isEmpty()
@@ -418,11 +405,10 @@ httpRouter.put(
       }
       const userData = {
         name: req.sanitize(req.body.name) || null,
-        email: req.sanitize(req.body.email),
         username: req.sanitize(req.body.username),
         password: req.sanitize(req.body.password)
       };
-      const { name, email, username, password } = userData;
+      const { name, username, password } = userData;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(406).json({ success: false, errors: errors.array() });
@@ -450,7 +436,6 @@ httpRouter.put(
             return res.status(200).json({
               id: user._id,
               name: user.name,
-              email: user.email,
               username: user.username
             });
           });
