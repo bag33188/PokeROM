@@ -20,6 +20,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   public loading: boolean = true;
   public isError: boolean;
   public faLongArrowAltLeft: IconDefinition;
+  public errStatus: number;
 
   constructor(
     private romService: RomsService,
@@ -73,10 +74,19 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
       (err: any): never => {
         this.loading = false;
         this.isError = true;
-        const errKey: string = 'status';
-        if (err[errKey]) {
-          if (err[errKey] === 404) {
-            this.router.navigate(['/', '404', this.id]);
+        if (err.status !== undefined) {
+          switch (err.status) {
+            case 404:
+              this.errStatus = 404;
+              break;
+            case 401:
+              this.errStatus = 401;
+              break;
+            case 403:
+              this.errStatus = 403;
+              break;
+            default:
+              this.errStatus = 500;
           }
         }
         throw err;
