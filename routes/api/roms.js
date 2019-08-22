@@ -704,7 +704,7 @@ httpRouter.patch(
         } else {
           isValid = true;
           if (typeof field === 'string') {
-            req.sanitize(field);
+            field = req.sanitize(field);
           }
         }
       }
