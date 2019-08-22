@@ -22,6 +22,7 @@ bash.exe.stackdump
 
 # Backup Files
 public/index.html.bak*
+validate-patch-request.js
 
 
 # Created by https://www.gitignore.io/api/node
