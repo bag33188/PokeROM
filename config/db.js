@@ -2,6 +2,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const config = require('config');
 const bluebird = require('bluebird');
+
 const db = config.get('mongoURI');
 
 const connectDB = async () => {
@@ -17,7 +18,7 @@ const connectDB = async () => {
         sslCA: ca,
         sslKey: key,
         sslCert: key,
-        sslPass: 'Broccolini33188'
+        sslPass: config.get('sslPassword')
       });
     } else {
       await mongoose.connect(db, {
