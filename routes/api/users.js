@@ -243,21 +243,12 @@ httpRouter.post(
             .status(201)
             .json({ success: true, message: 'User successfully registered!' });
         },
-        [
-          () => {
-            // err callback function
-            return res.status(500).json({
-              success: false,
-              message: 'User with email already registered.'
-            });
-          },
-          () => {
-            return res.status(500).json({
-              success: false,
-              message: 'User with username already exists.'
-            });
-          }
-        ]
+        () => {
+          return res.status(500).json({
+            success: false,
+            message: 'User with username already exists.'
+          });
+        }
       );
     } catch (err) {
       next(err);

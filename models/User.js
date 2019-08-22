@@ -62,35 +62,25 @@ module.exports.getUserByUsername = (username, callback) => {
   User.findOne(query, callback);
 };
 
-module.exports.addUser = (newUser, callback, errCallbacks) => {
+module.exports.addUser = (newUser, callback, errCallback) => {
   // check if user already exists
-  User.findOne({ email: newUser.email }) // check email first
+  User.findOne({ username: newUser.username })
     .then((user, err) => {
       if (err) {
         console.log(err);
       } else if (user) {
-        errCallbacks[0]();
+        errCallback();
       } else {
-        User.findOne({ username: newUser.username }) // then check username
-          .then((user, err) => {
-            if (err) {
-              console.log(err);
-            } else if (user) {
-              errCallbacks[1]();
-            } else {
-              // authenticate
-              bcrypt.genSalt(10, (err, salt) => {
-                if (err) console.log(err);
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                  if (err) console.log(err);
-                  // store password as hash
-                  newUser.password = hash;
-                  newUser.save(callback);
-                });
-              });
-            }
-          })
-          .catch(err => console.log(err));
+        // authenticate
+        bcrypt.genSalt(10, (err, salt) => {
+          if (err) console.log(err);
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) console.log(err);
+            // store password as hash
+            newUser.password = hash;
+            newUser.save(callback);
+          });
+        });
       }
     })
     .catch(err => console.log(err));
