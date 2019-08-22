@@ -697,7 +697,7 @@ httpRouter.patch(
         'logo_url',
         'box_art_url'
       ];
-      for (const field of Object.keys(req.body)) {
+      for (let field of Object.keys(req.body)) {
         if (!fields.includes(field)) {
           isValid = false;
           break;
