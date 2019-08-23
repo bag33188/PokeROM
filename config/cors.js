@@ -31,7 +31,7 @@ const corsConfig = cors({
   optionsSuccessStatus: 204,
   origin:
     process.env.NODE_ENV === 'production'
-      ? ['https://pokerom.dev', 'https://www.pokerom.dev']
+      ? 'https://pokerom.dev' || 'https://www.pokerom.dev'
       : 'http://localhost:4200'
 });
 
