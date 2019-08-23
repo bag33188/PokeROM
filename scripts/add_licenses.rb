@@ -28,7 +28,7 @@ class AddLicenses
     # define isc license
     isc_license = '' +
     'ISC LICENSE' +
-    "\n\n" +
+    "\n" +
     "Copyright #{Date.today.year} #{name}" +
     "\n" +
     'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.' +
@@ -44,7 +44,7 @@ class AddLicenses
     # define mit license
     mit_license = '' +
     'MIT LICENSE' +
-    "\n\n" +
+    "\n" +
     "Copyright #{Date.today.year} #{name}" +
     "\n" +
     'Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:' +
@@ -63,7 +63,7 @@ class AddLicenses
     file = File.open(filepath, 'w')
 
     # write licenses to file
-    file.write("pokerom\nISC\nMIT\n\n\n#{get_isc_license(@name)}\n\n\n#{get_mit_license(@name)}\n")
+    file.write("pokerom\nISC\nMIT\n\n#{get_isc_license(@name)}\n\n#{get_mit_license(@name)}\n")
 
     # close the file stream
     file.close
