@@ -1,6 +1,6 @@
 const cors = require('cors');
 
-const corsConfig = cors({
+module.exports = cors({
   credentials: true,
   exposedHeaders: [
     'Allow',
@@ -34,5 +34,3 @@ const corsConfig = cors({
       ? ['https://pokerom.dev', 'https://www.pokerom.dev']
       : 'http://localhost:4200'
 });
-
-module.exports = corsConfig;
