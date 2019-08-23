@@ -71,17 +71,9 @@ if (process.env.NODE_ENV === 'production') {
 
 app.all('/*', async (req, res, next) => {
   try {
-    const methods = ['GET', 'HEAD', 'OPTIONS'];
-    if (methods.includes(req.method)) {
-      res.set('Allow', methods.join(', '));
-      return await res
-        .status(405)
-        .json({ success: false, message: 'Method not allowed.' });
-    } else {
-      return await res
-        .status(501)
-        .json({ success: false, message: 'Method not implemented.' });
-    }
+    await res
+      .status(404)
+      .json({ success: false, message: 'Error 404: not found.' });
   } catch (err) {
     next(err);
   }
