@@ -29,8 +29,7 @@ try {
     roles: [{ role: 'root', db: 'admin' }]
   });
   printjson(adminUser);
-} catch (e) {
-}
+} catch (e) {}
 
 romsCollection = db.createCollection('roms', {
   validator: {
