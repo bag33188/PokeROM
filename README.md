@@ -59,7 +59,7 @@ npm run db-win # run dev db on windows
 npm run db-osx # run dev db on mac
 npm run db-shell # run dev db shell
 npm run db-prod # run prod db shell
-npm run load-data # load default data set into local db
+npm run load-data # load data into db (production only)
 
 # to kill mongod process
 # ----------------------
