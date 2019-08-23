@@ -74,8 +74,9 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
       (err: any): never => {
         this.loading = false;
         this.isError = true;
-        if (err.status !== undefined) {
-          switch (err.status) {
+        const statusKey: string = 'status';
+        if (err[statusKey] !== undefined) {
+          switch (err[statusKey]) {
             case 404:
               this.errStatus = 404;
               break;
