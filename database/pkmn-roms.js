@@ -2,10 +2,10 @@
 pkmn-roms MongoDB Database Script
 ---------------------------------
 
-To load this data:
-`npm run load-db`
+To load this data in production:
+$ npm run load-db
 
-To load this data locally:
+To load this data in development:
 $ npm run db-shell
 > load('database/pkmn-roms.js');
  */
