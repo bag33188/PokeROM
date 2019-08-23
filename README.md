@@ -40,21 +40,21 @@ Download Python 3 here: [https://www.python.org/downloads/][python3-download]
 
 ### Angular
 
-```bash
+```shell script
 npx ivy-ngcc # compile to ivy
 npm run client # run dev server
 ```
 
 ### ExpressJS
 
-```bash
+```shell script
 npm run api # run dev api
 npm run pack # package application
 ```
 
 ### MongoDB
 
-```bash
+```shell script
 npm run db-win # run dev db on windows
 npm run db-osx # run dev db on mac
 npm run db-shell # run dev db shell

@@ -32,10 +32,12 @@ https://github.hubspot.com/pace/docs/welcome/
 
 ## Ivy
 
+```shell script
 npx ivy-ngcc
+```
 
 # jQuery - Get rem/em base font size (in px)
 
 ```javascript
-  jQuery('#your_element_id_here').css('font-size');
+jQuery('#your_element_id_here').css('font-size');
 ```
