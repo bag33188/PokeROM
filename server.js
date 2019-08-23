@@ -28,14 +28,18 @@ const app = express();
 const [apiDocs, apiVersion] = swaggerDoc;
 apiDocs(app);
 function wwwRedirect(req, res, next) {
-  if (req.headers.host.slice(0, 4) === 'www.') {
-    var newHost = req.headers.host.slice(4);
-    return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
+  if (
+    req.headers.host === 'https://www.pokerom.dev' ||
+    req.headers.host === 'https://www.pokerom.dev/home'
+  ) {
+    return res.redirect(301, 'https://pokerom.dev');
   }
   next();
 }
 
 // middleware
+app.set('trust proxy', true);
+app.use(wwwRedirect);
 app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // extended: true
@@ -45,8 +49,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(expressSanitizer());
 app.use(cors);
-app.set('trust proxy', true);
-app.use(wwwRedirect);
 
 // routing middleware
 app.use('/options', options);
