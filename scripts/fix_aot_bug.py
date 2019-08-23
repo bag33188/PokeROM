@@ -93,5 +93,5 @@ def fix_aot_bug(filepath):
     # exit app on error
     sys.exit(exit_code)
 
-# call function
+# call function and pass in the file path to `state.js`
 fix_aot_bug('../client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js')
