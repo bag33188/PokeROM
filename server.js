@@ -27,6 +27,13 @@ const app = express();
 // setup swagger docs
 const [apiDocs, apiVersion] = swaggerDoc;
 apiDocs(app);
+function wwwRedirect(req, res, next) {
+  if (req.headers.host.slice(0, 4) === 'www.') {
+    var newHost = req.headers.host.slice(4);
+    return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
+  }
+  next();
+}
 
 // middleware
 app.use(logger);
@@ -38,6 +45,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(expressSanitizer());
 app.use(cors);
+app.set('trust proxy', true);
+app.use(wwwRedirect);
 
 // routing middleware
 app.use('/options', options);
@@ -53,11 +62,6 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get('*', async (req, res, next) => {
     try {
-      if (req.headers.host.match(/^www/) !== null) {
-        res.redirect(
-          'http://' + req.headers.host.replace(/^www\./, '') + req.url
-        );
-      }
       await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
     } catch (err) {
       next(err);
