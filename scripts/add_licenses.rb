@@ -26,7 +26,7 @@ class AddLicenses
   # define isc license method
   def get_isc_license(name)
     # define isc license
-    isc_license =  '' +
+    isc_license = '' +
     'ISC LICENSE' +
     "\n\n" +
     "Copyright #{Date.today.year} #{name}" +
@@ -62,7 +62,7 @@ class AddLicenses
     # create new file or open existing one from filepath parameter
     file = File.open(filepath, 'w')
     # write licenses to file; concat with double new line
-    file.write("#{get_isc_license(@name)}\n\n\n#{get_mit_license(@name)}")
+    file.write("pokerom\n\n\n#{get_isc_license(@name)}\n\n\n#{get_mit_license(@name)}\n")
     # close the file stream
     file.close
 
