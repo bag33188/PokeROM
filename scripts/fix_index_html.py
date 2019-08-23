@@ -204,7 +204,7 @@ class FixIndexHtml:
                           '  document.write(unescape("%3Cscript src=\'" + tlJsHost + "trustlogo/javascript/trustlogo.js\' type=\'text/javascript\'%\3E%3C/script%\3E"));\n'
                           '  //]]></script>\n'
                           '  <script language="JavaScript" type="text/javascript">\n'
-                          '\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");\n'
+                          '\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_sm_124x32.png", "POSDV", "none");\n'
                           '  </script>\n'
                           '-->\n'
                         )
