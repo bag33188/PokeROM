@@ -26,7 +26,7 @@
     "start": "NODE_ENV=production forever start server.js",
     "stop": "forever stop server.js",
     "restart": "npm stop && npm start",
-    "update-app": "git pull && npm restart",
+    "update": "git pull && npm restart",
     "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./ratings.sh && bash ./version.sh && bash ./options.sh",
     "prod": "cd scripts && bash ./production.sh",
     "api": "nodemon server",
