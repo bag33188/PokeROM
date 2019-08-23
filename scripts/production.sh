@@ -33,6 +33,8 @@ production() {
     else
       python ../scripts/fix_index_html.py
     fi
+    rm *bak1
+    rm *bak2
     ruby ../scripts/add_licenses.rb
     cd ..
     rm -R client/dist
