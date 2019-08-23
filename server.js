@@ -53,6 +53,10 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get('*', async (req, res, next) => {
     try {
+      const origin = req.headers.origin;
+      if (cors.origin.indexOf(origin) >= 0) {
+        res.header('Access-Control-Allow-Origin', origin);
+      }
       await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
     } catch (err) {
       next(err);
