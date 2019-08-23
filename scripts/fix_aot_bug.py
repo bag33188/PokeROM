@@ -10,7 +10,7 @@ def fix_aot_bug(filepath):
   """
   The purpose of this function is to fix a major bug in the Angular AOT Compiler.
   This function will backup and then modify the `state.js` file in `../client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src`.
-  You can change the filepath by using different values for the `filepath` parameter.
+  You can change the filepath by using a different value for the `filepath` parameter.
   """
 
   print('Fixing state.js ... ')
@@ -33,7 +33,7 @@ def fix_aot_bug(filepath):
 
       # loop through each line in file
       for line in file:
-        
+
         # apply fix
         if (TEXT_TO_SEARCH in line):
           # replace text and end line without newline
