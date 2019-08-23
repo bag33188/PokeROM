@@ -6,10 +6,11 @@ import sys # import system module
 from fileinput import FileInput # import fileinput module
 
 # create fix_aot_bug function
-def fix_aot_bug():
+def fix_aot_bug(filepath):
   """
   The purpose of this function is to fix a major bug in the Angular AOT Compiler.
   This function will backup and then modify the `state.js` file in `../client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src`.
+  You can change the filepath by using different values for the `filepath` parameter.
   """
 
   print('Fixing state.js ... ')
@@ -20,32 +21,29 @@ def fix_aot_bug():
   # encapsulate main functionality in try block
   try:
 
-    # define filepath constant
-    FILEPATH = '../client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js'
-
     # define vars
-    text_to_search = 'if (this.modifiedResourceFiles === undefined || !this.metadata.has(sf))'
-    replacement_text = 'if (this.modifiedResourceFiles === undefined || this.modifiedResourceFiles === null || !this.metadata.has(sf))'
+    TEXT_TO_SEARCH = 'if (this.modifiedResourceFiles === undefined || !this.metadata.has(sf))'
+    REPLACEMENT_TEXT = 'if (this.modifiedResourceFiles === undefined || this.modifiedResourceFiles === null || !this.metadata.has(sf))'
     fix_applied = False
 
     # open up file stream (read and write) and create backup of file
-    with FileInput(FILEPATH, inplace=True, backup='.bak') as file:
+    with FileInput(filepath, inplace=True, backup='.bak') as file:
 
       # loop through each line in file
       for line in file:
         
         # apply fix
-        if (text_to_search in line):
+        if (TEXT_TO_SEARCH in line):
           # replace text and end line without newline
-          sys.stdout.write(line.replace(text_to_search, replacement_text))
+          sys.stdout.write(line.replace(TEXT_TO_SEARCH, REPLACEMENT_TEXT))
 
           # set to true
           fix_applied = True
 
         # check if fix has already been applied
-        elif (replacement_text in line):
+        elif (REPLACEMENT_TEXT in line):
           # undo fix
-          sys.stdout.write(line.replace(replacement_text, text_to_search))
+          sys.stdout.write(line.replace(REPLACEMENT_TEXT, TEXT_TO_SEARCH))
           # set to false
           fix_applied = False
 
@@ -94,4 +92,4 @@ def fix_aot_bug():
     sys.exit(exit_code)
 
 # call function
-fix_aot_bug()
+fix_aot_bug('../client/node_modules/@angular/compiler-cli/src/ngtsc/incremental/src/state.js')
