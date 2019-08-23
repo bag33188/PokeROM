@@ -34,7 +34,7 @@ rom_tests() {
       get_all() {
         echo "Testing GET: /api/roms"
         printf "\r\n"
-        curl -i -X GET "http://localhost:5000/api/roms" -H  "accept: application/json" -H  "Authorization: $jwt"
+        curl -i -X GET "http://localhost:50000/api/roms" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '1' ]]; then
@@ -45,7 +45,7 @@ rom_tests() {
         printf "\r\n"
         read -p "Enter ROM ID: " id
         printf "\r\n"
-        curl -i -X GET "http://localhost:5000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
+        curl -i -X GET "http://localhost:50000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '2' ]]; then
@@ -60,7 +60,7 @@ rom_tests() {
       printf "\r\n"
       read -p "Enter ROM Data (escape quotes): " data
       printf "\r\n"
-      curl -i -X POST "http://localhost:5000/api/roms" -H  "accept: application/json" -H  "Authorization: $jwt" -H  "Content-Type: application/json" -d "$data"
+      curl -i -X POST "http://localhost:50000/api/roms" -H  "accept: application/json" -H  "Authorization: $jwt" -H  "Content-Type: application/json" -d "$data"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '3' ]]; then
@@ -73,7 +73,7 @@ rom_tests() {
       printf "\r\n"
       read -p "Enter ROM Data (escape quotes): " data
       printf "\r\n"
-      curl -i -X PUT "http://localhost:5000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt" -H  "$data"
+      curl -i -X PUT "http://localhost:50000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt" -H  "$data"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '4' ]]; then
@@ -86,7 +86,7 @@ rom_tests() {
       printf "\r\n"
       read -p "Enter Partial ROM Data (escape quotes): " data
       printf "\r\n"
-      curl -i -X PATCH "http://localhost:5000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt" -H  "Content-Type: application/json" -d "$data"
+      curl -i -X PATCH "http://localhost:50000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt" -H  "Content-Type: application/json" -d "$data"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '5' ]]; then
@@ -98,7 +98,7 @@ rom_tests() {
         printf "\r\n"
         read -p "Enter ROM ID: " id
         printf "\r\n"
-        curl -i -X DELETE "http://localhost:5000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
+        curl -i -X DELETE "http://localhost:50000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '6' ]]; then
@@ -107,7 +107,7 @@ rom_tests() {
       delete_all() {
         echo "Testing DELETE: /api/roms"
         printf "\r\n"
-        curl -i -X DELETE "http://localhost:5000/api/roms" -H  "accept: application/json" -H  "Authorization: $jwt"
+        curl -i -X DELETE "http://localhost:50000/api/roms" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '7' ]]; then
@@ -121,7 +121,7 @@ rom_tests() {
       head_all() {
         echo "Testing HEAD: /api/roms"
         printf "\r\n"
-        curl -i --head "http://localhost:5000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
+        curl -i --head "http://localhost:50000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '8' ]]; then
@@ -132,7 +132,7 @@ rom_tests() {
         printf "\r\n"
         read -p 'Enter ROM ID: ' id
         printf "\r\n"
-        curl -i --head "http://localhost:5000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
+        curl -i --head "http://localhost:50000/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt"
         printf "\r\n\r\n"
       }
     if [[ $rqst == '9' ]]; then
@@ -145,7 +145,7 @@ rom_tests() {
     options() {
       echo "Testing OPTIONS: /api/roms"
       printf "\r\n"
-      curl -i -X OPTIONS "http://localhost:5000/api/roms" -H  "accept: application/json"
+      curl -i -X OPTIONS "http://localhost:50000/api/roms" -H  "accept: application/json"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '10' ]]; then
@@ -154,7 +154,7 @@ rom_tests() {
     post_core() {
       echo "Testing POST /api/roms/core"
       printf "\r\n"
-      curl -i -X POST "http://localhost:5000/api/roms/core" -H  "accept: application/json" -H  "Authorization: $jwt"
+      curl -i -X POST "http://localhost:50000/api/roms/core" -H  "accept: application/json" -H  "Authorization: $jwt"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '11' ]]; then
@@ -163,7 +163,7 @@ rom_tests() {
     post_hacks() {
       echo "Testing POST /api/roms/hacks"
       printf "\r\n"
-      curl -i -X POST "http://localhost:5000/api/roms/hacks" -H  "accept: application/json" -H  "Authorization: $jwt"
+      curl -i -X POST "http://localhost:50000/api/roms/hacks" -H  "accept: application/json" -H  "Authorization: $jwt"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '12' ]]; then

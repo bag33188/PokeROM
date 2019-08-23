@@ -23,7 +23,7 @@ options_test() {
   options() {
     echo "Testing OPTIONS: /options"
     printf "\r\n"
-    curl -i -v -X OPTIONS "http://localhost:5000/options"
+    curl -i -v -X OPTIONS "http://localhost:50000/options"
     printf "\r\n\r\n"
   }
   options

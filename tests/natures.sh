@@ -32,7 +32,7 @@ nature_tests() {
       get_all() {
         echo "Testing GET: /api/natures"
         printf "\r\n"
-        curl -i -X GET "http://localhost:5000/api/natures" -H  "accept: application/json"
+        curl -i -X GET "http://localhost:50000/api/natures" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '1' ]]; then
@@ -43,7 +43,7 @@ nature_tests() {
         printf "\r\n"
         read -p "Enter Nature ID: " id
         printf "\r\n"
-        curl -i -X GET "http://localhost:5000/api/natures/$id" -H  "accept: application/json"
+        curl -i -X GET "http://localhost:50000/api/natures/$id" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '2' ]]; then
@@ -58,7 +58,7 @@ nature_tests() {
       printf "\r\n"
       read -p "Enter Nature Data (escape quotes): " data
       printf "\r\n"
-      curl -i -X POST "http://localhost:5000/api/natures" -H  "accept: application/json" -H  "Content-Type: application/json" -d "$data"
+      curl -i -X POST "http://localhost:50000/api/natures" -H  "accept: application/json" -H  "Content-Type: application/json" -d "$data"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '3' ]]; then
@@ -71,7 +71,7 @@ nature_tests() {
       printf "\r\n"
       read -p "Enter Nature Data (escape quotes): " data
       printf "\r\n"
-      curl -i -X PUT "http://localhost:5000/api/natures/$id" -H  "accept: application/json" -H  "$data"
+      curl -i -X PUT "http://localhost:50000/api/natures/$id" -H  "accept: application/json" -H  "$data"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '4' ]]; then
@@ -84,7 +84,7 @@ nature_tests() {
       printf "\r\n"
       read -p "Enter Partial Nature Data (escape quotes): " data
       printf "\r\n"
-      curl -i -X PATCH "http://localhost:5000/api/natures/$id" -H  "accept: application/json" -H  "Content-Type: application/json" -d "$data"
+      curl -i -X PATCH "http://localhost:50000/api/natures/$id" -H  "accept: application/json" -H  "Content-Type: application/json" -d "$data"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '5' ]]; then
@@ -96,7 +96,7 @@ nature_tests() {
         printf "\r\n"
         read -p "Enter Nature ID: " id
         printf "\r\n"
-        curl -i -X DELETE "http://localhost:5000/api/natures/$id" -H  "accept: application/json"
+        curl -i -X DELETE "http://localhost:50000/api/natures/$id" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '6' ]]; then
@@ -105,7 +105,7 @@ nature_tests() {
       delete_all() {
         echo "Testing DELETE: /api/natures"
         printf "\r\n"
-        curl -i -X DELETE "http://localhost:5000/api/natures" -H  "accept: application/json"
+        curl -i -X DELETE "http://localhost:50000/api/natures" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '7' ]]; then
@@ -119,7 +119,7 @@ nature_tests() {
       head_all() {
         echo "Testing HEAD: /api/natures"
         printf "\r\n"
-        curl -i --head "http://localhost:5000/api/natures/$id" -H  "accept: application/json"
+        curl -i --head "http://localhost:50000/api/natures/$id" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '8' ]]; then
@@ -130,7 +130,7 @@ nature_tests() {
         printf "\r\n"
         read -p 'Enter Nature ID: ' id
         printf "\r\n"
-        curl -i --head "http://localhost:5000/api/natures/$id" -H  "accept: application/json"
+        curl -i --head "http://localhost:50000/api/natures/$id" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '9' ]]; then
@@ -143,7 +143,7 @@ nature_tests() {
     post_all() {
       echo "Testing POST: /api/natures/all"
       printf "\r\n"
-      curl -i -X POST "http://localhost:5000/api/natures" -H  "accept: application/json"
+      curl -i -X POST "http://localhost:50000/api/natures" -H  "accept: application/json"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '10' ]]; then
