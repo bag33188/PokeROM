@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get('*', async (req, res, next) => {
     try {
-      const origin = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+      const origin = `${req.protocol}://${req.get('host')}`;
       if (cors.origin.indexOf(origin) >= 0) {
         res.header('Access-Control-Allow-Origin', origin);
       }
