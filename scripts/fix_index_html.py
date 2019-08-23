@@ -198,15 +198,15 @@ class FixIndexHtml:
 
     # define main const
     POSITIVE_SSL_HTML = (
-                          '\t<!--\n'
-                          '\t\t<script type="text/javascript"> //<![CDATA[\n'
-                          '\t\tvar tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");\n'
-                          '\t\tdocument.write(unescape("%3Cscript src=\'" + tlJsHost + "trustlogo/javascript/trustlogo.js\' type=\'text/javascript\'%\3E%3C/script%\3E"));\n'
-                          '\t\t//]]></script>\n'
-                          '\t\t<script language="JavaScript" type="text/javascript">\n'
-                          '\t\t\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");\n'
-                          '\t\t</script>\n'
-                          '\t-->\n'
+                          '<!--\n'
+                          '  <script type="text/javascript"> //<![CDATA[\n'
+                          '  var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");\n'
+                          '  document.write(unescape("%3Cscript src=\'" + tlJsHost + "trustlogo/javascript/trustlogo.js\' type=\'text/javascript\'%\3E%3C/script%\3E"));\n'
+                          '  //]]></script>\n'
+                          '  <script language="JavaScript" type="text/javascript">\n'
+                          '\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");\n'
+                          '  </script>\n'
+                          '-->\n'
                         )
     # encapsulate file I/O logic in try-except block in case of errors
     try:
