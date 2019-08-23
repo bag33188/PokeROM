@@ -21,9 +21,11 @@ def fix_aot_bug(filepath):
   # encapsulate main functionality in try block
   try:
 
-    # define vars
+    # define constants
     TEXT_TO_SEARCH = 'if (this.modifiedResourceFiles === undefined || !this.metadata.has(sf))'
     REPLACEMENT_TEXT = 'if (this.modifiedResourceFiles === undefined || this.modifiedResourceFiles === null || !this.metadata.has(sf))'
+
+    # define fix applied var
     fix_applied = False
 
     # open up file stream (read and write) and create backup of file
