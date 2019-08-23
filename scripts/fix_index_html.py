@@ -221,12 +221,12 @@ class FixIndexHtml:
           # check if line has body
           if '</head>' in line:
             # print the line
-            print(line.replace('</head>', f'{POSITIVE_SSL_HTML}</head>'), end='')
+            sys.stdout.write(line.replace('</head>', f'{POSITIVE_SSL_HTML}</head>'))
 
           # otherwise...
           else:
             # print other lines
-            print(line, end='')
+            sys.stdout.write(line)
 
       print('Done!', end='\n\n')
 
