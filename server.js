@@ -53,6 +53,11 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get('*', async (req, res, next) => {
     try {
+      if (req.headers.host.match(/^www/) !== null) {
+        res.redirect(
+          'http://' + req.headers.host.replace(/^www\./, '') + req.url
+        );
+      }
       await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
     } catch (err) {
       next(err);
