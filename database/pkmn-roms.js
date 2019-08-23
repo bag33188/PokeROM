@@ -1,16 +1,37 @@
-conn = new Mongo();
-printjson(conn);
+/*
+pkmn-roms MongoDB Database Script
+---------------------------------
+
+To load this data:
+`npm run load-db`
+
+To load this data locally:
+$ npm run db-shell
+> load('database/pkmn-roms.js');
+ */
+
+try {
+  conn = new Mongo();
+  printjson(conn);
+} catch (e) {
+  conn = new Mongo('sever1.pokerom.dev');
+  printjson(conn);
+}
 
 db = db.getSiblingDB('pkmn-roms');
 printjson(db);
 
-adminUser = db.createUser({
-  user: 'admin',
-  pwd: '123456',
-  db: 'admin',
-  roles: [{ role: 'root', db: 'admin' }]
-});
-printjson(adminUser);
+try {
+  adminUser = db.createUser({
+    user: 'admin',
+    pwd: '123456',
+    db: 'admin',
+    roles: [{ role: 'root', db: 'admin' }]
+  });
+  printjson(adminUser);
+} catch (e) {
+
+}
 
 romsCollection = db.createCollection('roms', {
   validator: {
