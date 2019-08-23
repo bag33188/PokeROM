@@ -164,9 +164,9 @@ httpRouter.get(
           }
           const paginationFormulaResult = roms.slice(
             page * perPage - perPage,
-            page * perPagenpm
+            page * perPage
           );
-          res.status(200).json(paginationFormulaResult);
+          return res.status(200).json(paginationFormulaResult);
         },
         limit
       );

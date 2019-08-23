@@ -1,5 +1,5 @@
 const express = require('express');
-// const xml = require('xml');
+const xml = require('xml');
 const swaggerDoc = require('../../docs/swagger-doc');
 const Version = require('../../models/Version');
 
@@ -9,10 +9,13 @@ const httpRouter = express.Router();
 httpRouter.get('/', async (req, res, next) => {
   try {
     const [, version] = swaggerDoc;
-    // const apiVersion = JSON.stringify(Version.getApiVersion(version));
-    // await res.status(200).send(xml(JSON.parse(apiVersion)));
-    const apiVersion = Version.getApiVersion(version);
-    await res.status(200).json(apiVersion);
+    if (req.headers['accept'].match(/^((?:application|text)\/xml)$/)[0]) {
+      const apiVersion = JSON.stringify(Version.getApiVersion(version));
+      await res.status(200).send(xml(JSON.parse(apiVersion)));
+    } else {
+      const apiVersion = Version.getApiVersion(version);
+      await res.status(200).json(apiVersion);
+    }
   } catch (err) {
     next(err);
   }
