@@ -53,10 +53,10 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get('*', async (req, res, next) => {
     try {
-      // const origin = `${req.protocol}://${req.get('host')}`;
-      // if (cors.origin.indexOf(origin) >= 0) {
-      //   res.append('Access-Control-Allow-Origin', origin);
-      // }
+      const origin = `${req.protocol}://${req.get('host')}`;
+      if (cors.origin.indexOf(origin) >= 0 && req.method === 'OPTIONS') {
+        res.set('Access-Control-Allow-Origin', origin);
+      }
       await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
     } catch (err) {
       next(err);
