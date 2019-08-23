@@ -93,11 +93,11 @@ sudo kill <mongod_command_pid>
     - SVG
     - Markdown
 
-3. Source Code Pro Fonts: [download][source code pro fonts download]
+3. Source Code Pro Fonts: [download][source-code-pro-fonts-download]
 
 [python3-download]: <https://www.python.org/downloads/> 'Download Python 3'
 [git-scm]: <https://git-scm.com> 'Git Version Control Website'
-[source code pro fonts download]: <https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA> 'Source Code Pro Fonts Download (Direct Download)'
+[source-code-pro-fonts-download]: <https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA> 'Source Code Pro Fonts Download (Direct Download)'
 
 ---
 
