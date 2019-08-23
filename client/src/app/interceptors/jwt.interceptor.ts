@@ -28,7 +28,7 @@ export class JwtInterceptor implements HttpInterceptor {
       tap(
         (event: HttpEvent<any>): void => {
           if (event instanceof HttpResponse) {
-            const romsApiRouteRegex: RegExp = /(?:(\/api\/roms(\/)?)((?:#?([\da-fA-F]{2})([\da-fA-F]{2})([\da-fA-F]{2})){4})?)/;
+            const romsApiRouteRegex: RegExp = /(?:(\/api\/roms(\/)?)([\da-fA-F]{24}?))$/;
             if (romsApiRouteRegex.test(event.url)) {
               if (this.authService.loggedOut()) {
                 AuthService.logout();
