@@ -21,14 +21,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'A password is required.'],
       minlength: [8, 'Password must be at least 10 characters.'],
-      maxlength: [256, 'Password must be less than 256 characters.'] //,
-      // validate: {
-      //   validator: (v) => {
-      //     return !/(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi.test(
-      //       v
-      //     );
-      //   }
-      // }
+      maxlength: [256, 'Password must be less than 256 characters.']
     }
   },
   {
