@@ -37,21 +37,22 @@ def fix_aot_bug():
         # apply fix
         if (text_to_search in line):
           # replace text and end line without newline
-          print(line.replace(text_to_search, replacement_text), end='')
+          sys.stdout.write(line.replace(text_to_search, replacement_text))
+
           # set to true
           fix_applied = True
 
         # check if fix has already been applied
         elif (replacement_text in line):
           # undo fix
-          print(line.replace(replacement_text, text_to_search), end='')
+          sys.stdout.write(line.replace(replacement_text, text_to_search))
           # set to false
           fix_applied = False
 
         # otherwise
         else:
           # print other lines
-          print(line, end='')
+          sys.stdout.write(line)
 
     # close the file stream
     FileInput().close()
