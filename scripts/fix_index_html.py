@@ -208,6 +208,7 @@ class FixIndexHtml:
                           '  </script>\n'
                           '-->\n'
                         )
+
     # encapsulate file I/O logic in try-except block in case of errors
     try:
 
