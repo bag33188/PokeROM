@@ -27,19 +27,8 @@ const app = express();
 // setup swagger docs
 const [apiDocs, apiVersion] = swaggerDoc;
 apiDocs(app);
-function wwwRedirect(req, res, next) {
-  if (
-    req.headers.host === 'https://www.pokerom.dev' ||
-    req.headers.host === 'https://www.pokerom.dev/home'
-  ) {
-    return res.redirect(301, 'https://pokerom.dev');
-  }
-  next();
-}
 
 // middleware
-app.set('trust proxy', true);
-app.use(wwwRedirect);
 app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // extended: true
@@ -64,6 +53,7 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get('*', async (req, res, next) => {
     try {
+      res.redirect(301, 'https://pokerom.dev');
       await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
     } catch (err) {
       next(err);
@@ -79,6 +69,7 @@ if (process.env.NODE_ENV === 'production') {
     }
   });
 }
+app.use(express.static(__dirname + '/public'));
 
 app.all('/*', async (req, res, next) => {
   try {
