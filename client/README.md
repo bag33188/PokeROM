@@ -39,5 +39,5 @@ npx ivy-ngcc
 # jQuery - Get rem/em base font size (in px)
 
 ```javascript
-jQuery('#your_element_id_here').css('font-size');
+$('#your_element_id_here').css('font-size');
 ```
