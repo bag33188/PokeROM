@@ -30,7 +30,8 @@ try {
   });
   printjson(adminUser);
 } catch (e) {
-  db.getUsers();
+  users = db.getUsers();
+  printjson(users);
 }
 
 romsCollection = db.createCollection('roms', {
