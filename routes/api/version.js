@@ -9,7 +9,7 @@ const httpRouter = express.Router();
 httpRouter.get('/', async (req, res, next) => {
   try {
     const [, version] = swaggerDoc;
-    if (req.headers['accept'].match(/^((?:application|text)\/xml)$/)[0]) {
+    if (req.headers['accept'].match(/^((?:application|text)\/xml)$/)) {
       const apiVersion = JSON.stringify(Version.getApiVersion(version));
       await res.status(200).send(xml(JSON.parse(apiVersion)));
     } else {

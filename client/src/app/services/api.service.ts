@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiVersion } from '../models/ApiVersion';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,10 @@ export class ApiService {
    * @returns An observable (api version).
    */
   public getApiVersion(): Observable<ApiVersion> {
-    return this.http.get<ApiVersion>(this.apiVersionUrl);
+    const headers: HttpHeaders = new HttpHeaders({
+      Accept: 'application/json'
+    });
+    return this.http.get<ApiVersion>(this.apiVersionUrl, { headers });
   }
 
   public storeApiVersionInCache(): void {
