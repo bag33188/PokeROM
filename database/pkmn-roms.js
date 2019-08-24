@@ -11,10 +11,10 @@ $ npm run db-shell
  */
 
 try {
-  conn = new Mongo();
+  conn = new Mongo('server1.pokerom.dev');
   printjson(conn);
 } catch (e) {
-  conn = new Mongo('server1.pokerom.dev');
+  conn = new Mongo();
   printjson(conn);
 }
 
