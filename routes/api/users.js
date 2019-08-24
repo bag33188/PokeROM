@@ -334,7 +334,7 @@ httpRouter.post(
             const token = jwt.sign({ data: user }, secret, {
               expiresIn: (1).convertUnitOfTimeToSeconds('week')
             });
-            return res.status(200).json({
+            return res.status(202).json({
               success: true,
               token: `Bearer ${token}`,
               user: {
