@@ -33,6 +33,7 @@ definitions:
         type: string
       date_released:
         type: string
+        format: date
       logo_url:
         type: string
       is_favorite:

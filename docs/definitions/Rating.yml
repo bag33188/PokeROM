@@ -9,6 +9,7 @@ definitions:
         type: string
       date_time:
         type: string
+        format: date-time
         auto-gen: true
     required:
       - rating
