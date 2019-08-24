@@ -5,14 +5,24 @@ definitions:
     properties:
       name:
         type: string
+        minlength: 3
+        maxlength: 10
       up:
         type: string
+        minlength: 4
+        maxlength: 20
       down:
         type: string
+        minlength: 4
+        maxlength: 20
       flavor:
         type: string
+        minlength: 4
+        maxlength: 20
       usage:
         type: string
+        minlength: 5
+        maxlength: 40
     required:
       - name
       - up

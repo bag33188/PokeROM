@@ -5,5 +5,7 @@ definitions:
     properties:
       api_version:
         type: string
+        minlength: 2
+        maxlength: 8
     required:
       - api_version

@@ -7,37 +7,68 @@ definitions:
         type: string
       order_number:
         type: integer
+        minimum: 0
+        maximum: 88
       rom_type:
         type: string
+        pattern: '^(core|hack)$'
       file_size:
         type: integer
+        format: int32
+        minimum: 64
+        maximum: 12000000
       file_type:
         type: string
+        pattern: '^(?:\.?(gb[ca]?|[n3]ds|xci))$'
       file_name:
         type: string
+        minlength: 3
+        maxlength: 80
       download_link:
         type: string
+        minlength: 8
+        maxlength: 1000
+        pattern: '^(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$'
       generation:
         type: integer
+        minimum: 1
+        maximum: 8
       box_art_url:
         type: string
+        minlength: 8
+        maxlength: 1000
+        pattern: '^(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$'
       game_name:
         type: string
+        minlength: 2
+        maxlength: 42
       region:
         type: string
+        minlength: 3
+        maxlength: 10
       platform:
         type: string
+        minlength: 2
+        maxlength: 50
       description:
         type: string
+        minlength: 5
+        maxlength: 8000
       genre:
         type: string
+        minlength: 2
+        maxlength: 20
       date_released:
         type: string
         format: date
       logo_url:
         type: string
+        minlength: 8
+        maxlength: 1000
+        pattern: '^(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$'
       is_favorite:
         type: boolean
+        nullable: false
     required:
       - is_favorite
       - logo_url

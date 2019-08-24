@@ -5,10 +5,16 @@ definitions:
     properties:
       name:
         type: string
+        minlength: 1
+        maxlength: 100
       username:
         type: string
+        minlength: 5
+        maxlength: 22
       password:
         type: string
+        minlength: 8
+        maxlength: 256
     required:
       - username
       - password
