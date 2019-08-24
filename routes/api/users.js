@@ -649,10 +649,6 @@ httpRouter.head('/', auth, async (req, res, next) => {
   }
 });
 
-/**
- * @summary Get Single Head Info.
- * @description Get's specific head info for /api/users/:id route.
- */
 httpRouter.head(
   '/:id',
   [
@@ -710,5 +706,5 @@ httpRouter.all('/*', async (req, res, next) => {
     next(err);
   }
 });
-// use this to make httpRouter available to middleware
+
 module.exports = httpRouter;
