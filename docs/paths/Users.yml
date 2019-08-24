@@ -313,8 +313,8 @@ paths:
                 type: string
                 required: true
       responses:
-        200:
-          description: A success object.
+        202:
+          description: Accepted; a success object.
           schema:
             type: object
             properties:
