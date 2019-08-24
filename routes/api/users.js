@@ -22,6 +22,9 @@ const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|
 function convertUnitOfTimeToSeconds(value, unit) {
   value = parseInt(value, 10);
   switch (unit) {
+    case 'second':
+    case 'seconds':
+      return value;
     case 'minute':
     case 'minutes':
       return value * 60;
@@ -34,10 +37,14 @@ function convertUnitOfTimeToSeconds(value, unit) {
     case 'week':
     case 'weeks':
       return value * 60 ** 2 * 24 * 7;
-    case 'second':
-    case 'seconds':
+    case 'month':
+    case 'months':
+      return value * 60 ** 2 * 24 * 7 * 30;
+    case 'year':
+    case 'years':
+      return value * 60 ** 2 * 24 * 7 * 30 * 12;
     default:
-      return value;
+      break;
   }
 }
 
