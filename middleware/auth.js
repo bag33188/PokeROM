@@ -1,6 +1,25 @@
 const passport = require('passport');
 
-// generate authentication middleware
-const auth = passport.authenticate('jwt', { session: false });
+async function auth(req, res, next) {
+  try {
+    return await passport.authenticate(
+      'jwt',
+      { session: false },
+      (err, user) => {
+        if (!user) {
+          return res.status(401).json({
+            success: false,
+            message: 'Error 401: you are not authorized to access this data.'
+          });
+        } else {
+          req.user = user;
+          next();
+        }
+      }
+    )(req, res, next);
+  } catch (err) {
+    next(err);
+  }
+}
 
 module.exports = auth;
