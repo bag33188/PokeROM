@@ -7,7 +7,7 @@ $ npm run load-db
 
 To load this data in development:
 $ npm run db-shell
-> load('database/pkmn-roms.js');
+> load('~/Projects/PokeROM/database/pkmn-roms.js');
  */
 
 try {
@@ -29,7 +29,9 @@ try {
     roles: [{ role: 'root', db: 'admin' }]
   });
   printjson(adminUser);
-} catch (e) {}
+} catch (e) {
+  db.getUsers();
+}
 
 romsCollection = db.createCollection('roms', {
   validator: {
