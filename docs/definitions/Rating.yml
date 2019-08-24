@@ -10,6 +10,7 @@ definitions:
       message:
         type: string
         maxlength: 1000
+        nullable: true
       date_time:
         type: string
         format: date-time

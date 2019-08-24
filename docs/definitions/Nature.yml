@@ -19,6 +19,7 @@ definitions:
         type: string
         minlength: 4
         maxlength: 20
+        nullable: true
       usage:
         type: string
         minlength: 5

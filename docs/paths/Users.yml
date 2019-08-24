@@ -148,10 +148,19 @@ paths:
                 properties:
                   _id:
                     type: string
+                    format: byte
                   name:
                     type: string
+                    minlength: 1
+                    maxlength: 100
+                    nullable: true
                   username:
                     type: string
+                    minlength: 5
+                    maxlength: 22
+                required:
+                  - _id
+                  - username
         400:
           description: Bad JSON input.
         401:

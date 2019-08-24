@@ -58,6 +58,7 @@ definitions:
         type: string
         minlength: 2
         maxlength: 20
+        nullable: true
       date_released:
         type: string
         format: date
