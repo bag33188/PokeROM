@@ -433,11 +433,7 @@ httpRouter.put(
           }
           getUserById({ _id: id }, req, res, user => {
             clearCache(req);
-            return res.status(200).json({
-              id: user._id,
-              name: user.name,
-              username: user.username
-            });
+            return res.status(200).json(user);
           });
         });
       } else {
