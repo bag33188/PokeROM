@@ -36,9 +36,7 @@
     "db-prod": "mongo --username admin --password 123456 --authenticationDatabase admin --tls --host server1.pokerom.dev --tlsCertificateKeyFile /etc/ssl/mongodb.pem --tlsCAFile /etc/ssl/mongodb.crt --tlsCertificateKeyFilePassword Broccolini33188",
     "load-db": "mongo --username admin --password 123456 --authenticationDatabase admin --tls --host server1.pokerom.dev --tlsCertificateKeyFile /etc/ssl/mongodb.pem --tlsCAFile /etc/ssl/mongodb.crt --tlsCertificateKeyFilePassword Broccolini33188 \"database/pkmn-roms.js\"",
     "pack": "cd scripts && bash ./package_app.sh",
-    "count-files-git": "cd scripts && ruby count_files_git.rb",
-    "open-sites": "cd scripts && open_sites.bat",
-    "open-repos": "cd scripts && open_repos.bat"
+    "count-files-git": "cd scripts && ruby count_files_git.rb"
   },
   "private": true,
   "author": "bag33188",
