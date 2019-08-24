@@ -12,8 +12,17 @@ paths:
         200:
           description: A single Natures array.
           schema:
-            $ref: '#/definitions/Nature'
-            type: object
+            type: array
+            items:
+              type: object
+              $ref: '#/definitions/Nature'
+        304:
+          description: A cached natures array.
+          schema:
+            type: array
+            items:
+              type: object
+              $ref: '#/definitions/Nature'
         500:
           description: Internal server error on back-end occured.
         502:
@@ -90,6 +99,11 @@ paths:
       responses:
         200:
           description: A single Nature object.
+          schema:
+            $ref: '#/definitions/Nature'
+            type: object
+        304:
+          description: A cached Nature object.
           schema:
             $ref: '#/definitions/Nature'
             type: object

@@ -38,10 +38,19 @@ paths:
           type: boolean
       responses:
         200:
-          description: A single ROMs array.
+          description: A ROMs array.
           schema:
-            $ref: '#/definitions/Rom'
-            type: object
+            type: array
+            items:
+              type: object
+              $ref: '#/definitions/Rom'
+        304:
+          description: A cached ROMs array.
+          schema:
+            type: array
+            items:
+              type: object
+              $ref: '#/definitions/Rom'
         401:
           description: No auth token / no user found in database with that name.
         403:
@@ -172,6 +181,11 @@ paths:
       responses:
         200:
           description: A single rom object.
+          schema:
+            $ref: '#/definitions/Rom'
+            type: object
+        304:
+          description: A cached rom object.
           schema:
             $ref: '#/definitions/Rom'
             type: object

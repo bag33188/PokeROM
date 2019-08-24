@@ -14,8 +14,17 @@ paths:
         200:
           descriptions: A single ratings array.
           schema:
-            $ref: '#/definitions/Rating'
-            type: object
+            type: array
+            items:
+              type: object
+              $ref: '#/definitions/Rating'
+        304:
+          description: A cached ratings array.
+          schema:
+            type: array
+            items:
+              type: object
+              $ref: '#/definitions/Rating'
         401:
           description: No auth token / no user found in database with that name.
         403:
@@ -114,6 +123,11 @@ paths:
       responses:
         200:
           description: A single rating object.
+          schema:
+            $ref: '#/definitions/Rating'
+            type: object
+        304:
+          description: A cached rating object.
           schema:
             $ref: '#/definitions/Rating'
             type: object
