@@ -5,3 +5,5 @@ definitions:
     properties:
       api_version:
         type: string
+    required:
+      - api_version

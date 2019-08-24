@@ -5,52 +5,52 @@ definitions:
     properties:
       user_id:
         type: string
-        required: true
       order_number:
         type: integer
-        required: true
       rom_type:
         type: string
-        required: true
       file_size:
         type: integer
-        required: true
       file_type:
         type: string
-        required: true
       file_name:
         type: string
-        required: true
       download_link:
         type: string
-        required: true
       generation:
         type: integer
-        required: true
       box_art_url:
         type: string
-        required: true
       game_name:
         type: string
-        required: true
       region:
         type: string
-        required: true
       platform:
         type: string
-        required: true
       description:
         type: string
-        required: true
       genre:
         type: string
-        required: false
       date_released:
         type: string
-        required: true
       logo_url:
         type: string
-        required: true
       is_favorite:
         type: boolean
-        required: true
+    required:
+      - is_favorite
+      - logo_url
+      - date_released
+      - description
+      - platform
+      - region
+      - game_name
+      - box_art_url
+      - generation
+      - download_link
+      - file_name
+      - file_type
+      - file_size
+      - rom_type
+      - order_number
+      - user_id

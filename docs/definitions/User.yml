@@ -5,10 +5,10 @@ definitions:
     properties:
       name:
         type: string
-        required: false
       username:
         type: string
-        required: true
       password:
         type: string
-        required: true
+    required:
+      - username
+      - password

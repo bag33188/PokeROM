@@ -5,11 +5,11 @@ definitions:
     properties:
       rating:
         type: number
-        required: true
       message:
         type: string
-        required: false
       date_time:
         type: string
-        required: false
-        autoGen: true
+        auto-gen: true
+    required:
+      - rating
+      - date_time

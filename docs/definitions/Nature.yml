@@ -5,16 +5,16 @@ definitions:
     properties:
       name:
         type: string
-        required: true
       up:
         type: string
-        required: true
       down:
         type: string
-        required: true
       flavor:
         type: string
-        required: false
       usage:
         type: string
-        required: true
+    required:
+      - name
+      - up
+      - down
+      - usage
