@@ -35,25 +35,25 @@ const dateRegex = /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\
 
 httpRouter.get(
   '/',
-  cache(20),
   [
     sanitizeQuery(['limit', 'per_page', 'page', 'getAllCore', 'getAllHacks'])
       .trim()
       .escape()
   ],
   auth,
+  cache(20),
   rom_controller.getRoms
 );
 
 httpRouter.get(
   '/:id',
-  cache(20),
   [
     sanitizeParam('id')
       .trim()
       .escape()
   ],
   auth,
+  cache(20),
   rom_controller.getRom
 );
 

@@ -31,17 +31,18 @@ httpRouter.post(
 
 httpRouter.get(
   '/:id',
-  cache(10),
   [
     sanitizeParam('id')
       .trim()
       .escape()
   ],
   auth,
+  cache(10),
+
   rating_controller.getRating
 );
 
-httpRouter.get('/', cache(10), auth, rating_controller.getRatings);
+httpRouter.get('/', auth, cache(10), rating_controller.getRatings);
 
 httpRouter.delete(
   '/:id',

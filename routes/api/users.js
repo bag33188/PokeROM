@@ -11,17 +11,18 @@ const httpRouter = express.Router();
 const fieldsToSanitize = ['name', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
-httpRouter.get('/', cache(14), auth, user_controller.getUsers);
+httpRouter.get('/', auth, cache(14), user_controller.getUsers);
 
 httpRouter.get(
   '/:id',
-  cache(14),
+
   [
     sanitizeParam('id')
       .trim()
       .escape()
   ],
   auth,
+  cache(14),
   user_controller.getUser
 );
 
