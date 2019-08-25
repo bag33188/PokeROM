@@ -8,18 +8,15 @@ const db = config.get('mongoURI');
 const connectDB = async () => {
   try {
     if (process.env.NODE_ENV === 'production') {
-      // set paths according root directory
-      const ca = fs.readFileSync('database/mongodb.crt');
+      // set path according root directory
       const key = fs.readFileSync('database/mongodb.pem');
       await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird,
         ssl: true,
         sslValidate: true,
-        sslCA: ca,
         sslKey: key,
         sslCert: key,
-        sslPass: config.get('sslPassword')
       });
     } else {
       await mongoose.connect(db, {
