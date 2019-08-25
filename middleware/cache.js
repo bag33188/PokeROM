@@ -45,7 +45,9 @@ function removeURIComponents(req, method, key) {
 
 function cache(duration) {
   return (req, res, next) => {
-    let key = `__express__${req.originalUrl}`;
+    let key = `__express__${req.originalUrl}${
+      req.user['_id'] ? '?' + req.user['_id'] : ''
+    }`;
     key = removeURIComponents(req, req.method, key);
     const cachedBody = mcache.get(key);
     if (cachedBody) {
