@@ -90,7 +90,6 @@ sudo kill <mongod_command_pid>
     - Batch
     - Python (3)
     - Ruby
-    - SVG
     - Markdown
 
 3. Source Code Pro Fonts: [download][source-code-pro-fonts-download]
