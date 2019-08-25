@@ -1,4 +1,7 @@
 const path = require('path');
+const swaggerDoc = require('../docs/swagger-doc');
+
+const [, apiVersion] = swaggerDoc;
 
 module.exports.index = {
   prod: async (req, res, next) => {
