@@ -1,12 +1,12 @@
 const express = require('express');
-const version_controller = require('../../controllers/VersionController');
+const VersionController = require('../../controllers/version-controller');
 
 const httpRouter = express.Router();
 
 // get api version
-httpRouter.get('/', version_controller.getVersion);
+httpRouter.get('/', VersionController.getVersion);
 
-httpRouter.all('/*', version_controller.all);
+httpRouter.all('/*', VersionController.all);
 
 // export httpRouter
 module.exports = httpRouter;

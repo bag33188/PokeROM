@@ -1,11 +1,11 @@
 const express = require('express');
-const options_controller = require('../controllers/OptionsController');
+const OptionsController = require('../controllers/options-controller');
 
 const httpRouter = express.Router();
 
 // get backend options
-httpRouter.options('/', options_controller.options);
+httpRouter.options('/', OptionsController.options);
 
-httpRouter.all('/*', options_controller.all);
+httpRouter.all('/*', OptionsController.all);
 
 module.exports = httpRouter;

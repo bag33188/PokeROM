@@ -3,13 +3,13 @@ const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check } = require('express-validator/check');
 const ValidatePatchRequest = require('../../middleware/validate-patch-request');
 const [cache] = require('../../middleware/cache');
-const nature_controller = require('../../controllers/NatureController');
+const NatureController = require('../../controllers/nature-controller');
 
 const httpRouter = express.Router();
 
 const fieldsToSanitize = ['name', 'up', 'down', 'flavor', 'usage'];
 
-httpRouter.get('/', cache(10), nature_controller.getNatures);
+httpRouter.get('/', cache(10), NatureController.getNatures);
 
 httpRouter.get(
   '/:id',
@@ -19,7 +19,7 @@ httpRouter.get(
       .trim()
       .escape()
   ],
-  nature_controller.getNature
+  NatureController.getNature
 );
 
 httpRouter.post(
@@ -77,7 +77,7 @@ httpRouter.post(
         'The usage for the nature must be in between 5 and 40 characters.'
       )
   ],
-  nature_controller.addNature
+  NatureController.addNature
 );
 
 httpRouter.put(
@@ -138,7 +138,7 @@ httpRouter.put(
         'The usage for the nature must be in between 5 and 40 characters.'
       )
   ],
-  nature_controller.updateNature
+  NatureController.updateNature
 );
 
 httpRouter.patch(
@@ -152,7 +152,7 @@ httpRouter.patch(
       .escape()
   ],
   ValidatePatchRequest.validateNaturePatch,
-  nature_controller.patchNature
+  NatureController.patchNature
 );
 
 httpRouter.delete(
@@ -162,12 +162,12 @@ httpRouter.delete(
       .trim()
       .escape()
   ],
-  nature_controller.deleteNature
+  NatureController.deleteNature
 );
 
-httpRouter.delete('/', nature_controller.deleteNatures);
+httpRouter.delete('/', NatureController.deleteNatures);
 
-httpRouter.head('/', nature_controller.naturesHeaders);
+httpRouter.head('/', NatureController.naturesHeaders);
 
 httpRouter.head(
   '/:id',
@@ -176,11 +176,11 @@ httpRouter.head(
       .trim()
       .escape()
   ],
-  nature_controller.natureHeaders
+  NatureController.natureHeaders
 );
 
-httpRouter.post('/all', nature_controller.allNatures);
+httpRouter.post('/all', NatureController.allNatures);
 
-httpRouter.all('/*', nature_controller.all);
+httpRouter.all('/*', NatureController.all);
 
 module.exports = httpRouter;

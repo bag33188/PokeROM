@@ -4,14 +4,14 @@ const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const [cache] = require('../../middleware/cache');
 const ValidatePatchRequest = require('../../middleware/validate-patch-request');
-const user_controller = require('../../controllers/UserController');
+const UserController = require('../../controllers/user-controller');
 
 const httpRouter = express.Router();
 
 const fieldsToSanitize = ['name', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
-httpRouter.get('/', auth, cache(14), user_controller.getUsers);
+httpRouter.get('/', auth, cache(14), UserController.getUsers);
 
 httpRouter.get(
   '/:id',
@@ -22,7 +22,7 @@ httpRouter.get(
   ],
   auth,
   cache(14),
-  user_controller.getUser
+  UserController.getUser
 );
 
 httpRouter.post(
@@ -61,7 +61,7 @@ httpRouter.post(
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
   ],
-  user_controller.registerUser
+  UserController.registerUser
 );
 
 httpRouter.post(
@@ -94,7 +94,7 @@ httpRouter.post(
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
   ],
-  user_controller.authorizeUser
+  UserController.authorizeUser
 );
 
 httpRouter.put(
@@ -137,7 +137,7 @@ httpRouter.put(
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
   ],
-  user_controller.updateUser
+  UserController.updateUser
 );
 
 httpRouter.patch(
@@ -152,10 +152,10 @@ httpRouter.patch(
   ],
   ValidatePatchRequest.validateUserPatch,
   auth,
-  user_controller.patchUser
+  UserController.patchUser
 );
 
-httpRouter.delete('/', auth, user_controller.deleteUsers);
+httpRouter.delete('/', auth, UserController.deleteUsers);
 
 httpRouter.delete(
   '/:id',
@@ -165,10 +165,10 @@ httpRouter.delete(
       .escape()
   ],
   auth,
-  user_controller.deleteUser
+  UserController.deleteUser
 );
 
-httpRouter.head('/', auth, user_controller.usersHeaders);
+httpRouter.head('/', auth, UserController.usersHeaders);
 
 httpRouter.head(
   '/:id',
@@ -178,9 +178,9 @@ httpRouter.head(
       .escape()
   ],
   auth,
-  user_controller.userHeaders
+  UserController.userHeaders
 );
 
-httpRouter.all('/*', user_controller.all);
+httpRouter.all('/*', UserController.all);
 
 module.exports = httpRouter;

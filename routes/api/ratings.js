@@ -3,7 +3,7 @@ const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const [cache] = require('../../middleware/cache');
-const rating_controller = require('../../controllers/RatingController');
+const RatingController = require('../../controllers/rating-controller');
 
 const httpRouter = express.Router();
 
@@ -26,7 +26,7 @@ httpRouter.post(
       .isInt({ min: 1, max: 10 })
       .withMessage('Rating must be in between 1 and 10.')
   ],
-  rating_controller.addRating
+  RatingController.addRating
 );
 
 httpRouter.get(
@@ -39,10 +39,10 @@ httpRouter.get(
   auth,
   cache(10),
 
-  rating_controller.getRating
+  RatingController.getRating
 );
 
-httpRouter.get('/', auth, cache(10), rating_controller.getRatings);
+httpRouter.get('/', auth, cache(10), RatingController.getRatings);
 
 httpRouter.delete(
   '/:id',
@@ -52,12 +52,12 @@ httpRouter.delete(
       .escape()
   ],
   auth,
-  rating_controller.deleteRating
+  RatingController.deleteRating
 );
 
-httpRouter.delete('/', auth, rating_controller.deleteRatings);
+httpRouter.delete('/', auth, RatingController.deleteRatings);
 
-httpRouter.head('/', auth, rating_controller.ratingsHeaders);
+httpRouter.head('/', auth, RatingController.ratingsHeaders);
 
 httpRouter.head(
   '/:id',
@@ -67,9 +67,9 @@ httpRouter.head(
       .escape()
   ],
   auth,
-  rating_controller.ratingHeaders
+  RatingController.ratingHeaders
 );
 
-httpRouter.all('/*', rating_controller.all);
+httpRouter.all('/*', RatingController.all);
 
 module.exports = httpRouter;

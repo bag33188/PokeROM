@@ -8,7 +8,7 @@ const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const ValidatePatchRequest = require('../../middleware/validate-patch-request');
 const [cache] = require('../../middleware/cache');
-const rom_controller = require('../../controllers/RomController');
+const RomController = require('../../controllers/rom-controller');
 // const all_routes = require('express-list-endpoints');
 
 const httpRouter = express.Router();
@@ -42,7 +42,7 @@ httpRouter.get(
   ],
   auth,
   cache(20),
-  rom_controller.getRoms
+  RomController.getRoms
 );
 
 httpRouter.get(
@@ -54,7 +54,7 @@ httpRouter.get(
   ],
   auth,
   cache(20),
-  rom_controller.getRom
+  RomController.getRom
 );
 
 httpRouter.post(
@@ -181,7 +181,7 @@ httpRouter.post(
       .withMessage('is_favorite must be a boolean (true or false)')
   ],
   auth,
-  rom_controller.addRom
+  RomController.addRom
 );
 
 httpRouter.put(
@@ -311,7 +311,7 @@ httpRouter.put(
       .withMessage('is_favorite must be a boolean (true or false)')
   ],
   auth,
-  rom_controller.updateRom
+  RomController.updateRom
 );
 
 httpRouter.patch(
@@ -326,7 +326,7 @@ httpRouter.patch(
   ],
   ValidatePatchRequest.validateRomPatch,
   auth,
-  rom_controller.patchRom
+  RomController.patchRom
 );
 
 httpRouter.delete(
@@ -337,7 +337,7 @@ httpRouter.delete(
       .escape()
   ],
   auth,
-  rom_controller.deleteRom
+  RomController.deleteRom
 );
 
 httpRouter.delete(
@@ -348,10 +348,10 @@ httpRouter.delete(
       .escape()
   ],
   auth,
-  rom_controller.deleteRoms
+  RomController.deleteRoms
 );
 
-httpRouter.head('/', auth, rom_controller.romsHeaders);
+httpRouter.head('/', auth, RomController.romsHeaders);
 
 httpRouter.head(
   '/:id',
@@ -361,15 +361,15 @@ httpRouter.head(
       .escape()
   ],
   auth,
-  rom_controller.romHeaders
+  RomController.romHeaders
 );
 
-httpRouter.options('/', auth, rom_controller.romsOptions);
+httpRouter.options('/', auth, RomController.romsOptions);
 
-httpRouter.post('/core', auth, rom_controller.coreRoms);
+httpRouter.post('/core', auth, RomController.coreRoms);
 
-httpRouter.post('/hacks', auth, rom_controller.romHacks);
+httpRouter.post('/hacks', auth, RomController.romHacks);
 
-httpRouter.all('/*', rom_controller.all);
+httpRouter.all('/*', RomController.all);
 
 module.exports = httpRouter;
