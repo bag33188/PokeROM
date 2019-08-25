@@ -1,6 +1,6 @@
 const xml = require('xml');
-const swaggerDoc = require('../../docs/swagger-doc');
-const Version = require('../../models/Version');
+const swaggerDoc = require('../docs/swagger-doc');
+const Version = require('../models/Version');
 
 module.exports.getVersion = async (req, res, next) => {
   try {
