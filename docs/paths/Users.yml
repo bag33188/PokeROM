@@ -331,10 +331,15 @@ paths:
             properties:
               username:
                 type: string
-                required: true
+                minlength: 5
+                maxlength: 22
               password:
                 type: string
-                required: true
+                minlength: 8
+                maxlength: 256
+            required:
+              - username
+              - password
       responses:
         202:
           description: Accepted; a success object.
