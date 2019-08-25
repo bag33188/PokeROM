@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports.index = {
   prod: async (req, res, next) => {
     try {
