@@ -24,9 +24,12 @@ connectDB();
 // define app from express js
 const app = express();
 
-// setup swagger docs
 const [apiDocs, apiVersion] = swaggerDoc;
-apiDocs(app);
+
+if (process.env.NODE_ENV !== 'production') {
+  // setup swagger docs
+  apiDocs(app);
+}
 
 // middleware
 app.use(logger);
