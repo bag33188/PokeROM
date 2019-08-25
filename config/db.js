@@ -8,8 +8,9 @@ const db = config.get('mongoURI');
 const connectDB = async () => {
   try {
     if (process.env.NODE_ENV === 'production') {
-      const ca = fs.readFileSync('ssl/mongodb.crt');
-      const key = fs.readFileSync('ssl/mongodb.pem');
+      // set paths according root directory
+      const ca = fs.readFileSync('database/mongodb.crt');
+      const key = fs.readFileSync('database/mongodb.pem');
       await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird,
