@@ -7,7 +7,11 @@ module.exports.index = {
   prod: async (req, res, next) => {
     try {
       await res.sendFile(
-        path.resolve(`../${__dirname}`, 'public', 'index.html')
+        path.resolve(
+          __dirname.replace('controllers/', ''),
+          'public',
+          'index.html'
+        )
       );
     } catch (err) {
       next(err);
