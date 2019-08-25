@@ -3,16 +3,14 @@ const swaggerDoc = require('../docs/swagger-doc');
 
 const [, apiVersion] = swaggerDoc;
 
+function __dirName() {
+  return __dirname.replace('controllers', '');
+}
+
 module.exports.index = {
   prod: async (req, res, next) => {
     try {
-      await res.sendFile(
-        path.resolve(
-          __dirname.replace('controllers', ''),
-          'public',
-          'index.html'
-        )
-      );
+      await res.sendFile(path.resolve(__dirName(), 'public', 'index.html'));
     } catch (err) {
       next(err);
     }
