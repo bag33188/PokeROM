@@ -8,7 +8,7 @@ module.exports.index = {
     try {
       await res.sendFile(
         path.resolve(
-          __dirname.replace('controllers/', ''),
+          __dirname.replace('controllers', ''),
           'public',
           'index.html'
         )
