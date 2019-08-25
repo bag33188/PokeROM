@@ -54,7 +54,6 @@ app.use('/api/version', version);
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static(path.join(__dirname, '/public')));
-
   app.get('*', app_controller.index.prod);
 } else {
   // index route
