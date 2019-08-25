@@ -56,6 +56,7 @@ npm run pack # package application
 
 ```shell script
 npm run db # run db in dev
+npm run mongod # run db in prod
 npm run db-shell # run dev db shell
 npm run db-prod # run prod db shell
 npm run load-data # load data into db (production only)
