@@ -6,7 +6,6 @@ const Nature = require('../models/Nature');
 const natureData = require('../database/data.json')[2];
 const [, clearCache] = require('../middleware/cache');
 
-const fieldsToSanitize = ['name', 'up', 'down', 'flavor', 'usage'];
 const routesWithParams = ['all'];
 
 function getNature(query, req, res, callback) {
@@ -207,7 +206,7 @@ module.exports.patchNature = async (req, res, next) => {
     const query = req.body;
     let isValid = true;
     for (const field of Object.keys(req.body)) {
-      if (!fieldsToSanitize.includes(field)) {
+      if (!['name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
         isValid = false;
         break;
       } else {

@@ -10,7 +10,6 @@ const Rom = require('../models/Rom');
 const romsData = require('../database/data.json');
 const [, clearCache] = require('../middleware/cache');
 
-const fieldsToSanitize = ['name', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
 Number.prototype.convertUnitOfTimeToSeconds = function(unit) {
@@ -350,7 +349,7 @@ module.exports.patchUser = async (req, res, next) => {
     const query = req.body;
     let isValid = true;
     for (let field of Object.keys(req.body)) {
-      if (!fieldsToSanitize.includes(field)) {
+      if (!['name', 'username', 'password'].includes(field)) {
         isValid = false;
         break;
       } else {
