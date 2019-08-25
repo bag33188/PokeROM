@@ -1,90 +1,17 @@
 const express = require('express');
-const moment = require('moment');
-const config = require('config');
-const url = require('url');
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
-const { check, validationResult } = require('express-validator/check');
-const secret = config.get('secret');
-const User = require('../../models/User');
-const Rom = require('../../models/Rom');
+const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
-const romsData = require('../../database/data.json');
-const [cache, clearCache] = require('../../middleware/cache');
+const [cache] = require('../../middleware/cache');
 const ValidatePatchRequest = require('../../middleware/validate-patch-request');
+const user_controller = require('../../controllers/UserController');
 
 const httpRouter = express.Router();
 
 const fieldsToSanitize = ['name', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
-Number.prototype.convertUnitOfTimeToSeconds = function(unit) {
-  const value = parseInt(this, 10);
-  switch (unit) {
-    case 'second':
-    case 'seconds':
-      return value;
-    case 'minute':
-    case 'minutes':
-      return value * 60;
-    case 'hour':
-    case 'hours':
-      return value * 60 ** 2;
-    case 'day':
-    case 'days':
-      return value * 60 ** 2 * 24;
-    case 'week':
-    case 'weeks':
-      return value * 60 ** 2 * 24 * 7;
-    case 'month':
-    case 'months':
-      return value * 60 ** 2 * 24 * 7 * 30;
-    case 'year':
-    case 'years':
-      return value * 60 ** 2 * 24 * 7 * 30 * 12;
-    default:
-      break;
-  }
-};
-
-const routesWithParams = ['authenticate', 'register'];
-
-function getUserById(query, req, res, callback) {
-  return User.getUserById(query, (err, user) => {
-    if (err) {
-      if (err.name === 'CastError') {
-        return res.status(404).json({ success: false, ...err });
-      }
-      return res.status(500).json({ success: false, ...err });
-    }
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Error 404: user not found.' });
-    }
-    return callback(user);
-  });
-}
-
-httpRouter.get('/', cache(14), auth, async (req, res, next) => {
-  try {
-    await User.getAllUsers((err, users) => {
-      if (err) {
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!users) {
-        return res.status(502).json({
-          success: false,
-          message: 'Bad gateway.'
-        });
-      }
-      return res.status(200).json(users);
-    });
-  } catch (err) {
-    next(err);
-  }
-});
+httpRouter.get('/', cache(14), auth, user_controller.getUsers);
 
 httpRouter.get(
   '/:id',
@@ -95,48 +22,7 @@ httpRouter.get(
       .escape()
   ],
   auth,
-  async (req, res, next) => {
-    try {
-      let id;
-      try {
-        if (routesWithParams.includes(req.params.id)) {
-          return res
-            .status(405)
-            .json({ success: false, message: 'Method not allowed.' });
-        }
-        id = mongoose.Types.ObjectId(req.params.id);
-      } catch (e) {
-        return res
-          .status(404)
-          .json({ success: false, message: 'User not found.' });
-      }
-      if (req.user['_id'].toString() === id.toString()) {
-        await User.getUserById({ _id: id }, (err, user) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!user) {
-            return res
-              .status(404)
-              .json({ success: false, message: 'Error 404: user not found.' });
-          }
-          return res.status(200).json(user);
-        });
-      } else {
-        getUserById({ _id: id }, req, res, () => {
-          return res.status(403).json({
-            success: false,
-            message: `You cannot get this user's data.`
-          });
-        });
-      }
-    } catch (err) {
-      next(err);
-    }
-  }
+  user_controller.getUser
 );
 
 httpRouter.post(
@@ -175,86 +61,7 @@ httpRouter.post(
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
   ],
-  async (req, res, next) => {
-    try {
-      let newUser = new User({
-        name: req.sanitize(req.body.name) || null,
-        username: req.sanitize(req.body.username),
-        password: req.sanitize(req.body.password)
-      });
-      const { name, username, password } = newUser;
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(406).json({ success: false, errors: errors.array() });
-      }
-      await User.addUser(
-        newUser,
-        (err, user) => {
-          if (err) {
-            if (err.name === 'ValidationError') {
-              return res.status(406).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!user) {
-            return res.status(500).json({
-              success: false
-            });
-          }
-          Rom.postCore(romsData[0], user, (err, roms) => {
-            if (err) {
-              return res.status(500).json({ success: false, ...err });
-            }
-            if (!roms) {
-              return res
-                .status(502)
-                .json({ success: false, message: 'Bad gateway.' });
-            }
-            return console.log(`Core ROMs added for user '${user.username}'.`);
-          });
-          Rom.postHacks(romsData[1], user, (err, roms) => {
-            if (err) {
-              return res.status(500).json({ success: false, ...err });
-            }
-            if (!roms) {
-              return res
-                .status(502)
-                .json({ success: false, message: 'Bad gateway.' });
-            }
-            return console.log(`ROM Hacks added for user '${user.username}'.`);
-          });
-          res.append(
-            'Created-At-Route',
-            `${url
-              .format({
-                protocol: req.protocol,
-                host: req.get('host'),
-                pathname: req.originalUrl
-              })
-              .replace('/register', '')}/${user._id}`
-          );
-          res.append(
-            'Created-At',
-            moment()
-              .subtract(7, 'hours')
-              .format()
-          );
-          clearCache(req);
-          return res
-            .status(201)
-            .json({ success: true, message: 'User successfully registered!' });
-        },
-        () => {
-          return res.status(500).json({
-            success: false,
-            message: 'User with username already exists.'
-          });
-        }
-      );
-    } catch (err) {
-      next(err);
-    }
-  }
+  user_controller.registerUser
 );
 
 httpRouter.post(
@@ -287,72 +94,7 @@ httpRouter.post(
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
   ],
-  async (req, res, next) => {
-    try {
-      const { username, password } = req.body;
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(406).json({ success: false, errors: errors.array() });
-      }
-      let isValid;
-      for (const field of Object.keys(req.body)) {
-        if (!['username', 'password'].includes(field)) {
-          isValid = false;
-          break;
-        } else {
-          isValid = true;
-          req.sanitize(field);
-        }
-      }
-      if (!isValid) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Body contains invalid fields.' });
-      }
-      await User.getUserByUsername(username, (err, user) => {
-        if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(406).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
-          }
-        }
-        if (!user)
-          return res.status(404).json({
-            success: false,
-            message: 'Error: User not found.'
-          });
-        // check entered if password matches username's password
-        User.comparePassword(password, user.password, (err, isMatch) => {
-          if (err) {
-            return res.status(403).json({ success: false, ...err });
-          }
-          if (isMatch) {
-            const token = jwt.sign({ data: user }, secret, {
-              expiresIn: (1).convertUnitOfTimeToSeconds('week')
-            });
-            return res.status(202).json({
-              success: true,
-              token: `Bearer ${token}`,
-              user: {
-                id: user._id,
-                name: user.name,
-                username: user.username
-              }
-            });
-          }
-          return res
-            .status(403)
-            .json({ success: false, message: 'Error: wrong password.' });
-        });
-      });
-    } catch (err) {
-      next(err);
-    }
-  }
+  user_controller.authorizeUser
 );
 
 httpRouter.put(
@@ -395,66 +137,7 @@ httpRouter.put(
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
   ],
-  async (req, res, next) => {
-    try {
-      let id;
-      try {
-        if (routesWithParams.includes(req.params.id)) {
-          return res
-            .status(405)
-            .json({ success: false, message: 'Method not allowed.' });
-        }
-        id = mongoose.Types.ObjectId(req.params.id);
-      } catch (e) {
-        return res
-          .status(404)
-          .json({ success: false, message: 'User not found.' });
-      }
-      const userData = {
-        name: req.sanitize(req.body.name) || null,
-        username: req.sanitize(req.body.username),
-        password: req.sanitize(req.body.password)
-      };
-      const { name, username, password } = userData;
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(406).json({ success: false, errors: errors.array() });
-      }
-      if (req.user['_id'].toString() === id.toString()) {
-        await User.updateUser({ _id: id }, userData, {}, (err, user) => {
-          if (err) {
-            switch (err.name) {
-              case 'CastError':
-                return res.status(404).json({ success: false, ...err });
-              case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
-              default:
-                return res.status(500).json({ success: false, ...err });
-            }
-          }
-          if (!user) {
-            return res.status(404).json({
-              success: false,
-              message: 'Error 404: user not found.'
-            });
-          }
-          getUserById({ _id: id }, req, res, user => {
-            clearCache(req);
-            return res.status(200).json(user);
-          });
-        });
-      } else {
-        getUserById({ _id: id }, req, res, () => {
-          return res.status(403).json({
-            success: false,
-            message: 'You cannot update this user.'
-          });
-        });
-      }
-    } catch (err) {
-      next(err);
-    }
-  }
+  user_controller.updateUser
 );
 
 httpRouter.patch(
@@ -469,110 +152,10 @@ httpRouter.patch(
   ],
   ValidatePatchRequest.validateUserPatch,
   auth,
-  async (req, res, next) => {
-    try {
-      let id;
-      try {
-        if (routesWithParams.includes(req.params.id)) {
-          return res
-            .status(405)
-            .json({ success: false, message: 'Method not allowed.' });
-        }
-        id = mongoose.Types.ObjectId(req.params.id);
-      } catch (e) {
-        return res
-          .status(404)
-          .json({ success: false, message: 'User not found.' });
-      }
-      const query = req.body;
-      let isValid = true;
-      for (let field of Object.keys(req.body)) {
-        if (!fieldsToSanitize.includes(field)) {
-          isValid = false;
-          break;
-        } else {
-          isValid = !(field === 'password' && pwdRegex.test(field));
-          req.sanitize(field);
-        }
-      }
-      if (!isValid) {
-        return res
-          .status(406)
-          .json({ success: false, message: 'Body contains invalid fields.' });
-      }
-      if (req.user['_id'].toString() === id.toString()) {
-        await User.patchUser({ _id: id }, { $set: query }, (err, status) => {
-          if (err) {
-            switch (err.name) {
-              case 'CastError':
-                return res.status(404).json({ success: false, ...err });
-              case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
-              default:
-                return res.status(500).json({ success: false, ...err });
-            }
-          }
-          if (!status) {
-            return res.status(502).json({
-              success: false,
-              message: 'Bad gateway.'
-            });
-          }
-          getUserById({ _id: id }, req, res, user => {
-            clearCache(req);
-            return res.status(200).json(user);
-          });
-        });
-      } else {
-        getUserById({ _id: id }, req, res, () => {
-          return res.status(403).json({
-            success: false,
-            message: 'You cannot patch this user.'
-          });
-        });
-      }
-    } catch (err) {
-      next(err);
-    }
-  }
+  user_controller.patchUser
 );
 
-httpRouter.delete('/', auth, async (req, res, next) => {
-  try {
-    await User.deleteAllUsers((err, status) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        }
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!status) {
-        return res.status(502).json({
-          success: false,
-          message: 'Bad gateway.'
-        });
-      }
-      Rom.deleteAllRoms({}, (err, romsStatus) => {
-        if (err) {
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!romsStatus) {
-          return res.status(500).json({
-            success: false
-          });
-        }
-        clearCache(req);
-        return res.status(200).json({
-          success: true,
-          message: 'All users successfully deleted!',
-          ...status
-        });
-      });
-    });
-  } catch (err) {
-    next(err);
-  }
-});
+httpRouter.delete('/', auth, user_controller.deleteUsers);
 
 httpRouter.delete(
   '/:id',
@@ -582,79 +165,10 @@ httpRouter.delete(
       .escape()
   ],
   auth,
-  async (req, res, next) => {
-    try {
-      let id;
-      try {
-        if (routesWithParams.includes(req.params.id)) {
-          return res
-            .status(405)
-            .json({ success: false, message: 'Method not allowed.' });
-        }
-        id = mongoose.Types.ObjectId(req.params.id);
-      } catch (e) {
-        return res
-          .status(404)
-          .json({ success: false, message: 'User not found.' });
-      }
-      if (req.user['_id'].toString() === id.toString()) {
-        getUserById({ _id: id }, req, res, () => {
-          User.deleteUser({ _id: id }, (err, status) => {
-            if (err) {
-              if (err.name === 'CastError') {
-                return res.status(404).json({ success: false, ...err });
-              }
-              return res.status(500).json({ success: false, ...err });
-            }
-            if (!status) {
-              return res.status(502).json({
-                success: false,
-                message: 'Bad gateway.'
-              });
-            }
-            Rom.deleteAllRoms({ user_id: id }, (err, romsStatus) => {
-              if (err) {
-                if (err.name === 'CastError') {
-                  return res.status(404).json({ success: false, ...err });
-                }
-                return res.status(500).json({ success: false, ...err });
-              }
-              if (!romsStatus) {
-                return res.status(404).json({
-                  success: false,
-                  message: 'Error 404: user not found.'
-                });
-              }
-              clearCache(req);
-              return res.status(200).json({
-                success: true,
-                message: 'User successfully deleted!',
-                ...status
-              });
-            });
-          });
-        });
-      } else {
-        getUserById({ _id: id }, req, res, () => {
-          return res.status(403).json({
-            success: false,
-            message: 'You cannot delete this user.'
-          });
-        });
-      }
-    } catch (err) {
-      next(err);
-    }
-  }
+  user_controller.deleteUser
 );
 
-httpRouter.head('/', auth, async (req, res, next) => {
-  try {
-    await res.status(200);
-  } catch (err) {
-    next(err);
-  }
-});
+httpRouter.head('/', auth, user_controller.usersHeaders);
 
 httpRouter.head(
   '/:id',
@@ -664,54 +178,9 @@ httpRouter.head(
       .escape()
   ],
   auth,
-  async (req, res, next) => {
-    try {
-      let id;
-      try {
-        if (routesWithParams.includes(req.params.id)) {
-          return res
-            .status(405)
-            .json({ success: false, message: 'Method not allowed.' });
-        }
-        id = mongoose.Types.ObjectId(req.params.id);
-      } catch (e) {
-        return res
-          .status(404)
-          .json({ success: false, message: 'User not found.' });
-      }
-      await getUserById({ _id: id }, req, res, () => {
-        return res.status(200);
-      });
-    } catch (err) {
-      next(err);
-    }
-  }
+  user_controller.userHeaders
 );
 
-httpRouter.all('/*', async (req, res, next) => {
-  try {
-    const methods = [
-      'GET',
-      'POST',
-      'PUT',
-      'PATCH',
-      'DELETE',
-      'HEAD',
-      'OPTIONS'
-    ];
-    if (methods.includes(req.method)) {
-      res.set('Allow', methods.join(', '));
-      return await res
-        .status(405)
-        .json({ success: false, message: 'Method not allowed.' });
-    } else {
-      return await res
-        .status(501)
-        .json({ success: false, message: 'Method not implemented.' });
-    }
-  } catch (err) {
-    next(err);
-  }
-});
+httpRouter.all('/*', user_controller.all);
 
 module.exports = httpRouter;
