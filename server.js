@@ -14,6 +14,7 @@ const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
+const app_controller = require('./controllers/AppController');
 
 // configure passport
 require('./config/passport')(passport);
@@ -54,33 +55,13 @@ if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static(path.join(__dirname, '/public')));
 
-  app.get('*', async (req, res, next) => {
-    try {
-      await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-    } catch (err) {
-      next(err);
-    }
-  });
+  app.get('*', app_controller.index.prod);
 } else {
   // index route
-  app.get('/', async (req, res, next) => {
-    try {
-      await res.redirect(`/api/docs/${apiVersion}`);
-    } catch (err) {
-      next(err);
-    }
-  });
+  app.get('/', app_controller.index.dev);
 }
 
-app.all('/*', async (req, res, next) => {
-  try {
-    await res
-      .status(404)
-      .json({ success: false, message: 'Error 404: not found.' });
-  } catch (err) {
-    next(err);
-  }
-});
+app.all('/*', app_controller.all);
 
 // port
 const PORT = 50000;
