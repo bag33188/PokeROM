@@ -35,8 +35,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // middleware
-app.use(compression);
 app.use(helmet());
+app.use(compression);
 app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // extended: true
