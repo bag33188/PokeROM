@@ -16,7 +16,6 @@ const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
-const app_controller = require('./controllers/AppController');
 
 // configure passport
 require('./config/passport')(passport);
@@ -27,7 +26,7 @@ connectDB();
 // define app from express js
 const app = express();
 
-const [apiDocs] = swaggerDoc;
+const [apiDocs, apiVersion] = swaggerDoc;
 
 if (process.env.NODE_ENV !== 'production') {
   // setup swagger docs
@@ -58,18 +57,36 @@ app.use('/api/version', version);
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static(path.join(__dirname, '/public')));
-  app.get('*', app_controller.index.prod);
+  app.get('*', async (req, res, next) => {
+    try {
+      await res.sendFile(path.resolve(__dirName(), 'public', 'index.html'));
+    } catch (err) {
+      next(err);
+    }
+  });
 } else {
   // index route
-  app.get('/', app_controller.index.dev);
+  app.get('/', async (req, res, next) => {
+    try {
+      await res.redirect(`/api/docs/${apiVersion}`);
+    } catch (err) {
+      next(err);
+    }
+  });
 }
 
-app.all('/*', app_controller.all);
+app.all('/*', async (req, res, next) => {
+  try {
+    await res
+      .status(404)
+      .json({ success: false, message: 'Error 404: not found.' });
+  } catch (err) {
+    next(err);
+  }
+});
 
 // port
 const PORT = 50000;
 
 // start server
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-// module.exports = app;
