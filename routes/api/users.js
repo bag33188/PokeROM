@@ -15,7 +15,6 @@ httpRouter.get('/', auth, cache(14), user_controller.getUsers);
 
 httpRouter.get(
   '/:id',
-
   [
     sanitizeParam('id')
       .trim()
