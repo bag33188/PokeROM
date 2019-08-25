@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
+const compression = require('compression');
+const helmet = require('helmet');
 const expressSanitizer = require('express-sanitizer');
 const [, , cacheControl] = require('./middleware/cache');
 const logger = require('./middleware/logger');
@@ -33,6 +35,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // middleware
+app.use(compression);
+app.use(helmet());
 app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // extended: true
