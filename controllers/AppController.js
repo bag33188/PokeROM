@@ -6,7 +6,9 @@ const [, apiVersion] = swaggerDoc;
 module.exports.index = {
   prod: async (req, res, next) => {
     try {
-      await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+      await res.sendFile(
+        path.resolve(`../${__dirname}`, 'public', 'index.html')
+      );
     } catch (err) {
       next(err);
     }
