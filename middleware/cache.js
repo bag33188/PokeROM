@@ -2,8 +2,8 @@ const mcache = require('memory-cache');
 const cacheControl = require('express-cache-controller');
 
 function removeURIComponents(req, method, key) {
-  let queryParams = [];
-  let routeParams = [];
+  let queryParams;
+  let routeParams;
   switch (method.toUpperCase()) {
     case 'GET':
       queryParams = ['_limit', 'core', 'hacks', 'page', 'per_page'];
