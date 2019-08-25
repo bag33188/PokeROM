@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const url = require('url');
 const moment = require('moment');
 const { validationResult } = require('express-validator/check');
-const Nature = require('../../models/Nature');
-const natureData = require('../../database/data.json')[2];
-const [, clearCache] = require('../../middleware/cache');
+const Nature = require('../models/Nature');
+const natureData = require('../database/data.json')[2];
+const [, clearCache] = require('../middleware/cache');
 
 const fieldsToSanitize = ['name', 'up', 'down', 'flavor', 'usage'];
 const routesWithParams = ['all'];

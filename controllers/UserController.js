@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator/check');
 const secret = config.get('secret');
-const User = require('../../models/User');
-const Rom = require('../../models/Rom');
-const romsData = require('../../database/data.json');
-const [, clearCache] = require('../../middleware/cache');
+const User = require('../models/User');
+const Rom = require('../models/Rom');
+const romsData = require('../database/data.json');
+const [, clearCache] = require('../middleware/cache');
 
 const fieldsToSanitize = ['name', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;

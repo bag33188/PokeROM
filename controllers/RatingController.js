@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const { validationResult } = require('express-validator/check');
 const url = require('url');
 const moment = require('moment');
-const Rating = require('../../models/Rating');
-const [, clearCache] = require('../../middleware/cache');
+const Rating = require('../models/Rating');
+const [, clearCache] = require('../middleware/cache');
 
 function getRating(query, req, res, callback) {
   return Rating.getRating(query, (err, rating) => {
