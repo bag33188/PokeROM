@@ -29,6 +29,7 @@ passportConfig(passport);
 
 // configure api docs
 const [apiDocs, apiVersion] = swaggerDoc;
+// only show docs in dev mode
 if (process.env.NODE_ENV !== 'production') {
   // setup swagger docs
   apiDocs(app);
