@@ -16,7 +16,7 @@ import { NaturesService } from '../../../services/natures.service';
   styleUrls: ['./natures.component.scss']
 })
 export class NaturesComponent implements OnInit, AfterContentInit {
-  public natures: Nature[] = [];
+  public natures: Nature[] = new Array<Nature>();
   public headers: string[];
   public icons: IconDefinition[];
   public faLeaf: IconDefinition;

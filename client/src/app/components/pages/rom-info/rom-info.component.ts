@@ -36,24 +36,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     this.faLongArrowAltLeft = faLongArrowAltLeft;
     this.id = this.route.snapshot.paramMap.get('id');
     this.isError = false;
-    this.rom = {
-      order_number: 0,
-      rom_type: '',
-      game_name: '',
-      file_size: 0,
-      generation: 0,
-      date_released: new Date(),
-      file_type: '',
-      genre: '',
-      description: '',
-      download_link: '',
-      region: '',
-      logo_url: '',
-      box_art_url: '',
-      file_name: '',
-      platform: '',
-      is_favorite: false
-    };
+    this.rom = new Rom();
     this.getRom(this.id);
   }
 

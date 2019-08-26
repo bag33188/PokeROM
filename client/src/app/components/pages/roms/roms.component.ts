@@ -9,7 +9,7 @@ import he from 'he';
   styleUrls: ['./roms.component.scss']
 })
 export class RomsComponent implements OnInit, AfterContentInit {
-  public romsData: Rom[] = [];
+  public romsData: Rom[] = new Array<Rom>();
   public currentPage: number = 1;
   public itemsPerPage: number = 4;
   private pageSize: number;
