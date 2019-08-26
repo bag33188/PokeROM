@@ -24,14 +24,13 @@ const app = express();
 // connect to database
 connectDB();
 
-// configure passport
+// configure passport (auth)
 passportConfig(passport);
 
 // configure api docs
 const [apiDocs, apiVersion] = swaggerDoc;
-// only show docs in dev mode
 if (process.env.NODE_ENV !== 'production') {
-  // setup swagger docs
+  // only show docs in dev mode
   apiDocs(app);
 }
 
