@@ -33,8 +33,8 @@
     "client": "cd client && ng serve --open && cd ..",
     "db": "cd scripts && bash ./db.sh",
     "db-shell": "mongo pkmn-roms",
-    "db-prod": "mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin",
-    "load-db": "mongo --username admin --password 123456 --authenticationDatabase admin \"database/pkmn-roms.js\"",
+    "db-prod": "mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt",
+    "load-db": "mongo --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt \"database/pkmn-roms.js\"",
     "pack": "cd scripts && bash ./package_app.sh",
     "count-files-git": "cd scripts && ruby count_files_git.rb",
     "open-pages": "cd scripts && open_pages.bat"
