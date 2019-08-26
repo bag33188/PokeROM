@@ -13,15 +13,3 @@
     padding-bottom: 1em !important;
   }
 }
-
-#description-icon {
-  @media only all and (max-width: 388px) {
-    display: none !important;
-  }
-}
-
-h4 {
-  @media only all and (max-width: 938px) {
-    text-align: center;
-  }
-}

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faFileAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-game-description',
@@ -9,7 +8,6 @@ import { faFileAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 export class GameDescriptionComponent implements OnInit {
   @Input() public description: string;
   @Input() public gameName: string;
-  public faFileAlt: IconDefinition;
 
   constructor() {}
   static changeUrlToLink(description: string): string {
@@ -25,7 +23,6 @@ export class GameDescriptionComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.faFileAlt = faFileAlt;
     setTimeout((): void => {
       if (this.description) {
         this.description = GameDescriptionComponent.changeUrlToLink(
@@ -33,9 +30,5 @@ export class GameDescriptionComponent implements OnInit {
         );
       }
     }, 555);
-  }
-
-  public isRomHack(romType: string): boolean {
-    return romType === 'hack';
   }
 }

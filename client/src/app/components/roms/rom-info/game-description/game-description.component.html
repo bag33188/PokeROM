@@ -1,12 +1,3 @@
 <ng-container>
-  <h4>
-    <fa-icon
-      [icon]="faFileAlt"
-      class="mr-3 ml-1"
-      id="description-icon"
-    ></fa-icon
-    >{{ isRomHack(gameName) ? '' : 'Pokemon.com '
-    }}<span class="mr-1">Description</span>
-  </h4>
   <p id="description" class="border rounded" [innerHTML]="description"></p>
 </ng-container>

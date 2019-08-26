@@ -6,7 +6,8 @@
  * Full:
  * |===================================================|
  * |                     game-logo                     |
- * |                                                   |
+ * |----------------------------|----------------------|
+ * |   game-description-title   |                      |
  * |----------------------------|----------------------|
  * |                            |                      |
  * |                            |      game-specs      |
@@ -25,6 +26,8 @@
  * |============================|
  * |         game-logo          |
  * |                            |
+ * |----------------------------|
+ * |   game-description-title   |
  * |----------------------------|
  * |                            |
  * |      game-description      |
@@ -47,15 +50,19 @@
   display: grid;
   grid-template-areas:
     'game-logo game-logo'
+    'game-description-title .'
     'game-description game-specs'
     'game-description rom-specs'
     'rom-download .';
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: 0.5fr fit-content(em(188px)) fit-content(188px) 2.6rem;
+  grid-template-rows: 0.5fr fit-content(1rem) fit-content(em(188px)) fit-content(
+      188px
+    ) 2.6rem;
   margin: 30px;
   @media only all and (max-width: 938px) {
     grid-template-areas:
       'game-logo'
+      'game-description-title'
       'game-description'
       'game-specs'
       'rom-specs'
@@ -63,6 +70,7 @@
     grid-template-columns: 1fr;
     grid-template-rows:
       0.5fr
+      fit-content(1rem)
       fit-content(em(308px, 16px))
       15.5rem
       fit-content(17.5rem)
@@ -80,10 +88,11 @@
   }
 }
 
-#game-description {
-  grid-area: 'game-description';
+#game-description-title {
+  grid-area: 'game-description-title';
   grid-column: 1;
-  grid-row: 2 / 4;
+  grid-row: 2;
+  margin-top: 1rem;
   @media only all and (max-width: 938px) {
     grid-column: 1;
     grid-row: 2;
@@ -91,13 +100,24 @@
   }
 }
 
+#game-description {
+  grid-area: 'game-description';
+  grid-column: 1;
+  grid-row: 3 / 5;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 3;
+    text-align: center;
+  }
+}
+
 #rom-download {
   grid-area: 'rom-download';
   grid-column: 1;
-  grid-row: 4;
+  grid-row: 5;
   @media only all and (max-width: 938px) {
     grid-column: 1;
-    grid-row: 5;
+    grid-row: 6;
     text-align: center;
   }
 }
@@ -105,11 +125,10 @@
 #game-specs {
   grid-area: 'game-specs';
   grid-column: 2;
-  grid-row: 2;
-  margin-top: 36px;
+  grid-row: 3;
   @media only all and (max-width: 938px) {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 4;
     margin-top: 0;
   }
 }
@@ -117,10 +136,10 @@
 #rom-specs {
   grid-area: 'rom-specs';
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 4;
   @media only all and (max-width: 938px) {
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 5;
   }
 }
 
@@ -166,4 +185,16 @@
 
 #rom-info-err {
   margin-top: 5rem;
+}
+
+#description-icon {
+  @media only all and (max-width: 388px) {
+    display: none !important;
+  }
+}
+
+h4 {
+  @media only all and (max-width: 938px) {
+    text-align: center;
+  }
 }

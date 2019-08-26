@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   faLongArrowAltLeft,
+  faFileAlt,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
@@ -21,6 +22,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   public isError: boolean;
   public faLongArrowAltLeft: IconDefinition;
   public errStatus: number;
+  public faFileAlt: IconDefinition;
 
   constructor(
     private romService: RomsService,
@@ -30,6 +32,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   ) {}
 
   ngOnInit(): void {
+    this.faFileAlt = faFileAlt;
     this.faLongArrowAltLeft = faLongArrowAltLeft;
     this.id = this.route.snapshot.paramMap.get('id');
     this.isError = false;
@@ -93,5 +96,8 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
         throw err;
       }
     );
+  }
+  public isRomHack(romType: string): boolean {
+    return romType === 'hack';
   }
 }

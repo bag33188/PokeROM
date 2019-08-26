@@ -51,6 +51,17 @@
         [logoUrl]="rom.logo_url"
         [gameName]="rom.game_name"
       ></app-game-logo>
+      <div id="game-description-title">
+        <h4>
+          <fa-icon
+            [icon]="faFileAlt"
+            class="mr-3 ml-1"
+            id="description-icon"
+          ></fa-icon
+          >{{ isRomHack(gameName) ? '' : 'Pokemon.com '
+          }}<span class="mr-1">Description</span>
+        </h4>
+      </div>
       <app-game-description
         id="game-description"
         [description]="rom.description"
