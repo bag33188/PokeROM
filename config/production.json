@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb://admin:123456@server1.pokerom.dev:27017/pkmn-roms?authSource=admin&gssapiServiceName=mongodb",
+  "mongoURI": "mongodb://admin:123456@server1.pokerom.dev:55443/pkmn-roms?authSource=admin&gssapiServiceName=mongodb",
   "secret": ";r--ZeGh$q&`nT\\m4Uq@9e&c.4\"PwP4FSF}RG8>*cmT+NL7\"D2hM.D<?t8AH@@mCee9?F{H6X\\'fM>uzgdk^\"H/H{QZt.,SX/Zs/`F\"\"W/hpHz6f_p2;GD-HPYN*xQX&YqnNJ(qM//%K&7vbWKs7F&\\R_#H#9bVw!qu;_>8c^J%d>xM>vCtN(`rGJbfcw*U2EmfN!Gb^?2VnyCKr+E}pkq],La6^P5],%3-_/b{V)9Yg]P~N,w3NM2)gz`D_D4N:X6[[5%4ax8hcng~D6yxqT\"X):T!.jx,~^QkVA9~<uTChS*Z2>V^/w._(2ERH}fA~j'X;,btX@swAC)bje_[>d!~Dsw(^,P^u<%7b\"UF}SRRz2UFsC7E,:Kp3*t,yA!n{[L5Se!B=Z7y;D\\x@xMkgj@SV7mJv36FGAS>3VQFZq.z;yKq(~C`>5nxRj#PqtBFyZ?4f(:Yjb\"V/5DaD]ADVhG*2\")q+wx2-9F9*45K+9t5).E?(;^-Y2#'Vn9Mtd%D`"
 }
