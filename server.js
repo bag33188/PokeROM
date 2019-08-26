@@ -9,6 +9,7 @@ const logger = require('./middleware/logger');
 const jsonSyntax = require('./middleware/json-syntax');
 const swaggerDoc = require('./docs/swagger-doc');
 const connectDB = require('./config/db');
+const passportConfig = require('./config/passport');
 const cors = require('./config/cors');
 const roms = require('./routes/api/roms');
 const users = require('./routes/api/users');
@@ -17,17 +18,17 @@ const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
-// configure passport
-require('./config/passport')(passport);
+// define app from express js
+const app = express();
 
 // connect to database
 connectDB();
 
-// define app from express js
-const app = express();
+// configure passport
+passportConfig(passport);
 
+// configure api docs
 const [apiDocs, apiVersion] = swaggerDoc;
-
 if (process.env.NODE_ENV !== 'production') {
   // setup swagger docs
   apiDocs(app);
