@@ -8,7 +8,7 @@ const connectDB = async () => {
   try {
     if (process.env.NODE_ENV === 'production') {
       const key = fs.readFileSync('database/mongodb.pem');
-      const ca = fs.read('database/mongodb.crt');
+      const ca = fs.readFileSync('database/mongodb.crt');
       await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird,
