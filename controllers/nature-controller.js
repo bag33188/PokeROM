@@ -3,7 +3,7 @@ const url = require('url');
 const moment = require('moment');
 const { validationResult } = require('express-validator/check');
 const Nature = require('../models/Nature');
-const natureData = require('../database/data.json')[2];
+const [, , natureData] = require('../database/data.json');
 const [, clearCache] = require('../middleware/cache');
 
 const routesWithParams = ['all'];

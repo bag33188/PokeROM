@@ -3,9 +3,8 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const { validationResult } = require('express-validator/check');
 const Rom = require('../models/Rom');
-const romsData = require('../database/data.json');
+const [coreRoms, romHacks] = require('../database/data.json');
 const [, clearCache] = require('../middleware/cache');
-// const all_routes = require('express-list-endpoints');
 
 const routesWithParams = ['core', 'hacks'];
 
@@ -600,7 +599,7 @@ module.exports.romsOptions = async (req, res, next) => {
 
 module.exports.coreRoms = async (req, res, next) => {
   try {
-    await Rom.postCore(romsData[0], req.user, (err, roms) => {
+    await Rom.postCore(coreRoms, req.user, (err, roms) => {
       if (err) {
         return res.status(500).json({ success: false, ...err });
       }
@@ -627,7 +626,7 @@ module.exports.coreRoms = async (req, res, next) => {
 
 module.exports.romHacks = async (req, res, next) => {
   try {
-    await Rom.postHacks(romsData[1], req.user, (err, roms) => {
+    await Rom.postHacks(romHacks, req.user, (err, roms) => {
       if (err) {
         return res.status(500).json({ success: false, ...err });
       }
