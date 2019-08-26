@@ -58,14 +58,13 @@
             class="mr-3 ml-1"
             id="description-icon"
           ></fa-icon
-          >{{ isRomHack(gameName) ? '' : 'Pokemon.com '
+          >{{ isRomHack(rom.game_name) ? '' : 'Pokemon.com '
           }}<span class="mr-1">Description</span>
         </h4>
       </div>
       <app-game-description
         id="game-description"
         [description]="rom.description"
-        [gameName]="rom.game_name"
       ></app-game-description>
       <app-rom-download
         id="rom-download"
