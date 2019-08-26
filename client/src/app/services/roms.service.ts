@@ -107,7 +107,7 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url: string = `$${this.romsUrl}/${id}`;
+    const url: string = `${this.romsUrl}/${id}`;
     return this.http.patch<Rom>(url, partialRom, {
       headers
     });
