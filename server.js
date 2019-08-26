@@ -18,7 +18,7 @@ const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
-// define app from express js
+// initialize app using express.js
 const app = express();
 
 // connect to database
