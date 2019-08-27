@@ -6,6 +6,7 @@ files:
   ignore:
     - 'node_modules/bootstrap/**/*.s+(a|c)ss'
     - 'node_modules/node-sass/**/*.s+(a|c)ss'
+    - 'src/app/animations/animations.s+(a|c)ss'
 rules:
   bem-depth:
     - 0
