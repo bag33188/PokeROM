@@ -3,11 +3,18 @@
 .spinner {
   height: auto;
   width: 8rem;
+  // animation: rotate 3s linear infinite;
 }
 
 .spinner-container {
   height: unquote('#{$calc-height}');
-  right: 50%;
   margin-right: -64px;
   position: absolute;
+  right: 50%;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
 }
