@@ -12,6 +12,7 @@
 Thumbs.db
 _MACOSX
 bash.exe.stackdump
+.ftpquota
 
 # Project File(s)
 *.code-workspace
