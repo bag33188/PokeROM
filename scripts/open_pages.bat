@@ -17,9 +17,9 @@ REM.||(
   REM VPS Control Panel
   START "" https://vpspanel.web-hosting.com/control.php?_v=84y2q2y2d4s254b4m523c4
   REM WHM
-  START "" https://192.64.114.215:2087
+  START "" https://server1.pokerom.dev:2087
   REM cPanel
-  START "" https://192.64.114.215:2083
+  START "" https://server1.pokerom.dev:2083
   REM Namecheap
   START "" https://ap.www.namecheap.com/
   REM Private Email
