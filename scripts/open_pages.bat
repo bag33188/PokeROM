@@ -24,12 +24,6 @@ REM.||(
   START "" https://ap.www.namecheap.com/
   REM Private Email
   START "" https://privateemail.com/appsuite/#!!&app=io.ox/mail&folder=default0/INBOX
-  REM Main PokeROM Github Repository
-  START "" https://github.com/bag33188/PokeROM
-  REM Bcrypt.JS Password Hash Generator repository
-  START "" https://github.com/bag33188/pw-hash-gen
-  REM Website Loading Bar NPM Package repository
-  START "" https://github.com/bag33188/progressive-loading-bar
   REM Official PokeROM Website
   START "" https://www.pokerom.dev
   REM Go up one directory
