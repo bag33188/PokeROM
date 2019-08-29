@@ -91,6 +91,10 @@ export class HeaderComponent implements OnInit {
         pathMatch: 'prefix'
       },
       {
+        url: '/account',
+        pathMatch: 'full'
+      },
+      {
         url: '/404',
         pathMatch: 'prefix'
       }
