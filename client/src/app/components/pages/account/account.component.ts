@@ -24,7 +24,7 @@ export class AccountComponent implements OnInit {
     String.prototype.removeStrings = removeStrings;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const key: string = 'id';
     this.userId = JSON.parse(localStorage.getItem('user'))[key];
     this.retrieveUserData();
@@ -42,6 +42,7 @@ export class AccountComponent implements OnInit {
       },
       (err: any): never => {
         this.errLoadingUsr = true;
+        this.ready = true;
         throw err;
       }
     );
