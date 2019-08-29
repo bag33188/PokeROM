@@ -34,7 +34,7 @@ class FixIndexHtml:
 
     # regex for identifying script tags (constant)
     # use https://regexr.com for testing regular expressions
-    SCRIPT_TAG_REGEX = re.compile(r'((?:<script src=\")(?:(?:runtime|polyfills|main|vendor|scripts)(?:-?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js\")(?:(?:\stype="module")?(?:\snomodule)?)(?:><\/script>))')
+    SCRIPT_TAG_REGEX = re.compile(r'((?:<script src=\")(?:(?:runtime|polyfills|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js\")(?:(?:\stype="module")?(?:\snomodule)?)(?:><\/script>))')
 
     # future script tag string from joined script tag strings array
     new_script_tags = ''
