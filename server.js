@@ -46,6 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(expressSanitizer());
 app.use(cors);
+app.use(express.static(path.join(__dirname, '/public'))); // Set static folder
 
 // routing middleware
 app.use('/options', options);
@@ -56,8 +57,6 @@ app.use('/api/natures', natures);
 app.use('/api/version', version);
 
 if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, '/public')));
   app.get('*', async (req, res, next) => {
     try {
       await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
