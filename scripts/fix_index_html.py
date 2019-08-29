@@ -11,8 +11,9 @@ class FixIndexHtml:
   This class contains all of the functionality for fixing the `public/index.html` file.
   """
 
-  # create filepath class-property
+  # create filepath and exit_code class-properties
   filepath = ''
+  exit_code = None
 
   # define constructor
   def __init__(self, filepath):
@@ -80,6 +81,9 @@ class FixIndexHtml:
           # store script tags in list variable
           script_tags = SCRIPT_TAG_REGEX.findall(line)
 
+          # create var for checking if script tags exist on line
+          script_tags_exist = True if script_tags else False
+
           # do various checks that depend on formatting
 
           # if the link tag and the closing head tag on the same line
@@ -97,7 +101,7 @@ class FixIndexHtml:
                                  .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'))
 
           # check if script tags are in current line
-          elif script_tags:
+          elif script_tags_exist == True:
 
             # loop thru script tags in bottom of file
             for i in range(len(script_tags)):
@@ -117,13 +121,17 @@ class FixIndexHtml:
 
       print('Done!', end='\n\n')
 
+      self.exit_code = 0
+
     # catch file not found error
     except FileNotFoundError:
       print(f'Error, index.html file not found (looking in `{self.filepath}`.)', end='\n\n')
+      self.exit_code = 1
 
     # general exception
     except Exception as err:
       print(f'An error occurred:\n{str(err)}', end='\n\n')
+      self.exit_code = 1
 
   # define insert_comment method
   def insert_comment(self):
@@ -179,13 +187,17 @@ class FixIndexHtml:
 
       print('Done!', end='\n\n')
 
+      self.exit_code = 0
+
     # catch file not found error
     except FileNotFoundError:
       print(f'Error, index.html file not found (looking in `{self.filepath}`.)', end='\n\n')
+      self.exit_code = 1
 
     # catch general exception
     except Exception as err:
       print(f'An error occurred:\n{str(err)}', end='\n\n')
+      self.exit_code = 1
 
   # define add_positive_ssl_trusted_logo method
   def add_positive_ssl_trusted_logo(self):
@@ -230,16 +242,36 @@ class FixIndexHtml:
 
       print('Done!', end='\n\n')
 
+      self.exit_code = 0
+
     # catch file not found error
     except FileNotFoundError:
       print(f'Error, index.html file not found (looking in `{self.filepath}`.)', end='\n\n')
+      self.exit_code = 1
 
     # catch general exception
     except Exception as err:
       print(f'An error occurred:\n{str(err)}', end='\n\n')
+      self.exit_code = 1
+
+  # define final method for checking exit code
+  def check_exit_code(self):
+    """
+    Checks if exit code is 0 (successful) or 1 (unsuccessful).
+    """
+
+    # check exit code
+    if self.exit_code == 0:
+      # exit successfully
+      sys.exit(self.exit_code)
+    else:
+      # exit code will be 1
+      sys.exit(self.exit_code)
 
 # apply fixes to index.html file
 index_html = FixIndexHtml('../public/index.html')
 index_html.move_script_tags()
 index_html.insert_comment()
 index_html.add_positive_ssl_trusted_logo()
+# check if everything was successful
+index_html.check_exit_code()
