@@ -14,7 +14,7 @@ import removeStrings from '../../../helpers/remove-strings';
 export class AccountComponent implements OnInit {
   public user: User;
   private userId: string;
-  public updateFail: string;
+  public updateFail: boolean = false;
   public ready: boolean = false;
   public pwFocused: boolean = false;
   public errLoadingUsr: boolean = false;
@@ -58,8 +58,7 @@ export class AccountComponent implements OnInit {
         this.router.navigate(['/', 'home']);
       },
       (err: any): never => {
-        this.updateFail =
-          'There was an error while trying to update your account.';
+        this.updateFail = true;
         throw err;
       }
     );
