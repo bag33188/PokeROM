@@ -76,12 +76,16 @@ export class TabsetComponent implements OnInit {
   }
 
   public openModal() {
-    const modalRef = this.modalService.open(ModalContentComponent);
+    const modalRef = this.modalService.open(ModalContentComponent, {
+      centered: true,
+      scrollable: true
+    });
     modalRef.componentInstance.reasons = [
       'It does not support CSS grid',
       'It does not support ES6 JavaScript',
       'It has many security issues',
-      'It is slow'
+      'It is slow',
+      'It just sucks'
     ];
   }
 }

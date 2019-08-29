@@ -1,4 +1,4 @@
-<ng-contaienr>
+<ng-container>
   <app-spinner [loading]="loading"></app-spinner>
   <div class="container mt-4" id="natures-container">
     <h1>Natures</h1>
@@ -9,7 +9,7 @@
     </div>
     <table
       id="natures"
-      class="table border rounded"
+      class="table striped border rounded"
       *ngIf="!loading && !isError"
     >
       <thead>
@@ -33,4 +33,4 @@
       </tbody>
     </table>
   </div>
-</ng-contaienr>
+</ng-container>
