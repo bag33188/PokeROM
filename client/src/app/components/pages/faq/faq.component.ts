@@ -6,7 +6,6 @@ import {
   ElementRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-faq',
@@ -19,7 +18,7 @@ export class FaqComponent implements OnInit, AfterContentInit {
   @ViewChild('browserCompatibility', { static: true })
   private browserCompatibilityElement: ElementRef;
 
-  constructor(private route: ActivatedRoute, public authService: AuthService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.emulatorUrl = 'https://www.retroarch.com';
