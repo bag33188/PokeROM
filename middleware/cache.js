@@ -68,7 +68,9 @@ function cache(duration) {
 }
 
 function clearCache(req) {
-  let key = `__express__${req.originalUrl}`;
+  let key = `__express__${req.originalUrl}${
+    req.user ? ':' + req.user['_id'] + '$' : '$'
+  }`;
   key = removeURIComponents(req, req.method, key);
   const cachedBody = mcache.get(key);
   if (cachedBody) {
