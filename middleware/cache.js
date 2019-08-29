@@ -52,11 +52,8 @@ function cache(duration) {
     const cachedBody = mcache.get(key);
     if (cachedBody) {
       res.send(cachedBody);
-      console.log(mcache.keys());
       return;
     } else {
-      console.log(mcache.keys());
-
       res.sendResponse = res.send;
       res.send = body => {
         mcache.put(key, body, duration * 1000);
