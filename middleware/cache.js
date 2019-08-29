@@ -72,6 +72,7 @@ function clearCache(req) {
   key = removeURIComponents(req, req.method, key);
   const cachedBody = mcache.get(key);
   if (cachedBody) {
+    // remove all cached roms even if single rom is changed
     if (req.params['id']) {
       mcache.del(key.replace(`/${req.params['id']}`, ''));
     }
