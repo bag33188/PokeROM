@@ -33,7 +33,7 @@ httpRouter.post(
       .escape(),
     check('name')
       .optional()
-      .isLength({ max: 100 })
+      .isLength({ min: 1, max: 100 })
       .withMessage('Name can only be 100 characters at max.')
       .isString()
       .withMessage('Name must be a string.'),
