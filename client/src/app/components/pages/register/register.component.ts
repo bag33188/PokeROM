@@ -71,6 +71,9 @@ export class RegisterComponent implements OnInit, AfterContentInit {
       this.registerFail =
         'Username can only contain letters, numbers, or underscores.';
     } else {
+      if (user.name.length < 1 || user.name === '') {
+        delete user.name;
+      }
       this.userService.registerUser(user).subscribe(
         (data: { success: boolean; message: string }): void => {
           if (data.success) {
@@ -83,7 +86,9 @@ export class RegisterComponent implements OnInit, AfterContentInit {
         (err: any): never => {
           const keys: string[] = ['error', 'message', 'errors', 'msg'];
           if (err[keys[0]][keys[1]]) {
-            if (err[keys[0]][keys[1]] === 'User with username already exists.') {
+            if (
+              err[keys[0]][keys[1]] === 'User with username already exists.'
+            ) {
               this.registerFail = 'User with username already exists';
             } else {
               this.registerFail = 'Registration Failure';
