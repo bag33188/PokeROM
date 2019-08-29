@@ -10,6 +10,7 @@ import { NaturesComponent } from '../components/pages/natures/natures.component'
 import { RatingsComponent } from '../components/pages/ratings/ratings.component';
 import { IsSecureGuard } from '../guards/is-secure.guard';
 import { RegisterComponent } from '../components/pages/register/register.component';
+import { AccountComponent } from '../components/pages/account/account.component';
 
 export const routes: Routes = [
   {
@@ -45,6 +46,11 @@ export const routes: Routes = [
     path: 'ratings',
     component: RatingsComponent,
     canActivate: [IsSecureGuard]
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [AuthGuard, IsSecureGuard]
   },
   { path: '404', component: NotFoundComponent, canActivate: [IsSecureGuard] },
   { path: '**', component: NotFoundComponent, canActivate: [IsSecureGuard] }
