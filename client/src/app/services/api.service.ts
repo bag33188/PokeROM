@@ -25,10 +25,15 @@ export class ApiService {
   }
 
   public storeApiVersionInCache(): void {
-    caches.open('api_version').then(
-      (cache: Cache): Promise<void> => {
-        return cache.add(`${environment.apiUrl}/version`);
-      }
-    );
+    caches
+      .open('api_version')
+      .then(
+        (cache: Cache): Promise<void> => {
+          return cache.add(`${environment.apiUrl}/version`);
+        }
+      )
+      .catch((err: any): never => {
+        throw err;
+      });
   }
 }
