@@ -160,27 +160,31 @@ module.exports.updateNature = async (req, res, next) => {
       { _id: id },
       updateData,
       {},
-      (err, updatedNature) => {
-        if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(406).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
+      async (err, updatedNature) => {
+        try {
+          if (err) {
+            switch (err.name) {
+              case 'CastError':
+                return res.status(404).json({ success: false, ...err });
+              case 'ValidationError':
+                return res.status(406).json({ success: false, ...err });
+              default:
+                return res.status(500).json({ success: false, ...err });
+            }
           }
-        }
-        if (!updatedNature) {
-          return res.status(404).json({
-            success: false,
-            message: 'Error 404: nature not found.'
+          if (!updatedNature) {
+            return res.status(404).json({
+              success: false,
+              message: 'Error 404: nature not found.'
+            });
+          }
+          await getNature({ _id: id }, req, res, nature => {
+            clearCache(req);
+            return res.status(200).json(nature);
           });
+        } catch (err) {
+          next(err);
         }
-        getNature({ _id: id }, req, res, nature => {
-          clearCache(req);
-          return res.status(200).json(nature);
-        });
       }
     );
   } catch (err) {
@@ -219,28 +223,36 @@ module.exports.patchNature = async (req, res, next) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    await Nature.patchNature({ _id: id }, { $set: query }, (err, status) => {
-      if (err) {
-        switch (err.name) {
-          case 'CastError':
-            return res.status(404).json({ success: false, ...err });
-          case 'ValidationError':
-            return res.status(406).json({ success: false, ...err });
-          default:
-            return res.status(500).json({ success: false, ...err });
+    await Nature.patchNature(
+      { _id: id },
+      { $set: query },
+      async (err, status) => {
+        try {
+          if (err) {
+            switch (err.name) {
+              case 'CastError':
+                return res.status(404).json({ success: false, ...err });
+              case 'ValidationError':
+                return res.status(406).json({ success: false, ...err });
+              default:
+                return res.status(500).json({ success: false, ...err });
+            }
+          }
+          if (!status) {
+            return res.status(502).json({
+              success: false,
+              message: 'Bad gateway.'
+            });
+          }
+          await getNature({ _id: id }, req, res, nature => {
+            clearCache(req);
+            return res.status(200).json(nature);
+          });
+        } catch (err) {
+          next(err);
         }
       }
-      if (!status) {
-        return res.status(502).json({
-          success: false,
-          message: 'Bad gateway.'
-        });
-      }
-      getNature({ _id: id }, req, res, nature => {
-        clearCache(req);
-        return res.status(200).json(nature);
-      });
-    });
+    );
   } catch (err) {
     next(err);
   }
@@ -261,23 +273,27 @@ module.exports.deleteNature = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'Nature not found.' });
     }
-    getNature({ _id: id }, req, res, () => {
-      Nature.deleteNature({ _id: id }, (err, status) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
+    await getNature({ _id: id }, req, res, async () => {
+      try {
+        await Nature.deleteNature({ _id: id }, (err, status) => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
           }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!status) {
-          return res.status(502).json({
-            success: false,
-            message: 'Bad gateway.'
-          });
-        }
-        clearCache(req);
-        return res.status(200).json({ success: true, ...status });
-      });
+          if (!status) {
+            return res.status(502).json({
+              success: false,
+              message: 'Bad gateway.'
+            });
+          }
+          clearCache(req);
+          return res.status(200).json({ success: true, ...status });
+        });
+      } catch (err) {
+        next(err);
+      }
     });
   } catch (err) {
     next(err);
@@ -286,7 +302,7 @@ module.exports.deleteNature = async (req, res, next) => {
 
 module.exports.deleteNatures = async (req, res, next) => {
   try {
-    Nature.deleteAllNatures((err, status) => {
+    await Nature.deleteAllNatures((err, status) => {
       if (err) {
         return res.status(500).json({ success: false, ...err });
       }
@@ -308,12 +324,8 @@ module.exports.deleteNatures = async (req, res, next) => {
   }
 };
 
-module.exports.naturesHeaders = async (req, res, next) => {
-  try {
-    await res.status(200);
-  } catch (err) {
-    next(err);
-  }
+module.exports.naturesHeaders = (req, res) => {
+  res.status(200);
 };
 
 module.exports.natureHeaders = async (req, res, next) => {
@@ -341,17 +353,8 @@ module.exports.natureHeaders = async (req, res, next) => {
 
 module.exports.allNatures = async (req, res, next) => {
   try {
-    await Nature.postAll(natureData, (err, natures) => {
-      if (err) {
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!natures) {
-        return res.status(502).json({
-          success: false,
-          message: 'Bad gateway.'
-        });
-      }
-      Nature.getNatures((err, natures) => {
+    await Nature.postAll(natureData, async (err, natures) => {
+      try {
         if (err) {
           return res.status(500).json({ success: false, ...err });
         }
@@ -361,29 +364,38 @@ module.exports.allNatures = async (req, res, next) => {
             message: 'Bad gateway.'
           });
         }
-        clearCache(req);
-        return res.status(201).json(natures);
-      });
+        await Nature.getNatures((err, natures) => {
+          if (err) {
+            return res.status(500).json({ success: false, ...err });
+          }
+          if (!natures) {
+            return res.status(502).json({
+              success: false,
+              message: 'Bad gateway.'
+            });
+          }
+          clearCache(req);
+          return res.status(201).json(natures);
+        });
+      } catch (err) {
+        next(err);
+      }
     });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports.all = async (req, res, next) => {
-  try {
-    const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'];
-    if (methods.includes(req.method)) {
-      res.set('Allow', methods.join(', '));
-      return await res
-        .status(405)
-        .json({ success: false, message: 'Method not allowed.' });
-    } else {
-      return await res
-        .status(501)
-        .json({ success: false, message: 'Method not implemented.' });
-    }
-  } catch (err) {
-    next(err);
+module.exports.all = (req, res) => {
+  const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'];
+  if (methods.includes(req.method)) {
+    res.set('Allow', methods.join(', '));
+    return res
+      .status(405)
+      .json({ success: false, message: 'Method not allowed.' });
+  } else {
+    return res
+      .status(501)
+      .json({ success: false, message: 'Method not implemented.' });
   }
 };

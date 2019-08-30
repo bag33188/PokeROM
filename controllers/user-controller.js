@@ -110,7 +110,7 @@ module.exports.getUser = async (req, res, next) => {
         return res.status(200).json(user);
       });
     } else {
-      getUserById({ _id: id }, req, res, () => {
+      await getUserById({ _id: id }, req, res, () => {
         return res.status(403).json({
           success: false,
           message: `You cannot get this user's data.`
@@ -136,60 +136,64 @@ module.exports.registerUser = async (req, res, next) => {
     }
     await User.addUser(
       newUser,
-      (err, user) => {
-        if (err) {
-          if (err.name === 'ValidationError') {
-            return res.status(406).json({ success: false, ...err });
+      async (err, user) => {
+        try {
+          if (err) {
+            if (err.name === 'ValidationError') {
+              return res.status(406).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
           }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!user) {
-          return res.status(500).json({
-            success: false
+          if (!user) {
+            return res.status(500).json({
+              success: false
+            });
+          }
+          await Rom.postCore(romsData[0], user, (err, roms) => {
+            if (err) {
+              return res.status(500).json({ success: false, ...err });
+            }
+            if (!roms) {
+              return res
+                .status(502)
+                .json({ success: false, message: 'Bad gateway.' });
+            }
+            return console.log(`Core ROMs added for user '${user.username}'.`);
           });
+          await Rom.postHacks(romsData[1], user, (err, roms) => {
+            if (err) {
+              return res.status(500).json({ success: false, ...err });
+            }
+            if (!roms) {
+              return res
+                .status(502)
+                .json({ success: false, message: 'Bad gateway.' });
+            }
+            return console.log(`ROM Hacks added for user '${user.username}'.`);
+          });
+          res.append(
+            'Created-At-Route',
+            `${url
+              .format({
+                protocol: req.protocol,
+                host: req.get('host'),
+                pathname: req.originalUrl
+              })
+              .replace('/register', '')}/${user._id}`
+          );
+          res.append(
+            'Created-At',
+            moment()
+              .subtract(7, 'hours')
+              .format()
+          );
+          clearCache(req);
+          return res
+            .status(201)
+            .json({ success: true, message: 'User successfully registered!' });
+        } catch (err) {
+          next(err);
         }
-        Rom.postCore(romsData[0], user, (err, roms) => {
-          if (err) {
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!roms) {
-            return res
-              .status(502)
-              .json({ success: false, message: 'Bad gateway.' });
-          }
-          return console.log(`Core ROMs added for user '${user.username}'.`);
-        });
-        Rom.postHacks(romsData[1], user, (err, roms) => {
-          if (err) {
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!roms) {
-            return res
-              .status(502)
-              .json({ success: false, message: 'Bad gateway.' });
-          }
-          return console.log(`ROM Hacks added for user '${user.username}'.`);
-        });
-        res.append(
-          'Created-At-Route',
-          `${url
-            .format({
-              protocol: req.protocol,
-              host: req.get('host'),
-              pathname: req.originalUrl
-            })
-            .replace('/register', '')}/${user._id}`
-        );
-        res.append(
-          'Created-At',
-          moment()
-            .subtract(7, 'hours')
-            .format()
-        );
-        clearCache(req);
-        return res
-          .status(201)
-          .json({ success: true, message: 'User successfully registered!' });
       },
       () => {
         return res.status(500).json({
@@ -225,45 +229,49 @@ module.exports.authorizeUser = async (req, res, next) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    await User.getUserByUsername(username, (err, user) => {
-      if (err) {
-        switch (err.name) {
-          case 'CastError':
-            return res.status(404).json({ success: false, ...err });
-          case 'ValidationError':
-            return res.status(406).json({ success: false, ...err });
-          default:
-            return res.status(500).json({ success: false, ...err });
-        }
-      }
-      if (!user)
-        return res.status(404).json({
-          success: false,
-          message: 'Error: User not found.'
-        });
-      // check entered if password matches username's password
-      User.comparePassword(password, user.password, (err, isMatch) => {
+    await User.getUserByUsername(username, async (err, user) => {
+      try {
         if (err) {
-          return res.status(403).json({ success: false, ...err });
+          switch (err.name) {
+            case 'CastError':
+              return res.status(404).json({ success: false, ...err });
+            case 'ValidationError':
+              return res.status(406).json({ success: false, ...err });
+            default:
+              return res.status(500).json({ success: false, ...err });
+          }
         }
-        if (isMatch) {
-          const token = jwt.sign({ data: user }, secret, {
-            expiresIn: (1).convertUnitOfTimeToSeconds('week')
+        if (!user)
+          return res.status(404).json({
+            success: false,
+            message: 'Error: User not found.'
           });
-          return res.status(202).json({
-            success: true,
-            token: `Bearer ${token}`,
-            user: {
-              id: user._id,
-              name: user.name,
-              username: user.username
-            }
-          });
-        }
-        return res
-          .status(403)
-          .json({ success: false, message: 'Error: wrong password.' });
-      });
+        // check entered if password matches username's password
+        await User.comparePassword(password, user.password, (err, isMatch) => {
+          if (err) {
+            return res.status(403).json({ success: false, ...err });
+          }
+          if (isMatch) {
+            const token = jwt.sign({ data: user }, secret, {
+              expiresIn: (1).convertUnitOfTimeToSeconds('week')
+            });
+            return res.status(202).json({
+              success: true,
+              token: `Bearer ${token}`,
+              user: {
+                id: user._id,
+                name: user.name,
+                username: user.username
+              }
+            });
+          }
+          return res
+            .status(403)
+            .json({ success: false, message: 'Error: wrong password.' });
+        });
+      } catch (err) {
+        next(err);
+      }
     });
   } catch (err) {
     next(err);
@@ -296,30 +304,34 @@ module.exports.updateUser = async (req, res, next) => {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
     if (req.user['_id'].toString() === id.toString()) {
-      await User.updateUser({ _id: id }, userData, {}, (err, user) => {
-        if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(406).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
+      await User.updateUser({ _id: id }, userData, {}, async (err, user) => {
+        try {
+          if (err) {
+            switch (err.name) {
+              case 'CastError':
+                return res.status(404).json({ success: false, ...err });
+              case 'ValidationError':
+                return res.status(406).json({ success: false, ...err });
+              default:
+                return res.status(500).json({ success: false, ...err });
+            }
           }
-        }
-        if (!user) {
-          return res.status(404).json({
-            success: false,
-            message: 'Error 404: user not found.'
+          if (!user) {
+            return res.status(404).json({
+              success: false,
+              message: 'Error 404: user not found.'
+            });
+          }
+          await getUserById({ _id: id }, req, res, user => {
+            clearCache(req);
+            return res.status(200).json(user);
           });
+        } catch (err) {
+          next(err);
         }
-        getUserById({ _id: id }, req, res, user => {
-          clearCache(req);
-          return res.status(200).json(user);
-        });
       });
     } else {
-      getUserById({ _id: id }, req, res, () => {
+      await getUserById({ _id: id }, req, res, () => {
         return res.status(403).json({
           success: false,
           message: 'You cannot update this user.'
@@ -363,30 +375,38 @@ module.exports.patchUser = async (req, res, next) => {
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
     if (req.user['_id'].toString() === id.toString()) {
-      await User.patchUser({ _id: id }, { $set: query }, (err, status) => {
-        if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(406).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
+      await User.patchUser(
+        { _id: id },
+        { $set: query },
+        async (err, status) => {
+          try {
+            if (err) {
+              switch (err.name) {
+                case 'CastError':
+                  return res.status(404).json({ success: false, ...err });
+                case 'ValidationError':
+                  return res.status(406).json({ success: false, ...err });
+                default:
+                  return res.status(500).json({ success: false, ...err });
+              }
+            }
+            if (!status) {
+              return res.status(502).json({
+                success: false,
+                message: 'Bad gateway.'
+              });
+            }
+            await getUserById({ _id: id }, req, res, user => {
+              clearCache(req);
+              return res.status(200).json(user);
+            });
+          } catch (err) {
+            next(err);
           }
         }
-        if (!status) {
-          return res.status(502).json({
-            success: false,
-            message: 'Bad gateway.'
-          });
-        }
-        getUserById({ _id: id }, req, res, user => {
-          clearCache(req);
-          return res.status(200).json(user);
-        });
-      });
+      );
     } else {
-      getUserById({ _id: id }, req, res, () => {
+      await getUserById({ _id: id }, req, res, () => {
         return res.status(403).json({
           success: false,
           message: 'You cannot patch this user.'
@@ -400,35 +420,39 @@ module.exports.patchUser = async (req, res, next) => {
 
 module.exports.deleteUsers = async (req, res, next) => {
   try {
-    await User.deleteAllUsers((err, status) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        }
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!status) {
-        return res.status(502).json({
-          success: false,
-          message: 'Bad gateway.'
-        });
-      }
-      Rom.deleteAllRoms({}, (err, romsStatus) => {
+    await User.deleteAllUsers(async (err, status) => {
+      try {
         if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
           return res.status(500).json({ success: false, ...err });
         }
-        if (!romsStatus) {
-          return res.status(500).json({
-            success: false
+        if (!status) {
+          return res.status(502).json({
+            success: false,
+            message: 'Bad gateway.'
           });
         }
-        clearCache(req);
-        return res.status(200).json({
-          success: true,
-          message: 'All users successfully deleted!',
-          ...status
+        await Rom.deleteAllRoms({}, (err, romsStatus) => {
+          if (err) {
+            return res.status(500).json({ success: false, ...err });
+          }
+          if (!romsStatus) {
+            return res.status(500).json({
+              success: false
+            });
+          }
+          clearCache(req);
+          return res.status(200).json({
+            success: true,
+            message: 'All users successfully deleted!',
+            ...status
+          });
         });
-      });
+      } catch (err) {
+        next(err);
+      }
     });
   } catch (err) {
     next(err);
@@ -451,44 +475,52 @@ module.exports.deleteUser = async (req, res, next) => {
         .json({ success: false, message: 'User not found.' });
     }
     if (req.user['_id'].toString() === id.toString()) {
-      getUserById({ _id: id }, req, res, () => {
-        User.deleteUser({ _id: id }, (err, status) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!status) {
-            return res.status(502).json({
-              success: false,
-              message: 'Bad gateway.'
-            });
-          }
-          Rom.deleteAllRoms({ user_id: id }, (err, romsStatus) => {
-            if (err) {
-              if (err.name === 'CastError') {
-                return res.status(404).json({ success: false, ...err });
+      await getUserById({ _id: id }, req, res, async () => {
+        try {
+          await User.deleteUser({ _id: id }, async (err, status) => {
+            try {
+              if (err) {
+                if (err.name === 'CastError') {
+                  return res.status(404).json({ success: false, ...err });
+                }
+                return res.status(500).json({ success: false, ...err });
               }
-              return res.status(500).json({ success: false, ...err });
-            }
-            if (!romsStatus) {
-              return res.status(404).json({
-                success: false,
-                message: 'Error 404: user not found.'
+              if (!status) {
+                return res.status(502).json({
+                  success: false,
+                  message: 'Bad gateway.'
+                });
+              }
+              await Rom.deleteAllRoms({ user_id: id }, (err, romsStatus) => {
+                if (err) {
+                  if (err.name === 'CastError') {
+                    return res.status(404).json({ success: false, ...err });
+                  }
+                  return res.status(500).json({ success: false, ...err });
+                }
+                if (!romsStatus) {
+                  return res.status(404).json({
+                    success: false,
+                    message: 'Error 404: user not found.'
+                  });
+                }
+                clearCache(req);
+                return res.status(200).json({
+                  success: true,
+                  message: 'User successfully deleted!',
+                  ...status
+                });
               });
+            } catch (err) {
+              next(err);
             }
-            clearCache(req);
-            return res.status(200).json({
-              success: true,
-              message: 'User successfully deleted!',
-              ...status
-            });
           });
-        });
+        } catch (err) {
+          next(err);
+        }
       });
     } else {
-      getUserById({ _id: id }, req, res, () => {
+      await getUserById({ _id: id }, req, res, () => {
         return res.status(403).json({
           success: false,
           message: 'You cannot delete this user.'
@@ -500,12 +532,8 @@ module.exports.deleteUser = async (req, res, next) => {
   }
 };
 
-module.exports.usersHeaders = async (req, res, next) => {
-  try {
-    await res.status(200);
-  } catch (err) {
-    next(err);
-  }
+module.exports.usersHeaders = (req, res) => {
+  res.status(200);
 };
 
 module.exports.userHeaders = async (req, res, next) => {
@@ -531,28 +559,16 @@ module.exports.userHeaders = async (req, res, next) => {
   }
 };
 
-module.exports.all = async (req, res, next) => {
-  try {
-    const methods = [
-      'GET',
-      'POST',
-      'PUT',
-      'PATCH',
-      'DELETE',
-      'HEAD',
-      'OPTIONS'
-    ];
-    if (methods.includes(req.method)) {
-      res.set('Allow', methods.join(', '));
-      return await res
-        .status(405)
-        .json({ success: false, message: 'Method not allowed.' });
-    } else {
-      return await res
-        .status(501)
-        .json({ success: false, message: 'Method not implemented.' });
-    }
-  } catch (err) {
-    next(err);
+module.exports.all = (req, res) => {
+  const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'];
+  if (methods.includes(req.method)) {
+    res.set('Allow', methods.join(', '));
+    return res
+      .status(405)
+      .json({ success: false, message: 'Method not allowed.' });
+  } else {
+    return res
+      .status(501)
+      .json({ success: false, message: 'Method not implemented.' });
   }
 };

@@ -132,22 +132,26 @@ module.exports.deleteRating = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'Rating not found.' });
     }
-    await getRating({ _id: id }, req, res, () => {
-      Rating.deleteRating({ _id: id }, (err, status) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
+    await getRating({ _id: id }, req, res, async () => {
+      try {
+        await Rating.deleteRating({ _id: id }, (err, status) => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
           }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!status) {
-          return res
-            .status(404)
-            .json({ success: false, message: 'Rating not found.' });
-        }
-        clearCache(req);
-        return res.status(200).json({ success: true, ...status });
-      });
+          if (!status) {
+            return res
+              .status(404)
+              .json({ success: false, message: 'Rating not found.' });
+          }
+          clearCache(req);
+          return res.status(200).json({ success: true, ...status });
+        });
+      } catch (err) {
+        next(err);
+      }
     });
   } catch (err) {
     next(err);
@@ -173,12 +177,8 @@ module.exports.deleteRatings = async (req, res, next) => {
   }
 };
 
-module.exports.ratingsHeaders = async (req, res, next) => {
-  try {
-    await res.status(200);
-  } catch (err) {
-    next(err);
-  }
+module.exports.ratingsHeaders = (req, res) => {
+  res.status(200);
 };
 
 module.exports.ratingHeaders = async (req, res, next) => {
@@ -199,20 +199,16 @@ module.exports.ratingHeaders = async (req, res, next) => {
   }
 };
 
-module.exports.all = async (req, res, next) => {
-  try {
-    const methods = ['GET', 'POST', 'DELETE'];
-    if (methods.includes(req.method)) {
-      res.set('Allow', methods.join(', '));
-      return await res
-        .status(405)
-        .json({ success: false, message: 'Method not allowed.' });
-    } else {
-      return await res
-        .status(501)
-        .json({ success: false, message: 'Method not implemented.' });
-    }
-  } catch (err) {
-    next(err);
+module.exports.all = (req, res) => {
+  const methods = ['GET', 'POST', 'DELETE'];
+  if (methods.includes(req.method)) {
+    res.set('Allow', methods.join(', '));
+    return res
+      .status(405)
+      .json({ success: false, message: 'Method not allowed.' });
+  } else {
+    return res
+      .status(501)
+      .json({ success: false, message: 'Method not implemented.' });
   }
 };

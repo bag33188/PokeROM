@@ -317,37 +317,41 @@ module.exports.updateRom = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
-    await getRomById({ _id: id }, req, res, fetchedRom => {
-      const isOwnUser =
-        fetchedRom.user_id.toString() === req.user['_id'].toString();
-      if (isOwnUser) {
-        Rom.updateRom({ _id: id }, updateRomData, {}, (err, rom) => {
-          if (err) {
-            switch (err.name) {
-              case 'CastError':
-                return res.status(404).json({ success: false, ...err });
-              case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
-              default:
-                return res.status(500).json({ success: false, ...err });
+    await getRomById({ _id: id }, req, res, async fetchedRom => {
+      try {
+        const isOwnUser =
+          fetchedRom.user_id.toString() === req.user['_id'].toString();
+        if (isOwnUser) {
+          await Rom.updateRom({ _id: id }, updateRomData, {}, (err, rom) => {
+            if (err) {
+              switch (err.name) {
+                case 'CastError':
+                  return res.status(404).json({ success: false, ...err });
+                case 'ValidationError':
+                  return res.status(406).json({ success: false, ...err });
+                default:
+                  return res.status(500).json({ success: false, ...err });
+              }
             }
-          }
-          if (!rom) {
-            return res.status(404).json({
-              success: false,
-              message: 'Error 404: ROM not found.'
-            });
-          }
-          rom = { _id: rom._id, ...updateRomData };
-          clearCache(req);
+            if (!rom) {
+              return res.status(404).json({
+                success: false,
+                message: 'Error 404: ROM not found.'
+              });
+            }
+            rom = { _id: rom._id, ...updateRomData };
+            clearCache(req);
 
-          return res.status(200).json(rom);
-        });
-      } else {
-        return res.status(401).json({
-          success: false,
-          message: `You can update this user's ROM.`
-        });
+            return res.status(200).json(rom);
+          });
+        } else {
+          return await res.status(401).json({
+            success: false,
+            message: `You can update this user's ROM.`
+          });
+        }
+      } catch (err) {
+        next(err);
       }
     });
   } catch (err) {
@@ -409,41 +413,43 @@ module.exports.patchRom = async (req, res, next) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    // if (new ValidatePatchRequest(req).validateRomPatch(res)) {
-    //   return;
-    // }
-    await getRomById({ _id: id }, req, res, fetchedRom => {
-      const isOwnUser =
-        fetchedRom.user_id.toString() === req.user['_id'].toString();
-      if (isOwnUser) {
-        Rom.patchRom({ _id: id }, { $set: query }, (err, status) => {
-          if (err) {
-            switch (err.name) {
-              case 'CastError':
-                return res.status(404).json({ success: false, ...err });
-              case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
-              default:
-                return res.status(500).json({ success: false, ...err });
-            }
-          }
-          if (!status) {
-            return res.status(502).json({
-              success: false,
-              message: 'Bad gateway.'
-            });
-          }
-          getRomById({ _id: id }, req, res, rom => {
-            clearCache(req);
 
-            return res.status(200).json(rom);
+    await getRomById({ _id: id }, req, res, async fetchedRom => {
+      try {
+        const isOwnUser =
+          fetchedRom.user_id.toString() === req.user['_id'].toString();
+        if (isOwnUser) {
+          await Rom.patchRom({ _id: id }, { $set: query }, (err, status) => {
+            if (err) {
+              switch (err.name) {
+                case 'CastError':
+                  return res.status(404).json({ success: false, ...err });
+                case 'ValidationError':
+                  return res.status(406).json({ success: false, ...err });
+                default:
+                  return res.status(500).json({ success: false, ...err });
+              }
+            }
+            if (!status) {
+              return res.status(502).json({
+                success: false,
+                message: 'Bad gateway.'
+              });
+            }
+            getRomById({ _id: id }, req, res, rom => {
+              clearCache(req);
+
+              return res.status(200).json(rom);
+            });
           });
-        });
-      } else {
-        return res.status(403).json({
-          success: false,
-          message: `You cannot patch this user's ROM.`
-        });
+        } else {
+          return await res.status(403).json({
+            success: false,
+            message: `You cannot patch this user's ROM.`
+          });
+        }
+      } catch (err) {
+        next(err);
       }
     });
   } catch (err) {
@@ -466,35 +472,39 @@ module.exports.deleteRom = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'ROM not found.' });
     }
-    await getRomById({ _id: id }, req, res, rom => {
-      const isOwnUser = rom.user_id.toString() === req.user['_id'].toString();
-      if (isOwnUser) {
-        Rom.deleteRom({ _id: id }, (err, status) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
+    await getRomById({ _id: id }, req, res, async rom => {
+      try {
+        const isOwnUser = rom.user_id.toString() === req.user['_id'].toString();
+        if (isOwnUser) {
+          await Rom.deleteRom({ _id: id }, (err, status) => {
+            if (err) {
+              if (err.name === 'CastError') {
+                return res.status(404).json({ success: false, ...err });
+              }
+              return res.status(500).json({ success: false, ...err });
             }
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!status) {
-            return res.status(502).json({
-              success: false,
-              message: 'Bad gateway.'
-            });
-          }
-          clearCache(req);
+            if (!status) {
+              return res.status(502).json({
+                success: false,
+                message: 'Bad gateway.'
+              });
+            }
+            clearCache(req);
 
-          return res.status(200).json({
-            success: true,
-            message: 'ROM successfully deleted!',
-            ...status
+            return res.status(200).json({
+              success: true,
+              message: 'ROM successfully deleted!',
+              ...status
+            });
           });
-        });
-      } else {
-        return res.status(403).json({
-          success: false,
-          message: `You cannot delete this user's ROM.`
-        });
+        } else {
+          return await res.status(403).json({
+            success: false,
+            message: `You cannot delete this user's ROM.`
+          });
+        }
+      } catch (err) {
+        next(err);
       }
     });
   } catch (err) {
@@ -510,45 +520,49 @@ module.exports.deleteRoms = async (req, res, next) => {
       { user_id: req.user['_id'] },
       req,
       res,
-      roms => {
-        const isOwnUser =
-          roms[0].user_id.toString() === req.user['_id'].toString();
-        if (isOwnUser) {
-          let query = {};
-          let message = '';
-          if (toBoolean(deleteCore) && !toBoolean(deleteHacks)) {
-            query = { user_id: req.user['_id'], rom_type: 'core' };
-            message = 'All core ROMs have been deleted.';
-          } else if (toBoolean(deleteHacks) && !toBoolean(deleteCore)) {
-            query = { user_id: req.user['_id'], rom_type: 'hack' };
-            message = 'All ROM hacks have been deleted.';
-          } else {
-            query = { user_id: req.user['_id'] };
-            message = 'All ROMs successfully deleted!';
-          }
-          Rom.deleteAllRoms(query, (err, status) => {
-            if (err) {
-              return res.status(500).json({ success: false, ...err });
+      async roms => {
+        try {
+          const isOwnUser =
+            roms[0].user_id.toString() === req.user['_id'].toString();
+          if (isOwnUser) {
+            let query = {};
+            let message = '';
+            if (toBoolean(deleteCore) && !toBoolean(deleteHacks)) {
+              query = { user_id: req.user['_id'], rom_type: 'core' };
+              message = 'All core ROMs have been deleted.';
+            } else if (toBoolean(deleteHacks) && !toBoolean(deleteCore)) {
+              query = { user_id: req.user['_id'], rom_type: 'hack' };
+              message = 'All ROM hacks have been deleted.';
+            } else {
+              query = { user_id: req.user['_id'] };
+              message = 'All ROMs successfully deleted!';
             }
-            if (!status) {
-              return res.status(502).json({
-                success: false,
-                message: 'Bad gateway.'
-              });
-            }
-            clearCache(req);
+            await Rom.deleteAllRoms(query, (err, status) => {
+              if (err) {
+                return res.status(500).json({ success: false, ...err });
+              }
+              if (!status) {
+                return res.status(502).json({
+                  success: false,
+                  message: 'Bad gateway.'
+                });
+              }
+              clearCache(req);
 
-            return res.status(200).json({
-              success: true,
-              message,
-              ...status
+              return res.status(200).json({
+                success: true,
+                message,
+                ...status
+              });
             });
-          });
-        } else {
-          return res.status(403).json({
-            success: false,
-            message: 'You cannot delete ROMs for this user.'
-          });
+          } else {
+            return await res.status(403).json({
+              success: false,
+              message: 'You cannot delete ROMs for this user.'
+            });
+          }
+        } catch (err) {
+          next(err);
         }
       },
       1
@@ -558,12 +572,8 @@ module.exports.deleteRoms = async (req, res, next) => {
   }
 };
 
-module.exports.romsHeaders = async (req, res, next) => {
-  try {
-    await res.status(200);
-  } catch (err) {
-    next(err);
-  }
+module.exports.romsHeaders = (req, res) => {
+  res.status(200);
 };
 
 module.exports.romHeaders = async (req, res, next) => {
@@ -589,35 +599,35 @@ module.exports.romHeaders = async (req, res, next) => {
   }
 };
 
-module.exports.romsOptions = async (req, res, next) => {
-  try {
-    await res.status(204);
-  } catch (err) {
-    next(err);
-  }
+module.exports.romsOptions = (req, res) => {
+  res.status(204);
 };
 
 module.exports.coreRoms = async (req, res, next) => {
   try {
-    await Rom.postCore(coreRoms, req.user, (err, roms) => {
-      if (err) {
-        return res.status(500).json({ success: false, ...err });
+    await Rom.postCore(coreRoms, req.user, async (err, roms) => {
+      try {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        if (!roms) {
+          return res
+            .status(502)
+            .json({ success: false, message: 'Bad gateway.' });
+        }
+        await getAllRoms(
+          { user_id: req.user['_id'] },
+          req,
+          res,
+          fetchedRoms => {
+            clearCache(req);
+            return res.status(201).json(fetchedRoms);
+          },
+          0
+        );
+      } catch (err) {
+        next(err);
       }
-      if (!roms) {
-        return res
-          .status(502)
-          .json({ success: false, message: 'Bad gateway.' });
-      }
-      getAllRoms(
-        { user_id: req.user['_id'] },
-        req,
-        res,
-        fetchedRoms => {
-          clearCache(req);
-          return res.status(201).json(fetchedRoms);
-        },
-        0
-      );
     });
   } catch (err) {
     next(err);
@@ -626,53 +636,45 @@ module.exports.coreRoms = async (req, res, next) => {
 
 module.exports.romHacks = async (req, res, next) => {
   try {
-    await Rom.postHacks(romHacks, req.user, (err, roms) => {
-      if (err) {
-        return res.status(500).json({ success: false, ...err });
+    await Rom.postHacks(romHacks, req.user, async (err, roms) => {
+      try {
+        if (err) {
+          return res.status(500).json({ success: false, ...err });
+        }
+        if (!roms) {
+          return res
+            .status(502)
+            .json({ success: false, message: 'Bad gateway.' });
+        }
+        await getAllRoms(
+          { user_id: req.user['_id'] },
+          req,
+          res,
+          fetchedRoms => {
+            clearCache(req);
+            return res.status(201).json(fetchedRoms);
+          },
+          0
+        );
+      } catch (err) {
+        next(err);
       }
-      if (!roms) {
-        return res
-          .status(502)
-          .json({ success: false, message: 'Bad gateway.' });
-      }
-      getAllRoms(
-        { user_id: req.user['_id'] },
-        req,
-        res,
-        fetchedRoms => {
-          clearCache(req);
-          return res.status(201).json(fetchedRoms);
-        },
-        0
-      );
     });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports.all = async (req, res, next) => {
-  try {
-    const methods = [
-      'GET',
-      'POST',
-      'PUT',
-      'PATCH',
-      'DELETE',
-      'HEAD',
-      'OPTIONS'
-    ];
-    if (methods.includes(req.method)) {
-      res.set('Allow', methods.join(', '));
-      return await res
-        .status(405)
-        .json({ success: false, message: 'Method not allowed.' });
-    } else {
-      return await res
-        .status(501)
-        .json({ success: false, message: 'Method not implemented.' });
-    }
-  } catch (err) {
-    next(err);
+module.exports.all = (req, res) => {
+  const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'];
+  if (methods.includes(req.method)) {
+    res.set('Allow', methods.join(', '));
+    return res
+      .status(405)
+      .json({ success: false, message: 'Method not allowed.' });
+  } else {
+    return res
+      .status(501)
+      .json({ success: false, message: 'Method not implemented.' });
   }
 };
