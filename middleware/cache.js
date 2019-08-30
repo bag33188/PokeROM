@@ -28,8 +28,7 @@ function removeURIComponents(req, method, key) {
           .replace(req.query[param], '')
           .replace(param, '')
           .replace('?', '')
-          .replace(/&/g, '')
-          .replace(/=/g, '');
+          .replace(/([&=])/g, '');
       });
     }
   }
