@@ -13,9 +13,9 @@
   <div class="modal-body">
     <p>
       <strong
-        >Are you sure you want to delete your own account &quot;{{
-          username
-        }}&quot;?</strong
+        >Are you sure you want to delete your own account
+        <span [hidden]="!username">&quot;</span>{{ username || ''
+        }}<span [hidden]="!username">&quot;</span>?</strong
       >
     </p>
     <p>
