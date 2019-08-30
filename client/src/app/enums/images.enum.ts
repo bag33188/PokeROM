@@ -4,5 +4,8 @@ export enum Images {
   C_IMG2 = '/assets/images/carousel_img_02.png',
   C_IMG3 = '/assets/images/carousel_img_03.png',
   C_IMG4 = '/assets/images/carousel_img_04.png',
-  SPINNER = '/assets/images/spinner.gif'
+  SPINNER = '/assets/images/spinner.gif',
+  LOGO_1 = '/assets/images/logo-1.png',
+  LOGO_2 = '/assets/images/logo-2.png',
+  LOGO_ORIGINAL = '/assets/images/logo-original.png'
 }

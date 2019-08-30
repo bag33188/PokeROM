@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { HtmlRoute } from '../../../interfaces/HtmlRoute';
 import { Route } from '../../../interfaces/Route';
+import { Images } from '../../../enums/images.enum';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
   public loggedOutRoutes: Route[];
   private loggedInRoutes: Route[];
   public routes: HtmlRoute[];
+  public images: typeof Images = Images;
 
   constructor(
     private authService: AuthService,
