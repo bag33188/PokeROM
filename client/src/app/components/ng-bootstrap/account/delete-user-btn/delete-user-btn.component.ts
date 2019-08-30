@@ -8,9 +8,12 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./delete-user-btn.component.scss']
 })
 export class DeleteUserBtnComponent implements OnInit {
+  public btnText: string;
   constructor(private modalService: NgbModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.btnText = 'Delete User!';
+  }
 
   public confirmDeletion(): void {
     const modalRef: NgbModalRef = this.modalService.open(ModalComponent, {
