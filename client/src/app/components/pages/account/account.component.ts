@@ -3,8 +3,14 @@ import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import {
+  faExclamationTriangle,
+  IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStrings from '../../../helpers/remove-strings';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../../ng-bootstrap/account/modal/modal.component';
 
 @Component({
   selector: 'app-account',
@@ -18,8 +24,13 @@ export class AccountComponent implements OnInit {
   public ready: boolean = false;
   public pwFocused: boolean = false;
   public errLoadingUsr: boolean = false;
+  public faExclamationTriangle: IconDefinition;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private modalService: NgbModal
+  ) {
     String.prototype.sanitizeXSS = sanitizeXSS;
     String.prototype.removeStrings = removeStrings;
   }
@@ -28,6 +39,7 @@ export class AccountComponent implements OnInit {
     const key: string = 'id';
     this.userId = JSON.parse(localStorage.getItem('user'))[key];
     this.retrieveUserData();
+    this.faExclamationTriangle = faExclamationTriangle;
   }
 
   public retrieveUserData(): void {
@@ -79,4 +91,5 @@ export class AccountComponent implements OnInit {
   public changePwInputType(): string {
     return this.pwFocused ? 'text' : 'password';
   }
+
 }

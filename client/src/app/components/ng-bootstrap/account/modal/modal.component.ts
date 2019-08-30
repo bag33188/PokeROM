@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { take } from 'rxjs/operators';
+import { AuthService } from '../../../../services/auth.service';
+import { LoggerService as logger } from '../../../../services/logger.service';
 import { UserService } from '../../../../services/user.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../../services/auth.service';
-import { take } from 'rxjs/operators';
-import { LoggerService as logger } from '../../../../services/logger.service';
 
 @Component({
-  selector: 'app-faq-delete-user-btn',
-  templateUrl: './delete-user-btn.component.html',
-  styleUrls: ['./delete-user-btn.component.scss']
+  selector: 'app-account-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.scss']
 })
-export class DeleteUserBtnComponent implements OnInit {
+export class ModalComponent implements OnInit {
   public isErrorDeleting: boolean;
+  @Input() public username: string;
+
   constructor(
-    public authService: AuthService,
+    public modal: NgbActiveModal,
     private userService: UserService,
     private router: Router
   ) {}
@@ -23,7 +26,6 @@ export class DeleteUserBtnComponent implements OnInit {
   }
   public deleteCurrentUser(): void {
     const key: string = 'id';
-
     this.userService
       .deleteUser(JSON.parse(localStorage.getItem('user'))[key])
       .pipe(take(1))
@@ -38,5 +40,9 @@ export class DeleteUserBtnComponent implements OnInit {
           logger.error(err);
         }
       );
+    this.closeModal();
+  }
+  private closeModal(): void {
+    this.modal.close('Ok click');
   }
 }

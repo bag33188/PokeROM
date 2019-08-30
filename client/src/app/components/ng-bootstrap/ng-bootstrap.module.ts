@@ -15,11 +15,12 @@ import { SvgComponent } from './faq/toast/svg/svg.component';
 import { RatingComponent } from './ratings/rating/rating.component';
 import { ModalContentComponent } from './faq/modal/modal-content.component';
 import { AlertComponent } from './ratings/alert/alert.component';
-import { DeleteUserBtnComponent } from './faq/delete-user-btn/delete-user-btn.component';
+import { DeleteUserBtnComponent } from './account/delete-user-btn/delete-user-btn.component';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { LoggerService } from '../../services/logger.service';
 import { UnitConversionService } from '../../services/unit-conversion.service';
+import { ModalComponent } from './account/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UnitConversionService } from '../../services/unit-conversion.service';
     JumbotronComponent,
     RatingComponent,
     AlertComponent,
-    DeleteUserBtnComponent
+    DeleteUserBtnComponent,
+    ModalComponent
   ],
   entryComponents: [ModalContentComponent],
   imports: [
@@ -54,7 +56,8 @@ import { UnitConversionService } from '../../services/unit-conversion.service';
     JumbotronComponent,
     RatingComponent,
     AlertComponent,
-    DeleteUserBtnComponent
+    DeleteUserBtnComponent,
+    ModalComponent
   ],
   providers: [AuthService, UserService, LoggerService, UnitConversionService]
 })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Browser } from '../../../../interfaces/Browser';
 import { ModalContentComponent } from '../modal/modal-content.component';
 import {
@@ -76,10 +76,13 @@ export class TabsetComponent implements OnInit {
   }
 
   public openModal() {
-    const modalRef = this.modalService.open(ModalContentComponent, {
-      centered: true,
-      scrollable: true
-    });
+    const modalRef: NgbModalRef = this.modalService.open(
+      ModalContentComponent,
+      {
+        centered: true,
+        scrollable: true
+      }
+    );
     modalRef.componentInstance.reasons = [
       'It does not support CSS grid',
       'It does not support ES6 JavaScript',
