@@ -24,7 +24,6 @@ const connectDB = async () => {
         promiseLibrary: bluebird
       });
     }
-
     console.log(`Connected to database ${config.mongoURI}`);
   } catch (err) {
     console.error(`Database error: ${err}`);

@@ -17,13 +17,17 @@ const passport = passportJwt => {
   };
   // jwt strategy middelware
   passportJwt.use(
-    new JwtStrategy(opts, (jwt_payload, done) => {
-      User.getUserById(jwt_payload.data._id, (err, user) => {
-        if (err) {
-          return done(err, false);
-        }
-        return user ? done(null, user) : done(null, false);
-      });
+    new JwtStrategy(opts, async (jwt_payload, done) => {
+      try {
+        await User.getUserById(jwt_payload.data._id, (err, user) => {
+          if (err) {
+            return done(err, false);
+          }
+          return user ? done(null, user) : done(null, false);
+        });
+      } catch (err) {
+        console.log(err);
+      }
     })
   );
 };

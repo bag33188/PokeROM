@@ -58,32 +58,18 @@ app.use('/api/version', version);
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static(path.join(__dirname, '/public')));
-  app.get('*', async (req, res, next) => {
-    try {
-      await res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-    } catch (err) {
-      next(err);
-    }
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
   });
 } else {
   // index route
-  app.get('/', async (req, res, next) => {
-    try {
-      await res.redirect(`/api/docs/${apiVersion}`);
-    } catch (err) {
-      next(err);
-    }
+  app.get('/', (req, res) => {
+    res.redirect(`/api/docs/${apiVersion}`);
   });
 }
 
-app.all('/*', async (req, res, next) => {
-  try {
-    await res
-      .status(404)
-      .json({ success: false, message: 'Error 404: not found.' });
-  } catch (err) {
-    next(err);
-  }
+app.all('/*', (req, res) => {
+  res.status(404).json({ success: false, message: 'Error 404: not found.' });
 });
 
 // port
