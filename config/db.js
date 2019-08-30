@@ -4,12 +4,12 @@ const bluebird = require('bluebird');
 const fs = require('fs');
 const db = config.get('mongoURI');
 
-const connectDB = () => {
-  if (process.env.NODE_ENV === 'production') {
-    const key = fs.readFileSync('database/mongodb.pem');
-    const ca = fs.readFileSync('database/mongodb.crt');
-    mongoose
-      .connect(db, {
+const connectDB = async () => {
+  try {
+    if (process.env.NODE_ENV === 'production') {
+      const key = fs.readFileSync('database/mongodb.pem');
+      const ca = fs.readFileSync('database/mongodb.crt');
+      await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird,
         ssl: true,
@@ -17,17 +17,17 @@ const connectDB = () => {
         sslCA: ca,
         sslKey: key,
         sslCert: key
-      })
-      .then(() => console.log(`Connected to database ${config.mongoURI}`))
-      .catch(err => console.error(`Database error: ${err}`));
-  } else {
-    mongoose
-      .connect(db, {
+      });
+    } else {
+      await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird
-      })
-      .then(() => console.log(`Connected to database ${config.mongoURI}`))
-      .catch(err => console.error(`Database error: ${err}`));
+      });
+    }
+    console.log(`Connected to database ${config.mongoURI}`);
+  } catch (err) {
+    console.error(`Database error: ${err}`);
+    // process.exit(1);
   }
 };
 
