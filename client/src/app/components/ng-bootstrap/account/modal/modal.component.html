@@ -22,20 +22,16 @@
       <span id="danger-text">This operation can not be undone.</span>
     </p>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer justify-content-start">
+    <button type="button" class="btn btn-danger" (click)="deleteCurrentUser()">
+      Ok
+    </button>
     <button
       type="button"
       class="btn btn-outline-secondary"
       (click)="modal.dismiss('cancel click')"
     >
       Cancel
-    </button>
-    <button
-      type="button"
-      class="btn btn-danger"
-      (click)="deleteCurrentUser()"
-    >
-      Ok
     </button>
   </div>
 </ng-container>
