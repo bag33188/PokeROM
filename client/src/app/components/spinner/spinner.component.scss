@@ -7,7 +7,7 @@
 }
 
 .spinner-container {
-  height: unquote('#{$calc-height}');
+  height: unquote('#{$calc-body-height}');
   margin-right: -64px;
   position: absolute;
   right: 50%;

@@ -24,15 +24,19 @@ $proton-purple: #8a2be2;
 $navbar-bg-color: #343a40;
 $svg-blue: #4691f6;
 $clear: rgba(255, 255, 255, 0);
+
 // opacity colors
 $scrollbar-thumb-shadow-gray: rgba(0, 0, 0, 0.5);
 $scrollbar-track-shadow-color: rgba(0, 0, 0, 0.4);
 
-// urls
+// urls\
+
 // img urls
 $bg-img: '/assets/images/background.png';
 $bg-carousel: '/assets/images/carousel_bg.png';
+
 // font urls
+
 // Roboto
 $roboto-font-url-prefix: '/assets/fonts/Roboto';
 $roboto-regular: '#{$roboto-font-url-prefix}/Roboto-Regular.woff';
@@ -71,6 +75,7 @@ $roboto-black-italic: '#{$roboto-font-url-prefix}/Roboto-BlackItalic.woff';
 $roboto-black-italic2: '#{$roboto-font-url-prefix}/Roboto-BlackItalic.woff2';
 $roboto-italic: '#{$roboto-font-url-prefix}/Roboto-Italic.woff';
 $roboto-italic2: '#{$roboto-font-url-prefix}/Roboto-Italic.woff2';
+
 // Arial
 $arial-font-url-prefix: '/assets/fonts/Arial';
 $arial-bold: '#{$arial-font-url-prefix}/Arial-BoldMT.woff';
@@ -97,4 +102,4 @@ $footer-height: 2rem;
 $header-height: 56px;
 
 // calculations
-$calc-height: calc(100vh - (#{$header-height} + #{$footer-height}));
+$calc-body-height: calc(100vh - (#{$header-height} + #{$footer-height}));
