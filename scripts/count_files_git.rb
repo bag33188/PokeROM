@@ -15,8 +15,11 @@ def count_files_git()
   puts 'Counting files on github ... '
   print "\n"
 
+  # define commands to run in single string
+  command = 'cd .. && echo "Number of files: " && git ls-files | wc -l'
+
   # execute commands to count files on github
-  num_files = system('cd .. && echo "Number of files: " && git ls-files | wc -l')
+  num_files = system(command)
 
   print "\n"
   puts 'Done!'

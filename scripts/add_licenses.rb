@@ -83,9 +83,9 @@ class AddLicenses
     "\n" +
     'MIT' +
     "\n\n" +
-    "#{get_isc_license(@name)}" +
+    get_isc_license(@name) +
     "\n\n" +
-    "#{get_mit_license(@name)}" +
+    get_mit_license(@name) +
     "\n"
 
     # write licenses to file
@@ -98,8 +98,12 @@ class AddLicenses
   end
 end
 
+# define constants
+NAME = 'Broccolini'
+FILE_PATH = '../public/LICENSE'
+
 # instantiate AddLicenses class
-licenses = AddLicenses.new 'Broccolini'
+licenses = AddLicenses.new NAME
 
 # write licenses to file
-licenses.write_file('../public/LICENSE')
+licenses.write_file(FILE_PATH)
