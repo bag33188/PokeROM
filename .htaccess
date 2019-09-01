@@ -1,9 +1,9 @@
-# replace XXXXX with 5 digit port number between 44300 and 65535
+# server port 50000 to public_html
 RewriteEngine On
-RewriteRule ^$ http://127.0.0.1:XXXXX/ [P,L]
+RewriteRule ^$ http://127.0.0.1:50000/ [P,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ http://127.0.0.1:XXXXX/$1 [P,L]
+RewriteRule ^(.*)$ http://127.0.0.1:50000/$1 [P,L]
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php72” package as the default “PHP” programming language.
