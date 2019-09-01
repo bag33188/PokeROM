@@ -41,7 +41,7 @@ Download Python 3 here: [https://www.python.org/downloads/][python3-download]
 ### Angular
 
 ```shell script
-npx ivy-ngcc # compile to ivy
+npx ivy-ngcc # compile to ivy (run in client folder)
 npm run client # run dev server
 ```
 
