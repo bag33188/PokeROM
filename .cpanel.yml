@@ -4,4 +4,4 @@ deployment:
     - export DEPLOYPATH=/home/pokerom/public_html
     - /bin/cp .htaccess $DEPLOYPATH
     - /usr/bin/npm run pack
-    - /usr/bin/npm start
+    - /usr/bin/npm restart
