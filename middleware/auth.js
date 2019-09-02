@@ -14,7 +14,8 @@ async function auth(req, res, next) {
             message: 'Error 401: you are not authorized to access this data.'
           });
         } else {
-          req.user = user;
+          const key = 'user';
+          req[key] = user;
           next();
         }
       }
