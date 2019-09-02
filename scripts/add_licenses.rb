@@ -17,7 +17,7 @@ class AddLicenses
 
   # create constructor
   def initialize(name)
-     print "Adding licenses ... \n"
+    print "Adding licenses ... \n"
 
     # initiate name property (@ = instance variable)
     @name = name
