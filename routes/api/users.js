@@ -3,7 +3,6 @@ const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const [cache] = require('../../middleware/cache');
-const ValidatePatchRequest = require('../../middleware/validate-patch-request');
 const UserController = require('../../controllers/user-controller');
 
 const httpRouter = express.Router();

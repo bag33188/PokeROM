@@ -6,7 +6,6 @@ const {
 } = require('express-validator/filter');
 const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
-const ValidatePatchRequest = require('../../middleware/validate-patch-request');
 const [cache] = require('../../middleware/cache');
 const RomController = require('../../controllers/rom-controller');
 // const all_routes = require('express-list-endpoints');
