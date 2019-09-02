@@ -220,6 +220,7 @@ module.exports.addRom = async (req, res, next) => {
     } = newRom;
     let isValid = true;
     const fields = [
+      '_id',
       'file_size',
       'file_type',
       'file_name',
@@ -348,6 +349,7 @@ module.exports.updateRom = async (req, res, next) => {
     } = updateRomData;
     let isValid = true;
     const fields = [
+      '_id',
       'file_size',
       'file_type',
       'file_name',
@@ -466,6 +468,7 @@ module.exports.patchRom = async (req, res, next) => {
     } = query;
     let isValid = true;
     const fields = [
+      '_id',
       'file_size',
       'file_type',
       'file_name',

@@ -173,7 +173,7 @@ module.exports.updateNature = async (req, res, next) => {
     }
     let isValid = true;
     for (const field of Object.keys(req.body)) {
-      if (!['name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
+      if (!['_id', 'name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
         isValid = false;
         break;
       } else {
@@ -245,7 +245,7 @@ module.exports.patchNature = async (req, res, next) => {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
     for (const field of Object.keys(req.body)) {
-      if (!['name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
+      if (!['_id', 'name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
         isValid = false;
         break;
       } else {

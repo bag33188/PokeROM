@@ -320,7 +320,7 @@ module.exports.updateUser = async (req, res, next) => {
     }
     let isValid = true;
     for (let field of Object.keys(req.body)) {
-      if (!['name', 'username', 'password'].includes(field)) {
+      if (!['_id', 'name', 'username', 'password'].includes(field)) {
         isValid = false;
         break;
       } else {
@@ -396,7 +396,7 @@ module.exports.patchUser = async (req, res, next) => {
     }
     let isValid = true;
     for (let field of Object.keys(req.body)) {
-      if (!['name', 'username', 'password'].includes(field)) {
+      if (!['_id', 'name', 'username', 'password'].includes(field)) {
         isValid = false;
         break;
       } else {
