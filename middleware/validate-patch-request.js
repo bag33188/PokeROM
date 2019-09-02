@@ -1,5 +1,7 @@
 class ValidatePatchRequest {
-  constructor() {}
+  constructor() {
+    // this class validates a patch request through middleware usage.
+  }
 
   static sortErrors(errorsArr, propKey) {
     errorsArr.sort((a, b) => {
