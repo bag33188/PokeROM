@@ -322,9 +322,94 @@ httpRouter.patch(
       .escape(),
     sanitizeParam('id')
       .trim()
-      .escape()
+      .escape(),
+    check('order_number')
+      .optional()
+      .isInt({ min: 0, max: 33 })
+      .withMessage('Order number must be an integer between 0 and 33.'),
+    check('rom_type')
+      .optional()
+      .matches(/^(core|hack)$/i)
+      .withMessage('ROM type must either be a core or a hack.')
+      .isLength({ min: 4, max: 5 })
+      .withMessage('ROM type must be either 4 or 5 characters.'),
+    check('file_name')
+      .optional()
+      .isString()
+      .withMessage('File name must be a string.')
+      .isLength({ min: 3, max: 80 })
+      .withMessage('File name must be between 3 and 80 characters.'),
+    check('file_size')
+      .optional()
+      .isInt({ min: 64, max: 12000000 })
+      .withMessage(
+        'File size must be a number (in kilobytes) between 64 and 12000000.'
+      ),
+    check('file_type')
+      .optional()
+      .isAlphanumeric()
+      .withMessage('File type must only contain letters with optional numbers.')
+      .isLength({ min: 2, max: 3 })
+      .withMessage('File type must be between 2 and 3 characters.')
+      .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
+      .withMessage('Invalid file extension.'),
+    check('download_link')
+      .optional()
+      .isURL()
+      .withMessage('Download link must be a valid URL.'),
+    check('generation')
+      .optional()
+      .isInt({ min: 1, max: 8 })
+      .withMessage('Generation must be a number between 1 and 8.'),
+    check('box_art_url')
+      .optional()
+      .isURL()
+      .withMessage('Box art URL must be a valid URL.'),
+    check('game_name')
+      .optional()
+      .isString()
+      .withMessage('Game name must be a string.')
+      .isLength({ min: 2, max: 56 })
+      .withMessage('Game name must be between 2 and 56 characters.'),
+    check('region')
+      .optional()
+      .isString()
+      .withMessage('Region must be a string.')
+      .isAlpha()
+      .withMessage('Region must only contain letters.')
+      .isLength({ min: 3, max: 10 })
+      .withMessage('Region must be between 3 and 10 characters.'),
+    check('platform')
+      .optional()
+      .isString()
+      .withMessage('Platform must be a string.')
+      .isLength({ min: 2, max: 50 })
+      .withMessage('Platform must be between 2 and 50 characters.'),
+    check('genre')
+      .optional()
+      .isLength({ min: 2, max: 20 })
+      .withMessage('Genre must be between 2 and 20 characters.')
+      .isString()
+      .withMessage('Genre must be a string.'),
+    check('logo_url')
+      .optional()
+      .isURL()
+      .withMessage('Logo URL must be a valid URL.'),
+    check('date_released')
+      .optional()
+      .matches(dateRegex)
+      .withMessage('Date released must be in the format MM/DD/YYYY.'),
+    check('description')
+      .optional()
+      .isString()
+      .withMessage('Description must be a string.')
+      .isLength({ min: 5, max: 8000 })
+      .withMessage('Description must be between 5 and 8000 characters.'),
+    check('is_favorite')
+      .optional()
+      .isBoolean()
+      .withMessage('is_favorite must be a boolean (true or false)')
   ],
-  ValidatePatchRequest.validateRomPatch,
   auth,
   RomController.patchRom
 );

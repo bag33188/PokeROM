@@ -94,6 +94,21 @@ module.exports.addNature = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
+    let isValid = true;
+    for (const field of Object.keys(req.body)) {
+      if (!['name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        req.sanitize(field);
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     await Nature.addNature(nature, (err, nature) => {
       if (err) {
         if (err.name === 'ValidationError') {
@@ -156,6 +171,21 @@ module.exports.updateNature = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
+    let isValid = true;
+    for (const field of Object.keys(req.body)) {
+      if (!['name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        req.sanitize(field);
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     await Nature.updateNature(
       { _id: id },
       updateData,
@@ -209,6 +239,11 @@ module.exports.patchNature = async (req, res, next) => {
     }
     const query = req.body;
     let isValid = true;
+    const { name, up, down, flavor, usage } = query;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(406).json({ success: false, errors: errors.array() });
+    }
     for (const field of Object.keys(req.body)) {
       if (!['name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
         isValid = false;

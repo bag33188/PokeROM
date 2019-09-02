@@ -134,6 +134,21 @@ module.exports.registerUser = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
+    let isValid = true;
+    for (let field of Object.keys(req.body)) {
+      if (!['name', 'username', 'password'].includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = !(field === 'password' && pwdRegex.test(field));
+        req.sanitize(field);
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     await User.addUser(
       newUser,
       async (err, user) => {
@@ -303,6 +318,21 @@ module.exports.updateUser = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
+    let isValid = true;
+    for (let field of Object.keys(req.body)) {
+      if (!['name', 'username', 'password'].includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = !(field === 'password' && pwdRegex.test(field));
+        req.sanitize(field);
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     if (req.user['_id'].toString() === id.toString()) {
       await User.updateUser({ _id: id }, userData, {}, async (err, user) => {
         try {
@@ -359,6 +389,11 @@ module.exports.patchUser = async (req, res, next) => {
         .json({ success: false, message: 'User not found.' });
     }
     const query = req.body;
+    const { username, password, name } = query;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(406).json({ success: false, errors: errors.array() });
+    }
     let isValid = true;
     for (let field of Object.keys(req.body)) {
       if (!['name', 'username', 'password'].includes(field)) {

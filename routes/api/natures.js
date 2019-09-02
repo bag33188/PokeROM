@@ -149,9 +149,33 @@ httpRouter.patch(
       .escape(),
     sanitizeParam('id')
       .trim()
-      .escape()
+      .escape(),
+    check('name')
+      .optional()
+      .isLength({ min: 3, max: 20 })
+      .withMessage('Name must be between 3 and 20 characters.')
+      .isString(),
+    check('up')
+      .optional()
+      .isLength({ min: 4, max: 20 })
+      .withMessage('Up must be between 4 and 20 characters.')
+      .isString(),
+    check('down')
+      .optional()
+      .isLength({ min: 4, max: 20 })
+      .withMessage('Down must be between 4 and 20 characters.')
+      .isString(),
+    check('flavor')
+      .optional()
+      .isLength({ min: 4, max: 14 })
+      .withMessage('Flavor must be between 4 and 14 characters.')
+      .isString(),
+    check('usage')
+      .optional()
+      .isLength({ min: 5, max: 50 })
+      .withMessage('Usage must be between 5 and 50 characters.')
+      .isString()
   ],
-  ValidatePatchRequest.validateNaturePatch,
   NatureController.patchNature
 );
 

@@ -218,6 +218,41 @@ module.exports.addRom = async (req, res, next) => {
       logo_url,
       is_favorite
     } = newRom;
+    let isValid = true;
+    const fields = [
+      'file_size',
+      'file_type',
+      'file_name',
+      'date_released',
+      'description',
+      'genre',
+      'platform',
+      'region',
+      'generation',
+      'game_name',
+      'order_number',
+      'rom_type',
+      'is_favorite',
+      'download_link',
+      'logo_url',
+      'box_art_url'
+    ];
+    for (let field of Object.keys(req.body)) {
+      if (!fields.includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        if (typeof field === 'string') {
+          field = req.sanitize(field);
+        }
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
@@ -311,8 +346,41 @@ module.exports.updateRom = async (req, res, next) => {
       logo_url,
       is_favorite
     } = updateRomData;
-    console.log(updateRomData);
-
+    let isValid = true;
+    const fields = [
+      'file_size',
+      'file_type',
+      'file_name',
+      'date_released',
+      'description',
+      'genre',
+      'platform',
+      'region',
+      'generation',
+      'game_name',
+      'order_number',
+      'rom_type',
+      'is_favorite',
+      'download_link',
+      'logo_url',
+      'box_art_url'
+    ];
+    for (let field of Object.keys(req.body)) {
+      if (!fields.includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        if (typeof field === 'string') {
+          field = req.sanitize(field);
+        }
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
@@ -378,6 +446,24 @@ module.exports.patchRom = async (req, res, next) => {
     if (req.body.date_released) {
       req.body.date_released = convertToDateFormat(req.body.date_released);
     }
+    const {
+      file_size,
+      file_type,
+      file_name,
+      date_released,
+      description,
+      genre,
+      platform,
+      region,
+      generation,
+      game_name,
+      order_number,
+      rom_type,
+      is_favorite,
+      download_link,
+      logo_url,
+      box_art_url
+    } = query;
     let isValid = true;
     const fields = [
       'file_size',

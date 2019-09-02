@@ -148,9 +148,33 @@ httpRouter.patch(
       .escape(),
     sanitizeParam('id')
       .trim()
-      .escape()
+      .escape(),
+    check('name')
+      .optional()
+      .isLength({ min: 1, max: 100 })
+      .withMessage('Name can only be 100 characters at max.')
+      .isString()
+      .withMessage('Name must be a string.'),
+    check('username')
+      .optional()
+      .isString()
+      .withMessage('Name must be a string.')
+      .matches(/^(?:([A-Za-z0-9_])*)$/)
+      .withMessage(
+        'Username can only contain letters, numbers, or underscores.'
+      )
+      .isLength({ min: 5, max: 22 })
+      .withMessage('Username must be between 5 and 22 characters.'),
+    check('password')
+      .optional()
+      .isString()
+      .withMessage('Name must be a string.')
+      .isLength({ min: 8, max: 256 })
+      .withMessage('Password must be between 8 and 256 characters.')
+      .not()
+      .matches(pwdRegex)
+      .withMessage('Password contains invalid characters.')
   ],
-  ValidatePatchRequest.validateUserPatch,
   auth,
   UserController.patchUser
 );
