@@ -2,7 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/pokerom/public_html
-    - export NPM=/usr/bin/npm
+    - export NPM_PATH=/usr/bin/npm
     - /bin/cp .htaccess $DEPLOYPATH
-    - $NPM run pack
-    - $NPM restart
+    - $NPM_PATH run pack
+    - $NPM_PATH restart
