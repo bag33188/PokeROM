@@ -32,7 +32,7 @@ rating_tests() {
       get_all() {
         echo "Testing GET: /api/ratings"
         printf "\r\n"
-        curl -i -X GET "http://localhost:50000/api/ratings" -H  "accept: application/json"
+        curl -i -X GET "http://localhost:8080/api/ratings" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '1' ]]; then
@@ -43,7 +43,7 @@ rating_tests() {
         printf "\r\n"
         read -p "Enter Rating ID: " id
         printf "\r\n"
-        curl -i -X GET "http://localhost:50000/api/ratings/$id" -H  "accept: application/json"
+        curl -i -X GET "http://localhost:8080/api/ratings/$id" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '2' ]]; then
@@ -58,7 +58,7 @@ rating_tests() {
       printf "\r\n"
       read -p "Enter Rating Data (escape quotes): " data
       printf "\r\n"
-      curl -i -X POST "http://localhost:50000/api/ratings" -H  "accept: application/json" -H  "Content-Type: application/json" -d "$data"
+      curl -i -X POST "http://localhost:8080/api/ratings" -H  "accept: application/json" -H  "Content-Type: application/json" -d "$data"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '3' ]]; then
@@ -70,7 +70,7 @@ rating_tests() {
         printf "\r\n"
         read -p "Enter Rating ID: " id
         printf "\r\n"
-        curl -i -X DELETE "http://localhost:50000/api/ratings/$id" -H  "accept: application/json"
+        curl -i -X DELETE "http://localhost:8080/api/ratings/$id" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '4' ]]; then
@@ -79,7 +79,7 @@ rating_tests() {
       delete_all() {
         echo "Testing DELETE: /api/ratings"
         printf "\r\n"
-        curl -i -X DELETE "http://localhost:50000/api/ratings" -H  "accept: application/json"
+        curl -i -X DELETE "http://localhost:8080/api/ratings" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '5' ]]; then
@@ -93,7 +93,7 @@ rating_tests() {
       head_all() {
         echo "Testing HEAD: /api/ratings"
         printf "\r\n"
-        curl -i --head "http://localhost:50000/api/ratings/$id" -H  "accept: application/json"
+        curl -i --head "http://localhost:8080/api/ratings/$id" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '6' ]]; then
@@ -104,7 +104,7 @@ rating_tests() {
         printf "\r\n"
         read -p 'Enter Rating ID: ' id
         printf "\r\n"
-        curl -i --head "http://localhost:50000/api/ratings/$id" -H  "accept: application/json"
+        curl -i --head "http://localhost:8080/api/ratings/$id" -H  "accept: application/json"
         printf "\r\n\r\n"
       }
       if [[ $rqst == '7' ]]; then

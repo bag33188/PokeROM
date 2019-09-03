@@ -23,7 +23,7 @@ version_test() {
   get() {
     echo "Testing GET: /api/version"
     printf "\r\n"
-    curl -i -X GET "http://localhost:50000/api/version" -H  "accept: application/json"
+    curl -i -X GET "http://localhost:8080/api/version" -H  "accept: application/json"
     printf "\r\n\r\n"
   }
   get

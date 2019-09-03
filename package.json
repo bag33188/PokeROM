@@ -26,7 +26,7 @@
     "start": "NODE_ENV=production forever start server.js",
     "stop": "forever stop server.js",
     "restart": "forever restart server.js",
-    "test": "cd tests && bash ./roms.sh && bash ./users.sh && bash ./natures.sh && bash ./ratings.sh && bash ./version.sh && bash ./options.sh",
+    "test": "cd tests && bash ./test.sh",
     "prod": "cd scripts && bash ./production.sh",
     "stage": "NODE_ENV=production node server",
     "db": "cd scripts && bash ./db.sh",
