@@ -61,12 +61,15 @@ npm run db # run db in dev
 npm run mongod # run db in prod
 npm run db-shell # run dev db shell
 npm run db-prod # run prod db shell
-npm run load-data # load data into db (production only)
+npm run load-db # load data into db (production only)
+npm run import-db # load data into db (development only)
 
 # to kill mongod process
 # ----------------------
 sudo lsof -iTCP -sTCP:LISTEN -n -P
 sudo kill <mongod_command_pid>
+# or
+sudo pkill mongod
 ```
 
 ## Browser Compatibility
