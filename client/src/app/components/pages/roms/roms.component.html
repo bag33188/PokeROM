@@ -17,7 +17,7 @@
       later.
     </div>
   </ng-container>
-  <div id="roms-flex" *ngIf="!loading && !isError">
+  <div id="roms-container-flex" *ngIf="!loading && !isError">
     <div id="roms-container-grid">
       <app-rom
         *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
