@@ -60,10 +60,8 @@
  */
 
 #roms-container-grid {
-  border-radius: 8px;
   display: grid;
-  grid-column-gap: 14%;
-  grid-row-gap: 2.5rem;
+  grid-gap: 2.5rem 14%;
   grid-template-areas:
     'rom-1 rom-2'
     'rom-3 rom-4';
