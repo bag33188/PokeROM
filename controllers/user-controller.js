@@ -130,39 +130,46 @@ module.exports.getUserByUsername = async (req, res, next) => {
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
-    if (req.user.username === username) {
-      await User.getUserByUsername(username, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
+
+    try {
+      if (mongoose.Types.ObjectId(username)) {
+        return res.redirect(`/api/users/${username}`);
+      }
+    } catch (e) {
+      if (req.user.username === username) {
+        await User.getUserByUsername(username, (err, user) => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
           }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!user) {
-          return res
-            .status(404)
-            .json({ success: false, message: 'Error 404: user not found.' });
-        }
-        return res.status(200).json(user);
-      });
-    } else {
-      await User.getUserByUsername(username, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
+          if (!user) {
+            return res
+              .status(404)
+              .json({ success: false, message: 'Error 404: user not found.' });
           }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!user) {
-          return res
-            .status(404)
-            .json({ success: false, message: 'Error 404: user not found.' });
-        }
-        return res.status(403).json({
-          success: false,
-          message: `You cannot get this user's data.`
+          return res.status(200).json(user);
         });
-      });
+      } else {
+        await User.getUserByUsername(username, (err, user) => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
+          }
+          if (!user) {
+            return res
+              .status(404)
+              .json({ success: false, message: 'Error 404: user not found.' });
+          }
+          return res.status(403).json({
+            success: false,
+            message: `You cannot get this user's data.`
+          });
+        });
+      }
     }
   } catch (err) {
     next(err);
