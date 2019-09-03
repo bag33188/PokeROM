@@ -51,6 +51,7 @@ npm run client # run dev server
 npm run api # run dev api
 npm run pack # package application
 sudo lsof -i -P -n | grep LISTEN # see what ports are running 
+sudo pkill node # kill node process
 ```
 
 ### MongoDB
