@@ -97,7 +97,6 @@ module.exports.getUser = async (req, res, next) => {
     if (req.user['_id'].toString() === id.toString()) {
       await User.getUserById({ _id: id }, (err, user) => {
         if (err) {
-
           if (err.name === 'CastError') {
             return res.status(404).json({ success: false, ...err });
           }
@@ -126,6 +125,11 @@ module.exports.getUser = async (req, res, next) => {
 module.exports.getUserByUsername = async (req, res, next) => {
   try {
     const username = req.params.username;
+    if (routesWithParams.includes(req.params.username)) {
+      return res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
+    }
     if (req.user.username === username) {
       await User.getUserByUsername(username, (err, user) => {
         if (err) {
