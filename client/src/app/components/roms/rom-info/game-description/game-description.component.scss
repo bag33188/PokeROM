@@ -13,5 +13,7 @@
 }
 
 #description {
-  height: 16rem;
+  @media only all and (min-width: 938px) {
+    height: 16rem;
+  }
 }
