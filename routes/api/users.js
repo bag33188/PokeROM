@@ -11,6 +11,7 @@ const fieldsToSanitize = ['name', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
 httpRouter.get('/', auth, cache(14), UserController.getUsers);
+
 httpRouter.get(
   '/:id',
   [
@@ -22,6 +23,7 @@ httpRouter.get(
   cache(14),
   UserController.getUser
 );
+
 httpRouter.get(
   '/:username',
   auth,
@@ -32,8 +34,6 @@ httpRouter.get(
   ],
   UserController.getUserByUsername
 );
-
-
 
 httpRouter.post(
   '/register',
