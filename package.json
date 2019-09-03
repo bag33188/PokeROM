@@ -32,7 +32,6 @@
     "db": "cd scripts && bash ./db.sh",
     "api": "nodemon server",
     "client": "cd client && ng serve --open && cd ..",
-    "update": "git pull && npm restart && npm run pack",
     "db-shell": "mongo pkmn-roms",
     "db-prod": "mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:55443 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt",
     "load-db": "mongo --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:55443 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt \"database/pkmn-roms.js\"",
