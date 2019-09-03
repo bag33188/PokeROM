@@ -125,7 +125,7 @@ module.exports.getUser = async (req, res, next) => {
 module.exports.getUserByUsername = async (req, res, next) => {
   try {
     const username = req.params.username;
-    if (routesWithParams.includes(req.params.username)) {
+    if (routesWithParams.includes(username)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
