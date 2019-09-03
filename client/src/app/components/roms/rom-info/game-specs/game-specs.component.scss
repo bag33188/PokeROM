@@ -2,7 +2,7 @@
 @import '../../../../../assets/scss/mixins';
 
 #list-container {
-  @include list-container(1.5rem, 2.5rem, 0, 938px, 0 0 1.5rem !important);
+  @include list-container(0.75rem, 2.5rem, 0, 938px, 0 0 1.5rem !important);
 }
 
 .bg-red {
