@@ -6,8 +6,7 @@ To load this data in production:
 $ npm run load-db
 
 To load this data in development:
-$ npm run db-shell
-> load('~/Projects/PokeROM/database/pkmn-roms.js');
+$ npm run import-db
  */
 
 try {
