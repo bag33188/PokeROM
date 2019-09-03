@@ -41,7 +41,7 @@ httpRouter.post(
       .isEmpty()
       .withMessage('Username is required.')
       .isString()
-      .withMessage('Name must be a string.')
+      .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
@@ -53,7 +53,7 @@ httpRouter.post(
       .isEmpty()
       .withMessage('Password is required.')
       .isString()
-      .withMessage('Name must be a string.')
+      .withMessage('Password must be a string.')
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
@@ -74,7 +74,7 @@ httpRouter.post(
       .isEmpty()
       .withMessage('Username is required.')
       .isString()
-      .withMessage('Name must be a string.')
+      .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
@@ -86,7 +86,7 @@ httpRouter.post(
       .isEmpty()
       .withMessage('Password is required.')
       .isString()
-      .withMessage('Name must be a string.')
+      .withMessage('Password must be a string.')
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
@@ -117,7 +117,7 @@ httpRouter.put(
       .isEmpty()
       .withMessage('Username is required.')
       .isString()
-      .withMessage('Name must be a string.')
+      .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
@@ -129,7 +129,7 @@ httpRouter.put(
       .isEmpty()
       .withMessage('Password is required.')
       .isString()
-      .withMessage('Name must be a string.')
+      .withMessage('Password must be a string.')
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
@@ -157,7 +157,7 @@ httpRouter.patch(
     check('username')
       .optional()
       .isString()
-      .withMessage('Name must be a string.')
+      .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
@@ -167,7 +167,7 @@ httpRouter.patch(
     check('password')
       .optional()
       .isString()
-      .withMessage('Name must be a string.')
+      .withMessage('Password must be a string.')
       .isLength({ min: 8, max: 256 })
       .withMessage('Password must be between 8 and 256 characters.')
       .not()
