@@ -57,7 +57,7 @@
   grid-template-columns: 2fr 1fr;
   grid-template-rows:
     0.5fr fit-content(1rem) fit-content(em(188px, 16px)) fit-content(188px)
-    2.6rem;
+    3.6rem;
   margin: 30px;
   @media only all and (max-width: 938px) {
     grid-template-areas:

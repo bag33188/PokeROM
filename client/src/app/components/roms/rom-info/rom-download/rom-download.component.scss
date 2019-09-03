@@ -1,5 +1,7 @@
+#download-link-wrapper > a {
+  width: 100%;
+}
+
 #download-link-wrapper {
-  @media only all and (max-width: 938px) {
-    margin-top: 1rem;
-  }
+  margin-top: 1rem;
 }
