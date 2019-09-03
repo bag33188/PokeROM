@@ -1,11 +1,11 @@
 <div class="container text-center" id="form-container">
-  <app-spinner [loading]="!ready"></app-spinner>
+  <app-spinner [loading]="!ready && !errLoadingUsr"></app-spinner>
   <div class="alert alert-danger" *ngIf="errLoadingUsr">
     There was an error while trying to load your user information. Please try
     again later.
   </div>
   <form
-    *ngIf="ready"
+    *ngIf="ready && !errLoadingUsr"
     (ngSubmit)="save()"
     #accountForm="ngForm"
     name="accountForm"
@@ -88,8 +88,8 @@
               maxlength="256"
               [(ngModel)]="user.password"
               #password="ngModel"
-              (focus)="this.pwFocused = true"
-              (blur)="this.pwFocused = false"
+              (focus)="pwFocused = true"
+              (blur)="pwFocused = false"
               required
             />
             <div
