@@ -1,8 +1,8 @@
 @import '../../../../../assets/scss/variables';
 @import '../../../../../assets/scss/mixins';
 
-#list-container {
-  @include list-container(0, 2.5rem, 0.75rem, 938px, 0.75rem 0 0 !important);
+#rom-list-container {
+  @include list-container(0, 2.5rem, 0.88rem, 938px, 0.75rem 0 0 !important);
 }
 
 .bg-red {

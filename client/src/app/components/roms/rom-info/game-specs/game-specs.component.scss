@@ -1,8 +1,8 @@
 @import '../../../../../assets/scss/variables';
 @import '../../../../../assets/scss/mixins';
 
-#list-container {
-  @include list-container(0.75rem, 2.5rem, 0, 938px, 0 0 1.5rem !important);
+#game-list-container {
+  @include list-container(0.88rem, 2.5rem, 0, 938px, 0 0 1.5rem !important);
 }
 
 .bg-red {
