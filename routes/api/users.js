@@ -13,6 +13,17 @@ const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|
 httpRouter.get('/', auth, cache(14), UserController.getUsers);
 
 httpRouter.get(
+  '/:username',
+  auth,
+  [
+    sanitizeParam('username')
+      .trim()
+      .escape()
+  ],
+  UserController.getUserByUsername
+);
+
+httpRouter.get(
   '/:id',
   [
     sanitizeParam('id')

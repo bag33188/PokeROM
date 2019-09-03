@@ -97,6 +97,7 @@ module.exports.getUser = async (req, res, next) => {
     if (req.user['_id'].toString() === id.toString()) {
       await User.getUserById({ _id: id }, (err, user) => {
         if (err) {
+
           if (err.name === 'CastError') {
             return res.status(404).json({ success: false, ...err });
           }
@@ -111,6 +112,48 @@ module.exports.getUser = async (req, res, next) => {
       });
     } else {
       await getUserById({ _id: id }, req, res, () => {
+        return res.status(403).json({
+          success: false,
+          message: `You cannot get this user's data.`
+        });
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getUserByUsername = async (req, res, next) => {
+  try {
+    const username = req.params.username;
+    if (req.user.username === username) {
+      await User.getUserByUsername(username, (err, user) => {
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
+        }
+        if (!user) {
+          return res
+            .status(404)
+            .json({ success: false, message: 'Error 404: user not found.' });
+        }
+        return res.status(200).json(user);
+      });
+    } else {
+      await User.getUserByUsername(username, (err, user) => {
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
+        }
+        if (!user) {
+          return res
+            .status(404)
+            .json({ success: false, message: 'Error 404: user not found.' });
+        }
         return res.status(403).json({
           success: false,
           message: `You cannot get this user's data.`

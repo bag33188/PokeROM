@@ -281,6 +281,41 @@ paths:
           description: User not found.
         500:
           description: Internal server error on back-end occured.
+  '/api/users/{username}':
+    post:
+      tags:
+        - Users
+      name: Get User by Username
+      summary: Gets a single user from their username.
+      security:
+        - bearerAuth: []
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: username
+          description: The username of the User to get.
+          required: true
+          type: string
+      responses:
+        200:
+          description: A single User object.
+          schema:
+            $ref: '#/definitions/User'
+            type: object
+        304:
+          description: A cached User object.
+          schema:
+            $ref: '#/definitions/User'
+            type: object
+        401:
+          description: No auth token / no user found in database with that name.
+        403:
+          description: JWT token and username from client don't match.
+        404:
+          description: User not found.
+        500:
+          description: Internal server error on back-end occured.
   '/api/users/register':
     post:
       tags:
