@@ -73,7 +73,7 @@ app.all('/*', (req, res) => {
 });
 
 // port
-const PORT = process.env.NODE_ENV === 'production' ? 50000 : 8080;
+const PORT = process.env.NODE_ENV === 'production' ? 44300 : 8080;
 
 // start server
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
