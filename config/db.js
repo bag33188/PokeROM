@@ -9,20 +9,22 @@ const connectDB = async () => {
   mongoose.set('useFindAndModify', false);
   try {
     if (process.env.NODE_ENV === 'production') {
-      const certificateKey = fs
-        .readFileSync('database/mongodb.pem', 'utf8')
-        .split('\n')
-        .splice(35, 61)
-        .join('\n');
       const certificate = fs
         .readFileSync('database/mongodb.pem', 'utf8')
         .split('\n')
         .slice(0, 35)
         .join('\n');
+      const certificateKey = fs
+        .readFileSync('database/mongodb.pem', 'utf8')
+        .split('\n')
+        .splice(35, 61)
+        .join('\n');
       const certificateAuthority = fs.readFileSync(
         'database/mongodb.crt',
         'utf8'
       );
+      console.log(certificate);
+      console.log(certificateKey);
       await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird,
