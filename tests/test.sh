@@ -1,5 +1,22 @@
 #!/usr/bin/bash
 
+# ===========
+# Test Script
+# ===========
+
+<< --MULTILINE-COMMENT--
+Permissions (Unix)
+------------------
+
+add to current permissions
+$ cd scripts
+$ chmod +x ./test.sh
+
+set current permissions
+$ cd scripts
+$ chmod 755 ./test.sh
+--MULTILINE-COMMENT--
+
 test() {
   echo -e "Endpoints\n---------\n\n1. Natures\n2. Options\n3. Ratings\n4. Roms\n5. Users\n6. Version\n7. Exit\n\n"
   read -r -p 'Which endpoint collection would you like to test? ' endpoint
