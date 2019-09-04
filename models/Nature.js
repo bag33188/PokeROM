@@ -16,11 +16,11 @@ const natureSchema = new Schema(
       required: [true, 'The increased stat of the nature is required.'],
       minlength: [
         4,
-        'The increased stat of the nature  must be at least 4 characters.'
+        'The increased stat of the nature must be at least 4 characters.'
       ],
       maxlength: [
         20,
-        'The increased stat of the nature  can only be 20 characters at max.'
+        'The increased stat of the nature can only be 20 characters at max.'
       ]
     },
     down: {
@@ -28,7 +28,7 @@ const natureSchema = new Schema(
       required: [true, 'The decreased stat of the nature is required.'],
       minlength: [
         4,
-        'The decreased stat of the nature  must be at least 4 characters.'
+        'The decreased stat of the nature must be at least 4 characters.'
       ],
       maxlength: [
         20,
