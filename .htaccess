@@ -7,7 +7,7 @@
 
 # serve port 44300 to public_html
 RewriteEngine On
-RewriteRule ^$ http://127.0.0.1:44300/ [P,L]
+RewriteRule ^$ http://127.0.0.1:50000/ [P,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ http://127.0.0.1:44300/$1 [P,L]
+RewriteRule ^(.*)$ http://127.0.0.1:50000/$1 [P,L]
