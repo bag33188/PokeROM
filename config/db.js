@@ -23,8 +23,6 @@ const connectDB = async () => {
         'database/mongodb.crt',
         'utf8'
       );
-      console.log(certificate);
-      console.log(certificateKey);
       await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird,
