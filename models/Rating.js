@@ -46,8 +46,8 @@ module.exports.getRatings = (callback, limit) => {
     .limit(parseInt(limit, 10));
 };
 
-module.exports.getRating = (query, callback) => {
-  Rating.findById(query, callback);
+module.exports.getRating = (id, callback) => {
+  Rating.findById({ _id: id }, callback);
 };
 
 module.exports.deleteRating = (query, callback) => {

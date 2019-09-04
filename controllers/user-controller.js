@@ -43,8 +43,8 @@ Number.prototype.convertUnitOfTimeToSeconds = function(unit) {
 
 const routesWithParams = ['authenticate', 'register'];
 
-function getUserById(query, req, res, callback) {
-  return User.getUserById(query, (err, user) => {
+function getUserById(id, req, res, callback) {
+  return User.getUserById(id, (err, user) => {
     if (err) {
       if (err.name === 'CastError') {
         return res.status(404).json({ success: false, ...err });
@@ -94,7 +94,7 @@ module.exports.getUser = async (req, res, next) => {
       return await this.getUserByUsername(req, res, next);
     }
     if (req.user['_id'].toString() === id.toString()) {
-      await User.getUserById({ _id: id }, (err, user) => {
+      await User.getUserById(id, (err, user) => {
         if (err) {
           if (err.name === 'CastError') {
             return res.status(404).json({ success: false, ...err });
@@ -109,7 +109,7 @@ module.exports.getUser = async (req, res, next) => {
         return res.status(200).json(user);
       });
     } else {
-      await getUserById({ _id: id }, req, res, () => {
+      await getUserById(id, req, res, () => {
         return res.status(403).json({
           success: false,
           message: `You cannot get this user's data.`
@@ -398,7 +398,7 @@ module.exports.updateUser = async (req, res, next) => {
               message: 'Error 404: user not found.'
             });
           }
-          await getUserById({ _id: id }, req, res, user => {
+          await getUserById(id, req, res, user => {
             clearCache(req);
             return res.status(200).json(user);
           });
@@ -407,7 +407,7 @@ module.exports.updateUser = async (req, res, next) => {
         }
       });
     } else {
-      await getUserById({ _id: id }, req, res, () => {
+      await getUserById(id, req, res, () => {
         return res.status(403).json({
           success: false,
           message: 'You cannot update this user.'
@@ -477,7 +477,7 @@ module.exports.patchUser = async (req, res, next) => {
                 message: 'Bad gateway.'
               });
             }
-            await getUserById({ _id: id }, req, res, user => {
+            await getUserById(id, req, res, user => {
               clearCache(req);
               return res.status(200).json(user);
             });
@@ -487,7 +487,7 @@ module.exports.patchUser = async (req, res, next) => {
         }
       );
     } else {
-      await getUserById({ _id: id }, req, res, () => {
+      await getUserById(id, req, res, () => {
         return res.status(403).json({
           success: false,
           message: 'You cannot patch this user.'
@@ -556,7 +556,7 @@ module.exports.deleteUser = async (req, res, next) => {
         .json({ success: false, message: 'User not found.' });
     }
     if (req.user['_id'].toString() === id.toString()) {
-      await getUserById({ _id: id }, req, res, async () => {
+      await getUserById(id, req, res, async () => {
         try {
           await User.deleteUser({ _id: id }, async (err, status) => {
             try {
@@ -601,7 +601,7 @@ module.exports.deleteUser = async (req, res, next) => {
         }
       });
     } else {
-      await getUserById({ _id: id }, req, res, () => {
+      await getUserById(id, req, res, () => {
         return res.status(403).json({
           success: false,
           message: 'You cannot delete this user.'
@@ -632,7 +632,7 @@ module.exports.userHeaders = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'User not found.' });
     }
-    await getUserById({ _id: id }, req, res, () => {
+    await getUserById(id, req, res, () => {
       return res.status(200);
     });
   } catch (err) {

@@ -8,8 +8,8 @@ const [, clearCache] = require('../middleware/cache');
 
 const routesWithParams = ['all'];
 
-function getNature(query, req, res, callback) {
-  return Nature.getNature(query, (err, nature) => {
+function getNature(id, req, res, callback) {
+  return Nature.getNature(id, (err, nature) => {
     if (err) {
       if (err.name === 'CastError') {
         return res.status(404).json({ success: false, ...err });
@@ -60,7 +60,7 @@ module.exports.getNature = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'Nature not found.' });
     }
-    await Nature.getNature({ _id: id }, (err, nature) => {
+    await Nature.getNature(id, (err, nature) => {
       if (err) {
         if (err.name === 'CastError') {
           return res.status(404).json({ success: false, ...err });
@@ -208,7 +208,7 @@ module.exports.updateNature = async (req, res, next) => {
               message: 'Error 404: nature not found.'
             });
           }
-          await getNature({ _id: id }, req, res, nature => {
+          await getNature(id, req, res, nature => {
             clearCache(req);
             return res.status(200).json(nature);
           });
@@ -279,7 +279,7 @@ module.exports.patchNature = async (req, res, next) => {
               message: 'Bad gateway.'
             });
           }
-          await getNature({ _id: id }, req, res, nature => {
+          await getNature(id, req, res, nature => {
             clearCache(req);
             return res.status(200).json(nature);
           });
@@ -308,7 +308,7 @@ module.exports.deleteNature = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'Nature not found.' });
     }
-    await getNature({ _id: id }, req, res, async () => {
+    await getNature(id, req, res, async () => {
       try {
         await Nature.deleteNature({ _id: id }, (err, status) => {
           if (err) {
@@ -378,7 +378,7 @@ module.exports.natureHeaders = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'Nature not found.' });
     }
-    await getNature({ _id: id }, req, res, () => {
+    await getNature(id, req, res, () => {
       return res.status(200);
     });
   } catch (err) {

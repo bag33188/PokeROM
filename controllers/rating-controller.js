@@ -5,8 +5,8 @@ const moment = require('moment');
 const Rating = require('../models/Rating');
 const [, clearCache] = require('../middleware/cache');
 
-function getRating(query, req, res, callback) {
-  return Rating.getRating(query, (err, rating) => {
+function getRating(id, req, res, callback) {
+  return Rating.getRating(id, (err, rating) => {
     if (err) {
       if (err.name === 'CastError') {
         return res.status(404).json({ success: false, ...err });
@@ -81,7 +81,7 @@ module.exports.getRating = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'Rating not found.' });
     }
-    await Rating.getRating({ _id: id }, (err, rating) => {
+    await Rating.getRating(id, (err, rating) => {
       if (err) {
         if (err.name === 'CastError') {
           return res.status(404).json({ success: false, ...err });
@@ -132,7 +132,7 @@ module.exports.deleteRating = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'Rating not found.' });
     }
-    await getRating({ _id: id }, req, res, async () => {
+    await getRating(id, req, res, async () => {
       try {
         await Rating.deleteRating({ _id: id }, (err, status) => {
           if (err) {
@@ -191,7 +191,7 @@ module.exports.ratingHeaders = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'Rating not found.' });
     }
-    await getRating({ _id: id }, req, res, () => {
+    await getRating(id, req, res, () => {
       return res.status(200);
     });
   } catch (err) {

@@ -69,8 +69,8 @@ module.exports.getNatures = callback => {
   });
 };
 
-module.exports.getNature = (query, callback) => {
-  Nature.findById(query, callback);
+module.exports.getNature = (id, callback) => {
+  Nature.findById({ _id: id }, callback);
 };
 
 module.exports.patchNature = (idQuery, query, callback) => {

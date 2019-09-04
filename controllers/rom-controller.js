@@ -32,8 +32,8 @@ function toBoolean(value) {
   }
 }
 
-function getRomById(query, req, res, callback) {
-  return Rom.getRomById(query, (err, fetchedRom) => {
+function getRomById(id, req, res, callback) {
+  return Rom.getRomById(id, (err, fetchedRom) => {
     if (err) {
       if (err.name === 'CastError') {
         return res.status(404).json({ success: false, ...err });
@@ -150,7 +150,7 @@ module.exports.getRom = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'ROM not found.' });
     }
-    await Rom.getRomById({ _id: id }, (err, rom) => {
+    await Rom.getRomById(id, (err, rom) => {
       if (err) {
         if (err.name === 'CastError') {
           return res.status(404).json({ success: false, ...err });
@@ -387,7 +387,7 @@ module.exports.updateRom = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
-    await getRomById({ _id: id }, req, res, async fetchedRom => {
+    await getRomById(id, req, res, async fetchedRom => {
       try {
         const isOwnUser =
           fetchedRom.user_id.toString() === req.user['_id'].toString();
@@ -503,7 +503,7 @@ module.exports.patchRom = async (req, res, next) => {
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
 
-    await getRomById({ _id: id }, req, res, async fetchedRom => {
+    await getRomById(id, req, res, async fetchedRom => {
       try {
         const isOwnUser =
           fetchedRom.user_id.toString() === req.user['_id'].toString();
@@ -525,7 +525,7 @@ module.exports.patchRom = async (req, res, next) => {
                 message: 'Bad gateway.'
               });
             }
-            getRomById({ _id: id }, req, res, rom => {
+            getRomById(id, req, res, rom => {
               clearCache(req);
 
               return res.status(200).json(rom);
@@ -561,7 +561,7 @@ module.exports.deleteRom = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'ROM not found.' });
     }
-    await getRomById({ _id: id }, req, res, async rom => {
+    await getRomById(id, req, res, async rom => {
       try {
         const isOwnUser = rom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
