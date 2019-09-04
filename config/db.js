@@ -28,9 +28,9 @@ const connectDB = async () => {
         promiseLibrary: bluebird,
         ssl: true,
         sslValidate: true,
-        sslCA: certificateAuthority,
+        sslCert: certificate,
         sslKey: certificateKey,
-        sslCert: certificate
+        sslCA: certificateAuthority
       });
     } else {
       await mongoose.connect(db, {
