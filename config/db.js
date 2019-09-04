@@ -5,6 +5,8 @@ const fs = require('fs');
 const db = config.get('mongoURI');
 
 const connectDB = async () => {
+  // use to avoid deprecation
+  mongoose.set('useFindAndModify', false);
   try {
     if (process.env.NODE_ENV === 'production') {
       const key = fs.readFileSync('database/mongodb.pem');
@@ -24,8 +26,6 @@ const connectDB = async () => {
         promiseLibrary: bluebird
       });
     }
-    // use to avoid deprecation
-    mongoose.set('useFindAndModify', false);
     console.log(`Connected to database ${config.mongoURI}`);
   } catch (err) {
     console.error(`Database error: ${err}`);
