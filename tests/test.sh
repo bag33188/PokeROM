@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 test() {
-  echo -e "Endpoints\n---------\n\n1. Natures\n2. Options\n3. Ratings\n4. Roms\n5. Users\n6. Version\n\n"
+  echo -e "Endpoints\n---------\n\n1. Natures\n2. Options\n3. Ratings\n4. Roms\n5. Users\n6. Version\n7. Exit\n\n"
   read -r -p 'Which endpoint collection would you like to test? ' endpoint
   if [[ $endpoint == 1 ]]; then
     bash ./natures.sh
@@ -21,6 +21,10 @@ test() {
   elif [[ $endpoint == 6 ]]; then
     bash ./version.sh
     cd ..
+  elif [[ $endpoint == 7 ]]; then
+    cd ..
+  else
+    echo 'Invalid option.'
   fi
   printf "\n"
 }
