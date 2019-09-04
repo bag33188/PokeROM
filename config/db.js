@@ -24,14 +24,13 @@ const connectDB = async () => {
         promiseLibrary: bluebird
       });
     }
+    // use to avoid deprecation
+    mongoose.set('useFindAndModify', false);
     console.log(`Connected to database ${config.mongoURI}`);
   } catch (err) {
     console.error(`Database error: ${err}`);
     // process.exit(1);
   }
 };
-
-// use to avoid deprecation
-mongoose.set('useFindAndModify', false);
 
 module.exports = connectDB;
