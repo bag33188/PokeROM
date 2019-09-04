@@ -18,6 +18,10 @@
     </div>
   </ng-container>
   <div id="roms-container-flex" *ngIf="!loading && !isError">
+    <div id="roms-heading-container" class="mt-4 mb-0">
+      <h1>ROMs</h1>
+      <hr />
+    </div>
     <div id="roms-container-grid">
       <app-rom
         *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"

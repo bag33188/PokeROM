@@ -67,8 +67,7 @@
     'rom-3 rom-4';
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr minmax(min-content, auto);
-  margin-top: 1.7rem;
-  padding: 20px 0 2rem;
+  padding-bottom: 0.6rem;
   width: 70vw;
   @media only all and (max-width: 916px) {
     grid-row-gap: 1.4rem;
@@ -84,7 +83,6 @@
       fit-content(em(300px, 16px))
       fit-content(em(300px, 16px));
     margin: 0 auto;
-    padding: 1.8rem 0 0;
     width: 90vw;
   }
 }
@@ -92,7 +90,8 @@
 /*
  * CSS Flexbox Alignment:
  * |======================================|
- * |                                      |
+ * |            ROMs Heading              |
+ * |------------------------------------- |
  * |                                      |
  * |                                      |
  * |            ROMs CSS Grid             |
@@ -111,6 +110,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#roms-heading-container {
+  width: 70vw;
+
+  h1 {
+    text-align: left;
+  }
+  @media only all and (max-width: 916px) {
+    width: 90vw;
+
+    h1 {
+      text-align: center;
+    }
+  }
 }
 
 #no-roms-heading,
