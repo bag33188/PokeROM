@@ -9,16 +9,17 @@ const connectDB = async () => {
   mongoose.set('useFindAndModify', false);
   try {
     if (process.env.NODE_ENV === 'production') {
-      const key = fs.readFileSync('database/mongodb.pem');
-      const ca = fs.readFileSync('database/mongodb.crt');
+      const certificate = fs.readFileSync('database/mongodb.cer');
+      const certificateKey = fs.readFileSync('database/mongodb.key');
+      const certificateAuthority = fs.readFileSync('database/mongodb.crt');
       await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird,
         ssl: true,
         sslValidate: true,
-        sslCA: ca,
-        sslKey: key,
-        sslCert: key
+        sslCA: certificateAuthority,
+        sslKey: certificateKey,
+        sslCert: certificate
       });
     } else {
       await mongoose.connect(db, {
