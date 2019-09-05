@@ -18,8 +18,12 @@
 }
 
 .box-art-img {
-  height: 29.9vw;
-  width: 29.9vw;
+  height: 100%;
+  width: 100%;
+  @media only all and (max-width: 916px) {
+    height: 32vw;
+    width: 32vw;
+  }
 }
 
 .oversized-img {
