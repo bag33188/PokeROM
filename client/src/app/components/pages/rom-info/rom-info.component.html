@@ -25,24 +25,23 @@
       </div>
     </div>
   </div>
-  <div id="rom-info-container" class="mt-4" *ngIf="!loading && !isError">
-    <div id="back-btn-container">
-      <button
-        type="button"
-        class="btn btn-primary"
-        [routerLink]="['/', 'roms']"
-      >
-        <fa-icon [icon]="faLongArrowAltLeft"></fa-icon>
-      </button>
-    </div>
-    <div id="title-container">
-      <h1>ROM Info</h1>
-    </div>
-    <div id="dummy-container"></div>
-  </div>
   <div *ngIf="!loading && !isError">
-
-    <div id="rom-container">
+    <div id="rom-info-container">
+      <div id="rom-info-header-container" *ngIf="!loading && !isError">
+        <div id="back-btn-container">
+          <button
+            type="button"
+            class="btn btn-primary"
+            [routerLink]="['/', 'roms']"
+          >
+            <fa-icon [icon]="faLongArrowAltLeft"></fa-icon>
+          </button>
+        </div>
+        <div id="title-container">
+          <h1>ROM Info</h1>
+        </div>
+        <div id="dummy-container"></div>
+      </div>
       <app-game-name
         id="game-title"
         [gameName]="rom.game_name"
