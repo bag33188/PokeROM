@@ -49,6 +49,7 @@
 #rom-container {
   display: grid;
   grid-template-areas:
+    'game-title .'
     'game-logo game-logo'
     'game-description-title .'
     'game-description game-specs'
@@ -56,11 +57,14 @@
     'rom-download .';
   grid-template-columns: 2fr 1fr;
   grid-template-rows:
-    0.5fr fit-content(1rem) fit-content(em(188px, 16px)) fit-content(188px)
+    repeat(2, 0.5fr) fit-content(1rem) fit-content(em(188px, 16px)) fit-content(
+      188px
+    )
     3.6rem;
   margin: 30px;
   @media only all and (max-width: 938px) {
     grid-template-areas:
+      'game-title'
       'game-logo'
       'game-description-title'
       'game-description'
@@ -79,10 +83,19 @@
   }
 }
 
+#game-title {
+  align-self: start;
+  grid-area: game-title;
+  grid-column: 1;
+  grid-row: 1;
+  justify-content: start;
+  // text-align: center;
+}
+
 #game-logo {
   grid-area: game-logo;
   grid-column: 1 / 2;
-  grid-row: 1;
+  grid-row: 2;
   @media only all and (max-width: 938px) {
     text-align: center;
   }
@@ -91,19 +104,8 @@
 #game-description-title {
   grid-area: game-description-title;
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 3;
   margin-top: 1rem;
-  @media only all and (max-width: 938px) {
-    grid-column: 1;
-    grid-row: 2;
-    text-align: center;
-  }
-}
-
-#game-description {
-  grid-area: game-description;
-  grid-column: 1;
-  grid-row: 3 / 5;
   @media only all and (max-width: 938px) {
     grid-column: 1;
     grid-row: 3;
@@ -111,13 +113,24 @@
   }
 }
 
+#game-description {
+  grid-area: game-description;
+  grid-column: 1;
+  grid-row: 4 / 6;
+  @media only all and (max-width: 938px) {
+    grid-column: 1;
+    grid-row: 4;
+    text-align: center;
+  }
+}
+
 #rom-download {
   grid-area: rom-download;
   grid-column: 1;
-  grid-row: 5;
+  grid-row: 6;
   @media only all and (max-width: 938px) {
     grid-column: 1;
-    grid-row: 6;
+    grid-row: 7;
     text-align: center;
   }
 }
@@ -126,10 +139,10 @@
   align-self: start;
   grid-area: game-specs;
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 4;
   @media only all and (max-width: 938px) {
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 5;
     margin-top: 0;
   }
 }
@@ -138,10 +151,10 @@
   align-self: end;
   grid-area: rom-specs;
   grid-column: 2;
-  grid-row: 4;
+  grid-row: 5;
   @media only all and (max-width: 938px) {
     grid-column: 1;
-    grid-row: 5;
+    grid-row: 6;
   }
 }
 

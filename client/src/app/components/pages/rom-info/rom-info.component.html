@@ -41,11 +41,13 @@
     <div id="dummy-container"></div>
   </div>
   <div *ngIf="!loading && !isError">
-    <app-game-name
-      [gameName]="rom.game_name"
-      [romType]="rom.rom_type"
-    ></app-game-name>
+
     <div id="rom-container">
+      <app-game-name
+        id="game-title"
+        [gameName]="rom.game_name"
+        [romType]="rom.rom_type"
+      ></app-game-name>
       <app-game-logo
         id="game-logo"
         [logoUrl]="rom.logo_url"
