@@ -9,3 +9,21 @@
   color: $almost-black;
   font-size: 1.1rem;
 }
+
+.float-wrapper {
+  clear: both;
+  overflow: auto;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+  @media only all and (max-width: 1199px) {
+    clear: right;
+    float: left;
+    margin-bottom: 1rem;
+  }
+}

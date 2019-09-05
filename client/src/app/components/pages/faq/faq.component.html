@@ -1,25 +1,31 @@
 <div class="container mt-4">
   <h1 class="mt-3">Frequently Asked Questions</h1>
   <hr />
-  <app-faq-toast></app-faq-toast>
   <div class="p-3 border rounded bg-light">
     <div>
       <ng-container>
-        <h2>ROMs</h2>
-        <p>
-          <span class="question">What is a ROM?</span>
-          <br />
-          <span class="answer">A ROM is a Read Only Memory.</span>
-        </p>
-        <p>
-          <span class="question">How do I play a ROM on my computer?</span>
-          <br />
-          <span class="answer"
-            >In order to play a ROM in your computer, you need an
-            <strong>emulator</strong>.<br />I recommend
-            <a [href]="emulatorUrl" target="_blank">Retroarch</a>.</span
-          >
-        </p>
+        <div class="float-wrapper">
+          <div class="right">
+            <app-faq-toast></app-faq-toast>
+          </div>
+          <div class="left">
+            <h2>ROMs</h2>
+            <p>
+              <span class="question">What is a ROM?</span>
+              <br />
+              <span class="answer">A ROM is a Read Only Memory.</span>
+            </p>
+            <p>
+              <span class="question">How do I play a ROM on my computer?</span>
+              <br />
+              <span class="answer"
+                >In order to play a ROM in your computer, you need an
+                <strong>emulator</strong>.<br />I recommend
+                <a [href]="emulatorUrl" target="_blank">Retroarch</a>.</span
+              >
+            </p>
+          </div>
+        </div>
       </ng-container>
       <ng-container>
         <h2 id="cookies" #cookies>Cookies</h2>
