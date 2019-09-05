@@ -73,7 +73,7 @@
       'rom-download';
     grid-template-columns: 1fr;
     grid-template-rows:
-      0.5fr
+      repeat(2, 0.5fr)
       fit-content(1rem)
       fit-content(em(308px, 16px))
       15.5rem
