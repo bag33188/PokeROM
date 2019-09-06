@@ -135,12 +135,11 @@
 }
 
 #rom-download {
-  align-self: end;
   grid-area: rom-download;
   grid-column: 1;
   grid-row: 7;
+  margin-top: 1rem;
   @media only all and (max-width: 938px) {
-    align-self: start;
     grid-column: 1;
     grid-row: 8;
     text-align: center;
