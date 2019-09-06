@@ -26,7 +26,7 @@ dotenv.config({ encoding: 'utf8' });
 const app = express();
 
 // connect to database
-connectDB();
+connectDB({ useFindAndModify: false });
 
 // configure passport (auth)
 passportConfig(passport);

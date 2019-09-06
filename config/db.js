@@ -4,9 +4,15 @@ const bluebird = require('bluebird');
 const fs = require('fs');
 const db = config.get('mongoURI');
 
-const connectDB = async () => {
-  // use to avoid deprecation
-  mongoose.set('useFindAndModify', false);
+const connectDB = async options => {
+  if (options !== undefined) {
+    if (options['useFindAndModify'] === false) {
+      // use to avoid deprecation
+      mongoose.set('useFindAndModify', false);
+    } else {
+      mongoose.set('useFindAndModify', true);
+    }
+  }
   try {
     if (process.env.NODE_ENV === 'production') {
       const certificate = fs
