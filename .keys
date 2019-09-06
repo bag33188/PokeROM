@@ -1,7 +1,12 @@
 # format:
 # https://<token>@github.com/<username>/<repository>.git
 keys:
-  cPanel:
-    - Of4df1abb2259f2145dcbe9ffc32e031e496745
-  WebStorm:
-    - 80ce1fdf76ab2cef19966417a20047042d081a40
+  personalAccessTokens:
+    cPanel:
+      - Of4df1abb2259f2145dcbe9ffc32e031e496745
+    WebStorm:
+      - 80ce1fdf76ab2cef19966417a20047042d081a40
+  deployKeys
+    'cPanel Git':
+      - 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDC0hHrqNol/Ik+txej+lav2cm05H1crD6cA5QbqhUOxWJbc8VNqakoD7ZWUByz+F3D5Cvua+vlSc/FZoXUFNkHgIfyzJ1rcYFbOR94C+Md0QaYvNRbCUSul9U+nKBXu3FDEHNe+fVOupxvYjW4Gh63+kxSMVVCD8OTfckeREJld5fi4aaL24rDcUMkQNrF00QsMoj7GSAk73hbL1Bq5F1WttkCR31nDi6jMelEqduVcSRcvm/Wq7Zxk+QdcxVXp/sqcMgN/rxmmRPTK9BtKvGCu+gqSMMnofu152qaYgeFbKQKywZF7G8nSxZ8iAWZY8+MZUKuDJZw1fKh5TUjjDTDRADzHjFApP78ur2e3aGIQeL2vcwf6oGgX8BNi+L5KYVx0XCo7NmUT8BRaoOmngJU0XUGrGMIA23UUA1uO1fDwDgBOyCDQ8r8WvnwkL5zX3QFE4djqeKtmI8j2vL+s8kl/x+n79rLANGbGKRvJf+hFlGpC5D5Kb8z7MCQDu/bkHNtbJgILMBXOXjD8D+NVpnUrYIp3188hUx8LbD0gjgs+J/CHNzCF5TEJ0AvpiD46k0t+Sc3t+vFH/cd1qAGCo3MUaa6hJFlWc0EepFh6u5NJrmEMbWsrtYsIgnoNDx6/xezIF758BgKJVNDj23MHUJ8bVZvdGaoX3cJMphY+7n4vQ=='
+
