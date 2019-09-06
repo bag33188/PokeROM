@@ -7,25 +7,26 @@
 # Use personal access tokens (PATs) to access remote private   #
 # repositories without the need to login to your github        #
 # account.                                                     #
-# 															                               #
+#                                                              #
 # Format for HTTPS:                                            #
 # https://<token>@github.com/<username>/<repository>.git       #
-# 															                               #
-# Create a PAT:												                         #
+#                                                              #
+# Create a PAT:                                                #
 # Go to Settings > Developer Settings > Personal Access Tokens #
 # and click Generate New Token. Then give it the repo and      #
 # delete repo permissions, a name, and click Generate Token.   #
-# 															                               #
+#                                                              #
 # Github Deploy Keys                                           #
 # ------------------                                           #
 # Use deploy keys (SSH keys) to access remote private          #
 # repositories from your SSH tunnel.                           #
-#   														                               #
+#                                                              #
 # Create an SSH Key:                                           #
 # $ ssh-keygen -t rsa -b 4092 -C "git@github.com"              #
 # $ cat ~/.ssh/id_rsa.pub                                      #
-#   														                               #
+#                                                              #
 ################################################################
+
 keys:
   personalAccessTokens:
     - 'cPanel': 'Of4df1abb2259f2145dcbe9ffc32e031e496745'
