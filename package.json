@@ -78,9 +78,5 @@
     "jsdoc": "^3.6.3",
     "nodemon": "^1.19.1",
     "prettier": "1.18.2"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "endOfLine": "lf"
   }
 }
