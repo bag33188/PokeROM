@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
+const dotenv = require('dotenv');
 const compression = require('compression');
 const helmet = require('helmet');
 const expressSanitizer = require('express-sanitizer');
@@ -18,8 +19,8 @@ const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
-// get env vars
-require('dotenv').config();
+// setup env vars
+dotenv.config();
 
 // initialize app using express.js
 const app = express();
