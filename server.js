@@ -18,6 +18,9 @@ const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
+// get env vars
+require('dotenv').config();
+
 // initialize app using express.js
 const app = express();
 
@@ -73,7 +76,7 @@ app.all('/*', (req, res) => {
 });
 
 // port
-const PORT = process.env.NODE_ENV === 'production' ? 44300 : 8080;
+const PORT = process.env.PORT;
 
 // start server
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
