@@ -3,5 +3,7 @@
 }
 
 #download-link-wrapper {
-  margin-top: 1rem;
+  @media only all and (max-width: 938px) {
+    margin-top: 0.95rem;
+  }
 }
