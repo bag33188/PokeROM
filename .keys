@@ -1,8 +1,8 @@
-# format:
-# https://<token>@github.com/<username>/<repository>.git
 keys:
   personalAccessTokens:
-    cPanel: 'Of4df1abb2259f2145dcbe9ffc32e031e496745'
-    WebStorm: '80ce1fdf76ab2cef19966417a20047042d081a40'
+    - cPanel: 'Of4df1abb2259f2145dcbe9ffc32e031e496745'
+    - WebStorm: '80ce1fdf76ab2cef19966417a20047042d081a40'
   deployKeys:
-    'cPanel Git': 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5o31vuyyuCYsYfSHX7OMW3qgemXpWXCJ34h8/j6tnDV6Y7/6lesNtBoY/qcKcYH/oAIigVplmsyZFKQ7kGreA7w2cdhpX/snIzQ6+q2vR4NVJzSLOtoLDcINEacy217lip0nkwiaAIPWv17CRJXERYq72uDxRr+TtqB1BfJUrZzK/1RUoX3s9TnWNg/u9yA0mWGqm+goC7l4TTC+O3FytB8hw9+Pru8TG7m5fXAEt08frIdYQhsfFYfht0l/OiD3bRDDKJVamZJMHQn3tNL4cUQsxINOgi3ceNjR04imY+3v0zfETSJNyFaK7PJZdx6HcspCZLIXLIvNz1/fBoUbJIsrXGZ3xyMegHmWgWRgj4ohF2JPxiUP5UxRGU18zp2hr4CFWHlGRkWb75FNfq436oF29n5Idu8M4W1JxnomSJQ2kI4m9rjozJnsL/Rau7MxpDkraAMUDL1O3oaO6cFLRvb4qXju9HjdpNNxsX4rDwHyLDFjPmDOlZ5+vrlG/BnUgo9A7x/irAMp1ILc+T06bLnHmaCpcmo8fhbVCq0d5IjddcIT46wNrXgoXbEaFxJZjOXnG7tw32NS79tYyGGiP2gTlOq7WDxq1d6DHpJibJW8po/4FdReJPgPJ2Gyh5qr3c0XEZQrF5jPJ0YTYH5krdSi2ue6jSWL5FfT7p1gt6Q=='
+    - 'cPanel Git': 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5o31vuyyuCYsYfSHX7OMW3qgemXpWXCJ34h8/j6tnDV6Y7/6lesNtBoY/qcKcYH/oAIigVplmsyZFKQ7kGreA7w2cdhpX/snIzQ6+q2vR4NVJzSLOtoLDcINEacy217lip0nkwiaAIPWv17CRJXERYq72uDxRr+TtqB1BfJUrZzK/1RUoX3s9TnWNg/u9yA0mWGqm+goC7l4TTC+O3FytB8hw9+Pru8TG7m5fXAEt08frIdYQhsfFYfht0l/OiD3bRDDKJVamZJMHQn3tNL4cUQsxINOgi3ceNjR04imY+3v0zfETSJNyFaK7PJZdx6HcspCZLIXLIvNz1/fBoUbJIsrXGZ3xyMegHmWgWRgj4ohF2JPxiUP5UxRGU18zp2hr4CFWHlGRkWb75FNfq436oF29n5Idu8M4W1JxnomSJQ2kI4m9rjozJnsL/Rau7MxpDkraAMUDL1O3oaO6cFLRvb4qXju9HjdpNNxsX4rDwHyLDFjPmDOlZ5+vrlG/BnUgo9A7x/irAMp1ILc+T06bLnHmaCpcmo8fhbVCq0d5IjddcIT46wNrXgoXbEaFxJZjOXnG7tw32NS79tYyGGiP2gTlOq7WDxq1d6DHpJibJW8po/4FdReJPgPJ2Gyh5qr3c0XEZQrF5jPJ0YTYH5krdSi2ue6jSWL5FfT7p1gt6Q=='
+# format for personal access tokens when using git:
+# https://<token>@github.com/<username>/<repository>.git
