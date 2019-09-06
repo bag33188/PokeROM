@@ -32,5 +32,5 @@ module.exports = cors({
   origin:
     process.env.NODE_ENV === 'production'
       ? ['https://pokerom.dev', 'https://www.pokerom.dev']
-      : ['http://localhost:4200', 'http://localhost:8080']
+      : 'http://localhost:4200'
 });
