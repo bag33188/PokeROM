@@ -20,7 +20,7 @@ const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
 // setup env vars
-dotenv.config();
+dotenv.config({ encoding: 'utf8' });
 
 // initialize app using express.js
 const app = express();
