@@ -28,7 +28,7 @@
     "restart": "forever restart server.js",
     "test": "cd tests && bash ./test.sh",
     "prod": "cd scripts && bash ./production.sh",
-    "dev": "node server",
+    "dev": "NODE_ENV=development node server",
     "stage": "NODE_ENV=production node server",
     "db": "cd scripts && bash ./db.sh",
     "api": "nodemon server",
