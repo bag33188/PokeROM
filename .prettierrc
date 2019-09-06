@@ -1,4 +1,8 @@
 {
   "singleQuote": true,
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "bracketSpacing": true,
+  "allowParens": "avoid",
+  "useTabs": false,
+  "tabWidth": 2
 }
