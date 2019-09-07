@@ -1,8 +1,12 @@
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerDefinition = require('./swagger-definition.json');
+const yaml = require('js-yaml');
+const fs = require('fs');
 
 // https://swagger.io/specification/#infoObject
+const swaggerDefinition = yaml.safeLoad(
+  fs.readFileSync('docs/swagger-definition.yml')
+);
 
 // get api docs version
 const version = swaggerDefinition.swaggerDefinition.info.version;
