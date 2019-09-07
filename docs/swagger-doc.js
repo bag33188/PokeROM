@@ -11,7 +11,7 @@ const swaggerDefinition = yaml.safeLoad(
 // get api docs version
 const version = swaggerDefinition.swaggerDefinition.info.version;
 
-function parseVersion() {
+function parseVersion(version) {
   swaggerDefinition.swaggerDefinition.info.description = swaggerDefinition.swaggerDefinition.info.description.replace(
     '%VERSION%',
     version
@@ -20,7 +20,7 @@ function parseVersion() {
 }
 
 // parse api docs version in description
-parseVersion();
+parseVersion(version);
 
 // define swagger entity
 const specs = swaggerJsDoc(swaggerDefinition);
