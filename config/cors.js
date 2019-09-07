@@ -31,6 +31,19 @@ module.exports = cors({
   optionsSuccessStatus: 204,
   origin:
     process.env.NODE_ENV === 'production'
-      ? ['https://pokerom.dev', 'https://www.pokerom.dev']
+      ? function x(req, res, next) {
+          if (
+            /http(s)?:\/\/(www\.)?pokerom\.dev(\/)?/.test(
+              `${req.protocol}://${req.get('host')}${req.originalUrl}`
+            )
+          ) {
+            console.log(
+              `${req.protocol}://${req.get('host')}${req.originalUrl}`
+            );
+            return `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+          } else {
+            return false;
+          }
+        }
       : 'http://localhost:4200'
 });
