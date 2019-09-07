@@ -100,6 +100,10 @@
   grid-column: 1 / 3;
   grid-row: 2;
   justify-self: start;
+  @media only all and (max-width: 938px) {
+    align-self: center;
+    justify-self: center;
+  }
 }
 
 #game-logo {
