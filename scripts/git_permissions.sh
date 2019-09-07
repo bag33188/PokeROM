@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# ================
-#  Git Permissions
-# ================
+# =======================
+#  Git Permissions Script
+# =======================
 
 # shellcheck disable=SC2188
 << --MULTILINE-COMMENT--
