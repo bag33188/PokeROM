@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const config = require('config');
 const bluebird = require('bluebird');
-const fs = require('fs');
 const db = config.get('mongoURI');
+const {
+  certificate,
+  certificateKey,
+  certificateAuthority
+} = require('./cert.js');
 
 const connectDB = async options => {
   if (options !== undefined) {
@@ -15,20 +19,6 @@ const connectDB = async options => {
   }
   try {
     if (process.env.NODE_ENV === 'production') {
-      const certificate = fs
-        .readFileSync('database/mongodb.pem', 'utf8')
-        .split('\n')
-        .slice(0, 35)
-        .join('\n');
-      const certificateKey = fs
-        .readFileSync('database/mongodb.pem', 'utf8')
-        .split('\n')
-        .splice(35, 61)
-        .join('\n');
-      const certificateAuthority = fs.readFileSync(
-        'database/mongodb.crt',
-        'utf8'
-      );
       await mongoose.connect(db, {
         useNewUrlParser: true,
         promiseLibrary: bluebird,
