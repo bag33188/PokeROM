@@ -38,6 +38,7 @@
     "db-prod": "mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:44380 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt",
     "load-db": "mongo --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:44380 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt \"database/pkmn-roms.js\"",
     "pack": "cd scripts && bash ./package_app.sh",
+    "gen-pw": "cd scripts && node pw-hash-gen && cd ..",
     "count-files-git": "cd scripts && ruby count_files_git.rb",
     "fix-git-permissions": "cd scripts && bash ./git_permissions.sh",
     "open-pages": "cd scripts && open_pages.bat",
