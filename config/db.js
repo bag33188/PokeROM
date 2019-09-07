@@ -8,7 +8,7 @@ const {
   certificateAuthority
 } = require('./cert.js');
 
-const connectDB = async options => {
+async function connectDB(options) {
   if (options !== undefined) {
     if (options['useFindAndModify'] === false) {
       // use to avoid deprecation
@@ -39,6 +39,6 @@ const connectDB = async options => {
     console.error(`Database error: ${err}`);
     // process.exit(1);
   }
-};
+}
 
 module.exports = connectDB;
