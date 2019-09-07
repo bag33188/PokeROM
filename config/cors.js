@@ -38,7 +38,7 @@ module.exports = cors({
           } else if (!origin) {
             callback(null, whitelist[0]);
           } else {
-            callback(new Error('Not allowed by CORS'));
+            callback(new Error('Not allowed by CORS'), false);
           }
         }
       : 'http://localhost:4200'
