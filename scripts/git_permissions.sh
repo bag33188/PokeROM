@@ -23,6 +23,7 @@ git_permissions() {
   echo "Changing permissions of .git folder ... "
   # shellcheck disable=SC2035
   sudo chown -R pokerom:pokerom *
+  cd ..
   echo "Done!"
 }
 
