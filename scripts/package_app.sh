@@ -4,6 +4,7 @@
 # Package App Script
 # ==================
 
+# shellcheck disable=SC2188
 << --MULTILINE-COMMENT--
 Permissions (Unix)
 ------------------

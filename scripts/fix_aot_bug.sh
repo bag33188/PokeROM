@@ -11,11 +11,11 @@ Permissions (Unix)
 
 add to current permissions
 $ cd scripts
-$ chmod +x ./fix-aot-bug.sh
+$ chmod +x ./fix_aot_bug.sh
 
 set current permissions
 $ cd scripts
-$ chmod 755 ./fix-aot-bug.sh
+$ chmod 755 ./fix_aot_bug.sh
 --MULTILINE-COMMENT--
 
 fix_aot_bug() {
