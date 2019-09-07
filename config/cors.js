@@ -32,14 +32,11 @@ module.exports = cors({
   origin:
     process.env.NODE_ENV === 'production'
       ? (origin, callback) => {
-          if (
-            ['https://pokerom.dev', 'https://www.pokerom.dev'].indexOf(
-              origin
-            ) !== -1
-          ) {
+          const whitelist = ['https://pokerom.dev', 'https://www.pokerom.dev'];
+          if (whitelist.indexOf(origin) !== -1) {
             callback(null, true);
           } else if (!origin) {
-            callback(null, 'https://pokerom.dev');
+            callback(null, whitelist[0]);
           } else {
             callback(new Error('Not allowed by CORS'));
           }
