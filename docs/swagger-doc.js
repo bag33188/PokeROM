@@ -11,12 +11,12 @@ const swaggerDefinition = yaml.safeLoad(
 // get api docs version
 const version = swaggerDefinition.swaggerDefinition.info.version;
 
-function parseVersion(version) {
+function parseVersion(apiVersion) {
   swaggerDefinition.swaggerDefinition.info.description = swaggerDefinition.swaggerDefinition.info.description.replace(
     '%VERSION%',
-    version
+    apiVersion
   );
-  return version;
+  return apiVersion;
 }
 
 // parse api docs version in description
