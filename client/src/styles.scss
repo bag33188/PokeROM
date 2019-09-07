@@ -27,3 +27,13 @@ html {
 .underline {
   text-decoration: underline;
 }
+
+// webkit browsers
+::selection {
+  background-color: $yellow;
+}
+
+// gecko browsers
+::-moz-selection {
+  background-color: $yellow;
+}
