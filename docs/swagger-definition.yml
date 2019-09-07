@@ -2,10 +2,7 @@
 swaggerDefinition:
   info:
     title: PokéROM API Documentation
-    description:
-      '<p><span>The API documentation for <strong>Pok&eacute;ROM</strong>
-      (the website).</span><br/><a
-      href="/api/docs/%VERSION%" target="_self">Docs</a></p>'
+    description: '<p><span>The API documentation for <strong>Pok&eacute;ROM</strong> (the website).</span><br/><a href="/api/docs/<% VERSION %>" target="_self">Docs</a></p>'
     termsOfService: https://1drv.ms/t/s!AmuGEkjVxD0JhslDktOegP93OxrK_g?e=55mFBA
     contact:
       name: API Support
