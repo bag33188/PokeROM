@@ -1,14 +1,22 @@
-const xml = require('xml');
+const convert = require('xml-js');
 const swaggerDoc = require('../docs/swagger-doc');
 const Version = require('../models/Version');
 
 module.exports.getVersion = (req, res) => {
   const [, version] = swaggerDoc;
+  const apiVersion = Version.getApiVersion(version);
   if (req.headers['accept'].match(/^((?:application|text)\/xml)$/)) {
-    const apiVersion = JSON.stringify(Version.getApiVersion(version));
-    res.status(200).send(xml(JSON.parse(apiVersion)));
+    res.set('Content-Type', req.headers['accept']);
+    res.status(200).send(
+      convert.json2xml(
+        JSON.stringify({
+          _declaration: { _attributes: { version: '1.0', encoding: 'UTF-8' } },
+          Version: apiVersion
+        }),
+        { compact: true, ignoreComment: true, spaces: 4 }
+      )
+    );
   } else {
-    const apiVersion = Version.getApiVersion(version);
     res.status(200).json(apiVersion);
   }
 };

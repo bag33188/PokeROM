@@ -8,6 +8,8 @@ paths:
       summary: Gets the API's version.
       produces:
         - application/json
+        - application/xml
+        - text/xml
       responses:
         200:
           description: An API version object.
