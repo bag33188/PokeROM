@@ -30,7 +30,7 @@
     "prod": "cd scripts && bash ./production.sh",
     "dev": "NODE_ENV=development node server",
     "stage": "NODE_ENV=production node server",
-    "db": "cd scripts && bash ./db.sh",
+    "db": "mongod",
     "api": "nodemon server",
     "client": "cd client && ng serve --open && cd ..",
     "db-shell": "mongo pkmn-roms",
