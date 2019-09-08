@@ -24,6 +24,8 @@ git_permissions() {
   # shellcheck disable=SC2035
   sudo chown -R pokerom:pokerom *
   cd ..
+  echo "Changing permissions of bin folder ... "
+  sudo chmod -R a+rwx bin
   echo "Done!"
 }
 
