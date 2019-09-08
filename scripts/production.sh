@@ -33,7 +33,9 @@ production() {
     else
       python ../scripts/fix_index_html.py
     fi
+    # shellcheck disable=SC2035
     rm *bak1
+    # shellcheck disable=SC2035
     rm *bak2
     ruby ../scripts/add_licenses.rb
     cd ..
