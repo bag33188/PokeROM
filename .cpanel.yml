@@ -4,7 +4,6 @@ deployment:
     # export variables
     - export DEPLOYPATH=/home/pokerom/public_html
     - export NPMPATH=/usr/bin/npm
-    - export NODE_ENV=production
     # run commands
     - /bin/cp .htaccess $DEPLOYPATH
     - $NPMPATH run pack
