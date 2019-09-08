@@ -10,13 +10,16 @@ const {
 } = require('./cert.js');
 
 async function connectDB(options) {
-  if (options !== undefined) {
-    if (options['useFindAndModify'] === false) {
-      // use to avoid deprecation
-      mongoose.set('useFindAndModify', false);
+  // avoid using js assumptions when dealing with option params
+  if (options !== undefined && options !== null) {
+    const key = 'useFindAndModify';
+    if (options.constructor === Object && options.hasOwnProperty(key)) {
+      mongoose.set(key, options[key]);
     } else {
-      mongoose.set('useFindAndModify', true);
+      console.log('Invalid option(s) for connectDB function.');
     }
+  } else {
+    options = {};
   }
   try {
     if (process.env.NODE_ENV === 'production') {
