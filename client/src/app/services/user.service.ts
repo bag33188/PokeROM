@@ -43,4 +43,12 @@ export class UserService {
   public deleteUser(id: string): Observable<any> {
     return this.http.delete<any>(`${this.userUrl}/${id}`);
   }
+
+  public patchUser(id: string, user: any): Observable<User> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const url: string = `${this.userUrl}/${id}`;
+    return this.http.patch<User>(url, user, { headers });
+  }
 }

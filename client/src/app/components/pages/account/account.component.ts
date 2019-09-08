@@ -9,8 +9,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStrings from '../../../helpers/remove-strings';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../../ng-bootstrap/account/modal/modal.component';
 
 @Component({
   selector: 'app-account',
@@ -26,11 +24,7 @@ export class AccountComponent implements OnInit {
   public errLoadingUsr: boolean = false;
   public faExclamationTriangle: IconDefinition;
 
-  constructor(
-    private userService: UserService,
-    private router: Router,
-    private modalService: NgbModal
-  ) {
+  constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
     String.prototype.removeStrings = removeStrings;
   }
@@ -64,16 +58,46 @@ export class AccountComponent implements OnInit {
     if (!this.user.name || this.user.name === '') {
       delete this.user.name;
     }
-    this.userService.updateUser(this.userId, this.user).subscribe(
-      (): void => {
-        AuthService.logout();
-        this.router.navigate(['/', 'home']);
-      },
-      (err: any): never => {
-        this.updateFail = true;
-        throw err;
+    if (
+      (this.user.username || this.user.username.length > 0) &&
+      (this.user.password || this.user.password.length > 0)
+    ) {
+      this.userService.updateUser(this.userId, this.user).subscribe(
+        (): void => {
+          AuthService.logout();
+          this.router.navigate(['/', 'home']);
+        },
+        (err: any): never => {
+          this.updateFail = true;
+          throw err;
+        }
+      );
+    }
+    if (
+      this.user.username ||
+      this.user.username.length > 0 ||
+      this.user.password ||
+      this.user.password.length > 0 ||
+      this.user.name ||
+      this.user.name.length > 0
+    ) {
+      if (!this.user.username || this.user.username === '') {
+        delete this.user.username;
       }
-    );
+      if (!this.user.password || this.user.password === '') {
+        delete this.user.password;
+      }
+      this.userService.patchUser(this.userId, this.user).subscribe(
+        (): void => {
+          AuthService.logout();
+          this.router.navigate(['/', 'home']);
+        },
+        (err: any): never => {
+          this.updateFail = true;
+          throw err;
+        }
+      );
+    }
   }
 
   public sanitizeData(): void {
@@ -91,5 +115,4 @@ export class AccountComponent implements OnInit {
   public changePwInputType(): string {
     return this.pwFocused ? 'text' : 'password';
   }
-
 }
