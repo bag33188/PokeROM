@@ -4,12 +4,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../models/User');
 const secret = config.get('secret');
 
-/**
- * @summary Generate JWT Bearer.
- * @description Generate's the JSON web token (Bearer token) for authentication.
- * @param {object} passportJwt the passport-jwt plugin.
- */
-const passport = passportJwt => {
+function passport(passportJwt) {
   // setup options
   const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -30,7 +25,7 @@ const passport = passportJwt => {
       }
     })
   );
-};
+}
 
 // bearer token handler
 module.exports = passport;
