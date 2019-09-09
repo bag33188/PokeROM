@@ -59,53 +59,51 @@ export class AccountComponent implements OnInit {
     if (!this.user.name || this.user.name === '') {
       delete this.user.name;
     }
-    if (
-      (this.user.username || this.user.username.length > 0) &&
-      (this.user.password || this.user.password.length > 0)
-    ) {
-      this.userService.updateUser(this.userId, this.user).subscribe(
-        (): void => {
-          this.userExists = false;
-          AuthService.logout();
-          this.router.navigate(['/', 'home']);
-        },
-        (err: any): never => {
-          this.updateFail = true;
-          if (err.error.msg === 'A user with that username already exists.') {
-            this.userExists = true;
+    if (this.user.username && this.user.password) {
+      if (this.user.username.length > 0 && this.user.password.length > 0) {
+        this.userService.updateUser(this.userId, this.user).subscribe(
+          (): void => {
+            this.userExists = false;
+            AuthService.logout();
+            this.router.navigate(['/', 'home']);
+          },
+          (err: any): never => {
+            this.updateFail = true;
+            if (err.error.msg === 'A user with that username already exists.') {
+              this.userExists = true;
+            }
+            throw err;
           }
-          throw err;
-        }
-      );
+        );
+      }
     }
-    if (
-      this.user.username ||
-      this.user.username.length > 0 ||
-      this.user.password ||
-      this.user.password.length > 0 ||
-      this.user.name ||
-      this.user.name.length > 0
-    ) {
-      if (!this.user.username || this.user.username === '') {
-        delete this.user.username;
-      }
-      if (!this.user.password || this.user.password === '') {
-        delete this.user.password;
-      }
-      this.userService.patchUser(this.userId, this.user).subscribe(
-        (): void => {
-          this.userExists = false;
-          AuthService.logout();
-          this.router.navigate(['/', 'home']);
-        },
-        (err: any): never => {
-          this.updateFail = true;
-          if (err.error.msg === 'A user with that username already exists.') {
-            this.userExists = true;
-          }
-          throw err;
+    if (this.user.username || this.user.password || this.user.name) {
+      if (
+        this.user.username.length > 0 ||
+        this.user.password.length > 0 ||
+        this.user.name.length > 0
+      ) {
+        if (!this.user.username || this.user.username === '') {
+          delete this.user.username;
         }
-      );
+        if (!this.user.password || this.user.password === '') {
+          delete this.user.password;
+        }
+        this.userService.patchUser(this.userId, this.user).subscribe(
+          (): void => {
+            this.userExists = false;
+            AuthService.logout();
+            this.router.navigate(['/', 'home']);
+          },
+          (err: any): never => {
+            this.updateFail = true;
+            if (err.error.msg === 'A user with that username already exists.') {
+              this.userExists = true;
+            }
+            throw err;
+          }
+        );
+      }
     }
   }
 
@@ -113,12 +111,16 @@ export class AccountComponent implements OnInit {
     if (this.user.name) {
       this.user.name = this.user.name.sanitizeXSS(true).removeStrings(false);
     }
-    this.user.username = this.user.username
-      .sanitizeXSS(false)
-      .removeStrings(false);
-    this.user.password = this.user.password
-      .sanitizeXSS(false)
-      .removeStrings(false);
+    if (this.user.username) {
+      this.user.username = this.user.username
+        .sanitizeXSS(false)
+        .removeStrings(false);
+    }
+    if (this.user.password) {
+      this.user.password = this.user.password
+        .sanitizeXSS(false)
+        .removeStrings(false);
+    }
   }
 
   public changePwInputType(): string {
