@@ -27,12 +27,21 @@
 # $ ssh-keygen -t rsa -b 4092 -C "git@github.com"              #
 # $ cat ~/.ssh/id_rsa.pub                                      #
 #                                                              #
+# Add SSH Key to Github:                                       #
+# Go to Settings > SSH and GPG Keys and click on New SSH Key   #
+# Paste in the result from the previous command.               #
+# but without the git@github.com part.                         #
+# Then click Add SSH Key.                                      #
+#                                                              #
+# Authenticate Yourself:                                       #
+# $ ssh -T git@github.com                                      #
+#                                                              #
 ################################################################
 
 keys:
   personalAccessTokens:
-    - 'cPanel': 'Of4df1abb2259f2145dcbe9ffc32e031e496745'
-    - 'WebStorm IDE': '80ce1fdf76ab2cef19966417a20047042d081a40'
+    - cPanel: 'Of4df1abb2259f2145dcbe9ffc32e031e496745'
+    - WebStorm: '92a9ee67b3fd5e83ce0903bbc801ae73d62ec467'
   deployKeys:
-    - 'cPanel Git': 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5o31vuyyuCYsYfSHX7OMW3qgemXpWXCJ34h8/j6tnDV6Y7/6lesNtBoY/qcKcYH/oAIigVplmsyZFKQ7kGreA7w2cdhpX/snIzQ6+q2vR4NVJzSLOtoLDcINEacy217lip0nkwiaAIPWv17CRJXERYq72uDxRr+TtqB1BfJUrZzK/1RUoX3s9TnWNg/u9yA0mWGqm+goC7l4TTC+O3FytB8hw9+Pru8TG7m5fXAEt08frIdYQhsfFYfht0l/OiD3bRDDKJVamZJMHQn3tNL4cUQsxINOgi3ceNjR04imY+3v0zfETSJNyFaK7PJZdx6HcspCZLIXLIvNz1/fBoUbJIsrXGZ3xyMegHmWgWRgj4ohF2JPxiUP5UxRGU18zp2hr4CFWHlGRkWb75FNfq436oF29n5Idu8M4W1JxnomSJQ2kI4m9rjozJnsL/Rau7MxpDkraAMUDL1O3oaO6cFLRvb4qXju9HjdpNNxsX4rDwHyLDFjPmDOlZ5+vrlG/BnUgo9A7x/irAMp1ILc+T06bLnHmaCpcmo8fhbVCq0d5IjddcIT46wNrXgoXbEaFxJZjOXnG7tw32NS79tYyGGiP2gTlOq7WDxq1d6DHpJibJW8po/4FdReJPgPJ2Gyh5qr3c0XEZQrF5jPJ0YTYH5krdSi2ue6jSWL5FfT7p1gt6Q=='
-    - 'WHM Git': 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDOeWIom/lIDMWFP2zZe2e6DwMhdF/6WfMoHg5+KQmT3C7YBWEE0jKbma1o2IVitno/nozcGD1nvBUedd87o9EZAIzx2Vi+smivW6EGrWHed9uzvQfeBHOXdHypWyhntLU0x5JkUZZ++RQLf384AOK3yAb6oPX0sNWbKc/VdMtvUCXqgor7MO98oRnbjgDNmcXHu1eg3KV2lTmjgwBtdKfqJdUkPtmz1kVAPz9tcJUB0ntTDG8eDsrH84zcIg+1MP43Vd3+PAptX3AUZFnvqHUyVoR1XTw0OHY3Cq0PvWgYrTkHh5zZQF1XRonySWBeOAB89r+eWHljoCM0tFcyas+m0MNj8+0USEJmoXhpnkHQdSR4YJ3VKCzZuMaG9wRKqryQWLIewdvlceotGAJ8xO0HsG0Ufu7bmwySyD9w/uQTBJLbLGKKqcyFMiFZrHetTc+28On7sZMwzbnLi6sJ/jsPdEG1XNbIxNBy8TiaQP7bmGca9oL2y2Lf4aAyFnFhGrxzX8qjKJ0WfWbzbWXJyNZSChDAAbnTTcMuH4NZcZevHEsTd9UgJEeFzQKo9TW2ynsAU97G0TQilYjYo1VhN2ZAhX/XnyXVj4CpFdsDZUf7FUR5tLLZ3/fp9i7MLqJeTgDlB2Fh3eOar1W971PozG8dMFn5Dp/SzFcVJ4iYGJEbhQ=='
+    - cPanel: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7faC7Z+J8zXckXiTnd+cV8T6R8nVKeq+wZvF4PeEJaCzrxE+gLGdMz3dx8fKPa4IKlZtj40UMssAplsMP0a2qYeDmI6WobsnTPTkgEqIPeSHv9lCkHe7B88LEbpSeU+hap/8N1yC2/vfDv+xPD5bzOqonBfGiGivEqYRvKFAAtuKnlefBdp5VOQRaCGyHN6OHfeFdTmtJkQANRHmjnj0KTKQOwR2Qa5sCoMCwtarRsP+iXK4FGIeMpTBy0NgIhZCpVSQiXYmaGbALJZY4XZYw7a9UBHV0/OwZF9L72M9Z67T6e+Aa9Vo1ztlaAq4i3Ut96WA2pr43GdcuXStFFeo8f7ib7aIJCqoZ/jHatRoD1Z9i1pnvl0hLpHBzJK8TFdAqTaIs2kteri3z+mr2UXuC4HMYIkcm+BzXGzB9DQ1eJm6zn+au/rc5MaOFge2/MOjBt1cj4UezJQxRg9RjV0eOMpV0IKNXXblOM/x3P9PtlY1rwIPmVUQpDQaYUmVN2/y0DR5Lkj57vwveSNHBwbTG9GAwplIWfVdSP0bRfdI1rJLZcjQsONMKIyVx4fRAxR6lh1FRS4bqz3UmPnvzwZ3Y568LAXsp+0AO2EGf6AFRmW4JIJuMErUSF+J8UL3JS8/b23OpwaTOyk8u0gq78GlarfezJVHqzTjaqFZ56PnvKw=='
+    - WHM: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDUId0HjERZ0MkKlYZcj9gXjKSJckfvqnZRFrI9ubT+Y980fm6klOsv/at5wlaDt6FwPGNEGJTsH2y71f5zZJ49HHknKxp4qDStkIedkU4/B5kabdGJoTtub7+nuXSNTXNrLbmiuwjrZdc3c/3Jc0lfYIOMBrkKu1LgXLiBg2n44gpwyMhz0AgmaR6nna5tZthp78DQQ+y5950eRNiLKIPVNACDnC5hHVsFbmB0ygH8Ov2eJS0/zz3MJ3MQtSf75yolLMfjcJKYjQO9Zh6PNe9bCKD+LdXamme1+1RtUXfB6SBVSlltNzYXozzHeZByY4SHXuVlsgBXFUo4NIvZsJZirq97Ou9WLvqcUrby58rVCODks2ANQcff98F2qWNWxhG3fdhg6gZJX3GYplVAMbwS1vq6yNH6JR+7ptaMZsc/7YXXV0H7UaOc0kd7pYExMsF9kaaBS5LH3RjAbNAqkimpif+Pfvfd/ITJ6owq+KL5DSiFxCLIU2xj/TDo5cfqfvxhD6gOUTqqF8uOg5ain9C95DrPexKRhnZl8iRq90STjkUA8W3Y85Iy8QRksbc3rB4ZHjuX9lkEaVergPql2RZBz4016EzBIjXpPLLx46P4hUH6Uu/CgeJ+tOj/AruPZxwWvpY0hB5I2N7/TD27xmrqF2L5dWCdM1w4niAZNVxXOQ=='
