@@ -23,6 +23,7 @@ export class AccountComponent implements OnInit {
   public pwFocused: boolean = false;
   public errLoadingUsr: boolean = false;
   public faExclamationTriangle: IconDefinition;
+  public userExists: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -64,11 +65,15 @@ export class AccountComponent implements OnInit {
     ) {
       this.userService.updateUser(this.userId, this.user).subscribe(
         (): void => {
+          this.userExists = false;
           AuthService.logout();
           this.router.navigate(['/', 'home']);
         },
         (err: any): never => {
           this.updateFail = true;
+          if (err.error.msg === 'A user with that username already exists.') {
+            this.userExists = true;
+          }
           throw err;
         }
       );
@@ -89,11 +94,15 @@ export class AccountComponent implements OnInit {
       }
       this.userService.patchUser(this.userId, this.user).subscribe(
         (): void => {
+          this.userExists = false;
           AuthService.logout();
           this.router.navigate(['/', 'home']);
         },
         (err: any): never => {
           this.updateFail = true;
+          if (err.error.msg === 'A user with that username already exists.') {
+            this.userExists = true;
+          }
           throw err;
         }
       );

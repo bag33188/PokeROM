@@ -70,17 +70,19 @@
               [(ngModel)]="user.username"
               #username="ngModel"
             />
-            <div
-              [hidden]="!(username.touched && username.invalid)"
-              class="alert alert-warning"
-            >
-              <div [hidden]="!username.errors?.minlength">
-                Username is too short (min: 5, current:
-                {{ user.username.length }}).
-              </div>
-              <div [hidden]="!username.errors?.maxlength">
-                Username is too long (max: 22, current:
-                {{ user.username.length }}).
+            <div *ngIf="user.hasOwnProperty('username')">
+              <div
+                [hidden]="!(username.touched && username.invalid)"
+                class="alert alert-warning"
+              >
+                <div [hidden]="!username.errors?.minlength">
+                  Username is too short (min: 5, current:
+                  {{ user.username.length }}).
+                </div>
+                <div [hidden]="!username.errors?.maxlength">
+                  Username is too long (max: 22, current:
+                  {{ user.username.length }}).
+                </div>
               </div>
             </div>
           </ng-container>
@@ -100,17 +102,19 @@
               (focus)="pwFocused = true"
               (blur)="pwFocused = false"
             />
-            <div
-              [hidden]="!(password.touched && password.invalid)"
-              class="alert alert-warning"
-            >
-              <div [hidden]="!password.errors?.minlength">
-                Password is too short (min: 8, current:
-                {{ user.password.length }}).
-              </div>
-              <div [hidden]="!password.errors?.maxlength">
-                Password is too long (max: 256, current:
-                {{ user.password.length }}).
+            <div *ngIf="user.hasOwnProperty('password')">
+              <div
+                [hidden]="!(password.touched && password.invalid)"
+                class="alert alert-warning"
+              >
+                <div [hidden]="!password.errors?.minlength">
+                  Password is too short (min: 8, current:
+                  {{ user.password.length }}).
+                </div>
+                <div [hidden]="!password.errors?.maxlength">
+                  Password is too long (max: 256, current:
+                  {{ user.password.length }}).
+                </div>
               </div>
             </div>
           </ng-container>
@@ -136,8 +140,13 @@
       </div>
     </fieldset>
     <div class="alert alert-danger mt-1" *ngIf="updateFail">
-      There was an error while trying to update your account.<br />Please try
-      again later.
+      <div *ngIf="userExists; else normalErrMsg">
+        The username you chose already belongs to another user.
+      </div>
+      <ng-template #normalErrMsg>
+        There was an error while trying to update your account.<br />Please try
+        again later.
+      </ng-template>
     </div>
     <div class="mt-3 alert alert-warning mb-3 font-weight-bold">
       <fa-icon [icon]="faExclamationTriangle" class="mr-1"></fa-icon>

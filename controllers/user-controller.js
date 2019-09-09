@@ -380,32 +380,43 @@ module.exports.updateUser = async (req, res, next) => {
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
     if (req.user['_id'].toString() === id.toString()) {
-      await User.updateUser({ _id: id }, userData, {}, async (err, user) => {
-        try {
-          if (err) {
-            switch (err.name) {
-              case 'CastError':
-                return res.status(404).json({ success: false, ...err });
-              case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
-              default:
-                return res.status(500).json({ success: false, ...err });
+      await User.updateUser(
+        id,
+        userData,
+        {},
+        async (err, user) => {
+          try {
+            if (err) {
+              switch (err.name) {
+                case 'CastError':
+                  return res.status(404).json({ success: false, ...err });
+                case 'ValidationError':
+                  return res.status(406).json({ success: false, ...err });
+                default:
+                  return res.status(500).json({ success: false, ...err });
+              }
             }
-          }
-          if (!user) {
-            return res.status(404).json({
-              success: false,
-              message: 'Error 404: user not found.'
+            if (!user) {
+              return res.status(404).json({
+                success: false,
+                message: 'Error 404: user not found.'
+              });
+            }
+            await getUserById(id, req, res, user => {
+              clearCache(req);
+              return res.status(200).json(user);
             });
+          } catch (err) {
+            next(err);
           }
-          await getUserById(id, req, res, user => {
-            clearCache(req);
-            return res.status(200).json(user);
+        },
+        () => {
+          return res.status(500).json({
+            success: false,
+            msg: 'A user with that username already exists.'
           });
-        } catch (err) {
-          next(err);
         }
-      });
+      );
     } else {
       await getUserById(id, req, res, () => {
         return res.status(403).json({
@@ -457,7 +468,7 @@ module.exports.patchUser = async (req, res, next) => {
     }
     if (req.user['_id'].toString() === id.toString()) {
       await User.patchUser(
-        { _id: id },
+        id,
         { $set: query },
         async (err, status) => {
           try {
@@ -484,6 +495,12 @@ module.exports.patchUser = async (req, res, next) => {
           } catch (err) {
             next(err);
           }
+        },
+        () => {
+          return res.status(500).json({
+            success: false,
+            msg: 'A user with that username already exists.'
+          });
         }
       );
     } else {
@@ -558,7 +575,7 @@ module.exports.deleteUser = async (req, res, next) => {
     if (req.user['_id'].toString() === id.toString()) {
       await getUserById(id, req, res, async () => {
         try {
-          await User.deleteUser({ _id: id }, async (err, status) => {
+          await User.deleteUser(id, async (err, status) => {
             try {
               if (err) {
                 if (err.name === 'CastError') {

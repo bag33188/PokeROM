@@ -392,7 +392,7 @@ module.exports.updateRom = async (req, res, next) => {
         const isOwnUser =
           fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          await Rom.updateRom({ _id: id }, updateRomData, {}, (err, rom) => {
+          await Rom.updateRom(id, updateRomData, {}, (err, rom) => {
             if (err) {
               switch (err.name) {
                 case 'CastError':
@@ -508,7 +508,7 @@ module.exports.patchRom = async (req, res, next) => {
         const isOwnUser =
           fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          await Rom.patchRom({ _id: id }, { $set: query }, (err, status) => {
+          await Rom.patchRom(id, { $set: query }, (err, status) => {
             if (err) {
               switch (err.name) {
                 case 'CastError':
@@ -565,7 +565,7 @@ module.exports.deleteRom = async (req, res, next) => {
       try {
         const isOwnUser = rom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          await Rom.deleteRom({ _id: id }, (err, status) => {
+          await Rom.deleteRom(id, (err, status) => {
             if (err) {
               if (err.name === 'CastError') {
                 return res.status(404).json({ success: false, ...err });

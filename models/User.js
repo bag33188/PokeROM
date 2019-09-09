@@ -79,43 +79,67 @@ module.exports.deleteAllUsers = callback => {
 };
 
 module.exports.deleteUser = (id, callback) => {
-  User.findOneAndDelete(id, callback);
+  User.findOneAndDelete({ _id: id }, callback);
 };
 
 module.exports.getAllUsers = callback => {
   User.find(callback);
 };
 
-module.exports.updateUser = (query, userData, options, callback) => {
+module.exports.updateUser = (id, userData, options, callback, errCallback) => {
   const { name, username, password } = userData;
   const userQuery = {
     name,
     username,
     password
   };
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) console.log(err);
-    bcrypt.hash(userQuery.password, salt, (err, hash) => {
-      if (err) console.log(err);
-      // update password as hash
-      userQuery.password = hash;
-      User.findOneAndUpdate(query, userQuery, options, callback);
-    });
-  });
+  User.findOne({ username: username })
+    .then((user, err) => {
+      if (err) {
+        console.log(err);
+      } else if (user && id.toString() !== user._id.toString()) {
+        errCallback();
+      } else {
+        bcrypt.genSalt(10, (err, salt) => {
+          if (err) console.log(err);
+          bcrypt.hash(userQuery.password, salt, (err, hash) => {
+            if (err) console.log(err);
+            // update password as hash
+            userQuery.password = hash;
+            User.findOneAndUpdate({ _id: id }, userQuery, options, callback);
+          });
+        });
+      }
+    })
+    .catch(err => console.log(err));
 };
 
-module.exports.patchUser = (idQuery, userQuery, callback) => {
-  if (!userQuery['$set'].password) {
-    User.updateOne(idQuery, userQuery, callback);
+module.exports.patchUser = (id, userQuery, callback, errCallback) => {
+  if (userQuery['$set'].username !== undefined) {
+    User.findOne({ username: userQuery['$set'].username })
+      .then((user, err) => {
+        if (err) {
+          console.log(err);
+        } else if (user && id.toString() !== user._id.toString()) {
+          errCallback();
+        } else {
+          User.updateOne({ _id: id }, userQuery, callback);
+        }
+      })
+      .catch(err => console.log(err));
   } else {
-    bcrypt.genSalt(10, (err, salt) => {
-      if (err) console.log(err);
-      bcrypt.hash(userQuery['$set'].password, salt, (err, hash) => {
+    if (userQuery['$set'].password === undefined) {
+      User.updateOne({ _id: id }, userQuery, callback);
+    } else {
+      bcrypt.genSalt(10, (err, salt) => {
         if (err) console.log(err);
-        // update password as hash
-        userQuery['$set'].password = hash;
-        User.updateOne(idQuery, userQuery, callback);
+        bcrypt.hash(userQuery['$set'].password, salt, (err, hash) => {
+          if (err) console.log(err);
+          // update password as hash
+          userQuery['$set'].password = hash;
+          User.updateOne({ _id: id }, userQuery, callback);
+        });
       });
-    });
+    }
   }
 };

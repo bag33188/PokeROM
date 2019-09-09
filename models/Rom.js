@@ -205,7 +205,7 @@ module.exports.addRom = (newRom, callback) => {
   Rom.create(newRom, callback);
 };
 
-module.exports.updateRom = (query, romData, options, callback) => {
+module.exports.updateRom = (id, romData, options, callback) => {
   const {
     order_number,
     file_name,
@@ -238,19 +238,19 @@ module.exports.updateRom = (query, romData, options, callback) => {
     date_released,
     logo_url
   };
-  Rom.findOneAndUpdate(query, updateQuery, options, callback);
+  Rom.findOneAndUpdate({ _id: id }, updateQuery, options, callback);
 };
 
-module.exports.deleteRom = (query, callback) => {
-  Rom.findOneAndDelete(query, callback);
+module.exports.deleteRom = (id, callback) => {
+  Rom.findOneAndDelete({ _id: id }, callback);
 };
 
 module.exports.deleteAllRoms = (query, callback) => {
   Rom.deleteMany(query, callback);
 };
 
-module.exports.patchRom = (idQuery, query, callback) => {
-  Rom.updateOne(idQuery, query, callback);
+module.exports.patchRom = (id, query, callback) => {
+  Rom.updateOne({ _id: id }, query, callback);
 };
 
 module.exports.postCore = (coreRoms, user, callback) => {

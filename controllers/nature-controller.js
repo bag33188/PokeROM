@@ -187,7 +187,7 @@ module.exports.updateNature = async (req, res, next) => {
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
     await Nature.updateNature(
-      { _id: id },
+      id,
       updateData,
       {},
       async (err, updatedNature) => {
@@ -258,36 +258,32 @@ module.exports.patchNature = async (req, res, next) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    await Nature.patchNature(
-      { _id: id },
-      { $set: query },
-      async (err, status) => {
-        try {
-          if (err) {
-            switch (err.name) {
-              case 'CastError':
-                return res.status(404).json({ success: false, ...err });
-              case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
-              default:
-                return res.status(500).json({ success: false, ...err });
-            }
+    await Nature.patchNature(id, { $set: query }, async (err, status) => {
+      try {
+        if (err) {
+          switch (err.name) {
+            case 'CastError':
+              return res.status(404).json({ success: false, ...err });
+            case 'ValidationError':
+              return res.status(406).json({ success: false, ...err });
+            default:
+              return res.status(500).json({ success: false, ...err });
           }
-          if (!status) {
-            return res.status(502).json({
-              success: false,
-              message: 'Bad gateway.'
-            });
-          }
-          await getNature(id, req, res, nature => {
-            clearCache(req);
-            return res.status(200).json(nature);
-          });
-        } catch (err) {
-          next(err);
         }
+        if (!status) {
+          return res.status(502).json({
+            success: false,
+            message: 'Bad gateway.'
+          });
+        }
+        await getNature(id, req, res, nature => {
+          clearCache(req);
+          return res.status(200).json(nature);
+        });
+      } catch (err) {
+        next(err);
       }
-    );
+    });
   } catch (err) {
     next(err);
   }
@@ -310,7 +306,7 @@ module.exports.deleteNature = async (req, res, next) => {
     }
     await getNature(id, req, res, async () => {
       try {
-        await Nature.deleteNature({ _id: id }, (err, status) => {
+        await Nature.deleteNature(id, (err, status) => {
           if (err) {
             if (err.name === 'CastError') {
               return res.status(404).json({ success: false, ...err });
