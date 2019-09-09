@@ -1,6 +1,10 @@
 @import '../../../../assets/scss/variables';
 
-#header {
+header {
+  height: 56px;
+}
+
+#nav-header {
   position: fixed !important;
   top: 0;
   width: 100%;
