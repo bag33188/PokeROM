@@ -11,13 +11,13 @@ import { environment } from '../environments/environment';
     <ng-container>
       <!-- begin page container/wrapper -->
       <div attr.data-name="{{ title }}" id="container-wrapper">
-        <section>
+        <section class="h-100">
           <app-header></app-header>
         </section>
-        <section>
+        <section class="h-100">
           <app-body></app-body>
         </section>
-        <section [ngClass]="{ 'bg-info': isHomePage() }">
+        <section [ngClass]="{ 'bg-info': isHomePage(), 'h-100': true }">
           <app-footer [appName]="title"></app-footer>
         </section>
       </div>
