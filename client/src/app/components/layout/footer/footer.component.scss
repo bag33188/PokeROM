@@ -1,6 +1,10 @@
 @import '../../../../assets/scss/variables';
 
-#footer {
+footer {
+  height: 2.5rem;
+}
+
+#footer-content {
   bottom: 0;
   color: $white;
   height: 2rem;
