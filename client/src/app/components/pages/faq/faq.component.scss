@@ -13,18 +13,19 @@
 .float-wrapper {
   clear: both;
   overflow: auto;
-  @media only all and (max-width: 1199px) {
+  @media only all and (max-width: 991px) {
     clear: left;
   }
 }
 
 .left {
   float: left;
+  width: 30rem;
 }
 
 .right {
   float: right;
-  @media only all and (max-width: 1199px) {
+  @media only all and (max-width: 991px) {
     float: left;
     margin-bottom: 1rem;
   }

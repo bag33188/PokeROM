@@ -2,7 +2,7 @@
   <h1 class="mt-3">Frequently Asked Questions</h1>
   <hr />
   <div class="p-3 border rounded bg-light">
-    <div>
+    <ng-container>
       <ng-container>
         <div class="float-wrapper">
           <div class="right">
@@ -13,7 +13,11 @@
             <p>
               <span class="question">What is a ROM?</span>
               <br />
-              <span class="answer">A ROM is a Read Only Memory.</span>
+              <span class="answer"
+                >A ROM is a Read Only Memory. Think of it as a CD with a game on
+                it (ex. GTA V for PS4) but have it be inside cartridge
+                media.</span
+              >
             </p>
             <p>
               <span class="question">How do I play a ROM on my computer?</span>
@@ -21,7 +25,15 @@
               <span class="answer"
                 >In order to play a ROM in your computer, you need an
                 <strong>emulator</strong>.<br />I recommend
-                <a [href]="emulatorUrl" target="_blank">Retroarch</a>.</span
+                <a [href]="emulatorUrl" target="_blank">Retroarch</a>.<br />You
+                also would probably want a machine with a dedicated graphics
+                card (ex.
+                <a [href]="computerUrls[0]" target="_blank"
+                  >NVIDIA GeForce RTX 2080 Ti</a
+                >) and a good CPU (ex.
+                <a [href]="computerUrls[1]" target="_blank"
+                  >INTEL CORE i9-9900K</a
+                >) if you're going to emulate 3DS, WiiU, or Switch games.</span
               >
             </p>
           </div>
@@ -64,6 +76,6 @@
         </h2>
         <app-faq-tabset></app-faq-tabset>
       </ng-container>
-    </div>
+    </ng-container>
   </div>
 </div>
