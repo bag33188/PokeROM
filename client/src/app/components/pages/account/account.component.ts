@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
@@ -15,7 +15,7 @@ import removeStrings from '../../../helpers/remove-strings';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, AfterContentInit {
   public user: User;
   private userId: string;
   public updateFail: boolean = false;
@@ -35,6 +35,10 @@ export class AccountComponent implements OnInit {
     this.userId = JSON.parse(localStorage.getItem('user'))[key];
     this.retrieveUserData();
     this.faExclamationTriangle = faExclamationTriangle;
+  }
+
+  ngAfterContentInit(): void {
+    window.scrollTo(0, 0);
   }
 
   public retrieveUserData(): void {

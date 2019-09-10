@@ -17,12 +17,12 @@
       later.
     </div>
   </div>
-  <div id="roms-container-flex" *ngIf="!loading && !isError">
-    <div id="roms-heading-container" class="mt-2 mb-0">
+  <div class="roms-flex-container" *ngIf="!loading && !isError">
+    <div class="mt-2 mb-0 roms-heading-container">
       <h1>ROMs</h1>
       <hr />
     </div>
-    <div id="roms-container-grid">
+    <div class="roms-grid-container">
       <app-rom
         *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
         class="card card-container border rounded"

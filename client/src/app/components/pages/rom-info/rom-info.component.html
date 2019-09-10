@@ -1,8 +1,7 @@
 <div class="p-2">
   <app-spinner [loading]="loading"></app-spinner>
   <div
-    class="alert alert-danger ml-4 mr-4 text-center"
-    id="rom-info-err"
+    class="alert alert-danger ml-4 mr-4 text-center rom-info-err-wrapper"
     *ngIf="isError"
   >
     <div [ngSwitch]="errStatus">
@@ -26,8 +25,8 @@
     </div>
   </div>
   <div *ngIf="!loading && !isError">
-    <div id="rom-info-container">
-      <div id="rom-info-header-container" *ngIf="!loading && !isError">
+    <div class="rom-info-container">
+      <div class="rom-info-header-container" *ngIf="!loading && !isError">
         <div id="back-btn-container">
           <button
             type="button"
@@ -42,49 +41,51 @@
         </div>
         <div id="dummy-container"></div>
       </div>
-      <app-game-name
-        id="game-title"
-        [gameName]="rom.game_name"
-        [romType]="rom.rom_type"
-      ></app-game-name>
-      <app-game-logo
-        id="game-logo"
-        [logoUrl]="rom.logo_url"
-        [gameName]="rom.game_name"
-      ></app-game-logo>
-      <div id="game-description-title">
-        <h4>
-          <fa-icon
-            [icon]="faFileAlt"
-            class="mr-3 ml-1"
-            id="description-icon"
-          ></fa-icon
-          >{{ isRomHack(rom.rom_type) ? '' : 'Pokemon.com '
-          }}<span class="mr-1">Description</span>
-        </h4>
-      </div>
-      <app-game-description
-        id="game-description"
-        [description]="rom.description"
-      ></app-game-description>
-      <app-rom-download
-        id="rom-download"
-        [downloadLink]="rom.download_link"
-      ></app-rom-download>
-      <app-game-specs
-        id="game-specs"
-        [region]="rom.region"
-        [dateReleased]="rom.date_released"
-        [genre]="rom.genre"
-        [generation]="rom.generation"
-      ></app-game-specs>
-      <app-rom-specs
-        id="rom-specs"
-        [platform]="rom.platform"
-        [fileName]="rom.file_name"
-        [fileSize]="rom.file_size"
-        [fileType]="rom.file_type"
-      ></app-rom-specs>
+      <ng-container>
+        <app-game-name
+          id="game-title"
+          [gameName]="rom.game_name"
+          [romType]="rom.rom_type"
+        ></app-game-name>
+        <app-game-logo
+          id="game-logo"
+          [logoUrl]="rom.logo_url"
+          [gameName]="rom.game_name"
+        ></app-game-logo>
+        <div id="game-description-title">
+          <h4>
+            <fa-icon
+              [icon]="faFileAlt"
+              class="mr-3 ml-1"
+              id="description-icon"
+            ></fa-icon
+            >{{ isRomHack(rom.rom_type) ? '' : 'Pokemon.com '
+            }}<span class="mr-1">Description</span>
+          </h4>
+        </div>
+        <app-game-description
+          id="game-description"
+          [description]="rom.description"
+        ></app-game-description>
+        <app-rom-download
+          id="rom-download"
+          [downloadLink]="rom.download_link"
+        ></app-rom-download>
+        <app-game-specs
+          id="game-specs"
+          [region]="rom.region"
+          [dateReleased]="rom.date_released"
+          [genre]="rom.genre"
+          [generation]="rom.generation"
+        ></app-game-specs>
+        <app-rom-specs
+          id="rom-specs"
+          [platform]="rom.platform"
+          [fileName]="rom.file_name"
+          [fileSize]="rom.file_size"
+          [fileType]="rom.file_type"
+        ></app-rom-specs>
+      </ng-container>
     </div>
   </div>
 </div>
