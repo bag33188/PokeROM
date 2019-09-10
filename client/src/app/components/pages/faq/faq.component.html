@@ -3,79 +3,75 @@
   <hr />
   <div class="p-3 border rounded bg-light">
     <ng-container>
-      <ng-container>
-        <div class="float-wrapper">
-          <div class="right">
-            <app-faq-toast></app-faq-toast>
-          </div>
-          <div class="left">
-            <h2>ROMs</h2>
-            <p>
-              <span class="question">What is a ROM?</span>
-              <br />
-              <span class="answer"
-                >A ROM is a Read Only Memory. Think of it as a CD with a game on
-                it (ex. GTA V for PS4) but have it be inside cartridge
-                media.</span
-              >
-            </p>
-            <p>
-              <span class="question">How do I play a ROM on my computer?</span>
-              <br />
-              <span class="answer"
-                >In order to play a ROM in your computer, you need an
-                <strong>emulator</strong>.<br />I recommend
-                <a [href]="emulatorUrl" target="_blank">Retroarch</a>.<br />You
-                also would probably want a machine with a dedicated graphics
-                card (ex.
-                <a [href]="computerUrls[0]" target="_blank"
-                  >NVIDIA GeForce RTX 2080 Ti</a
-                >) and a good CPU (ex.
-                <a [href]="computerUrls[1]" target="_blank"
-                  >INTEL CORE i9-9900K</a
-                >) if you're going to emulate 3DS, WiiU, or Switch games.</span
-              >
-            </p>
-          </div>
+      <div class="float-wrapper">
+        <div class="right">
+          <app-faq-toast></app-faq-toast>
         </div>
-      </ng-container>
-      <ng-container>
-        <h2 id="cookies" #cookies>Cookies</h2>
-        <p>
-          <span class="question">What are cookies?</span>
-          <br />
-          <span class="answer">
-            Cookies are little bits of data that websites store in your browser.
-            They could be used for a variety of reasons, and for a lot of
-            things.
-          </span>
-          <br /><br />
-          <span class="question">Why does this site use cookies?</span>
-          <br />
-          <span class="answer">
-            This website uses cookies to store your JWT (JSON Web Token) for
-            authentication. The JWT is a Bearer token that the API uses to
-            verify that you are actually logged-in and authorized to access data
-            such as ROMs.
-          </span>
-        </p>
-      </ng-container>
-      <ng-container>
-        <h2 class="mt-3">
-          Open Source&nbsp;<i class="fa fa-code" id="code-icon"></i>
-        </h2>
-        <p>
-          <span class="question">Is this project open source?</span>
-          <br />
-          <span class="answer">No; however, it does use source control.</span>
-        </p>
-      </ng-container>
-      <ng-container>
-        <h2 id="browser-compatibility" #browserCompatibility>
-          Browser Compatibility
-        </h2>
-        <app-faq-tabset></app-faq-tabset>
-      </ng-container>
+        <div class="left">
+          <h2>ROMs</h2>
+          <p>
+            <span class="question">What is a ROM?</span>
+            <br />
+            <span class="answer"
+              >A ROM is a Read Only Memory. Think of it as a CD with a game on
+              it (ex. GTA V for PS4) but have it be inside cartridge
+              media.</span
+            >
+          </p>
+          <p>
+            <span class="question">How do I play a ROM on my computer?</span>
+            <br />
+            <span class="answer"
+              >In order to play a ROM in your computer, you need an
+              <strong>emulator</strong>.<br />I recommend
+              <a [href]="emulatorUrl" target="_blank">Retroarch</a>.<br />You
+              also would probably want a machine with a dedicated graphics card
+              (ex.
+              <a [href]="computerUrls[0]" target="_blank"
+                >NVIDIA GeForce RTX 2080 Ti</a
+              >) and a good CPU (ex.
+              <a [href]="computerUrls[1]" target="_blank">INTEL CORE i9-9900K</a
+              >) if you're going to emulate 3DS, WiiU, or Switch games.</span
+            >
+          </p>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container>
+      <h2 id="cookies" #cookies>Cookies</h2>
+      <p>
+        <span class="question">What are cookies?</span>
+        <br />
+        <span class="answer">
+          Cookies are little bits of data that websites store in your browser.
+          They could be used for a variety of reasons, and for a lot of things.
+        </span>
+        <br /><br />
+        <span class="question">Why does this site use cookies?</span>
+        <br />
+        <span class="answer">
+          This website uses cookies to store your JWT (JSON Web Token) for
+          authentication. The JWT is a Bearer token that the API uses to verify
+          that you are actually logged-in and authorized to access data such as
+          ROMs.
+        </span>
+      </p>
+    </ng-container>
+    <ng-container>
+      <h2 class="mt-3">
+        Open Source&nbsp;<i class="fa fa-code" id="code-icon"></i>
+      </h2>
+      <p>
+        <span class="question">Is this project open source?</span>
+        <br />
+        <span class="answer">No; however, it does use source control.</span>
+      </p>
+    </ng-container>
+    <ng-container>
+      <h2 id="browser-compatibility" #browserCompatibility>
+        Browser Compatibility
+      </h2>
+      <app-faq-tabset></app-faq-tabset>
     </ng-container>
   </div>
 </div>
