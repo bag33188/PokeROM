@@ -13,7 +13,7 @@ const version = swaggerDefinition.swaggerDefinition.info.version;
 
 function parseVersion(apiVersion) {
   swaggerDefinition.swaggerDefinition.info.description = swaggerDefinition.swaggerDefinition.info.description.replace(
-    /((?:<%)(?:\s)?(?:VERSION)(?:\s)?(?:%)>)/,
+    /((?:<%[=#]?)(?:\s)?(?:VERSION)(?:\s)?(?:%>))/,
     apiVersion
   );
   return apiVersion;
