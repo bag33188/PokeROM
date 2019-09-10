@@ -76,8 +76,7 @@ export class AccountComponent implements OnInit {
           }
         );
       }
-    }
-    if (this.user.username || this.user.password || this.user.name) {
+    } else if (this.user.username || this.user.password || this.user.name) {
       if (
         this.user.username.length > 0 ||
         this.user.password.length > 0 ||
