@@ -9,6 +9,7 @@
     "indent": ["warn", 2],
     "no-tabs": 1,
     "prefer-const": 1,
-    "no-undef": "off"
+    "no-undef": "off",
+    "no-unused-vars": "off"
   }
 }
