@@ -10,7 +10,7 @@
   font-size: 1.1rem;
 }
 
-.float-wrapper {
+.float-container {
   clear: both;
   overflow: auto;
   @media only all and (max-width: 991px) {
@@ -20,7 +20,7 @@
 
 .left {
   float: left;
-  width: 30rem;
+  max-width: 30rem;
 }
 
 .right {
