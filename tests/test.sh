@@ -39,6 +39,7 @@ test() {
       echo 'Invalid option.'
       continue
     fi
+    break
   done
   cd ..
   printf "\n"
