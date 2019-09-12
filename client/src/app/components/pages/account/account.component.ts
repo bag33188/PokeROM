@@ -60,6 +60,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
   }
 
   public save(): void {
+    this.ready = false;
     if (!this.user.name || this.user.name === '') {
       delete this.user.name;
     }
@@ -67,6 +68,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
       if (this.user.username.length > 0 && this.user.password.length > 0) {
         this.userService.updateUser(this.userId, this.user).subscribe(
           (): void => {
+            this.ready = true;
             this.userExists = false;
             AuthService.logout();
             this.router.navigate(['/', 'home']);
@@ -94,6 +96,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
         }
         this.userService.patchUser(this.userId, this.user).subscribe(
           (): void => {
+            this.ready = true;
             this.userExists = false;
             AuthService.logout();
             this.router.navigate(['/', 'home']);

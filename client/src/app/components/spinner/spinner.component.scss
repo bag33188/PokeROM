@@ -9,8 +9,10 @@
 .spinner-container {
   height: unquote('#{$calc-body-height}');
   margin-right: -64px;
+  margin-top: -64px;
   position: fixed;
   right: 50%;
+  top: 50%;
 }
 
 @keyframes rotate {
