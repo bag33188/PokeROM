@@ -21,6 +21,7 @@ import { UserService } from '../../services/user.service';
 import { LoggerService } from '../../services/logger.service';
 import { UnitConversionService } from '../../services/unit-conversion.service';
 import { ModalComponent } from './account/modal/modal.component';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ModalComponent } from './account/modal/modal.component';
     NgbModule,
     BrowserModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SpinnerModule
   ],
   exports: [
     AccordionComponent,

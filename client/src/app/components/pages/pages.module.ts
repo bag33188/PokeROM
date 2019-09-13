@@ -25,11 +25,11 @@ import { RomsModule } from '../roms/roms.module';
 import { RatingsComponent } from './ratings/ratings.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from '../../services/user.service';
-import { SpinnerComponent } from '../spinner/spinner.component';
 import { NaturesService } from '../../services/natures.service';
 import { LoggerService } from '../../services/logger.service';
 import { RatingService } from '../../services/rating.service';
 import { AccountComponent } from './account/account.component';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { AccountComponent } from './account/account.component';
     NaturesComponent,
     RatingsComponent,
     RegisterComponent,
-    SpinnerComponent,
     AccountComponent
   ],
   imports: [
@@ -58,8 +57,10 @@ import { AccountComponent } from './account/account.component';
     ReactiveFormsModule,
     RomsModule,
     NgBootstrapModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SpinnerModule
   ],
+  exports: [],
   providers: [
     AuthService,
     AuthGuard,

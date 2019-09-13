@@ -18,6 +18,7 @@ import removeStrings from '../../../helpers/remove-strings';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public loading: boolean;
   public loginFail: string;
   public loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [
@@ -50,10 +51,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = false;
     setTimeout((): void => AuthService.logout(), 88);
   }
 
   public login(): void {
+    this.loading = true;
     const user: LoggedUser = {
       username: this.Username.value,
       password: this.Password.value
@@ -62,6 +65,7 @@ export class LoginComponent implements OnInit {
       (data: RegisteredUser): void => {
         if (data.success) {
           AuthService.storeData(data.token, data.user);
+          this.loading = false;
           const returnUrl: string = this.route.snapshot.queryParamMap.get(
             'returnUrl'
           );
@@ -72,6 +76,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (err: any): never => {
+        this.loading = false;
         const key: string = 'status';
         if (err[key] === 404) {
           this.loginFail = 'User does not exist';

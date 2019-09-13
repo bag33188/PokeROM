@@ -18,6 +18,7 @@ import removeStrings from '../../../helpers/remove-strings';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit, AfterContentInit {
+  public loading: boolean;
   public registerFail: string;
   public registerForm: FormGroup = this.fb.group({
     name: ['', [Validators.minLength(1), Validators.maxLength(100)]],
@@ -54,6 +55,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
+    this.loading = false;
     setTimeout((): void => AuthService.logout(), 100);
   }
 
@@ -62,6 +64,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
   }
 
   public register(): void {
+    this.loading = true;
     const user: User = {
       name: this.Name.value,
       username: this.Username.value,
@@ -77,6 +80,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
       this.userService.registerUser(user).subscribe(
         (data: { success: boolean; message: string }): void => {
           if (data.success) {
+            this.loading = false;
             this.router.navigate(['/', 'login']);
             this.registerFail = '';
           } else {
@@ -84,6 +88,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
           }
         },
         (err: any): never => {
+          this.loading = false;
           const keys: string[] = ['error', 'message', 'errors', 'msg'];
           if (err[keys[0]][keys[1]]) {
             if (

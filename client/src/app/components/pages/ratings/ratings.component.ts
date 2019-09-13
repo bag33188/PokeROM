@@ -20,6 +20,7 @@ export class RatingsComponent implements OnInit {
   public currentRateHover: number;
   public rate: number;
   public isError: boolean;
+  public loading: boolean;
 
   constructor(private ratingService: RatingService) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -34,6 +35,7 @@ export class RatingsComponent implements OnInit {
     this.currentRateHover = 0;
     this.rate = 0;
     this.isError = false;
+    this.loading = false;
   }
 
   public setRating(rate: number): void {
@@ -53,6 +55,7 @@ export class RatingsComponent implements OnInit {
   }
 
   public submitRating(): void {
+    this.loading = true;
     this.rating = {
       rating: this.currentRate,
       message: this.message.sanitizeXSS(false, false).removeStrings(false),
@@ -64,10 +67,12 @@ export class RatingsComponent implements OnInit {
       this.ratingService.addRating(this.rating).subscribe(
         (): void => {
           this.formValid = true;
+          this.loading = false;
           this.formSubmitted = true;
           this.isError = false;
         },
         (err: any): void => {
+          this.loading = false;
           this.isError = true;
           logger.error(err);
         }

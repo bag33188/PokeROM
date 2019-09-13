@@ -1,9 +1,9 @@
 @import '../../../assets/scss/variables';
 
 .spinner {
+  // animation: rotate 3s linear infinite;
   height: auto;
   width: 8rem;
-  // animation: rotate 3s linear infinite;
 }
 
 .spinner-container {
@@ -13,6 +13,7 @@
   position: fixed;
   right: 50%;
   top: 50%;
+  z-index: 32;
 }
 
 @keyframes rotate {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalComponent } from '../modal/modal.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,6 +9,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DeleteUserBtnComponent implements OnInit {
   public btnText: string;
+  public loading: boolean;
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {
@@ -18,6 +19,9 @@ export class DeleteUserBtnComponent implements OnInit {
   public confirmDeletion(): void {
     const modalRef: NgbModalRef = this.modalService.open(ModalComponent, {
       centered: true
+    });
+    modalRef.componentInstance.loading.subscribe((loading: boolean): void => {
+      this.loading = loading;
     });
     const key: string = 'username';
     modalRef.componentInstance.username = JSON.parse(

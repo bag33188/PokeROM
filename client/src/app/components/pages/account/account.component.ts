@@ -74,6 +74,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
             this.router.navigate(['/', 'home']);
           },
           (err: any): never => {
+            this.ready = true;
             this.updateFail = true;
             if (err.error.msg === 'A user with that username already exists.') {
               this.userExists = true;
@@ -102,6 +103,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
             this.router.navigate(['/', 'home']);
           },
           (err: any): never => {
+            this.ready = true;
             this.updateFail = true;
             if (err.error.msg === 'A user with that username already exists.') {
               this.userExists = true;

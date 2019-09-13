@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { take } from 'rxjs/operators';
 import { AuthService } from '../../../../services/auth.service';
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ModalComponent implements OnInit {
   public isErrorDeleting: boolean;
+  @Output() public loading: EventEmitter<boolean> = new EventEmitter();
   @Input() public username: string;
 
   constructor(
@@ -22,9 +23,11 @@ export class ModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loading.emit(false);
     this.isErrorDeleting = false;
   }
   public deleteCurrentUser(): void {
+    this.loading.emit(true);
     const key: string = 'id';
     this.userService
       .deleteUser(JSON.parse(localStorage.getItem('user'))[key])
@@ -32,10 +35,12 @@ export class ModalComponent implements OnInit {
       .subscribe(
         (): void => {
           this.isErrorDeleting = false;
+          this.loading.emit(false);
           this.router.navigate(['/', 'home']);
           AuthService.logout();
         },
         (err: any): void => {
+          this.loading.emit(false);
           this.isErrorDeleting = true;
           logger.error(err);
         }
