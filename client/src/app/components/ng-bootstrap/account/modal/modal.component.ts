@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ModalComponent implements OnInit {
   public isErrorDeleting: boolean;
-  @Output() public loading: EventEmitter<boolean> = new EventEmitter();
+  @Output() private loading: EventEmitter<boolean> = new EventEmitter();
   @Input() public username: string;
 
   constructor(
