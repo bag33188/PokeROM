@@ -14,17 +14,17 @@ client/package-lock.json export-ignore
 *.ts text
 *.json text
 *.yml text
-.env text
+*.env text
 *.xml text
-.eslintrc text
-.ftpquota text
-.gitignore text
-.gitkeys text
-.gitattributes text
-.htaccess text
-LICENSE text
+*.eslintrc text
+*.ftpquota text
+*.gitignore text
+*.gitkeys text
+*.gitattributes text
+*.htaccess text
+*LICENSE text
 *.md text
-.prettierrc text
+*.prettierrc text
 *.webmanifest text
 *.png binary
 *.jpg binary
@@ -35,7 +35,7 @@ LICENSE text
 *.woff binary
 *.woff2 binary
 *.ttf binary
-browserslist text
-.editorconfig text
+*browserslist text
+*.editorconfig text
 
 * text eol=lf
