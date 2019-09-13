@@ -23,7 +23,6 @@ export class ModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loading.emit(false);
     this.isErrorDeleting = false;
   }
   public deleteCurrentUser(): void {
