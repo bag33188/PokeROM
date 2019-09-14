@@ -111,7 +111,6 @@ module.exports.getRoms = async (req, res, next) => {
           });
         }
         let perPage = parseInt(req.query['per_page']);
-
         let page = parseInt(req.query['page']);
         if (!page || !perPage || (!page && !perPage)) {
           return res.status(200).json(roms);
