@@ -12,8 +12,11 @@ const {
 async function connectDB(options) {
   // avoid using js assumptions when dealing with option params
   if (options !== undefined && options !== null) {
-    const key = 'useFindAndModify';
-    if (options.constructor === Object && options.hasOwnProperty(key)) {
+    if (
+      options.constructor === Object &&
+      options.hasOwnProperty('useFindAndModify')
+    ) {
+      const key = Object.keys(options)[0];
       mongoose.set(key, options[key]);
     } else {
       console.log('Invalid option(s) for connectDB function.');
