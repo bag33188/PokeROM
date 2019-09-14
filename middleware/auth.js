@@ -11,7 +11,7 @@ async function auth(req, res, next) {
         } else if (!user) {
           return res.status(401).json({
             success: false,
-            message: 'Error 401: you are not authorized to access this data.'
+            message: 'Error 401: unauthorized.'
           });
         } else {
           const key = 'user';
