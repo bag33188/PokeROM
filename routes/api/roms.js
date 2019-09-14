@@ -40,7 +40,7 @@ httpRouter.get(
       .escape()
   ],
   auth,
-  cache(20),
+  cache(10),
   RomController.getRoms
 );
 
@@ -52,7 +52,7 @@ httpRouter.get(
       .escape()
   ],
   auth,
-  cache(20),
+  cache(10),
   RomController.getRom
 );
 

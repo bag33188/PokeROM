@@ -8,11 +8,11 @@ const httpRouter = express.Router();
 
 const fieldsToSanitize = ['name', 'up', 'down', 'flavor', 'usage'];
 
-httpRouter.get('/', cache(10), NatureController.getNatures);
+httpRouter.get('/', cache(20), NatureController.getNatures);
 
 httpRouter.get(
   '/:id',
-  cache(10),
+  cache(20),
   [
     sanitizeParam('id')
       .trim()

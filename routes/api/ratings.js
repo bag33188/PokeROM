@@ -37,12 +37,12 @@ httpRouter.get(
       .escape()
   ],
   auth,
-  cache(10),
+  cache(20),
 
   RatingController.getRating
 );
 
-httpRouter.get('/', auth, cache(10), RatingController.getRatings);
+httpRouter.get('/', auth, cache(20), RatingController.getRatings);
 
 httpRouter.delete(
   '/:id',
