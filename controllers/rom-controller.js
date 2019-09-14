@@ -111,14 +111,12 @@ module.exports.getRoms = async (req, res, next) => {
           });
         }
         let perPage = parseInt(req.query['per_page']);
-        if (!perPage) {
-          perPage = 14;
-        }
-        const pageCount = Math.ceil(roms.length / perPage);
+
         let page = parseInt(req.query['page']);
         if (!page || !perPage || (!page && !perPage)) {
           return res.status(200).json(roms);
         }
+        const pageCount = Math.ceil(roms.length / perPage);
         if (page > pageCount) {
           page = pageCount;
         }
