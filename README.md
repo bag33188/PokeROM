@@ -81,7 +81,7 @@ sudo pkill mongod
 ## Notes
 
 1. If on Windows, install and use **[Git Bash][git-scm]**.
-2. Languages Used (_14 total_):
+2. Languages Used (_15 total_):
 
     - HTML
     - CSS
@@ -96,6 +96,7 @@ sudo pkill mongod
     - Python (3)
     - Ruby
     - Apache
+    - SVG
     - Markdown
 
 3. Source Code Pro Fonts: [download][source-code-pro-fonts-download]
