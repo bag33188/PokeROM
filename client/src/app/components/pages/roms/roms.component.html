@@ -17,7 +17,10 @@
       later.
     </div>
   </ng-container>
-  <div class="roms-flex-container" *ngIf="!loading && !isError">
+  <div
+    class="roms-flex-container"
+    *ngIf="!loading && !isError && romsData.length > 0"
+  >
     <div class="mt-2 mb-0 roms-heading-container">
       <h1 class="mt-2">ROMs</h1>
       <hr />
