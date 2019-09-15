@@ -14,8 +14,7 @@ async function auth(req, res, next) {
             message: 'Error 401: unauthorized.'
           });
         } else {
-          const key = 'user';
-          req[key] = user;
+          req.user = user;
           next();
         }
       }
