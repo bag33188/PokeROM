@@ -87,7 +87,6 @@ export const toggleSlideAnimation: AnimationTriggerMetadata[] = [
   ])
 ];
 
-// Routable animations
 export const slideInAnimation: AnimationTriggerMetadata[] = [
   trigger('routeAnimation', [
     transition('heroes <=> hero', [
