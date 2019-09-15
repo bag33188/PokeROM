@@ -11,14 +11,14 @@ Permissions (Unix)
 
 add to current permissions
 $ cd scripts
-$ chmod +x ./git_permissions.sh
+$ chmod +x ./fix_permissions.sh
 
 set current permissions
 $ cd scripts
-$ chmod 755 ./git_permissions.sh
+$ chmod 755 ./fix_permissions.sh
 --MULTILINE-COMMENT--
 
-git_permissions() {
+fix_permissions() {
   cd ../.git || return
   echo "Changing permissions of .git folder ... "
   # shellcheck disable=SC2035
@@ -29,4 +29,4 @@ git_permissions() {
   echo "Done!"
 }
 
-git_permissions
+fix_permissions
