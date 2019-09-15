@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="!loading && !isError">
+  <ng-container *ngIf="!loading && !isError">
     <div class="rom-info-container">
       <div class="rom-info-header-container" *ngIf="!loading && !isError">
         <div id="back-btn-container">
@@ -87,5 +87,5 @@
         ></app-rom-specs>
       </ng-container>
     </div>
-  </div>
+  </ng-container>
 </div>

@@ -47,7 +47,7 @@
                 [(ngModel)]="user.name"
                 #name="ngModel"
               />
-              <div *ngIf="user.hasOwnProperty('name')">
+              <ng-container *ngIf="user.hasOwnProperty('name')">
                 <div
                   [hidden]="!(name.touched && name.invalid)"
                   class="alert alert-warning"
@@ -60,7 +60,7 @@
                     {{ user.name.length }}).
                   </div>
                 </div>
-              </div>
+              </ng-container>
             </ng-container>
             <ng-container>
               <label for="username" class="font-weight-bold">Username</label>
@@ -76,7 +76,7 @@
                 [(ngModel)]="user.username"
                 #username="ngModel"
               />
-              <div *ngIf="user.hasOwnProperty('username')">
+              <ng-container *ngIf="user.hasOwnProperty('username')">
                 <div
                   [hidden]="!(username.touched && username.invalid)"
                   class="alert alert-warning"
@@ -90,7 +90,7 @@
                     {{ user.username.length }}).
                   </div>
                 </div>
-              </div>
+              </ng-container>
             </ng-container>
             <ng-container>
               <label for="password" class="font-weight-bold">Password</label>
@@ -108,7 +108,7 @@
                 (focus)="pwFocused = true"
                 (blur)="pwFocused = false"
               />
-              <div *ngIf="user.hasOwnProperty('password')">
+              <ng-container *ngIf="user.hasOwnProperty('password')">
                 <div
                   [hidden]="!(password.touched && password.invalid)"
                   class="alert alert-warning"
@@ -122,7 +122,7 @@
                     {{ user.password.length }}).
                   </div>
                 </div>
-              </div>
+              </ng-container>
             </ng-container>
           </div>
           <button
@@ -146,9 +146,9 @@
         </div>
       </fieldset>
       <div class="alert alert-danger mt-1" *ngIf="updateFail">
-        <div *ngIf="userExists; else normalErrMsg">
+        <ng-container *ngIf="userExists; else normalErrMsg">
           The username you chose already belongs to another user.
-        </div>
+        </ng-container>
         <ng-template #normalErrMsg>
           There was an error while trying to update your account.<br />Please
           try again later.

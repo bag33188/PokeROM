@@ -60,11 +60,11 @@
           try again later.
         </div>
       </form>
-      <div *ngIf="formSubmitted">
+      <ng-container *ngIf="formSubmitted">
         <h3 id="thx-msg" class="text-center">
           Thank you for your feedback!&nbsp;
         </h3>
-      </div>
+      </ng-container>
     </div>
     <app-ratings-alert></app-ratings-alert>
   </div>

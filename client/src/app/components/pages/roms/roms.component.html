@@ -1,6 +1,6 @@
 <ng-container>
   <app-spinner [loading]="loading"></app-spinner>
-  <div *ngIf="!loading">
+  <ng-container *ngIf="!loading">
     <h2
       *ngIf="romsData.length === 0 && !isError"
       class="text-center"
@@ -16,7 +16,7 @@
       Oops, there was an error while trying to load your ROMs. Please try again
       later.
     </div>
-  </div>
+  </ng-container>
   <div class="roms-flex-container" *ngIf="!loading && !isError">
     <div class="mt-2 mb-0 roms-heading-container">
       <h1 class="mt-2">ROMs</h1>
