@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const config = require('config');
 const bluebird = require('bluebird');
-
-const db = config.get('mongoURI');
 const {
   certificate,
   certificateKey,
   certificateAuthority
 } = require('./cert.js');
+
+const db = config.get('mongoURI');
 
 async function connectDB(options) {
   // avoid using js assumptions when dealing with option params
