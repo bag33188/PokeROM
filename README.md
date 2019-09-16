@@ -195,6 +195,13 @@ in each window to terminate the running process.
 
 This process will take some time to complete, but when it's done, a browser window will open with the website.
 
+
+### Troubleshooting
+
+If you get any **permission errors** with `npm`, simply add `sudo` before `npm` to run the command as _root user_.
+
+For **any other problems**, open up a new issue in the [issues](https://github.com/bag33188/PokeROM/issues) section.
+
 [source-code-pro-fonts-download]: <https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA> 'Source Code Pro Fonts Download (Direct Download)'
 
 ---
