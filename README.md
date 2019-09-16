@@ -143,7 +143,7 @@ Now just exit out of all terminal windows.
 
 Congratulations! You have now built the PokeROM app successfully.
 
-**Optional Step**
+#### Optional Step
 
 If you would like to package this app for portable-local deployment, run the following npm script:
 
@@ -151,7 +151,7 @@ If you would like to package this app for portable-local deployment, run the fol
 npm run pack
 ```
 
-This will put a tarball of the application in the `bin` folder.
+This will put a tarball containing the application in the `bin` folder.
 
 ### Step 4 - Running PokeROM
 
