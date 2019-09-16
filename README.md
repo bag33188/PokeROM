@@ -100,19 +100,25 @@ Now that we have the repository on our local machine, we need to do some buildin
 
 First, run this command: 
 
-`npm install && cd client && npm install && cd ..`
+```shell script
+npm install && cd client && npm install && cd ..
+```
 
 That will install all the node dependencies for the backend and the frontend.
 
 Now we just need to make a directory for MongoDB. To do that, run this command:
 
-``sudo mkdir -p /data/db && sudo chown -R `id -un` /data/db``
+```shell script
+sudo mkdir -p /data/db && sudo chown -R `id -un` /data/db
+```
 
 This will create the directory where MongoDB stores all its data in.
 
 Now we just need to compile Angular's components into Ivy components. To do this, simple run the following command:
 
-`cd client && npm run ivy && cd ..`
+```shell script
+cd client && npm run ivy && cd ..
+```
 
 Finally, we need to import the database for out app.
 
@@ -120,7 +126,9 @@ To do this, we must first run our database with this command: `mongod`
 
 Then, in a separate terminal window, run this command:
 
-`cd ~/Projects/PokeROM && npm run import-db`
+```shell script
+cd ~/Projects/PokeROM && npm run import-db
+```
 
 Once that process has completed, you can now stop the `mongod` process by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd>
 in the window where it is running.
@@ -133,7 +141,9 @@ Congratulations! You have now built the PokeROM app successfully.
 
 If you would like to package this app for portable-local deployment, run the following npm script:
 
-`npm run pack`
+```shell script
+npm run pack
+```
 
 This will put a tarball of the application in the `bin` folder.
 
@@ -150,7 +160,9 @@ First, open 3 new Terminal windows/tabs.
 
 In the first terminal window, run this command:
 
-`cd ~/Projects/PokeROM && npm run db`
+```shell script
+cd ~/Projects/PokeROM && npm run db
+```
 
 This will get the database up and running.
 
@@ -158,13 +170,17 @@ This will get the database up and running.
 
 In the second terminal window, run this command:
 
-`cd ~/Projects/PokeROM && npm run api`
+```shell script
+cd ~/Projects/PokeROM && npm run api
+```
 
 #### Terminal Window 3 
 
 In the third terminal window, run this command:
 
-`cd ~/Projects/PokeROM && npm run client`
+```shell script
+cd ~/Projects/PokeROM && npm run client
+```
 
 This process will take some time to complete, but when it's done, a browser window will open with the website.
 
