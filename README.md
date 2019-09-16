@@ -4,13 +4,6 @@
 
 **Table of Contents**
 
-<!-- TOC -->
-
-- [Pok&eacute;ROM](#pokeacuterom)
-
-
-<!-- /TOC -->
-
 ## About
 
 This website is a full stack web application. It is a website that contains all of the core Pok&eacute;mon ROMs, 
@@ -194,7 +187,6 @@ In order to stop the processes running in the 3 terminal tabs/windows, simple pr
 in each window to terminate the running process.
 
 This process will take some time to complete, but when it's done, a browser window will open with the website.
-
 
 ### Troubleshooting
 
