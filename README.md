@@ -188,6 +188,11 @@ In the third terminal window, run this command:
 cd ~/Projects/PokeROM && npm run client
 ```
 
+#### Terminating Processes
+
+In order to stop the processes running in the 3 terminal tabs/windows, simple press <kbd>Ctrl</kbd> + <kbd>C</kbd> 
+in each window to terminate the running process.
+
 This process will take some time to complete, but when it's done, a browser window will open with the website.
 
 [source-code-pro-fonts-download]: <https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA> 'Source Code Pro Fonts Download (Direct Download)'
