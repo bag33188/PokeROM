@@ -7,102 +7,167 @@
 <!-- TOC -->
 
 - [Pok&eacute;ROM](#pokeacuterom)
-  - [About](#about)
-  - [IMPORTANT!](#important)
-  - [Commands](#commands)
-    - [Angular](#angular)
-    - [ExpressJS](#expressjs)
-    - [MongoDB](#mongodb)
-  - [Browser Compatibility](#browser-compatibility)
-  - [Notes](#notes)
+
 
 <!-- /TOC -->
 
 ## About
 
-This repository is a full-stack web-application. It uses the MEAN stack (MongoDB, Express.JS, Angular 2, Node.JS).
+This website is a full stack web application. It is a website that contains all of the core Pok&eacute;mon ROMs, 
+as well as some ROM hacks.
 
-It is exactly what it sounds like, a website that has all of the core Pok&eacute;mon ROMs.
+## Run Locally
 
-This app is deployed at [pokerom.dev](http://pokerom.dev).
+To run this website locally, a lot of setup is required, and the process differs for each operating system.
 
-## IMPORTANT!
+The following guide will show you how to run this app locally on Windows 7/8/8.1/10, macOS Sierra/High Sierra/Mojave, 
+and the Ubuntu Linux distro.
 
-Run this command: `cd client && npm run fix-aot-bug`.
+Let's get started...
 
-This will fix an issue with Angular's AOT Compiler when using `ng serve --aot`.
+### Linux (Ubuntu)
 
-**You will need Python 3 installed and added to your path!**
+#### Step 1 - Installing the Dependencies
 
-Download Python 3 here: [https://www.python.org/downloads/][python3-download]
+You will need to install the following:
 
-## Commands
+* git
+* MongoDB
+* Node.JS and NPM
+* Angular CLI
+* Python 3
+* Ruby
 
-### Angular
-
-```shell script
-npx ivy-ngcc # compile to ivy (in client folder)
-npm run client # run dev server
-```
-
-### ExpressJS
-
-```shell script
-npm run api # run dev api
-npm run pack # package application
-sudo lsof -i -P -n | grep LISTEN # see what ports are running 
-sudo pkill node # kill node process
-```
-
-### MongoDB
+The following command will install git, ruby, and python 3.7.
 
 ```shell script
-npm run db # run db in dev
-npm run mongod # run db in prod
-npm run db-shell # run dev db shell
-npm run db-prod # run prod db shell
-npm run load-db # load data into db (production only)
-npm run import-db # load data into db (development only)
-
-# to kill mongod process
-# ----------------------
-sudo lsof -iTCP -sTCP:LISTEN -n -P
-sudo kill <mongod_command_pid>
-# or
-sudo pkill mongod
+sudo apt-get install git-all ruby-full python3.7
 ```
 
-## Browser Compatibility
+Installing Node.JS and MongoDB require a little more work.
 
-| Browser         | Chrome    | Opera    | Safari      | Firefox    | Edge    | IE           |
-| --------------- | --------- | -------- | ----------- | ---------- | ------- | ------------ |
-| **Min Version** | Chrome 58 | Opera 44 | Safari 10.1 | Firefox 54 | Edge 16 | Incompatible |
+Run the following commands to install MongoDB
 
-## Notes
+```shell script
+# import public key used by package managment system
+wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+# create list file for mongodb
+echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+# reload local package database
+sudo apt-get update
+# install latest mongodb version
+sudo apt-get install -y mongodb-org
+```
 
-1. If on Windows, install and use **[Git Bash][git-scm]**.
-2. Languages Used (_15 total_):
+Now for Node.JS (and NPM), run the following commands
 
-    - HTML
-    - CSS
-    - JavaScript
-    - SCSS
-    - TypeScript
-    - JSON
-    - YAML
-    - XML
-    - Shell/Bash
-    - Batch
-    - Python (3)
-    - Ruby
-    - Apache
-    - SVG
-    - Markdown
+```shell script
+# install curl
+sudo apt-get install curl
+# download nodejs repo
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+# install nodejs
+sudo apt-get install -y nodejs
+```
 
-3. Source Code Pro Fonts: [download][source-code-pro-fonts-download]
+Now that we've installed Node.JS and NPM, we can install the Angular CLI by running the following command:
+```shell script
+npm install @angular/cli
+```
 
-[python3-download]: <https://www.python.org/downloads/> 'Download Python 3'
-[git-scm]: <https://git-scm.com> 'Git Version Control Website'
+> Note: if you get a permissions error, trying adding `sudo` before `npm`
+
+### Step 2 - Get the PokeROM Repository
+
+For this step, we will be cloning the `PokeROM` git repository.
+
+Simply run the following command:
+
+```shell script
+cd ~ && mkdir Projects && cd Projects && git clone https://9a2ed485d2f05445b47ea175754aab8922684635@github.com/bag33188/PokeROM.git
+```
+
+That command will create new new folder called **Projects** in the home directory and clone the PokeROM
+repository inside of that folder.
+
+Now change to the directory created:
+
+`cd PokeROM`
+
+### Step 3 - Building PokeROM
+
+Now that we have the repository on our local machine, we need to do some building.
+
+First, run this command: 
+
+`npm install && cd client && npm install && cd ..`
+
+That will install all the node dependencies for the backend and the frontend.
+
+Now we just need to make a directory for MongoDB. To do that, run this command:
+
+``sudo mkdir -p /data/db && sudo chown -R `id -un` /data/db``
+
+This will create the directory where MongoDB stores all its data in.
+
+Now we just need to compile Angular's components into Ivy components. To do this, simple run the following command:
+
+`cd client && npm run ivy && cd ..`
+
+Finally, we need to import the database for out app.
+
+To do this, we must first run our database with this command: `mongod`
+
+Then, in a separate terminal window, run this command:
+
+`cd ~/Projects/PokeROM && npm run import-db`
+
+Once that process has completed, you can now stop the `mongod` process by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd>
+in the window where it is running.
+
+Now just exit out of all terminal windows.
+
+Congratulations! You have now built the PokeROM app successfully.
+
+**Optional Step**
+
+If you would like to package this app for portable-local deployment, run the following npm script:
+
+`npm run pack`
+
+This will put a tarball of the application in the `bin` folder.
+
+### Step 4 - Running PokeROM
+
+Now that we've built our application, we can now start to run it.
+
+Since we only need to build the application once, you can use these steps from here on without worrying about the 
+previous steps.
+
+First, open 3 new Terminal windows/tabs.
+
+#### Terminal Window 1
+
+In the first terminal window, run this command:
+
+`cd ~/Projects/PokeROM && npm run db`
+
+This will get the database up and running.
+
+#### Terminal Window 2
+
+In the second terminal window, run this command:
+
+`cd ~/Projects/PokeROM && npm run api`
+
+#### Terminal Window 3 
+
+In the third terminal window, run this command:
+
+`cd ~/Projects/PokeROM && npm run client`
+
+This process will take some time to complete, but when it's done, a browser window will open with the website.
+
 [source-code-pro-fonts-download]: <https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA> 'Source Code Pro Fonts Download (Direct Download)'
 
 ---
