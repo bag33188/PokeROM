@@ -92,7 +92,9 @@ repository inside of that folder.
 
 Now change to the directory created:
 
-`cd PokeROM`
+```shell script
+cd PokeROM
+```
 
 ### Step 3 - Building PokeROM
 
