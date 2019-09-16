@@ -192,6 +192,18 @@ This process will take some time to complete, but when it's done, a browser wind
 
 If you get any **permission errors** with `npm`, simply add `sudo` before `npm` to run the command as _root user_.
 
+If you get an error that says `port 8080 is already in use` when trying to run the _API_, then run the following command:
+
+```shell script
+sudo pkill node
+``` 
+
+If you get an error that says `mongod service already running` when trying to run the _DB_, then run this command:
+
+```shell script
+sudo pkill mongod
+```
+
 For **any other problems**, open up a new issue in the [issues](https://github.com/bag33188/PokeROM/issues) section.
 
 [source-code-pro-fonts-download]: <https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA> 'Source Code Pro Fonts Download (Direct Download)'
