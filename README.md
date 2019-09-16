@@ -38,15 +38,15 @@ You will need to install the following:
 * Python 3
 * Ruby
 
-The following command will install git, ruby, and python 3.7.
+The following command will install `git`, `ruby`, and `python 3.7`.
 
 ```shell script
 sudo apt-get install git-all ruby-full python3.7
 ```
 
-Installing Node.JS and MongoDB require a little more work.
+Installing `Node.JS` and `MongoDB` require a little more work.
 
-Run the following commands to install MongoDB
+Run the following commands to install `MongoDB`
 
 ```shell script
 # import public key used by package managment system
@@ -59,7 +59,7 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org
 ```
 
-Now for Node.JS (and NPM), run the following commands
+Now for `Node.JS` (and `NPM`), run the following commands
 
 ```shell script
 # install curl
@@ -70,7 +70,7 @@ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-Now that we've installed Node.JS and NPM, we can install the Angular CLI by running the following command:
+Now that we've installed `Node.JS` and `NPM`, we can install the `Angular CLI` by running the following command:
 ```shell script
 npm install @angular/cli
 ```
@@ -87,7 +87,7 @@ Simply run the following command:
 cd ~ && mkdir Projects && cd Projects && git clone https://9a2ed485d2f05445b47ea175754aab8922684635@github.com/bag33188/PokeROM.git
 ```
 
-That command will create new new folder called **Projects** in the home directory and clone the PokeROM
+That command will create new new folder called `Projects` in the home directory and clone the PokeROM
 repository inside of that folder.
 
 Now change to the directory created:
@@ -108,15 +108,15 @@ npm install && cd client && npm install && cd ..
 
 That will install all the node dependencies for the backend and the frontend.
 
-Now we just need to make a directory for MongoDB. To do that, run this command:
+Now we just need to make a directory for `MongoDB`. To do that, run this command:
 
 ```shell script
 sudo mkdir -p /data/db && sudo chown -R `id -un` /data/db
 ```
 
-This will create the directory where MongoDB stores all its data in.
+This will create the directory where `MongoDB` stores all its data in.
 
-Now we just need to compile Angular's components into Ivy components. To do this, simple run the following command:
+Now we just need to compile Angular's components into `Ivy` components. To do this, simple run the following command:
 
 ```shell script
 cd client && npm run ivy && cd ..
@@ -124,7 +124,11 @@ cd client && npm run ivy && cd ..
 
 Finally, we need to import the database for out app.
 
-To do this, we must first run our database with this command: `mongod`
+To do this, we must first run our database with this command: 
+
+```shell script
+mongod
+```
 
 Then, in a separate terminal window, run this command:
 
