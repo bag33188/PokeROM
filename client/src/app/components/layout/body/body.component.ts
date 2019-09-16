@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoggerService as logger } from '../../../services/logger.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-body',
@@ -7,7 +8,7 @@ import { LoggerService as logger } from '../../../services/logger.service';
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit {
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
   private static isWebKitBrowser(): boolean {
     return (
       /(?:(WebKit))/i.test(navigator.appVersion) &&
@@ -25,5 +26,10 @@ export class BodyComponent implements OnInit {
     if (!BodyComponent.isWebKitBrowser()) {
       logger.warn('CSS custom scrollbar not available in non-WebKit browsers.');
     }
+  }
+
+  public isHomePage(): boolean {
+    const routeKey: string = '_routerState';
+    return this.route[routeKey].snapshot.url === '/home';
   }
 }

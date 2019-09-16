@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
         <section>
           <app-body></app-body>
         </section>
-        <section [ngClass]="{ 'bg-info': isHomePage() }">
+        <section>
           <app-footer [appName]="title"></app-footer>
         </section>
       </div>
@@ -72,10 +72,5 @@ export class AppComponent {
         }
       );
     }
-  }
-
-  public isHomePage(): boolean {
-    const routeKey: string = '_routerState';
-    return this.route[routeKey].snapshot.url === '/home';
   }
 }

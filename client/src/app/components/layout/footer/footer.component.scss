@@ -1,19 +1,27 @@
 @import '../../../../assets/scss/variables';
 
 footer {
-  height: 2.5rem;
+  bottom: 0;
+  height: 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 21;
 }
 
 #footer-content {
-  bottom: 0;
   color: $white;
+  bottom: 0;
   height: 2rem;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  padding-top: 4px;
-  position: fixed !important;
+  position: absolute;
   width: 100%;
-  z-index: 21;
+  margin: 0 !important;
+  padding: 0 !important;
+  .a {
+    top: 50%;
+    right: 50%;
+    position: absolute;
+    transform: translate(50%, -50%);
+  }
   @media only all and (max-width: 414px) {
     font-size: 12px;
   }
