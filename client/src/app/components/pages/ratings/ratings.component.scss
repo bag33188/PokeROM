@@ -4,21 +4,37 @@
   }
 }
 
-#submit-container-flex {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+#submit-container-float {
+  clear: both;
+  width: 281px;
+  @media only all and (max-width: 360px) {
+    clear: left;
+    width: 12.5rem;
+  }
+
+  // use clearfix trick
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
 
   div {
     &:first-child {
+      float: left;
       @media only all and (max-width: 360px) {
         margin-bottom: 1rem;
       }
     }
 
     &:last-child {
+      float: right;
+      @media only all and (max-width: 360px) {
+        float: left !important;
+      }
+
       span {
+        display: block !important;
         @media only all and (max-width: 360px) {
           margin-left: 0 !important;
         }
