@@ -9,22 +9,24 @@ footer {
 }
 
 #footer-content {
-  color: $white;
   bottom: 0;
+  color: $white;
   height: 2rem;
+  margin: 0;
+  padding: 0;
   position: absolute;
   width: 100%;
-  margin: 0 !important;
-  padding: 0 !important;
-  .a {
-    top: 50%;
-    right: 50%;
-    position: absolute;
-    transform: translate(50%, -50%);
-  }
   @media only all and (max-width: 414px) {
     font-size: 12px;
   }
+}
+
+#footer-content > span {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  width: 100%;
 }
 
 a {
