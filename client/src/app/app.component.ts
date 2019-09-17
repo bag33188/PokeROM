@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { LoggerService as logger } from './services/logger.service';
 import { ApiService } from './services/api.service';
 import { ApiVersion } from './models/ApiVersion';
@@ -11,13 +10,13 @@ import { environment } from '../environments/environment';
     <ng-container>
       <!-- begin page container/wrapper -->
       <div attr.data-name="{{ title }}" id="container-wrapper">
-        <section>
+        <section class="header">
           <app-header></app-header>
         </section>
-        <section>
+        <section class="body">
           <app-body></app-body>
         </section>
-        <section>
+        <section class="footer">
           <app-footer [appName]="title"></app-footer>
         </section>
       </div>
@@ -28,18 +27,24 @@ import { environment } from '../environments/environment';
     `
       /* CSS Global Variables/Custom Properties */
       ::ng-deep :root {
-        --default-box-sizing: border-box;
-        --container-wrapper-display: block;
-        --default-margin-value: auto;
-        --default-padding-value: initial;
+        --cw-display: table;
+        --comp-display: table-row;
+        --part-display: table-cell;
       }
     `,
     `
       #container-wrapper {
-        box-sizing: var(--default-box-sizing);
-        display: var(--container-wrapper-display);
-        margin: var(--default-margin-value);
-        padding: var(--default-padding-value);
+        display: var(--cw-display);
+      }
+      .header,
+      .body,
+      .footer {
+        display: var(--comp-display);
+      }
+      app-body,
+      app-header,
+      app-footer {
+        display: var(--part-display);
       }
     `
   ]
@@ -47,7 +52,7 @@ import { environment } from '../environments/environment';
 export class AppComponent {
   public readonly title: string = 'PokéROM';
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+  constructor(private apiService: ApiService) {
     this.changeTitleIfDevEnv();
     this.getApiVersionIfDevEnv();
     if (location.protocol === 'https:') {
