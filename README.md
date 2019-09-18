@@ -1,6 +1,7 @@
 [comment]: # 'Begin README.md'
 
-# Pok&eacute;ROM
+Pok&eacute;ROM
+==============
 
 **Table of Contents**
 
