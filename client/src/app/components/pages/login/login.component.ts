@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([returnUrl || '/roms']);
           this.loginFail = '';
         } else {
+          this.loading = false;
           this.loginFail = 'Incorrect Login';
         }
       },

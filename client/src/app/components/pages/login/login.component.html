@@ -71,7 +71,7 @@
             type="submit"
             class="btn btn-success"
             (click)="sanitizeData()"
-            [disabled]="!loginForm.valid"
+            [disabled]="!loginForm.valid || loading"
           >
             Login
           </button>
