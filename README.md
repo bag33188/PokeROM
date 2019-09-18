@@ -9,17 +9,17 @@
   * [Run Locally](#run-locally)
     + [Linux (Ubuntu)](#linux-ubuntu)
       - [Step 1 - Installing the Dependencies](#step-1---installing-the-dependencies)
-    + [Step 2 - Get the PokeROM Repository](#step-2---get-the-pokerom-repository)
-    + [Step 3 - Building PokeROM](#step-3---building-pokerom)
-      - [Optional Steps](#optional-steps)
-        * [Fixing an Angular AOT Bug](#fixing-an-angular-aot-bug)
-        * [Packaging the App](#packaging-the-app)
-    + [Step 4 - Running PokeROM](#step-4---running-pokerom)
-      - [Terminal Window 1](#terminal-window-1)
-      - [Terminal Window 2](#terminal-window-2)
-      - [Terminal Window 3](#terminal-window-3)
-      - [Terminating Processes](#terminating-processes)
-    + [Troubleshooting](#troubleshooting)
+      - [Step 2 - Get the PokeROM Repository](#step-2---get-the-pokerom-repository)
+      - [Step 3 - Building PokeROM](#step-3---building-pokerom)
+        * [Optional Steps](#optional-steps)
+          + [Fixing an Angular AOT Bug](#fixing-an-angular-aot-bug)
+          + [Packaging the App](#packaging-the-app)
+      - [Step 4 - Running PokeROM](#step-4---running-pokerom)
+        * [Terminal Window 1](#terminal-window-1)
+        * [Terminal Window 2](#terminal-window-2)
+        * [Terminal Window 3](#terminal-window-3)
+        * [Terminating Processes](#terminating-processes)
+      - [Troubleshooting](#troubleshooting)
 
 ## About
 
@@ -90,7 +90,7 @@ npm install @angular/cli
 
 > Note: if you get a permissions error, trying adding `sudo` before `npm`
 
-### Step 2 - Get the PokeROM Repository
+#### Step 2 - Get the PokeROM Repository
 
 For this step, we will be cloning the `PokeROM` git repository.
 
@@ -109,7 +109,7 @@ Now change to the directory created:
 cd PokeROM
 ```
 
-### Step 3 - Building PokeROM
+#### Step 3 - Building PokeROM
 
 Now that we have the repository on our local machine, we need to do some building.
 
@@ -156,9 +156,9 @@ Now just exit out of all terminal windows.
 
 Congratulations! You have now built the PokeROM app successfully.
 
-#### Optional Steps
+##### Optional Steps
 
-##### Fixing an Angular AOT Bug
+###### Fixing an Angular AOT Bug
 
 Upon testing my Angular application with AOT (ahead of time) compilation, I found a bug that prevents it from 
 compiling. 
@@ -169,7 +169,7 @@ To fix this bug, run the following command:
 cd ~/Projects/PokeROM/client && npm run fix-aot-bug
 ```
 
-##### Packaging the App
+###### Packaging the App
 
 If you would like to package this app for portable-local deployment, run the following npm script:
 
@@ -179,7 +179,7 @@ npm run pack
 
 This will put a tarball containing the application in the `bin` folder.
 
-### Step 4 - Running PokeROM
+#### Step 4 - Running PokeROM
 
 Now that we've built our application, we can now start to run it.
 
@@ -188,7 +188,7 @@ previous steps.
 
 First, open 3 new Terminal windows/tabs.
 
-#### Terminal Window 1
+##### Terminal Window 1
 
 In the first terminal window, run this command:
 
@@ -198,7 +198,7 @@ cd ~/Projects/PokeROM && npm run db
 
 This will get the database up and running.
 
-#### Terminal Window 2
+##### Terminal Window 2
 
 In the second terminal window, run this command:
 
@@ -206,7 +206,7 @@ In the second terminal window, run this command:
 cd ~/Projects/PokeROM && npm run api
 ```
 
-#### Terminal Window 3 
+##### Terminal Window 3 
 
 In the third terminal window, run this command:
 
@@ -214,14 +214,14 @@ In the third terminal window, run this command:
 cd ~/Projects/PokeROM && npm run client
 ```
 
-#### Terminating Processes
+##### Terminating Processes
 
 In order to stop the processes running in the 3 terminal tabs/windows, simple press <kbd>Ctrl</kbd> + <kbd>C</kbd> 
 in each window to terminate the running process.
 
 This process will take some time to complete, but when it's done, a browser window will open with the website.
 
-### Troubleshooting
+#### Troubleshooting
 
 If you get any **permission errors** with `npm`, simply add `sudo` before `npm` to run the command as _root user_.
 
