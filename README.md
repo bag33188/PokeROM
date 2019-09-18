@@ -4,7 +4,7 @@
 
 **Table of Contents**
 
-- [Pok&eacute;ROM](#pok-eacute-rom)
+- [PokéROM](#pokérom)
   * [About](#about)
   * [Run Locally](#run-locally)
     + [Linux (Ubuntu)](#linux-ubuntu)
