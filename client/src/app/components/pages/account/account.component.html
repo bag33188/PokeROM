@@ -1,7 +1,7 @@
 <ng-container>
   <app-spinner [loading]="!ready && !errLoadingUsr"></app-spinner>
 
-  <div class="container text-center" id="form-container">
+  <div class="container text-center mb-2" id="form-container">
     <div class="alert alert-danger" *ngIf="errLoadingUsr">
       There was an error while trying to load your user information. Please try
       again later.
