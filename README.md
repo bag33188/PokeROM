@@ -7,7 +7,7 @@
 - [Pok&eacute;ROM](#pok-eacute-rom)
   * [About](#about)
   * [Run Locally](#run-locally)
-    + [Linux (Ubuntu)](#linux--ubuntu-)
+    + [Linux (Ubuntu)](#linux-ubuntu)
       - [Step 1 - Installing the Dependencies](#step-1---installing-the-dependencies)
     + [Step 2 - Get the PokeROM Repository](#step-2---get-the-pokerom-repository)
     + [Step 3 - Building PokeROM](#step-3---building-pokerom)
