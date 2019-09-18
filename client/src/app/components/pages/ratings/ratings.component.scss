@@ -30,11 +30,11 @@
     &:last-child {
       float: right;
       @media only all and (max-width: 360px) {
-        float: left !important;
+        float: left;
       }
 
       span {
-        display: block !important;
+        display: block;
         padding: 0.4rem;
         @media only all and (max-width: 360px) {
           margin-left: 0 !important;
