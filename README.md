@@ -16,6 +16,8 @@ To run this website locally, a lot of setup is required, and the process differs
 The following guide will show you how to run this app locally on Windows 7/8/8.1/10, macOS Sierra/High Sierra/Mojave, 
 and the Ubuntu Linux distro.
 
+If at any point you get stuck or an error occurs, check out the troubleshooting section at the end of this guide.
+
 Let's get started...
 
 ### Linux (Ubuntu)
