@@ -4,6 +4,23 @@
 
 **Table of Contents**
 
+- [Pok&eacute;ROM](#pok-eacute-rom)
+  * [About](#about)
+  * [Run Locally](#run-locally)
+    + [Linux (Ubuntu)](#linux--ubuntu-)
+      - [Step 1 - Installing the Dependencies](#step-1---installing-the-dependencies)
+    + [Step 2 - Get the PokeROM Repository](#step-2---get-the-pokerom-repository)
+    + [Step 3 - Building PokeROM](#step-3---building-pokerom)
+      - [Optional Steps](#optional-steps)
+        * [Fixing an Angular AOT Bug](#fixing-an-angular-aot-bug)
+        * [Packaging the App](#packaging-the-app)
+    + [Step 4 - Running PokeROM](#step-4---running-pokerom)
+      - [Terminal Window 1](#terminal-window-1)
+      - [Terminal Window 2](#terminal-window-2)
+      - [Terminal Window 3](#terminal-window-3)
+      - [Terminating Processes](#terminating-processes)
+    + [Troubleshooting](#troubleshooting)
+
 ## About
 
 This website is a full stack web application. It is a website that contains all of the core Pok&eacute;mon ROMs, 
