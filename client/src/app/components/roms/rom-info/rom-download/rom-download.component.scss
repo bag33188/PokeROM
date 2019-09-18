@@ -1,9 +1,18 @@
-#download-link-wrapper > a {
-  width: 100%;
-}
-
 #download-link-wrapper {
   @media only all and (max-width: 938px) {
     margin-top: 0.95rem;
   }
+
+  #no-download-msg {
+    @media only all and (min-width: 938px) {
+      margin-bottom: 3rem;
+    }
+    @media only all and (max-width: 938px) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+#download-link-wrapper > a {
+  width: 100%;
 }
