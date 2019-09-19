@@ -15,7 +15,7 @@ export class GameDescriptionComponent implements OnInit {
       const url: string = description.match(urlRegex)[0];
       return description.replace(
         url,
-        `<a href="${url}" target="_blank">${url}</a>`
+        `<a href="${url}" target="_blank" rel="noreferrer">${url}</a>`
       );
     } else {
       return description;
