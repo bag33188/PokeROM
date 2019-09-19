@@ -33,6 +33,9 @@ export class AccountComponent implements OnInit, AfterContentInit {
   ngOnInit(): void {
     const key: string = 'id';
     this.userId = JSON.parse(localStorage.getItem('user'))[key];
+    if (!this.userId) {
+      this.errLoadingUsr = true;
+    }
     this.retrieveUserData();
     this.faExclamationTriangle = faExclamationTriangle;
   }
