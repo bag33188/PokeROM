@@ -32,11 +32,12 @@ export class AccountComponent implements OnInit, AfterContentInit {
 
   ngOnInit(): void {
     const key: string = 'id';
-    this.userId = JSON.parse(localStorage.getItem('user'))[key];
     if (!localStorage.getItem('user')) {
       this.errLoadingUsr = true;
+    } else {
+      this.userId = JSON.parse(localStorage.getItem('user'))[key];
+      this.retrieveUserData();
     }
-    this.retrieveUserData();
     this.faExclamationTriangle = faExclamationTriangle;
   }
 
