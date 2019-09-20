@@ -19,7 +19,6 @@ export class FooterComponent implements OnInit {
 
   public getYear(): number {
     const now: Date = new Date();
-    const year: number = now.getFullYear(); // now.getUTCFullYear()
-    return year;
+    return now.getFullYear(); // now.getUTCFullYear();
   }
 }
