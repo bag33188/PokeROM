@@ -31,7 +31,7 @@
     "dev": "NODE_ENV=development node server",
     "stage": "NODE_ENV=production node server",
     "db": "mongod",
-    "api": "nodemon server",
+    "api": "NODE_ENV=development nodemon server",
     "client": "cd client && ng serve --open && cd ..",
     "db-shell": "mongo pkmn-roms",
     "import-db": "mongo \"database/pkmn-roms.js\"",
