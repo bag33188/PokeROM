@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Browser } from '../../../../interfaces/Browser';
-import { ModalContentComponent } from '../modal/modal-content.component';
+import { ModalContentComponent } from '../modal-content/modal-content.component';
 import {
   faChrome,
   faFirefox,

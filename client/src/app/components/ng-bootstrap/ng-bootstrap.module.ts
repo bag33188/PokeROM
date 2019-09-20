@@ -13,7 +13,7 @@ import { PopupComponent } from './rom-info/popup/popup.component';
 import { ToastComponent } from './faq/toast/toast.component';
 import { SvgComponent } from './faq/toast/svg/svg.component';
 import { RatingComponent } from './ratings/rating/rating.component';
-import { ModalContentComponent } from './faq/modal/modal-content.component';
+import { ModalContentComponent } from './faq/modal-content/modal-content.component';
 import { AlertComponent } from './ratings/alert/alert.component';
 import { DeleteUserBtnComponent } from './account/delete-user-btn/delete-user-btn.component';
 import { AuthService } from '../../services/auth.service';
