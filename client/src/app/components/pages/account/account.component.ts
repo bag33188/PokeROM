@@ -24,6 +24,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
   public errLoadingUsr: boolean = false;
   public faExclamationTriangle: IconDefinition;
   public userExists: boolean = false;
+  public isErrorDeleting: boolean;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -31,6 +32,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
+    this.isErrorDeleting = false;
     const key: string = 'id';
     if (!localStorage.getItem('user')) {
       this.errLoadingUsr = true;
@@ -137,5 +139,9 @@ export class AccountComponent implements OnInit, AfterContentInit {
 
   public changePwInputType(): string {
     return this.pwFocused ? 'text' : 'password';
+  }
+
+  public deletionError(isError: boolean): void {
+    this.isErrorDeleting = isError;
   }
 }

@@ -158,7 +158,13 @@
         <fa-icon [icon]="faExclamationTriangle" class="mr-1"></fa-icon>
         Updating your user data will log you out.
       </div>
-      <app-account-delete-user-btn></app-account-delete-user-btn>
+      <div class="alert alert-danger mt-1" *ngIf="isErrorDeleting">
+        Oops, looks like there was an error while trying to delete your user.<br />Please
+        try again later.
+      </div>
+      <app-account-delete-user-btn
+        (isError)="deletionError($event)"
+      ></app-account-delete-user-btn>
     </form>
   </div>
 </ng-container>

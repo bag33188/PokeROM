@@ -12,8 +12,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  public isErrorDeleting: boolean;
-  @Output() private loading: EventEmitter<boolean> = new EventEmitter();
+  @Output() public isErrorDeleting: EventEmitter<boolean> = new EventEmitter<
+    boolean
+  >();
+  @Output() private loading: EventEmitter<boolean> = new EventEmitter<
+    boolean
+  >();
   @Input() public username: string;
 
   constructor(
@@ -22,9 +26,7 @@ export class ModalComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.isErrorDeleting = false;
-  }
+  ngOnInit(): void {}
   public deleteCurrentUser(): void {
     this.loading.emit(true);
     const key: string = 'id';
@@ -33,14 +35,14 @@ export class ModalComponent implements OnInit {
       .pipe(take(1))
       .subscribe(
         (): void => {
-          this.isErrorDeleting = false;
+          this.isErrorDeleting.emit(false);
           this.loading.emit(false);
           this.router.navigate(['/', 'home']);
           AuthService.logout();
         },
         (err: any): void => {
           this.loading.emit(false);
-          this.isErrorDeleting = true;
+          this.isErrorDeleting.emit(true);
           logger.error(err);
         }
       );
