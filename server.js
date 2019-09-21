@@ -18,6 +18,8 @@ const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
 
 // setup env vars
 dotenv.config({ encoding: 'utf8' });
@@ -59,28 +61,41 @@ app.use('/api/users', users);
 app.use('/api/natures', natures);
 app.use('/api/version', version);
 
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, 'public')));
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
 
-  // index route
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  //Check if work id is died
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
   });
 } else {
-  // index route
-  app.get('/', (req, res) => {
-    res.redirect(`/api/docs/${apiVersion}`);
+  if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static(path.join(__dirname, 'public')));
+
+    // index route
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    });
+  } else {
+    // index route
+    app.get('/', (req, res) => {
+      res.redirect(`/api/docs/${apiVersion}`);
+    });
+  }
+
+  app.all('/*', (req, res) => {
+    res.status(404).json({ success: false, message: 'Error 404: not found.' });
   });
+  // port
+  const PORT =
+    process.env.PORT || (process.env.NODE_ENV === 'production' ? 44300 : 8080);
+
+  // start server
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 }
-
-app.all('/*', (req, res) => {
-  res.status(404).json({ success: false, message: 'Error 404: not found.' });
-});
-
-// port
-const PORT =
-  process.env.PORT || (process.env.NODE_ENV === 'production' ? 44300 : 8080);
-
-// start server
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
