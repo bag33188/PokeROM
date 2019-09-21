@@ -21,7 +21,9 @@ REM.||(
   REM cPanel
   START "" https://server1.pokerom.dev:2083
   REM Namecheap
-  START "" https://ap.www.namecheap.com/
+  START "" https://www.namecheap.com/
+  REM Webdisk
+  START "" https://pokerom.dev:2078
   REM Private Email
   START "" https://privateemail.com/appsuite/#!!&app=io.ox/mail&folder=default0/INBOX
   REM Official PokeROM Website
