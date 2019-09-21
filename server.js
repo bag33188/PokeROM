@@ -4,6 +4,8 @@ const passport = require('passport');
 const dotenv = require('dotenv');
 const compression = require('compression');
 const helmet = require('helmet');
+const cluster = require('cluster');
+const os = require('os');
 const expressSanitizer = require('express-sanitizer');
 const [, , cacheControl] = require('./middleware/cache');
 const logger = require('./middleware/logger');
@@ -18,8 +20,6 @@ const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
-const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
 
 // setup env vars
 dotenv.config({ encoding: 'utf8' });
@@ -63,6 +63,8 @@ app.use('/api/version', version);
 
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
+
+  const numCPUs = os.cpus().length;
 
   // Fork workers.
   for (let i = 0; i < numCPUs; i++) {
