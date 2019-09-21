@@ -66,12 +66,10 @@ if (cluster.isMaster) {
 
   const numCPUs = os.cpus().length;
 
-  // Fork workers.
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
 
-  //Check if work id is died
   cluster.on('exit', (worker, code, signal) => {
     console.log(`worker ${worker.process.pid} died`);
   });
