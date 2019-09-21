@@ -66,10 +66,12 @@ if (cluster.isMaster) {
 
   const numCPUs = os.cpus().length;
 
+  // Fork workers.
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
 
+  // Check if work id is dead
   cluster.on('exit', (worker, code, signal) => {
     console.log(`worker ${worker.process.pid} died`);
   });
@@ -92,6 +94,7 @@ if (cluster.isMaster) {
   app.all('/*', (req, res) => {
     res.status(404).json({ success: false, message: 'Error 404: not found.' });
   });
+
   // port
   const PORT =
     process.env.PORT || (process.env.NODE_ENV === 'production' ? 44300 : 8080);

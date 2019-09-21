@@ -23,7 +23,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=production forever start server.js",
+    "start": "NODE_ENV=production forever start server.js --expose-http2",
     "stop": "forever stop server.js",
     "restart": "forever restart server.js",
     "test": "cd tests && bash ./test.sh",
