@@ -30,4 +30,7 @@
   <url>
     <loc>https://pokerom.dev/account</loc>
   </url>
+  <url>
+    <loc>https://pokerom.dev/not_found</loc>
+  </url>
 </urlset>
