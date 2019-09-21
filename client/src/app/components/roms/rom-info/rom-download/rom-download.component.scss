@@ -16,3 +16,9 @@
 #download-link-wrapper > a {
   width: 100%;
 }
+
+a {
+  .disabled {
+    background-color: #333 !important;
+  }
+}
