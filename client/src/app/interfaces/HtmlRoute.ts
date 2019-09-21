@@ -3,5 +3,5 @@ export interface HtmlRoute {
   routerLinkActive: string[];
   routerLinkActiveOptions: { exact: boolean };
   navLinkText: string;
-  accessKey: string;
+  accessKey?: string;
 }

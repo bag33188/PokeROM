@@ -38,11 +38,13 @@
           <a
             class="btn btn-outline-light nav-item"
             [routerLink]="['/', 'login']"
+            accesskey="l"
             >Login</a
           >
           <a
             class="btn btn-outline-light nav-item"
             [routerLink]="['/', 'register']"
+            accesskey="g"
             >Register</a
           >
         </div>
@@ -54,12 +56,14 @@
             [routerLink]="['/', 'account']"
             *ngIf="!isUrl('/account', 'full')"
             class="btn btn-outline-light nav-item"
+            accesskey="a"
             >Account</a
           >
           <button
             type="button"
             class="btn btn-outline-light nav-item"
             (click)="logout()"
+            accesskey="l"
           >
             Logout
           </button>

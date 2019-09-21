@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
         navLinkText: 'Rate',
-        accessKey: 'a'
+        accessKey: 't'
       }
     ];
     this.routeKey = '_routerState';
