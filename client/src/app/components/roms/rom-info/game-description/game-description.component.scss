@@ -1,5 +1,4 @@
 #description-container {
-  clip-path: inset(0 0 0 0) !important;
   height: 100%;
   margin-bottom: 0;
   overflow-y: auto;
@@ -7,14 +6,15 @@
   text-align: left !important;
   word-wrap: break-word;
   @media only all and (max-width: 938px) {
+    clip-path: inset(0 0 0 0) !important;
     height: 300px;
     margin-bottom: 1rem;
     padding-bottom: 1em !important;
   }
-}
 
-#description {
-  @media only all and (min-width: 938px) {
-    height: 16rem;
+  #description {
+    @media only all and (min-width: 938px) {
+      height: 16rem;
+    }
   }
 }

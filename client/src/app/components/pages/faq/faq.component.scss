@@ -13,9 +13,6 @@
 .float-container {
   clear: both;
   overflow: auto;
-  @media only all and (max-width: 991px) {
-    clear: left;
-  }
 }
 
 .left {
@@ -25,7 +22,14 @@
 
 .right {
   float: right;
-  @media only all and (max-width: 991px) {
+}
+
+@media only all and (max-width: 991px) {
+  .float-container {
+    clear: left;
+  }
+
+  .right {
     float: left;
     margin-bottom: 1rem;
   }
