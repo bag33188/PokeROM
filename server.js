@@ -1,5 +1,5 @@
 const fs = require('fs');
-const http2 = require('http2');
+const http2 = require('spdy');
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
@@ -102,5 +102,5 @@ if (cluster.isMaster) {
     process.env.PORT || (process.env.NODE_ENV === 'production' ? 44300 : 8080);
 console.log(fs.readFileSync('./server.key'));
   // start server
-  http2.createServer({key: fs.readFileSync(__dirname+'/server.key'), cert: fs.readFileSync(__dirname+'/server.crt'), ca: fs.readFileSync(__dirname+'/server.ca-bundle')}, app).listen(PORT, () => console.log(`Server started on port ${PORT}`));
+  http2.createServer({key: fs.readFileSync(__dirname+'/server.key'), cert: fs.readFileSync(__dirname+'/server.crt')}, app).listen(PORT, "0.0.0.0", () => console.log(`Server started on port ${PORT}`));
 }
