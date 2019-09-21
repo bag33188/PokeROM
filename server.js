@@ -100,5 +100,7 @@ if (cluster.isMaster) {
     process.env.PORT || (process.env.NODE_ENV === 'production' ? 44300 : 8080);
 
   // start server
- app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 }
+
+module.exports = app;
