@@ -98,7 +98,7 @@ if (cluster.isMaster) {
   // port
   const PORT =
     process.env.PORT || (process.env.NODE_ENV === 'production' ? 44300 : 8080);
-console.log(fs.readFileSync('./server.key'));
+
   // start server
- app.listen(PORT, "0.0.0.0", () => console.log(`Server started on port ${PORT}`));
+ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 }
