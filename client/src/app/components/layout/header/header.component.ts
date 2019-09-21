@@ -29,31 +29,36 @@ export class HeaderComponent implements OnInit {
         routerLink: ['/', 'home'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
-        navLinkText: 'Home'
+        navLinkText: 'Home',
+        accessKey: 'h'
       },
       {
         routerLink: ['/', 'roms'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: false },
-        navLinkText: 'ROMs'
+        navLinkText: 'ROMs',
+        accessKey: 'r'
       },
       {
         routerLink: ['/', 'natures'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
-        navLinkText: 'Natures'
+        navLinkText: 'Natures',
+        accessKey: 'n'
       },
       {
         routerLink: ['/', 'faq'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
-        navLinkText: 'FAQ'
+        navLinkText: 'FAQ',
+        accessKey: 'q'
       },
       {
         routerLink: ['/', 'ratings'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
-        navLinkText: 'Rate'
+        navLinkText: 'Rate',
+        accessKey: 'a'
       }
     ];
     this.routeKey = '_routerState';

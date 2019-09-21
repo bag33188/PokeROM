@@ -1,5 +1,5 @@
 <header>
-      <span class="navbar-toggler-icon"></span>
+  <span class="navbar-toggler-icon"></span>
 
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="nav-header">
     <img
@@ -28,7 +28,7 @@
             [routerLink]="route.routerLink"
             [routerLinkActive]="route.routerLinkActive"
             [routerLinkActiveOptions]="route.routerLinkActiveOptions"
-            [accessKey]="route.navLinkText === 'ROMs' ? 'r' : ''"
+            [accessKey]="route.accessKey"
             >{{ route.navLinkText }}</a
           >
         </li>
