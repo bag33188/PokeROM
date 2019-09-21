@@ -23,7 +23,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=production pm2 start start server.js --expose-http2 -i 0",
+    "start": "NODE_ENV=production pm2 start start server.js -i 0 --expose-http2",
     "stop": "pm2 stop server.js",
     "restart": "pm2 restart server.js",
     "test": "cd tests && bash ./test.sh",
