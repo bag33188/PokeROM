@@ -10,12 +10,15 @@ import { Environment } from '../../../interfaces/Environment';
 export class FooterComponent implements OnInit {
   @Input() public appName: string;
   public environment: Environment;
+  public author: string;
 
   constructor() {
     this.environment = environment;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.author = 'Broccolini';
+  }
 
   public getYear(): number {
     const now: Date = new Date();
