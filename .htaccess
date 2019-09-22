@@ -5,7 +5,7 @@
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
 
-# serve localhost port 44300 to public_html
+# serve localhost port 44300 to public_html folder
 RewriteEngine On
 RewriteRule ^$ http://127.0.0.1:44300/ [P,L]
 RewriteCond %{REQUEST_FILENAME} !-f
