@@ -11,9 +11,19 @@ const swaggerDefinition = yaml.safeLoad(
 // get api docs version
 const version = swaggerDefinition.swaggerDefinition.info.version;
 
+/**
+ * @name parseVersion
+ * @summary Parses API Version
+ * @description Parses the API Version embedded code in the swagger definition JSON object.
+ * @param {string} apiVersion The version of the API.
+ * @returns {string} The API's version.
+ */
 function parseVersion(apiVersion) {
-  swaggerDefinition.swaggerDefinition.info.description = swaggerDefinition.swaggerDefinition.info.description.replace(
-    /((?:<%[=#]?)(?:\s)?(?:VERSION)(?:\s)?(?:%>))/i,
+  const keys = ['swaggerDefinition', 'info', 'description'];
+  swaggerDefinition[keys[0]][keys[1]][keys[2]] = swaggerDefinition[keys[0]][
+    keys[1]
+  ][keys[2]].replace(
+    /((?:<%(?:[=#]?))(?:\s?)(?:[Vv][Ee][Rr][Ss][Ii][Oo][Nn])(?:\s?)(?:%>))/i,
     apiVersion
   );
   return apiVersion;
