@@ -45,9 +45,10 @@ export class RatingsComponent implements OnInit {
     this.rate = rate;
   }
 
-  public setRatingHover(rate: number) {
+  public setRatingHover(rate: number): void {
     this.currentRateHover = rate;
   }
+
   public resetRating(): void {
     if (!this.rateHasChanged) {
       this.currentRateHover = 0;

@@ -21,3 +21,4 @@ swaggerDefinition:
 apis:
   - './docs/definitions/*.yml'
   - './docs/paths/*.yml'
+# - './docs/**/*.yml'
