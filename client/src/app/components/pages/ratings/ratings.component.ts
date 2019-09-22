@@ -21,6 +21,7 @@ export class RatingsComponent implements OnInit {
   public rate: number;
   public isError: boolean;
   public loading: boolean;
+  public firedOff: boolean;
 
   constructor(private ratingService: RatingService) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -36,6 +37,7 @@ export class RatingsComponent implements OnInit {
     this.rate = 0;
     this.isError = false;
     this.loading = false;
+    this.firedOff = false;
   }
 
   public setRating(rate: number): void {
@@ -56,6 +58,7 @@ export class RatingsComponent implements OnInit {
 
   public submitRating(): void {
     this.loading = true;
+    this.firedOff = true;
     this.rating = {
       rating: this.currentRate,
       message: this.message.sanitizeXSS(false, false).removeStrings(false),
@@ -74,6 +77,7 @@ export class RatingsComponent implements OnInit {
         (err: any): void => {
           this.loading = false;
           this.isError = true;
+          this.firedOff = false;
           logger.error(err);
         }
       );

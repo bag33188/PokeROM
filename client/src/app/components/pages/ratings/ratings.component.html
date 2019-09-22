@@ -46,7 +46,9 @@
               type="submit"
               value="Submit!"
               class="btn btn-success"
-              [disabled]="!rateHasChanged || message.length > 1000"
+              [disabled]="
+                !rateHasChanged || message.length > 1000 || firedOff === true
+              "
             />
           </div>
           <div>

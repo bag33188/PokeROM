@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
       [Validators.required, Validators.minLength(8), Validators.maxLength(256)]
     ]
   });
+  public firedOff: boolean;
 
   get Username(): AbstractControl {
     return this.registerForm.get('username');
@@ -56,6 +57,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
 
   ngOnInit(): void {
     this.loading = false;
+    this.firedOff = false;
     setTimeout((): void => AuthService.logout(), 100);
   }
 
@@ -64,6 +66,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
   }
 
   public register(): void {
+    this.firedOff = true;
     this.loading = true;
     const user: User = {
       name: this.Name.value,
@@ -88,6 +91,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
           }
         },
         (err: any): never => {
+          this.firedOff = false;
           this.loading = false;
           const keys: string[] = ['error', 'message', 'errors', 'msg'];
           if (err[keys[0]][keys[1]]) {

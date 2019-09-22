@@ -130,6 +130,7 @@
             class="btn btn-success"
             (click)="sanitizeData()"
             [disabled]="
+              firedOff ||
               !accountForm.valid ||
               !(
                 this.user.username ||

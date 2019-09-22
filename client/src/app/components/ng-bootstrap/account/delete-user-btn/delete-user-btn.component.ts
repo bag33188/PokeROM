@@ -10,7 +10,8 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class DeleteUserBtnComponent implements OnInit {
   public btnText: string;
   public loading: boolean;
-  @Output() public isError: EventEmitter<Boolean> = new EventEmitter<boolean>();
+  public firedOff: boolean;
+  @Output() public isError: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {
@@ -29,6 +30,9 @@ export class DeleteUserBtnComponent implements OnInit {
         this.isError.emit(isError);
       }
     );
+    modalRef.componentInstance.firedOff.subscribe((firedOff: boolean): void => {
+      this.firedOff = firedOff;
+    });
     const key: string = 'username';
     modalRef.componentInstance.username = JSON.parse(
       localStorage.getItem('user')

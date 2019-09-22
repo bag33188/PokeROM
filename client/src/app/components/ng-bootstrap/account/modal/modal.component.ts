@@ -19,6 +19,10 @@ export class ModalComponent implements OnInit {
     boolean
   >();
   @Input() public username: string;
+  @Output() public firedOff: EventEmitter<boolean> = new EventEmitter<
+    boolean
+  >();
+  public btnDisabled: boolean;
 
   constructor(
     public modal: NgbActiveModal,
@@ -26,10 +30,14 @@ export class ModalComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.btnDisabled = false;
+  }
+
   public deleteCurrentUser(): void {
-    this.loading.emit(true);
     const key: string = 'id';
+    this.firedOff.emit(true);
+    this.btnDisabled = true;
     this.userService
       .deleteUser(JSON.parse(localStorage.getItem('user'))[key])
       .pipe(take(1))
@@ -41,7 +49,9 @@ export class ModalComponent implements OnInit {
           AuthService.logout();
         },
         (err: any): void => {
+          this.btnDisabled = false;
           this.loading.emit(false);
+          this.firedOff.emit(false);
           this.isErrorDeleting.emit(true);
           logger.error(err);
         }

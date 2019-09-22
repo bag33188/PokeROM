@@ -25,6 +25,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
   public faExclamationTriangle: IconDefinition;
   public userExists: boolean = false;
   public isErrorDeleting: boolean;
+  public firedOff: boolean;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -32,6 +33,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit(): void {
+    this.firedOff = false;
     this.isErrorDeleting = false;
     const key: string = 'id';
     if (!localStorage.getItem('user')) {
@@ -66,6 +68,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
   }
 
   public save(): void {
+    this.firedOff = true;
     this.ready = false;
     if (!this.user.name || this.user.name === '') {
       delete this.user.name;
@@ -110,6 +113,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
           },
           (err: any): never => {
             this.ready = true;
+            this.firedOff = false;
             this.updateFail = true;
             if (err.error.msg === 'A user with that username already exists.') {
               this.userExists = true;

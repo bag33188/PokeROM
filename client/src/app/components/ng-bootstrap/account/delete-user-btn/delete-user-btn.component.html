@@ -2,10 +2,12 @@
   <app-spinner [loading]="loading"></app-spinner>
   <div id="delete-usr-btn-container" class="btn-group btn-group-toggle">
     <label class="btn-danger" ngbButtonLabel>
-      <input type="checkbox" ngbButton (change)="confirmDeletion()" /><span
-        class="oblique bolder"
-        >{{ btnText }}</span
-      >
+      <input
+        type="checkbox"
+        ngbButton
+        (change)="confirmDeletion()"
+        [disabled]="firedOff"
+      /><span class="oblique bolder">{{ btnText }}</span>
     </label>
   </div>
 </ng-container>

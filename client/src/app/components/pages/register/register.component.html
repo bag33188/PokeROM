@@ -96,7 +96,7 @@
             type="submit"
             class="btn btn-success"
             (click)="sanitizeData()"
-            [disabled]="!registerForm.valid"
+            [disabled]="!registerForm.valid || firedOff"
           >
             Register
           </button>

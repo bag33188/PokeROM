@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
       Validators.maxLength(256)
     ])
   });
+  public firedOff: boolean;
 
   get Username(): AbstractControl {
     return this.loginForm.get('username');
@@ -51,11 +52,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.firedOff = false;
     this.loading = false;
     setTimeout((): void => AuthService.logout(), 88);
   }
 
   public login(): void {
+    this.firedOff = true;
     this.loading = true;
     const user: LoggedUser = {
       username: this.Username.value,
@@ -78,6 +81,7 @@ export class LoginComponent implements OnInit {
       },
       (err: any): never => {
         this.loading = false;
+        this.firedOff = false;
         const key: string = 'status';
         if (err[key] === 404) {
           this.loginFail = 'User does not exist';

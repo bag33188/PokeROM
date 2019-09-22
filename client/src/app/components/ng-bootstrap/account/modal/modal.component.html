@@ -23,7 +23,12 @@
     </p>
   </div>
   <div class="modal-footer justify-content-start">
-    <button type="button" class="btn btn-danger" (click)="deleteCurrentUser()">
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="deleteCurrentUser()"
+      [disabled]="btnDisabled"
+    >
       Ok
     </button>
     <button
