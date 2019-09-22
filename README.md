@@ -5,7 +5,7 @@ Pok&eacute;ROM
 
 **Table of Contents**
 
-- [PokéROM](#pokérom)
+- [PokéROM](#pokeacuterom)
   * [About](#about)
   * [Run Locally](#run-locally)
     + [Linux (Ubuntu)](#linux-ubuntu)
@@ -21,6 +21,7 @@ Pok&eacute;ROM
         * [Terminal Window 3](#terminal-window-3)
         * [Terminating Processes](#terminating-processes)
       - [Troubleshooting](#troubleshooting)
+  * [Languages Used](#languages-used)
 
 ## About
 
