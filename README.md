@@ -242,6 +242,25 @@ For **any other problems**, open up a new issue in the [issues](https://github.c
 
 [source-code-pro-fonts-download]: <https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA> 'Source Code Pro Fonts Download (Direct Download)'
 
+## Languages Used
+
+The following programming languages are used in this app (**14 Total**):
+
+* Bash/Shell
+* Batch
+* CSS
+* HTML
+* JSON
+* JavaScript
+* Markdown
+* Python (3)
+* Ruby
+* SCSS/Sass
+* SVG
+* TypeScript
+* XML
+* YAML
+
 ---
 
 > _**Enjoy!**_
