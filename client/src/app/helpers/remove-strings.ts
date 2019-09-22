@@ -1,23 +1,13 @@
 declare global {
   interface String {
-    removeStrings(replaceContent: boolean): string;
+    removeStrings(): string;
   }
 }
 
 // tslint:disable-next-line:only-arrow-functions
-String.prototype.removeStrings = function(replaceContent: boolean): string {
-  let sanitizedStr: string = '';
-  if (replaceContent) {
-    const detectStrings: RegExp = new RegExp(
-      /(?:('.*')|(".*")|(`(.?\n?)+`))/,
-      'gim'
-    );
-    sanitizedStr = this.replace(detectStrings, '');
-  } else {
-    const detectStringChars: RegExp = new RegExp(/(?:(["'`]))/, 'gim');
-    sanitizedStr = this.replace(detectStringChars, '');
-  }
-  return sanitizedStr;
+String.prototype.removeStrings = function(): string {
+  const detectStringChars: RegExp = /(?:(["'`]))/gim;
+  return this.replace(detectStringChars, '');
 };
 
 export default String.prototype.removeStrings;

@@ -62,7 +62,7 @@ export class RatingsComponent implements OnInit {
     this.firedOff = true;
     this.rating = {
       rating: this.currentRate,
-      message: this.message.sanitizeXSS(false, false).removeStrings(false),
+      message: this.message.sanitizeXSS(false, false).removeStrings(),
       date_time: new Date()
     };
     if (this.currentRate === 0) {

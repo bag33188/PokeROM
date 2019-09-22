@@ -35,7 +35,7 @@ export class BleachInterceptor implements HttpInterceptor {
                       obj[key] = he
                         .decode(obj[key])
                         .sanitizeXSS()
-                        .removeStrings(false);
+                        .removeStrings();
                     }
                   });
                 });
@@ -45,7 +45,7 @@ export class BleachInterceptor implements HttpInterceptor {
                     body[key] = he
                       .decode(body[key])
                       .sanitizeXSS()
-                      .removeStrings(false);
+                      .removeStrings();
                   }
                 });
               }
