@@ -1,3 +1,4 @@
 package-lock.json export-ignore
 client/package-lock.json export-ignore
 .ftpquota export-ignore
+.keys.yml export-ignore
