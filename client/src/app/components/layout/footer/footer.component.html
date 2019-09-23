@@ -1,21 +1,14 @@
 <footer>
   <p id="footer-content" class="text-center bg-dark">
-    <span
-      >{{
-        (!environment.production
-          ? appName + '\u0020\u0028Beta\u0029'
-          : appName) +
-          ' | \u00A9 ' +
-          getYear().toString() +
-          ' ' +
-          author +
-          ' | '
-      }}<a
+    <span>
+      {{ !environment.production ? appName + ' (Beta)' : appName }}
+      | &copy; {{ getYear().toString() }} | {{ author }}
+      <a
         href="https://opensource.org/licenses/MIT"
         target="_blank"
         rel="noreferrer"
         >MIT License</a
-      ></span
-    >
+      >
+    </span>
   </p>
 </footer>
