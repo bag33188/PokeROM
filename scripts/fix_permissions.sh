@@ -19,14 +19,12 @@ $ chmod 755 ./fix_permissions.sh
 --MULTILINE-COMMENT--
 
 fix_permissions() {
-  cd ../.git || return
-  echo "Changing permissions of .git folder ... "
-  # shellcheck disable=SC2035
-  sudo chown -R pokerom:pokerom *
-  cd ..
-  echo "Changing permissions of bin folder ... "
-  sudo chmod -R a+rwx bin
-  echo "Done!"
+  case "$OSTYPE" in
+    darwin*)  python3 fix_permissions.py ;;
+    linux*)   python3 fix_permissions.py ;;
+    msys*)    python fix_permissions.py ;;
+    *)        echo "unknown: $OSTYPE" ;;
+  esac
 }
 
 fix_permissions
