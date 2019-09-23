@@ -247,6 +247,7 @@ For **any other problems**, open up a new issue in the [issues](https://github.c
 
 The following programming languages are used in this app (**14 Total**):
 
+* Apache
 * Bash/Shell
 * Batch
 * CSS
@@ -254,7 +255,8 @@ The following programming languages are used in this app (**14 Total**):
 * JSON
 * JavaScript
 * Markdown
-* Python (3)
+* PHP
+* Python 3
 * Ruby
 * SCSS/Sass
 * SVG
