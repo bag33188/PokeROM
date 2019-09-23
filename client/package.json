@@ -23,7 +23,6 @@
     "lint-scss": "./node_modules/.bin/sass-lint -c ./.sass-lint.yml -v -q",
     "lint-all": "npm run lint-ts & npm run lint-scss",
     "ivy": "npx ivy-ngcc",
-    "fix-aot-bug": "cd ../scripts && bash ./fix_aot_bug.sh && cd client",
     "serve-app": "http-server -p 4200 -c-1 dist/pokerom"
   },
   "private": true,
