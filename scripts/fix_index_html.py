@@ -60,11 +60,11 @@ class FixIndexHtml:
           for index, script_tag in enumerate(script_tags):
             if 'type="module"' not in script_tag:
               script_tags[index] = script_tag.replace('src="', 'type="text/javascript" src="')
+            if 'defer' not in script_tag:
+              script_tags[index] = script_tag.replace('></script>', ' defer></script>')
 
           # set new script tags to joined array and add the defer attr to each script element
-          new_script_tags = ('\n'.join(script_tags).replace('></script>', ' defer></script>')
-                                                   .replace('defer defer></script>', 'defer></script>')
-                                                   .replace('type="module" ', '')
+          new_script_tags = ('\n'.join(script_tags).replace('type="module" ', '')
                                                    .replace('<script src="', '<script type="module" src="'))
 
       # close file from reading
