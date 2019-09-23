@@ -262,7 +262,7 @@ The following programming languages are used in this app (**14 Total**):
 * XML
 * YAML
 
----
+--------
 
 > _**Enjoy!**_
 
