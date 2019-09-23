@@ -10,13 +10,13 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import he from 'he';
 import sanitizeXSS from '../helpers/sanitize-xss';
-import removeStrings from '../helpers/remove-strings';
+import removeStringChars from '../helpers/remove-string-chars';
 
 @Injectable()
 export class BleachInterceptor implements HttpInterceptor {
   constructor() {
     String.prototype.sanitizeXSS = sanitizeXSS;
-    String.prototype.removeStrings = removeStrings;
+    String.prototype.removeStringChars = removeStringChars;
   }
   intercept(
     req: HttpRequest<any>,
@@ -35,7 +35,7 @@ export class BleachInterceptor implements HttpInterceptor {
                       obj[key] = he
                         .decode(obj[key])
                         .sanitizeXSS()
-                        .removeStrings();
+                        .removeStringChars();
                     }
                   });
                 });
@@ -45,7 +45,7 @@ export class BleachInterceptor implements HttpInterceptor {
                     body[key] = he
                       .decode(body[key])
                       .sanitizeXSS()
-                      .removeStrings();
+                      .removeStringChars();
                   }
                 });
               }

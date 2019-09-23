@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RatingService } from '../../../services/rating.service';
 import { Rating } from '../../../models/Rating';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
-import removeStrings from '../../../helpers/remove-strings';
+import removeStringChars from '../../../helpers/remove-string-chars';
 import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
@@ -12,7 +12,6 @@ import { LoggerService as logger } from '../../../services/logger.service';
 })
 export class RatingsComponent implements OnInit {
   public currentRate: number = 0;
-  private rating: Rating;
   public message: string;
   public formValid: boolean;
   public formSubmitted: boolean;
@@ -25,7 +24,7 @@ export class RatingsComponent implements OnInit {
 
   constructor(private ratingService: RatingService) {
     String.prototype.sanitizeXSS = sanitizeXSS;
-    String.prototype.removeStrings = removeStrings;
+    String.prototype.removeStringChars = removeStringChars;
   }
 
   ngOnInit(): void {
@@ -60,15 +59,15 @@ export class RatingsComponent implements OnInit {
   public submitRating(): void {
     this.loading = true;
     this.firedOff = true;
-    this.rating = {
-      rating: this.currentRate,
-      message: this.message.sanitizeXSS(false, false).removeStrings(),
-      date_time: new Date()
-    };
     if (this.currentRate === 0) {
       this.formValid = false;
     } else {
-      this.ratingService.addRating(this.rating).subscribe(
+      const rating: Rating = {
+        rating: this.currentRate,
+        message: this.message.sanitizeXSS(false, false).removeStringChars(),
+        date_time: new Date()
+      };
+      this.ratingService.addRating(rating).subscribe(
         (): void => {
           this.formValid = true;
           this.loading = false;

@@ -8,7 +8,7 @@ import {
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
-import removeStrings from '../../../helpers/remove-strings';
+import removeStringChars from '../../../helpers/remove-string-chars';
 
 @Component({
   selector: 'app-account',
@@ -29,7 +29,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
-    String.prototype.removeStrings = removeStrings;
+    String.prototype.removeStringChars = removeStringChars;
   }
 
   ngOnInit(): void {
@@ -127,17 +127,17 @@ export class AccountComponent implements OnInit, AfterContentInit {
 
   public sanitizeData(): void {
     if (this.user.name) {
-      this.user.name = this.user.name.sanitizeXSS(true).removeStrings();
+      this.user.name = this.user.name.sanitizeXSS(true).removeStringChars();
     }
     if (this.user.username) {
       this.user.username = this.user.username
         .sanitizeXSS(false)
-        .removeStrings();
+        .removeStringChars();
     }
     if (this.user.password) {
       this.user.password = this.user.password
         .sanitizeXSS(false)
-        .removeStrings();
+        .removeStringChars();
     }
   }
 
