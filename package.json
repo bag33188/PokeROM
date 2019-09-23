@@ -23,9 +23,9 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=production pm2 start npm server -i 0",
-    "stop": "pm2 stop npm server",
-    "restart": "pm2 restart npm server",
+    "start": "NODE_ENV=production pm2 start npm server.js -i 0",
+    "stop": "pm2 stop npm server.js",
+    "restart": "pm2 restart npm server.js",
     "test": "cd tests && bash ./test.sh",
     "prod": "cd scripts && bash ./production.sh",
     "dev": "NODE_ENV=development node server",
