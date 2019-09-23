@@ -245,7 +245,7 @@ For **any other problems**, open up a new issue in the [issues](https://github.c
 
 ## Languages Used
 
-The following programming languages are used in this app (**14 Total**):
+The following programming languages are used in this app (**16 Total**):
 
 * Apache
 * Bash/Shell
