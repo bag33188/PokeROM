@@ -34,7 +34,7 @@ class FixIndexHtml:
 
     # regex for identifying script tags (constant)
     # use https://regexr.com for testing regular expressions
-    SCRIPT_TAG_REGEX = re.compile(r'((?:<script src=\")(?:(?:runtime|polyfills|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js\")(?:(?:\stype="module")?(?:\snomodule)?)(?:><\/script>))')
+    SCRIPT_TAG_REGEX = re.compile(r'((?:<script src=\")(?:(?:runtime|polyfills(?:-es5)?|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js\")(?:(?:\stype="module")?(?:\snomodule)?(?:\sdefer)?)(?:><\/script>))')
 
     # future script tag string from joined script tag strings array
     new_script_tags = ''
@@ -63,6 +63,7 @@ class FixIndexHtml:
 
           # set new script tags to joined array and add the defer attr to each script element
           new_script_tags = ('\n'.join(script_tags).replace('></script>', ' defer></script>')
+                                                   .replace('defer defer></script>', 'defer></script>')
                                                    .replace('type="module" ', '')
                                                    .replace('<script src="', '<script type="module" src="'))
 
