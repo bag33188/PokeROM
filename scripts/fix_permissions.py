@@ -24,11 +24,12 @@ def fix_permissions():
     'echo "Done!"'
   ]
 
-  # loop through each command in constant array
-  for command in COMMANDS:
+  # join array of commands into one string
+  # concat with double ampersand and 2 spaces
+  command = ' && '.join(COMMANDS)
 
-    # execute command using bash
-    subprocess.call(['bash', '-c', command])
+  # execute command using bash
+  subprocess.call(['bash', '-c', command])
 
 # call function
 fix_permissions()
