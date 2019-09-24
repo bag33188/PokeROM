@@ -33,8 +33,8 @@
       ''
     );
     @font-face {
-      font-display: auto;
       font-family: $font-name;
+      font-display: auto;
       font-style: $font-style;
       font-weight: $font-weight;
       src: local($local1), local($local2), url($font-woff2-url) format('woff2'),
