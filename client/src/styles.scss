@@ -2,7 +2,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import './assets/scss/variables';
-@import './assets/scss/modules/font-faces';
+// @import './assets/scss/modules/font-faces';
 @import './assets/scss/modules/scrollbar';
 
 *,
@@ -16,7 +16,7 @@ html {
 
   body {
     background: $white url($bg-img);
-    font-family: 'Roboto', Arial, Verdana, sans-serif !important;
+    font-family: Roboto, Arial, Verdana, sans-serif !important;
   }
 }
 
