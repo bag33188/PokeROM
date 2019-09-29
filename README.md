@@ -1,4 +1,4 @@
-[comment]: # 'Begin README.md'
+[comment]: # "Begin README.md"
 
 Pok&eacute;ROM
 ==============
@@ -268,4 +268,4 @@ The following programming languages are used in this app (**16 Total**):
 
 > _**Enjoy!**_
 
-[comment]: # 'End README.md'
+[comment]: # "End README.md"
