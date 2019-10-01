@@ -5,7 +5,7 @@ keys:
     - cPanel: "Of4df1abb2259f2145dcbe9ffc32e031e496745"
     - WebStorm: "92a9ee67b3fd5e83ce0903bbc801ae73d62ec467"
   deployKeys:
-    # ssh-keygen -t rsa -b 4096 -C "<email>"
+    # ssh-keygen -t rsa -b 4096 -C "<github_email>"
     # cat ~/.ssh/id_rsa.pub
     # ssh -T git@github.com
     - cPanel:
