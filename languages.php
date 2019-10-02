@@ -61,10 +61,10 @@
     const ml = msg.length;
 
     function moveTitle() {
-      document.title = <?php echo "msg.substr(pos, ml) + endChar + msg.substr(0, pos)" ?>;
+      document.title = <?php echo "msg.substr(pos, ml) + endChar + msg.substr(0, pos)"; ?>;
       pos++;
       if (pos > ml) pos = 0;
-      window.setTimeout("moveTitle()", speed);
+      window.setTimeout(moveTitle, speed);
     }
 
     moveTitle();
