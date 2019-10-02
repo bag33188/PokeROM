@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <?php
+    # ==============
+    # BEGIN PHP CODE
+    # ==============
+
     // create metadata associative array
     $metadataValues = array(
       "charset" => "UTF-8",
@@ -11,6 +15,10 @@
 
     // get keys from metadata associative array
     $metadataKeys = array_keys($metadataValues);
+
+    # ============
+    # END PHP CODE
+    # ============
   ?>
   <meta charset="<?php echo $metadataValues[$metadataKeys[0]]; ?>"/>
   <meta name="<?php echo $metadataKeys[1]; ?>" content="<?php echo $metadataValues[$metadataKeys[1]]; ?>"/>
@@ -85,6 +93,12 @@
 <body>
 <div class="container">
   <?php
+    /**
+     * --------------
+     * BEGIN PHP CODE
+     * --------------
+     */
+
     // create function
     function renderContent() {
       // create associative array with all of coding languages used
@@ -125,13 +139,19 @@
 
       // output remaining html
       echo "\t\t\t</ul>\n";
-      # output total language count
+      // output total language count
       echo "\t\t\t<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
       echo "\t\t</div>\n";
     }
 
     // call/invoke function
     renderContent();
+
+    /**
+     * ------------
+     * END PHP CODE
+     * ------------
+     */
   ?>
 </div>
 </body>
