@@ -6,7 +6,7 @@ deployment:
     - export NPMPATH=/usr/bin/npm
     - export NODE_ENV=production
     # run commands
-    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp www/.htaccess $DEPLOYPATH
     - /bin/cp www/languages.php $DEPLOYPATH
     - /bin/cp www/info.html $DEPLOYPATH
     - $NPMPATH run pack
