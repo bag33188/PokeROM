@@ -2,7 +2,7 @@
   <p id="footer-content" class="text-center bg-dark">
     <span>
       {{ !environment.production ? appName + ' (Beta)' : appName }}
-      | &copy; {{ getYear().toString() }} | {{ author }}
+      | &copy; {{ getYear().toString() }} {{ author }} |
       <a
         href="https://opensource.org/licenses/MIT"
         target="_blank"
