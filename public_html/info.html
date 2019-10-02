@@ -5,10 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>PokeROM Info</title>
+    <style type="text/css">
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 1rem;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .container {
+        padding: 1em;
+        border: 1px solid #000;
+        position: absolute;
+        right: 50%;
+        top: 50%;
+        width: 80vw;
+        height: 80vh;
+        transform: translate(50%, -50%);
+      }
+
+      #heading {
+        text-align: center;
+      }
+    </style>
+    <script type="text/javascript">
+      function ready(callback) {
+        if (document.readyState !== 'loading') {
+          callback();
+        } else if (document.addEventListener) {
+          document.addEventListener('DOMContentLoaded', callback);
+        } else {
+          document.attachEvent('onreadystatechange', function() {
+            if (document.readyState === 'complete') callback();
+          });
+        }
+      }
+
+      function setCurrentYear() {
+        const year = document.getElementById('current-year');
+        const now = new Date();
+        year.textContent = now.getFullYear().toString();
+      }
+
+      ready(setCurrentYear);
+    </script>
   </head>
   <body>
-    <div>
-      <h1>PokeROM Info</h1>
+    <div class="container">
+      <h1 id="heading">PokeROM Info</h1>
+      <hr />
       <div>
         <h2 id="terms-of-service">Terms of Service</h2>
         <p>
@@ -19,11 +69,11 @@
           Thank you!
         </p>
       </div>
+      <hr />
       <div>
         <h2 id="license">License (MIT)</h2>
         <p>
-          Copyright 2019 bag33188
-          <br /><br />
+          Copyright <span id="current-year"></span> bag33188 <br /><br />
           Permission to use, copy, modify, and/or distribute this software for
           any purpose with or without fee is hereby granted, provided that the
           above copyright notice and this permission notice appear in all
@@ -39,6 +89,7 @@
           PERFORMANCE OF THIS SOFTWARE.
         </p>
       </div>
+      <hr />
     </div>
   </body>
 </html>
