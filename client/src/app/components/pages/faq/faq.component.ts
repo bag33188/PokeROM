@@ -6,6 +6,8 @@ import {
   ElementRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../../environments/environment';
+import { Environment } from '../../../interfaces/Environment';
 
 @Component({
   selector: 'app-faq',
@@ -17,6 +19,7 @@ export class FaqComponent implements OnInit, AfterContentInit {
   @ViewChild('cookies', { static: true }) private cookiesElement: ElementRef;
   @ViewChild('browserCompatibility', { static: true })
   private browserCompatibilityElement: ElementRef;
+  public environment: Environment = environment;
 
   constructor(private route: ActivatedRoute) {}
 

@@ -60,9 +60,11 @@
         <span class="question">Is this project open source?</span>
         <br />
         <span class="answer"
-          >No; however, it does use source control.<br />You can view a list of
-          programming languages used for this app
-          <a href="/languages.php" target="_blank">here</a>.</span
+          >No; however, it does use source control.<br />
+          <span [hidden]="!environment.production"
+            >You can view a list of programming languages used for this app
+            <a href="/languages.php" target="_blank">here</a>.</span
+          ></span
         >
       </p>
     </ng-container>

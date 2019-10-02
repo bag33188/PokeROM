@@ -6,6 +6,8 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import { Environment } from '../../../../interfaces/Environment';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-faq-toast',
@@ -20,6 +22,7 @@ import {
 })
 export class ToastComponent implements OnInit {
   public show: boolean;
+  public environment: Environment = environment;
 
   constructor() {}
 
