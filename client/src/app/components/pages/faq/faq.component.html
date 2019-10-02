@@ -61,7 +61,7 @@
         <br />
         <span class="answer"
           >No; however, it does use source control.<br />
-          <span [hidden]="!environment.production"
+          <span *ngIf="environment.production"
             >You can view a list of programming languages used for this app
             <a href="/languages.php" target="_blank">here</a>.</span
           ></span
