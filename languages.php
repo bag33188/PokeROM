@@ -97,7 +97,6 @@
       echo "\t\t\t<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
       echo "\t\t</div>\n";
     }
-
     renderContent();
   ?>
 </div>
