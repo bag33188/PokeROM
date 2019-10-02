@@ -90,11 +90,12 @@
         'eXtensible Markup Language' => 'XML',
         'Yet Another Markup Language' => 'YAML'
       );
+      $tooltips = array_keys($languages);
       sort($languages);
       echo "\t\t<div class=\"wrapper\">\n";
       echo "\t\t\t<ul id=\"languages\">\n";
       for ($i = 0; $i < count($languages); $i++) {
-        echo "\t\t\t\t<li>" . $languages[$i] . "</li>\n";
+        echo "\t\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
       }
       echo "\t\t\t</ul>\n";
       echo "\t\t\t<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
