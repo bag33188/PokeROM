@@ -104,13 +104,16 @@
 </noscript>
 <div class="container">
   <?php
-    /**
-     * --------------
-     * BEGIN PHP CODE
-     * --------------
-     */
+    # --------------
+    # BEGIN PHP CODE
+    # --------------
 
-    // create function
+    /*
+     * @name renderContent
+     * @summary Render Content onto Page
+     * @description Renders the programming language HTML content onto the page.
+     * @returns {void} Nothing.
+     */
     function renderContent() {
       // create associative array with all of coding languages used
       $languages = array(
@@ -160,11 +163,9 @@
     // call/invoke function
     renderContent();
 
-    /**
-     * ------------
-     * END PHP CODE
-     * ------------
-     */
+    # --------------
+    # END PHP CODE
+    # --------------
   ?>
 </div>
 </body>
