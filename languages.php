@@ -2,16 +2,12 @@
 <html lang="en">
 <head>
   <?php
-    $metadataKeys = array(
-      "charset",
-      "viewport",
-      "X-UA-Compatible"
-    );
     $metadataValues = array(
-      $metadataKeys[0] => "UTF-8",
-      $metadataKeys[1] => "width=device-width, initial-scale=1.0",
-      $metadataKeys[2] => "IE-Edge"
+      "charset" => "UTF-8",
+      "viewport" => "width=device-width, initial-scale=1.0",
+      "X-UA-Compatible" => "IE-Edge"
     );
+    $metadataKeys = array_keys($metadataValues);
   ?>
   <meta charset="<?php echo $metadataValues[$metadataKeys[0]]; ?>"/>
   <meta name="<?php echo $metadataKeys[1]; ?>" content="<?php echo $metadataValues[$metadataKeys[1]]; ?>"/>
