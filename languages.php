@@ -70,8 +70,8 @@
     function renderContent() {
       $languages = array(
         'Apache' => 'Apache',
-        'Bash/Shell' => 'Bash/Shell',
-        'BatchFile' => 'Batch',
+        'Bash/Shell Script' => 'Bash/Shell',
+        'Batch File' => 'Batch',
         'Cascade StyleSheet' => 'CSS',
         'HyperText Markup Language' => 'HTML',
         'JavaScript Object Notation' => 'JSON',
