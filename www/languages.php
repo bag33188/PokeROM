@@ -35,7 +35,7 @@
     }
 
     html, body {
-      font-family: <?php echo "Verdana, Geneva, sans-serif"; ?>;
+      font-family: <?php echo "Verdana, Geneva, Tahoma, sans-serif"; ?>;
       color: var(--black);
       background-color: var(--white);
     }
