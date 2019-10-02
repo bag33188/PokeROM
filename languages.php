@@ -73,22 +73,22 @@
   <?php
     function renderContent() {
       $languages = array(
-        'Apache',
-        'Bash/Shell',
-        'Batch',
-        'CSS',
-        'HTML',
-        'JSON',
-        'JavaScript',
-        'Markdown',
-        'PHP',
-        'Python 3',
-        'Ruby',
-        'SCSS/Sass',
-        'SVG',
-        'TypeScript',
-        'XML',
-        'YAML'
+        'Apache' => 'Apache',
+        'Bash/Shell' => 'Bash/Shell',
+        'BatchFile' => 'Batch',
+        'Cascade StyleSheet' => 'CSS',
+        'HyperText Markup Language' => 'HTML',
+        'JavaScript Object Notation' => 'JSON',
+        'JavaScript' => 'JavaScript',
+        'Markdown' => 'Markdown',
+        'Hypertext Preprocessor' => 'PHP',
+        'Python 3' => 'Python 3',
+        'Ruby' => 'Ruby',
+        'Syntactically Awesome Stylesheets' => 'SCSS/Sass',
+        'Scalar Vector Graphics' => 'SVG',
+        'TypeScript' => 'TypeScript',
+        'eXtensible Markup Language' => 'XML',
+        'Yet Another Markup Language' => 'YAML'
       );
       sort($languages);
       echo "\t\t<div class=\"wrapper\">\n";
