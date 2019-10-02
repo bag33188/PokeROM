@@ -56,7 +56,7 @@
       } else if (document.addEventListener) {
         document.addEventListener("DOMContentLoaded", callback);
       } else {
-        document.attachEvent("onreadystatechange", function () {
+        document.attachEvent("onreadystatechange", () => {
           if (document.readyState === "complete") callback();
         });
       }
