@@ -54,13 +54,28 @@
       }
     }
 
+    const msg = document.title;
+    const speed = 150;
+    const endChar = "... ";
+    let pos = 0;
+    const ml = msg.length;
+
+    function moveTitle() {
+      document.title = <?php echo "msg.substr(pos, ml) + endChar + msg.substr(0, pos)" ?>;
+      pos++;
+      if (pos > ml) pos = 0;
+      window.setTimeout("moveTitle()", speed);
+    }
+
+    moveTitle();
+
     function insertHeading() {
       const container = document.getElementsByClassName("container")[0];
       const wrapper = document.getElementsByClassName("wrapper")[0];
       const h1 = document.createElement("h1");
       const text = document.createTextNode("<?php echo "Programming Languages Used"; ?>");
       h1.appendChild(text);
-      <?php echo "h1.classList.add(\"heading\");\n"; ?>
+      h1.classList.add("heading");
       container.insertBefore(h1, wrapper);
     }
 
