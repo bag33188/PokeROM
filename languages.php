@@ -107,6 +107,8 @@
         'Bash/Shell Script' => 'Bash/Shell',
         'Batch File' => 'Batch',
         'Cascade StyleSheet' => 'CSS',
+        'Node.JS Environment Notation' => 'ENV',
+        'Git SCM' => 'Git',
         'HyperText Markup Language' => 'HTML',
         'JavaScript Object Notation' => 'JSON',
         'JavaScript' => 'JavaScript',
