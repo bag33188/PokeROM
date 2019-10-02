@@ -51,13 +51,13 @@
   </style>
   <script type="text/javascript">
     function ready(callback) {
-      if (document.readyState != "loading") {
+      if (document.readyState !== "loading") {
         callback();
       } else if (document.addEventListener) {
         document.addEventListener("DOMContentLoaded", callback);
       } else {
         document.attachEvent("onreadystatechange", function () {
-          if (document.readyState == "complete") callback();
+          if (document.readyState === "complete") callback();
         });
       }
     }
@@ -91,6 +91,9 @@
   </script>
 </head>
 <body>
+<noscript>
+  <h1>Please enable JavaScript</h1>
+</noscript>
 <div class="container">
   <?php
     /**
