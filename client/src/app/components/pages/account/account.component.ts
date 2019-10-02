@@ -85,7 +85,9 @@ export class AccountComponent implements OnInit, AfterContentInit {
           (err: any): never => {
             this.ready = true;
             this.updateFail = true;
-            if (err.error.msg === 'A user with that username already exists.') {
+            if (
+              err.error.message === 'A user with that username already exists.'
+            ) {
               this.userExists = true;
             }
             throw err;
@@ -116,7 +118,9 @@ export class AccountComponent implements OnInit, AfterContentInit {
             this.ready = true;
             this.firedOff = false;
             this.updateFail = true;
-            if (err.error.msg === 'A user with that username already exists.') {
+            if (
+              err.error.message === 'A user with that username already exists.'
+            ) {
               this.userExists = true;
             }
             throw err;

@@ -413,7 +413,7 @@ module.exports.updateUser = async (req, res, next) => {
         () => {
           return res.status(500).json({
             success: false,
-            msg: 'A user with that username already exists.'
+            message: 'A user with that username already exists.'
           });
         }
       );
@@ -499,7 +499,7 @@ module.exports.patchUser = async (req, res, next) => {
         () => {
           return res.status(500).json({
             success: false,
-            msg: 'A user with that username already exists.'
+            message: 'A user with that username already exists.'
           });
         }
       );
