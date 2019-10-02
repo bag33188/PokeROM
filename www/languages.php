@@ -43,6 +43,7 @@
     .container {
       margin: 1em auto;
       width: 425px;
+      border: 1px solid var(--black);
     }
 
     <?php echo ".heading { text-align: center; }\n"; ?>
@@ -50,7 +51,6 @@
     .wrapper {
       margin: 0 auto;
       width: 84px;
-      border: 1px solid var(--black);
     }
 
     #languages {
