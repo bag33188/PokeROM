@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
   <?php
+    // create metadata associative array
     $metadataValues = array(
       "charset" => "UTF-8",
       "viewport" => "width=device-width, initial-scale=1.0",
       "X-UA-Compatible" => "IE-Edge"
     );
+
+    // get keys from metadata associative array
     $metadataKeys = array_keys($metadataValues);
   ?>
   <meta charset="<?php echo $metadataValues[$metadataKeys[0]]; ?>"/>
@@ -68,6 +71,7 @@
 <div class="container">
   <?php
     function renderContent() {
+      // create associative array with all of coding languages used
       $languages = array(
         'Apache' => 'Apache',
         'Bash/Shell Script' => 'Bash/Shell',
@@ -86,17 +90,31 @@
         'eXtensible Markup Language' => 'XML',
         'Yet Another Markup Language' => 'YAML'
       );
+
+      // get keys of array
       $tooltips = array_keys($languages);
+
+      // sort array alphabetically (ascending)
       sort($languages);
+
+      // output html
       echo "\t\t<div class=\"wrapper\">\n";
       echo "\t\t\t<ul id=\"languages\">\n";
+
+      // loop thru languages
       for ($i = 0; $i < count($languages); $i++) {
+        // print out html list items
         echo "\t\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
       }
+
+      // output remaining html
       echo "\t\t\t</ul>\n";
+      # output total language count
       echo "\t\t\t<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
       echo "\t\t</div>\n";
     }
+
+    // call/invoke function
     renderContent();
   ?>
 </div>
