@@ -29,8 +29,15 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --white: #fff;
+      --black: #000;
+    }
+
     html, body {
       font-family: <?php echo "Verdana, Geneva, sans-serif"; ?>;
+      color: var(--black);
+      background-color: var(--white);
     }
 
     .container {
@@ -43,6 +50,7 @@
     .wrapper {
       margin: 0 auto;
       width: 84px;
+      border: 1px solid var(--black);
     }
 
     #languages {
