@@ -64,9 +64,10 @@ app.use('/api/version', version);
 if (cluster.isMaster) {
   console.log(`Master ${process.pid} is running`);
 
+  // get number of cores in CPU
   const numCPUs = os.cpus().length;
 
-  // Fork workers.
+  // Fork workers
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
   }
