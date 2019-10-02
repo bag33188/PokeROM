@@ -14,7 +14,7 @@ class PwHashGen {
    * @name genPw
    * @summary Password Hash Generator.
    * @description Generates a hash from input password.
-   * @return {void} Nothing.
+   * @returns {void} Nothing.
    */
   genPw() {
     // ask user for password
