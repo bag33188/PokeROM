@@ -69,7 +69,8 @@
 </head>
 <body>
 <div class="container">
-  <?php
+  <?php\
+    // create function
     function renderContent() {
       // create associative array with all of coding languages used
       $languages = array(
