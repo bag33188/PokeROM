@@ -12,21 +12,29 @@
         box-sizing: border-box;
       }
 
+      :root {
+        --white: #fff;
+        --black: #000;
+      }
+
       html,
       body {
         margin: 1rem;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: var(--black);
+        background-color: var(--white);
       }
 
       .container {
         padding: 1em;
-        border: 1px solid #000;
+        border: 1px solid var(--black);
         margin: 0 auto;
         min-width: 80vw;
         min-height: 80vh;
       }
 
       #heading {
+        margin-top: 0;
         text-align: center;
       }
     </style>
@@ -58,7 +66,6 @@
     </noscript>
     <div class="container">
       <h1 id="heading">Pok&eacute;ROM Info</h1>
-      <hr />
       <div>
         <h2 id="terms-of-service">Terms of Service</h2>
         <p>
@@ -89,7 +96,6 @@
           PERFORMANCE OF THIS SOFTWARE.
         </p>
       </div>
-      <hr />
     </div>
   </body>
 </html>
