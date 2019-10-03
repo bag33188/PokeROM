@@ -70,19 +70,16 @@
         }
       }
 
+      let pos = 0;
+      const msg = document.title;
+      const endChar = "... ";
+      const ml = msg.length;
       function moveTitle(speed) {
-        const msg = document.title;
-        const endChar = "... ";
-        const ml = msg.length;
-        let pos = 0;
-        for (let i = 0; i < 1; i++) {
-          document.title = msg.substr(pos, ml) + endChar + msg.substr(0, pos);
-          pos++;
-          if (pos > ml) pos = 0;
-          setTimeout(moveTitle, speed);
-        }
+        document.title = msg.substr(pos, ml) + endChar + msg.substr(0, pos);
+        pos++;
+        if (pos > ml) pos = 0;
+        setTimeout(moveTitle, speed);
       }
-
       moveTitle(150);
 
       function insertHeading() {
@@ -141,20 +138,20 @@
           sort($languages);
 
           // output html
-          echo "\s\s<div class=\"wrapper\">\n";
-          echo "\s\s\s\s<ul id=\"languages\">\n";
+          echo "<div class=\"wrapper\">\n";
+          echo "<ul id=\"languages\">\n";
 
           // loop thru languages
           for ($i = 0; $i < count($languages); $i++) {
             // print out html list items
-            echo "\s\s\s\s\s\s<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
+            echo "<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
           }
 
           // output remaining html
-          echo "\s\s\s\s</ul>\n";
+          echo "</ul>\n";
           // output total language count
-          echo "\s\s\s\s<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
-          echo "\s\s</div>\n";
+          echo "<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
+          echo "</div>\n";
         }
 
         // call/invoke function
