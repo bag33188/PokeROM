@@ -24,7 +24,9 @@ const options = require('./routes/options');
 /*
 const yaml = require('js-yaml');
 const fs = require('fs');
-console.log(yaml.safeLoad(fs.readFileSync('./.keys.yml')));
+const file = fs.readFileSync('./.keys.yml', 'utf8');
+const doc = yaml.safeLoad(file);
+console.log(doc);
 */
 
 // setup env vars
