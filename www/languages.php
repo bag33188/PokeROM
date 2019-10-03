@@ -108,12 +108,9 @@
         # BEGIN PHP CODE
         # ==============
 
-        /*
-        * @name renderContent
-        * @summary Render Content onto Page
-        * @description Renders the programming language HTML content onto the page.
-        * @returns {void} Nothing.
-        */
+        /**
+         * @return void Nothing.
+         */
         function renderContent() {
           // create associative array with all of coding languages used
           $languages = array(
