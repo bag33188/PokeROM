@@ -144,20 +144,20 @@
           sort($languages);
 
           // output html
-          echo "\t\t<div class=\"wrapper\">\n";
-          echo "\t\t\t<ul id=\"languages\">\n";
+          echo "\t<div class=\"wrapper\">\n";
+          echo "\t\t<ul id=\"languages\">\n";
 
           // loop thru languages
           for ($i = 0; $i < count($languages); $i++) {
             // print out html list items
-            echo "\t\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
+            echo "\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
           }
 
           // output remaining html
-          echo "\t\t\t</ul>\n";
+          echo "\t\t</ul>\n";
           // output total language count
-          echo "\t\t\t<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
-          echo "\t\t</div>\n";
+          echo "\t\t<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
+          echo "\t</div>\n";
         }
 
         // call/invoke function
