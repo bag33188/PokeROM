@@ -26,7 +26,7 @@
     <title>Languages Used</title>
     <style type="text/css">
       *, *::before, *::after {
-        box-sizing: border-box;
+        box-sizing: border-box !important;
       }
 
       :root {
