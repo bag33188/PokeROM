@@ -20,10 +20,10 @@ $ chmod 755 ./fix_permissions.sh
 
 fix_permissions() {
   case "$OSTYPE" in
-    darwin*)  python3 fix_permissions.py ;;
-    linux*)   python3 fix_permissions.py ;;
-    msys*)    python fix_permissions.py ;;
-    *)        echo "unknown: $OSTYPE" ;;
+    darwin* )  python3 fix_permissions.py ;;
+    linux* )   python3 fix_permissions.py ;;
+    msys* )    python fix_permissions.py ;;
+    * )        echo "Unknown OS: $OSTYPE" ;;
   esac
 }
 

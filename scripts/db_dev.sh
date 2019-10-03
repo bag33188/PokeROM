@@ -22,10 +22,10 @@ db_dev() {
   cd .. || return
   command="mongo pkmn-roms"
   case $OSTYPE in
-    darwin*)  ${command} ;;
-    linux*)   ${command} ;;
-    msys*)    winpty ${command} ;;
-    *)        echo "unknown: $OSTYPE" ;;
+    darwin* )  ${command} ;;
+    linux* )   ${command} ;;
+    msys* )    winpty ${command} ;;
+    * )        echo "Unknown OS: $OSTYPE" ;;
   esac
 }
 
