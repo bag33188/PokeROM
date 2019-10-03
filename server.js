@@ -21,6 +21,7 @@ const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
+
 // setup env vars
 dotenv.config({ encoding: 'utf8' });
 
