@@ -42,7 +42,7 @@
 
       .container {
         margin: 1em auto;
-        width: 425px;
+        max-width: 655px;
         border: 1px solid var(--black);
       }
 
