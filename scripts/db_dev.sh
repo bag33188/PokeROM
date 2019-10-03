@@ -24,7 +24,7 @@ db_dev() {
   case $OSTYPE in
     darwin* )  ${command} ;;
     linux* )   ${command} ;;
-    msys* )    winpty ${command} ;;
+    msys* )    winpty "${command}" ;;
     * )        echo "Unknown OS: $OSTYPE" ;;
   esac
 }
