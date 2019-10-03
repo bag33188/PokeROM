@@ -19,11 +19,11 @@ $ chmod 755 ./fix_permissions.sh
 --MULTILINE-COMMENT--
 
 fix_permissions() {
-  case "$OSTYPE" in
+  case $OSTYPE in
     darwin* )  python3 fix_permissions.py ;;
     linux* )   python3 fix_permissions.py ;;
     msys* )    python fix_permissions.py ;;
-    * )        echo "Unknown OS: $OSTYPE" ;;
+    * )        echo "Unknown OS: ${OSTYPE}" ;;
   esac
 }
 
