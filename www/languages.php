@@ -104,9 +104,9 @@
     </noscript>
     <div class="container">
       <?php
-        # --------------
+        # ==============
         # BEGIN PHP CODE
-        # --------------
+        # ==============
 
         /*
         * @name renderContent
@@ -163,9 +163,9 @@
         // call/invoke function
         renderContent();
 
-        # --------------
+        # ============
         # END PHP CODE
-        # --------------
+        # ============
       ?>
     </div>
   </body>
