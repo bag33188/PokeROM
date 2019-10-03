@@ -18,14 +18,13 @@ $ cd scripts
 $ chmod 755 ./db_dev.sh
 --MULTILINE-COMMENT--
 
-# winpty
-
 db_dev() {
   cd .. || return
-   case "$OSTYPE" in
-    darwin*)  mongo pkmn-roms ;;
-    linux*)   mongo pkmn-roms ;;
-    msys*)    winpty mongo pkmn-roms ;;
+  command="mongo pkmn-roms"
+  case $OSTYPE in
+    darwin*)  ${command} ;;
+    linux*)   ${command} ;;
+    msys*)    winpty ${command} ;;
     *)        echo "unknown: $OSTYPE" ;;
   esac
 }

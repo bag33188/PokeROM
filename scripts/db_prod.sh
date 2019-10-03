@@ -18,14 +18,13 @@ $ cd scripts
 $ chmod 755 ./db_prod.sh
 --MULTILINE-COMMENT--
 
-# winpty
-
 db_prod() {
   cd .. || return
-   case "$OSTYPE" in
-    darwin*)  mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:44380 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt ;;
-    linux*)   mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:44380 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt ;;
-    msys*)    winpty mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:44380 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt ;;
+  command="mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:44380 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt"
+  case $OSTYPE in
+    darwin*)  ${command} ;;
+    linux*)   ${command} ;;
+    msys*)    winpty ${command} ;;
     *)        echo "unknown: $OSTYPE" ;;
   esac
 }
