@@ -35,7 +35,7 @@
       }
 
       html, body {
-        font-family: <?php echo "Verdana, Geneva, Tahoma, sans-serif"; ?>;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         color: var(--black);
         background-color: var(--white);
       }
@@ -70,20 +70,20 @@
         }
       }
 
-      const msg = document.title;
-      const speed = 150;
-      const endChar = "... ";
-      let pos = 0;
-      const ml = msg.length;
-
-      function moveTitle() {
-        document.title = <?php echo "msg.substr(pos, ml) + endChar + msg.substr(0, pos)"; ?>;
-        pos++;
-        if (pos > ml) pos = 0;
-        window.setTimeout(moveTitle, speed);
+      function moveTitle(speed) {
+        const msg = document.title;
+        const endChar = "... ";
+        const ml = msg.length;
+        let pos = 0;
+        for (let i = 0; i < 1; i++) {
+          document.title = msg.substr(pos, ml) + endChar + msg.substr(0, pos);
+          pos++;
+          if (pos > ml) pos = 0;
+          setTimeout(moveTitle, speed);
+        }
       }
 
-      moveTitle();
+      moveTitle(150);
 
       function insertHeading() {
         const container = document.getElementsByClassName("container")[0];
@@ -141,20 +141,20 @@
           sort($languages);
 
           // output html
-          echo "\t<div class=\"wrapper\">\n";
-          echo "\t\t<ul id=\"languages\">\n";
+          echo "\s\s<div class=\"wrapper\">\n";
+          echo "\s\s\s\s<ul id=\"languages\">\n";
 
           // loop thru languages
           for ($i = 0; $i < count($languages); $i++) {
             // print out html list items
-            echo "\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
+            echo "\s\s\s\s\s\s<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
           }
 
           // output remaining html
-          echo "\t\t</ul>\n";
+          echo "\s\s\s\s</ul>\n";
           // output total language count
-          echo "\t\t<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
-          echo "\t</div>\n";
+          echo "\s\s\s\s<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
+          echo "\s\s</div>\n";
         }
 
         // call/invoke function
