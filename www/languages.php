@@ -74,13 +74,14 @@
       const msg = document.title;
       const endChar = "... ";
       const ml = msg.length;
-      function moveTitle(speed) {
+      const speed = 150;
+      function moveTitle() {
         document.title = msg.substr(pos, ml) + endChar + msg.substr(0, pos);
         pos++;
         if (pos > ml) pos = 0;
         setTimeout(moveTitle, speed);
       }
-      moveTitle(150);
+      moveTitle();
 
       function insertHeading() {
         const container = document.getElementsByClassName("container")[0];
