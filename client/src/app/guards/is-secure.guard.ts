@@ -7,10 +7,12 @@ import { environment } from '../../environments/environment';
 })
 export class IsSecureGuard implements CanActivate {
   constructor() {}
-  canActivate(route: ActivatedRouteSnapshot): boolean {
+
+  public canActivate(route: ActivatedRouteSnapshot): boolean {
     if (environment.production && window.location.protocol !== 'https:') {
       window.location.href = `https:${window.location.href.substring(
-        window.location.protocol.length
+        window.location.protocol.length,
+        window.location.href.length
       )}`;
       return false;
     } else {
