@@ -16,6 +16,6 @@
     <title>API Docs (Redirect)</title>
   </head>
   <body>
-    <h1>Redirecting to <?php echo "/api/docs/$apiVersion" ?> ... </h1>
+    <h1>Redirecting to <?php echo "/api/docs/$apiVersion"; ?> ... </h1>
   </body>
 </html>
