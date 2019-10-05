@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <?php
-      $filename = "../docs/swagger-definition.yml";
-      $file = fopen($filename, "r");
-      $filesize = filesize( $filename );
-      $filetext = fread( $file, $filesize );
+      $filepath = "../docs/swagger-definition.yml";
+      $file = fopen($filepath, "r");
+      $filesize = filesize($filepath);
+      $filetext = fread($file, $filesize);
       preg_match("(version: v\d)", $filetext, $version);
       $apiVersion = str_replace("version: ", "", $version[0]);
     ?>
