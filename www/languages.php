@@ -24,6 +24,7 @@
     <meta name="<?php echo $metadataKeys[1]; ?>" content="<?php echo $metadataValues[$metadataKeys[1]]; ?>"/>
     <meta http-equiv="<?php echo $metadataKeys[2]; ?>" content="<?php echo $metadataValues[$metadataKeys[2]]; ?>"/>
     <title>Languages Used</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico"/>
     <style type="text/css">
       *, *::before, *::after {
         box-sizing: border-box !important;

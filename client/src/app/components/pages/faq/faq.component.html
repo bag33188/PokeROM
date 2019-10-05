@@ -60,11 +60,17 @@
         <span class="question">Is this project open source?</span>
         <br />
         <span class="answer"
-          >No; however, it does use source control.<br />
-          <span *ngIf="environment.production"
-            >You can view a list of programming languages used for this app
-            <a href="/languages.php" target="_blank">here</a>.</span
-          ></span
+          >No; however, it does use source control. <br />You can view a list of
+          programming languages used for this app
+          <a
+            [href]="
+              environment.production
+                ? '/languages.php'
+                : environment.apiUrl.replace('api', '') + 'languages.php'
+            "
+            target="_blank"
+            >here</a
+          >.</span
         >
       </p>
     </ng-container>

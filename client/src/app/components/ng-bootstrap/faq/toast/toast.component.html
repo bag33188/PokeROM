@@ -14,9 +14,16 @@
     sharing these ROMs.
     <br />
     Thank you!
-    <span *ngIf="environment.production">
-      <br />
-      Find out more <a href="/info.html" target="_blank">here</a>.
-    </span>
+    <br />
+    Find out more
+    <a
+      [href]="
+        environment.production
+          ? '/info.html'
+          : environment.apiUrl.replace('api', '') + 'info.html'
+      "
+      target="_blank"
+      >here</a
+    >.
   </p>
 </ngb-toast>

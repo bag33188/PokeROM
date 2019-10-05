@@ -20,6 +20,7 @@ const version = require('./routes/api/version');
 const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
+const php = require('node-php');
 
 /*
 const yaml = require('js-yaml');
@@ -94,6 +95,9 @@ if (cluster.isMaster) {
       res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
     });
   } else {
+    // set static folder
+    app.use(php.cgi(path.join(__dirname, 'www')));
+
     // index route
     app.get('/', (req, res) => {
       res.redirect(`/api/docs/${apiVersion}`);
