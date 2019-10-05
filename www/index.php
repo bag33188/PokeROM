@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <?php
-      echo "<meta http-equiv=\"refresh\" content=\"0;url=/api/docs/v1\" />";
+      $filename = "../docs/swagger-definition.yml";
+      $file = fopen($filename, "r");
+      $filesize = filesize( $filename );
+      $filetext = fread( $file, $filesize );
+      preg_match("(version: v\d)", $filetext, $version);
+      $apiVersion = str_replace("version: ", "", $version[0]);
     ?>
-    <title>API Docs</title>
+    <meta http-equiv="refresh" content="0;url=/api/docs/<?php echo $apiVersion; ?>" />
+    <title>API Docs (Redirect)</title>
   </head>
   <body>
-    <?php
-      echo "Loading ... ";
-    ?>
+    <h1>Redirecting to <?php echo "/api/docs/$apiVersion" ?> ... </h1>
   </body>
 </html>
