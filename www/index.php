@@ -14,6 +14,7 @@
     ?>
     <meta http-equiv="refresh" content="0;url=/api/docs/<?php echo $apiVersion; ?>" />
     <title>API Docs (Redirect)</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
   </head>
   <body>
     <h1>Redirecting to <?php echo "/api/docs/$apiVersion"; ?> ... </h1>
