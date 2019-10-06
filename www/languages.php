@@ -48,7 +48,7 @@
       const ml = msg.length;
       const speed = 150;
       function moveTitle() {
-        document.title = msg.substr(pos, ml) + endChar + msg.substr(0, pos);
+        document.title = `${msg.substr(pos, ml)}${endChar}${msg.substr(0, pos)}`;
         pos++;
         if (pos > ml) pos = 0;
         setTimeout(moveTitle, speed);
