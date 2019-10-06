@@ -22,7 +22,7 @@
           );
         } else {
           return array(
-            (object)array("success" => false, "api_version" => null)
+            (object)array("success" => false, "api_version" => NULL)
           );
         }
       }
