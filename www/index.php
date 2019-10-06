@@ -31,7 +31,7 @@
       for ($i = 0; $i < count(getApiVersion()); $i++) {
         echo getApiVersion()[$i]->api_version;
       }
-    ?>" />
+    ?>/" />
     <title>API Docs (Redirect)</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
@@ -59,7 +59,7 @@
       foreach (getApiVersion() as $versionData) {
         $apiVersionHTML = ($versionData->success == 0) ?
           print "<code>ERROR_GETTING_API_VERSION</code>" :
-          print "<code>/api/docs/" . $versionData->api_version . "</code>";
+          print "<code>/api/docs/" . $versionData->api_version . "/</code>";
       }
     ?> ... </h1>
   </body>
