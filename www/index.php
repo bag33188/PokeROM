@@ -10,8 +10,12 @@
         $file = fopen($filePath, "r");
         $fileSize = filesize($filePath);
         $fileText = fread($file, $fileSize);
-        preg_match("(version: v\d)", $fileText, $version);
-        $apiVersion = str_replace("version: ", "", $version[0]);
+        $versionExists = preg_match("(version: v\d)", $fileText, $version);
+        if ($versionExists == true) {
+          $apiVersion = str_replace("version: ", "", $version[0]);
+        } else {
+          $apiVersion = "v0";
+        }
         return $apiVersion;
       }
     ?>
@@ -19,7 +23,9 @@
     <title>API Docs (Redirect)</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box !important;
       }
       body {
