@@ -13,7 +13,8 @@
         $file = fopen($filePath, "r");
         $fileSize = filesize($filePath);
         $fileText = fread($file, $fileSize);
-        $versionExists = preg_match("(version: v\d)", $fileText, $version);
+        define("VERSION_REGEX", "/((?:version:)(?:\s)(?:v\d))/i");
+        $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
         if ($versionExists == true) {
           $apiVersion = str_replace("version: ", "", $version[0]);
           return array(
