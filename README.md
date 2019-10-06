@@ -21,7 +21,6 @@ Pok&eacute;ROM
         * [Terminal Window 3](#terminal-window-3)
         * [Terminating Processes](#terminating-processes)
       - [Troubleshooting](#troubleshooting)
-  * [Languages Used](#languages-used)
 
 ## About
 
