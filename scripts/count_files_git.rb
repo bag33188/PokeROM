@@ -11,7 +11,7 @@ Notes:
 =end
 
 # define count_files_git function
-def count_files_git()
+def count_files_git
   puts 'Counting files on github ... '
   print "\n"
 
