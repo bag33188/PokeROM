@@ -49,7 +49,8 @@
           echo (getApiVersion()[$i]->success == 1) ?
             "API Version: " . getApiVersion()[$i]->api_version :
             "Error getting API version.";
-        } ?>");
+        }
+      ?>");
     </script>
   </head>
   <body>
