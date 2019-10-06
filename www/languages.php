@@ -99,14 +99,10 @@
 
               // loop thru languages array
               for ($i = 0; $i < count($languages); $i++) {
-                // if first index
-                if ($i == 0) {
-                  // output list item with tooltip as title and language as text-content (with single tab)
-                  echo "\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
-                } else { // otherwise ...
-                  // output list item with tooltip as title and language as text-content (with triple tab)
-                  echo "\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
-                }
+                // handle correct indentation
+                ($i == 0) ? print "\t" : print "\t\t\t";
+                // output list item with tooltip as title attr value and language as text content
+                echo "<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
               }
 
               // return languages array
