@@ -46,7 +46,7 @@
     </style>
     <script type="text/javascript">
       console.log("<?php
-        for ($i = 0; $i < sizeof(getApiVersion()); $i ++) {
+        for ($i = 0; $i < sizeof(getApiVersion()); $i++) {
           echo (getApiVersion()[$i]->success == 1) ?
             "API Version: " . getApiVersion()[$i]->api_version :
             "Error getting API version.";
