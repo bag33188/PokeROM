@@ -35,7 +35,7 @@
   </head>
   <body>
     <h1>Redirecting to <?php
-        echo "<code>/api/docs/" . getApiVersion() . "</code>";
+      echo "<code>/api/docs/" . getApiVersion() . "</code>";
     ?> ... </h1>
   </body>
 </html>
