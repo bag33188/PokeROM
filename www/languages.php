@@ -1,28 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php
-      # ==============
-      # BEGIN PHP CODE
-      # ==============
-
-      // create metadata associative array
-      $metadataValues = array(
-        "charset" => "UTF-8",
-        "viewport" => "width=device-width, initial-scale=1.0",
-        "X-UA-Compatible" => "IE-Edge"
-      );
-
-      // get keys from metadata associative array
-      $metadataKeys = array_keys($metadataValues);
-
-      # ============
-      # END PHP CODE
-      # ============
-    ?>
-    <meta charset="<?php echo $metadataValues[$metadataKeys[0]]; ?>" />
-    <meta name="<?php echo $metadataKeys[1]; ?>" content="<?php echo $metadataValues[$metadataKeys[1]]; ?>" />
-    <meta http-equiv="<?php echo $metadataKeys[2]; ?>" content="<?php echo $metadataValues[$metadataKeys[2]]; ?>" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE-Edge" />
     <title>Languages Used</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
@@ -47,7 +28,9 @@
         border: 1px solid var(--black);
       }
 
-      <?php echo ".heading { text-align: center; }\n"; ?>
+      #heading {
+        text-align: center;
+      }
 
       .wrapper {
         margin: 0 auto;
@@ -59,18 +42,6 @@
       }
     </style>
     <script type="text/javascript">
-      function ready(callback) {
-        if (document.readyState !== "loading") {
-          callback();
-        } else if (document.addEventListener) {
-          document.addEventListener("DOMContentLoaded", callback);
-        } else {
-          document.attachEvent("onreadystatechange", () => {
-            if (document.readyState === "complete") callback();
-          });
-        }
-      }
-
       let pos = 0;
       const msg = document.title;
       const endChar = "... ";
@@ -83,18 +54,6 @@
         setTimeout(moveTitle, speed);
       }
       moveTitle();
-
-      function insertHeading() {
-        const container = document.getElementsByClassName("container")[0];
-        const wrapper = document.getElementsByClassName("wrapper")[0];
-        const h1 = document.createElement("h1");
-        const text = document.createTextNode("<?php echo "Programming Languages Used"; ?>");
-        h1.appendChild(text);
-        h1.classList.add("heading");
-        container.insertBefore(h1, wrapper);
-      }
-
-      ready(insertHeading);
     </script>
   </head>
   <body>
@@ -102,67 +61,46 @@
       <h1>Please enable JavaScript</h1>
     </noscript>
     <div class="container">
-      <?php
-        # ==============
-        # BEGIN PHP CODE
-        # ==============
+      <h1 id="heading">Programming Languages Used</h1>
+      <div class="wrapper">
+        <ul id="languages">
+          <?php
+            $languages = array(
+              'Apache' => 'Apache',
+              'Bash/Shell Script' => 'Bash/Shell',
+              'Batch File' => 'Batch',
+              'Cascade StyleSheet' => 'CSS',
+              'Node.JS Environment Notation' => 'ENV',
+              'Git SCM' => 'Git',
+              'HyperText Markup Language' => 'HTML',
+              'JavaScript Object Notation' => 'JSON',
+              'JavaScript' => 'JavaScript',
+              'Markdown' => 'Markdown',
+              'Hypertext Preprocessor' => 'PHP',
+              'Python 3' => 'Python 3',
+              'Ruby' => 'Ruby',
+              'Syntactically Awesome Stylesheets' => 'SCSS/Sass',
+              'Scalar Vector Graphics' => 'SVG',
+              'TypeScript' => 'TypeScript',
+              'eXtensible Markup Language' => 'XML',
+              'Yet Another Markup Language' => 'YAML'
+            );
 
-        /**
-         * @return void Nothing.
-         */
-        function renderContent() {
-          // create associative array with all of coding languages used
-          $languages = array(
-            'Apache' => 'Apache',
-            'Bash/Shell Script' => 'Bash/Shell',
-            'Batch File' => 'Batch',
-            'Cascade StyleSheet' => 'CSS',
-            'Node.JS Environment Notation' => 'ENV',
-            'Git SCM' => 'Git',
-            'HyperText Markup Language' => 'HTML',
-            'JavaScript Object Notation' => 'JSON',
-            'JavaScript' => 'JavaScript',
-            'Markdown' => 'Markdown',
-            'Hypertext Preprocessor' => 'PHP',
-            'Python 3' => 'Python 3',
-            'Ruby' => 'Ruby',
-            'Syntactically Awesome Stylesheets' => 'SCSS/Sass',
-            'Scalar Vector Graphics' => 'SVG',
-            'TypeScript' => 'TypeScript',
-            'eXtensible Markup Language' => 'XML',
-            'Yet Another Markup Language' => 'YAML'
-          );
+            $tooltips = array_keys($languages);
 
-          // get keys of array
-          $tooltips = array_keys($languages);
+            sort($languages);
 
-          // sort array alphabetically (ascending)
-          sort($languages);
-
-          // output html
-          echo "\t<div class=\"wrapper\">\n";
-          echo "\t\t<ul id=\"languages\">\n";
-
-          // loop thru languages
-          for ($i = 0; $i < count($languages); $i++) {
-            // print out html list items
-            echo "\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
-          }
-
-          // output remaining html
-          echo "\t\t</ul>\n";
-          // output total language count
-          echo "\t\t<p><b>Total: " . strval(sizeof($languages)) . "</b></p>\n";
-          echo "\t</div>\n";
-        }
-
-        // call/invoke function
-        renderContent();
-
-        # ============
-        # END PHP CODE
-        # ============
-      ?>
+            for ($i = 0; $i < count($languages); $i++) {
+              if ($i == 0) {
+                echo "\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
+              } else {
+                echo "\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
+              }
+            }
+          ?>
+        </ul>
+        <p><b>Total: <?php echo strval(sizeof($languages)); ?></b></p>
+      </div>
     </div>
   </body>
 </html>
