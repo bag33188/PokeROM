@@ -65,41 +65,56 @@
       <div class="wrapper">
         <ul id="languages">
           <?php
-            $languages = array(
-              'Apache' => 'Apache',
-              'Bash/Shell Script' => 'Bash/Shell',
-              'Batch File' => 'Batch',
-              'Cascade StyleSheet' => 'CSS',
-              'Node.JS Environment Notation' => 'ENV',
-              'Git SCM' => 'Git',
-              'HyperText Markup Language' => 'HTML',
-              'JavaScript Object Notation' => 'JSON',
-              'JavaScript' => 'JavaScript',
-              'Markdown' => 'Markdown',
-              'Hypertext Preprocessor' => 'PHP',
-              'Python 3' => 'Python 3',
-              'Ruby' => 'Ruby',
-              'Syntactically Awesome Stylesheets' => 'SCSS/Sass',
-              'Scalar Vector Graphics' => 'SVG',
-              'TypeScript' => 'TypeScript',
-              'eXtensible Markup Language' => 'XML',
-              'Yet Another Markup Language' => 'YAML'
-            );
+            /**
+             * @return array List of languages.
+             */
+            function renderListItems() {
+              // create associative array containing all languages and their full names
+              $languages = array(
+                'Apache' => 'Apache',
+                'Bash/Shell Script' => 'Bash/Shell',
+                'Batch File' => 'Batch',
+                'Cascade StyleSheet' => 'CSS',
+                'Node.JS Environment Notation' => 'ENV',
+                'Git SCM' => 'Git',
+                'HyperText Markup Language' => 'HTML',
+                'JavaScript Object Notation' => 'JSON',
+                'JavaScript' => 'JavaScript',
+                'Markdown' => 'Markdown',
+                'Hypertext Preprocessor' => 'PHP',
+                'Python 3' => 'Python 3',
+                'Ruby' => 'Ruby',
+                'Syntactically Awesome Stylesheets' => 'SCSS/Sass',
+                'Scalar Vector Graphics' => 'SVG',
+                'TypeScript' => 'TypeScript',
+                'eXtensible Markup Language' => 'XML',
+                'Yet Another Markup Language' => 'YAML'
+              );
 
-            $tooltips = array_keys($languages);
+              // get keys of array
+              $tooltips = array_keys($languages);
 
-            sort($languages);
+              // sort array alphabetically in ascending order
+              sort($languages);
 
-            for ($i = 0; $i < count($languages); $i++) {
-              if ($i == 0) {
-                echo "\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
-              } else {
-                echo "\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
+              // loop thru languages array
+              for ($i = 0; $i < count($languages); $i++) {
+                // if first index
+                if ($i == 0) {
+                  // output list item with tooltip as title and language as text-content (with single tab)
+                  echo "\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
+                } else { // otherwise ...
+                  // output list item with tooltip as title and language as text-content (with triple tab)
+                  echo "\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
+                }
               }
+              return $languages;
             }
+
+            $languages = renderListItems();
           ?>
         </ul>
-        <p><b>Total: <?php echo strval(sizeof($languages)); ?></b></p>
+        <p><b>Total: <?php echo strval(sizeof($languages)); /* output total size of languages array */ ?></b></p>
       </div>
     </div>
   </body>
