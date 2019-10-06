@@ -14,7 +14,7 @@
         if ($versionExists == true) {
           $apiVersion = str_replace("version: ", "", $version[0]);
         } else {
-          $apiVersion = "v0";
+          $apiVersion = false;
         }
         return $apiVersion;
       }
@@ -35,7 +35,9 @@
   </head>
   <body>
     <h1>Redirecting to <?php
-      echo "<code>/api/docs/" . getApiVersion() . "</code>";
+        $apiVersionHTML = (getApiVersion() == false) ?
+          print "ERROR_GETTING_API_VERSION" :
+          print "<code>/api/docs/" . getApiVersion() . "</code>";
     ?> ... </h1>
   </body>
 </html>
