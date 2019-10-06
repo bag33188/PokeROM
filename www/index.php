@@ -36,7 +36,7 @@
   <body>
     <h1>Redirecting to <?php
         $apiVersionHTML = (getApiVersion() == false) ?
-          print "ERROR_GETTING_API_VERSION" :
+          print "<code>ERROR_GETTING_API_VERSION</code>" :
           print "<code>/api/docs/" . getApiVersion() . "</code>";
     ?> ... </h1>
   </body>
