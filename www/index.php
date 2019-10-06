@@ -26,10 +26,12 @@
           );
         }
       }
+
+      $apiVersion = getApiVersion();
     ?>
     <meta http-equiv="refresh" content="0;url=/api/docs/<?php
-      for ($i = 0; $i < count(getApiVersion()); $i++) {
-        echo getApiVersion()[$i]->api_version;
+      for ($i = 0; $i < count($apiVersion); $i++) {
+        echo $apiVersion[$i]->api_version;
       }
     ?>/" />
     <title>API Docs (Redirect)</title>
@@ -46,9 +48,9 @@
     </style>
     <script type="text/javascript">
       console.log("<?php
-        for ($i = 0; $i < sizeof(getApiVersion()); $i++) {
-          echo (getApiVersion()[$i]->success == 1) ?
-            "API Version: " . getApiVersion()[$i]->api_version :
+        for ($i = 0; $i < sizeof($apiVersion); $i++) {
+          echo ($apiVersion[$i]->success == 1) ?
+            "API Version: " . $apiVersion[$i]->api_version :
             "Error getting API version.";
         }
       ?>");
@@ -56,7 +58,7 @@
   </head>
   <body>
     <h1>Redirecting to <?php
-      foreach (getApiVersion() as $versionData) {
+      foreach ($apiVersion as $versionData) {
         $apiVersionHTML = ($versionData->success == 0) ?
           print "<code>ERROR_GETTING_API_VERSION</code>" :
           print "<code>/api/docs/" . $versionData->api_version . "/</code>";
