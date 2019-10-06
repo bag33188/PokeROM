@@ -16,7 +16,7 @@
         $fileText = fread($file, $fileSize);
 
         // define regular expression for identifying api version in YAML data
-        define("VERSION_REGEX", "/((?:versaion:)(?:\s)(?:v\d))/i");
+        define("VERSION_REGEX", "/((?:version:)(?:\s)(?:v\d))/i");
 
         // match api version from file text to version regexp
         $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
@@ -59,7 +59,7 @@
       // set variable to function to make referencing easier
       $apiVersion = getApiVersion();
     ?>
-    <meta http-equiv="refresh" content="1000000;url=/api/docs/<?php
+    <meta http-equiv="refresh" content="0;url=/api/docs/<?php
       // loop through api version data
       for ($i = 0; $i < count($apiVersion); $i++) {
         // output the api's version text
