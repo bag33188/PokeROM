@@ -111,6 +111,7 @@
               return $languages;
             }
 
+            // set variable to function for easier referencing
             $languages = renderListItems();
           ?>
         </ul>
