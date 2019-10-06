@@ -108,6 +108,8 @@
                   echo "\t\t\t<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
                 }
               }
+
+              // return languages array
               return $languages;
             }
 
