@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <?php
-      function getApiVersion() {
+      function getApiVersionData() {
         $filePath = "../docs/swagger-definition.yml";
         $file = fopen($filePath, "r");
         $fileSize = filesize($filePath);
@@ -23,9 +23,9 @@
           );
         }
       }
-      $apiVersion = getApiVersion()[0];
+      $apiVersionData = getApiVersionData()[0];
     ?>
-    <meta http-equiv="refresh" content="0;url=/api/docs/<?php echo $apiVersion->api_version; ?>/" />
+    <meta http-equiv="refresh" content="0;url=/api/docs/<?php echo $apiVersionData->api_version; ?>/" />
     <title>API Docs (Redirect)</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
@@ -41,17 +41,17 @@
     <script type="text/javascript">
       "use strict";
       console.log("<?php
-        echo ($apiVersion->success == 1) ?
-          "API Version: " . $apiVersion->api_version :
+        echo ($apiVersionData->success == 1) ?
+          "API Version: " . $apiVersionData->api_version :
           "Error getting API version.";
       ?>");
     </script>
   </head>
   <body>
     <h1>Redirecting to <?php
-      ($apiVersion->success == 0) ?
+      ($apiVersionData->success == 0) ?
         print "<code>ERROR_GETTING_API_VERSION</code>" :
-        print "<code>/api/docs/" . $apiVersion->api_version . "/</code>";
+        print "<code>/api/docs/" . $apiVersionData->api_version . "/</code>";
     ?> ... </h1>
   </body>
 </html>
