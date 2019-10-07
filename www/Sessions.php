@@ -29,5 +29,6 @@
 
     public function setSession($sessionName, $sessionValue) {
       $_SESSION[strval($sessionName)] = $sessionValue;
+      return $_SESSION[strval($sessionName)];
     }
   }
