@@ -56,15 +56,15 @@
     }
 
     public static function getCurrentUrl() {
-      $link = "";
+      $url = "";
       if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") {
-        $link .= "https";
+        $url .= "https";
       } else {
-        $link .= "http";
+        $url .= "http";
       }
-      $link .= "://";
-      $link .= $_SERVER["HTTP_HOST"];
-      $link .= $_SERVER["REQUEST_URI"];
-      return $link;
+      $url .= "://";
+      $url .= $_SERVER["HTTP_HOST"];
+      $url .= $_SERVER["REQUEST_URI"];
+      return $url;
     }
   }
