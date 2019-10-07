@@ -404,8 +404,8 @@ module.exports.updateRom = async (req, res, next) => {
               });
             }
             rom = { _id: rom._id, ...updateRomData };
-            clearCache(req);
             rom.date_released = new Date(rom.date_released);
+            clearCache(req);
             return res.status(200).json(rom);
           });
         } else {
