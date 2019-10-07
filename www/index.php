@@ -15,11 +15,11 @@
         if ($versionExists == true) {
           $version[0] = str_replace("version: ", "", $version[0]);
           return array(
-            (object)array("success" => true, "api_version" => $version[0])
+            (object) array("success" => true, "api_version" => $version[0])
           );
         } else {
           return array(
-            (object)array("success" => false, "api_version" => NULL)
+            (object) array("success" => false, "api_version" => NULL)
           );
         }
       }
