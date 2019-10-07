@@ -1,4 +1,6 @@
 <?php
+  http_response_code(404);
+
   class WWW
   {
     public function __construct()
