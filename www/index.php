@@ -48,10 +48,12 @@
     </script>
   </head>
   <body>
-    <h1>Redirecting to <?php
-      ($apiVersionData->success == 0) ?
-        print "<code>ERROR_GETTING_API_VERSION</code>" :
-        print "<code>/api/docs/" . $apiVersionData->api_version . "/</code>";
-    ?> ... </h1>
+    <h1>
+      <?php if ($apiVersionData->success == 0) { ?>
+        Error redirecting to API Docs (API Version not found).
+      <?php } else { ?>
+        Redirecting to <code>/api/docs/<?php echo $apiVersionData->api_version; ?></code> ...
+      <?php } ?>
+    </h1>
   </body>
 </html>
