@@ -65,11 +65,7 @@
       <div class="wrapper">
         <ul id="languages">
           <?php
-            /**
-             * @return array List of languages.
-             */
             function renderListItems() {
-              // create associative array containing all languages and their full names
               $languages = array(
                 'Apache' => 'Apache',
                 'Bash/Shell Script' => 'Bash/Shell',
@@ -91,29 +87,22 @@
                 'Yet Another Markup Language' => 'YAML'
               );
 
-              // get keys of array
               $tooltips = array_keys($languages);
 
-              // sort array alphabetically in ascending order
               sort($languages);
 
-              // loop thru languages array
               for ($i = 0; $i < count($languages); $i++) {
-                // handle correct indentation
                 ($i == 0) ? print "\t" : print "\t\t\t";
-                // output list item with tooltip as title attr value and language as text content
                 echo "<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
               }
 
-              // return languages array
               return $languages;
             }
 
-            // set variable to function for easier referencing
             $languages = renderListItems();
           ?>
         </ul>
-        <p><b>Total: <?php echo strval(sizeof($languages)); /* output total size of languages array */ ?></b></p>
+        <p><b>Total: <?php echo strval(sizeof($languages)); ?></b></p>
       </div>
     </div>
   </body>
