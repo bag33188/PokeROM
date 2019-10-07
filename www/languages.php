@@ -45,7 +45,7 @@
       "use strict";
       let pos = 0;
       const msg = document.title;
-      const endChar = "... ";
+      const endChar = " ... ";
       const ml = msg.length;
       const speed = 88;
       function moveTitle() {
