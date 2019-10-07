@@ -57,38 +57,12 @@
       moveTitle();
     </script>
   </head>
-  <?php
-    function data() {
-      $languages = array(
-        "Apache" => "Apache",
-        "Bash/Shell Script" => "Bash/Shell",
-        "Batch File" => "Batch",
-        "Cascade StyleSheet" => "CSS",
-        "Node.JS Environment Notation" => "ENV",
-        "Git SCM" => "Git",
-        "HyperText Markup Language" => "HTML",
-        "JavaScript Object Notation" => "JSON",
-        "JavaScript" => "JavaScript",
-        "Markdown" => "Markdown",
-        "Hypertext Preprocessor" => "PHP",
-        "Python 3" => "Python 3",
-        "Ruby" => "Ruby",
-        "Syntactically Awesome Stylesheets" => "SCSS/Sass",
-        "Scalar Vector Graphics" => "SVG",
-        "TypeScript" => "TypeScript",
-        "eXtensible Markup Language" => "XML",
-        "Yet Another Markup Language" => "YAML"
-      );
-      $tooltips = array_keys($languages);
-      sort($languages);
-      return [
-        (object) array("languages" => $languages, "tooltips" => $tooltips)
-      ];
-    }
-    $languages = data()[0]->languages;
-    $tooltips = data()[0]->tooltips;
-  ?>
   <body>
+    <?php
+      include "./WWW.php";
+      $languages = WWW::languageData()[0]->languages;
+      $tooltips = WWW::languageData()[0]->tooltips;
+    ?>
     <noscript>
       <h1>Please enable JavaScript</h1>
     </noscript>
