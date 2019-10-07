@@ -76,7 +76,9 @@
           <?php } ?>
         </ul>
         <p><b>Total: <?php echo strval(sizeof($languages)); ?></b><br /><br /><a href="<?php
-          ($currentUrl == "http://localhost:8080/languages.php") ? print "http://localhost:4200" : print "/";
+          ($currentUrl == "http://localhost:8080/languages.php") ?
+            print "http://localhost:4200" :
+            print "/";
         ?>" target="_self">Home</a></p>
       </div>
     </div>
