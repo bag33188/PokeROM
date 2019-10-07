@@ -100,7 +100,7 @@
             <li title="<?php echo $tooltips[$i]; ?>"><?php echo $languages[$i]; ?></li>
           <?php } ?>
         </ul>
-        <p><b>Total: <?php echo strval(sizeof($languages)); ?></b></p>
+        <p><b>Total: <?php echo strval(sizeof($languages)); ?></b><br /><br /><a href="/">Home</a></p>
       </div>
     </div>
   </body>

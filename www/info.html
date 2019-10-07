@@ -34,18 +34,23 @@
         height: auto;
       }
 
+      .home-link-wrapper {
+        text-align: center;
+        margin-top: 2.5rem;
+      }
+
       #heading {
         margin-top: 0;
         text-align: center;
         text-decoration: underline;
       }
 
-      body > div > div > div > hr {
+      #tos-hr {
         margin-left: 0;
         border-top: 1px dashed var(--black);
       }
 
-      body > div > hr {
+      #center-hr {
         margin-top: 1.5rem !important;
       }
     </style>
@@ -69,8 +74,8 @@
       }
 
       function setHrWidth() {
-        const span = document.getElementsByTagName('span')[0];
-        const hr = document.getElementsByTagName('hr')[0];
+        const span = document.getElementsByClassName('tos-title')[0];
+        const hr = document.getElementById('tos-hr');
         hr.style.width = span.offsetWidth.toString() + 'px';
       }
 
@@ -88,15 +93,15 @@
       <div>
         <h2 id="terms-of-service">Terms of Service</h2>
         <div>
-          <span>Pok&eacute;ROM Terms of Service</span><br />
-          <hr />
+          <span class="tos-title">Pok&eacute;ROM Terms of Service</span><br />
+          <hr id="tos-hr" />
           <br />
           Pok&eacute;mon ROMs are the property of Nintendo.<br />
           Please do not go around sharing these ROMs.<br />
           Thank you!
         </div>
       </div>
-      <hr />
+      <hr id="center-hr" />
       <div>
         <h2 id="license">License (MIT)</h2>
         <p>
@@ -119,6 +124,9 @@
           TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
           PERFORMANCE OF THIS SOFTWARE.
         </p>
+      </div>
+      <div class="home-link-wrapper">
+        <a href="/">Home</a>
       </div>
     </div>
   </body>
