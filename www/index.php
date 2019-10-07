@@ -52,7 +52,7 @@
       <?php if ($apiVersionData->success == 0) { ?>
         Error redirecting to API Docs (API Version not found).
       <?php } else { ?>
-        Redirecting to <code>/api/docs/<?php echo $apiVersionData->api_version; ?></code> ...
+        Redirecting to <code>/api/docs/<?php echo $apiVersionData->api_version; ?>/</code> ...
       <?php } ?>
     </h1>
   </body>
