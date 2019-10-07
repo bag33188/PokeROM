@@ -86,19 +86,14 @@
                 "eXtensible Markup Language" => "XML",
                 "Yet Another Markup Language" => "YAML"
               );
-
               $tooltips = array_keys($languages);
-
               sort($languages);
-
               for ($i = 0; $i < count($languages); $i++) {
                 ($i == 0) ? print "\t" : print "\t\t\t";
                 echo "<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
               }
-
               return $languages;
             }
-
             $languages = renderListItems();
           ?>
         </ul>
