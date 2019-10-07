@@ -26,4 +26,8 @@
     public static function clearSession() {
       session_unset();
     }
+
+    public function setSession($sessionName, $sessionValue) {
+      $_SESSION[$sessionName] = $sessionValue;
+    }
   }
