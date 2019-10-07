@@ -1,11 +1,18 @@
 <?php
   class Sessions
   {
+    protected $printSessions;
+
     public function __construct($printSessions = false)
     {
-      if ($printSessions == true) {
+      $this->setPrintSessions($printSessions);
+      if ($this->printSessions == true) {
         print_r($_SESSION);
       }
+    }
+
+    private function setPrintSessions($printSessions) {
+     $this->printSessions = $printSessions;
     }
 
     public static function startSession() {
