@@ -16,13 +16,13 @@
         $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
 
         if ($versionExists == true) {
-          $apiVersion = str_replace("version: ", "", $version[0]);
+          $version[0] = str_replace("version: ", "", $version[0]);
 
           return array(
-              (object)array("success" => true, "api_version" => $apiVersion)
+              (object)array("success" => true, "api_version" => $version[0])
           );
         } else {
-          return array( // return php array of object-literal
+          return array(
             (object)array("success" => false, "api_version" => NULL)
           );
         }
