@@ -10,7 +10,7 @@ const routesWithParams = ['core', 'hacks'];
 
 function convertToDateFormat(date) {
   if (date) {
-    let dateArr = date.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
+    const dateArr = date.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
     const month = parseInt(dateArr[0], 10) - 1;
     const day = parseInt(dateArr[1], 10);
     const year = parseInt(dateArr[2], 10);
