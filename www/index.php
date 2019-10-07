@@ -26,7 +26,6 @@
           // replace version text to extract out api version value
           $apiVersion = str_replace("version: ", "", $version[0]);
 
-          // return php array of object-literal
           # schema
           # ======
           # array(1) {
@@ -36,11 +35,10 @@
           # ["api_version"]=> string(2) "v\d"
           # }
           # }
-          return array(
-            (object)array("success" => true, "api_version" => $apiVersion)
+          return array( // return php array of object-literal
+              (object)array("success" => true, "api_version" => $apiVersion)
           );
         } else { // if it doesn't exist ...
-          // return php array of object-literal
           # schema
           # ======
           # array(1) {
@@ -50,7 +48,7 @@
           # ["api_version"]=> NULL
           # }
           # }
-          return array(
+          return array( // return php array of object-literal
             (object)array("success" => false, "api_version" => NULL)
           );
         }
