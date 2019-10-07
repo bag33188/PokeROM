@@ -30,7 +30,7 @@ const fieldsToSanitize = [
   'rom_type',
   'is_favorite'
 ];
-const dateRegex = /^(?:(0[1-9]|1[012])(\/|(&#x2[Ff];))(0[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/;
+const dateRegex = /^(?:(0?[1-9]|1[012])(\/|(&#x2[Ff];))(0?[1-9]|[12][0-9]|3[01])(\/|(&#x2[Ff];))(\d{4}))$/;
 
 httpRouter.get(
   '/',
