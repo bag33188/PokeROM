@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE-Edge" />
-    <title>Languages Used</title>
+    <title>Pok&eacute;ROM - Languages Used</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
       *, *::before, *::after {
@@ -47,7 +47,7 @@
       const msg = document.title;
       const endChar = "... ";
       const ml = msg.length;
-      const speed = 150;
+      const speed = 88;
       function moveTitle() {
         document.title = `${msg.substr(pos, ml)}${endChar}${msg.substr(0, pos)}`;
         pos++;
