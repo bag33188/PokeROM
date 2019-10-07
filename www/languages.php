@@ -67,24 +67,24 @@
           <?php
             function renderListItems() {
               $languages = array(
-                'Apache' => 'Apache',
-                'Bash/Shell Script' => 'Bash/Shell',
-                'Batch File' => 'Batch',
-                'Cascade StyleSheet' => 'CSS',
-                'Node.JS Environment Notation' => 'ENV',
-                'Git SCM' => 'Git',
-                'HyperText Markup Language' => 'HTML',
-                'JavaScript Object Notation' => 'JSON',
-                'JavaScript' => 'JavaScript',
-                'Markdown' => 'Markdown',
-                'Hypertext Preprocessor' => 'PHP',
-                'Python 3' => 'Python 3',
-                'Ruby' => 'Ruby',
-                'Syntactically Awesome Stylesheets' => 'SCSS/Sass',
-                'Scalar Vector Graphics' => 'SVG',
-                'TypeScript' => 'TypeScript',
-                'eXtensible Markup Language' => 'XML',
-                'Yet Another Markup Language' => 'YAML'
+                "Apache" => "Apache",
+                "Bash/Shell Script" => "Bash/Shell",
+                "Batch File" => "Batch",
+                "Cascade StyleSheet" => "CSS",
+                "Node.JS Environment Notation" => "ENV",
+                "Git SCM" => "Git",
+                "HyperText Markup Language" => "HTML",
+                "JavaScript Object Notation" => "JSON",
+                "JavaScript" => "JavaScript",
+                "Markdown" => "Markdown",
+                "Hypertext Preprocessor" => "PHP",
+                "Python 3" => "Python 3",
+                "Ruby" => "Ruby",
+                "Syntactically Awesome Stylesheets" => "SCSS/Sass",
+                "Scalar Vector Graphics" => "SVG",
+                "TypeScript" => "TypeScript",
+                "eXtensible Markup Language" => "XML",
+                "Yet Another Markup Language" => "YAML"
               );
 
               $tooltips = array_keys($languages);
