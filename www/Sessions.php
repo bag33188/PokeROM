@@ -31,5 +31,3 @@
       $_SESSION[strval($sessionName)] = $sessionValue;
     }
   }
-?>
-
