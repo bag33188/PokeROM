@@ -62,6 +62,7 @@
       include "./WWW.php";
       $languages = WWW::languageData()[0]->languages;
       $tooltips = WWW::languageData()[0]->tooltips;
+      $currentUrl = WWW::getCurrentUrl();
     ?>
     <noscript>
       <h1>Please enable JavaScript</h1>
@@ -74,7 +75,9 @@
             <li title="<?php echo $tooltips[$i]; ?>"><?php echo $languages[$i]; ?></li>
           <?php } ?>
         </ul>
-        <p><b>Total: <?php echo strval(sizeof($languages)); ?></b><br /><br /><a href="/" target="_self">Home</a></p>
+        <p><b>Total: <?php echo strval(sizeof($languages)); ?></b><br /><br /><a href="<?php
+          ($currentUrl == "http://localhost:8080/languages.php") ? print "http://localhost:4200" : print "/";
+        ?>" target="_self">Home</a></p>
       </div>
     </div>
   </body>

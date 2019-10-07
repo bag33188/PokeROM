@@ -79,7 +79,17 @@
         hr.style.width = span.offsetWidth.toString() + 'px';
       }
 
+      function setHomeAnchorHref() {
+        const homeAnchor = document.getElementById('home-anchor');
+        if (location.href === "http://localhost:8080/info.html") {
+          homeAnchor.setAttribute('href', 'http://localhost:4200');
+        } else {
+          homeAnchor.setAttribute('href', '/');
+        }
+      }
+
       ready(setCurrentYear);
+      ready(setHomeAnchorHref);
       ready(setHrWidth);
       ready(addEventListener('resize', setHrWidth));
     </script>
@@ -126,7 +136,7 @@
         </p>
       </div>
       <div class="home-link-wrapper">
-        <a href="/" target="_self">Home</a>
+        <a href="#" target="_self" id="home-anchor">Home</a>
       </div>
     </div>
   </body>
