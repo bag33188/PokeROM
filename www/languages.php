@@ -56,14 +56,14 @@
       }
       moveTitle();
     </script>
-  </head>
-  <body>
     <?php
       include "./WWW.php";
       $languages = WWW::languageData()[0]->languages;
       $tooltips = WWW::languageData()[0]->tooltips;
       $currentUrl = WWW::getCurrentUrl();
     ?>
+  </head>
+  <body>
     <noscript>
       <h1>Please enable JavaScript</h1>
     </noscript>
