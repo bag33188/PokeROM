@@ -25,7 +25,7 @@
       }
       $apiVersionData = getApiVersionData()[0];
     ?>
-    <meta http-equiv="refresh" content="0;url=/api/docs/<?php echo $apiVersionData->api_version; ?>/" />
+    <meta http-equiv="refresh" content="100000;url=/api/docs/<?php echo $apiVersionData->api_version; ?>/" />
     <title>API Docs (Redirect)</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
@@ -40,11 +40,11 @@
     </style>
     <script type="text/javascript">
       "use strict";
-      console.log("<?php
-        echo ($apiVersionData->success == 1) ?
-          "API Version: " . $apiVersionData->api_version :
-          "Error getting API version.";
-      ?>");
+      <?php if ($apiVersionData->success == 1): ?>
+        console.log("API Version: <?php echo $apiVersionData->api_version; ?>");
+      <?php else: ?>
+        console.error("Error getting API version.");
+      <?php endif; ?>
     </script>
   </head>
   <body>
