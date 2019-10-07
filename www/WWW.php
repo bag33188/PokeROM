@@ -56,7 +56,7 @@
     }
 
     public static function getCurrentUrl() {
-      if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+      if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
         $link = "https";
       } else {
         $link = "http";
