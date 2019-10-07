@@ -57,6 +57,37 @@
       moveTitle();
     </script>
   </head>
+  <?php
+    function data() {
+      $languages = array(
+        "Apache" => "Apache",
+        "Bash/Shell Script" => "Bash/Shell",
+        "Batch File" => "Batch",
+        "Cascade StyleSheet" => "CSS",
+        "Node.JS Environment Notation" => "ENV",
+        "Git SCM" => "Git",
+        "HyperText Markup Language" => "HTML",
+        "JavaScript Object Notation" => "JSON",
+        "JavaScript" => "JavaScript",
+        "Markdown" => "Markdown",
+        "Hypertext Preprocessor" => "PHP",
+        "Python 3" => "Python 3",
+        "Ruby" => "Ruby",
+        "Syntactically Awesome Stylesheets" => "SCSS/Sass",
+        "Scalar Vector Graphics" => "SVG",
+        "TypeScript" => "TypeScript",
+        "eXtensible Markup Language" => "XML",
+        "Yet Another Markup Language" => "YAML"
+      );
+      $tooltips = array_keys($languages);
+      sort($languages);
+      return [
+        (object) array("languages" => $languages, "tooltips" => $tooltips)
+      ];
+    }
+    $languages = data()[0]->languages;
+    $tooltips = data()[0]->tooltips;
+  ?>
   <body>
     <noscript>
       <h1>Please enable JavaScript</h1>
@@ -65,40 +96,11 @@
       <h1 id="heading">Programming Languages Used</h1>
       <div class="wrapper">
         <ul id="languages">
-          <?php
-            function renderListItems() {
-              $languages = array(
-                "Apache" => "Apache",
-                "Bash/Shell Script" => "Bash/Shell",
-                "Batch File" => "Batch",
-                "Cascade StyleSheet" => "CSS",
-                "Node.JS Environment Notation" => "ENV",
-                "Git SCM" => "Git",
-                "HyperText Markup Language" => "HTML",
-                "JavaScript Object Notation" => "JSON",
-                "JavaScript" => "JavaScript",
-                "Markdown" => "Markdown",
-                "Hypertext Preprocessor" => "PHP",
-                "Python 3" => "Python 3",
-                "Ruby" => "Ruby",
-                "Syntactically Awesome Stylesheets" => "SCSS/Sass",
-                "Scalar Vector Graphics" => "SVG",
-                "TypeScript" => "TypeScript",
-                "eXtensible Markup Language" => "XML",
-                "Yet Another Markup Language" => "YAML"
-              );
-              $tooltips = array_keys($languages);
-              sort($languages);
-              for ($i = 0; $i < count($languages); $i++) {
-                ($i == 0) ? print "\t" : print "\t\t\t";
-                echo "<li title=\"" . $tooltips[$i] . "\">" . $languages[$i] . "</li>\n";
-              }
-              return $languages;
-            }
-            $languageList = renderListItems();
-          ?>
+          <?php for ($i = 0; $i < count($languages); $i++) { ?>
+            <li title="<?php echo $tooltips[$i]; ?>"><?php echo $languages[$i]; ?></li>
+          <?php } ?>
         </ul>
-        <p><b>Total: <?php echo strval(sizeof($languageList)); ?></b></p>
+        <p><b>Total: <?php echo strval(sizeof($languages)); ?></b></p>
       </div>
     </div>
   </body>
