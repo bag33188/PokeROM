@@ -7,6 +7,7 @@ deployment:
     - export NODE_ENV=production
     # run commands
     - /bin/cp www/.htaccess $DEPLOYPATH
+    - /bin/cp www/WWW.php $DEPLOYPATH
     - /bin/cp www/languages.php $DEPLOYPATH
     - /bin/cp www/info.html $DEPLOYPATH
     - $NPMPATH run pack
