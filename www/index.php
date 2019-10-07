@@ -25,7 +25,7 @@
       }
       $apiVersionData = getApiVersionData()[0];
     ?>
-    <meta http-equiv="refresh" content="100000;url=/api/docs/<?php echo $apiVersionData->api_version; ?>/" />
+    <meta http-equiv="refresh" content="0;url=/api/docs/<?php echo $apiVersionData->api_version; ?>/" />
     <title>API Docs (Redirect)</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
