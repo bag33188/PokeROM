@@ -94,10 +94,10 @@
               }
               return $languages;
             }
-            $languages = renderListItems();
+            $languageList = renderListItems();
           ?>
         </ul>
-        <p><b>Total: <?php echo strval(sizeof($languages)); ?></b></p>
+        <p><b>Total: <?php echo strval(sizeof($languageList)); ?></b></p>
       </div>
     </div>
   </body>
