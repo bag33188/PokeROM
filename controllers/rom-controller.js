@@ -11,13 +11,10 @@ const routesWithParams = ['core', 'hacks'];
 function convertToDateFormat(date) {
   if (date) {
     let dateArr = date.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
-    const year = dateArr[2];
-    dateArr = dateArr.reverse();
-    dateArr.shift();
-    dateArr = dateArr.reverse();
-    dateArr.unshift(year);
-    const formattedDate = dateArr.join(',');
-    return new Date(formattedDate);
+    const month = parseInt(dateArr[0], 10) - 1;
+    const day = parseInt(dateArr[1], 10);
+    const year = parseInt(dateArr[2], 10);
+    return new Date(year, month, day);
   }
 }
 
@@ -408,7 +405,7 @@ module.exports.updateRom = async (req, res, next) => {
             }
             rom = { _id: rom._id, ...updateRomData };
             clearCache(req);
-
+            rom.date_released = new Date(rom.date_released);
             return res.status(200).json(rom);
           });
         } else {
