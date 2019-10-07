@@ -39,6 +39,7 @@
       }
     </style>
     <script type="text/javascript">
+      "use strict";
       console.log("<?php
         echo ($apiVersion->success == 1) ?
           "API Version: " . $apiVersion->api_version :

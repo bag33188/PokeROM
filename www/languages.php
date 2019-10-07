@@ -42,6 +42,7 @@
       }
     </style>
     <script type="text/javascript">
+      "use strict";
       let pos = 0;
       const msg = document.title;
       const endChar = "... ";
