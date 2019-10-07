@@ -14,14 +14,18 @@
         $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
         if ($versionExists == true) {
           $version[0] = str_replace("version: ", "", $version[0]);
-          return array("success" => true, "api_version" => $version[0]);
+          return array(
+            (object)array("success" => true, "api_version" => $version[0])
+          );
         } else {
-          return array("success" => false, "api_version" => NULL);
+          return array(
+            (object)array("success" => false, "api_version" => NULL)
+          );
         }
       }
-      $apiVersion = getApiVersion();
+      $apiVersion = getApiVersion()[0];
     ?>
-    <meta http-equiv="refresh" content="0;url=/api/docs/<?php echo $apiVersion["api_version"]; ?>/" />
+    <meta http-equiv="refresh" content="0;url=/api/docs/<?php echo $apiVersion->api_version; ?>/" />
     <title>API Docs (Redirect)</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
@@ -36,17 +40,17 @@
     </style>
     <script type="text/javascript">
       console.log("<?php
-        echo ($apiVersion["success"] == 1) ?
-          "API Version: " . $apiVersion["api_version"] :
+        echo ($apiVersion->success == 1) ?
+          "API Version: " . $apiVersion->api_version :
           "Error getting API version.";
       ?>");
     </script>
   </head>
   <body>
     <h1>Redirecting to <?php
-      ($apiVersion["success"] == 0) ?
+      ($apiVersion->success == 0) ?
         print "<code>ERROR_GETTING_API_VERSION</code>" :
-        print "<code>/api/docs/" . $apiVersion["api_version"] . "/</code>";
+        print "<code>/api/docs/" . $apiVersion->api_version . "/</code>";
     ?> ... </h1>
   </body>
 </html>
