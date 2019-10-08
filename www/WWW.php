@@ -9,7 +9,8 @@
       throw new Error("Error: WWW class is not meant to be instantiated.");
     }
 
-    public static function languageData() {
+    public static function languageData()
+    {
       $languages = array(
         "Apache" => "Apache",
         "Bash/Shell Script" => "Bash/Shell",
@@ -37,7 +38,8 @@
       ];
     }
 
-    public static function getApiVersionData() {
+    public static function getApiVersionData()
+    {
       $filePath = "../docs/swagger-definition.yml";
       $file = fopen($filePath, "r");
       $fileSize = filesize($filePath);
@@ -56,7 +58,8 @@
       }
     }
 
-    public static function getCurrentUrl() {
+    public static function getCurrentUrl()
+    {
       $url = "";
       if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") {
         $url .= "https";
