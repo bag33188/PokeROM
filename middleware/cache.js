@@ -30,6 +30,9 @@ function clearCache(req) {
     // remove all cached roms even if single rom is changed
     if (req.params['id']) {
       mcache.del(key.replace(`/${req.params['id']}`, ''));
+      if (key.includes('/api/roms')) {
+        mcache.del(key);
+      }
     }
     mcache.del(key);
   }
