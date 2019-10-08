@@ -33,9 +33,9 @@
       );
       $tooltips = array_keys($languages);
       sort($languages);
-      return [
+      return array(
         (object) array("languages" => $languages, "tooltips" => $tooltips)
-      ];
+      );
     }
 
     public static function getApiVersionData()
