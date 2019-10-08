@@ -198,7 +198,7 @@ module.exports.getAllRoms = (query, callback, limit) => {
 };
 
 module.exports.getRomById = (id, callback) => {
-  Rom.findById({ _id: id }, callback);
+  Rom.findById(id, callback);
 };
 
 module.exports.addRom = (newRom, callback) => {

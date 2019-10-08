@@ -70,7 +70,7 @@ module.exports.getNatures = callback => {
 };
 
 module.exports.getNature = (id, callback) => {
-  Nature.findById({ _id: id }, callback);
+  Nature.findById(id, callback);
 };
 
 module.exports.patchNature = (id, query, callback) => {
