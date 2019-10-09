@@ -6,12 +6,6 @@ import { Injectable } from '@angular/core';
 export class UnitConversionService {
   constructor() {}
 
-  /**
-   * @summary Convert size of ROM.
-   * @description Converts the ROM size to its proper unit.
-   * @param romSize The size of the ROM (in kilobytes).
-   * @returns A tuple of number and string (mapped array).
-   */
   public static convertRomSize(romSize: number): [number, string] {
     if (romSize > 1024 && romSize < 1000000) {
       return [parseFloat((romSize / 1000).toFixed(2)), 'MB'];
@@ -22,9 +16,9 @@ export class UnitConversionService {
     }
   }
 
-  public static convertSecondsToMilliseconds(seconds: number): number {
-    return seconds * 1000;
-  }
+  public static convertSecondsToMilliseconds = (seconds: number): number =>
+    // tslint:disable-next-line:semicolon
+    seconds * 1000;
 
   public static convertIntegerToRomanNumeral(num: number): string | number {
     if (isNaN(num)) {
