@@ -72,11 +72,11 @@
       <div class="wrapper">
         <ul id="languages">
           <?php for ($i = 0; $i < count($languages); $i++) { ?>
-            <li title="<?php echo $tooltips[$i]; ?>"><?php echo $languages[$i]; ?></li>
+            <li title="<?= $tooltips[$i]; ?>"><?= $languages[$i]; ?></li>
           <?php } ?>
         </ul>
         <p>
-          <b>Total: <?php echo strval(sizeof($languages)); ?></b>
+          <b>Total: <?= strval(sizeof($languages)); ?></b>
           <br /><br />
           <a href="<?php
             ($currentUrl == "http://localhost:8080/languages.php") ?
