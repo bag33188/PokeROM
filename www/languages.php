@@ -78,9 +78,9 @@
         <p>
           <b>Total: <?= strval(sizeof($languages)); ?></b>
           <br /><br />
-          <a href="<?= (
-            $currentUrl == "http://localhost:8080/languages.php") ?
-            "http://localhost:4200" : "/";
+          <a href="<?=
+            ($currentUrl == "http://localhost:8080/languages.php") ?
+              "http://localhost:4200" : "/";
           ?>" target="_self">Home</a>
         </p>
       </div>
