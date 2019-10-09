@@ -1,5 +1,5 @@
 <?php
-  namespace WWW;
+  namespace www;
 
   http_response_code(404);
   # header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);

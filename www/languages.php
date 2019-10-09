@@ -57,10 +57,10 @@
       moveTitle();
     </script>
     <?php
-      include "./WWW.php";
-      $languages = WWW::languageData()[0]->languages;
-      $tooltips = WWW::languageData()[0]->tooltips;
-      $currentUrl = WWW::getCurrentUrl();
+      include "WWW.php";
+      $languages = www\WWW::languageData()[0]->languages;
+      $tooltips = www\WWW::languageData()[0]->tooltips;
+      $currentUrl = www\WWW::getCurrentUrl();
     ?>
   </head>
   <body>

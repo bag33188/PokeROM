@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <?php
-      include "./WWW.php";
-      $apiVersionData = WWW::getApiVersionData()[0];
+      include "WWW.php";
+      $apiVersionData = www\WWW::getApiVersionData()[0];
     ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
