@@ -6,7 +6,7 @@
   {
     public function __construct()
     {
-      throw new Error("Error: WWW class is not meant to be instantiated.");
+      throw new Exception("Error: WWW class is not meant to be instantiated.");
     }
 
     public static function languageData()
