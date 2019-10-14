@@ -1,6 +1,7 @@
 <?php
   namespace www;
 
+  // import exception class
   use Exception;
 
   http_response_code(404);

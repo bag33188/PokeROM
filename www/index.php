@@ -1,5 +1,5 @@
 <?php
-  include "WWW.php";
+  include_once "WWW.php";
   $apiVersionData = www\WWW::getApiVersionData();
 ?>
 <!DOCTYPE html>
