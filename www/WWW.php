@@ -18,6 +18,9 @@
       throw new Exception("Error: WWW class is not meant to be instantiated.");
     }
 
+    /**
+     * @return array
+     */
     public static function languageData()
     {
       $languages = array(
@@ -45,6 +48,9 @@
       return array("languages" => $languages, "tooltips" => $tooltips);
     }
 
+    /**
+     * @return mixed
+     */
     public static function getApiVersionData()
     {
       $filePath = "../docs/swagger-definition.yml";
@@ -65,6 +71,9 @@
       }
     }
 
+    /**
+     * @return string
+     */
     public static function getCurrentUrl()
     {
       $url = "";
