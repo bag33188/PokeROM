@@ -3,6 +3,7 @@
   $languages = www\WWW::languageData()["languages"];
   $tooltips = www\WWW::languageData()["tooltips"];
   $currentUrl = www\WWW::getCurrentUrl();
+  $documentTitle = "Pok&eacute;ROM - Languages Used";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE-Edge" />
-    <title>Pok&eacute;ROM - Languages Used</title>
+    <title><?= $documentTitle; ?></title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
       *,
@@ -157,24 +158,24 @@
 
       function setWidthOfWrapper() {
         // cache the element of the languages list with the largest width
-        const largestLanguage_Width = document.querySelector("li[title='<?php
-          // store largest length of language item string
+        const widestLanguageStr = document.querySelector("li[title='<?php
+          # store largest length of language item string
           $largestLangStrLen = max(array_map("strlen", $languages));
-          // loop through languages
+          # loop through languages
           for ($i = 0; $i < count($languages); $i++) {
-            // check if language length is the one with the largest string length
+            # check if language length is the one with the largest string length
             if (strlen($languages[$i]) == $largestLangStrLen) {
-              // print out tooltip with corresponding largest languages string
+              # print out tooltip with corresponding largest languages string
               echo $tooltips[$i];
-              // break to prevent multiple languages from being returned
+              # break to prevent multiple languages from being returned
               break;
             }
           }
         ?>']");
         // cache languages wrapper
-        const langsWrapper = document.getElementById("languages-wrapper");
+        const languagesWrapper = document.getElementById("languages-wrapper");
         // set width of wrapper based on largest width of language item in list
-        langsWrapper.style.width = largestLanguage_Width.clientWidth.toString() + 'px';
+        languagesWrapper.style.width = widestLanguageStr.clientWidth.toString() + 'px';
       }
 
       ready(setWidthOfWrapper);
