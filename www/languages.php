@@ -1,3 +1,9 @@
+<?php
+  include "WWW.php";
+  $languages = www\WWW::languageData()["languages"];
+  $tooltips = www\WWW::languageData()["tooltips"];
+  $currentUrl = www\WWW::getCurrentUrl();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -56,12 +62,6 @@
       }
       moveTitle();
     </script>
-    <?php
-      include "WWW.php";
-      $languages = www\WWW::languageData()["languages"];
-      $tooltips = www\WWW::languageData()["tooltips"];
-      $currentUrl = www\WWW::getCurrentUrl();
-    ?>
   </head>
   <body>
     <noscript>
