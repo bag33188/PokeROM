@@ -169,7 +169,7 @@
             }
           }
           ?>']");
-        //
+        // cache languages wrapper
         const langsWrapper = document.getElementById("languages-wrapper");
         // set width of wrapper based on largest width of language item in list
         langsWrapper.style.width = largestLanguage_Width.clientWidth.toString() + 'px';
