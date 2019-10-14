@@ -73,6 +73,9 @@
       .border {
         border: 1px solid var(--light-gray) !important;
       }
+      .rounded {
+        border-radius: 0.25rem !important;
+      }
       .container {
         width: 100%;
         padding-right: 15px;
