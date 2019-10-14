@@ -67,31 +67,44 @@
         }
       }
 
-      function setCurrentYear() {
-        const year = document.getElementById('current-year');
-        const now = new Date();
-        year.textContent = now.getFullYear().toString();
-      }
+      class Info {
+        constructor() {
+          throw new Error("Info class is not meant to be instantiated.");
+        }
 
-      function setHrWidth() {
-        const span = document.getElementsByClassName('tos-title')[0];
-        const hr = document.getElementById('tos-hr');
-        hr.style.width = span.offsetWidth.toString() + 'px';
-      }
+        static setCurrentYear() {
+          const year = document.getElementById('current-year');
+          const now = new Date();
+          year.textContent = now.getFullYear().toString();
+        }
 
-      function setHomeAnchorHref() {
-        const homeAnchor = document.getElementById('home-anchor');
-        if (location.href === "http://localhost:8080/info.html") {
-          homeAnchor.setAttribute('href', 'http://localhost:4200');
-        } else {
-          homeAnchor.setAttribute('href', '/');
+        static setHrWidth() {
+          const span = document.getElementsByClassName('tos-title')[0];
+          const hr = document.getElementById('tos-hr');
+          hr.style.width = span.offsetWidth.toString() + 'px';
+        }
+
+        static setHomeAnchorHref() {
+          const homeAnchor = document.getElementById('home-anchor');
+          if (location.href === "http://localhost:8080/info.html") {
+            homeAnchor.setAttribute('href', 'http://localhost:4200');
+          } else {
+            homeAnchor.setAttribute('href', '/');
+          }
         }
       }
 
-      ready(setCurrentYear);
-      ready(setHomeAnchorHref);
-      ready(setHrWidth);
-      ready(addEventListener('resize', setHrWidth));
+      function init() {
+        const methods = [
+          Info.setCurrentYear,
+          Info.setHomeAnchorHref,
+          Info.setHrWidth,
+          addEventListener('resize', Info.setHrWidth)
+        ];
+        methods.forEach(method => ready(method));
+      }
+
+      init();
     </script>
   </head>
   <body>
