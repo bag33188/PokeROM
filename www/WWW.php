@@ -1,11 +1,17 @@
 <?php
   namespace www;
 
+  use Exception;
+
   http_response_code(404);
   # header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
 
   class WWW
   {
+    /**
+     * WWW constructor.
+     * @throws Exception
+     */
     public function __construct()
     {
       throw new Exception("Error: WWW class is not meant to be instantiated.");
@@ -35,9 +41,7 @@
       );
       $tooltips = array_keys($languages);
       sort($languages);
-      return array(
-        (object) array("languages" => $languages, "tooltips" => $tooltips)
-      );
+      return array("languages" => $languages, "tooltips" => $tooltips);
     }
 
     public static function getApiVersionData()
@@ -52,11 +56,11 @@
         $version[0] = str_replace("version: ", "", $version[0]);
         return array(
           (object) array("success" => true, "api_version" => $version[0])
-        );
+        )[0];
       } else {
         return array(
           (object) array("success" => false, "api_version" => NULL)
-        );
+        )[0];
       }
     }
 

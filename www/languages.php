@@ -58,8 +58,8 @@
     </script>
     <?php
       include "WWW.php";
-      $languages = www\WWW::languageData()[0]->languages;
-      $tooltips = www\WWW::languageData()[0]->tooltips;
+      $languages = www\WWW::languageData()["languages"];
+      $tooltips = www\WWW::languageData()["tooltips"];
       $currentUrl = www\WWW::getCurrentUrl();
     ?>
   </head>
