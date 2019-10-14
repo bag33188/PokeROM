@@ -8,50 +8,151 @@
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
       *,
-      *::before,
-      *::after {
-        box-sizing: border-box !important;
+      ::after,
+      ::before {
+        box-sizing: border-box;
       }
-
       :root {
         --white: #fff;
         --black: #000;
+        --almost-black: #212529;
+        --blue: #007bff;
+        --dark-blue: #0056b3;
+        --light-gray: #dee2e6;
       }
-
-      html,
       body {
-        margin: 1rem;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: var(--black);
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+          'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--almost-black);
+        text-align: left;
         background-color: var(--white);
       }
-
-      .container {
-        padding: 1em;
-        border: 1px solid var(--black);
-        margin: 0 auto;
-        width: 80vw;
-        height: auto;
+      hr {
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
       }
-
-      .home-link-wrapper {
-        text-align: center;
-        margin-top: 2.5rem;
-      }
-
-      #heading {
+      h1,
+      h2 {
         margin-top: 0;
-        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+      a {
+        color: var(--blue);
+        text-decoration: none;
+        background-color: transparent;
+      }
+      a:hover {
+        color: var(--dark-blue);
         text-decoration: underline;
       }
-
-      #tos-hr {
-        margin-left: 0;
-        border-top: 1px dashed var(--black);
+      h1,
+      h2 {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        line-height: 1.2;
       }
-
-      #center-hr {
+      h1 {
+        font-size: 2.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      @media (min-width: 576px) {
+        .container {
+          max-width: 540px;
+        }
+      }
+      @media (min-width: 768px) {
+        .container {
+          max-width: 720px;
+        }
+      }
+      @media (min-width: 992px) {
+        .container {
+          max-width: 960px;
+        }
+      }
+      @media (min-width: 1200px) {
+        .container {
+          max-width: 1140px;
+        }
+      }
+      .border {
+        border: 1px solid var(--light-gray) !important;
+      }
+      .mb-0 {
+        margin-bottom: 0 !important;
+      }
+      .mt-1 {
+        margin-top: 0.25rem !important;
+      }
+      .mt-4 {
         margin-top: 1.5rem !important;
+      }
+      .mt-5 {
+        margin-top: 3rem !important;
+      }
+      .pt-2 {
+        padding-top: 0.5rem !important;
+      }
+      .p-3 {
+        padding: 1rem !important;
+      }
+      .text-center {
+        text-align: center !important;
+      }
+      @media print {
+        *,
+        ::after,
+        ::before {
+          text-shadow: none !important;
+          box-shadow: none !important;
+        }
+        a:not(.btn) {
+          text-decoration: underline;
+        }
+        h2,
+        p {
+          orphans: 3;
+          widows: 3;
+        }
+        h2 {
+          page-break-after: avoid;
+        }
+        body {
+          min-width: 992px !important;
+        }
+        .container {
+          min-width: 992px !important;
+        }
+      }
+      #tos-hr {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        border-top: 1px dashed var(--black) !important;
       }
     </style>
     <script type="text/javascript">
@@ -69,7 +170,7 @@
 
       class Info {
         constructor() {
-          throw new Error("Info class is not meant to be instantiated.");
+          throw new Error('Info class is not meant to be instantiated.');
         }
 
         static setCurrentYear() {
@@ -86,7 +187,7 @@
 
         static setHomeAnchorHref() {
           const homeAnchor = document.getElementById('home-anchor');
-          if (location.href === "http://localhost:8080/info.html") {
+          if (location.href === 'http://localhost:8080/info.html') {
             homeAnchor.setAttribute('href', 'http://localhost:4200');
           } else {
             homeAnchor.setAttribute('href', '/');
@@ -107,18 +208,19 @@
       init();
     </script>
   </head>
-  <body>
+  <body class="p-3">
     <noscript>
       <h1>Please enable JavaScript</h1>
     </noscript>
-    <div class="container">
-      <h1 id="heading">Pok&eacute;ROM Info</h1>
-      <div>
+    <div class="container border">
+      <h1 class="text-center mt-1" style="text-decoration: underline;">
+        Pok&eacute;ROM Info
+      </h1>
+      <div class="mt-4">
         <h2 id="terms-of-service">Terms of Service</h2>
         <div>
           <span class="tos-title">Pok&eacute;ROM Terms of Service</span><br />
-          <hr id="tos-hr" />
-          <br />
+          <hr id="tos-hr" class="mt-4 pt-2 mb-0" />
           Pok&eacute;mon ROMs are the property of Nintendo.<br />
           Please do not go around sharing these ROMs.<br />
           Thank you!
@@ -148,7 +250,7 @@
           PERFORMANCE OF THIS SOFTWARE.
         </p>
       </div>
-      <div class="home-link-wrapper">
+      <div class="text-center mt-5">
         <a href="#" target="_self" id="home-anchor">Home</a>
       </div>
     </div>
