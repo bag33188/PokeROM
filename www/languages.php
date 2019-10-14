@@ -193,7 +193,7 @@
     <noscript>
       <h1>Please enable JavaScript</h1>
     </noscript>
-    <div class="container border">
+    <div class="container border rounded">
       <h1 class="text-center m-3">Programming Languages Used</h1>
       <div id="flex-wrapper">
         <div id="languages-wrapper">
