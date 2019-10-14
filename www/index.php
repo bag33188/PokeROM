@@ -24,6 +24,7 @@
     </style>
     <script type="text/javascript">
       "use strict";
+
       <?php if ($apiVersionData->success == 1): ?>
         console.log("API Version: <?= $apiVersionData->api_version; ?>");
       <?php else: ?>
