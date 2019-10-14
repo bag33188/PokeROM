@@ -132,10 +132,10 @@
           min-width: 992px !important;
         }
       }
-      #wrapper {
+      #languages-wrapper {
         display: inline-block;
       }
-      #flex {
+      #flex-wrapper {
         display: flex;
         justify-content: center;
       }
@@ -155,6 +155,7 @@
       }
 
       function setWidthOfWrapper() {
+        // cache the element of the languages list with the largest width
         const largestLanguage_Width = document.querySelector("li[title='<?php
           // store largest length of language item string
           $largestLangStrLen = max(array_map("strlen", $languages));
@@ -168,7 +169,9 @@
             }
           }
           ?>']");
-        const wrapper = document.getElementById("wrapper");
+        // cache
+        const wrapper = document.getElementById("languages-wrapper");
+        // set width of wrapper based on largest width of language item in list
         wrapper.style.width = largestLanguage_Width.clientWidth.toString() + 'px';
       }
 
@@ -181,8 +184,8 @@
     </noscript>
     <div class="container border">
       <h1 class="text-center m-3">Programming Languages Used</h1>
-      <div id="flex">
-        <div id="wrapper">
+      <div id="flex-wrapper">
+        <div id="languages-wrapper">
           <ul class="p-0" id="languages">
             <?php for ($i = 0; $i < count($languages); $i++) { ?>
               <li title="<?= $tooltips[$i]; ?>"><?= $languages[$i]; ?></li>
