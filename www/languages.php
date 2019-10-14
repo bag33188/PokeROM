@@ -156,8 +156,9 @@
 
       function setWidthOfWrapper() {
         const largestLanguage_Width = document.querySelector("li[title='<?php
+          $largestLangStrLen = max(array_map('strlen', $languages));
           for ($i = 0; $i < count($languages); $i++) {
-            if (strlen($languages[$i]) == max(array_map('strlen', $languages))) {
+            if (strlen($languages[$i]) == $largestLangStrLen) {
               echo "$tooltips[$i]";
               break;
             }
