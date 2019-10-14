@@ -161,12 +161,15 @@
         const widestLanguageStr = document.querySelector("li[title='<?php
           # store largest length of language item string
           $largestLangStrLen = max(array_map("strlen", $languages));
+          # define character regular expression constant
+          define("CHAR_REGEXP", "/([^A-Za-z0-9\x20])/i");
           # loop thru languages array
           foreach ($languages as $language) {
-            // store indexes
+            # store indexes
             $index = array_search($language, $languages);
             # check if language length is the one with the largest string length
-            if (strlen($language) == $largestLangStrLen) {
+            # and that it doesn't have a non-alphanumeric character
+            if (strlen($language) == $largestLangStrLen && !preg_match(CHAR_REGEXP, $language)) {
               # print out tooltip with corresponding largest languages string
               echo $tooltips[$index];
               # break to prevent multiple languages from being returned
@@ -207,5 +210,8 @@
         </div>
       </div>
     </div>
+  <?php
+    print preg_match("/([^A-Za-z0-9\x20])/i", "/");
+  ?>
   </body>
 </html>
