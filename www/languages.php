@@ -161,12 +161,14 @@
         const widestLanguageStr = document.querySelector("li[title='<?php
           # store largest length of language item string
           $largestLangStrLen = max(array_map("strlen", $languages));
-          # loop through languages
-          for ($i = 0; $i < count($languages); $i++) {
+          # loop thru languages array
+          foreach ($languages as $language) {
+            // store indexes
+            $index = array_search($language, $languages);
             # check if language length is the one with the largest string length
-            if (strlen($languages[$i]) == $largestLangStrLen) {
+            if (strlen($language) == $largestLangStrLen) {
               # print out tooltip with corresponding largest languages string
-              echo $tooltips[$i];
+              echo $tooltips[$index];
               # break to prevent multiple languages from being returned
               break;
             }
