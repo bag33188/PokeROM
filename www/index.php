@@ -1,6 +1,7 @@
 <?php
   include_once "WWW.php";
   $apiVersionData = www\WWW::getApiVersionData();
+  $documentTitle = "API Docs (Redirect)";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="refresh" content="0;url=/api/docs/<?= $apiVersionData->api_version; ?>/" />
-    <title>API Docs (Redirect)</title>
+    <title><?= $documentTitle; ?></title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
       *,
