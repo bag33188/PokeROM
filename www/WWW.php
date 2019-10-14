@@ -28,6 +28,7 @@
      */
     public static function languageData()
     {
+      // create associative array with languages
       $languages = array(
         "Apache" => "Apache",
         "Bash/Shell Script" => "Bash/Shell",
@@ -48,8 +49,11 @@
         "eXtensible Markup Language" => "XML",
         "Yet Another Markup Language" => "YAML"
       );
+      // get keys of array for storing tooltips
       $tooltips = array_keys($languages);
+      // sort the array
       sort($languages);
+      // return associative array with languages and tooltips
       return array("languages" => $languages, "tooltips" => $tooltips);
     }
 
