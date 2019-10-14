@@ -142,6 +142,7 @@
     </style>
     <script type="text/javascript">
       "use strict";
+
       function ready(callback) {
         if (document.readyState !== 'loading') {
           callback();
