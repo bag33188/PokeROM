@@ -156,7 +156,7 @@
         }
       }
 
-      function setWidthOfWrapper() {
+      function setWidthOfLanguagesWrapper() {
         // cache the element of the languages list with the largest width
         const widestLanguageStr = document.querySelector("li[title='<?php
           # store largest length of language item string
@@ -183,7 +183,7 @@
         languagesWrapper.style.width = widestLanguageStr.clientWidth.toString() + 'px';
       }
 
-      ready(setWidthOfWrapper);
+      ready(setWidthOfLanguagesWrapper);
     </script>
   </head>
   <body class="p-3">
