@@ -164,6 +164,7 @@
           for ($i = 0; $i < count($languages); $i++) {
             // check if language length is the one with the largest string length
             if (strlen($languages[$i]) == $largestLangStrLen) {
+              // print out tooltip with corresponding largest languages string
               echo $tooltips[$i];
               // break to prevent multiple languages from being returned
               break;
