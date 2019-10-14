@@ -210,8 +210,5 @@
         </div>
       </div>
     </div>
-  <?php
-    print preg_match("/([^A-Za-z0-9\x20])/i", "/");
-  ?>
   </body>
 </html>
