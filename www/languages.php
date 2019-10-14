@@ -169,10 +169,10 @@
             }
           }
           ?>']");
-        // cache
-        const wrapper = document.getElementById("languages-wrapper");
+        //
+        const langsWrapper = document.getElementById("languages-wrapper");
         // set width of wrapper based on largest width of language item in list
-        wrapper.style.width = largestLanguage_Width.clientWidth.toString() + 'px';
+        langsWrapper.style.width = largestLanguage_Width.clientWidth.toString() + 'px';
       }
 
       ready(setWidthOfWrapper);
