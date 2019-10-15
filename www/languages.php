@@ -38,10 +38,6 @@
         text-align: left;
         background-color: var(--white);
       }
-      h1 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-      }
       p {
         margin-top: 0;
         margin-bottom: 1rem;
@@ -66,9 +62,8 @@
         margin-bottom: 0.5rem;
         font-weight: 500;
         line-height: 1.2;
-      }
-      h1 {
         font-size: 2.5rem;
+        margin-top: 0;
       }
       .border {
         border: 1px solid var(--light-gray) !important;
