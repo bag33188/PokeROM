@@ -346,7 +346,7 @@ module.exports.deleteNatures = async (req, res, next) => {
       clearCache(req);
       return res.status(200).json({
         success: true,
-        message: 'All Natures successfuly deleted!',
+        message: 'All Natures successfully deleted!',
         ...status
       });
     });
