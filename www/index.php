@@ -2,6 +2,7 @@
   include_once "WWW.php";
   $apiVersionData = www\WWW::getApiVersionData();
   $documentTitle = "API Docs (Redirect)";
+  $success = $apiVersionData->success == 1;
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
