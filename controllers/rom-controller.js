@@ -677,7 +677,7 @@ module.exports.romHeaders = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'ROM not found.' });
     }
-    await getRomById({ _id: id }, req, res, () => {
+    await getRomById(id, req, res, () => {
       return res.status(200);
     });
   } catch (err) {
