@@ -2,11 +2,6 @@
   include_once "WWW.php";
   $apiVersionData = www\WWW::getApiVersionData();
   $documentTitle = "API Docs (Redirect)";
-  $colors = array(
-    "white" => "fff",
-    "almost black" => "212529",
-    "pink" => "e83e8c"
-  );
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -24,9 +19,9 @@
         box-sizing: border-box;
       }
       :root {
-        <?php foreach ($colors as $name => $hex) { ?>
-          --<?= str_replace(" ", "-", $name); ?>: <?= "#" . $hex; ?>;
-        <?php } ?>
+        --white: #fff;
+        --almost-black: #212529;
+        --pink: #e83e8c;
       }
       body {
         margin: 0;
