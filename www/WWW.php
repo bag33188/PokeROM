@@ -16,7 +16,7 @@
   {
     /**
      * WWW constructor.
-     * @throws Exception
+     * @throws Exception class cannot be instantiated.
      */
     public function __construct()
     {
