@@ -24,7 +24,7 @@
     }
 
     /**
-     * @return array
+     * @return array Array of languages and tooltips.
      */
     public static function languageData()
     {
@@ -58,7 +58,7 @@
     }
 
     /**
-     * @return mixed
+     * @return mixed Object array of api version data.
      */
     public static function getApiVersionData()
     {
@@ -81,7 +81,7 @@
     }
 
     /**
-     * @return string
+     * @return string Current URL.
      */
     public static function getCurrentUrl()
     {
