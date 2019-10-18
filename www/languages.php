@@ -4,6 +4,13 @@
   $tooltips = www\WWW::languageData()["tooltips"];
   $currentUrl = www\WWW::getCurrentUrl();
   $documentTitle = "Pok&eacute;ROM - Languages Used";
+  $colors = array(
+    "almost-black" => "#212529",
+    "white" => "#fff",
+    "blue" => "#007bff",
+    "dark-blue" => "#0056b3",
+    "light-gray" => "#dee2e6"
+  );
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -20,11 +27,9 @@
         box-sizing: border-box;
       }
       :root {
-        --almost-black: #212529;
-        --white: #fff;
-        --blue: #007bff;
-        --dark-blue: #0056b3;
-        --light-gray: #dee2e6;
+        <?php foreach($colors as $colorName => $colorCode) { ?>
+          --<?= $colorName; ?>: <?= $colorCode; ?>;
+        <?php } ?>
       }
       body {
         margin: 0;
