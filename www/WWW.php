@@ -2,7 +2,7 @@
   namespace www;
 
   // import exception class
-  use Exception;
+  use Error;
 
   // send 404 response code upon request
   http_response_code(404);
@@ -16,11 +16,11 @@
   {
     /**
      * WWW constructor.
-     * @throws Exception class cannot be instantiated.
+     * @throws Error class cannot be instantiated.
      */
     public function __construct()
     {
-      throw new Exception("Error: WWW class is not meant to be instantiated.");
+      throw new Error("Error: WWW class is not meant to be instantiated.");
     }
 
     /**
