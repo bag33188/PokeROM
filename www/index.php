@@ -2,7 +2,7 @@
   include_once "WWW.php";
   $apiVersionData = www\WWW::getApiVersionData();
   $documentTitle = "API Docs (Redirect)";
-  $colors = array(
+  $cssColors = array(
     "white" => "#fff",
     "almost-black" => "#212529",
     "pink" => "#e83e8c"
@@ -24,7 +24,7 @@
         box-sizing: border-box;
       }
       :root {
-        <?php foreach($colors as $colorName => $colorCode) { ?>
+        <?php foreach($cssColors as $colorName => $colorCode) { ?>
           --<?= $colorName; ?>: <?= $colorCode; ?>;
         <?php } ?>
       }
