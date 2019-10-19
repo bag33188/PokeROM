@@ -1,5 +1,6 @@
 <!-- begin meta tags -->
 <?php
+  header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
   $head_tags = array(
     "<meta charset=\"UTF-8\" />",
     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
