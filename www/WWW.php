@@ -107,7 +107,7 @@
     /**
      * @param array $languages List of languages.
      * @param array $tooltips List of tooltips.
-     * @return mixed|null Longest language.
+     * @return mixed|null Longest language Name.
      */
     public static function findLongestLanguageName($languages, $tooltips) {
       $longestLang = NULL;
