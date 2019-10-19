@@ -1,7 +1,7 @@
 <?php
   namespace www;
 
-  // import error exception classes
+  // import error and exception classes
   use Error;
   use Exception;
 
