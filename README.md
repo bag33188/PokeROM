@@ -93,6 +93,12 @@ npm install @angular/cli
 
 > Note: if you get a permissions error, trying adding `sudo` before `npm`
 
+Finally, we will need to increase the maximum limit of file watchers. To do this, run the following command:
+
+```shell script
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+
 #### Step 2 - Get the PokeROM Repository
 
 For this step, we will be cloning the `PokeROM` git repository.
