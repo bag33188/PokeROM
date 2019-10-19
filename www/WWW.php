@@ -103,4 +103,23 @@
       $url .= $_SERVER["REQUEST_URI"];
       return $url;
     }
+
+    /**
+     * @param array $languages List of languages.
+     * @param array $tooltips List of tooltips.
+     * @return mixed|null Longest language.
+     */
+    public static function findLongestLanguageName($languages, $tooltips) {
+      $longestLang = NULL;
+      $largestLangStrLen = max(array_map("strlen", $languages));
+      define("CHAR_REGEXP", "/([^A-Za-z0-9\x20])/i");
+      foreach ($languages as $language) {
+        $index = array_search($language, $languages);
+        if (strlen($language) == $largestLangStrLen && !preg_match(CHAR_REGEXP, $language)) {
+          $longestLang = $tooltips[$index];
+          break;
+        }
+      }
+      return $longestLang;
+    }
   }
