@@ -156,7 +156,8 @@
        * @name ready
        * @summary Ready
        * @description Document Ready function (JavaScript)
-       *
+       * @param {any} callback Callback function.
+       * @returns {void} Nothing.
        */
       function ready(callback) {
         if (document.readyState !== 'loading') {
