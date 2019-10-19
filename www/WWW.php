@@ -82,6 +82,7 @@
           )[0];
         }
       } catch (Exception $e) {
+        # print_r($e);
        throw new Exception("Error: file not found.");
       }
     }
