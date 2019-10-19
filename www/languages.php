@@ -7,6 +7,7 @@
   $cssColors = array(
     "almost-black" => "212529",
     "white" => "fff",
+    "black" => "000",
     "blue" => "007bff",
     "dark-blue" => "0056b3",
     "light-gray" => "dee2e6"

@@ -4,6 +4,7 @@
   $documentTitle = "API Docs (Redirect)";
   $cssColors = array(
     "white" => "fff",
+    "black" => "000",
     "almost-black" => "212529",
     "pink" => "e83e8c"
   );
