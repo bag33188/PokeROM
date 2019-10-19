@@ -1,8 +1,9 @@
 <?php
   include "WWW.php";
-  $languages = www\WWW::languageData()["languages"];
-  $tooltips = www\WWW::languageData()["tooltips"];
-  $currentUrl = www\WWW::getCurrentUrl();
+  use www\WWW as WWW;
+  $languages = WWW::languageData()["languages"];
+  $tooltips = WWW::languageData()["tooltips"];
+  $currentUrl = WWW::getCurrentUrl();
   $documentTitle = "Pok&eacute;ROM - Languages Used";
   $cssColors = array(
     "white" => "fff",

@@ -1,6 +1,7 @@
 <?php
   include_once "WWW.php";
-  $apiVersionData = www\WWW::getApiVersionData();
+  use www\WWW as WWW;
+  $apiVersionData = WWW::getApiVersionData();
   $documentTitle = "API Docs (Redirect)";
   $cssColors = array(
     "white" => "fff",
@@ -16,7 +17,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="refresh" content="0;url=/api/docs/<?= $apiVersionData->api_version; ?>/" />
+    <meta http-equiv="refresh" content="1000000000000000;url=/api/docs/<?= $apiVersionData->api_version; ?>/" />
     <title><?= $documentTitle; ?></title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
@@ -78,6 +79,9 @@
           min-width: 992px !important;
         }
       }
+      #container-wrapper {
+        text-align: center;
+      }
     </style>
     <script type="text/javascript">
       "use strict";
@@ -90,12 +94,14 @@
     </script>
   </head>
   <body class="p-3">
-    <h1>
-      <?php if ($apiVersionData->success == 0): ?>
-        Error redirecting to API Docs (API Version not found).
-      <?php else: ?>
-        Redirecting to <code>/api/docs/<?= $apiVersionData->api_version; ?>/</code> ...
-      <?php endif; ?>
-    </h1>
+    <div id="container-wrapper">
+      <h1>
+        <?php if ($apiVersionData->success == 0): ?>
+          Error redirecting to API Docs (API Version not found).
+        <?php else: ?>
+          Redirecting to <code>/api/docs/<?= $apiVersionData->api_version; ?>/</code> ...
+        <?php endif; ?>
+      </h1>
+    </div>
   </body>
 </html>
