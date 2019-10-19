@@ -5,10 +5,10 @@
   $currentUrl = www\WWW::getCurrentUrl();
   $documentTitle = "Pok&eacute;ROM - Languages Used";
   $cssColors = array(
-    "almost-black" => "212529",
     "white" => "fff",
     "black" => "000",
     "gray" => "808080",
+    "almost-black" => "212529",
     "blue" => "007bff",
     "dark-blue" => "0056b3",
     "light-gray" => "dee2e6"
