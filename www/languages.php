@@ -5,11 +5,11 @@
   $currentUrl = www\WWW::getCurrentUrl();
   $documentTitle = "Pok&eacute;ROM - Languages Used";
   $cssColors = array(
-    "almost-black" => "#212529",
-    "white" => "#fff",
-    "blue" => "#007bff",
-    "dark-blue" => "#0056b3",
-    "light-gray" => "#dee2e6"
+    "almost-black" => "212529",
+    "white" => "fff",
+    "blue" => "007bff",
+    "dark-blue" => "0056b3",
+    "light-gray" => "dee2e6"
   );
 ?>
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
       }
       :root {
         <?php foreach($cssColors as $colorName => $colorCode) { ?>
-          --<?= $colorName; ?>: <?= $colorCode; ?>;
+          --<?= $colorName; ?>: <?= "#" . $colorCode; ?>;
         <?php } ?>
       }
       body {

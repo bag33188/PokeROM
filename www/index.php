@@ -3,9 +3,9 @@
   $apiVersionData = www\WWW::getApiVersionData();
   $documentTitle = "API Docs (Redirect)";
   $cssColors = array(
-    "white" => "#fff",
-    "almost-black" => "#212529",
-    "pink" => "#e83e8c"
+    "white" => "fff",
+    "almost-black" => "212529",
+    "pink" => "e83e8c"
   );
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
       }
       :root {
         <?php foreach($cssColors as $colorName => $colorCode) { ?>
-          --<?= $colorName; ?>: <?= $colorCode; ?>;
+          --<?= $colorName; ?>: <?= "#" . $colorCode; ?>;
         <?php } ?>
       }
       body {
