@@ -1,8 +1,9 @@
 <?php
   namespace www;
 
-  // import exception class
+  // import error exception classes
   use Error;
+  use Exception;
 
   // send 404 response code upon request
   http_response_code(404);
@@ -59,24 +60,29 @@
 
     /**
      * @return mixed Object array of api version data.
+     * @throws Exception
      */
     public static function getApiVersionData()
     {
-      $filePath = "../docs/swagger-definition.yml";
-      $file = fopen($filePath, "r");
-      $fileSize = filesize($filePath);
-      $fileText = fread($file, $fileSize);
-      define("VERSION_REGEX", "/((?:version:)(?:\s)(?:v\d))/i");
-      $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
-      if ($versionExists == true) {
-        $version[0] = str_replace("version: ", "", $version[0]);
-        return array(
-          (object) array("success" => true, "api_version" => $version[0])
-        )[0];
-      } else {
-        return array(
-          (object) array("success" => false, "api_version" => NULL)
-        )[0];
+      try {
+        $filePath = "../docs/swagger-definition.yml";
+        $file = fopen($filePath, "r");
+        $fileSize = filesize($filePath);
+        $fileText = fread($file, $fileSize);
+        define("VERSION_REGEX", "/((?:version:)(?:\s)(?:v\d))/i");
+        $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
+        if ($versionExists == true) {
+          $version[0] = str_replace("version: ", "", $version[0]);
+          return array(
+            (object) array("success" => true, "api_version" => $version[0])
+          )[0];
+        } else {
+          return array(
+            (object) array("success" => false, "api_version" => NULL)
+          )[0];
+        }
+      } catch (Exception $e) {
+       throw new Exception("Error: file not found.");
       }
     }
 
