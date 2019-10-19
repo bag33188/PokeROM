@@ -1,4 +1,5 @@
 <?php
+  include "WWW.php";
   use www\WWW as WWW;
   $languages = WWW::languageData()["languages"];
   $tooltips = WWW::languageData()["tooltips"];
@@ -18,7 +19,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <?php include "head_tags.inc.php"; ?>
+    <?php include_once "head_tags.inc.php"; ?>
     <title><?= $documentTitle; ?></title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
