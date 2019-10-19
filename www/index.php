@@ -5,6 +5,7 @@
   $cssColors = array(
     "white" => "fff",
     "black" => "000",
+    "gray" => "808080",
     "almost-black" => "212529",
     "pink" => "e83e8c"
   );
