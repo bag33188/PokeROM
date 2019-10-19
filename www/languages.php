@@ -172,6 +172,7 @@
         languagesWrapper.style.width = widestLanguageStr.clientWidth.toString() + 'px';
       }
 
+      // use JavaScript document ready function
       ready(setWidthOfLanguagesWrapper);
     </script>
   </head>
