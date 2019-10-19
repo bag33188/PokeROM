@@ -1,6 +1,6 @@
-<?php if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) { ?>
+<?php if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])): ?>
   <?php http_response_code(404); ?>
-<?php } else { ?>
+<?php else: ?>
   <!-- begin meta tags -->
   <?php
     $head_tags = array(
@@ -18,4 +18,4 @@
   ?>
   <!-- end meta tags -->
   <base href="/" />
-<?php } ?>
+<?php endif; ?>
