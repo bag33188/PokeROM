@@ -92,7 +92,9 @@
      */
     public static function getCurrentUrl()
     {
+      // set url var
       $url = "";
+      // check if https
       if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") {
         $url .= "https";
       } else {
@@ -110,16 +112,25 @@
      * @return mixed|null Longest language Name.
      */
     public static function findLongestLanguageName($languages, $tooltips) {
+      // create variable for longest language
       $longestLang = NULL;
+      // find longest language in array
       $largestLangStrLen = max(array_map("strlen", $languages));
+      // define char regular expression constant
       define("CHAR_REGEXP", "/([^A-Za-z0-9\x20])/i");
+      // loop thru languages
       foreach ($languages as $language) {
+        // create index var
         $index = array_search($language, $languages);
+        // make sure language is longest and if matches regexp
         if (strlen($language) == $largestLangStrLen && !preg_match(CHAR_REGEXP, $language)) {
+          // set longest lang var
           $longestLang = $tooltips[$index];
+          // break to prevent multiple language settings
           break;
         }
       }
+      // return longest language (in terms of length)
       return $longestLang;
     }
   }
