@@ -151,6 +151,13 @@
     <script type="text/javascript">
       "use strict";
 
+      /**
+       * @function
+       * @name ready
+       * @summary Ready
+       * @description Document Ready function (JavaScript)
+       *
+       */
       function ready(callback) {
         if (document.readyState !== 'loading') {
           callback();
@@ -163,6 +170,13 @@
         }
       }
 
+      /**
+       * @function
+       * @name setWidthOfLanguagesWrapper
+       * @summary Set Width of Languages Wrapper
+       * @description Sets the width of the languages wrapper.
+       * @returns {void} Nothing.
+       */
       function setWidthOfLanguagesWrapper() {
         // cache the element of the languages list with the largest width
         const widestLanguageStr = document.querySelector("li[title='<?= $longestLanguage; ?>']");
