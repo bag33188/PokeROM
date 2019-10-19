@@ -1,5 +1,4 @@
 <?php
-  include_once "WWW.php";
   use www\WWW as WWW;
   $apiVersionData = WWW::getApiVersionData();
   $documentTitle = "API Docs (Redirect)";
@@ -14,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <?php include "head_tags.inc.php"; ?>
+    <?php include_once "head_tags.inc.php"; ?>
     <meta http-equiv="refresh" content="0;url=/api/docs/<?= $apiVersionData->api_version; ?>/" />
     <title><?= $documentTitle; ?></title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />

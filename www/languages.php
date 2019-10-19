@@ -1,5 +1,4 @@
 <?php
-  include "WWW.php";
   use www\WWW as WWW;
   $languages = WWW::languageData()["languages"];
   $tooltips = WWW::languageData()["tooltips"];
