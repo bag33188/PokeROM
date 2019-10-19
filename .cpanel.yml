@@ -5,11 +5,12 @@ deployment:
     - export DEPLOYPATH=/home/pokerom/public_html
     - export NPMPATH=/usr/bin/npm
     - export NODE_ENV=production
+    - export CPPATH=/bin/cp
     # run commands
-    - /bin/cp www/.htaccess $DEPLOYPATH
-    - /bin/cp www/head_tags.inc.php $DEPLOYPATH
-    - /bin/cp www/WWW.php $DEPLOYPATH
-    - /bin/cp www/languages.php $DEPLOYPATH
-    - /bin/cp www/info.html $DEPLOYPATH
+    - $CPPATH www/.htaccess $DEPLOYPATH
+    - $CPPATH www/head_tags.inc.php $DEPLOYPATH
+    - $CPPATH www/WWW.php $DEPLOYPATH
+    - $CPPATH www/languages.php $DEPLOYPATH
+    - $CPPATH www/info.html $DEPLOYPATH
     - $NPMPATH run pack
     - $NPMPATH restart
