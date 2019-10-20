@@ -229,9 +229,12 @@
               const nav = document.getElementById('nav');
               navData.forEach(navInfo => {
                 const link = document.createElement('a');
-                link.href = navInfo.href;
-                link.target = navInfo.target;
-                link.textContent = navInfo.text;
+                const linkUrl = document.createAttribute('href');
+                const linkTarget = document.createAttribute('target');
+                const linkText = document.createTextNode(navInfo.text);
+                linkUrl.value = navInfo.href;
+                linkTarget.value = navInfo.target;
+                link.appendChild(linkText);
                 nav.appendChild(link);
                 if (navData.indexOf(navInfo) < navData.length - 1) {
                   nav.innerHTML += '<span>&nbsp;|&nbsp;</span>';
