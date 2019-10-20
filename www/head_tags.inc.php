@@ -3,7 +3,7 @@
     // send 404 not found
     http_response_code(404);
     // kill script with exit code 1
-    exit(1);
+    exit(1); # die(1);
   ?>
 <?php else: ?>
   <!-- begin meta tags -->
