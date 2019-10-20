@@ -2,10 +2,14 @@
   <?php
     // send 404 not found
     http_response_code(404);
-    // store home url based on dev or prod env
-    $home_url = ($_SERVER["HTTP_HOST"] == "localhost:8080") ? "http://localhost:4200" : "/";
-    // print out html doc
-    echo "
+    /**
+     * @return string The not found HTML document.
+     */
+    function htmlDoc() {
+      // store home url based on dev or prod env
+      $home_url = ($_SERVER["HTTP_HOST"] == "localhost:8080") ? "http://localhost:4200" : "/";
+      // print out html doc
+      return "
       <!DOCTYPE html>
       <html lang='en-US'>
         <head>
@@ -18,6 +22,8 @@
         </body>
       </html>
     ";
+    }
+    echo htmlDoc();
     // kill script with exit code 1
     exit(1); # die(1);
   ?>
