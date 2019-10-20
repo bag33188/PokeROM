@@ -2,7 +2,8 @@ const readline = require('readline');
 const bcrypt = require('bcryptjs');
 
 /**
- * @class PwHashGen
+ * @class
+ * @name PwHashGen
  */
 class PwHashGen {
   /**
