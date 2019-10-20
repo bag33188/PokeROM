@@ -204,6 +204,11 @@
           }
         }
 
+        static async getApiVersion() {
+          const apiVersion = await fetch("/api/version", { method: "GET" });
+          return apiVersion.json();
+        }
+
         static setNav() {
           const navData = [
             {
@@ -217,6 +222,13 @@
               text: "Languages"
             }
           ];
+          if (location.href.includes("http://localhost:8080")) {
+            navData.push({
+              href: `/api/docs/${Info.getApiVersion()}`,
+              target: "_self",
+              text: "Docs"
+            });
+          }
           const nav = document.getElementById("nav");
           navData.forEach(navInfo => {
             const link = document.createElement("a");
