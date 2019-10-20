@@ -16,7 +16,7 @@
         echo $head_tag . "\n";
       }
     }
-  print_meta_tags();
+    print_meta_tags();
   ?>
   <!-- end meta tags -->
   <base href="/" />
