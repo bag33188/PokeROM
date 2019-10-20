@@ -239,7 +239,10 @@
                 link.appendChild(linkText);
                 nav.appendChild(link);
                 if (navData.indexOf(navInfo) < navData.length - 1) {
-                  nav.innerHTML += '<span>&nbsp;|&nbsp;</span>';
+                  const separatorElement = document.createElement('span');
+                  const separatorText = document.createTextNode(' | ');
+                  separatorElement.appendChild(separatorText);
+                  nav.appendChild(separatorElement);
                 }
               });
             })
