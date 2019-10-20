@@ -196,20 +196,45 @@
           hr.style.width = span.offsetWidth.toString() + 'px';
         }
 
-        static setHomeAnchorHref() {
-          const homeAnchor = document.getElementById('home-anchor');
+        static getHomeHref() {
           if (location.href === 'http://localhost:8080/info.html') {
-            homeAnchor.setAttribute('href', 'http://localhost:4200');
+            return 'http://localhost:4200';
           } else {
-            homeAnchor.setAttribute('href', '/');
+            return '/';
           }
+        }
+
+        static setNav() {
+          const navData = [
+            {
+              "href": Info.getHomeHref(),
+              "target": "_self",
+              "text": "Home"
+            },
+            {
+              href: "./languages.php",
+              target: "_self",
+              text: "Languages"
+            }
+          ];
+          const nav = document.getElementById("nav");
+          navData.forEach(navInfo => {
+            const link = document.createElement("a");
+            link.href = navInfo.href;
+            link.target = navInfo.target;
+            link.textContent = navInfo.text;
+            nav.appendChild(link);
+            if (navData.indexOf(navInfo) < navData.length - 1) {
+              nav.innerHTML += "<span>&nbsp;|&nbsp;</span>";
+            }
+          });
         }
       }
 
       function init() {
         const methods = [
           Info.setCurrentYear,
-          Info.setHomeAnchorHref,
+          Info.setNav,
           Info.setHrWidth,
           addEventListener('resize', Info.setHrWidth)
         ];
@@ -262,10 +287,10 @@
         </p>
       </div>
       <hr class="mt-3 mb-3" />
-      <div class="text-center mb-3" id="nav">
-        <a href="#" target="_self" id="home-anchor">Home</a>
-        &nbsp;|&nbsp;
-        <a href="./languages.php" target="_self">Languages</a>
+      <div class="text-center mb-3">
+        <nav id="nav">
+          <!-- content inserted thru JavaScript -->
+        </nav>
       </div>
     </div>
   </body>

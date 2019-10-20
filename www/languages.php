@@ -15,6 +15,10 @@
     "dark-blue" => "0056b3",
     "light-gray" => "dee2e6"
   );
+  $navData = array(
+    (object) array("href" => ($currentUrl == "http://localhost:8080/languages.php") ? "http://localhost:4200" : "/", "target" => "_self", "text" => "Home"),
+    (object) array("href" => "./info.html", "target" => "_self", "text" => "info")
+  );
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -208,18 +212,22 @@
               <li title="<?= $tooltips[$i]; ?>"><?= $languages[$i]; ?></li>
             <?php } ?>
           </ul>
-          <p class="text-center">
-            <b>Total: <?= strval(sizeof($languages)); ?></b>
-            <br /><br />
-            <span id="nav">
-              <a href="<?=
-                ($currentUrl == "http://localhost:8080/languages.php") ?
-                  "http://localhost:4200" : "/";
-              ?>" target="_self">Home</a>
-              &nbsp;|&nbsp;
-              <a href="./info.html" target="_self">Info</a>
-            </span>
-          </p>
+          <div class="text-center">
+            <p>
+              <b>Total: <?= strval(sizeof($languages)); ?></b>
+              <br />
+            </p>
+            <nav id="nav">
+              <?php for ($i = 0; $i < count($navData); $i++) { ?>
+                <a href="<?= $navData[$i]->href; ?>" target="<?= $navData[$i]->target; ?>">
+                  <?= $navData[$i]->text . "\n"; ?>
+                </a>
+                <?php if ($i < sizeof($navData) - 1): ?>
+                  <span>&nbsp;|&nbsp;</span>
+                <?php endif; ?>
+              <?php } ?>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
