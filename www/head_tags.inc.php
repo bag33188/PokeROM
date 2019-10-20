@@ -1,5 +1,10 @@
 <?php if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])): ?>
-  <?php http_response_code(404); # send 404 on request if not included as file ?>
+  <?php
+    // send 404 not found
+    http_response_code(404);
+    // kill script with exit code 1
+    exit(1);
+  ?>
 <?php else: ?>
   <!-- begin meta tags -->
   <?php
