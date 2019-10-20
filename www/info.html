@@ -197,7 +197,7 @@
         }
 
         static getHomeHref() {
-          if (location.href === 'http://localhost:8080/info.html') {
+          if (location.href.includes('localhost')) {
             return 'http://localhost:4200';
           } else {
             return '/';
@@ -219,7 +219,7 @@
           ];
           Info.getApiVersion()
             .then(res => {
-              if (location.href.includes('http://localhost:8080')) {
+              if (location.href.includes('localhost')) {
                 navData.push({
                   href: `/api/docs/${res.api_version}`,
                   target: '_self',

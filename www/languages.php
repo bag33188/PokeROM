@@ -16,10 +16,10 @@
     "light-gray" => "dee2e6"
   );
   $navData = [
-    (object) array("href" => ($currentUrl == "http://localhost:8080/languages.php") ? "http://localhost:4200" : "/", "target" => "_self", "text" => "Home"),
+    (object) array("href" => (strpos($currentUrl, "localhost")) ? "http://localhost:4200" : "/", "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "Info")
   ];
-  if (strpos($currentUrl, "http://localhost:8080") !== false) {
+  if (strpos($currentUrl, "localhost") !== false) {
     $navObj = new stdClass();
     $navObj->href = "/api/docs/" . WWW::getApiVersionData()->api_version;
     $navObj->target = "_self";

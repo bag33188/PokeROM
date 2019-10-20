@@ -7,7 +7,7 @@
      */
     function html_doc() {
       // store home url based on dev or prod env
-      $home_url = ($_SERVER["HTTP_HOST"] == "localhost:8080") ? "http://localhost:4200" : "/";
+      $home_url = (strpos($_SERVER["HTTP_HOST"], "localhost")) ? "http://localhost:4200" : "/";
       // return html doc
       return "
         <!DOCTYPE html>
