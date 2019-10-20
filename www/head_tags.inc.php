@@ -10,18 +10,18 @@
       $home_url = ($_SERVER["HTTP_HOST"] == "localhost:8080") ? "http://localhost:4200" : "/";
       // return html doc
       return "
-      <!DOCTYPE html>
-      <html lang='en-US'>
-        <head>
-          <meta charset='UTF-8' />
-          <title>Page Not Found</title>
-        </head>
-        <body style='font-family: Verdana, Geneva, Tahoma, sans-serif;'>
-          <h1 style='text-align: center;'>Error 404: Page Not Found.</h1>
-          <nav style='text-align: center;font-size: 1.3em;'><a href='" . $home_url . "' target='_self'>Home</a></nav>
-        </body>
-      </html>
-    ";
+        <!DOCTYPE html>
+        <html lang='en-US'>
+          <head>
+            <meta charset='UTF-8' />
+            <title>Page Not Found</title>
+          </head>
+          <body style='font-family: Verdana, Geneva, Tahoma, sans-serif;'>
+            <h1 style='text-align: center;'>Error 404: Page Not Found.</h1>
+            <nav style='text-align: center;font-size: 1.3em;'><a href='" . $home_url . "' target='_self'>Home</a></nav>
+          </body>
+        </html>
+      ";
     }
     // print out html document
     echo html_doc();
