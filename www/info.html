@@ -234,6 +234,8 @@
                 const linkText = document.createTextNode(navInfo.text);
                 linkUrl.value = navInfo.href;
                 linkTarget.value = navInfo.target;
+                link.setAttributeNode(linkUrl);
+                link.setAttributeNode(linkTarget);
                 link.appendChild(linkText);
                 nav.appendChild(link);
                 if (navData.indexOf(navInfo) < navData.length - 1) {
