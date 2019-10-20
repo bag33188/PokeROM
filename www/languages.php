@@ -33,9 +33,9 @@
         box-sizing: border-box;
       }
       :root {
-        <?php foreach($cssColors as $colorName => $colorCode) { ?>
+        <?php foreach ($cssColors as $colorName => $colorCode): ?>
           --<?= $colorName; ?>: <?= "#" . $colorCode; ?>;
-        <?php } ?>
+        <?php endforeach; ?>
       }
       body {
         margin: 0;
@@ -208,9 +208,9 @@
       <div id="flex-wrapper">
         <div id="languages-wrapper" class="text-center">
           <ul class="p-0" id="languages">
-            <?php for ($i = 0; $i < count($languages); $i++) { ?>
+            <?php for ($i = 0; $i < count($languages); $i++): ?>
               <li title="<?= $tooltips[$i]; ?>"><?= $languages[$i]; ?></li>
-            <?php } ?>
+            <?php endfor; ?>
           </ul>
           <div class="text-center">
             <p>
@@ -218,14 +218,14 @@
               <br />
             </p>
             <nav id="nav">
-              <?php for ($i = 0; $i < count($navData); $i++) { ?>
+              <?php for ($i = 0; $i < count($navData); $i++): ?>
                 <a href="<?= $navData[$i]->href; ?>" target="<?= $navData[$i]->target; ?>">
                   <?= $navData[$i]->text . "\n"; ?>
                 </a>
                 <?php if ($i < sizeof($navData) - 1): ?>
                   <span>&nbsp;|&nbsp;</span>
                 <?php endif; ?>
-              <?php } ?>
+              <?php endfor; ?>
             </nav>
           </div>
         </div>

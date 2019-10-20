@@ -25,9 +25,9 @@
         box-sizing: border-box;
       }
       :root {
-        <?php foreach($cssColors as $colorName => $colorCode) { ?>
+        <?php foreach ($cssColors as $colorName => $colorCode): ?>
           --<?= $colorName; ?>: <?= "#" . $colorCode; ?>;
-        <?php } ?>
+        <?php endforeach; ?>
       }
       body {
         margin: 0;
