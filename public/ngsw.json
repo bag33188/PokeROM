@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1571524723788,
+  "timestamp": 1571551532875,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,7 +10,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2017.ad9158798f200f76a15e.js",
+        "/main-es2017.a8debaa2f0055a92acb5.js",
         "/polyfills-es2017.876a78efc1252b2711d3.js",
         "/polyfills-es5-es2017.c083fa662fc98844c5ba.js",
         "/runtime-es2017.a93f27da30cdae68103d.js",
@@ -101,7 +101,7 @@
         "/assets/images/carousel_img_02.jpg",
         "/assets/images/carousel_img_03.jpg",
         "/assets/images/carousel_img_04.jpg",
-        "/assets/images/logo-original.png",
+        "/assets/images/logo.png",
         "/assets/images/spinner.gif",
         "/fontawesome-webfont.674f50d287a8c48dc19b.eot",
         "/fontawesome-webfont.912ec66d7572ff821749.svg",
@@ -190,7 +190,7 @@
     "/assets/images/carousel_img_02.jpg": "661c74f5448257d9adeaa336efec33022645e7b3",
     "/assets/images/carousel_img_03.jpg": "4404a81b661a846f7c7b95fe67e1e3ac647009d6",
     "/assets/images/carousel_img_04.jpg": "0a963c1502aced5c54324a897829535b1216e7c4",
-    "/assets/images/logo-original.png": "047d40dcbfb6e1390b4444c73a996e4a700b41ba",
+    "/assets/images/logo.png": "047d40dcbfb6e1390b4444c73a996e4a700b41ba",
     "/assets/images/spinner.gif": "b553020f053390eb361af942baba54fc81327518",
     "/favicon.ico": "10e207f0a756d5c44c80bdc9de1e6bc9f16860f6",
     "/fontawesome-webfont.674f50d287a8c48dc19b.eot": "d980c2ce873dc43af460d4d572d441304499f400",
@@ -198,8 +198,8 @@
     "/fontawesome-webfont.af7ae505a9eed503f8b8.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
     "/fontawesome-webfont.b06871f281fee6b241d6.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
     "/fontawesome-webfont.fee66e712a8a08eef580.woff": "28b782240b3e76db824e12c02754a9731a167527",
-    "/index.html": "129d969301dec42c814eab342f037f3f6b97c581",
-    "/main-es2017.ad9158798f200f76a15e.js": "48eeb0f5c9abc3e6ef26581a930dab754f97f1c9",
+    "/index.html": "15ac82c19d237be8a15ee38f47e1337e63ff1348",
+    "/main-es2017.a8debaa2f0055a92acb5.js": "771e03ebcb2c5ad6428703e0012691d2ef709ca7",
     "/polyfills-es2017.876a78efc1252b2711d3.js": "b3b9057fa76abc4cdd8775a59159621ff1569499",
     "/polyfills-es5-es2017.c083fa662fc98844c5ba.js": "1d396ec07d46df70b66d26886c386f4c4add609b",
     "/runtime-es2017.a93f27da30cdae68103d.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
