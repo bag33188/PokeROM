@@ -148,6 +148,9 @@
       #languages {
         list-style-type: lower-greek;
       }
+      #nav {
+        white-space: nowrap;
+      }
     </style>
     <script type="text/javascript">
       "use strict";
@@ -208,11 +211,13 @@
           <p class="text-center">
             <b>Total: <?= strval(sizeof($languages)); ?></b>
             <br /><br />
-            <span>
+            <span id="nav">
               <a href="<?=
                 ($currentUrl == "http://localhost:8080/languages.php") ?
                   "http://localhost:4200" : "/";
-              ?>" target="_self">Home</a>&nbsp;|&nbsp;<a href="./info.html" target="_self">Info</a>
+              ?>" target="_self">Home</a>
+              &nbsp;|&nbsp;
+              <a href="./info.html" target="_self">Info</a>
             </span>
           </p>
         </div>
