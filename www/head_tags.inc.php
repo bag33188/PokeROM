@@ -2,6 +2,8 @@
   <?php
     // send 404 not found
     http_response_code(404);
+    // store home url based on dev or prod env
+    $home_url = ($_SERVER["HTTP_HOST"] == "localhost:8080") ? "http://localhost:4200" : "/";
     // print out html doc
     echo "
       <!DOCTYPE html>
@@ -12,6 +14,7 @@
         </head>
         <body style='font-family: Verdana, Geneva, Tahoma, sans-serif;'>
           <h1 style='text-align: center;'>Error 404: Page Not Found.</h1>
+          <p style='text-align: center;font-size: 1.3em;'><a href='" . $home_url . "' target='_self'>Home</a></p>
         </body>
       </html>
     ";
