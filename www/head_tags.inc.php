@@ -8,8 +8,8 @@
     function html_doc() {
       // store home url based on dev or prod env
       $home_url = (strpos($_SERVER["HTTP_HOST"], "localhost")) ? "http://localhost:4200" : "/";
-      // return html doc
-      return "
+      // define html doc
+      $html_doc = "
         <!DOCTYPE html>
         <html lang='en-US'>
           <head>
@@ -22,6 +22,10 @@
           </body>
         </html>
       ";
+      // clean html doc
+      $html_doc = preg_replace("/(\s{2,}|\n)/", "", $html_doc);
+      // return html doc
+      return $html_doc;
     }
     // print out html document
     echo html_doc();
