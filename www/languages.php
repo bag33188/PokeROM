@@ -19,6 +19,13 @@
     (object) array("href" => ($currentUrl == "http://localhost:8080/languages.php") ? "http://localhost:4200" : "/", "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "info")
   ];
+  if (strpos(WWW::getCurrentUrl(), "http://localhost:8080") !== false) {
+    $navObj = new stdClass();
+    $navObj->href = "/api/docs/" . WWW::getApiVersionData()->api_version;
+    $navObj->target = "_self";
+    $navObj->text = "Docs";
+    $navData[] = $navObj;
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
