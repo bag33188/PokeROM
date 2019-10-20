@@ -21,7 +21,7 @@
   ];
   if (strpos($currentUrl, "localhost") !== false) {
     $navObj = new stdClass();
-    $navObj->href = "/api/docs/" . WWW::getApiVersionData()->api_version;
+    $navObj->href = "/api/docs/" . WWW::getApiVersionData()->api_version . "/";
     $navObj->target = "_self";
     $navObj->text = "Docs";
     $navData[] = $navObj;

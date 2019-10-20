@@ -221,7 +221,7 @@
             .then(res => {
               if (location.href.includes('localhost')) {
                 navData.push({
-                  href: `/api/docs/${res.api_version}`,
+                  href: `/api/docs/${res.api_version}/`,
                   target: '_self',
                   text: 'Docs'
                 });
