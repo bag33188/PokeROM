@@ -73,7 +73,7 @@ module.exports.addRating = async (req, res, next) => {
 
 module.exports.getRating = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch (e) {
@@ -124,7 +124,7 @@ module.exports.getRatings = async (req, res, next) => {
 
 module.exports.deleteRating = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch (e) {
@@ -183,7 +183,7 @@ module.exports.ratingsHeaders = (req, res) => {
 
 module.exports.ratingHeaders = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       id = mongoose.Types.ObjectId(req.params.id);
     } catch (e) {

@@ -81,7 +81,7 @@ module.exports.getUsers = async (req, res, next) => {
 
 module.exports.getUser = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -341,7 +341,7 @@ module.exports.authorizeUser = async (req, res, next) => {
 
 module.exports.updateUser = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -432,7 +432,7 @@ module.exports.updateUser = async (req, res, next) => {
 
 module.exports.patchUser = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -559,7 +559,7 @@ module.exports.deleteUsers = async (req, res, next) => {
 
 module.exports.deleteUser = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -636,7 +636,7 @@ module.exports.usersHeaders = (req, res) => {
 
 module.exports.userHeaders = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res

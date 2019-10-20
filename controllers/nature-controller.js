@@ -47,7 +47,7 @@ module.exports.getNatures = async (req, res, next) => {
 
 module.exports.getNature = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -146,7 +146,7 @@ module.exports.addNature = async (req, res, next) => {
 
 module.exports.updateNature = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -224,7 +224,7 @@ module.exports.updateNature = async (req, res, next) => {
 
 module.exports.patchNature = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -291,7 +291,7 @@ module.exports.patchNature = async (req, res, next) => {
 
 module.exports.deleteNature = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -361,7 +361,7 @@ module.exports.naturesHeaders = (req, res) => {
 
 module.exports.natureHeaders = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res

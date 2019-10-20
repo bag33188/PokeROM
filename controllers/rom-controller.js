@@ -134,7 +134,7 @@ module.exports.getRoms = async (req, res, next) => {
 
 module.exports.getRom = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -291,7 +291,7 @@ module.exports.addRom = async (req, res, next) => {
 
 module.exports.updateRom = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -428,7 +428,7 @@ module.exports.updateRom = async (req, res, next) => {
 
 module.exports.patchRom = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -545,7 +545,7 @@ module.exports.patchRom = async (req, res, next) => {
 
 module.exports.deleteRom = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
@@ -664,7 +664,7 @@ module.exports.romsHeaders = (req, res) => {
 
 module.exports.romHeaders = async (req, res, next) => {
   try {
-    let id;
+    let id = null;
     try {
       if (routesWithParams.includes(req.params.id)) {
         return res
