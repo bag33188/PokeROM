@@ -246,6 +246,7 @@
             })
             .catch(err => console.error(err));
         }
+
         static async getApiVersion() {
           const apiVersion = await fetch('/api/version', { method: 'GET' });
           return apiVersion.json();
