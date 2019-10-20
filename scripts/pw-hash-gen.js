@@ -1,7 +1,13 @@
 const readline = require('readline');
 const bcrypt = require('bcryptjs');
 
+/**
+ * @class PwHashGen
+ */
 class PwHashGen {
+  /**
+   * @constructor
+   */
   constructor() {
     // create readline interface
     this.rlInterface = readline.createInterface({
@@ -11,6 +17,7 @@ class PwHashGen {
   }
 
   /**
+   * @method
    * @name genPw
    * @summary Password Hash Generator.
    * @description Generates a hash from input password.
@@ -37,8 +44,20 @@ class PwHashGen {
   }
 }
 
-// instantiate `PwHashGen` class.
-const PasswordHashGenerator = new PwHashGen();
+/**
+ * @function
+ * @name init
+ * @summary Initiation
+ * @description Initializes the script.
+ * @returns {void} Nothing.
+ */
+function init() {
+  // instantiate `PwHashGen` class.
+    const PasswordHashGenerator = new PwHashGen();
 
-// invoke `genPw` method from `PwHashGen` class
-PasswordHashGenerator.genPw();
+  // invoke `genPw` method from `PwHashGen` class
+    PasswordHashGenerator.genPw();
+}
+
+// call/invoke init function
+init();
