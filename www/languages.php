@@ -15,10 +15,10 @@
     "dark-blue" => "0056b3",
     "light-gray" => "dee2e6"
   );
-  $navData = array(
+  $navData = [
     (object) array("href" => ($currentUrl == "http://localhost:8080/languages.php") ? "http://localhost:4200" : "/", "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "info")
-  );
+  ];
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
