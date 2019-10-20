@@ -218,10 +218,10 @@
             }
           ];
           Info.getApiVersion()
-            .then(v => {
+            .then(res => {
               if (location.href.includes('http://localhost:8080')) {
                 navData.push({
-                  href: `/api/docs/${v.api_version}`,
+                  href: `/api/docs/${res.api_version}`,
                   target: '_self',
                   text: 'Docs'
                 });
