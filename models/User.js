@@ -30,8 +30,11 @@ const userSchema = new Schema(
   }
 );
 
-// create User model
-const User = (module.exports = mongoose.model('User', userSchema));
+module.exports = mongoose.model('User', userSchema);
+
+
+// define User model
+const User = module.exports;
 
 module.exports.getUserById = (id, callback) => {
   User.findById(id, callback);
