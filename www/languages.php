@@ -5,7 +5,6 @@
   $tooltips = WWW::languageData()["tooltips"];
   $currentUrl = WWW::getCurrentUrl();
   $longestLanguage = WWW::findLongestLanguageName($languages, $tooltips);
-  $apiVersion = WWW::getApiVersionData()->api_version;
   $documentTitle = "Pok&eacute;ROM - Languages Used";
   $cssColors = array(
     "white" => "fff",
@@ -21,6 +20,7 @@
     (object) array("href" => "./info.html", "target" => "_self", "text" => "Info")
   ];
   if (strpos($currentUrl, "localhost") !== false) {
+    $apiVersion = WWW::getApiVersionData()->api_version;
     $navObj = new stdClass();
     $navObj->href = "/api/docs/" . $apiVersion . "/";
     $navObj->target = "_self";
