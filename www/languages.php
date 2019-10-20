@@ -145,6 +145,9 @@
         display: flex;
         justify-content: center;
       }
+      #languages {
+        list-style-type: lower-greek;
+      }
     </style>
     <script type="text/javascript">
       "use strict";
@@ -196,19 +199,21 @@
     <div class="container border rounded">
       <h1 class="text-center m-3">Programming Languages Used</h1>
       <div id="flex-wrapper">
-        <div id="languages-wrapper">
+        <div id="languages-wrapper" class="text-center">
           <ul class="p-0" id="languages">
             <?php for ($i = 0; $i < count($languages); $i++) { ?>
               <li title="<?= $tooltips[$i]; ?>"><?= $languages[$i]; ?></li>
             <?php } ?>
           </ul>
-          <p>
+          <p class="text-center">
             <b>Total: <?= strval(sizeof($languages)); ?></b>
             <br /><br />
-            <a href="<?=
-              ($currentUrl == "http://localhost:8080/languages.php") ?
-                "http://localhost:4200" : "/";
-            ?>" target="_self">Home</a>
+            <span>
+              <a href="<?=
+                ($currentUrl == "http://localhost:8080/languages.php") ?
+                  "http://localhost:4200" : "/";
+              ?>" target="_self">Home</a>&nbsp;|&nbsp;<a href="./info.html" target="_self">Info</a>
+            </span>
           </p>
         </div>
       </div>
