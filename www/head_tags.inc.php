@@ -5,7 +5,7 @@
     /**
      * @return string The not found HTML document.
      */
-    function htmlDoc() {
+    function html_doc() {
       // store home url based on dev or prod env
       $home_url = ($_SERVER["HTTP_HOST"] == "localhost:8080") ? "http://localhost:4200" : "/";
       // return html doc
@@ -24,7 +24,7 @@
     ";
     }
     // print out html document
-    echo htmlDoc();
+    echo html_doc();
     // kill script with exit code 1
     exit(1); # die(1);
   ?>
