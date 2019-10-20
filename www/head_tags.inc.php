@@ -11,8 +11,7 @@
       "<meta name=\"copyright\" content=\"Copyright (c) 2019 bag33188\" />",
       "<meta name=\"language\" content=\"EN\" />"
     );
-    for ($i = 0; $i < count($head_tags); $i++) {
-      $head_tag = $head_tags[$i];
+    foreach ($head_tags as $head_tag) {
       echo $head_tag . "\n";
     }
   ?>
