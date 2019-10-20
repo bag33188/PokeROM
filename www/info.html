@@ -197,11 +197,9 @@
         }
 
         static getHomeHref() {
-          if (location.href.includes('localhost')) {
-            return 'http://localhost:4200';
-          } else {
-            return '/';
-          }
+          return location.href.includes('localhost')
+            ? 'http://localhost:4200'
+            : '/';
         }
 
         static setNav() {
