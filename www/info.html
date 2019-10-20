@@ -165,7 +165,7 @@
       }
     </style>
     <script type="text/javascript">
-      "use strict";
+      'use strict';
 
       function ready(callback) {
         if (document.readyState !== 'loading') {
@@ -204,42 +204,45 @@
           }
         }
 
-        static async getApiVersion() {
-          const apiVersion = await fetch("/api/version", { method: "GET" });
-          return apiVersion.json();
-        }
-
         static setNav() {
           const navData = [
             {
               href: Info.getHomeHref(),
-              target: "_self",
-              text: "Home"
+              target: '_self',
+              text: 'Home'
             },
             {
-              href: "./languages.php",
-              target: "_self",
-              text: "Languages"
+              href: './languages.php',
+              target: '_self',
+              text: 'Languages'
             }
           ];
-          if (location.href.includes("http://localhost:8080")) {
-            navData.push({
-              href: `/api/docs/${Info.getApiVersion()}`,
-              target: "_self",
-              text: "Docs"
-            });
-          }
-          const nav = document.getElementById("nav");
-          navData.forEach(navInfo => {
-            const link = document.createElement("a");
-            link.href = navInfo.href;
-            link.target = navInfo.target;
-            link.textContent = navInfo.text;
-            nav.appendChild(link);
-            if (navData.indexOf(navInfo) < navData.length - 1) {
-              nav.innerHTML += "<span>&nbsp;|&nbsp;</span>";
-            }
-          });
+          Info.getApiVersion()
+            .then(v => {
+              if (location.href.includes('http://localhost:8080')) {
+                navData.push({
+                  href: `/api/docs/${v.api_version}`,
+                  target: '_self',
+                  text: 'Docs'
+                });
+              }
+              const nav = document.getElementById('nav');
+              navData.forEach(navInfo => {
+                const link = document.createElement('a');
+                link.href = navInfo.href;
+                link.target = navInfo.target;
+                link.textContent = navInfo.text;
+                nav.appendChild(link);
+                if (navData.indexOf(navInfo) < navData.length - 1) {
+                  nav.innerHTML += '<span>&nbsp;|&nbsp;</span>';
+                }
+              });
+            })
+            .catch(err => console.error(err));
+        }
+        static async getApiVersion() {
+          const apiVersion = await fetch('/api/version', { method: 'GET' });
+          return apiVersion.json();
         }
       }
 
