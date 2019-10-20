@@ -225,6 +225,9 @@
                 });
               }
               const nav = document.getElementById('nav');
+              while (nav.firstChild) {
+                nav.removeChild(nav.firstChild);
+              }
               navData.forEach(navInfo => {
                 const link = document.createElement('a');
                 const linkUrl = document.createAttribute('href');
