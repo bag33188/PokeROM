@@ -94,11 +94,7 @@
       // set url var
       $url = "";
       // check if https
-      if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") {
-        $url .= "https";
-      } else {
-        $url .= "http";
-      }
+      $url .= (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") ? "https" : "http";
       $url .= "://";
       $url .= $_SERVER["HTTP_HOST"];
       $url .= $_SERVER["REQUEST_URI"];
