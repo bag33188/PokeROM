@@ -8,7 +8,7 @@
     function htmlDoc() {
       // store home url based on dev or prod env
       $home_url = ($_SERVER["HTTP_HOST"] == "localhost:8080") ? "http://localhost:4200" : "/";
-      // print out html doc
+      // return html doc
       return "
       <!DOCTYPE html>
       <html lang='en-US'>
@@ -23,6 +23,7 @@
       </html>
     ";
     }
+    // print out html document
     echo htmlDoc();
     // kill script with exit code 1
     exit(1); # die(1);
