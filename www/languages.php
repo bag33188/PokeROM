@@ -1,5 +1,5 @@
 <?php
-  include "WWW.php";
+  require_once "WWW.php";
   use www\WWW as WWW;
   $languages = WWW::languageData()["languages"];
   $tooltips = WWW::languageData()["tooltips"];

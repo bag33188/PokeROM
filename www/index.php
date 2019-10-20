@@ -1,5 +1,5 @@
 <?php
-  include "WWW.php";
+  require_once "WWW.php";
   use www\WWW as WWW;
   $apiVersionData = WWW::getApiVersionData();
   $documentTitle = "API Docs (Redirect)";
