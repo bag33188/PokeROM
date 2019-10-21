@@ -213,6 +213,11 @@
               href: './languages.php',
               target: '_self',
               text: 'Languages'
+            },
+            {
+              href: location.href.includes('localhost') ? "http://localhost:4200/sitemap.xml" : "/sitemap.xml",
+              target: '_blank',
+              text: 'Sitemap'
             }
           ];
           Info.getApiVersion()
