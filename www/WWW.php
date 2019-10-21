@@ -5,7 +5,7 @@
   use Error;
   use Exception;
 
-  // check if file is being included
+  // check if file is NOT being included
   if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     // send 404 response code upon request
     header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
