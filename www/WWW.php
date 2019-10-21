@@ -6,7 +6,7 @@
   use Exception;
 
   // send 404 response code upon request
-  header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
+  header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
 
   /**
    * Class WWW
