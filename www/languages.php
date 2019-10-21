@@ -20,7 +20,8 @@
   $navData = [
     (object) array("href" => $homeUrl, "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "Info"),
-    (object) array("href" => $homeUrl . "sitemap.xml", "target" => "_blank", "text" => "Sitemap")
+    (object) array("href" => $homeUrl . "sitemap.xml", "target" => "_blank", "text" => "Sitemap"),
+    (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
   ];
   if (strpos($currentUrl, "localhost") !== false) {
     $apiVersion = WWW::getApiVersionData()->api_version;
