@@ -273,6 +273,6 @@ class FixIndexHtml:
 index_html = FixIndexHtml('../public/index.html')
 index_html.move_script_tags()
 index_html.insert_comment()
-index_html.add_positive_ssl_trusted_logo()
+# index_html.add_positive_ssl_trusted_logo()
 # check if everything was successful
 index_html.check_exit_code()
