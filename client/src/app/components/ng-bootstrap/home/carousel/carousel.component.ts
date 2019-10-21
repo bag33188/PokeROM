@@ -38,14 +38,14 @@ export class CarouselComponent implements OnInit {
         caption: he.decode(
           'You can now play your favorite Pok&eacute;mon ROM hacks'
         )
-      }/*,
+      },
       {
         image: this.images.C_IMG4,
         heading: he.decode('Pok&eacute;mon Sword and Shield Coming Soon!'),
         caption: he.decode(
           'The new Pok&eacute;mon games will be available on this site 1 week after their release in the US.'
         )
-      }*/
+      }
     ];
   }
   public getInterval(): number {
