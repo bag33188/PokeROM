@@ -5,8 +5,11 @@
   use Error;
   use Exception;
 
-  // send 404 response code upon request
-  header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
+  // check if file is being included
+  if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
+    // send 404 response code upon request
+    header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
+  }
 
   /**
    * Class WWW
