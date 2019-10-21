@@ -16,10 +16,11 @@
     "light-gray" => "dee2e6"
   );
   $productionMode = strpos($currentUrl, "localhost") ? false : true;
+  $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $navData = [
-    (object) array("href" => ($productionMode) ? "/" : "http://localhost:4200", "target" => "_self", "text" => "Home"),
+    (object) array("href" => $homeUrl, "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "Info"),
-    (object) array("href" => ($productionMode) ? "/" : "http://localhost:4200/sitemap.xml", "target" => "_blank", "text" => "Sitemap")
+    (object) array("href" => $homeUrl . "sitemap.xml", "target" => "_blank", "text" => "Sitemap")
   ];
   if (strpos($currentUrl, "localhost") !== false) {
     $apiVersion = WWW::getApiVersionData()->api_version;

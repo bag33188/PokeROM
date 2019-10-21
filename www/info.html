@@ -199,9 +199,10 @@
         }
 
         static setNav() {
+          const homeUrl = productionMode ? '/' : 'http://localhost:4200/';
           const navData = [
             {
-              href: productionMode ? '/' : 'http://localhost:4200',
+              href: homeUrl,
               target: '_self',
               text: 'Home'
             },
@@ -211,7 +212,7 @@
               text: 'Languages'
             },
             {
-              href: productionMode ? '/sitemap.xml' : 'http://localhost:4200/sitemap.xml',
+              href: `${homeUrl}sitemap.xml`,
               target: '_blank',
               text: 'Sitemap'
             }
