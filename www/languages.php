@@ -165,6 +165,7 @@
       }
       #nav {
         white-space: nowrap;
+        padding-bottom: 1rem;
       }
     </style>
     <script type="text/javascript">
