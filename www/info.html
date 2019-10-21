@@ -179,6 +179,8 @@
         }
       }
 
+      const productionMode = !location.href.includes('localhost');
+
       class Info {
         constructor() {
           throw new Error('Info class is not meant to be instantiated.');
@@ -196,16 +198,10 @@
           hr.style.width = span.offsetWidth.toString() + 'px';
         }
 
-        static getHomeHref() {
-          return location.href.includes('localhost')
-            ? 'http://localhost:4200'
-            : '/';
-        }
-
         static setNav() {
           const navData = [
             {
-              href: Info.getHomeHref(),
+              href: productionMode ? '/' : 'http://localhost:4200',
               target: '_self',
               text: 'Home'
             },
@@ -215,14 +211,14 @@
               text: 'Languages'
             },
             {
-              href: location.href.includes('localhost') ? "http://localhost:4200/sitemap.xml" : "/sitemap.xml",
+              href: productionMode ? '/sitemap.xml' : 'http://localhost:4200/sitemap.xml',
               target: '_blank',
               text: 'Sitemap'
             }
           ];
           Info.getApiVersion()
             .then(res => {
-              if (location.href.includes('localhost')) {
+              if (!productionMode) {
                 navData.push({
                   href: `/api/docs/${res.api_version}/`,
                   target: '_self',
