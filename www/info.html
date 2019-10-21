@@ -179,8 +179,6 @@
         }
       }
 
-      const productionMode = !location.href.includes('localhost');
-
       class Info {
         constructor() {
           throw new Error('Info class is not meant to be instantiated.');
@@ -199,6 +197,7 @@
         }
 
         static setNav() {
+          const productionMode = !location.href.includes('localhost');
           const homeUrl = productionMode ? '/' : 'http://localhost:4200/';
           const navData = [
             {
