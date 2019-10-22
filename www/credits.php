@@ -69,14 +69,12 @@
         text-align: left;
         background-color: var(--white);
       }
-      hr {
-        box-sizing: content-box;
-        height: 0;
-        overflow: visible;
-      }
       h1 {
         margin-top: 0;
         margin-bottom: 0.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+        font-size: 2.5rem;
       }
       p {
         margin-top: 0;
@@ -102,19 +100,14 @@
         color: var(--anchor-hover-blue);
         text-decoration: underline;
       }
-      h1 {
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        line-height: 1.2;
-      }
-      h1 {
-        font-size: 2.5rem;
-      }
       hr {
         margin-top: 1rem;
         margin-bottom: 1rem;
         border: 0;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
       }
       .container {
         width: 100%;
@@ -203,11 +196,9 @@
           width: 700px;
         }
       }
-
       .container-small {
         max-width: 100%;
       }
-
       #nav {
         text-align: center;
         margin-bottom: -0.5rem !important;
