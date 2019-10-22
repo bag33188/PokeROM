@@ -139,11 +139,8 @@
       .rounded {
         border-radius: 0.25rem !important;
       }
-      .mt-3 {
-        margin-top: 1rem !important;
-      }
-      .mb-3 {
-        margin-bottom: 1rem !important;
+      .mt-2 {
+        margin-top: 0.5rem !important;
       }
       .m-4 {
         margin: 1.5rem !important;
@@ -151,8 +148,8 @@
       .mt-4 {
         margin-top: 1.5rem !important;
       }
-      .p-4 {
-        padding: 1.5rem !important;
+      .p-3 {
+        padding: 1rem !important;
       }
       .text-center {
         text-align: center !important;
@@ -178,35 +175,17 @@
           min-width: 992px !important;
         }
       }
-      @media (min-width: 768px) {
-        .container-small {
-          width: 300px;
-        }
-      }
-      @media (min-width: 992px) {
-        .container-small {
-          width: 500px;
-        }
-      }
-      @media (min-width: 1200px) {
-        .container-small {
-          width: 700px;
-        }
-      }
-      .container-small {
-        max-width: 100%;
-      }
       #nav {
         display: block;
         text-align: center;
-        margin-bottom: -0.5rem !important;
+        margin-bottom: 1rem;
       }
     </style>
   </head>
-  <body>
-    <div class="container container-small p-4 border rounded mt-3 mb-3">
-      <h1 class="text-center">Credits</h1>
-      <div>
+  <body class="p-3">
+    <div class="container border rounded">
+      <h1 class="text-center mt-2">Credits</h1>
+      <div class="text-center">
         <p class="m-4">Sigh....<br />I wish there were more people on this list, but unfortunately this project was made solely by me.</p>
         <dl class="mt-4 text-center">
           <?php for ($i = 0; $i < count($creditsData); $i++): ?>
