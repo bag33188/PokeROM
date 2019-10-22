@@ -44,6 +44,9 @@
     <loc>https://pokerom.dev/info.html</loc>
   </url>
   <url>
+    <loc>https://pokerom.dev/credits.php</loc>
+  </url>
+  <url>
     <loc>https://pokerom.dev/languages.php</loc>
   </url>
 </urlset>
