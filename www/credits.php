@@ -54,9 +54,6 @@
           --<?= $colorName; ?>: <?= "#" . $colorCode; ?>;
         <?php endforeach; ?>
       }
-      nav {
-        display: block;
-      }
       body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -200,6 +197,7 @@
         max-width: 100%;
       }
       #nav {
+        display: block;
         text-align: center;
         margin-bottom: -0.5rem !important;
       }

@@ -2,7 +2,17 @@
   <p id="footer-content" class="text-center bg-dark">
     <span>
       {{ !environment.production ? appName + ' (Beta)' : appName }}
-      | &copy; {{ getYear().toString() }} {{ author }} |
+      | &copy; {{ getYear().toString() }}
+      <a
+        [href]="
+          !environment.production
+            ? environment.apiUrl.replace('/api', '') + '/credits.php'
+            : '/credits.php'
+        "
+        target="_self"
+        >{{ author }}</a
+      >
+      |
       <a
         href="https://opensource.org/licenses/MIT"
         target="_blank"
