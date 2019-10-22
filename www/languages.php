@@ -20,6 +20,7 @@
   $navData = [
     (object) array("href" => $homeUrl, "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "Info"),
+    (object) array("href" => "./credits.php", "target" => "_self", "text" => "Credits"),
     (object) array("href" => $homeUrl . "sitemap.xml", "target" => "_blank", "text" => "Sitemap"),
     (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
   ];
