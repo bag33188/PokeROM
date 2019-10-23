@@ -1,5 +1,6 @@
 <?php
   require_once "WWW.php";
+  require_once "HTTP.php";
   use www\WWW as WWW;
   use www\HTTP;
   $http = new HTTP();
