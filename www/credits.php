@@ -197,6 +197,21 @@
       <?php else: ?>
         console.log("The grand project is now complete.");
       <?php endif; ?>
+
+      <?php
+
+        function x() {
+          // check if ssl is being used
+          if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") {
+            return "https://";
+          } else {
+            return "http://";
+          }
+        }
+        if (x() == "http://") {
+          echo "alert(123);";
+        }
+      ?>
     </script>
   </head>
   <body class="p-3">
