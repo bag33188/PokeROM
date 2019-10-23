@@ -200,61 +200,6 @@ class FixIndexHtml:
       print(f'An error occurred:\n{str(err)}', end='\n\n')
       self.exit_code = 1
 
-  # define add_positive_ssl_trusted_logo method
-  def add_positive_ssl_trusted_logo(self):
-    """
-    This method adds the PositiveSSL trusted logo script to the bottom of the
-    `../public/index.html` file as a comment.
-    """
-
-    print('Inserting PositiveSSL trusted logo as comment ... ')
-
-    # define main const
-    POSITIVE_SSL_HTML = (
-                          '<!--\n'
-                          '  <script type="text/javascript"> //<![CDATA[\n'
-                          '  var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");\n'
-                          '  document.write(unescape("%3Cscript src=\'" + tlJsHost + "trustlogo/javascript/trustlogo.js\' type=\'text/javascript\'%3E%3C/script%3E"));\n'
-                          '  //]]></script>\n'
-                          '  <script language="JavaScript" type="text/javascript">\n'
-                          '\tTrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_sm_124x32.png", "POSDV", "none");\n'
-                          '  </script>\n'
-                          '-->\n'
-                        )
-
-    # encapsulate file I/O logic in try-except block in case of errors
-    try:
-
-      # use fileinput to edit file
-      with FileInput(self.filepath, inplace=True, backup='.bak2') as file:
-
-        # loop thru each line in file
-        for line in file:
-
-          # check if line has body
-          if '</head>' in line:
-            # print the line
-            sys.stdout.write(line.replace('</head>', f'{POSITIVE_SSL_HTML}</head>'))
-
-          # otherwise...
-          else:
-            # print other lines
-            sys.stdout.write(line)
-
-      print('Done!', end='\n\n')
-
-      self.exit_code = 0
-
-    # catch file not found error
-    except FileNotFoundError:
-      print(f'Error, index.html file not found (looking in `{self.filepath}`.)', end='\n\n')
-      self.exit_code = 1
-
-    # catch general exception
-    except Exception as err:
-      print(f'An error occurred:\n{str(err)}', end='\n\n')
-      self.exit_code = 1
-
   # define final method for checking exit code
   def check_exit_code(self):
     """
@@ -273,6 +218,5 @@ class FixIndexHtml:
 index_html = FixIndexHtml('../public/index.html')
 index_html.move_script_tags()
 index_html.insert_comment()
-# index_html.add_positive_ssl_trusted_logo()
 # check if everything was successful
 index_html.check_exit_code()
