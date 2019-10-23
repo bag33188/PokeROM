@@ -7,7 +7,6 @@
 
     public function __construct()
     {
-      parent::__construct();
       $this->currentUrl = str_replace($this->getProtocol(), "", self::getCurrentUrl());
     }
 
