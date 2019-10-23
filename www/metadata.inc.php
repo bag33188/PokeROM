@@ -10,6 +10,7 @@
       $home_url = (strpos($_SERVER["HTTP_HOST"], "localhost")) ? "http://localhost:4200" : "/";
       // define html doc
       $html_doc = "
+        <!DOCTYPE html>
         <html lang='en-US'>
           <head>
             <meta charset='UTF-8' />
@@ -22,7 +23,7 @@
         </html>
       ";
       // clean html doc
-      $html_doc = "<!DOCTYPE html>" . preg_replace("/(\s{2,}|\n)/", "", $html_doc);
+      $html_doc = preg_replace("/(\s{2,}|\n)/", "", $html_doc);
       // return html doc
       return $html_doc;
     }
