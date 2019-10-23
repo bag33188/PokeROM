@@ -31,6 +31,7 @@
     (object) array("term" => "Front End (Client Side)", "definition" => $me),
     (object) array("term" => "Back End (Server Side)", "definition" => $me),
     (object) array("term" => "Server Admin/Management", "definition" => $me),
+    (object) array("term" => "Database Engineering", "definition" => $me),
     (object) array("term" => "Testing", "definition" => $me),
     (object) array("term" => "Logo", "definition" => $me . " and Google"),
     (object) array("term" => "Images", "definition" => "Google"),
