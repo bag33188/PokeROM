@@ -7,15 +7,27 @@
   if ($http->isHTTP() && WWW::isProductionMode()) {
     $http->redirectToHTTPS();
   }
-  $documentTitle = "Pok&eacute;ROM - Credits";
+  $languages = WWW::languageData()["languages"];
+  $tooltips = WWW::languageData()["tooltips"];
   $currentUrl = WWW::getCurrentUrl();
+  $longestLanguage = WWW::findLongestLanguageName($languages, $tooltips);
   $productionMode = WWW::isProductionMode();
+  $documentTitle = "Pok&eacute;ROM - Languages Used";
+  $cssColors = array(
+    "white" => "fff",
+    "black" => "000",
+    "gray" => "808080",
+    "almost-black" => "212529",
+    "blue" => "007bff",
+    "dark-blue" => "0056b3",
+    "light-gray" => "dee2e6"
+  );
+  $productionMode = strpos($currentUrl, "localhost") ? false : true;
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
-  $me = "Broccolini";
   $navData = [
     (object) array("href" => $homeUrl, "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "Info"),
-    (object) array("href" => "./languages.php", "target" => "_self", "text" => "Languages"),
+    (object) array("href" => "./credits.php", "target" => "_self", "text" => "Credits"),
     (object) array("href" => $homeUrl . "sitemap.xml", "target" => "_blank", "text" => "Sitemap"),
     (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
   ];
@@ -27,24 +39,6 @@
     $navObj->text = "Docs";
     $navData[] = $navObj;
   }
-  $creditsData = [
-    (object) array("term" => "Front End (Client Side)", "definition" => $me),
-    (object) array("term" => "Back End (Server Side)", "definition" => $me),
-    (object) array("term" => "Server Admin/Management", "definition" => $me),
-    (object) array("term" => "Database Engineering", "definition" => $me),
-    (object) array("term" => "Testing", "definition" => $me),
-    (object) array("term" => "Logo", "definition" => $me . " and Google"),
-    (object) array("term" => "Images", "definition" => "Google"),
-    (object) array("term" => "Icons", "definition" => "Fontawesome"),
-    (object) array("term" => "Fonts", "definition" => "fontshop.com")
-  ];
-  $cssColors = array(
-    "white" => "fff",
-    "almost-black" => "212529",
-    "anchor-blue" => "007bff",
-    "anchor-hover-blue" => "0056b3",
-    "light-gray" => "dee2e6"
-  );
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -75,45 +69,38 @@
         text-align: left;
         background-color: var(--white);
       }
-      h1 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        line-height: 1.2;
-        font-size: 2.5rem;
-      }
       p {
         margin-top: 0;
         margin-bottom: 1rem;
       }
-      dl {
+      ul {
         margin-top: 0;
         margin-bottom: 1rem;
       }
-      dt {
-        font-weight: 700;
-      }
-      dd {
-        margin-bottom: 0.5rem;
-        margin-left: 0;
+      b {
+        font-weight: bolder;
       }
       a {
-        color: var(--anchor-blue);
+        color: var(--blue);
         text-decoration: none;
         background-color: transparent;
       }
       a:hover {
-        color: var(--anchor-hover-blue);
+        color: var(--dark-blue);
         text-decoration: underline;
       }
-      hr {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        border: 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        box-sizing: content-box;
-        height: 0;
-        overflow: visible;
+      h1 {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+        font-size: 2.5rem;
+        margin-top: 0;
+      }
+      .border {
+        border: 1px solid var(--light-gray) !important;
+      }
+      .rounded {
+        border-radius: 0.25rem !important;
       }
       .container {
         width: 100%;
@@ -142,26 +129,32 @@
           max-width: 1140px;
         }
       }
-      .border {
-        border: 1px solid var(--light-gray) !important;
+      .w-100 {
+        width: 100% !important;
       }
-      .rounded {
-        border-radius: 0.25rem !important;
+      .m-3 {
+        margin: 1rem !important;
       }
-      .mt-2 {
-        margin-top: 0.5rem !important;
+      .mb-0 {
+          margin-bottom: 0rem !important;
       }
-      .m-4 {
-        margin: 1.5rem !important;
-      }
-      .mt-4 {
-        margin-top: 1.5rem !important;
+      .p-0 {
+        padding: 0 !important;
       }
       .p-3 {
         padding: 1rem !important;
       }
       .text-center {
         text-align: center !important;
+      }
+      hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
       }
       @media print {
         *,
@@ -184,15 +177,62 @@
           min-width: 992px !important;
         }
       }
+      #languages-wrapper {
+        display: inline-block;
+      }
+      #flex-wrapper {
+        display: flex;
+        justify-content: center;
+      }
+      #languages {
+        list-style-type: lower-greek;
+      }
       #nav {
-        display: block;
-        text-align: center;
         white-space: nowrap;
-        margin-bottom: 1rem;
+        padding-bottom: 1rem;
       }
     </style>
     <script type="text/javascript">
       "use strict";
+
+      /**
+       * @function
+       * @name ready
+       * @summary Ready
+       * @description Document Ready function (JavaScript)
+       * @param {any} callback Callback function.
+       * @returns {void} Nothing.
+       */
+      function ready(callback) {
+        if (document.readyState !== 'loading') {
+          callback();
+        } else if (document.addEventListener) {
+          document.addEventListener('DOMContentLoaded', callback);
+        } else {
+          document.attachEvent('onreadystatechange', () => {
+            if (document.readyState === 'complete') callback();
+          });
+        }
+      }
+
+      /**
+       * @function
+       * @name setWidthOfLanguagesWrapper
+       * @summary Set Width of Languages Wrapper
+       * @description Sets the width of the languages wrapper.
+       * @returns {void} Nothing.
+       */
+      function setWidthOfLanguagesWrapper() {
+        // cache the element of the languages list with the largest width
+        const widestLanguageStr = document.querySelector("li[title='<?= $longestLanguage; ?>']");
+        // cache languages wrapper
+        const languagesWrapper = document.getElementById("languages-wrapper");
+        // set width of wrapper based on largest width of language item in list
+        languagesWrapper.style.width = widestLanguageStr.clientWidth.toString() + 'px';
+      }
+
+      // use JavaScript document ready function
+      ready(setWidthOfLanguagesWrapper);
 
       <?php if (!$productionMode): ?>
         console.log("<?= "`" . $http->getPageName() . "`"; ?> page being served @ port <?= $http->getPortNumber(); ?>");
@@ -200,28 +240,36 @@
     </script>
   </head>
   <body class="p-3">
+    <noscript>
+      <h1>Please enable JavaScript</h1>
+    </noscript>
     <div class="container border rounded">
-      <h1 class="text-center mt-2">Credits</h1>
-      <div class="text-center">
-        <p class="m-4">Sigh....<br />I wish there were more people on this list, but unfortunately this project was made solely by me.</p>
-        <dl class="mt-4 text-center">
-          <?php for ($i = 0; $i < count($creditsData); $i++): ?>
-            <dt><?= $creditsData[$i]->term; ?></dt>
-            <dd><?= $creditsData[$i]->definition; ?></dd>
-          <?php endfor; ?>
-        </dl>
+      <h1 class="text-center m-3">Programming Languages Used</h1>
+      <div id="flex-wrapper">
+        <div class="text-center w-100">
+          <div  id="languages-wrapper">
+            <ul class="p-0" id="languages">
+              <?php for ($i = 0; $i < count($languages); $i++): ?>
+                <li title="<?= $tooltips[$i]; ?>"><?= $languages[$i]; ?></li>
+              <?php endfor; ?>
+            </ul>
+            <p class="mb-0">
+              <b>Total: <?= strval(sizeof($languages)); ?></b>
+            </p>
+          </div>
+          <hr />
+          <nav id="nav">
+            <?php for ($i = 0; $i < count($navData); $i++): ?>
+              <a href="<?= $navData[$i]->href; ?>" target="<?= $navData[$i]->target; ?>">
+                <?= $navData[$i]->text . "\n"; ?>
+              </a>
+              <?php if ($i < sizeof($navData) - 1): ?>
+                <span>&nbsp;|&nbsp;</span>
+              <?php endif; ?>
+            <?php endfor; ?>
+          </nav>
+        </div>
       </div>
-      <hr />
-      <nav id="nav">
-        <?php for ($i = 0; $i < count($navData); $i++): ?>
-          <a href="<?= $navData[$i]->href; ?>" target="<?= $navData[$i]->target; ?>">
-            <?= $navData[$i]->text . "\n"; ?>
-          </a>
-          <?php if ($i < sizeof($navData) - 1): ?>
-            <span>&nbsp;|&nbsp;</span>
-          <?php endif; ?>
-        <?php endfor; ?>
-      </nav>
     </div>
   </body>
 </html>
