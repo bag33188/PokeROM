@@ -8,7 +8,7 @@ deployment:
     - export NODE_ENV=production
     # run commands
     - $CPPATH www/.htaccess $DEPLOYPATH
-    - $CPPATH www/head_tags.inc.php $DEPLOYPATH
+    - $CPPATH www/metadata.inc.php $DEPLOYPATH
     - $CPPATH www/WWW.php $DEPLOYPATH
     - $CPPATH www/languages.php $DEPLOYPATH
     - $CPPATH www/info.html $DEPLOYPATH
