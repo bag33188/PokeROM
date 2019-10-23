@@ -7,9 +7,7 @@
   $apiVersionData = WWW::getApiVersionData();
   $productionMode = WWW::isProductionMode();
   $documentTitle = "API Docs (Redirect)";
-  if ($http->isHTTP()) {
-    $http->redirectToHTTPS();
-  }
+  $http->redirectToHTTPS();
   $cssColors = array(
     "white" => "fff",
     "black" => "000",

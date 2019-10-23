@@ -35,7 +35,7 @@
     // print out html document
     echo html_doc();
     // kill script with exit code 1
-    die(1);
+    exit(1);
   ?>
 <?php else: ?>
   <!-- begin meta tags -->

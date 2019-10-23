@@ -83,7 +83,7 @@
     /**
      * @return bool If HTTP protocol is being use (or HTTPS).
      */
-    public function isHTTP() {
+    private function isHTTP() {
       // return true if char `s` is in protocol (https), false if not
       return (!strpos($this->getProtocol(), "s")) ? true : false;
     }
@@ -130,14 +130,11 @@
      */
     public function redirectToHTTPS() {
       // make sure protocol is not already https
-      if ($this->getProtocol() == "http://" && self::isProductionMode()) {
+      if ($this->isHTTP() && self::isProductionMode()) {
         // set location to protocol plus current url
         $location = $this->getProtocol() . $this->currentURL;
         // redirect using header
         header("Location: " . $location);
-      } else {
-        // exit script with code 0
-        exit(0);
       }
     }
   }

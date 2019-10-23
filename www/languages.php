@@ -11,9 +11,7 @@
   $longestLanguage = WWW::findLongestLanguageName($languages, $tooltips);
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $documentTitle = "Pok&eacute;ROM - Languages Used";
-  if ($http->isHTTP()) {
-    $http->redirectToHTTPS();
-  }
+  $http->redirectToHTTPS();
   $cssColors = array(
     "white" => "fff",
     "black" => "000",
