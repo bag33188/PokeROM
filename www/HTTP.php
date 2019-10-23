@@ -2,6 +2,7 @@
   namespace www;
   require_once "WWW.php";
   use www\WWW as WWW;
+
   // check if file is NOT being included
   if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     // send 404 response code upon request
@@ -79,7 +80,7 @@
 
     public function getPortNumber() {
       if (!self::isProductionMode()) {
-        $port = explode($this->getHTTPHost(), ":")[1];
+        $port = explode(":", $this->getHTTPHost())[1];
         return $port;
       } else {
         return NULL;
