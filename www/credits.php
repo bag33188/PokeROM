@@ -205,7 +205,11 @@
     <div class="container border rounded">
       <h1 class="text-center mt-2">Credits</h1>
       <div class="text-center">
-        <p class="m-4">Sigh....<br />I wish there were more people on this list, but unfortunately this project was made solely by me.</p>
+        <p class="m-4">
+          <i>Sigh</i>....
+          <br />
+          I wish there were more people on this list, but unfortunately this project was made solely by me.
+        </p>
         <dl class="mt-4 text-center">
           <?php for ($i = 0; $i < count($creditsData); $i++): ?>
             <dt><?= $creditsData[$i]->term; ?></dt>
