@@ -4,12 +4,12 @@
   use www\WWW as WWW;
   use www\HTTP;
   $http = new HTTP();
-  if ($http->isHTTP() && WWW::isProductionMode()) {
+  $productionMode = WWW::isProductionMode();
+  if ($http->isHTTP() && $productionMode) {
     $http->redirectToHTTPS();
   }
   $documentTitle = "Pok&eacute;ROM - Credits";
   $currentUrl = WWW::getCurrentUrl();
-  $productionMode = WWW::isProductionMode();
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $me = "Broccolini";
   $navData = [

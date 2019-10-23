@@ -4,14 +4,14 @@
   use www\WWW as WWW;
   use www\HTTP;
   $http = new HTTP();
-  if ($http->isHTTP() && WWW::isProductionMode()) {
+  $productionMode = WWW::isProductionMode();
+  if ($http->isHTTP() && $productionMode) {
     $http->redirectToHTTPS();
   }
   $languages = WWW::languageData()["languages"];
   $tooltips = WWW::languageData()["tooltips"];
   $currentUrl = WWW::getCurrentUrl();
   $longestLanguage = WWW::findLongestLanguageName($languages, $tooltips);
-  $productionMode = WWW::isProductionMode();
   $documentTitle = "Pok&eacute;ROM - Languages Used";
   $cssColors = array(
     "white" => "fff",
