@@ -39,8 +39,8 @@
      * @return void Nothing.
      */
     function print_meta_tags() {
-      // create head tags array
-      $head_tags = array(
+      // create meta tags array
+      $meta_tags = array(
         "<meta charset=\"UTF-8\" />",
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
         "<meta http-equiv=\"X-UA-Compatible\" content=\"IE-Edge\" />",
@@ -48,10 +48,10 @@
         "<meta name=\"copyright\" content=\"Copyright (c) 2019 bag33188\" />",
         "<meta name=\"language\" content=\"EN\" />"
       );
-      // loop thru head tags array
-      foreach ($head_tags as $head_tag) {
-        // print out each head tag followed by a newline character
-        echo $head_tag . "\n";
+      // loop thru meta tags array
+      foreach ($meta_tags as $meta_tag) {
+        // print out each head meta followed by a newline character
+        echo $meta_tag . "\n";
       }
     }
     // call/invoke function
