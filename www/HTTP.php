@@ -28,8 +28,10 @@
      */
     public function __construct()
     {
-      $this->setCurrentURI(self::getCurrentUrl());
-      $this->setCurrentURL(str_replace($this->getProtocol(), "", $this->currentURL));
+      $currentURL = str_replace($this->getProtocol(), "", $this->currentURL);
+      $currentURI = self::getCurrentUrl();
+      $this->setCurrentURI($currentURI);
+      $this->setCurrentURL($currentURL);
     }
 
     /**
@@ -57,11 +59,17 @@
       }
     }
 
+    /**
+     * @return mixed The HTTP host.
+     */
     private function getHTTPHost() {
       $httpHost = $_SERVER["HTTP_HOST"];
       return $httpHost;
     }
 
+    /**
+     * @return mixed The request URI.
+     */
     private function getRequestURI() {
       $requestURI = $_SERVER["REQUEST_URI"];
       return $requestURI;
@@ -78,6 +86,9 @@
       }
     }
 
+    /**
+     * @return string|null The port number being served on localhost.
+     */
     public function getPortNumber() {
       if (!self::isProductionMode()) {
         $port = explode(":", $this->getHTTPHost())[1];
@@ -87,6 +98,9 @@
       }
     }
 
+    /**
+     * @return string|null The page name.
+     */
     public function getPageName() {
       if (!self::isProductionMode()) {
         $pageName = preg_replace("/((?:\.?\/)|(?:\.php))/", "", $this->getRequestURI());
