@@ -44,6 +44,7 @@
   <head>
     <?php include_once "head_tags.inc.php"; ?>
     <title><?= $documentTitle; ?></title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
       *,
       ::after,
