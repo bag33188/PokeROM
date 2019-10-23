@@ -129,8 +129,14 @@
           max-width: 1140px;
         }
       }
+      .w-100 {
+        width: 100% !important;
+      }
       .m-3 {
         margin: 1rem !important;
+      }
+      .mb-0 {
+          margin-bottom: 0rem !important;
       }
       .p-0 {
         padding: 0 !important;
@@ -140,6 +146,15 @@
       }
       .text-center {
         text-align: center !important;
+      }
+      hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
       }
       @media print {
         *,
@@ -231,28 +246,28 @@
     <div class="container border rounded">
       <h1 class="text-center m-3">Programming Languages Used</h1>
       <div id="flex-wrapper">
-        <div id="languages-wrapper" class="text-center">
-          <ul class="p-0" id="languages">
-            <?php for ($i = 0; $i < count($languages); $i++): ?>
-              <li title="<?= $tooltips[$i]; ?>"><?= $languages[$i]; ?></li>
-            <?php endfor; ?>
-          </ul>
-          <div class="text-center">
-            <p>
-              <b>Total: <?= strval(sizeof($languages)); ?></b>
-              <br />
-            </p>
-            <nav id="nav">
-              <?php for ($i = 0; $i < count($navData); $i++): ?>
-                <a href="<?= $navData[$i]->href; ?>" target="<?= $navData[$i]->target; ?>">
-                  <?= $navData[$i]->text . "\n"; ?>
-                </a>
-                <?php if ($i < sizeof($navData) - 1): ?>
-                  <span>&nbsp;|&nbsp;</span>
-                <?php endif; ?>
+        <div class="text-center w-100">
+          <div  id="languages-wrapper">
+            <ul class="p-0" id="languages">
+              <?php for ($i = 0; $i < count($languages); $i++): ?>
+                <li title="<?= $tooltips[$i]; ?>"><?= $languages[$i]; ?></li>
               <?php endfor; ?>
-            </nav>
+            </ul>
+            <p class="mb-0">
+              <b>Total: <?= strval(sizeof($languages)); ?></b>
+            </p>
           </div>
+          <hr />
+          <nav id="nav">
+            <?php for ($i = 0; $i < count($navData); $i++): ?>
+              <a href="<?= $navData[$i]->href; ?>" target="<?= $navData[$i]->target; ?>">
+                <?= $navData[$i]->text . "\n"; ?>
+              </a>
+              <?php if ($i < sizeof($navData) - 1): ?>
+                <span>&nbsp;|&nbsp;</span>
+              <?php endif; ?>
+            <?php endfor; ?>
+          </nav>
         </div>
       </div>
     </div>
