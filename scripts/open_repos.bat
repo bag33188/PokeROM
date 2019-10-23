@@ -16,8 +16,6 @@ REM.||(
 :OPEN_REPOS
   REM Main PokeROM Github Repository
   START "" https://github.com/bag33188/PokeROM
-  REM Bcrypt.JS Password Hash Generator repository
-  START "" https://github.com/bag33188/pw-hash-gen
   REM Website Loading Bar NPM Package repository
   START "" https://github.com/bag33188/progressive-loading-bar
   REM Go up one directory
