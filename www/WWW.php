@@ -1,10 +1,6 @@
 <?php
   namespace www;
 
-  // import error and exception classes
-  use Error;
-  use Exception;
-
   // check if file is NOT being included
   if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"])) {
     // send 404 response code upon request
@@ -53,7 +49,6 @@
 
     /**
      * @return mixed Object array of api version data.
-     * @throws Exception
      */
     public static function getApiVersionData()
     {

@@ -190,6 +190,13 @@
         margin-bottom: 1rem;
       }
     </style>
+    <script type="text/javascript">
+      "use strict";
+
+      <?php if (!$productionMode): ?>
+        console.log("<?= $http->getPageName(); ?> page being served @ port <?= $http->getPortNumber(); ?>");
+      <?php endif; ?>
+    </script>
   </head>
   <body class="p-3">
     <div class="container border rounded">

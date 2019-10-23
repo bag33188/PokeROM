@@ -218,6 +218,10 @@
 
       // use JavaScript document ready function
       ready(setWidthOfLanguagesWrapper);
+
+      <?php if (!$productionMode): ?>
+        console.log("<?= $http->getPageName(); ?> page being served @ port <?= $http->getPortNumber(); ?>");
+      <?php endif; ?>
     </script>
   </head>
   <body class="p-3">
