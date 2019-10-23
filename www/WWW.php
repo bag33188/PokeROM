@@ -133,4 +133,9 @@
       // return longest language (in terms of length)
       return $longestLang;
     }
+
+    public static function isProductionMode() {
+      $currentUrl = WWW::getCurrentUrl();
+      return (strpos($currentUrl, "localhost") !== false) ? false : true;
+    }
   }

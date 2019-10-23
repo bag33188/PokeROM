@@ -3,7 +3,7 @@
   use www\WWW as WWW;
   $documentTitle = "Pok&eacute;ROM - Credits";
   $currentUrl = WWW::getCurrentUrl();
-  $productionMode = strpos($currentUrl, "localhost") ? false : true;
+  $productionMode = WWW::isProductionMode();
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $me = "Broccolini";
   $navData = [
@@ -13,7 +13,7 @@
     (object) array("href" => $homeUrl . "sitemap.xml", "target" => "_blank", "text" => "Sitemap"),
     (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
   ];
-  if (strpos($currentUrl, "localhost") !== false) {
+  if (!$productionMode) {
     $apiVersion = WWW::getApiVersionData()->api_version;
     $navObj = new stdClass();
     $navObj->href = "/api/docs/" . $apiVersion . "/";
