@@ -1,7 +1,7 @@
 <?php
   require_once "WWW.php";
   use www\WWW as WWW;
-  use www\HTTP as HTTP;
+  use www\HTTP;
   $http = new HTTP();
   if ($http->isHTTP()) {
     $http->redirectToHTTPS();
