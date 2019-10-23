@@ -1,6 +1,11 @@
 <?php
   require_once "WWW.php";
   use www\WWW as WWW;
+  use www\HTTP as HTTP;
+  $http = new HTTP();
+  if ($http->isHTTP()) {
+    $http->redirectToHTTPS();
+  }
   $documentTitle = "Pok&eacute;ROM - Credits";
   $currentUrl = WWW::getCurrentUrl();
   $productionMode = WWW::isProductionMode();

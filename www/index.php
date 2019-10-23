@@ -1,6 +1,11 @@
 <?php
   require_once "WWW.php";
   use www\WWW as WWW;
+  use www\HTTP as HTTP;
+  $http = new HTTP();
+  if ($http->isHTTP()) {
+    $http->redirectToHTTPS();
+  }
   $apiVersionData = WWW::getApiVersionData();
   $documentTitle = "API Docs (Redirect)";
   $cssColors = array(
