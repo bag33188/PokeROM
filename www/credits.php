@@ -180,6 +180,7 @@
       #nav {
         display: block;
         text-align: center;
+        white-space: nowrap;
         margin-bottom: 1rem;
       }
     </style>
