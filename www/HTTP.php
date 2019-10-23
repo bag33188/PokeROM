@@ -1,7 +1,7 @@
 <?php
   namespace www;
-  use www\WWW as WWW;
   require_once "WWW.php";
+  use www\WWW as WWW;
   class HTTP extends WWW {
     protected $currentUrl;
 
