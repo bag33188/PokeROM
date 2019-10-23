@@ -196,6 +196,8 @@
 
       <?php if (!$productionMode): ?>
         console.log("<?= "`" . $http->getPageName() . "`"; ?> page being served @ port <?= $http->getPortNumber(); ?>");
+      <?php else: ?>
+        console.log("The grand project is now complete.");
       <?php endif; ?>
     </script>
   </head>
