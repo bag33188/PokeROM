@@ -92,7 +92,7 @@
       "use strict";
 
       <?php if (!$productionMode): ?>
-        console.log("<?= "`" . $http->getPageName() . "`"; ?> page being served @ port <?= $http->getPortNumber(); ?>");
+        console.log("<?= "`" . $http->getPageName() . "`"; ?> page now being served @ port <?= $http->getPortNumber(); ?>");
       <?php endif; ?>
 
       <?php if ($apiVersionData->success == 1): ?>

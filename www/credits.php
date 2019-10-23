@@ -195,7 +195,7 @@
       "use strict";
 
       <?php if (!$productionMode): ?>
-        console.log("<?= "`" . $http->getPageName() . "`"; ?> page being served @ port <?= $http->getPortNumber(); ?>");
+        console.log("<?= "`" . $http->getPageName() . "`"; ?> page now being served @ port <?= $http->getPortNumber(); ?>");
       <?php else: ?>
         console.log("The grand project is now complete.");
       <?php endif; ?>
