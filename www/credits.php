@@ -3,15 +3,15 @@
   require_once "HTTP.php";
   use www\WWW as WWW;
   use www\HTTP;
-  $productionMode = WWW::isProductionMode();
   $http = new HTTP();
-  if ($http->isHTTP() && $productionMode) {
-    $http->redirectToHTTPS();
-  }
+  $productionMode = WWW::isProductionMode();
   $currentUrl = WWW::getCurrentUrl();
   $documentTitle = "Pok&eacute;ROM - Credits";
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $me = "Broccolini";
+  if ($http->isHTTP()) {
+    $http->redirectToHTTPS();
+  }
   $creditsData = [
     (object) array("term" => "Front End (Client Side)", "definition" => $me),
     (object) array("term" => "Back End (Server Side)", "definition" => $me),

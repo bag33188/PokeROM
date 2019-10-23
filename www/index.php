@@ -4,12 +4,12 @@
   use www\WWW as WWW;
   use www\HTTP;
   $http = new HTTP();
-  if ($http->isHTTP() && WWW::isProductionMode()) {
-    $http->redirectToHTTPS();
-  }
   $apiVersionData = WWW::getApiVersionData();
   $productionMode = WWW::isProductionMode();
   $documentTitle = "API Docs (Redirect)";
+  if ($http->isHTTP()) {
+    $http->redirectToHTTPS();
+  }
   $cssColors = array(
     "white" => "fff",
     "black" => "000",

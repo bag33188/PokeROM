@@ -3,17 +3,17 @@
   require_once "HTTP.php";
   use www\WWW as WWW;
   use www\HTTP;
-  $productionMode = WWW::isProductionMode();
   $http = new HTTP();
-  if ($http->isHTTP() && $productionMode) {
-    $http->redirectToHTTPS();
-  }
+  $productionMode = WWW::isProductionMode();
   $languages = WWW::languageData()["languages"];
   $tooltips = WWW::languageData()["tooltips"];
   $currentUrl = WWW::getCurrentUrl();
   $longestLanguage = WWW::findLongestLanguageName($languages, $tooltips);
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $documentTitle = "Pok&eacute;ROM - Languages Used";
+  if ($http->isHTTP()) {
+    $http->redirectToHTTPS();
+  }
   $cssColors = array(
     "white" => "fff",
     "black" => "000",

@@ -130,7 +130,7 @@
      */
     public function redirectToHTTPS() {
       // make sure protocol is not already https
-      if ($this->getProtocol() == "http://") {
+      if ($this->getProtocol() == "http://" && self::isProductionMode()) {
         // set location to protocol plus current url
         $location = $this->getProtocol() . $this->currentURL;
         // redirect using header
