@@ -3,30 +3,15 @@
   require_once "HTTP.php";
   use www\WWW as WWW;
   use www\HTTP;
-  $http = new HTTP();
   $productionMode = WWW::isProductionMode();
+  $http = new HTTP();
   if ($http->isHTTP() && $productionMode) {
     $http->redirectToHTTPS();
   }
-  $documentTitle = "Pok&eacute;ROM - Credits";
   $currentUrl = WWW::getCurrentUrl();
+  $documentTitle = "Pok&eacute;ROM - Credits";
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $me = "Broccolini";
-  $navData = [
-    (object) array("href" => $homeUrl, "target" => "_self", "text" => "Home"),
-    (object) array("href" => "./info.html", "target" => "_self", "text" => "Info"),
-    (object) array("href" => "./languages.php", "target" => "_self", "text" => "Languages"),
-    (object) array("href" => $homeUrl . "sitemap.xml", "target" => "_blank", "text" => "Sitemap"),
-    (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
-  ];
-  if (!$productionMode) {
-    $apiVersion = WWW::getApiVersionData()->api_version;
-    $navObj = new stdClass();
-    $navObj->href = "/api/docs/" . $apiVersion . "/";
-    $navObj->target = "_self";
-    $navObj->text = "Docs";
-    $navData[] = $navObj;
-  }
   $creditsData = [
     (object) array("term" => "Front End (Client Side)", "definition" => $me),
     (object) array("term" => "Back End (Server Side)", "definition" => $me),
@@ -45,6 +30,21 @@
     "anchor-hover-blue" => "0056b3",
     "light-gray" => "dee2e6"
   );
+  $navData = [
+    (object) array("href" => $homeUrl, "target" => "_self", "text" => "Home"),
+    (object) array("href" => "./info.html", "target" => "_self", "text" => "Info"),
+    (object) array("href" => "./languages.php", "target" => "_self", "text" => "Languages"),
+    (object) array("href" => $homeUrl . "sitemap.xml", "target" => "_blank", "text" => "Sitemap"),
+    (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
+  ];
+  if (!$productionMode) {
+    $apiVersion = WWW::getApiVersionData()->api_version;
+    $navObj = new stdClass();
+    $navObj->href = "/api/docs/" . $apiVersion . "/";
+    $navObj->target = "_self";
+    $navObj->text = "Docs";
+    $navData[] = $navObj;
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en-US">

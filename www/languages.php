@@ -3,8 +3,8 @@
   require_once "HTTP.php";
   use www\WWW as WWW;
   use www\HTTP;
-  $http = new HTTP();
   $productionMode = WWW::isProductionMode();
+  $http = new HTTP();
   if ($http->isHTTP() && $productionMode) {
     $http->redirectToHTTPS();
   }
@@ -12,6 +12,7 @@
   $tooltips = WWW::languageData()["tooltips"];
   $currentUrl = WWW::getCurrentUrl();
   $longestLanguage = WWW::findLongestLanguageName($languages, $tooltips);
+  $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $documentTitle = "Pok&eacute;ROM - Languages Used";
   $cssColors = array(
     "white" => "fff",
@@ -22,8 +23,6 @@
     "dark-blue" => "0056b3",
     "light-gray" => "dee2e6"
   );
-  $productionMode = strpos($currentUrl, "localhost") ? false : true;
-  $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $navData = [
     (object) array("href" => $homeUrl, "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "Info"),
