@@ -505,24 +505,24 @@ module.exports.patchRom = async (req, res, next) => {
         const isOwnUser =
           fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          await Rom.patchRom(id, { $set: query }, (err, status) => {
+          await Rom.patchRom(id, { $set: query }, async (err, status) => {
             if (err) {
               switch (err.name) {
                 case 'CastError':
-                  return res.status(404).json({ success: false, ...err });
+                  return await res.status(404).json({ success: false, ...err });
                 case 'ValidationError':
-                  return res.status(406).json({ success: false, ...err });
+                  return await res.status(406).json({ success: false, ...err });
                 default:
-                  return res.status(500).json({ success: false, ...err });
+                  return await res.status(500).json({ success: false, ...err });
               }
             }
             if (!status) {
-              return res.status(502).json({
+              return await res.status(502).json({
                 success: false,
                 message: 'Bad gateway.'
               });
             }
-            getRomById(id, req, res, rom => {
+            await getRomById(id, req, res, rom => {
               clearCache(req);
 
               return res.status(200).json(rom);
