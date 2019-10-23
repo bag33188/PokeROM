@@ -4,7 +4,7 @@
   use www\WWW as WWW;
   use www\HTTP;
   $http = new HTTP();
-  if ($http->isHTTP()) {
+  if ($http->isHTTP() && WWW::isProductionMode()) {
     $http->redirectToHTTPS();
   }
   $documentTitle = "Pok&eacute;ROM - Credits";
