@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>Pok&eacute;ROM Info</title>
+    <title>Pok&eacute;ROM - Info</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style type="text/css">
       *,
@@ -278,6 +278,15 @@
       }
 
       init();
+
+      if (location.href.includes('localhost')) {
+        console.log(
+          `${document.title.replace(
+            /Pok\u00E9ROM\s-\s/,
+            ''
+          )} now being served @ port ${location.host.split(':')[1]}`
+        );
+      }
     </script>
   </head>
   <body class="p-3">
