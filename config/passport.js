@@ -10,7 +10,7 @@ function passport(passportJwt) {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: secret
   };
-  // jwt strategy middelware
+  // jwt strategy middleware
   passportJwt.use(
     new JwtStrategy(opts, async (jwt_payload, done) => {
       try {
