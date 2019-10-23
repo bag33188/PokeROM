@@ -18,15 +18,6 @@
   class WWW
   {
     /**
-     * WWW constructor.
-     * @throws Error class cannot be instantiated.
-     */
-    public function __construct()
-    {
-      throw new Error("Error: WWW class is not meant to be instantiated.");
-    }
-
-    /**
      * @return array Array of languages and tooltips.
      */
     public static function languageData()
