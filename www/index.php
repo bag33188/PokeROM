@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <?php include_once "head_tags.inc.php"; ?>
+    <?php include_once "metadata.inc.php"; ?>
     <meta http-equiv="refresh" content="0;url=/api/docs/<?= $apiVersionData->api_version; ?>/" />
     <title><?= $documentTitle; ?></title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
