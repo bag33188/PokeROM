@@ -5,6 +5,7 @@
   $currentUrl = WWW::getCurrentUrl();
   $productionMode = strpos($currentUrl, "localhost") ? false : true;
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
+  $me = "Broccolini";
   $navData = [
     (object) array("href" => $homeUrl, "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "Info"),
@@ -21,11 +22,11 @@
     $navData[] = $navObj;
   }
   $creditsData = [
-    (object) array("term" => "Front End (Client Side)", "definition" => "Broccolini"),
-    (object) array("term" => "Back End (Server Side)", "definition" => "Broccolini"),
-    (object) array("term" => "Server Admin/Management", "definition" => "Broccolini"),
-    (object) array("term" => "Testing", "definition" => "Broccolini"),
-    (object) array("term" => "Logo", "definition" => "Broccolini and Google"),
+    (object) array("term" => "Front End (Client Side)", "definition" => $me),
+    (object) array("term" => "Back End (Server Side)", "definition" => $me),
+    (object) array("term" => "Server Admin/Management", "definition" => $me),
+    (object) array("term" => "Testing", "definition" => $me),
+    (object) array("term" => "Logo", "definition" => $me . " and Google"),
     (object) array("term" => "Images", "definition" => "Google"),
     (object) array("term" => "Icons", "definition" => "Fontawesome"),
     (object) array("term" => "Fonts", "definition" => "fontshop.com")
