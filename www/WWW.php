@@ -57,26 +57,21 @@
      */
     public static function getApiVersionData()
     {
-      try {
-        $filePath = "../docs/swagger-definition.yml";
-        $file = fopen($filePath, "r");
-        $fileSize = filesize($filePath);
-        $fileText = fread($file, $fileSize);
-        define("VERSION_REGEX", "/((?:version:)(?:\s)(?:v\d))/i");
-        $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
-        if ($versionExists == true) {
-          $version[0] = str_replace("version: ", "", $version[0]);
-          return array(
-            (object) array("success" => true, "api_version" => $version[0])
-          )[0];
-        } else {
-          return array(
-            (object) array("success" => false, "api_version" => NULL)
-          )[0];
-        }
-      } catch (Exception $e) {
-        # print_r($e);
-       throw new Exception("Error: file not found.");
+      $filePath = "../docs/swagger-definition.yml";
+      $file = fopen($filePath, "r");
+      $fileSize = filesize($filePath);
+      $fileText = fread($file, $fileSize);
+      define("VERSION_REGEX", "/((?:version:)(?:\s)(?:v\d))/i");
+      $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
+      if ($versionExists == true) {
+        $version[0] = str_replace("version: ", "", $version[0]);
+        return array(
+          (object) array("success" => true, "api_version" => $version[0])
+        )[0];
+      } else {
+        return array(
+          (object) array("success" => false, "api_version" => NULL)
+        )[0];
       }
     }
 
