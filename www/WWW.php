@@ -134,8 +134,13 @@
       return $longestLang;
     }
 
+    /**
+     * @return bool If production mode is active.
+     */
     public static function isProductionMode() {
+      // store current url
       $currentUrl = WWW::getCurrentUrl();
+      // check if localhost is in current url
       return (strpos($currentUrl, "localhost") !== false) ? false : true;
     }
   }
