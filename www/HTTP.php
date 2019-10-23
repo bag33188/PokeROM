@@ -8,13 +8,22 @@
     header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
   }
   class HTTP extends WWW {
+    /**
+     * @var mixed The current url.
+     */
     protected $currentUrl;
 
+    /**
+     * HTTP constructor.
+     */
     public function __construct()
     {
       $this->currentUrl = str_replace($this->getProtocol(), "", self::getCurrentUrl());
     }
 
+    /**
+     * @return string The current HTTP protocol in URL format.
+     */
     private function getProtocol() {
       if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") {
         return "https://";
@@ -23,6 +32,9 @@
       }
     }
 
+    /**
+     * @return bool If HTTP protocol is being use (or HTTPS).
+     */
     public function isHTTP() {
       if (strpos($this->getProtocol(), "s")) {
         return false;
@@ -31,6 +43,9 @@
       }
     }
 
+    /**
+     * @return void Nothing.
+     */
     public function redirectToHTTPS() {
       if ($this->getProtocol() == "http://") {
         $location = $this->getProtocol() . $this->currentUrl;
