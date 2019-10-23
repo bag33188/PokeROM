@@ -220,7 +220,7 @@
       ready(setWidthOfLanguagesWrapper);
 
       <?php if (!$productionMode): ?>
-        console.log("<?= $http->getPageName(); ?> page being served @ port <?= $http->getPortNumber(); ?>");
+        console.log("<?= "`" . $http->getPageName() . "`"; ?> page being served @ port <?= $http->getPortNumber(); ?>");
       <?php endif; ?>
     </script>
   </head>
