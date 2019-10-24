@@ -54,10 +54,10 @@ class PwHashGen {
  */
 function init() {
   // instantiate `PwHashGen` class.
-    const PasswordHashGenerator = new PwHashGen();
+  const PasswordHashGenerator = new PwHashGen();
 
   // invoke `genPw` method from `PwHashGen` class
-    PasswordHashGenerator.genPw();
+  PasswordHashGenerator.genPw();
 }
 
 // call/invoke init function
