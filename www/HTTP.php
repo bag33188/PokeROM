@@ -133,7 +133,8 @@
       if ($this->isHTTP() && self::isProductionMode()) {
         // set location to protocol plus current url
         $location = $this->getProtocol() . $this->currentURL;
-        // redirect using header
+        // redirect using headers
+        header('HTTP/1.1 301 Moved Permanently');
         header("Location: " . $location);
       }
     }
