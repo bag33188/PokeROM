@@ -93,7 +93,7 @@
      */
     public function getPortNumber() {
       // make sure env is in dev mode
-      if (!self::isProductionMode()) {
+      if (!parent::isProductionMode()) {
         // split http host into array by colon char and grab second item
         $port = explode(":", $this->getHTTPHost())[1];
         return $port;
@@ -108,7 +108,7 @@
      */
     public function getPageName() {
       // make sure env is dev
-      if (!self::isProductionMode()) {
+      if (!parent::isProductionMode()) {
         // make sure const is not already defined
         if (!defined("EXT_REGEXP")) {
           // define regexp const
@@ -130,7 +130,7 @@
      */
     public function redirectToHTTPS() {
       // make sure protocol is not already https
-      if ($this->isHTTP() && self::isProductionMode()) {
+      if ($this->isHTTP() && parent::isProductionMode()) {
         // set location to protocol plus current url
         $location = $this->getProtocol() . $this->currentURL;
         // redirect using headers
