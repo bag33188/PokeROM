@@ -84,8 +84,9 @@
      * @return bool If HTTP protocol is being use (or HTTPS).
      */
     private function isHTTP() {
-      // return true if char `s` is in protocol (https), false if not
-      return (!strpos($this->getProtocol(), "s")) ? true : false;
+      // set to true if char `s` is in protocol (https), false if not
+      $isHttp = (!strpos($this->getProtocol(), "s")) ? true : false;
+      return $isHttp;
     }
 
     /**
