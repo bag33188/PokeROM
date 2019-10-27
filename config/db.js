@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const config = require('config');
-const bluebird = require('bluebird');
 const {
   certificate,
   certificateKey,
@@ -37,7 +36,6 @@ async function connectDB(options) {
     if (process.env.NODE_ENV === 'production') {
       await mongoose.connect(db, {
         useNewUrlParser: true,
-        promiseLibrary: bluebird,
         ssl: true,
         sslValidate: true,
         sslCert: certificate,
@@ -46,8 +44,7 @@ async function connectDB(options) {
       });
     } else {
       await mongoose.connect(db, {
-        useNewUrlParser: true,
-        promiseLibrary: bluebird
+        useNewUrlParser: true
       });
     }
     console.log(`Connected to database ${config.mongoURI}`);
