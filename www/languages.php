@@ -133,7 +133,7 @@
         margin: 1rem !important;
       }
       .mb-0 {
-          margin-bottom: 0rem !important;
+          margin-bottom: 0 !important;
       }
       .p-0 {
         padding: 0 !important;
