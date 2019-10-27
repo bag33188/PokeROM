@@ -53,6 +53,24 @@
       </p>
     </ng-container>
     <ng-container>
+      <h2 class="mt-3">Responsiveness</h2>
+      <p>
+        <span class="question">Is this website mobile-friendly?</span>
+        <br />
+        <span class="answer"
+          >Yes, this website will work on screens as small as
+          <code>320px</code> in height/width.</span
+        >
+        <br /><br />
+        <span class="question">Does this website have a mobile version?</span>
+        <br />
+        <span class="answer"
+          >No, this app is all one version itself. It will transform into a
+          mobile interface as its viewport gets smaller.</span
+        >
+      </p>
+    </ng-container>
+    <ng-container>
       <h2 class="mt-3">
         Open Source&nbsp;<i class="fa fa-code" id="code-icon"></i>
       </h2>
@@ -60,74 +78,18 @@
         <span class="question">Is this project open source?</span>
         <br />
         <span class="answer"
-          >No; however, it does use source control. <br />You can view a list of
-          programming languages used for this app
+          >No; however, it does use <code>source control</code>. <br />You can
+          view a list of programming languages used for this app
           <a
             [href]="
               environment.production
                 ? '/languages.php'
-                : environment.apiUrl.replace('api', '') + 'languages.php'
+                : environment.apiUrl.replace('/api', '') + '/languages.php'
             "
             target="_self"
             >here</a
           >.</span
         >
-      </p>
-    </ng-container>
-    <ng-container *ngIf="false">
-      <!-- *ngIf="colesBooleans[3]" -->
-      <h2 class="mt-3">Is Cole Sexy?</h2>
-      <p>
-        Cole is very sexy indeed (<em
-          >oh, and don't get me started on that speedo outfit</em
-        >; btw i'm straight). <br /><br />
-        <button
-          type="button"
-          class="btn btn-info"
-          (click)="colesBooleans[0] = true"
-        >
-          What does Cole wish he could do?
-        </button>
-        <ng-container *ngIf="colesBooleans[0]">
-          <br /><br />
-          <span>Show Yours truly anime-porn.</span>
-          <br />
-          <button
-            type="button"
-            class="btn btn-info mt-3"
-            (click)="colesBooleans[1] = true"
-          >
-            But will he?
-          </button>
-          <ng-container *ngIf="colesBooleans[1]">
-            <br /><br />
-            <span>Hell naw. Your boy is too religious.</span>
-            <br />
-            <button
-              type="button"
-              class="mt-3 btn btn-info"
-              (click)="colesBooleans[2] = true"
-            >
-              What religion?
-            </button>
-            <ng-container *ngIf="colesBooleans[2]">
-              <br /><br />
-              <span
-                >JEEEEEEEEWWW!!!<br />oh and Cole, maybe you can point to where
-                it says "palestine" on a map. cuz all i found was a place called
-                israel.</span
-              >
-              <br />
-              <button
-                type="button"
-                class="mt-3 btn btn-info"
-                (click)="colesBooleans[3] = false"
-              >
-                Okay, that's enough. clear this shit out!
-              </button>
-            </ng-container>
-          </ng-container>
-        </ng-container>
       </p>
     </ng-container>
     <ng-container>

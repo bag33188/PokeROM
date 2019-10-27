@@ -20,12 +20,10 @@ export class FaqComponent implements OnInit, AfterContentInit {
   @ViewChild('browserCompatibility', { static: true })
   private browserCompatibilityElement: ElementRef;
   public environment: Environment = environment;
-  public colesBooleans: boolean[];
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.colesBooleans = [false, false, false, true];
     this.emulatorUrl = 'https://www.retroarch.com';
   }
 

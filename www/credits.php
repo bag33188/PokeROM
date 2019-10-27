@@ -206,7 +206,8 @@
         <p class="m-4">
           <i>Sigh</i>....
           <br />
-          I wish there were more people on this list, but unfortunately this project was made solely by me.
+          I wish there were more people on this list, but unfortunately this project was made solely by me
+          (for legal reasons).
         </p>
         <dl class="mt-4 text-center">
           <?php for ($i = 0; $i < count($creditsData); $i++): ?>
