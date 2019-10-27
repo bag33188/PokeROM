@@ -15,7 +15,7 @@ const db = config.get('mongoURI');
  * @name connectDB
  * @summary Connect to Database
  * @description Connects to MongoDB.
- * @param options Options to avoid deprecation.
+ * @param {object} options Options to avoid deprecation.
  * @returns {Promise<void>} Database connection.
  */
 async function connectDB(options) {
