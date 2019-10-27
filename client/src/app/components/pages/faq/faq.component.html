@@ -74,6 +74,56 @@
         >
       </p>
     </ng-container>
+    <ng-container *ngIf="colesBooleans[3]">
+      <h2 class="mt-3">Is Cole Sexy?</h2>
+      <p>
+        Cole is very sexy indeed.
+        <br /><br />
+        <button
+          type="button"
+          class="btn btn-info"
+          (click)="colesBooleans[0] = true"
+        >
+          What does Cole wish he could do?
+        </button>
+        <ng-container *ngIf="colesBooleans[0]">
+          <br /><br />
+          <span>Show Yours truly anime-porn.</span>
+          <br />
+          <button
+            type="button"
+            class="btn btn-info mt-3"
+            (click)="colesBooleans[1] = true"
+          >
+            But will he?
+          </button>
+          <ng-container *ngIf="colesBooleans[1]">
+            <br /><br />
+            <span>Hell naw. Your boy is too religious.</span>
+            <br />
+            <button
+              type="button"
+              class="mt-3 btn btn-info"
+              (click)="colesBooleans[2] = true"
+            >
+              What religion?
+            </button>
+            <ng-container *ngIf="colesBooleans[2]">
+              <br /><br />
+              <span>JEEEEEEEEWWW!!!</span>
+              <br />
+              <button
+                type="button"
+                class="mt-3 btn btn-info"
+                (click)="colesBooleans[3] = false"
+              >
+                Okay, that's enough. clear this shit out!
+              </button>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </p>
+    </ng-container>
     <ng-container>
       <h2 id="browser-compatibility" #browserCompatibility>
         Browser Compatibility
