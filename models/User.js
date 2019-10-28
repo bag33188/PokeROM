@@ -97,7 +97,7 @@ module.exports.updateUser = (id, userData, options, callback, errCallback) => {
     username,
     password
   };
-  User.findOne({ username: username })
+  User.findOne({ username })
     .then((user, err) => {
       if (err) {
         console.log(err);
