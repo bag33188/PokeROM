@@ -4,11 +4,11 @@ const acceptedOrigins = (origin, callback) => {
   const whitelist =
     process.env.NODE_ENV === 'production'
       ? ['https://pokerom.dev', 'https://www.pokerom.dev']
-      : ['http://localhost:4200', 'http://localhost:3000'];
+      : 'http://localhost:4200';
   if (whitelist.indexOf(origin) !== -1) {
     callback(null, true);
   } else if (!origin) {
-    callback(null, whitelist[0]);
+    callback(null, Array.isArray(whitelist) ? whitelist[0] : whitelist);
   } else {
     callback(new Error('Not allowed by CORS'), false);
   }
