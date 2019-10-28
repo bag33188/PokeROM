@@ -27,6 +27,8 @@ venv
 # Backup Files
 public/index.html.bak*
 
+# Other
+sandbox
 
 # Created by https://www.gitignore.io/api/node
 # Edit at https://www.gitignore.io/?templates=node

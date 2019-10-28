@@ -1,5 +1,19 @@
 const cors = require('cors');
 
+const acceptedOrigins = (origin, callback) => {
+  const whitelist =
+    process.env.NODE_ENV === 'production'
+      ? ['https://pokerom.dev', 'https://www.pokerom.dev']
+      : ['http://localhost:4200', 'http://localhost:3000'];
+  if (whitelist.indexOf(origin) !== -1) {
+    callback(null, true);
+  } else if (!origin) {
+    callback(null, whitelist[0]);
+  } else {
+    callback(new Error('Not allowed by CORS'), false);
+  }
+};
+
 module.exports = cors({
   credentials: true,
   exposedHeaders: [
@@ -29,17 +43,5 @@ module.exports = cors({
   maxAge: 86400,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
   optionsSuccessStatus: 204,
-  origin:
-    process.env.NODE_ENV === 'production'
-      ? (origin, callback) => {
-          const whitelist = ['https://pokerom.dev', 'https://www.pokerom.dev'];
-          if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true);
-          } else if (!origin) {
-            callback(null, whitelist[0]);
-          } else {
-            callback(new Error('Not allowed by CORS'), false);
-          }
-        }
-      : 'http://localhost:4200'
+  origin: acceptedOrigins
 });
