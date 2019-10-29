@@ -1,10 +1,11 @@
 const cors = require('cors');
 
+const whitelist =
+  process.env.NODE_ENV === 'production'
+    ? ['https://pokerom.dev', 'https://www.pokerom.dev']
+    : ['http://localhost:4200', 'http://localhost:8080'];
+
 const acceptedOrigins = (origin, callback) => {
-  const whitelist =
-    process.env.NODE_ENV === 'production'
-      ? ['https://pokerom.dev', 'https://www.pokerom.dev']
-      : ['http://localhost:4200', 'http://localhost:8080'];
   if (whitelist.indexOf(origin) > -1) {
     callback(null, true);
   } else if (!origin) {
