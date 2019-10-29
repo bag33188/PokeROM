@@ -23,7 +23,7 @@ function parseVersion(apiVersion) {
   swaggerDefinition[keys[0]][keys[1]][keys[2]] = swaggerDefinition[keys[0]][
     keys[1]
   ][keys[2]].replace(
-    /((?:<%(?:[=#]?))(?:\s?)(?:[Vv][Ee][Rr][Ss][Ii][Oo][Nn])(?:\s?)(?:%>))/i,
+    /((?:<%(?:[=#]?))(?:\s?)(?:VERSION)(?:\s?)(?:%>))/i,
     apiVersion
   );
   return apiVersion;
