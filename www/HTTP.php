@@ -135,7 +135,7 @@
         // set location to protocol plus current url
         $location = $this->getProtocol() . $this->currentURL;
         // redirect using headers
-        header('HTTP/1.1 301 Moved Permanently');
+        header($_SERVER['SERVER_PROTOCOL'] . ' 301 Moved Permanently');
         header("Location: " . $location);
       }
     }
