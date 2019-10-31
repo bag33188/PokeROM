@@ -1,12 +1,12 @@
+@use '../../../../assets/scss/mixins';
 @import '../../../../assets/scss/variables';
-@import '../../../../assets/scss/mixins';
 
 #form-container {
   // mixins
-  @include responsive-width(100px, 992px, 45vw);
-  @include responsive-width(991px, 762px, 55vw);
-  @include responsive-width(761px, 703px, 63vw);
-  @include responsive-width(0, 702px, 70vw);
+  @include mixins.responsive-width(100px, 992px, 45vw);
+  @include mixins.responsive-width(991px, 762px, 55vw);
+  @include mixins.responsive-width(761px, 703px, 63vw);
+  @include mixins.responsive-width(0, 702px, 70vw);
   margin: 0 auto;
   padding-top: 1rem;
   width: 32vw;
