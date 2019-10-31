@@ -181,7 +181,7 @@ module.exports.registerUser = async (req, res, next) => {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
     let isValid = true;
-    for (let field of Object.keys(req.body)) {
+    for (const field of Object.keys(req.body)) {
       if (!['name', 'username', 'password'].includes(field)) {
         isValid = false;
         break;
