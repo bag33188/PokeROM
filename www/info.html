@@ -229,14 +229,14 @@
           Info.getApiVersion()
             .then(res => {
               if (!productionMode) {
-                const productionNav = [
+                const devNavItems = [
                   {
                     href: `/api/docs/${res.api_version}/`,
                     target: '_self',
                     text: 'Docs'
                   }
                 ];
-                productionNav.forEach(navItem => {
+                devNavItems.forEach(navItem => {
                   navData.push(navItem);
                 });
               }
