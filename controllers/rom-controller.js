@@ -8,15 +8,13 @@ const [, clearCache] = require('../middleware/cache');
 
 const routesWithParams = ['core', 'hacks'];
 
-function convertToDateFormat(date) {
-  if (date) {
-    const dateArr = date.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
-    const monthIndex = parseInt(dateArr[0], 10) - 1;
-    const day = parseInt(dateArr[1], 10);
-    const year = parseInt(dateArr[2], 10);
-    return new Date(year, monthIndex, day);
-  }
-}
+String.prototype.convertToDateFormat = function() {
+  const dateArr = this.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
+  const monthIndex = parseInt(dateArr[0], 10) - 1;
+  const day = parseInt(dateArr[1], 10);
+  const year = parseInt(dateArr[2], 10);
+  return new Date(year, monthIndex, day);
+};
 
 function toBoolean(value) {
   switch (value) {
@@ -175,7 +173,7 @@ module.exports.getRom = async (req, res, next) => {
 
 module.exports.addRom = async (req, res, next) => {
   try {
-    req.body.date_released = convertToDateFormat(req.body.date_released);
+    req.body.date_released = req.body.date_released.convertToDateFormat();
     if (req.body.rom_type) {
       req.body.rom_type = req.body.rom_type.toLowerCase();
     }
@@ -304,7 +302,7 @@ module.exports.updateRom = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: 'ROM not found.' });
     }
-    req.body.date_released = convertToDateFormat(req.body.date_released);
+    req.body.date_released = req.body.date_released.convertToDateFormat();
     if (req.body.rom_type) {
       req.body.rom_type = req.body.rom_type.toLowerCase();
     }
@@ -443,7 +441,7 @@ module.exports.patchRom = async (req, res, next) => {
     }
     const query = req.body;
     if (req.body.date_released) {
-      req.body.date_released = convertToDateFormat(req.body.date_released);
+      req.body.date_released = req.body.date_released.convertToDateFormat();
     }
     const {
       file_size,
