@@ -1,5 +1,5 @@
 module.exports.options = (req, res) => {
-  res.status(200);
+  res.status(204);
 };
 
 module.exports.all = (req, res) => {
