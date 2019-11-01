@@ -66,6 +66,31 @@ function checkValidId(id, req, res) {
   return id;
 }
 
+function handleErrors(req, res) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(406).json({ success: false, errors: errors.array() });
+  }
+}
+
+function checkValidFields(req, res) {
+  let isValid = true;
+  for (const field of Object.keys(req.body)) {
+    if (!['_id', 'name', 'username', 'password'].includes(field)) {
+      isValid = false;
+      break;
+    } else {
+      isValid = !(field === 'password' && pwdRegex.test(field));
+      req.sanitize(field);
+    }
+  }
+  if (!isValid) {
+    return res
+      .status(406)
+      .json({ success: false, message: 'Body contains invalid fields.' });
+  }
+}
+
 function checkMultipleErrs(err, req, res) {
   if (err) {
     switch (err.name) {
@@ -192,25 +217,8 @@ module.exports.registerUser = async (req, res, next) => {
       password: req.sanitize(req.body.password)
     });
     const { name, username, password } = newUser;
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(406).json({ success: false, errors: errors.array() });
-    }
-    let isValid = true;
-    for (const field of Object.keys(req.body)) {
-      if (!['name', 'username', 'password'].includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = !(field === 'password' && pwdRegex.test(field));
-        req.sanitize(field);
-      }
-    }
-    if (!isValid) {
-      return res
-        .status(406)
-        .json({ success: false, message: 'Body contains invalid fields.' });
-    }
+    handleErrors(req, res);
+    checkValidFields(req, res);
     await User.addUser(
       newUser,
       async (err, user) => {
@@ -287,10 +295,7 @@ module.exports.registerUser = async (req, res, next) => {
 module.exports.authorizeUser = async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(406).json({ success: false, errors: errors.array() });
-    }
+    handleErrors(req, res);
     let isValid;
     for (const field of Object.keys(req.body)) {
       if (!['username', 'password'].includes(field)) {
@@ -356,25 +361,8 @@ module.exports.updateUser = async (req, res, next) => {
       password: req.sanitize(req.body.password)
     };
     const { name, username, password } = userData;
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(406).json({ success: false, errors: errors.array() });
-    }
-    let isValid = true;
-    for (const field of Object.keys(req.body)) {
-      if (!['_id', 'name', 'username', 'password'].includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = !(field === 'password' && pwdRegex.test(field));
-        req.sanitize(field);
-      }
-    }
-    if (!isValid) {
-      return res
-        .status(406)
-        .json({ success: false, message: 'Body contains invalid fields.' });
-    }
+    handleErrors(req, res);
+
     if (req.user['_id'].toString() === id.toString()) {
       await User.updateUser(
         id,
@@ -423,25 +411,8 @@ module.exports.patchUser = async (req, res, next) => {
     id = checkValidId(id, req, res);
     const query = req.body;
     const { username, password, name } = query;
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(406).json({ success: false, errors: errors.array() });
-    }
-    let isValid = true;
-    for (const field of Object.keys(req.body)) {
-      if (!['_id', 'name', 'username', 'password'].includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = !(field === 'password' && pwdRegex.test(field));
-        req.sanitize(field);
-      }
-    }
-    if (!isValid) {
-      return res
-        .status(406)
-        .json({ success: false, message: 'Body contains invalid fields.' });
-    }
+    handleErrors(req, res);
+    checkValidFields(req, res);
     if (req.user['_id'].toString() === id.toString()) {
       const updateQuery = { $set: query };
       await User.patchUser(

@@ -39,7 +39,8 @@ String.prototype.convertToDateFormat = function() {
   return new Date(year, monthIndex, day);
 };
 
-function checkValidFields(isValid, req) {
+function checkValidFields(req, res) {
+  let isValid = true;
   for (let field of Object.keys(req.body)) {
     if (!fields.includes(field)) {
       isValid = false;
@@ -51,7 +52,11 @@ function checkValidFields(isValid, req) {
       }
     }
   }
-  return isValid;
+  if (!isValid) {
+    return res
+      .status(406)
+      .json({ success: false, message: 'Body contains invalid fields.' });
+  }
 }
 
 function checkMultipleErrs(err, req, res) {
@@ -310,13 +315,7 @@ module.exports.addRom = async (req, res, next) => {
       logo_url,
       is_favorite
     } = newRom;
-    let isValid = true;
-    isValid = checkValidFields(isValid, req);
-    if (!isValid) {
-      return res
-        .status(406)
-        .json({ success: false, message: 'Body contains invalid fields.' });
-    }
+    checkValidFields(req, res);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
@@ -374,13 +373,7 @@ module.exports.updateRom = async (req, res, next) => {
       logo_url,
       is_favorite
     } = updateRomData;
-    let isValid = true;
-    isValid = checkValidFields(isValid, req);
-    if (!isValid) {
-      return res
-        .status(406)
-        .json({ success: false, message: 'Body contains invalid fields.' });
-    }
+    checkValidFields(req, res);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
@@ -444,14 +437,7 @@ module.exports.patchRom = async (req, res, next) => {
       logo_url,
       box_art_url
     } = query;
-    let isValid = true;
-    isValid = checkValidFields(isValid, req);
-    if (!isValid) {
-      return res
-        .status(406)
-        .json({ success: false, message: 'Body contains invalid fields.' });
-    }
-
+    checkValidFields(req, res);
     await getRomById(id, req, res, async fetchedRom => {
       try {
         const isOwnUser =
