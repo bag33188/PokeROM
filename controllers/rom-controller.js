@@ -421,17 +421,7 @@ module.exports.patchRom = async (req, res, next) => {
       box_art_url
     } = query;
     let isValid = true;
-    for (let field of Object.keys(req.body)) {
-      if (!fields.includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = true;
-        if (typeof field === 'string') {
-          field = req.sanitize(field);
-        }
-      }
-    }
+    isValid = checkValidFields(isValid, req);
     if (!isValid) {
       return res
         .status(406)
