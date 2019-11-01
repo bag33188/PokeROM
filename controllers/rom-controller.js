@@ -76,6 +76,12 @@ function checkSingleErr(err, req, res) {
   }
 }
 
+function setRomTypeToLowerCase(req) {
+  if (req.body.rom_type) {
+    req.body.rom_type = req.body.rom_type.toLowerCase();
+  }
+}
+
 function toBoolean(value) {
   switch (value) {
     case 'true':
@@ -176,6 +182,33 @@ function getAllRoms(query, req, res, callback, limit) {
   );
 }
 
+
+async function handleBulkPost(roms, req, res, next, err) {
+  try {
+    if (err) {
+      return res.status(500).json({ success: false, ...err });
+    }
+    if (!roms) {
+      return res
+        .status(502)
+        .json({ success: false, message: 'Bad gateway.' });
+    }
+    await getAllRoms(
+      { user_id: req.user['_id'] },
+      req,
+      res,
+      fetchedRoms => {
+        clearCache(req);
+        return res.status(201).json(fetchedRoms);
+      },
+      0
+    );
+  } catch (err) {
+    next(err);
+  }
+}
+
+
 // ---------------------------------------------------------
 // API FUNCTIONS
 // ---------------------------------------------------------
@@ -263,9 +296,7 @@ module.exports.getRom = async (req, res, next) => {
 module.exports.addRom = async (req, res, next) => {
   try {
     setCorrectDate(req);
-    if (req.body.rom_type) {
-      req.body.rom_type = req.body.rom_type.toLowerCase();
-    }
+    setRomTypeToLowerCase(req);
     const newRom = new Rom(romObjData(req));
     const {
       order_number,
@@ -329,9 +360,7 @@ module.exports.updateRom = async (req, res, next) => {
     let id = null;
     id = checkValidId(id, req, res);
     setCorrectDate(req);
-    if (req.body.rom_type) {
-      req.body.rom_type = req.body.rom_type.toLowerCase();
-    }
+    setRomTypeToLowerCase(req);
     const updateRomData = romObjData(req);
     const {
       order_number,
@@ -584,28 +613,7 @@ module.exports.romsOptions = (req, res) => {
 module.exports.coreRoms = async (req, res, next) => {
   try {
     await Rom.postCore(coreRoms, req.user, async (err, roms) => {
-      try {
-        if (err) {
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!roms) {
-          return res
-            .status(502)
-            .json({ success: false, message: 'Bad gateway.' });
-        }
-        await getAllRoms(
-          { user_id: req.user['_id'] },
-          req,
-          res,
-          fetchedRoms => {
-            clearCache(req);
-            return res.status(201).json(fetchedRoms);
-          },
-          0
-        );
-      } catch (err) {
-        next(err);
-      }
+      await handleBulkPost(roms, req, res, next, err);
     });
   } catch (err) {
     next(err);
@@ -615,28 +623,7 @@ module.exports.coreRoms = async (req, res, next) => {
 module.exports.romHacks = async (req, res, next) => {
   try {
     await Rom.postHacks(romHacks, req.user, async (err, roms) => {
-      try {
-        if (err) {
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!roms) {
-          return res
-            .status(502)
-            .json({ success: false, message: 'Bad gateway.' });
-        }
-        await getAllRoms(
-          { user_id: req.user['_id'] },
-          req,
-          res,
-          fetchedRoms => {
-            clearCache(req);
-            return res.status(201).json(fetchedRoms);
-          },
-          0
-        );
-      } catch (err) {
-        next(err);
-      }
+      await handleBulkPost(roms, req, res, next, err);
     });
   } catch (err) {
     next(err);
