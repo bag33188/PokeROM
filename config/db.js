@@ -37,7 +37,7 @@ async function connectDB(options) {
       await mongoose.connect(db, {
         useNewUrlParser: true,
         ssl: true,
-        sslValidate: true,
+        sslValidate: false,
         sslCert: certificate,
         sslKey: certificateKey,
         sslCA: certificateAuthority
