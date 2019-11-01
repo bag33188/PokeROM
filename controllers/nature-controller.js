@@ -82,13 +82,7 @@ module.exports.getNature = async (req, res, next) => {
     let id = null;
     id = checkValidId(id, req, res);
     await Nature.getNature(id, (err, nature) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        } else {
-          return res.status(500).json({ success: false, ...err });
-        }
-      }
+      checkErr(err, req, res);
       if (!nature) {
         return res
           .status(404)
