@@ -43,14 +43,47 @@ Number.prototype.convertUnitOfTimeToSeconds = function(unit) {
 
 const routesWithParams = ['authenticate', 'register'];
 
-function getUserById(id, req, res, callback) {
-  return User.getUserById(id, (err, user) => {
-    if (err) {
-      if (err.name === 'CastError') {
-        return res.status(404).json({ success: false, ...err });
-      }
+function checkSingleErr(err, req, res) {
+  if (err) {
+    if (err.name === 'CastError') {
+      return res.status(404).json({ success: false, ...err });
+    }
+    return res.status(500).json({ success: false, ...err });
+  }
+}
+
+function checkValidId(id, req, res) {
+  try {
+    if (routesWithParams.includes(req.params.id)) {
+      return res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
+    }
+    id = mongoose.Types.ObjectId(req.params.id);
+  } catch (e) {
+    return res
+      .status(404)
+      .json({ success: false, message: 'User not found.' });
+  }
+  return id;
+}
+
+function checkMultipleErrs(err, req, res) {
+  if (err) {
+    switch (err.name) {
+    case 'CastError':
+      return res.status(404).json({ success: false, ...err });
+    case 'ValidationError':
+      return res.status(406).json({ success: false, ...err });
+    default:
       return res.status(500).json({ success: false, ...err });
     }
+  }
+}
+
+function getUserById(id, req, res, callback) {
+  return User.getUserById(id, (err, user) => {
+    checkSingleErr(err, req, res);
     if (!user) {
       return res
         .status(404)
@@ -95,12 +128,7 @@ module.exports.getUser = async (req, res, next) => {
     }
     if (req.user['_id'].toString() === id.toString()) {
       await User.getUserById(id, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
+        checkSingleErr(err, req, res);
         if (!user) {
           return res
             .status(404)
@@ -131,12 +159,7 @@ module.exports.getUserByUsername = async (req, res, next) => {
     }
     if (req.user.username === username) {
       await User.getUserByUsername(username, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
+        checkSingleErr(err, req, res);
         if (!user) {
           return res
             .status(404)
@@ -146,12 +169,7 @@ module.exports.getUserByUsername = async (req, res, next) => {
       });
     } else {
       await User.getUserByUsername(username, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
+        checkSingleErr(err, req, res);
         if (!user) {
           return res
             .status(404)
@@ -170,7 +188,7 @@ module.exports.getUserByUsername = async (req, res, next) => {
 
 module.exports.registerUser = async (req, res, next) => {
   try {
-    let newUser = new User({
+    const newUser = new User({
       name: req.sanitize(req.body.name) || null,
       username: req.sanitize(req.body.username),
       password: req.sanitize(req.body.password)
@@ -292,16 +310,7 @@ module.exports.authorizeUser = async (req, res, next) => {
     }
     await User.getUserByUsername(username, async (err, user) => {
       try {
-        if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(406).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
-          }
-        }
+        checkMultipleErrs(err, req, res);
         if (!user)
           return res.status(404).json({
             success: false,
@@ -342,18 +351,7 @@ module.exports.authorizeUser = async (req, res, next) => {
 module.exports.updateUser = async (req, res, next) => {
   try {
     let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'User not found.' });
-    }
+    id = checkValidId(id, req, res);
     const userData = {
       name: req.sanitize(req.body.name) || null,
       username: req.sanitize(req.body.username),
@@ -365,7 +363,7 @@ module.exports.updateUser = async (req, res, next) => {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
     let isValid = true;
-    for (let field of Object.keys(req.body)) {
+    for (const field of Object.keys(req.body)) {
       if (!['_id', 'name', 'username', 'password'].includes(field)) {
         isValid = false;
         break;
@@ -386,16 +384,7 @@ module.exports.updateUser = async (req, res, next) => {
         {},
         async (err, user) => {
           try {
-            if (err) {
-              switch (err.name) {
-                case 'CastError':
-                  return res.status(404).json({ success: false, ...err });
-                case 'ValidationError':
-                  return res.status(406).json({ success: false, ...err });
-                default:
-                  return res.status(500).json({ success: false, ...err });
-              }
-            }
+            checkMultipleErrs(err, req, res);
             if (!user) {
               return res.status(404).json({
                 success: false,
@@ -433,18 +422,7 @@ module.exports.updateUser = async (req, res, next) => {
 module.exports.patchUser = async (req, res, next) => {
   try {
     let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'User not found.' });
-    }
+    id = checkValidId(id, req, res);
     const query = req.body;
     const { username, password, name } = query;
     const errors = validationResult(req);
@@ -452,7 +430,7 @@ module.exports.patchUser = async (req, res, next) => {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
     let isValid = true;
-    for (let field of Object.keys(req.body)) {
+    for (const field of Object.keys(req.body)) {
       if (!['_id', 'name', 'username', 'password'].includes(field)) {
         isValid = false;
         break;
@@ -472,16 +450,7 @@ module.exports.patchUser = async (req, res, next) => {
         { $set: query },
         async (err, status) => {
           try {
-            if (err) {
-              switch (err.name) {
-                case 'CastError':
-                  return res.status(404).json({ success: false, ...err });
-                case 'ValidationError':
-                  return res.status(406).json({ success: false, ...err });
-                default:
-                  return res.status(500).json({ success: false, ...err });
-              }
-            }
+            checkMultipleErrs(err, req, res);
             if (!status) {
               return res.status(502).json({
                 success: false,
@@ -520,12 +489,7 @@ module.exports.deleteUsers = async (req, res, next) => {
   try {
     await User.deleteAllUsers(async (err, status) => {
       try {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
+        checkSingleErr(err, req, res);
         if (!status) {
           return res.status(502).json({
             success: false,
@@ -560,29 +524,13 @@ module.exports.deleteUsers = async (req, res, next) => {
 module.exports.deleteUser = async (req, res, next) => {
   try {
     let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'User not found.' });
-    }
+    id = checkValidId(id, req, res);
     if (req.user['_id'].toString() === id.toString()) {
       await getUserById(id, req, res, async () => {
         try {
           await User.deleteUser(id, async (err, status) => {
             try {
-              if (err) {
-                if (err.name === 'CastError') {
-                  return res.status(404).json({ success: false, ...err });
-                }
-                return res.status(500).json({ success: false, ...err });
-              }
+              checkSingleErr(err, req, res);
               if (!status) {
                 return res.status(502).json({
                   success: false,
@@ -590,12 +538,7 @@ module.exports.deleteUser = async (req, res, next) => {
                 });
               }
               await Rom.deleteAllRoms({ user_id: id }, (err, romsStatus) => {
-                if (err) {
-                  if (err.name === 'CastError') {
-                    return res.status(404).json({ success: false, ...err });
-                  }
-                  return res.status(500).json({ success: false, ...err });
-                }
+                checkSingleErr(err, req, res);
                 if (!romsStatus) {
                   return res.status(404).json({
                     success: false,
@@ -637,18 +580,7 @@ module.exports.usersHeaders = (req, res) => {
 module.exports.userHeaders = async (req, res, next) => {
   try {
     let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'User not found.' });
-    }
+    id = checkValidId(id, req, res);
     await getUserById(id, req, res, () => {
       return res.status(200);
     });
