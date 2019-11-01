@@ -7,6 +7,29 @@ const [coreRoms, romHacks] = require('../database/data.json');
 const [, clearCache] = require('../middleware/cache');
 
 const routesWithParams = ['core', 'hacks'];
+const fields = [
+  '_id',
+  'file_size',
+  'file_type',
+  'file_name',
+  'date_released',
+  'description',
+  'genre',
+  'platform',
+  'region',
+  'generation',
+  'game_name',
+  'order_number',
+  'rom_type',
+  'is_favorite',
+  'download_link',
+  'logo_url',
+  'box_art_url'
+];
+
+// ---------------------------------------------------------
+// UTILITY FUNCTIONS
+// ---------------------------------------------------------
 
 String.prototype.convertToDateFormat = function() {
   const dateArr = this.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
@@ -15,6 +38,43 @@ String.prototype.convertToDateFormat = function() {
   const year = parseInt(dateArr[2], 10);
   return new Date(year, monthIndex, day);
 };
+
+function checkValidFields(isValid, req) {
+  for (let field of Object.keys(req.body)) {
+    if (!fields.includes(field)) {
+      isValid = false;
+      break;
+    } else {
+      isValid = true;
+      if (typeof field === 'string') {
+        field = req.sanitize(field);
+      }
+    }
+  }
+  return isValid;
+}
+
+function checkMultipleErrs(err, req, res) {
+  if (err) {
+    switch (err.name) {
+    case 'CastError':
+      return res.status(404).json({ success: false, ...err });
+    case 'ValidationError':
+      return res.status(406).json({ success: false, ...err });
+    default:
+      return res.status(500).json({ success: false, ...err });
+    }
+  }
+}
+
+function checkSingleErr(err, req, res) {
+  if (err) {
+    if (err.name === 'CastError') {
+      return res.status(404).json({ success: false, ...err });
+    }
+    return res.status(500).json({ success: false, ...err });
+  }
+}
 
 function toBoolean(value) {
   switch (value) {
@@ -27,13 +87,30 @@ function toBoolean(value) {
   }
 }
 
+function setCorrectDate(req) {
+  req.body.date_released = req.body.date_released.convertToDateFormat();
+}
+
+function checkValidId(id, req, res) {
+  try {
+    if (routesWithParams.includes(req.params.id)) {
+      return res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
+    }
+    id = mongoose.Types.ObjectId(req.params.id);
+  } catch (e) {
+    return res
+      .status(404)
+      .json({ success: false, message: 'ROM not found.' });
+  }
+  return id;
+}
+
 function getRomById(id, req, res, callback) {
   return Rom.getRomById(id, (err, fetchedRom) => {
     if (err) {
-      if (err.name === 'CastError') {
-        return res.status(404).json({ success: false, ...err });
-      }
-      return res.status(500).json({ success: false, ...err });
+      checkSingleErr(err, req, res);
     } else if (!fetchedRom) {
       return res
         .status(404)
@@ -48,6 +125,28 @@ function getRomById(id, req, res, callback) {
       }
     }
   });
+}
+
+function romObjData(req) {
+  return {
+    user_id: req.user['_id'],
+    order_number: req.body.order_number,
+    rom_type: req.sanitize(req.body.rom_type),
+    file_name: req.sanitize(req.body.file_name),
+    file_size: req.body.file_size,
+    file_type: req.sanitize(req.body.file_type),
+    download_link: req.sanitize(req.body.download_link),
+    generation: req.body.generation,
+    box_art_url: req.sanitize(req.body.box_art_url),
+    game_name: req.sanitize(req.body.game_name),
+    region: req.sanitize(req.body.region),
+    platform: req.sanitize(req.body.platform),
+    description: req.sanitize(req.body.description),
+    genre: req.sanitize(req.body.genre) || null,
+    date_released: req.sanitize(req.body.date_released),
+    logo_url: req.sanitize(req.body.logo_url),
+    is_favorite: req.body.is_favorite
+  };
 }
 
 function getAllRoms(query, req, res, callback, limit) {
@@ -76,6 +175,10 @@ function getAllRoms(query, req, res, callback, limit) {
     limit
   );
 }
+
+// ---------------------------------------------------------
+// API FUNCTIONS
+// ---------------------------------------------------------
 
 module.exports.getRoms = async (req, res, next) => {
   try {
@@ -133,24 +236,10 @@ module.exports.getRoms = async (req, res, next) => {
 module.exports.getRom = async (req, res, next) => {
   try {
     let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
-    }
+    id = checkValidId(id, req, res);
     await Rom.getRomById(id, (err, rom) => {
       if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        }
-        return res.status(500).json({ success: false, ...err });
+        checkSingleErr(err, req, res);
       } else if (!rom) {
         return res
           .status(404)
@@ -173,29 +262,11 @@ module.exports.getRom = async (req, res, next) => {
 
 module.exports.addRom = async (req, res, next) => {
   try {
-    req.body.date_released = req.body.date_released.convertToDateFormat();
+    setCorrectDate(req);
     if (req.body.rom_type) {
       req.body.rom_type = req.body.rom_type.toLowerCase();
     }
-    const newRom = new Rom({
-      user_id: req.user['_id'],
-      order_number: req.body.order_number,
-      rom_type: req.sanitize(req.body.rom_type),
-      file_name: req.sanitize(req.body.file_name),
-      file_size: req.body.file_size,
-      file_type: req.sanitize(req.body.file_type),
-      download_link: req.sanitize(req.body.download_link),
-      generation: req.body.generation,
-      box_art_url: req.sanitize(req.body.box_art_url),
-      game_name: req.sanitize(req.body.game_name),
-      region: req.sanitize(req.body.region),
-      platform: req.sanitize(req.body.platform),
-      description: req.sanitize(req.body.description),
-      genre: req.sanitize(req.body.genre) || null,
-      date_released: req.sanitize(req.body.date_released),
-      logo_url: req.sanitize(req.body.logo_url),
-      is_favorite: req.body.is_favorite
-    });
+    const newRom = new Rom(romObjData(req));
     const {
       order_number,
       file_name,
@@ -214,36 +285,7 @@ module.exports.addRom = async (req, res, next) => {
       is_favorite
     } = newRom;
     let isValid = true;
-    const fields = [
-      '_id',
-      'file_size',
-      'file_type',
-      'file_name',
-      'date_released',
-      'description',
-      'genre',
-      'platform',
-      'region',
-      'generation',
-      'game_name',
-      'order_number',
-      'rom_type',
-      'is_favorite',
-      'download_link',
-      'logo_url',
-      'box_art_url'
-    ];
-    for (let field of Object.keys(req.body)) {
-      if (!fields.includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = true;
-        if (typeof field === 'string') {
-          field = req.sanitize(field);
-        }
-      }
-    }
+    isValid = checkValidFields(isValid, req);
     if (!isValid) {
       return res
         .status(406)
@@ -254,12 +296,7 @@ module.exports.addRom = async (req, res, next) => {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
     await Rom.addRom(newRom, (err, rom) => {
-      if (err) {
-        if (err.name === 'ValidationError') {
-          return res.status(406).json({ success: false, ...err });
-        }
-        return res.status(500).json({ success: false, ...err });
-      }
+      checkSingleErr(err, req, res);
       if (!rom) {
         return res
           .status(502)
@@ -290,41 +327,12 @@ module.exports.addRom = async (req, res, next) => {
 module.exports.updateRom = async (req, res, next) => {
   try {
     let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
-    }
-    req.body.date_released = req.body.date_released.convertToDateFormat();
+    id = checkValidId(id, req, res);
+    setCorrectDate(req);
     if (req.body.rom_type) {
       req.body.rom_type = req.body.rom_type.toLowerCase();
     }
-    const updateRomData = {
-      user_id: req.user['_id'],
-      order_number: req.body.order_number,
-      rom_type: req.sanitize(req.body.rom_type),
-      file_name: req.sanitize(req.body.file_name),
-      file_size: req.body.file_size,
-      file_type: req.sanitize(req.body.file_type),
-      download_link: req.sanitize(req.body.download_link),
-      generation: req.body.generation,
-      box_art_url: req.sanitize(req.body.box_art_url),
-      game_name: req.sanitize(req.body.game_name),
-      region: req.sanitize(req.body.region),
-      platform: req.sanitize(req.body.platform),
-      description: req.sanitize(req.body.description),
-      genre: req.sanitize(req.body.genre) || null,
-      date_released: req.sanitize(req.body.date_released),
-      logo_url: req.sanitize(req.body.logo_url),
-      is_favorite: req.body.is_favorite
-    };
+    const updateRomData = romObjData(req);
     const {
       order_number,
       file_name,
@@ -343,36 +351,7 @@ module.exports.updateRom = async (req, res, next) => {
       is_favorite
     } = updateRomData;
     let isValid = true;
-    const fields = [
-      '_id',
-      'file_size',
-      'file_type',
-      'file_name',
-      'date_released',
-      'description',
-      'genre',
-      'platform',
-      'region',
-      'generation',
-      'game_name',
-      'order_number',
-      'rom_type',
-      'is_favorite',
-      'download_link',
-      'logo_url',
-      'box_art_url'
-    ];
-    for (let field of Object.keys(req.body)) {
-      if (!fields.includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = true;
-        if (typeof field === 'string') {
-          field = req.sanitize(field);
-        }
-      }
-    }
+    isValid = checkValidFields(isValid, req);
     if (!isValid) {
       return res
         .status(406)
@@ -388,16 +367,7 @@ module.exports.updateRom = async (req, res, next) => {
           fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
           await Rom.updateRom(id, updateRomData, {}, (err, rom) => {
-            if (err) {
-              switch (err.name) {
-                case 'CastError':
-                  return res.status(404).json({ success: false, ...err });
-                case 'ValidationError':
-                  return res.status(406).json({ success: false, ...err });
-                default:
-                  return res.status(500).json({ success: false, ...err });
-              }
-            }
+            checkMultipleErrs(err, req, res);
             if (!rom) {
               return res.status(404).json({
                 success: false,
@@ -427,21 +397,10 @@ module.exports.updateRom = async (req, res, next) => {
 module.exports.patchRom = async (req, res, next) => {
   try {
     let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
-    }
+    id = checkValidId(id, req, res);
     const query = req.body;
     if (req.body.date_released) {
-      req.body.date_released = req.body.date_released.convertToDateFormat();
+      setCorrectDate(req);
     }
     const {
       file_size,
@@ -462,25 +421,6 @@ module.exports.patchRom = async (req, res, next) => {
       box_art_url
     } = query;
     let isValid = true;
-    const fields = [
-      '_id',
-      'file_size',
-      'file_type',
-      'file_name',
-      'date_released',
-      'description',
-      'genre',
-      'platform',
-      'region',
-      'generation',
-      'game_name',
-      'order_number',
-      'rom_type',
-      'is_favorite',
-      'download_link',
-      'logo_url',
-      'box_art_url'
-    ];
     for (let field of Object.keys(req.body)) {
       if (!fields.includes(field)) {
         isValid = false;
@@ -504,16 +444,7 @@ module.exports.patchRom = async (req, res, next) => {
           fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
           await Rom.patchRom(id, { $set: query }, async (err, status) => {
-            if (err) {
-              switch (err.name) {
-                case 'CastError':
-                  return await res.status(404).json({ success: false, ...err });
-                case 'ValidationError':
-                  return await res.status(406).json({ success: false, ...err });
-                default:
-                  return await res.status(500).json({ success: false, ...err });
-              }
-            }
+            checkMultipleErrs(err, req, res);
             if (!status) {
               return await res.status(502).json({
                 success: false,
@@ -544,29 +475,13 @@ module.exports.patchRom = async (req, res, next) => {
 module.exports.deleteRom = async (req, res, next) => {
   try {
     let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
-    }
+    id = checkValidId(id, req, res);
     await getRomById(id, req, res, async rom => {
       try {
         const isOwnUser = rom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
           await Rom.deleteRom(id, (err, status) => {
-            if (err) {
-              if (err.name === 'CastError') {
-                return res.status(404).json({ success: false, ...err });
-              }
-              return res.status(500).json({ success: false, ...err });
-            }
+            checkSingleErr(err, req, res);
             if (!status) {
               return res.status(502).json({
                 success: false,
@@ -663,18 +578,7 @@ module.exports.romsHeaders = (req, res) => {
 module.exports.romHeaders = async (req, res, next) => {
   try {
     let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
-    }
+    id = checkValidId(id, req, res);
     await getRomById(id, req, res, () => {
       return res.status(200);
     });
