@@ -61,9 +61,7 @@ function checkValidId(id, req, res) {
     }
     id = mongoose.Types.ObjectId(req.params.id);
   } catch (e) {
-    return res
-      .status(404)
-      .json({ success: false, message: 'User not found.' });
+    return res.status(404).json({ success: false, message: 'User not found.' });
   }
   return id;
 }
@@ -71,12 +69,12 @@ function checkValidId(id, req, res) {
 function checkMultipleErrs(err, req, res) {
   if (err) {
     switch (err.name) {
-    case 'CastError':
-      return res.status(404).json({ success: false, ...err });
-    case 'ValidationError':
-      return res.status(406).json({ success: false, ...err });
-    default:
-      return res.status(500).json({ success: false, ...err });
+      case 'CastError':
+        return res.status(404).json({ success: false, ...err });
+      case 'ValidationError':
+        return res.status(406).json({ success: false, ...err });
+      default:
+        return res.status(500).json({ success: false, ...err });
     }
   }
 }
@@ -445,9 +443,10 @@ module.exports.patchUser = async (req, res, next) => {
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
     if (req.user['_id'].toString() === id.toString()) {
+      const updateQuery = { $set: query };
       await User.patchUser(
         id,
-        { $set: query },
+        updateQuery,
         async (err, status) => {
           try {
             checkMultipleErrs(err, req, res);
@@ -537,7 +536,8 @@ module.exports.deleteUser = async (req, res, next) => {
                   message: 'Bad gateway.'
                 });
               }
-              await Rom.deleteAllRoms({ user_id: id }, (err, romsStatus) => {
+              const query = { user_id: id };
+              await Rom.deleteAllRoms(query, (err, romsStatus) => {
                 checkSingleErr(err, req, res);
                 if (!romsStatus) {
                   return res.status(404).json({

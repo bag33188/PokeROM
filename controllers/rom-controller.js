@@ -57,12 +57,12 @@ function checkValidFields(isValid, req) {
 function checkMultipleErrs(err, req, res) {
   if (err) {
     switch (err.name) {
-    case 'CastError':
-      return res.status(404).json({ success: false, ...err });
-    case 'ValidationError':
-      return res.status(406).json({ success: false, ...err });
-    default:
-      return res.status(500).json({ success: false, ...err });
+      case 'CastError':
+        return res.status(404).json({ success: false, ...err });
+      case 'ValidationError':
+        return res.status(406).json({ success: false, ...err });
+      default:
+        return res.status(500).json({ success: false, ...err });
     }
   }
 }
@@ -106,9 +106,7 @@ function checkValidId(id, req, res) {
     }
     id = mongoose.Types.ObjectId(req.params.id);
   } catch (e) {
-    return res
-      .status(404)
-      .json({ success: false, message: 'ROM not found.' });
+    return res.status(404).json({ success: false, message: 'ROM not found.' });
   }
   return id;
 }
@@ -182,19 +180,17 @@ function getAllRoms(query, req, res, callback, limit) {
   );
 }
 
-
 async function handleBulkPost(roms, req, res, next, err) {
   try {
     if (err) {
       return res.status(500).json({ success: false, ...err });
     }
     if (!roms) {
-      return res
-        .status(502)
-        .json({ success: false, message: 'Bad gateway.' });
+      return res.status(502).json({ success: false, message: 'Bad gateway.' });
     }
+    const query = { user_id: req.user['_id'] };
     await getAllRoms(
-      { user_id: req.user['_id'] },
+      query,
       req,
       res,
       fetchedRoms => {
@@ -207,7 +203,6 @@ async function handleBulkPost(roms, req, res, next, err) {
     next(err);
   }
 }
-
 
 // ---------------------------------------------------------
 // API FUNCTIONS
@@ -462,7 +457,8 @@ module.exports.patchRom = async (req, res, next) => {
         const isOwnUser =
           fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          await Rom.patchRom(id, { $set: query }, async (err, status) => {
+          const updateQuery = { $set: query };
+          await Rom.patchRom(id, updateQuery, async (err, status) => {
             checkMultipleErrs(err, req, res);
             if (!status) {
               return await res.status(502).json({
@@ -534,8 +530,9 @@ module.exports.deleteRoms = async (req, res, next) => {
   try {
     const deleteCore = req.query['core'];
     const deleteHacks = req.query['hacks'];
+    const query = { user_id: req.user['_id'] };
     await getAllRoms(
-      { user_id: req.user['_id'] },
+      query,
       req,
       res,
       async roms => {

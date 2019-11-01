@@ -128,7 +128,8 @@ module.exports.deleteRating = async (req, res, next) => {
     }
     await getRating(id, req, res, async () => {
       try {
-        await Rating.deleteRating({ _id: id }, (err, status) => {
+        const query = { _id: id };
+        await Rating.deleteRating(query, (err, status) => {
           checkErr(err, req, res);
           if (!status) {
             return res
