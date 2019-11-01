@@ -610,7 +610,11 @@ module.exports.romsOptions = (req, res) => {
 module.exports.coreRoms = async (req, res, next) => {
   try {
     await Rom.postCore(coreRoms, req.user, async (err, roms) => {
-      await handleBulkPost(roms, req, res, next, err);
+      try {
+        await handleBulkPost(roms, req, res, next, err);
+      } catch (err) {
+        next(err);
+      }
     });
   } catch (err) {
     next(err);
@@ -620,7 +624,11 @@ module.exports.coreRoms = async (req, res, next) => {
 module.exports.romHacks = async (req, res, next) => {
   try {
     await Rom.postHacks(romHacks, req.user, async (err, roms) => {
-      await handleBulkPost(roms, req, res, next, err);
+      try {
+        await handleBulkPost(roms, req, res, next, err);
+      } catch (err) {
+        next(err);
+      }
     });
   } catch (err) {
     next(err);
