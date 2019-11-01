@@ -75,12 +75,14 @@ module.exports.getNature = (id, callback) => {
   Nature.findById(id, callback);
 };
 
-module.exports.patchNature = (id, query, callback) => {
-  Nature.updateOne({ _id: id }, query, callback);
+module.exports.patchNature = (id, updateQuery, callback) => {
+  const searchQuery = { _id: id };
+  Nature.updateOne(searchQuery, updateQuery, callback);
 };
 
 module.exports.deleteNature = (id, callback) => {
-  Nature.findOneAndDelete({ _id: id }, callback);
+  const query = { _id: id };
+  Nature.findOneAndDelete(query, callback);
 };
 
 module.exports.deleteAllNatures = callback => {
@@ -93,14 +95,15 @@ module.exports.addNature = (newNature, callback) => {
 
 module.exports.updateNature = (id, natureData, options, callback) => {
   const { name, up, down, flavor, usage } = natureData;
-  const natureQuery = {
+  const searchQuery = { _id: id };
+  const updateQuery = {
     name,
     up,
     down,
     flavor,
     usage
   };
-  Nature.findOneAndUpdate({ _id: id }, natureQuery, options, callback);
+  Nature.findOneAndUpdate(searchQuery, updateQuery, options, callback);
 };
 
 module.exports.postAll = (allNatures, callback) => {

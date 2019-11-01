@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 function setDate(offset) {
-  let now = new Date();
+  const now = new Date();
   now.setHours(now.getHours() - offset);
   return now;
 }

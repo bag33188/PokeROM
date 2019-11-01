@@ -32,7 +32,6 @@ const userSchema = new Schema(
 
 module.exports = mongoose.model('User', userSchema);
 
-
 // define User model
 const User = module.exports;
 
@@ -46,8 +45,9 @@ module.exports.getUserByUsername = (username, callback) => {
 };
 
 module.exports.addUser = (newUser, callback, errCallback) => {
+  const query = { username: newUser.username };
   // check if user already exists
-  User.findOne({ username: newUser.username })
+  User.findOne(query)
     .then((user, err) => {
       if (err) {
         console.log(err);
@@ -83,7 +83,8 @@ module.exports.deleteAllUsers = callback => {
 };
 
 module.exports.deleteUser = (id, callback) => {
-  User.findOneAndDelete({ _id: id }, callback);
+  const query = { _id: id };
+  User.findOneAndDelete(query, callback);
 };
 
 module.exports.getAllUsers = callback => {
@@ -92,12 +93,13 @@ module.exports.getAllUsers = callback => {
 
 module.exports.updateUser = (id, userData, options, callback, errCallback) => {
   const { name, username, password } = userData;
+  const searchQuery = { username };
   const userQuery = {
     name,
     username,
     password
   };
-  User.findOne({ username })
+  User.findOne(searchQuery)
     .then((user, err) => {
       if (err) {
         console.log(err);
@@ -118,30 +120,33 @@ module.exports.updateUser = (id, userData, options, callback, errCallback) => {
     .catch(err => console.log(err));
 };
 
-module.exports.patchUser = (id, userQuery, callback, errCallback) => {
-  if (userQuery['$set'].username !== undefined) {
-    User.findOne({ username: userQuery['$set'].username })
+module.exports.patchUser = (id, updateQuery, callback, errCallback) => {
+  if (updateQuery['$set'].username !== undefined) {
+    const searchQuery = { username: updateQuery['$set'].username };
+    User.findOne(searchQuery)
       .then((user, err) => {
         if (err) {
           console.log(err);
         } else if (user && id.toString() !== user._id.toString()) {
           errCallback();
         } else {
-          User.updateOne({ _id: id }, userQuery, callback);
+          const query = { _id: id };
+          User.updateOne(query, updateQuery, callback);
         }
       })
       .catch(err => console.log(err));
   } else {
-    if (userQuery['$set'].password === undefined) {
-      User.updateOne({ _id: id }, userQuery, callback);
+    const query = { _id: id };
+    if (updateQuery['$set'].password === undefined) {
+      User.updateOne(query, updateQuery, callback);
     } else {
       bcrypt.genSalt(10, (err, salt) => {
         if (err) console.log(err);
-        bcrypt.hash(userQuery['$set'].password, salt, (err, hash) => {
+        bcrypt.hash(updateQuery['$set'].password, salt, (err, hash) => {
           if (err) console.log(err);
           // update password as hash
-          userQuery['$set'].password = hash;
-          User.updateOne({ _id: id }, userQuery, callback);
+          updateQuery['$set'].password = hash;
+          User.updateOne(query, updateQuery, callback);
         });
       });
     }
