@@ -23,5 +23,6 @@ module.exports = mongoose.model('Version', versionSchema);
 const Version = module.exports;
 
 module.exports.getApiVersion = apiVersion => {
-  return new Version({ api_version: apiVersion });
+  const query = { api_version: apiVersion };
+  return new Version(query);
 };
