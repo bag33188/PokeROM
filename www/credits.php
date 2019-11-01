@@ -1,15 +1,11 @@
 <?php
   require_once "WWW.php";
-  require_once "HTTP.php";
   use www\WWW as WWW;
-  use www\HTTP;
-  $http = new HTTP();
   $productionMode = WWW::isProductionMode();
   $currentUrl = WWW::getCurrentUrl();
   $documentTitle = "Pok&eacute;ROM - Credits";
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $me = "Broccolini";
-  $http->redirectToHTTPS();
   $creditsData = [
     (object) array("term" => "Front End (Client Side)", "definition" => $me),
     (object) array("term" => "Back End (Server Side)", "definition" => $me),
@@ -189,15 +185,6 @@
         margin-bottom: 1rem;
       }
     </style>
-    <script type="text/javascript">
-      "use strict";
-
-      <?php if (!$productionMode): ?>
-        console.log("<?= "`" . $http->getPageName() . "`"; ?> page now being served @ port <?= $http->getPortNumber(); ?>");
-      <?php else: ?>
-        console.log("The grand project is now complete.");
-      <?php endif; ?>
-    </script>
   </head>
   <body class="p-3">
     <div class="container border rounded">

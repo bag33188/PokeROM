@@ -3,11 +3,9 @@
   require_once "HTTP.php";
   use www\WWW as WWW;
   use www\HTTP;
-  $http = new HTTP();
   $apiVersionData = WWW::getApiVersionData();
   $productionMode = WWW::isProductionMode();
   $documentTitle = "API Docs (Redirect)";
-  $http->redirectToHTTPS();
   $cssColors = array(
     "white" => "fff",
     "black" => "000",
@@ -88,10 +86,6 @@
     </style>
     <script type="text/javascript">
       "use strict";
-
-      <?php if (!$productionMode): ?>
-        console.log("<?= "`" . $http->getPageName() . "`"; ?> page now being served @ port <?= $http->getPortNumber(); ?>");
-      <?php endif; ?>
 
       <?php if ($apiVersionData->success == 1): ?>
         console.log("API Version: <?= $apiVersionData->api_version; ?>");

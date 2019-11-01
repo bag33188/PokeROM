@@ -121,7 +121,7 @@
     public static function isProductionMode()
     {
       // store current url
-      $currentUrl = WWW::getCurrentUrl();
+      $currentUrl = self::getCurrentUrl();
       // check if localhost is in current url
       return (strpos($currentUrl, "localhost") !== false) ? false : true;
     }

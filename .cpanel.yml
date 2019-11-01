@@ -10,7 +10,6 @@ deployment:
     - $CPPATH www/.htaccess $DEPLOYPATH
     - $CPPATH www/metadata.inc.php $DEPLOYPATH
     - $CPPATH www/WWW.php $DEPLOYPATH
-    - $CPPATH www/HTTP.php $DEPLOYPATH
     - $CPPATH www/languages.php $DEPLOYPATH
     - $CPPATH www/info.html $DEPLOYPATH
     - $CPPATH www/credits.php $DEPLOYPATH

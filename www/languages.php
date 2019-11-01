@@ -1,9 +1,6 @@
 <?php
   require_once "WWW.php";
-  require_once "HTTP.php";
   use www\WWW as WWW;
-  use www\HTTP;
-  $http = new HTTP();
   $productionMode = WWW::isProductionMode();
   $languages = WWW::languageData()["languages"];
   $tooltips = WWW::languageData()["tooltips"];
@@ -11,7 +8,6 @@
   $longestLanguage = WWW::findLongestLanguageName($languages, $tooltips);
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $documentTitle = "Pok&eacute;ROM - Languages Used";
-  $http->redirectToHTTPS();
   $cssColors = array(
     "white" => "fff",
     "black" => "000",
@@ -230,10 +226,6 @@
 
       // use JavaScript document ready function
       ready(setWidthOfLanguagesWrapper);
-
-      <?php if (!$productionMode): ?>
-        console.log("<?= "`" . $http->getPageName() . "`"; ?> page now being served @ port <?= $http->getPortNumber(); ?>");
-      <?php endif; ?>
     </script>
   </head>
   <body class="p-3">
