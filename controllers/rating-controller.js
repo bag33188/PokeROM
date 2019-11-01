@@ -5,20 +5,27 @@ const moment = require('moment');
 const Rating = require('../models/Rating');
 const [, clearCache] = require('../middleware/cache');
 
+function checkErr(err, req, res) {
+  if (err) {
+    if (err.name === 'CastError') {
+      return res.status(404).json({ success: false, ...err });
+    }
+    return res.status(500).json({ success: false, ...err });
+  }
+}
+
+function noRatingResponse(rating, req, res) {
+  if (!rating) {
+    return res
+      .status(404)
+      .json({ success: false, message: 'Rating not found.' });
+  }
+}
+
 function getRating(id, req, res, callback) {
   return Rating.getRating(id, (err, rating) => {
-    if (err) {
-      if (err.name === 'CastError') {
-        return res.status(404).json({ success: false, ...err });
-      } else {
-        return res.status(500).json({ success: false, ...err });
-      }
-    }
-    if (!rating) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Rating not found.' });
-    }
+    checkErr(err, req, res);
+    noRatingResponse(rating, req, res);
     return callback(rating);
   });
 }
@@ -44,11 +51,7 @@ module.exports.addRating = async (req, res, next) => {
         }
         return res.status(500).json({ success: false, ...err });
       }
-      if (!rating) {
-        return res
-          .status(502)
-          .json({ success: false, message: 'Bad gateway.' });
-      }
+      noRatingResponse(rating, req, res);
       res.append(
         'Created-At-Route',
         `${url.format({
@@ -82,17 +85,8 @@ module.exports.getRating = async (req, res, next) => {
         .json({ success: false, message: 'Rating not found.' });
     }
     await Rating.getRating(id, (err, rating) => {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        }
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!rating) {
-        return res
-          .status(404)
-          .json({ success: false, message: 'Rating not found.' });
-      }
+      checkErr(err, req, res);
+      noRatingResponse(rating, req, res);
       return res.status(200).json(rating);
     });
   } catch (err) {
@@ -135,12 +129,7 @@ module.exports.deleteRating = async (req, res, next) => {
     await getRating(id, req, res, async () => {
       try {
         await Rating.deleteRating({ _id: id }, (err, status) => {
-          if (err) {
-            if (err.name === 'CastError') {
-              return res.status(404).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          }
+          checkErr(err, req, res);
           if (!status) {
             return res
               .status(404)
