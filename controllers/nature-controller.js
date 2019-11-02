@@ -208,14 +208,15 @@ module.exports.patchNature = async (req, res, next) => {
   try {
     let id = null;
     id = checkValidId(id, req, res);
-    const query = req.body;
-    const { name, up, down, flavor, usage } = query;
+    const data = req.body;
+    const { name, up, down, flavor, usage } = data;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
     checkValidFields(req, res);
-    await Nature.patchNature(id, { $set: query }, async (err, status) => {
+    const query = { $set: data };
+    await Nature.patchNature(id, query, async (err, status) => {
       try {
         if (err) {
           switch (err.name) {

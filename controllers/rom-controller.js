@@ -415,7 +415,7 @@ module.exports.patchRom = async (req, res, next) => {
   try {
     let id = null;
     id = checkValidId(id, req, res);
-    const query = req.body;
+    const data = req.body;
     if (req.body.date_released) {
       setCorrectDate(req);
     }
@@ -436,15 +436,15 @@ module.exports.patchRom = async (req, res, next) => {
       download_link,
       logo_url,
       box_art_url
-    } = query;
+    } = data;
     checkValidFields(req, res);
     await getRomById(id, req, res, async fetchedRom => {
       try {
         const isOwnUser =
           fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
-          const updateQuery = { $set: query };
-          await Rom.patchRom(id, updateQuery, async (err, status) => {
+          const query = { $set: data };
+          await Rom.patchRom(id, query, async (err, status) => {
             checkMultipleErrs(err, req, res);
             if (!status) {
               return await res.status(502).json({

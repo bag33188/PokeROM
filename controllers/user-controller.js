@@ -409,15 +409,15 @@ module.exports.patchUser = async (req, res, next) => {
   try {
     let id = null;
     id = checkValidId(id, req, res);
-    const query = req.body;
-    const { username, password, name } = query;
+    const data = req.body;
+    const { username, password, name } = data;
     handleErrors(req, res);
     checkValidFields(req, res);
     if (req.user['_id'].toString() === id.toString()) {
-      const updateQuery = { $set: query };
+      const query = { $set: data };
       await User.patchUser(
         id,
-        updateQuery,
+        query,
         async (err, status) => {
           try {
             checkMultipleErrs(err, req, res);
