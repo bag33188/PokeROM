@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator/check');
 const secret = config.get('secret');
 const User = require('../models/User');
 const Rom = require('../models/Rom');
-const romsData = require('../database/data.json');
+const [coreRoms, romHacks] = require('../database/data.json');
 const [, clearCache] = require('../middleware/cache');
 
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
@@ -234,7 +234,7 @@ module.exports.registerUser = async (req, res, next) => {
               success: false
             });
           }
-          await Rom.postCore(romsData[0], user, (err, roms) => {
+          await Rom.postCore(coreRoms, user, (err, roms) => {
             if (err) {
               return res.status(500).json({ success: false, ...err });
             }
@@ -245,7 +245,7 @@ module.exports.registerUser = async (req, res, next) => {
             }
             return console.log(`Core ROMs added for user '${user.username}'.`);
           });
-          await Rom.postHacks(romsData[1], user, (err, roms) => {
+          await Rom.postHacks(romHacks, user, (err, roms) => {
             if (err) {
               return res.status(500).json({ success: false, ...err });
             }
