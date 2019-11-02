@@ -111,7 +111,7 @@
             favorites.POKEMON.split('\u002C\u0020')[2].split('\u0020')[0]
           }}</b>
           {{ favorites.POKEMON.split('\u002C\u0020')[2].split('\u0020')[1] }} is
-          really cool.</span
+          also really cool.</span
         >
         <br /><br />
         <span class="question"
@@ -135,6 +135,18 @@
           >, and <b>{{ favorites.REGIONS.split('\u002C\u0020')[2] }}</b
           >.</span
         >
+        <br /><br />
+        <span class="question"
+          >What is your Favorite Pokemon Character (In Game and Anime)?</span
+        >
+        <br />
+        <span class="answer">
+          In game:
+          <b>{{ favorites.CHARACTERS.split('\u002C\u0020')[0] }}</b> and
+          <b>{{ favorites.CHARACTERS.split('\u002C\u0020')[1] }}</b
+          >; Anime: <b>{{ favorites.CHARACTERS.split('\u002C\u0020')[2] }}</b
+          >.
+        </span>
       </p>
     </ng-container>
   </div>

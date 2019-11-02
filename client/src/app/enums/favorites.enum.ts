@@ -1,5 +1,6 @@
 export enum Favorites {
   POKEMON = 'Gallade, Mega Gallade, Ralts line',
   GAMES = 'Ultra Sun, Platinum, Emerald',
-  REGIONS = 'Alola, Sinnoh, Hoenn'
+  REGIONS = 'Alola, Sinnoh, Hoenn',
+  CHARACTERS = 'Palmer, May, Paul'
 }
