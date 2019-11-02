@@ -104,10 +104,14 @@
         <span class="question">What is your Favorite Pok&eacute;mon?</span>
         <br />
         <span class="answer"
-          ><b>{{ favorites.pokemon[0] }}</b> and
-          <b>{{ favorites.pokemon[1] }}</b
-          >. But the whole <b>{{ favorites.pokemon[2].split('\u0020')[0] }}</b>
-          {{ favorites.pokemon[2].split('\u0020')[1] }} is really cool.</span
+          ><b>{{ favorites.POKEMON.split('\u002C\u0020')[0] }}</b> and
+          <b>{{ favorites.POKEMON.split('\u002C\u0020')[1] }}</b
+          >. But the whole
+          <b>{{
+            favorites.POKEMON.split('\u002C\u0020')[2].split('\u0020')[0]
+          }}</b>
+          {{ favorites.POKEMON.split('\u002C\u0020')[2].split('\u0020')[1] }} is
+          really cool.</span
         >
         <br /><br />
         <span class="question"
@@ -115,9 +119,21 @@
         >
         <br />
         <span class="answer"
-          ><b>{{ favorites.games[0] }}</b
-          >, <b>{{ favorites.games[1] }}</b
-          >, and <b>{{ favorites.games[2] }}</b></span
+          >Easy: <b>{{ favorites.GAMES.split('\u002C\u0020')[0] }}</b
+          >, <b>{{ favorites.GAMES.split('\u002C\u0020')[1] }}</b
+          >, and <b>{{ favorites.GAMES.split('\u002C\u0020')[2] }}</b></span
+        >
+        <br /><br />
+        <span class="question"
+          >What are your favorite Pok&eacute;mon Regions?</span
+        >
+        <br />
+        <span class="answer"
+          >Pretty obvious given the previous answer:
+          <b>{{ favorites.REGIONS.split('\u002C\u0020')[0] }}</b
+          >, <b>{{ favorites.REGIONS.split('\u002C\u0020')[1] }}</b
+          >, and <b>{{ favorites.REGIONS.split('\u002C\u0020')[2] }}</b
+          >.</span
         >
       </p>
     </ng-container>

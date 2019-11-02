@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { Environment } from '../../../interfaces/Environment';
+import { Favorites } from '../../../enums/favorites.enum';
 
 @Component({
   selector: 'app-faq',
@@ -20,16 +21,13 @@ export class FaqComponent implements OnInit, AfterContentInit {
   @ViewChild('browserCompatibility', { static: true })
   private browserCompatibilityElement: ElementRef;
   public environment: Environment = environment;
-  public favorites: { [index: string]: string[] };
+  public favorites: typeof Favorites;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.emulatorUrl = 'https://www.retroarch.com';
-    this.favorites = {
-      pokemon: ['Gallade', 'Mega Gallade', 'Ralts line'],
-      games: ['Ultra Sun', 'Platinum', 'Emerald']
-    };
+    this.favorites = Favorites;
   }
 
   ngAfterContentInit(): void {
