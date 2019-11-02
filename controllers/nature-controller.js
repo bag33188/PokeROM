@@ -18,7 +18,7 @@ function checkSingleErr(err, req, res) {
   }
 }
 
-function checkMultipleErr(err, req, res) {
+function checkMultipleErrs(err, req, res) {
   if (err) {
     switch (err.name) {
     case 'CastError':
@@ -187,7 +187,7 @@ module.exports.updateNature = async (req, res, next) => {
       {},
       async (err, updatedNature) => {
         try {
-          checkMultipleErr(err, req, res);
+          checkMultipleErrs(err, req, res);
           if (!updatedNature) {
             return res.status(404).json({
               success: false,
@@ -222,7 +222,7 @@ module.exports.patchNature = async (req, res, next) => {
     const query = { $set: data };
     await Nature.patchNature(id, query, async (err, status) => {
       try {
-        checkMultipleErr(err, req, res);
+        checkMultipleErrs(err, req, res);
         if (!status) {
           return res.status(502).json({
             success: false,
