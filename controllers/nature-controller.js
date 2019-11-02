@@ -8,11 +8,24 @@ const [, clearCache] = require('../middleware/cache');
 
 const routesWithParams = ['all'];
 
-function checkErr(err, req, res) {
+function checkSingleErr(err, req, res) {
   if (err) {
     if (err.name === 'CastError') {
       return res.status(404).json({ success: false, ...err });
     } else {
+      return res.status(500).json({ success: false, ...err });
+    }
+  }
+}
+
+function checkMultipleErr(err, req, res) {
+  if (err) {
+    switch (err.name) {
+    case 'CastError':
+      return res.status(404).json({ success: false, ...err });
+    case 'ValidationError':
+      return res.status(406).json({ success: false, ...err });
+    default:
       return res.status(500).json({ success: false, ...err });
     }
   }
@@ -54,7 +67,7 @@ function checkValidId(id, req, res) {
 
 function getNature(id, req, res, callback) {
   return Nature.getNature(id, (err, nature) => {
-    checkErr(err, req, res);
+    checkSingleErr(err, req, res);
     if (!nature) {
       return res
         .status(404)
@@ -88,7 +101,7 @@ module.exports.getNature = async (req, res, next) => {
     let id = null;
     id = checkValidId(id, req, res);
     await Nature.getNature(id, (err, nature) => {
-      checkErr(err, req, res);
+      checkSingleErr(err, req, res);
       if (!nature) {
         return res
           .status(404)
@@ -174,16 +187,7 @@ module.exports.updateNature = async (req, res, next) => {
       {},
       async (err, updatedNature) => {
         try {
-          if (err) {
-            switch (err.name) {
-              case 'CastError':
-                return res.status(404).json({ success: false, ...err });
-              case 'ValidationError':
-                return res.status(406).json({ success: false, ...err });
-              default:
-                return res.status(500).json({ success: false, ...err });
-            }
-          }
+          checkMultipleErr(err, req, res);
           if (!updatedNature) {
             return res.status(404).json({
               success: false,
@@ -218,16 +222,7 @@ module.exports.patchNature = async (req, res, next) => {
     const query = { $set: data };
     await Nature.patchNature(id, query, async (err, status) => {
       try {
-        if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(406).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
-          }
-        }
+        checkMultipleErr(err, req, res);
         if (!status) {
           return res.status(502).json({
             success: false,
@@ -254,7 +249,7 @@ module.exports.deleteNature = async (req, res, next) => {
     await getNature(id, req, res, async () => {
       try {
         await Nature.deleteNature(id, (err, status) => {
-          checkErr(err, req, res);
+          checkSingleErr(err, req, res);
           if (!status) {
             return res.status(502).json({
               success: false,
