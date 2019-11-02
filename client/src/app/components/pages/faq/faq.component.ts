@@ -20,11 +20,16 @@ export class FaqComponent implements OnInit, AfterContentInit {
   @ViewChild('browserCompatibility', { static: true })
   private browserCompatibilityElement: ElementRef;
   public environment: Environment = environment;
+  public favorites: { [index: string]: string[] };
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.emulatorUrl = 'https://www.retroarch.com';
+    this.favorites = {
+      pokemon: ['Gallade', 'Mega Gallade', 'Ralts line'],
+      games: ['Ultra Sun', 'Platinum', 'Emerald']
+    };
   }
 
   ngAfterContentInit(): void {
