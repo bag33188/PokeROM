@@ -1,4 +1,4 @@
-[comment]: # "Begin README.md"
+[comment]: # (Begin README.md)
 
 Pok&eacute;ROM
 ==============
