@@ -22,9 +22,7 @@ export class HttpsInterceptor implements HttpInterceptor {
         url: req.url.replace('http://', 'https://')
       });
     } else {
-      httpsReq = req.clone({
-        url: req.url
-      });
+      httpsReq = req;
     }
     return next.handle(httpsReq);
   }
