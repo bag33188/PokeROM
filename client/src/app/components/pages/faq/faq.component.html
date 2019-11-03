@@ -104,10 +104,11 @@
         <span class="question">What is your Favorite Pok&eacute;mon?</span>
         <br />
         <span class="answer"
-          ><b>{{ parseFavorites()[0] }}</b> and <b>{{ parseFavorites()[1] }}</b
+          ><b>{{ parseFavorites().pokemon[0] }}</b> and
+          <b>{{ parseFavorites().pokemon[1] }}</b
           >. But the whole
-          <b>{{ parseFavorites()[2].split('\u0020')[0] }}</b>
-          {{ parseFavorites()[2].split('\u0020')[1] }} is also really
+          <b>{{ parseFavorites().pokemon[2].split('\u0020')[0] }}</b>
+          {{ parseFavorites().pokemon[2].split('\u0020')[1] }} is also really
           cool.</span
         >
         <br /><br />
@@ -116,9 +117,9 @@
         >
         <br />
         <span class="answer"
-          >Easy: <b>{{ parseFavorites()[0] }}</b
-          >, <b>{{ parseFavorites()[1] }}</b
-          >, and <b>{{ parseFavorites()[2] }}</b></span
+          >Easy: <b>{{ parseFavorites().games[0] }}</b
+          >, <b>{{ parseFavorites().games[1] }}</b
+          >, and <b>{{ parseFavorites().games[2] }}</b></span
         >
         <br /><br />
         <span class="question"
@@ -127,9 +128,9 @@
         <br />
         <span class="answer"
           >Pretty obvious given the previous answer:
-          <b>{{ parseFavorites()[0] }}</b
-          >, <b>{{ parseFavorites()[1] }}</b
-          >, and <b>{{ parseFavorites()[2] }}</b
+          <b>{{ parseFavorites().regions[0] }}</b
+          >, <b>{{ parseFavorites().regions[1] }}</b
+          >, and <b>{{ parseFavorites().regions[2] }}</b
           >.</span
         >
         <br /><br />
@@ -140,8 +141,9 @@
         <br />
         <span class="answer">
           In game:
-          <b>{{ parseFavorites()[0] }}</b> and <b>{{ parseFavorites()[1] }}</b
-          >; Anime: <b>{{ parseFavorites()[2] }}</b
+          <b>{{ parseFavorites().characters[0] }}</b> and
+          <b>{{ parseFavorites().characters[1] }}</b
+          >; Anime: <b>{{ parseFavorites().characters[2] }}</b
           >.
         </span>
       </p>

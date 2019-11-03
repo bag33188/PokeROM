@@ -47,7 +47,7 @@ export class FaqComponent implements OnInit, AfterContentInit {
   public parseFavorites(): { [index: string]: string[] } {
     return {
       pokemon: Favorites.POKEMON.split('\u002C\u0020'),
-      games: Favorites.CHARACTERS.split('\u002C\u0020'),
+      games: Favorites.GAMES.split('\u002C\u0020'),
       regions: Favorites.REGIONS.split('\u002C\u0020'),
       characters: Favorites.CHARACTERS.split('\u002C\u0020')
     };
