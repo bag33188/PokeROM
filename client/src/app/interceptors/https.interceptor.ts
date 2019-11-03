@@ -15,14 +15,15 @@ export class HttpsInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    let httpsReq: HttpRequest<any>;
     if (environment.production) {
       // clone request and replace 'http://' with 'https://' at the same time
-      const httpsReq: HttpRequest<any> = req.clone({
+      httpsReq = req.clone({
         url: req.url.replace('http://', 'https://')
       });
-      return next.handle(httpsReq);
     } else {
-      return next.handle(req);
+      httpsReq = req;
     }
+    return next.handle(httpsReq);
   }
 }
