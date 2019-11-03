@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(3),
       Validators.maxLength(22)
     ]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(6),
       Validators.maxLength(256)
     ])
   });

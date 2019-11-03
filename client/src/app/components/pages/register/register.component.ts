@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     ],
     password: [
       '',
-      [Validators.required, Validators.minLength(8), Validators.maxLength(256)]
+      [Validators.required, Validators.minLength(6), Validators.maxLength(256)]
     ]
   });
   public firedOff: boolean;
