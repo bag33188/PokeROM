@@ -1,6 +1,6 @@
-export class User {
-  _id?: string;
-  name?: string;
-  username: string;
-  password: string;
+export abstract class User {
+  abstract _id?: string;
+  abstract name?: string;
+  abstract username: string;
+  abstract password: string;
 }

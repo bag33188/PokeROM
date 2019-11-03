@@ -1,3 +1,3 @@
-export class ApiVersion {
-  api_version: string;
+export abstract class ApiVersion {
+  abstract api_version: string;
 }
