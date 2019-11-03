@@ -104,14 +104,11 @@
         <span class="question">What is your Favorite Pok&eacute;mon?</span>
         <br />
         <span class="answer"
-          ><b>{{ favorites.POKEMON.split('\u002C\u0020')[0] }}</b> and
-          <b>{{ favorites.POKEMON.split('\u002C\u0020')[1] }}</b
+          ><b>{{ parseFavorites()[0] }}</b> and <b>{{ parseFavorites()[1] }}</b
           >. But the whole
-          <b>{{
-            favorites.POKEMON.split('\u002C\u0020')[2].split('\u0020')[0]
-          }}</b>
-          {{ favorites.POKEMON.split('\u002C\u0020')[2].split('\u0020')[1] }} is
-          also really cool.</span
+          <b>{{ parseFavorites()[2].split('\u0020')[0] }}</b>
+          {{ parseFavorites()[2].split('\u0020')[1] }} is also really
+          cool.</span
         >
         <br /><br />
         <span class="question"
@@ -119,9 +116,9 @@
         >
         <br />
         <span class="answer"
-          >Easy: <b>{{ favorites.GAMES.split('\u002C\u0020')[0] }}</b
-          >, <b>{{ favorites.GAMES.split('\u002C\u0020')[1] }}</b
-          >, and <b>{{ favorites.GAMES.split('\u002C\u0020')[2] }}</b></span
+          >Easy: <b>{{ parseFavorites()[0] }}</b
+          >, <b>{{ parseFavorites()[1] }}</b
+          >, and <b>{{ parseFavorites()[2] }}</b></span
         >
         <br /><br />
         <span class="question"
@@ -130,9 +127,9 @@
         <br />
         <span class="answer"
           >Pretty obvious given the previous answer:
-          <b>{{ favorites.REGIONS.split('\u002C\u0020')[0] }}</b
-          >, <b>{{ favorites.REGIONS.split('\u002C\u0020')[1] }}</b
-          >, and <b>{{ favorites.REGIONS.split('\u002C\u0020')[2] }}</b
+          <b>{{ parseFavorites()[0] }}</b
+          >, <b>{{ parseFavorites()[1] }}</b
+          >, and <b>{{ parseFavorites()[2] }}</b
           >.</span
         >
         <br /><br />
@@ -143,9 +140,8 @@
         <br />
         <span class="answer">
           In game:
-          <b>{{ favorites.CHARACTERS.split('\u002C\u0020')[0] }}</b> and
-          <b>{{ favorites.CHARACTERS.split('\u002C\u0020')[1] }}</b
-          >; Anime: <b>{{ favorites.CHARACTERS.split('\u002C\u0020')[2] }}</b
+          <b>{{ parseFavorites()[0] }}</b> and <b>{{ parseFavorites()[1] }}</b
+          >; Anime: <b>{{ parseFavorites()[2] }}</b
           >.
         </span>
       </p>
