@@ -1,9 +1,8 @@
-export abstract class Nature {
-  abstract _id?: string;
-  abstract name: string;
-  abstract up: string;
-  abstract down: string;
-  abstract flavor: string;
-  abstract usage: string;
+export class Nature {
+  _id?: string;
+  name: string;
+  up: string;
+  down: string;
+  flavor: string;
+  usage: string;
 }
-
