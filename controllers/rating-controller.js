@@ -88,7 +88,7 @@ module.exports.addRating = async (req, res, next) => {
 module.exports.getRating = async (req, res, next) => {
   try {
     let id = null;
-    id = checkValidId(id);
+    id = checkValidId(id, req, res);
     await Rating.getRating(id, (err, rating) => {
       checkErr(err, req, res);
       noRatingResponse(rating, req, res);
@@ -124,7 +124,7 @@ module.exports.getRatings = async (req, res, next) => {
 module.exports.deleteRating = async (req, res, next) => {
   try {
     let id = null;
-    id = checkValidId(id);
+    id = checkValidId(id, req, res);
     await getRating(id, req, res, async () => {
       try {
         const query = { _id: id };
@@ -173,7 +173,7 @@ module.exports.ratingsHeaders = (req, res) => {
 module.exports.ratingHeaders = async (req, res, next) => {
   try {
     let id = null;
-    id = checkValidId(id);
+    id = checkValidId(id, req, res);
     await getRating(id, req, res, () => {
       return res.status(200);
     });
