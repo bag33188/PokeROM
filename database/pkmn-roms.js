@@ -191,10 +191,10 @@ usersCollection = db.createCollection('users', {
         },
         username: {
           bsonType: 'string',
-          minLength: 5,
+          minLength: 3,
           maxLength: 22,
           description:
-            'username is required and must be a string between 5 and 22 characters.'
+            'username is required and must be a string between 3 and 22 characters.'
         },
         password: {
           bsonType: 'string',

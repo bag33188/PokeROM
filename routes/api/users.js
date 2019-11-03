@@ -57,8 +57,8 @@ httpRouter.post(
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({ min: 5, max: 22 })
-      .withMessage('Username must be between 5 and 22 characters.'),
+      .isLength({ min: 3, max: 22 })
+      .withMessage('Username must be between 3 and 22 characters.'),
     check('password')
       .not()
       .isEmpty()
@@ -90,8 +90,8 @@ httpRouter.post(
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({ min: 5, max: 22 })
-      .withMessage('Username must be between 5 and 22 characters.'),
+      .isLength({ min: 3, max: 22 })
+      .withMessage('Username must be between 3 and 22 characters.'),
     check('password')
       .not()
       .isEmpty()
@@ -133,8 +133,8 @@ httpRouter.put(
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({ min: 5, max: 22 })
-      .withMessage('Username must be between 5 and 22 characters.'),
+      .isLength({ min: 3, max: 22 })
+      .withMessage('Username must be between 3 and 22 characters.'),
     check('password')
       .not()
       .isEmpty()
@@ -173,8 +173,8 @@ httpRouter.patch(
       .withMessage(
         'Username can only contain letters, numbers, or underscores.'
       )
-      .isLength({ min: 5, max: 22 })
-      .withMessage('Username must be between 5 and 22 characters.'),
+      .isLength({ min: 3, max: 22 })
+      .withMessage('Username must be between 3 and 22 characters.'),
     check('password')
       .optional()
       .isString()

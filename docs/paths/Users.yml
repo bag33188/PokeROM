@@ -156,7 +156,7 @@ paths:
                     nullable: true
                   username:
                     type: string
-                    minlength: 5
+                    minlength: 3
                     maxlength: 22
                 required:
                   - _id

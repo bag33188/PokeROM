@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     name: ['', [Validators.minLength(1), Validators.maxLength(100)]],
     username: [
       '',
-      [Validators.required, Validators.minLength(5), Validators.maxLength(22)]
+      [Validators.required, Validators.minLength(3), Validators.maxLength(22)]
     ],
     password: [
       '',

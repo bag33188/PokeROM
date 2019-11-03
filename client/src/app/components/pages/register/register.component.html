@@ -53,7 +53,7 @@
                   Username is required.
                 </div>
                 <div [hidden]="!Username.errors?.minlength">
-                  Username is too short (min: 5, current:
+                  Username is too short (min: 3, current:
                   {{ Username.value.length }}).
                 </div>
                 <div [hidden]="!Username.errors?.maxlength">
