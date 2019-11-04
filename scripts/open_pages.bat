@@ -21,7 +21,9 @@ REM.||(
   REM cPanel
   START "" https://server1.pokerom.dev:2083
   REM Namecheap
-  START "" https://www.namecheap.com/
+  START "" https://ap.www.namecheap.com/domains/domaincontrolpanel/pokerom.dev/domain
+  REM Github
+  START "" https://github.com/bag33188/PokeROM
   REM Webdisk
   START "" https://pokerom.dev:2078
   REM Private Email
