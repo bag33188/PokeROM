@@ -1,8 +1,6 @@
 <?php
   require_once "WWW.php";
-  require_once "HTTP.php";
   use www\WWW as WWW;
-  use www\HTTP;
   $apiVersionData = WWW::getApiVersionData();
   $productionMode = WWW::isProductionMode();
   $documentTitle = "API Docs (Redirect)";
