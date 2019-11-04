@@ -27,10 +27,18 @@ String.prototype.validatePhoneNumber = function(
     test: phoneNumberTest
   };
   if (options.showTextOutput) {
-    return {
-      ...resultData,
-      text: `${this} = ${resultData.test ? 'valid' : 'invalid'}`
-    };
+    if (
+      typeof options.showTextOutput === 'boolean' &&
+      options.showTextOutput === true
+    ) {
+      return {
+        ...resultData,
+        text: `${this} = ${resultData.test ? 'valid' : 'invalid'}`
+      };
+    } else {
+      // tslint:disable-next-line:quotemark
+      throw new Error("The `showTextOutput` option's value must be a boolean.");
+    }
   } else {
     return resultData;
   }
