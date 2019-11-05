@@ -4,14 +4,19 @@
   }
 }
 
-#submit-container-float {
-  clear: both;
+.float-container {
   height: 38.5px;
   width: 281px;
   @media only all and (max-width: 360px) {
-    clear: left;
     height: 6em;
     width: 12.5rem;
+  }
+}
+
+#submit-container-float {
+  clear: both;
+  @media only all and (max-width: 360px) {
+    clear: left;
   }
 
   // use clearfix trick
