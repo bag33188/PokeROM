@@ -1,6 +1,13 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
 
+/**
+ * @function
+ * @name printKeys
+ * @summary Print Keys
+ * @description Prints the server's keys.
+ * @returns {string}
+ */
 function printKeys() {
   let file = null;
   try {
