@@ -109,3 +109,4 @@ $header-height: 56px;
 
 // calculations
 $calc-body-height: calc(100vh - (#{$header-height} + #{$footer-height}));
+$calc-img-size: calc(100vw - (70vw - 2.5rem));
