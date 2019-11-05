@@ -30,7 +30,8 @@ function getRating(id, req, res, callback) {
   });
 }
 
-function checkValidId(id, req, res) {
+function checkValidId(req, res) {
+  let id = null;
   try {
     id = mongoose.Types.ObjectId(req.params.id);
   } catch (e) {
