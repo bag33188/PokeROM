@@ -1,8 +1,9 @@
 <?php
   require_once "WWW.php";
   use www\WWW as WWW;
-  $productionMode = WWW::isProductionMode();
-  $currentUrl = WWW::getCurrentUrl();
+  $www = new WWW();
+  $productionMode = $www->isProductionMode();
+  $currentUrl = $www->getCurrentUrl();
   $documentTitle = "Pok&eacute;ROM - Credits";
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $me = "Broccolini";
@@ -32,7 +33,7 @@
     (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
   ];
   if (!$productionMode) {
-    $apiVersion = WWW::getApiVersionData()->api_version;
+    $apiVersion = $www->getApiVersionData()->api_version;
     $navObj = new stdClass();
     $navObj->href = "/api/docs/" . $apiVersion . "/";
     $navObj->target = "_self";

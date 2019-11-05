@@ -1,10 +1,11 @@
 <?php
   require_once "WWW.php";
   use www\WWW as WWW;
-  $productionMode = WWW::isProductionMode();
+  $www = new WWW();
+  $productionMode = $www->isProductionMode();
   $languages = WWW::languageData()["languages"];
   $tooltips = WWW::languageData()["tooltips"];
-  $currentUrl = WWW::getCurrentUrl();
+  $currentUrl = $www->getCurrentUrl();
   $longestLanguage = WWW::findLongestLanguageName($languages, $tooltips);
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $documentTitle = "Pok&eacute;ROM - Languages Used";
@@ -25,7 +26,7 @@
     (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
   ];
   if (!$productionMode) {
-    $apiVersion = WWW::getApiVersionData()->api_version;
+    $apiVersion = $www->getApiVersionData()->api_version;
     $navObj = new stdClass();
     $navObj->href = "/api/docs/" . $apiVersion . "/";
     $navObj->target = "_self";

@@ -14,43 +14,22 @@
   class WWW
   {
     /**
-     * @return array Array of languages and tooltips.
+     * @var string|null Current url.
      */
-    public static function languageData()
+    protected $url;
+
+    /**
+     * WWW constructor.
+     */
+    public function __construct()
     {
-      // create associative array with languages
-      $languages = array(
-        "Apache" => "Apache",
-        "Bash/Shell Script" => "Bash/Shell",
-        "Batch File" => "Batch",
-        "Cascade StyleSheet" => "CSS",
-        "Node.JS Environment Notation" => "ENV",
-        "Git SCM" => "Git",
-        "HyperText Markup Language" => "HTML",
-        "JavaScript Object Notation" => "JSON",
-        "JavaScript" => "JavaScript",
-        "Markdown" => "Markdown",
-        "Hypertext Preprocessor" => "PHP",
-        "Python 3" => "Python 3",
-        "Ruby" => "Ruby",
-        "Syntactically Awesome Stylesheets" => "SCSS/Sass",
-        "Scalar Vector Graphics" => "SVG",
-        "TypeScript" => "TypeScript",
-        "eXtensible Markup Language" => "XML",
-        "Yet Another Markup Language" => "YAML"
-      );
-      // get keys of array for storing tooltips
-      $tooltips = array_keys($languages);
-      // sort the array
-      sort($languages);
-      // return associative array with languages and tooltips
-      return array("languages" => $languages, "tooltips" => $tooltips);
+      $url = NULL;
     }
 
     /**
      * @return mixed Object array of api version data.
      */
-    public static function getApiVersionData()
+    public function getApiVersionData()
     {
       $filePath = "../docs/swagger-definition.yml";
       $file = fopen($filePath, "r");
@@ -71,20 +50,40 @@
     }
 
     /**
-     * @return string Current URL.
+     * @return void Nothing.
      */
-    public static function getCurrentUrl()
+    private function setCurrentUrl()
     {
       // set url var
-      $url = "";
+      $this->url = "";
       // check if https
-      $url .= (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") ? "https" : "http";
-      // build url var
-      $url .= "://";
-      $url .= $_SERVER["HTTP_HOST"];
-      $url .= $_SERVER["REQUEST_URI"];
-      // return current url
-      return $url;
+      $this->url .= (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") ? "https" : "http";
+      // build rest of url prop's value
+      $this->url .= "://";
+      $this->url .= $_SERVER["HTTP_HOST"];
+      $this->url .= $_SERVER["REQUEST_URI"];
+    }
+
+    /**
+     * @return string Current URL.
+     */
+    public function getCurrentUrl() {
+      $this->setCurrentUrl();
+      $currentUrl = $this->url;
+      return $currentUrl;
+    }
+
+    /**
+     * @return bool If production mode is active.
+     */
+    public function isProductionMode()
+    {
+      // get current url (sets url prop)
+      $this->setCurrentUrl();
+      // store current url
+      $currentUrl = $this->url;
+      // check if localhost is in current url
+      return (strpos($currentUrl, "localhost") !== false) ? false : true;
     }
 
     /**
@@ -116,13 +115,36 @@
     }
 
     /**
-     * @return bool If production mode is active.
+     * @return array Array of languages and tooltips.
      */
-    public static function isProductionMode()
+    public static function languageData()
     {
-      // store current url
-      $currentUrl = self::getCurrentUrl();
-      // check if localhost is in current url
-      return (strpos($currentUrl, "localhost") !== false) ? false : true;
+      // create associative array with languages
+      $languages = array(
+        "Apache" => "Apache",
+        "Bash/Shell Script" => "Bash/Shell",
+        "Batch File" => "Batch",
+        "Cascade StyleSheet" => "CSS",
+        "Node.JS Environment Notation" => "ENV",
+        "Git SCM" => "Git",
+        "HyperText Markup Language" => "HTML",
+        "JavaScript Object Notation" => "JSON",
+        "JavaScript" => "JavaScript",
+        "Markdown" => "Markdown",
+        "Hypertext Preprocessor" => "PHP",
+        "Python 3" => "Python 3",
+        "Ruby" => "Ruby",
+        "Syntactically Awesome Stylesheets" => "SCSS/Sass",
+        "Scalar Vector Graphics" => "SVG",
+        "TypeScript" => "TypeScript",
+        "eXtensible Markup Language" => "XML",
+        "Yet Another Markup Language" => "YAML"
+      );
+      // get keys of array for storing tooltips
+      $tooltips = array_keys($languages);
+      // sort the array
+      sort($languages);
+      // return associative array with languages and tooltips
+      return array("languages" => $languages, "tooltips" => $tooltips);
     }
   }
