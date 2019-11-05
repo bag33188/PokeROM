@@ -6,7 +6,7 @@ const fs = require('fs');
  * @name printKeys
  * @summary Print Keys
  * @description Prints the server's keys.
- * @returns {string}
+ * @returns {string} All the server's keys.
  */
 function printKeys() {
   let file = null;
