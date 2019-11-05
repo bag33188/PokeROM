@@ -262,7 +262,7 @@ For **any other problems**, open up a new issue in the [issues](https://github.c
 Listen 8080
 
 # C:/xampp/apache/conf/extra/httpd-vhosts.conf
-<VirtualHost *:3000>
+<VirtualHost *:5000>
     DocumentRoot "C:\Users\Brock\Projects\PokeROM\www"
     ServerName localhost:8080
     <Directory "C:\Users\Brock\Projects\PokeROM\www">
