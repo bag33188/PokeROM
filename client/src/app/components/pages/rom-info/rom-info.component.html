@@ -4,25 +4,25 @@
     class="alert alert-danger ml-4 mr-4 text-center rom-info-err-wrapper"
     *ngIf="isError"
   >
-    <div [ngSwitch]="errStatus">
-      <div *ngSwitchCase="401">
+    <ng-container [ngSwitch]="errStatus">
+      <ng-container *ngSwitchCase="401">
         You're not logged in and thus cannot access this ROM. Click
         <a [routerLink]="['/']">here</a> to go back to the home page.
-      </div>
-      <div *ngSwitchCase="403">
+      </ng-container>
+      <ng-container *ngSwitchCase="403">
         You cannot access this user's ROM. Click
         <a [routerLink]="['/']">here</a> to go back to the home page.
-      </div>
-      <div *ngSwitchCase="404">
+      </ng-container>
+      <ng-container *ngSwitchCase="404">
         Looks like this ROM doesn't exist. Click
         <a [routerLink]="['/']">here</a> to go back to the home page.
-      </div>
-      <div *ngSwitchDefault>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
         Oops, there was an error while trying to load your ROM information.
         Please try again later. Click <a [routerLink]="['/']">here</a> to go
         back to the home page.
-      </div>
-    </div>
+      </ng-container>
+    </ng-container>
   </div>
   <ng-container *ngIf="!loading && !isError">
     <div class="rom-info-container">
