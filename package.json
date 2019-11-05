@@ -42,7 +42,8 @@
     "count-files-git": "cd scripts && ruby count_files_git.rb",
     "fix-permissions": "cd scripts && bash ./fix_permissions.sh",
     "open-pages": "cd scripts && open_pages.bat",
-    "open-repos": "cd scripts && open_repos.bat"
+    "open-repos": "cd scripts && open_repos.bat",
+    "print-keys": "cd scripts && node print-keys"
   },
   "private": true,
   "author": "bag33188",
