@@ -2,7 +2,7 @@
 
 fix_mongod_permissions() {
   cd .. || return
-  chown mongod:mongod /tmpmongodb-44380.sock
+  chown mongod:mongod /tmp/mongodb-44380.sock
   chown -R mongod:mongod /var/lib/mongo
 }
 
