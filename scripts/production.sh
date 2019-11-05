@@ -45,7 +45,7 @@ production() {
       git status
       read -r -p "Add files: " files
       # shellcheck disable=SC2086
-      git add $files
+      git add ${files}
       read -r -p "Commit Message: " commit_msg
       git commit -m "$commit_msg"
       while true; do
