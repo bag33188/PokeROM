@@ -1,6 +1,6 @@
 // _font-faces.scss
 
-@use '../mixins';
+@import '../mixins';
 @import '../variables';
 
 $roboto-font-data: 'Roboto' 'Roboto Bold' normal bold $roboto-bold2 $roboto-bold,
@@ -33,7 +33,7 @@ $roboto-font-data: 'Roboto' 'Roboto Bold' normal bold $roboto-bold2 $roboto-bold
     $roboto-black-italic,
   'Roboto' 'Roboto Italic' italic normal $roboto-italic2 $roboto-italic;
 
-@include mixins.add-font-face($roboto-font-data, $roboto-font-url-prefix);
+@include add-font-face($roboto-font-data, $roboto-font-url-prefix);
 
 $arial-font-data: 'Arial' 'Arial Bold' normal bold $arial-bold2 $arial-bold,
   'Arial Narrow' 'Arial Narrow' italic bold $arial-narrow-bold-italic2
@@ -49,4 +49,4 @@ $arial-font-data: 'Arial' 'Arial Bold' normal bold $arial-bold2 $arial-bold,
     $arial-narrow-bold,
   'Arial' 'Arial Italic' italic normal $arial-italic2 $arial-italic;
 
-@include mixins.add-font-face($arial-font-data, $arial-font-url-prefix);
+@include add-font-face($arial-font-data, $arial-font-url-prefix);
