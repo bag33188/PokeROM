@@ -252,6 +252,29 @@ For **any other problems**, open up a new issue in the [issues](https://github.c
 
 --------
 
+<!--
+# For Windows, XAMPP
+
+# C:/Windows/System32/drivers/etc/hosts (as admin)
+127.0.0.1 localhost:8080
+
+# C:/xampp/apache/conf/httpd.conf
+Listen 8080
+
+# C:/xampp/apache/conf/extra/httpd-vhosts.conf
+<VirtualHost *:3000>
+    DocumentRoot "C:\Users\Brock\Projects\PokeROM\www"
+    ServerName localhost:8080
+    <Directory "C:\Users\Brock\Projects\PokeROM\www">
+        Allow from all
+        Require all granted
+    </Directory>
+    ProxyPreserveHost on
+    ProxyPass / http://localhost:8080/
+    ProxyPassReverse / http://localhost:8080/
+</VirtualHost>
+-->
+
 > _**Enjoy!**_
 
 [comment]: # "End README.md"
