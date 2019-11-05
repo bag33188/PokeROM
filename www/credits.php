@@ -236,7 +236,7 @@
     <div class="container border rounded">
       <h1 class="text-center mt-2">Credits</h1>
       <div class="text-center">
-        <p class="m-4" id="intro"></p>
+        <p class="m-4" id="intro"><!-- content inserted via JavaScript --></p>
         <dl class="mt-4 text-center">
           <?php for ($i = 0; $i < count($creditsData); $i++): ?>
             <dt><?= $creditsData[$i]->term; ?></dt>
