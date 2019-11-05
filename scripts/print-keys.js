@@ -11,9 +11,9 @@ const fs = require('fs');
 function printKeys() {
   let file = null;
   try {
-    file = fs.readFileSync('./.keys.yml', 'utf8');
-  } catch (e) {
     file = fs.readFileSync('../.keys.yml', 'utf8');
+  } catch (e) {
+    file = fs.readFileSync('./.keys.yml', 'utf8');
   }
   const doc = yaml.safeLoad(file);
   const parts = ['Keys', 'Personal Access Tokens', 'Deploy Keys'];
