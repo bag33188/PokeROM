@@ -102,7 +102,8 @@ function setCorrectDate(req) {
   req.body.date_released = req.body.date_released.convertToDateFormat();
 }
 
-function checkValidId(id, req, res) {
+function checkValidId(req, res) {
+  let id = null;
   try {
     if (routesWithParams.includes(req.params.id)) {
       return res
@@ -268,8 +269,7 @@ module.exports.getRoms = async (req, res, next) => {
 
 module.exports.getRom = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     await Rom.getRomById(id, (err, rom) => {
       if (err) {
         checkSingleErr(err, req, res);
@@ -351,8 +351,7 @@ module.exports.addRom = async (req, res, next) => {
 
 module.exports.updateRom = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     setCorrectDate(req);
     setRomTypeToLowerCase(req);
     const updateRomData = romObjData(req);
@@ -413,8 +412,7 @@ module.exports.updateRom = async (req, res, next) => {
 
 module.exports.patchRom = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     const data = req.body;
     if (req.body.date_released) {
       setCorrectDate(req);
@@ -475,8 +473,7 @@ module.exports.patchRom = async (req, res, next) => {
 
 module.exports.deleteRom = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     await getRomById(id, req, res, async rom => {
       try {
         const isOwnUser = rom.user_id.toString() === req.user['_id'].toString();
@@ -579,8 +576,7 @@ module.exports.romsHeaders = (req, res) => {
 
 module.exports.romHeaders = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     await getRomById(id, req, res, () => {
       return res.status(200);
     });

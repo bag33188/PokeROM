@@ -52,7 +52,8 @@ function checkSingleErr(err, req, res) {
   }
 }
 
-function checkValidId(id, req, res) {
+function checkValidId(req, res) {
+  let id = null;
   try {
     if (routesWithParams.includes(req.params.id)) {
       return res
@@ -61,7 +62,7 @@ function checkValidId(id, req, res) {
     }
     id = mongoose.Types.ObjectId(req.params.id);
   } catch (e) {
-    return res.status(404).json({ success: false, message: 'User not found.' });
+    return res.status(404).json({ success: false, message: 'ROM not found.' });
   }
   return id;
 }
@@ -353,8 +354,7 @@ module.exports.authorizeUser = async (req, res, next) => {
 
 module.exports.updateUser = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     const userData = {
       name: req.sanitize(req.body.name) || null,
       username: req.sanitize(req.body.username),
@@ -407,8 +407,7 @@ module.exports.updateUser = async (req, res, next) => {
 
 module.exports.patchUser = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     const data = req.body;
     const { username, password, name } = data;
     handleErrors(req, res);
@@ -493,8 +492,7 @@ module.exports.deleteUsers = async (req, res, next) => {
 
 module.exports.deleteUser = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     if (req.user['_id'].toString() === id.toString()) {
       await getUserById(id, req, res, async () => {
         try {
@@ -550,8 +548,7 @@ module.exports.usersHeaders = (req, res) => {
 
 module.exports.userHeaders = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     await getUserById(id, req, res, () => {
       return res.status(200);
     });

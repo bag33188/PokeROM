@@ -21,12 +21,12 @@ function checkSingleErr(err, req, res) {
 function checkMultipleErrs(err, req, res) {
   if (err) {
     switch (err.name) {
-    case 'CastError':
-      return res.status(404).json({ success: false, ...err });
-    case 'ValidationError':
-      return res.status(406).json({ success: false, ...err });
-    default:
-      return res.status(500).json({ success: false, ...err });
+      case 'CastError':
+        return res.status(404).json({ success: false, ...err });
+      case 'ValidationError':
+        return res.status(406).json({ success: false, ...err });
+      default:
+        return res.status(500).json({ success: false, ...err });
     }
   }
 }
@@ -49,7 +49,8 @@ function checkValidFields(req, res) {
   }
 }
 
-function checkValidId(id, req, res) {
+function checkValidId(req, res) {
+  let id = null;
   try {
     if (routesWithParams.includes(req.params.id)) {
       return res
@@ -98,8 +99,7 @@ module.exports.getNatures = async (req, res, next) => {
 
 module.exports.getNature = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     await Nature.getNature(id, (err, nature) => {
       checkSingleErr(err, req, res);
       if (!nature) {
@@ -166,8 +166,7 @@ module.exports.addNature = async (req, res, next) => {
 
 module.exports.updateNature = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     const updateData = {
       name: req.sanitize(req.body.name),
       up: req.sanitize(req.body.up),
@@ -210,8 +209,7 @@ module.exports.updateNature = async (req, res, next) => {
 
 module.exports.patchNature = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     const data = req.body;
     const { name, up, down, flavor, usage } = data;
     const errors = validationResult(req);
@@ -244,8 +242,7 @@ module.exports.patchNature = async (req, res, next) => {
 
 module.exports.deleteNature = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     await getNature(id, req, res, async () => {
       try {
         await Nature.deleteNature(id, (err, status) => {
@@ -298,8 +295,7 @@ module.exports.naturesHeaders = (req, res) => {
 
 module.exports.natureHeaders = async (req, res, next) => {
   try {
-    let id = null;
-    id = checkValidId(id, req, res);
+    const id = checkValidId(req, res);
     await getNature(id, req, res, () => {
       return res.status(200);
     });
