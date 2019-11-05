@@ -22,14 +22,6 @@ const natures = require('./routes/api/natures');
 const ratings = require('./routes/api/ratings');
 const options = require('./routes/options');
 
-/*
-const yaml = require('js-yaml');
-const fs = require('fs');
-const file = fs.readFileSync('./.keys.yml', 'utf8');
-const doc = yaml.safeLoad(file);
-console.log(doc);
-*/
-
 // setup env vars
 dotenv.config({ encoding: 'utf8' });
 
