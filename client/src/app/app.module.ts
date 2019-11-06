@@ -11,6 +11,7 @@ import { httpInterceptorProviders } from './interceptors';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DirectivesModule } from './directives/directives.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { environment } from '../environments/environment';
     LayoutModule,
     RomsModule,
     NgBootstrapModule,
+    DirectivesModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
     })

@@ -30,6 +30,7 @@ import { LoggerService } from '../../services/logger.service';
 import { RatingService } from '../../services/rating.service';
 import { AccountComponent } from './account/account.component';
 import { SpinnerModule } from '../spinner/spinner.module';
+import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { SpinnerModule } from '../spinner/spinner.module';
     RomsModule,
     NgBootstrapModule,
     FontAwesomeModule,
-    SpinnerModule
+    SpinnerModule,
+    DirectivesModule
   ],
   exports: [],
   providers: [
