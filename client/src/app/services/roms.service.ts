@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Rom } from '../models/Rom';
 import { environment } from '../../environments/environment';
+import { Opts } from '../interfaces/Opts';
 
 /*
  * headers.append(name: string, value: string | string[])
@@ -21,37 +22,43 @@ export class RomsService {
   /**
    * @summary Get all ROMs.
    * @description Sends a get request to /api/roms
-   * @param limit The number of roms to limit.
-   * @param page Pagination: page number.
-   * @param perPage Pagination: how many per page.
-   * @param core If wanting to get all core ROMs, set to true.
-   * @param hacks If wanting to get all ROM hacks, set to true.
+   * @param options Options for getting all ROMs.
    * @returns An observable (rom array).
    */
-  public getAllRoms(
-    limit?: number,
-    page?: number,
-    perPage?: number,
-    core?: boolean,
-    hacks?: boolean
-  ): Observable<Rom[]> {
+  public getAllRoms(options: Opts): Observable<Rom[]> {
     let httpParams: HttpParams = new HttpParams();
+    if (options.limit) {
+      httpParams = httpParams.append('_limit', options.limit.toString());
+    }
+    if (options.pagination) {
+      if (options.pagination.page) {
+        httpParams = httpParams.append(
+          'page',
+          options.pagination.page.toString()
+        );
+      }
+      if (options.pagination.perPage) {
+        httpParams = httpParams.append(
+          'per_page',
+          options.pagination.perPage.toString()
+        );
+      }
+    }
+    if (options.types) {
+      if (options.types.core) {
+        httpParams = httpParams.append(
+          'core',
+          JSON.stringify(options.types.core)
+        );
+      }
+      if (options.types.hacks) {
+        httpParams = httpParams.append(
+          'hacks',
+          JSON.stringify(options.types.hacks)
+        );
+      }
+    }
 
-    if (limit) {
-      httpParams = httpParams.append('_limit', limit.toString());
-    }
-    if (page) {
-      httpParams = httpParams.append('page', page.toString());
-    }
-    if (perPage) {
-      httpParams = httpParams.append('per_page', perPage.toString());
-    }
-    if (core) {
-      httpParams = httpParams.append('core', JSON.stringify(core));
-    }
-    if (hacks) {
-      httpParams = httpParams.append('hacks', JSON.stringify(hacks));
-    }
     return this.http.get<Rom[]>(this.romsUrl, {
       params: httpParams
     });

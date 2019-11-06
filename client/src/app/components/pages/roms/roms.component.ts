@@ -33,8 +33,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
   }
 
   private getRoms(): void {
-    const limit: number = this.limit;
-    this.romsService.getAllRoms(limit).subscribe(
+    this.romsService.getAllRoms({ limit: this.limit }).subscribe(
       (roms: Rom[]): void => {
         this.isError = false;
         roms.forEach((rom: Rom): void => {
