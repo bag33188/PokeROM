@@ -38,9 +38,9 @@ class PrintKeys {
     const parts = ['Keys', 'Personal Access Tokens'];
     let personalAccessTokensStr = '';
     const { personalAccessTokens } = doc.keys;
-    personalAccessTokens.forEach((personalAccessToken, i) => {
+    personalAccessTokens.forEach((personalAccessToken, index) => {
       const key = Object.keys(personalAccessToken)[0];
-      personalAccessTokensStr += `${(i + 1).toString()}. ${key}: ${
+      personalAccessTokensStr += `${(index + 1).toString()}. ${key}: ${
         personalAccessToken[key]
       }\n`;
     });
@@ -64,9 +64,9 @@ class PrintKeys {
     const parts = ['Keys', 'Deploy Keys'];
     let deployKeysStr = '';
     const { deployKeys } = doc.keys;
-    deployKeys.forEach((deployKey, i) => {
+    deployKeys.forEach((deployKey, index) => {
       const key = Object.keys(deployKey)[0];
-      deployKeysStr += `${(i + 1).toString()}. ${key}:\nPublic:\n${
+      deployKeysStr += `${(index + 1).toString()}. ${key}:\nPublic:\n${
         deployKey[key].public
       }\nPrivate:\n${deployKey[key].private}\n`;
     });
