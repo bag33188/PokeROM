@@ -39,20 +39,33 @@ class PwHashGen {
   genPw() {
     // ask user for password
     this.rlInterface.question('Enter password: ', pw => {
-      // generate salt using bcrypt
-      bcrypt.genSalt(10, (err, salt) => {
-        // check for errors
-        if (err) console.log(err);
-        // generate password hash using generated salt
-        bcrypt.hash(pw, salt, (err, hash) => {
-          // check for errors
-          if (err) console.log(err);
-          // output hashed password
-          console.log(`Hashed password: ${hash}`);
-        });
-      });
+      // generate password hash
+      this.genHash(pw);
       // close readline interface
       this.rlInterface.close();
+    });
+  }
+
+  /**
+   * @method
+   * @name genHash
+   * @summary Generate Hash
+   * @description Generate Password Hash.
+   * @param {string} pw Password to be entered.
+   * @returns {void} Nothing.
+   */
+  genHash(pw) {
+    // generate salt using bcrypt
+    bcrypt.genSalt(10, (err, salt) => {
+      // check for errors
+      if (err) console.log(err);
+      // generate password hash using generated salt
+      bcrypt.hash(pw, salt, (err, hash) => {
+        // check for errors
+        if (err) console.log(err);
+        // output hashed password
+        console.log(`Hashed password: ${hash}`);
+      });
     });
   }
 }
