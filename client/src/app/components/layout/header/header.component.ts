@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
         accessKey: 'q'
       },
       {
-        routerLink: ['/', 'ratings'],
+        routerLink: ['/', 'rate'],
         routerLinkActive: ['yellow'],
         routerLinkActiveOptions: { exact: true },
         navLinkText: 'Rate',

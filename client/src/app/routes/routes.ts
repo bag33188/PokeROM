@@ -43,7 +43,7 @@ export const routes: Routes = [
     canActivate: [IsSecureGuard]
   },
   {
-    path: 'ratings',
+    path: 'rate',
     component: RatingsComponent,
     canActivate: [IsSecureGuard]
   },
