@@ -10,6 +10,18 @@ class PwHashGen {
    * @constructor
    */
   constructor() {
+    // initiate readline interface
+    this.readlineInterface();
+  }
+
+  /**
+   * @method
+   * @name readlineInterface
+   * @summary Ask Input
+   * @description Ask user for password.
+   * @returns {void} Nothing.
+   */
+  readlineInterface() {
     // create readline interface
     this.rlInterface = readline.createInterface({
       input: process.stdin,
