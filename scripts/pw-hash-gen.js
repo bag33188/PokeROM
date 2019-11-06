@@ -11,17 +11,17 @@ class PwHashGen {
    */
   constructor() {
     // initiate readline interface
-    this.readlineInterface();
+    this.createReadlineInterface();
   }
 
   /**
    * @method
-   * @name readlineInterface
+   * @name createReadlineInterface
    * @summary Ask Input
    * @description Ask user for password.
    * @returns {void} Nothing.
    */
-  readlineInterface() {
+  createReadlineInterface() {
     // create readline interface
     this.rlInterface = readline.createInterface({
       input: process.stdin,
