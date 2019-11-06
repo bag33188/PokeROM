@@ -107,10 +107,7 @@
         [attr.aria-expanded]="!isCollapsed"
         aria-controls="collapseContent"
       >
-        {{ isCollapsed ? 'Show' : 'Hide' }}&nbsp;<span
-          ngbTooltip="Personal Questions"
-          >PQ&#x27;s</span
-        >
+        {{ isCollapsed ? 'Show' : 'Hide' }}&nbsp;PQ&#x27;s
       </button>
       <p id="collapseContent" [ngbCollapse]="isCollapsed">
         <span class="question">What is your Favorite Pok&eacute;mon?</span>
