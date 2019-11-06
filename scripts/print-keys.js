@@ -1,7 +1,19 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
 
+/**
+ * @class
+ * @name PrintKeys
+ */
 class PrintKeys {
+  /**
+   * @method
+   * @static
+   * @name readFile
+   * @summary Read File
+   * @description Read keys file.
+   * @returns {string} Keys text.
+   */
   static readFile() {
     let file = null;
     try {
@@ -12,6 +24,15 @@ class PrintKeys {
     return yaml.safeLoad(file);
   }
 
+  /**
+   * @method
+   * @static
+   * @name personalAccessTokens
+   * @summary Personal Access Tokens
+   * @description Get personal access tokens.
+   * @param {boolean} showHeader Print out keys heading.
+   * @returns {string} Personal access token.
+   */
   static personalAccessTokens(showHeader = true) {
     const doc = PrintKeys.readFile();
     const parts = ['Keys', 'Personal Access Tokens'];
@@ -29,6 +50,15 @@ class PrintKeys {
     )}\n${personalAccessTokensStr}\n`;
   }
 
+  /**
+   * @method
+   * @static
+   * @name deployKeys
+   * @summary Deploy Keys
+   * @description Get deploy keys.
+   * @param {boolean} showHeader Print out keys heading.
+   * @returns {string} Deploy keys.
+   */
   static deployKeys(showHeader = true) {
     const doc = PrintKeys.readFile();
     const parts = ['Keys', 'Deploy Keys'];
@@ -46,6 +76,14 @@ class PrintKeys {
     )}\n${deployKeysStr}\n`;
   }
 
+  /**
+   * @method
+   * @static
+   * @name all
+   * @summary All Keys
+   * @description Get all keys.
+   * @returns {string} All keys.
+   */
   static all() {
     const personalAccessTokens = PrintKeys.personalAccessTokens(true);
     const deployKeys = PrintKeys.deployKeys(false);
@@ -53,6 +91,13 @@ class PrintKeys {
   }
 }
 
+/**
+ * @function
+ * @name init
+ * @summary Initiate functionality.
+ * @description Initiation function.
+ * @returns {void} Nothing.
+ */
 function init() {
   const keys = PrintKeys.all();
   console.log(keys);
