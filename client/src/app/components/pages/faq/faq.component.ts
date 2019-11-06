@@ -22,10 +22,12 @@ export class FaqComponent implements OnInit, AfterContentInit {
   private browserCompatibilityElement: ElementRef;
   public environment: Environment = environment;
   public favorites: typeof Favorites;
+  public isCollapsed: boolean;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.isCollapsed = true;
     this.emulatorUrl = 'https://www.retroarch.com';
     this.favorites = Favorites;
   }
