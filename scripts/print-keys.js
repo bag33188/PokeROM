@@ -103,4 +103,5 @@ function init() {
   console.log(keys);
 }
 
+// call function
 init();
