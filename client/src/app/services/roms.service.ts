@@ -45,13 +45,13 @@ export class RomsService {
       }
     }
     if (options.types) {
-      if (options.types.core) {
+      if (options.types.core === true) {
         httpParams = httpParams.append(
           'core',
           JSON.stringify(options.types.core)
         );
       }
-      if (options.types.hacks) {
+      if (options.types.hacks === true) {
         httpParams = httpParams.append(
           'hacks',
           JSON.stringify(options.types.hacks)
