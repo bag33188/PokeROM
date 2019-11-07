@@ -56,9 +56,9 @@ export class BtnDirective implements OnInit {
   }
   private setType(): void {
     const type: string[] = this.getType();
-    type.forEach((cssClass: string): void => {
-      this.el.nativeElement.classList.remove(cssClass);
-      this.el.nativeElement.classList.add(cssClass);
+    type.forEach((className: string): void => {
+      this.el.nativeElement.classList.remove(className);
+      this.el.nativeElement.classList.add(className);
     });
   }
 }
