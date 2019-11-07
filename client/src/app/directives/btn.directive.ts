@@ -54,10 +54,14 @@ export class BtnDirective implements OnInit {
       throw new Error('Type must be a string.');
     }
   }
+
   private setType(): void {
     const type: string[] = this.getType();
+    // console.log(Array.prototype.slice.call(this.el.nativeElement.classList));
     type.forEach((className: string): void => {
-      this.el.nativeElement.classList.remove(className);
+      if (Array.from(this.el.nativeElement.classList).includes(className)) {
+        this.el.nativeElement.classList.remove(className);
+      }
       this.el.nativeElement.classList.add(className);
     });
   }
