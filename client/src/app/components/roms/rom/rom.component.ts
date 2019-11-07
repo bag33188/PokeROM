@@ -22,7 +22,7 @@ export class RomComponent implements OnInit {
   public imgAlt(altValue: string): string {
     return `${altValue
       .replace(/[\s:]/g, '-')
-      .replace(/\xe9/g, 'e')
+      .replace(/\xE9/g, 'e')
       .replace(/('|[\(\)])/g, '')}-box-art`;
   }
 
