@@ -70,6 +70,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
   public save(): void {
     this.firedOff = true;
     this.ready = false;
+    const keys: string[] = ['error', 'message'];
     if (!this.user.name || this.user.name === '') {
       delete this.user.name;
     }
@@ -86,7 +87,8 @@ export class AccountComponent implements OnInit, AfterContentInit {
             this.ready = true;
             this.updateFail = true;
             if (
-              err.error.message === 'A user with that username already exists.'
+              err[keys[0]][keys[1]] ===
+              'A user with that username already exists.'
             ) {
               this.userExists = true;
             }
@@ -119,7 +121,8 @@ export class AccountComponent implements OnInit, AfterContentInit {
             this.firedOff = false;
             this.updateFail = true;
             if (
-              err.error.message === 'A user with that username already exists.'
+              err[keys[0]][keys[1]] ===
+              'A user with that username already exists.'
             ) {
               this.userExists = true;
             }
