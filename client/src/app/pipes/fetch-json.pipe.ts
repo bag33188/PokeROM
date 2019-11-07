@@ -7,16 +7,16 @@ import { Json } from '../models/Json';
   pure: false
 })
 export class FetchJsonPipe implements PipeTransform {
-  private cachedData: Json = null;
+  private cachedData: Json | null = null;
   private cachedUrl: string = '';
 
   constructor(private http: HttpClient) {}
 
-  public transform(url: string): Json {
+  public transform(url: string): Json | null {
     if (url !== this.cachedUrl) {
       this.cachedData = null;
       this.cachedUrl = url;
-      this.http.get(url).subscribe((result: Json): void => {
+      this.http.get(url).subscribe((result: Json | null): void => {
         this.cachedData = result;
       });
     }
