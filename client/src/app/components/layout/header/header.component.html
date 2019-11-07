@@ -35,13 +35,17 @@
       <div class="ml-auto">
         <div class="btn-group" *ngIf="isRoutes(loggedOutRoutes, false)">
           <a
-            class="btn btn-outline-light nav-item"
+            class="nav-item"
+            appBtn
+            btnType="light-outline"
             [routerLink]="['/', 'login']"
             accesskey="l"
             >Login</a
           >
           <a
-            class="btn btn-outline-light nav-item"
+            class="nav-item"
+            appBtn
+            btnType="light-outline"
             [routerLink]="['/', 'register']"
             accesskey="g"
             >Register</a
@@ -54,13 +58,17 @@
           <a
             [routerLink]="['/', 'account']"
             *ngIf="!isUrl('/account', 'full')"
-            class="btn btn-outline-light nav-item"
+            class="nav-item"
+            appBtn
+            btnType="light-outline"
             accesskey="a"
             >Account</a
           >
           <button
             type="button"
-            class="btn btn-outline-light nav-item"
+            class="nav-item"
+            appBtn
+            btnType="light-outline"
             (click)="logout()"
             accesskey="l"
           >

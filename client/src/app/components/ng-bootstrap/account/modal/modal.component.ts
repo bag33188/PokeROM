@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { take } from 'rxjs/operators';
 import { AuthService } from '../../../../services/auth.service';
 import { LoggerService as logger } from '../../../../services/logger.service';
 import { UserService } from '../../../../services/user.service';
@@ -40,7 +39,6 @@ export class ModalComponent implements OnInit {
     this.btnDisabled = true;
     this.userService
       .deleteUser(JSON.parse(localStorage.getItem('user'))[key])
-      .pipe(take(1))
       .subscribe(
         (): void => {
           this.isErrorDeleting.emit(false);

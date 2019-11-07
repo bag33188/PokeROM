@@ -11,14 +11,18 @@
     >&nbsp;(Gen V ROMs are included)
   </p>
   <a
-    class="btn btn-outline-light btn-lg"
+    class="btn-lg"
+    appBtn
+    btnType="outline-light"
     [routerLink]="['/', 'register']"
     role="button"
     *ngIf="!loggedIn()"
     >Sign Up!</a
   >
   <a
-    class="btn btn-outline-light btn-lg"
+    class="btn-lg"
+    appBtn
+    btnType="light-outline"
     [routerLink]="['/', 'roms']"
     role="button"
     *ngIf="loggedIn()"

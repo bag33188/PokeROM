@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { LoggerService } from '../../services/logger.service';
 import { UnitConversionService } from '../../services/unit-conversion.service';
+import {DirectivesModule} from "../../directives/directives.module";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UnitConversionService } from '../../services/unit-conversion.service';
     RouterModule,
     NgbModule,
     BrowserAnimationsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DirectivesModule
   ],
   providers: [AuthService, UserService, LoggerService, UnitConversionService],
   exports: [BodyComponent, FooterComponent, HeaderComponent]

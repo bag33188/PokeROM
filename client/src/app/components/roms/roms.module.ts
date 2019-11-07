@@ -12,6 +12,7 @@ import { GameNameComponent } from './rom-info/game-name/game-name.component';
 import { RomSpecsComponent } from './rom-info/rom-specs/rom-specs.component';
 import { RomDownloadComponent } from './rom-info/rom-download/rom-download.component';
 import { UnitConversionService } from '../../services/unit-conversion.service';
+import {DirectivesModule} from "../../directives/directives.module";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UnitConversionService } from '../../services/unit-conversion.service';
     RouterModule,
     NgbModule,
     NgBootstrapModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DirectivesModule
   ],
   exports: [
     RomComponent,

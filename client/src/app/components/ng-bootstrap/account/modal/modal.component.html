@@ -25,7 +25,8 @@
   <div class="modal-footer justify-content-start">
     <button
       type="button"
-      class="btn btn-danger"
+      appBtn
+      btnType="danger"
       (click)="deleteCurrentUser()"
       [disabled]="btnDisabled"
     >
@@ -33,7 +34,8 @@
     </button>
     <button
       type="button"
-      class="btn btn-outline-secondary"
+      appBtn
+      btnType="secondary-outline"
       (click)="modal.dismiss('cancel click')"
     >
       Cancel
