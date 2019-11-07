@@ -1,8 +1,8 @@
 @import '../../../../assets/scss/variables';
 
 #cookies-alert {
-  margin: 1rem 1rem 0;
   background-color: rgba(255, 243, 205, 1) !important;
+  margin: 1rem 1rem 0;
   text-shadow: -1px -1px 0 $clear, 1px -1px 0 $clear, -1px 1px 0 $clear,
     1px 1px 0 $clear;
 }
