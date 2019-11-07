@@ -5,6 +5,7 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 })
 export class BtnDirective implements OnInit {
   @Input() public btnType: string;
+
   constructor(private el: ElementRef) {}
 
   ngOnInit(): void {
@@ -46,7 +47,11 @@ export class BtnDirective implements OnInit {
           return ['btn', 'btn-light'];
         case 'dark':
           return ['btn', 'btn-dark'];
+        default:
+          throw new Error('Invalid button type.');
       }
+    } else {
+      throw new Error('Type must be a string.');
     }
   }
   private setType(): void {
