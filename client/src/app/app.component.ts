@@ -50,7 +50,14 @@ import { environment } from '../environments/environment';
   ]
 })
 export class AppComponent {
-  public readonly title: string = 'PokéROM';
+  private readonly _eacute: string = '\u00E9';
+  public _title: string = `Pok${this._eacute}ROM`;
+  get title(): string {
+    return this._title;
+  }
+  set title(value: string) {
+    this._title = value;
+  }
 
   constructor(private apiService: ApiService) {
     this.changeTitleIfDevEnv();
