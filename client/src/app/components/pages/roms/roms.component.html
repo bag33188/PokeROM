@@ -9,7 +9,9 @@
       {{ noRomsMsg }}
     </h2>
     <div
-      class="alert alert-danger mr-5 ml-5 text-center"
+      class="mr-5 ml-5 text-center"
+      appAlert
+      alertType="danger"
       id="roms-err"
       *ngIf="isError"
     >

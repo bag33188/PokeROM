@@ -10,7 +10,9 @@
   >
   <div
     id="no-download-msg"
-    class="alert alert-info p-0 mt-2"
+    class="p-0 mt-2"
+    appAlert
+    alertType="info"
     *ngIf="disableBtnIfMobileOrTablet()"
   >
     <span>You cannot download this ROM since you are not on a computer</span>

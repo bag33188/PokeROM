@@ -1,7 +1,9 @@
 <div class="p-2">
   <app-spinner [loading]="loading"></app-spinner>
   <div
-    class="alert alert-danger ml-4 mr-4 text-center rom-info-err-wrapper"
+    class="ml-4 mr-4 text-center rom-info-err-wrapper"
+    appAlert
+    alertType="danger"
     *ngIf="isError"
   >
     <ng-container [ngSwitch]="errStatus">

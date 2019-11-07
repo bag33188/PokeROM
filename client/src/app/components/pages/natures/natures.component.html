@@ -3,7 +3,7 @@
   <div class="container mt-2" id="natures-container">
     <h1 class="mt-2">Natures</h1>
     <hr />
-    <div class="alert alert-danger" [hidden]="!isError">
+    <div appAlert alertType="danger" [hidden]="!isError">
       Oops, there was a problem while trying to load the natures.<br />Please
       try again later.
     </div>

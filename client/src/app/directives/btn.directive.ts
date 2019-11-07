@@ -58,7 +58,6 @@ export class BtnDirective implements OnInit {
   private setType(): void {
     const typeArr: string[] = this.getType();
     const classList: DOMTokenList = this.el.nativeElement.classList;
-    // console.log(Array.prototype.slice.call(classList));
     typeArr.forEach((className: string): void => {
       if (Array.from(classList).includes(className)) {
         this.el.nativeElement.classList.remove(className);

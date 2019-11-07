@@ -1,7 +1,7 @@
 <ng-container>
   <app-spinner [loading]="!ready && !errLoadingUsr"></app-spinner>
   <div class="container text-center mb-2" id="form-container">
-    <div class="alert alert-danger" *ngIf="errLoadingUsr">
+    <div appAlert alertType="danger" *ngIf="errLoadingUsr">
       There was an error while trying to load your user information. Please try
       again later.
     </div>
@@ -15,7 +15,9 @@
       <fieldset>
         <legend class="pt-2 pb-2 text-center">Account</legend>
         <div
-          class="alert alert-info alert-dismissible fade show text-left"
+          class="alert-dismissible fade show text-left"
+          appAlert
+          alertType="info"
           role="alert"
         >
           You don't have to update everything.
@@ -49,7 +51,8 @@
               <ng-container *ngIf="user.hasOwnProperty('name')">
                 <div
                   [hidden]="!(name.touched && name.invalid)"
-                  class="alert alert-warning"
+                  appAlert
+                  alertType="warning"
                 >
                   <div [hidden]="!name.errors?.minlength">
                     Name is too short (min: 1, current: {{ user.name.length }}).
@@ -78,7 +81,8 @@
               <ng-container *ngIf="user.hasOwnProperty('username')">
                 <div
                   [hidden]="!(username.touched && username.invalid)"
-                  class="alert alert-warning"
+                  appAlert
+                  alertType="warning"
                 >
                   <div [hidden]="!username.errors?.minlength">
                     Username is too short (min: 3, current:
@@ -110,7 +114,8 @@
               <ng-container *ngIf="user.hasOwnProperty('password')">
                 <div
                   [hidden]="!(password.touched && password.invalid)"
-                  class="alert alert-warning"
+                  appAlert
+                  alertType="warning"
                 >
                   <div [hidden]="!password.errors?.minlength">
                     Password is too short (min: 6, current:
@@ -146,7 +151,7 @@
           </button>
         </div>
       </fieldset>
-      <div class="alert alert-danger mt-1" *ngIf="updateFail">
+      <div class="mt-1" *ngIf="updateFail" appAlert alertType="danger">
         <ng-container *ngIf="userExists; else normalErrMsg">
           The username you chose already belongs to another user.
         </ng-container>
@@ -155,11 +160,11 @@
           try again later.
         </ng-template>
       </div>
-      <div class="mt-3 alert alert-warning mb-3 font-weight-bold">
+      <div class="mt-3 mb-3 font-weight-bold" appAlert alertType="warning">
         <fa-icon [icon]="faExclamationTriangle" class="mr-1"></fa-icon>
         Updating your user data will log you out.
       </div>
-      <div class="alert alert-danger mt-1" *ngIf="isErrorDeleting">
+      <div class="mt-1" appAlert alertType="danger" *ngIf="isErrorDeleting">
         Oops, looks like there was an error while trying to delete your user.<br />Please
         try again later.
       </div>

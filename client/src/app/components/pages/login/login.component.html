@@ -23,7 +23,8 @@
               />
               <div
                 [hidden]="!(Username.touched && Username.invalid)"
-                class="alert alert-warning"
+                appAlert
+                alertType="warning"
               >
                 <div [hidden]="!Username.errors?.required">
                   Username is required.
@@ -50,7 +51,8 @@
               />
               <div
                 [hidden]="!(Password.touched && Password.invalid)"
-                class="alert alert-warning"
+                appAlert
+                alertType="warning"
               >
                 <div [hidden]="!Password.errors?.required">
                   Password is required.
@@ -79,11 +81,11 @@
         </div>
       </fieldset>
 
-      <div class="alert alert-info mt-2 mb-2">
+      <div class="mt-2 mb-2" appAlert alertType="info">
         Don't have an account? Register
         <a [routerLink]="['/', 'register']">here</a>!
       </div>
-      <div class="alert alert-danger mt-1" *ngIf="loginFail">
+      <div class="mt-1" *ngIf="loginFail" appAlert alertType="danger">
         {{ loginFail }}
       </div>
     </form>

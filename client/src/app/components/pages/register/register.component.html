@@ -24,7 +24,8 @@
               />
               <div
                 [hidden]="!(Name.touched && Name.invalid)"
-                class="alert alert-warning"
+                appAlert
+                alertType="warning"
               >
                 <div [hidden]="!Name.errors?.minlength">
                   Name is too short (min: 1, current: {{ Name.value.length }}).
@@ -47,7 +48,8 @@
               />
               <div
                 [hidden]="!(Username.touched && Username.invalid)"
-                class="alert alert-warning"
+                appAlert
+                alertType="warning"
               >
                 <div [hidden]="!Username.errors?.required">
                   Username is required.
@@ -75,7 +77,8 @@
               />
               <div
                 [hidden]="!(Password.touched && Password.invalid)"
-                class="alert alert-warning"
+                appAlert
+                alertType="warning"
               >
                 <div [hidden]="!Password.errors?.required">
                   Password is required.
@@ -103,11 +106,11 @@
           </button>
         </div>
       </fieldset>
-      <div class="alert alert-info mt-2 mb-2">
+      <div class="mt-2 mb-2" appAlert alertType="info">
         Already have an account? Click
         <a [routerLink]="['/', 'login']">here</a> to login.
       </div>
-      <div class="alert alert-danger mt-1" *ngIf="registerFail">
+      <div class="mt-1" *ngIf="registerFail" appAlert alertType="danger">
         {{ registerFail }}
       </div>
     </form>
