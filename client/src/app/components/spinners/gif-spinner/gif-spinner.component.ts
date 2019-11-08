@@ -13,6 +13,13 @@ export class GifSpinnerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.checkInput();
     this.images = Images;
+  }
+
+  private checkInput(): void | never {
+    if (!this.loading) {
+      throw new Error('Loading property is required.');
+    }
   }
 }

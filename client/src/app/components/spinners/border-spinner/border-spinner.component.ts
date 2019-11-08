@@ -14,8 +14,18 @@ export class BorderSpinnerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.checkInputs();
     this.setColor();
     this.setType();
+  }
+
+  private checkInputs(): void | never {
+    if (!this.type) {
+      throw new Error('Type is required.');
+    }
+    if (!this.color) {
+      throw new Error('Color is required');
+    }
   }
 
   private setType(): void {
