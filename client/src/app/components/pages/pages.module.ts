@@ -29,7 +29,7 @@ import { NaturesService } from '../../services/natures.service';
 import { LoggerService } from '../../services/logger.service';
 import { RatingService } from '../../services/rating.service';
 import { AccountComponent } from './account/account.component';
-import { SpinnerModule } from '../spinner/spinner.module';
+import { SpinnerModule } from '../spinners/spinner.module';
 import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({

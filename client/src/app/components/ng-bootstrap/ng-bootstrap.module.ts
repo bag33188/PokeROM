@@ -21,7 +21,7 @@ import { UserService } from '../../services/user.service';
 import { LoggerService } from '../../services/logger.service';
 import { UnitConversionService } from '../../services/unit-conversion.service';
 import { ModalComponent } from './account/modal/modal.component';
-import { SpinnerModule } from '../spinner/spinner.module';
+import { SpinnerModule } from '../spinners/spinner.module';
 import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
