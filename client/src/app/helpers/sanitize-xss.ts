@@ -12,7 +12,7 @@ String.prototype.sanitizeXSS = function(
   encode?: boolean
 ): string {
   let checkXSS: RegExp;
-  checkXSS = /(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))/gim;
+  checkXSS = /(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)|(javascript:))/gim;
   const checkChars: RegExp = /(?:([&'"<>)(\\\/{}\[\]:;^*]))/gim;
   let sanitizedStr: string = this.replace(checkXSS, '');
   if (replaceSpecialChars) {
