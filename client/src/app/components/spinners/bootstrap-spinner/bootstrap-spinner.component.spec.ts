@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BorderSpinnerComponent } from './border-spinner.component';
+import { BootstrapSpinnerComponent } from './bootstrap-spinner.component';
 
-describe('BorderSpinnerComponent', () => {
-  let component: BorderSpinnerComponent;
-  let fixture: ComponentFixture<BorderSpinnerComponent>;
+describe('BootstrapSpinnerComponent', () => {
+  let component: BootstrapSpinnerComponent;
+  let fixture: ComponentFixture<BootstrapSpinnerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BorderSpinnerComponent ]
+      declarations: [ BootstrapSpinnerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BorderSpinnerComponent);
+    fixture = TestBed.createComponent(BootstrapSpinnerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

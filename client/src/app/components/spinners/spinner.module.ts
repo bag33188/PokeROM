@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { BorderSpinnerComponent } from './border-spinner/border-spinner.component';
 import { GifSpinnerComponent } from './gif-spinner/gif-spinner.component';
+import { BootstrapSpinnerComponent } from './bootstrap-spinner/bootstrap-spinner.component';
 
 @NgModule({
-  declarations: [BorderSpinnerComponent, GifSpinnerComponent],
+  declarations: [GifSpinnerComponent, BootstrapSpinnerComponent],
   imports: [],
-  exports: [BorderSpinnerComponent, GifSpinnerComponent],
+  exports: [BootstrapSpinnerComponent, GifSpinnerComponent],
   providers: []
 })
 export class SpinnerModule {}

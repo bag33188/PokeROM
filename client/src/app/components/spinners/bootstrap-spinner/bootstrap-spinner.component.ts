@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-border-spinner',
-  templateUrl: './border-spinner.component.html',
-  styleUrls: ['./border-spinner.component.scss']
+  selector: 'app-bootstrap-spinner',
+  templateUrl: './bootstrap-spinner.component.html',
+  styleUrls: ['./bootstrap-spinner.component.scss']
 })
-export class BorderSpinnerComponent implements OnInit {
+export class BootstrapSpinnerComponent implements OnInit {
   @Input() public loading: boolean;
   @Input() public type: string;
   @Input() public color: string;
