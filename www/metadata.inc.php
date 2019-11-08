@@ -25,10 +25,10 @@
       // make sure const is not already defined
       if (!defined("WHITESPACE_REGEXP")) {
         // define regexp const
-        define("WHITESPACE_REGEXP", "/(\s{2,}|\n)/");
+        define("WHITESPACE_NEWLINE_REGEXP", "/(\s{2,}|\n)/");
       }
       // clean html doc
-      $html_doc = preg_replace(WHITESPACE_REGEXP, "", $html_doc);
+      $html_doc = preg_replace(WHITESPACE_NEWLINE_REGEXP, "", $html_doc);
       // return html doc
       return $html_doc;
     }
