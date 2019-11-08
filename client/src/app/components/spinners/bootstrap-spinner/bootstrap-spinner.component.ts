@@ -9,6 +9,7 @@ export class BootstrapSpinnerComponent implements OnInit {
   @Input() public loading: boolean;
   @Input() public type: string;
   @Input() public color: string;
+  @Input() public spaced?: boolean;
   public _type: string;
   public _color: string;
 
@@ -21,6 +22,12 @@ export class BootstrapSpinnerComponent implements OnInit {
       throw new Error('Color is required.');
     } else if (this.loading === undefined || this.loading === null) {
       throw new Error('Loading property is required.');
+    } else if (
+      this.spaced !== undefined &&
+      this.spaced !== null &&
+      typeof this.spaced !== 'boolean'
+    ) {
+      throw new Error('Spaced property must be a boolean.');
     } else {
       this.setType();
       this.setColor();

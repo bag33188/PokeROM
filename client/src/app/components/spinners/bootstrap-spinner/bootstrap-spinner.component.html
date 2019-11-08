@@ -1,3 +1,9 @@
-<div class="{{ _type }} {{ _color }} spacing" role="status" [hidden]="!loading">
+<div
+  class="{{ _type }} {{ _color }} {{
+    spaced !== undefined && spaced !== null && spaced === true ? 'spacing' : ''
+  }}"
+  role="status"
+  [hidden]="!loading"
+>
   <span class="sr-only">Loading...</span>
 </div>
