@@ -22,7 +22,7 @@ import { LoggerService } from '../../services/logger.service';
 import { UnitConversionService } from '../../services/unit-conversion.service';
 import { ModalComponent } from './account/modal/modal.component';
 import { SpinnerModule } from '../spinner/spinner.module';
-import {DirectivesModule} from "../../directives/directives.module";
+import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
   declarations: [

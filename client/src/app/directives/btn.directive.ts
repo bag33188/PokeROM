@@ -16,7 +16,7 @@ export class BtnDirective implements OnInit {
     }
   }
 
-  private getType(): string[] {
+  private getType(): string[] | never {
     if (typeof this.btnType === 'string') {
       switch (this.btnType) {
         case 'primary-outline':

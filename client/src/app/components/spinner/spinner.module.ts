@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { SpinnerComponent } from './spinner.component';
+import { BorderSpinnerComponent } from './border-spinner.component';
 
 @NgModule({
-  declarations: [SpinnerComponent],
+  declarations: [SpinnerComponent, BorderSpinnerComponent],
   imports: [],
-  exports: [SpinnerComponent],
+  exports: [SpinnerComponent, BorderSpinnerComponent],
   providers: []
 })
 export class SpinnerModule {}

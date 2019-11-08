@@ -3,8 +3,10 @@
   width: 0.4rem;
 }
 
-.ng-star-inserted:not(label) {
-  @media only all and (max-width: 938px) {
-    font-size: 1.5rem;
+.ng-star-inserted {
+  &:not(label) {
+    @media only all and (max-width: 938px) {
+      font-size: 1.5rem;
+    }
   }
 }

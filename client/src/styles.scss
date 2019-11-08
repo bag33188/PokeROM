@@ -28,11 +28,12 @@ html {
   text-decoration: underline;
 }
 
-.form-control:focus {
-  border-color: rgba(82, 168, 236, 0.8) !important;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(82, 168, 236, 0.6) !important;
-  outline: 0 !important;
+.form-control {
+  &:focus {
+    border-color: $ocean-blue-rgba !important;
+    box-shadow: inset 0 1px 1px $ash-black-rgba, 0 0 8px $deep-ocean-blue-rgba !important;
+    outline: 0 !important;
+  }
 }
 
 // webkit browsers

@@ -16,7 +16,7 @@ export class AlertDirective implements OnInit {
     }
   }
 
-  private getType(): string[] {
+  private getType(): string[] | never {
     if (typeof this.alertType === 'string') {
       switch (this.alertType) {
         case 'primary':
