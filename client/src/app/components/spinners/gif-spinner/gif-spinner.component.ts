@@ -13,8 +13,8 @@ export class GifSpinnerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.checkInput();
     this.images = Images;
+    // this.checkInput();
   }
 
   private checkInput(): void | never {
