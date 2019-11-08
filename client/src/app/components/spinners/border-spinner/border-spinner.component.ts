@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./border-spinner.component.scss']
 })
 export class BorderSpinnerComponent implements OnInit {
+  @Input() public loading: boolean;
   @Input() public type: string;
   @Input() public color: string;
   public _type: string;
@@ -17,7 +18,9 @@ export class BorderSpinnerComponent implements OnInit {
     if (!this.type) {
       throw new Error('Type is required.');
     } else if (!this.color) {
-      throw new Error('Color is required');
+      throw new Error('Color is required.');
+    } else if (!this.loading) {
+      throw new Error('Loading property is required.');
     } else {
       this.setType();
       this.setColor();
