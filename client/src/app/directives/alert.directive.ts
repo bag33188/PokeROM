@@ -8,7 +8,7 @@ export class AlertDirective implements OnInit {
 
   constructor(private el: ElementRef) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void | never {
     if (!this.alertType) {
       throw new Error('No alert type specified.');
     } else {

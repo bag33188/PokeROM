@@ -8,7 +8,7 @@ export class BtnDirective implements OnInit {
 
   constructor(private el: ElementRef) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void | never {
     if (!this.btnType) {
       throw new Error('No button type specified.');
     } else {

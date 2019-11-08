@@ -13,7 +13,7 @@ export class BorderSpinnerComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void | never {
     if (!this.type) {
       throw new Error('Type is required.');
     } else if (!this.color) {
