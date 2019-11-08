@@ -19,7 +19,7 @@ export class BootstrapSpinnerComponent implements OnInit {
       throw new Error('Type is required.');
     } else if (!this.color) {
       throw new Error('Color is required.');
-    } else if (!this.loading) {
+    } else if (this.loading === undefined || this.loading === null) {
       throw new Error('Loading property is required.');
     } else {
       this.setType();
