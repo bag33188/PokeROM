@@ -37,8 +37,9 @@ export class RomsComponent implements OnInit, AfterContentInit {
       (roms: Rom[]): void => {
         this.isError = false;
         roms.forEach((rom: Rom): void => {
-          rom.game_name = he.decode(rom.game_name);
-          rom.description = he.decode(rom.description);
+          const { game_name, description }: Rom = rom;
+          rom.game_name = he.decode(game_name);
+          rom.description = he.decode(description);
         });
         this.romsData = roms;
         this.loading = false;
