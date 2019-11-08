@@ -4,6 +4,8 @@
   }}"
   role="status"
   [hidden]="!loading"
+  [style.height.px]="customSize ? customSize : 32"
+  [style.width.px]="customSize ? customSize : 32"
 >
   <span class="sr-only">Loading...</span>
 </div>

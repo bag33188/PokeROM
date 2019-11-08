@@ -10,6 +10,7 @@ export class BootstrapSpinnerComponent implements OnInit {
   @Input() public type: string;
   @Input() public color: string;
   @Input() public spaced?: boolean;
+  @Input() public customSize?: number;
   public _type: string;
   public _color: string;
 
@@ -28,6 +29,8 @@ export class BootstrapSpinnerComponent implements OnInit {
       typeof this.spaced !== 'boolean'
     ) {
       throw new Error('Spaced property must be a boolean.');
+    } else if (this.customSize && typeof this.customSize !== 'number') {
+      throw new Error('Custom size property must be a number.');
     } else {
       this.setType();
       this.setColor();
