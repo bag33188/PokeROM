@@ -89,8 +89,8 @@ class FixIndexHtml:
 
           # if the link tag and the closing head tag on the same line
           if ('.css">' in line or '<link rel="stylesheet" href="styles.' in line) and '</head>' in line:
-            IECC1='<!--[if !IE]><!-->'
-            IECC2='<!--<![endif]-->'
+            IECC1 = '<!--[if !IE]><!-->'
+            IECC2 = '<!--<![endif]-->'
             sys.stdout.write(line.replace('.css"></head>', f'.css" />\n\n{IECC1}\n{new_script_tags}\n{IECC2}\n</head>')
                                  .replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"'))
 
