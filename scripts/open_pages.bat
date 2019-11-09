@@ -27,7 +27,7 @@ REM.||(
   REM Webdisk
   START "" https://pokerom.dev:2078
   REM Private Email
-  START "" https://privateemail.com/appsuite/#!!&app=io.ox/mail&folder=default0/INBOX
+  START "" "https://privateemail.com/appsuite/#!!&app=io.ox/mail&folder=default0/INBOX"
   REM Real-Time Metrics
   START "" https://app.pm2.io/#/r/8udbwnn9hvtz59p
   REM Official PokeROM Website
