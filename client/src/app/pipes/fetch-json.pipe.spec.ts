@@ -1,5 +1,5 @@
 import { FetchJsonPipe } from './fetch-json.pipe';
-import { HttpClient, HttpEvent, HttpHandler } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 describe('FetchJsonPipe', () => {
