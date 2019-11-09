@@ -50,7 +50,7 @@ import { environment } from '../environments/environment';
   ]
 })
 export class AppComponent {
-  private readonly _eacute: string = '\u00E9';
+  protected readonly _eacute: string = '\u00E9';
   public _title: string = `Pok${this._eacute}ROM`;
   get title(): string {
     return this._title;
