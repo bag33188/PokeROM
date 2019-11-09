@@ -30,7 +30,7 @@ export class BootstrapSpinnerComponent implements OnInit {
     ) {
       throw new Error('Spaced property must be a boolean.');
     } else if (this.customSize && typeof this.customSize !== 'number') {
-      throw new Error('Custom size property must be a number.');
+      throw new Error('Custom size property must be a number data-type.');
     } else {
       this.setType();
       this.setColor();
