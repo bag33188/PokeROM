@@ -17,11 +17,10 @@ export class UserService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<{ success: boolean; message: string }>(
-      `${this.userUrl}/register`,
-      user,
-      { headers }
-    );
+    const url: string = `${this.userUrl}/register`;
+    return this.http.post<{ success: boolean; message: string }>(url, user, {
+      headers
+    });
   }
 
   public updateUser(id: string, user: User): Observable<User> {
@@ -41,7 +40,8 @@ export class UserService {
   }
 
   public deleteUser(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.userUrl}/${id}`);
+    const url: string = `${this.userUrl}/${id}`;
+    return this.http.delete<any>(url);
   }
 
   public patchUser(id: string, user: any): Observable<User> {
