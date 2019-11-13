@@ -16,9 +16,9 @@ export class UnitConversionService {
     }
   }
 
-  public static convertSecondsToMilliseconds(seconds: number): number {
-    return seconds * 1000;
-  }
+  public static convertSecondsToMilliseconds = (seconds: number): number =>
+    // tslint:disable-next-line:semicolon
+    seconds * 1000;
 
   public static convertIntegerToRomanNumeral(num: number): string | number {
     if (isNaN(num)) {
