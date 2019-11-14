@@ -23,7 +23,7 @@
         </html>
       ";
       // make sure const is not already defined
-      if (!defined("WHITESPACE_REGEXP")) {
+      if (!defined("WHITESPACE_NEWLINE_REGEXP")) {
         // define regexp const
         define("WHITESPACE_NEWLINE_REGEXP", "/(\s{2,}|\n)/");
       }
