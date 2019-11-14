@@ -267,7 +267,7 @@ Listen 8080
     ProxyPreserveHost on
     ProxyPass / http://localhost:8080/
     ProxyPassReverse / http://localhost:8080/
-</VirtualHost>
+</VirtualHost> 
 -->
 
 > _**Enjoy!**_
