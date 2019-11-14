@@ -14,7 +14,7 @@ deployment:
     - $CPPATH www/info.html $DEPLOYPATH
     - $CPPATH www/resources.html $DEPLOYPATH
     - $CPPATH www/credits.php $DEPLOYPATH
-    - $CPPATH www/js $DEPLOYPATH
-    - $CPPATH www/css $DEPLOYPATH
+    - $CPPATH -r www/js $DEPLOYPATH
+    - $CPPATH -r www/css $DEPLOYPATH
     - $NPMPATH run pack
     - $NPMPATH restart
