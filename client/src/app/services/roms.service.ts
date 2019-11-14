@@ -136,7 +136,7 @@ export class RomsService {
    * @param options Options for deletion of ROMs.
    * @returns An observable (any).
    */
-  public deleteAllRoms(options: OptsDelRqst): Observable<any> {
+  public deleteAllRoms(options?: OptsDelRqst): Observable<any> {
     let httpParams: HttpParams = new HttpParams();
     if (
       options &&
