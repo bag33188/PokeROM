@@ -12,6 +12,7 @@ deployment:
     - $CPPATH www/WWW.php $DEPLOYPATH
     - $CPPATH www/languages.php $DEPLOYPATH
     - $CPPATH www/info.html $DEPLOYPATH
+    - $CPPATH www/resources.html $DEPLOYPATH
     - $CPPATH www/credits.php $DEPLOYPATH
     - $NPMPATH run pack
     - $NPMPATH restart
