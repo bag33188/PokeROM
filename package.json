@@ -45,8 +45,7 @@
     "open-repos": "cd scripts && open_repos.bat",
     "print-keys": "cd scripts && node print-keys",
     "pokerom": "ssh pokerom@192.64.114.215 -p 22",
-    "root": "ssh root@192.64.114.215 -p 22",
-    "debug": "NODE_ENV=development nodemon --inspect=5858 --inspect-brk server.js"
+    "root": "ssh root@192.64.114.215 -p 22"
   },
   "private": true,
   "author": "bag33188",
