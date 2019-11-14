@@ -63,20 +63,22 @@ app.use('/api/natures', natures);
 app.use('/api/version', version);
 
 if (process.env.NODE_ENV === 'production') {
-  console.log(`Master ${process.pid} is running`);
+  if (cluster.isMaster) {
+    console.log(`Master ${process.pid} is running`);
 
-  // get number of cores in CPU
-  const numCPUs = os.cpus().length;
+    // get number of cores in CPU
+    const numCPUs = os.cpus().length;
 
-  // Fork workers
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
+    // Fork workers
+    for (let i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
+
+    // Check if work id is dead
+    cluster.on('exit', (worker, code, signal) => {
+      console.log(`worker ${worker.process.pid} died`);
+    });
   }
-
-  // Check if work id is dead
-  cluster.on('exit', (worker, code, signal) => {
-    console.log(`worker ${worker.process.pid} died`);
-  });
   // Set static folder
   app.use(express.static(path.join(__dirname, 'public')));
 
