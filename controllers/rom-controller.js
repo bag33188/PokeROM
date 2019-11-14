@@ -4,7 +4,7 @@ const moment = require('moment');
 const { validationResult } = require('express-validator/check');
 const Rom = require('../models/Rom');
 const [coreRoms, romHacks] = require('../database/data.json');
-const [, clearCache] = require('../middleware/cache');
+const { clearCache } = require('../middleware/cache');
 
 const routesWithParams = ['core', 'hacks'];
 const fields = [

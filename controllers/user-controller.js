@@ -8,7 +8,7 @@ const secret = config.get('secret');
 const User = require('../models/User');
 const Rom = require('../models/Rom');
 const [coreRoms, romHacks] = require('../database/data.json');
-const [, clearCache] = require('../middleware/cache');
+const { clearCache } = require('../middleware/cache');
 
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 

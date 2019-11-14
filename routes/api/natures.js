@@ -1,7 +1,7 @@
 const express = require('express');
 const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check } = require('express-validator/check');
-const [cache] = require('../../middleware/cache');
+const { cache } = require('../../middleware/cache');
 const NatureController = require('../../controllers/nature-controller');
 
 const httpRouter = express.Router();

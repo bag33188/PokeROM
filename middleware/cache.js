@@ -38,11 +38,11 @@ function clearCache(req) {
   }
 }
 
-module.exports = [
+module.exports = {
   cache,
   clearCache,
-  cacheControl({
+  cacheControl: cacheControl({
     public: true,
     maxAge: 0
   })
-];
+};

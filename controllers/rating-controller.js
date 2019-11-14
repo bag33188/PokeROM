@@ -3,7 +3,7 @@ const { validationResult } = require('express-validator/check');
 const url = require('url');
 const moment = require('moment');
 const Rating = require('../models/Rating');
-const [, clearCache] = require('../middleware/cache');
+const { clearCache } = require('../middleware/cache');
 
 function getRating(id, req, res, callback) {
   return Rating.getRating(id, (err, rating) => {
