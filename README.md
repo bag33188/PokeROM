@@ -173,17 +173,6 @@ Congratulations! You have now built the PokeROM app successfully.
 
 ##### Optional Steps
 
-###### Fixing an Angular AOT Bug
-
-Upon testing my Angular application with AOT (ahead of time) compilation, I found a bug that prevents it from 
-compiling. 
-
-To fix this bug, run the following command:
-
-```shell script
-cd ~/Projects/PokeROM/client && npm run fix-aot-bug
-```
-
 ###### Packaging the App
 
 If you would like to package this app for portable-local deployment, run the following npm script:
