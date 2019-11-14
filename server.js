@@ -62,7 +62,7 @@ app.use('/api/users', users);
 app.use('/api/natures', natures);
 app.use('/api/version', version);
 
-if (cluster.isMaster) {
+if (process.env.NODE_ENV === 'production') {
   console.log(`Master ${process.pid} is running`);
 
   // get number of cores in CPU
@@ -77,35 +77,32 @@ if (cluster.isMaster) {
   cluster.on('exit', (worker, code, signal) => {
     console.log(`worker ${worker.process.pid} died`);
   });
-} else {
-  if (process.env.NODE_ENV === 'production') {
-    // Set static folder
-    app.use(express.static(path.join(__dirname, 'public')));
+  // Set static folder
+  app.use(express.static(path.join(__dirname, 'public')));
 
-    // index route
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-    });
-  } else {
-    // set static folder
-    app.use(php.cgi(path.join(__dirname, 'www')));
-
-    // index route
-    app.get('/', (req, res) => {
-      res.redirect(`/api/docs/${apiVersion}`);
-    });
-  }
-
-  app.all('/*', (req, res) => {
-    res.status(404).json({ success: false, message: 'Error 404: not found.' });
+  // index route
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
   });
+} else {
+  // set static folder
+  app.use(php.cgi(path.join(__dirname, 'www')));
 
-  // port
-  const PORT =
-    process.env.PORT || (process.env.NODE_ENV === 'production' ? 44300 : 8080);
-
-  // start server
-  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+  // index route
+  app.get('/', (req, res) => {
+    res.redirect(`/api/docs/${apiVersion}`);
+  });
 }
+
+app.all('/*', (req, res) => {
+  res.status(404).json({ success: false, message: 'Error 404: not found.' });
+});
+
+// port
+const PORT =
+  process.env.PORT || (process.env.NODE_ENV === 'production' ? 44300 : 8080);
+
+// start server
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 module.exports = app;
