@@ -53,12 +53,10 @@ function toBoolean(value) {
 function getRomById(id, req, res, callback) {
   return Rom.getRomById(id, (err, fetchedRom) => {
     if (err) {
-      if (err) {
-        if (err.name === 'CastError') {
-          return res.status(404).json({ success: false, ...err });
-        }
-        return res.status(500).json({ success: false, ...err });
+      if (err.name === 'CastError') {
+        return res.status(404).json({ success: false, ...err });
       }
+      return res.status(500).json({ success: false, ...err });
     } else if (!fetchedRom) {
       return res
         .status(404)
@@ -222,12 +220,10 @@ module.exports.getRom = async (req, res, next) => {
     }
     await Rom.getRomById(id, (err, rom) => {
       if (err) {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
+        if (err.name === 'CastError') {
+          return res.status(404).json({ success: false, ...err });
         }
+        return res.status(500).json({ success: false, ...err });
       } else if (!rom) {
         return res
           .status(404)
