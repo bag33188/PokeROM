@@ -11,8 +11,8 @@ export class BodyComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
   private static isWebKitBrowser(): boolean {
     return (
-      /(?:(WebKit))/i.test(navigator.appVersion) &&
-      !/Edge/.test(navigator.userAgent)
+      /(WebKit)/i.test(navigator.appVersion) &&
+      !/(Edge)/.test(navigator.userAgent)
     );
   }
   ngOnInit(): void {
