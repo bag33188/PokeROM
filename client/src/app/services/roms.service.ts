@@ -138,10 +138,7 @@ export class RomsService {
    */
   public deleteAllRoms(options?: OptsDelRqst): Observable<any> {
     let httpParams: HttpParams = new HttpParams();
-    if (
-      options &&
-      (options.hasOwnProperty('core') || options.hasOwnProperty('hacks'))
-    ) {
+    if (options) {
       if (options.core === true) {
         httpParams = httpParams.append('core', JSON.stringify(options.core));
       }
