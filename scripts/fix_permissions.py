@@ -18,10 +18,12 @@ def fix_permissions():
     'cd ../.git || return',
     'echo "Changing permissions of .git folder ... "',
     'sudo chown -R pokerom:pokerom *',
-    'cd ..',
+    'cd .. || return',
     'echo "Changing permissions of bin folder ... "',
     'sudo chmod -R a+rwx bin',
-    'echo "Done!"'
+    'echo -e "Done!\n"',
+    'read -p "Would you also like to fix mongod permissions (y/*)? (may not be necessary)" fmp'
+    '[[ fmp = "y" ]] && sudo chown mongod:mongod /tmp/mongodb-44380.sock && sudo chown -R mongod:mongod /var/lib/mongo && echo "Done!" || echo "Okay!"'
   ]
 
   # join array of commands into one string
