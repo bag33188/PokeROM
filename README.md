@@ -118,6 +118,11 @@ Now change to the directory created:
 cd PokeROM
 ```
 
+Then run the following command once inside the `PokeROM` folder:
+```shell script
+echo "NODE_ENV=production\nPORT=44300\n" >> .env
+```
+
 #### Step 3 - Building PokeROM
 
 Now that we have the repository on our local machine, we need to do some building.
