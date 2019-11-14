@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1573705671816,
+  "timestamp": 1573714575523,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,7 +10,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2017.8d9705d176667e5e8bdb.js",
+        "/main-es2017.aa837ee5999e83eb958c.js",
         "/polyfills-es2017.a85e3fccd0391dd3e6e5.js",
         "/polyfills-es5-es2017.8196359c44efba28464c.js",
         "/runtime-es2017.52756d3ab8e6582f0541.js",
@@ -100,7 +100,6 @@
         "/assets/images/carousel_img_01.jpg",
         "/assets/images/carousel_img_02.jpg",
         "/assets/images/carousel_img_03.jpg",
-        "/assets/images/carousel_img_04.jpg",
         "/assets/images/logo.png",
         "/assets/images/spinner.gif",
         "/fontawesome-webfont.674f50d287a8c48dc19b.eot",
@@ -186,10 +185,9 @@
     "/assets/icons/touch-icon-iphone-retina.png": "007f984e62944766c3a8b09e8491ae33c5cd388b",
     "/assets/images/background.png": "eae3c4ac133de0f0c381925494f41894847a2a0c",
     "/assets/images/carousel_bg.png": "f3b7e41e569f1d91136a607d9bbaabe194aea100",
-    "/assets/images/carousel_img_01.jpg": "b078e7f0d918ff8a5223d6388a710e76f3c44f65",
+    "/assets/images/carousel_img_01.jpg": "0a963c1502aced5c54324a897829535b1216e7c4",
     "/assets/images/carousel_img_02.jpg": "661c74f5448257d9adeaa336efec33022645e7b3",
     "/assets/images/carousel_img_03.jpg": "4404a81b661a846f7c7b95fe67e1e3ac647009d6",
-    "/assets/images/carousel_img_04.jpg": "0a963c1502aced5c54324a897829535b1216e7c4",
     "/assets/images/logo.png": "047d40dcbfb6e1390b4444c73a996e4a700b41ba",
     "/assets/images/spinner.gif": "b553020f053390eb361af942baba54fc81327518",
     "/favicon.ico": "10e207f0a756d5c44c80bdc9de1e6bc9f16860f6",
@@ -198,8 +196,8 @@
     "/fontawesome-webfont.af7ae505a9eed503f8b8.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
     "/fontawesome-webfont.b06871f281fee6b241d6.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
     "/fontawesome-webfont.fee66e712a8a08eef580.woff": "28b782240b3e76db824e12c02754a9731a167527",
-    "/index.html": "4e2aa163fc31db78dc5ed96f5bff48afdae7ddfc",
-    "/main-es2017.8d9705d176667e5e8bdb.js": "c1f5828cebf6f29e59ecfc9ddc85e28101517e9e",
+    "/index.html": "eac7cf6c4c03f3063d3a1baf47ec7a2b6778cb4f",
+    "/main-es2017.aa837ee5999e83eb958c.js": "32afa3fdd61ddfc2fe229c946660673db174f77e",
     "/polyfills-es2017.a85e3fccd0391dd3e6e5.js": "673c88b92bb3e834ce86236489e0b34e77bf8677",
     "/polyfills-es5-es2017.8196359c44efba28464c.js": "002146de29d7f77c313a59ab41317f0324a36cde",
     "/runtime-es2017.52756d3ab8e6582f0541.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
