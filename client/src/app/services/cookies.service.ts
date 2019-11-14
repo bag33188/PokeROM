@@ -55,10 +55,10 @@ export class CookiesService {
    * @param callbacks The callback functions.
    * @returns nothing (void).
    */
-  public checkCookie(
+  public checkCookie<T, K>(
     cookieName: string,
     expireDays: number,
-    callbacks: any[]
+    callbacks: [() => T, () => K]
   ): void {
     const cookie: string = CookiesService.getCookie(cookieName);
     if (cookie !== '') {
