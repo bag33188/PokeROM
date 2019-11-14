@@ -21,7 +21,7 @@ misc/~$*
 *.sublime-workspace
 
 # Project Folder(s)
-.idea
+# .idea
 .vscode
 venv
 

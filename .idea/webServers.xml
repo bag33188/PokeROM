@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a8ba79f7-13bf-4108-b08c-dba76b0e8e44" name="PokeROM" url="http://ftp.pokerom.dev">
+        <fileTransfer host="ftp.pokerom.dev" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="12a4cd02-c444-4e86-aa94-de360f181b32" name="pokerom.dev" url="http://ftp.pokerom.dev">
+        <fileTransfer host="ftp.pokerom.dev" port="21" accessType="FTPS">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="5d1afc77-cd84-4f09-8ae8-e437d6648331" name="server1.pokerom.dev" url="http://ftp.pokerom.dev">
+        <fileTransfer host="ftp.pokerom.dev" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
