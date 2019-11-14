@@ -39,54 +39,6 @@ String.prototype.convertToDateFormat = function() {
   return new Date(year, monthIndex, day);
 };
 
-function checkValidFields(req, res) {
-  let isValid = true;
-  for (let field of Object.keys(req.body)) {
-    if (!fields.includes(field)) {
-      isValid = false;
-      break;
-    } else {
-      isValid = true;
-      if (typeof field === 'string') {
-        field = req.sanitize(field);
-      }
-    }
-  }
-  if (!isValid) {
-    return res
-      .status(406)
-      .json({ success: false, message: 'Body contains invalid fields.' });
-  }
-}
-
-function checkMultipleErrs(err, req, res) {
-  if (err) {
-    switch (err.name) {
-      case 'CastError':
-        return res.status(404).json({ success: false, ...err });
-      case 'ValidationError':
-        return res.status(406).json({ success: false, ...err });
-      default:
-        return res.status(500).json({ success: false, ...err });
-    }
-  }
-}
-
-function checkSingleErr(err, req, res) {
-  if (err) {
-    if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
-    }
-    return res.status(500).json({ success: false, ...err });
-  }
-}
-
-function setRomTypeToLowerCase(req) {
-  if (req.body.rom_type) {
-    req.body.rom_type = req.body.rom_type.toLowerCase();
-  }
-}
-
 function toBoolean(value) {
   switch (value) {
     case 'true':
@@ -98,29 +50,15 @@ function toBoolean(value) {
   }
 }
 
-function setCorrectDate(req) {
-  req.body.date_released = req.body.date_released.convertToDateFormat();
-}
-
-function checkValidId(req, res) {
-  let id = null;
-  try {
-    if (routesWithParams.includes(req.params.id)) {
-      return res
-        .status(405)
-        .json({ success: false, message: 'Method not allowed.' });
-    }
-    id = mongoose.Types.ObjectId(req.params.id);
-  } catch (e) {
-    return res.status(404).json({ success: false, message: 'ROM not found.' });
-  }
-  return id;
-}
-
 function getRomById(id, req, res, callback) {
   return Rom.getRomById(id, (err, fetchedRom) => {
     if (err) {
-      checkSingleErr(err, req, res);
+      if (err) {
+        if (err.name === 'CastError') {
+          return res.status(404).json({ success: false, ...err });
+        }
+        return res.status(500).json({ success: false, ...err });
+      }
     } else if (!fetchedRom) {
       return res
         .status(404)
@@ -269,10 +207,27 @@ module.exports.getRoms = async (req, res, next) => {
 
 module.exports.getRom = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
+    }
     await Rom.getRomById(id, (err, rom) => {
       if (err) {
-        checkSingleErr(err, req, res);
+        if (err) {
+          if (err.name === 'CastError') {
+            return res.status(404).json({ success: false, ...err });
+          }
+          return res.status(500).json({ success: false, ...err });
+        }
       } else if (!rom) {
         return res
           .status(404)
@@ -295,8 +250,10 @@ module.exports.getRom = async (req, res, next) => {
 
 module.exports.addRom = async (req, res, next) => {
   try {
-    setCorrectDate(req);
-    setRomTypeToLowerCase(req);
+    req.body.date_released = req.body.date_released.convertToDateFormat();
+    if (req.body.rom_type) {
+      req.body.rom_type = req.body.rom_type.toLowerCase();
+    }
     const newRom = new Rom(romObjData(req));
     const {
       order_number,
@@ -315,13 +272,34 @@ module.exports.addRom = async (req, res, next) => {
       logo_url,
       is_favorite
     } = newRom;
-    checkValidFields(req, res);
+    let isValid = true;
+    for (let field of Object.keys(req.body)) {
+      if (!fields.includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        if (typeof field === 'string') {
+          field = req.sanitize(field);
+        }
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
     await Rom.addRom(newRom, (err, rom) => {
-      checkSingleErr(err, req, res);
+      if (err) {
+        if (err.name === 'CastError') {
+          return res.status(404).json({ success: false, ...err });
+        }
+        return res.status(500).json({ success: false, ...err });
+      }
       if (!rom) {
         return res
           .status(502)
@@ -351,9 +329,23 @@ module.exports.addRom = async (req, res, next) => {
 
 module.exports.updateRom = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
-    setCorrectDate(req);
-    setRomTypeToLowerCase(req);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
+    }
+    req.body.date_released = req.body.date_released.convertToDateFormat();
+    if (req.body.rom_type) {
+      req.body.rom_type = req.body.rom_type.toLowerCase();
+    }
     const updateRomData = romObjData(req);
     const {
       order_number,
@@ -372,7 +364,23 @@ module.exports.updateRom = async (req, res, next) => {
       logo_url,
       is_favorite
     } = updateRomData;
-    checkValidFields(req, res);
+    let isValid = true;
+    for (let field of Object.keys(req.body)) {
+      if (!fields.includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        if (typeof field === 'string') {
+          field = req.sanitize(field);
+        }
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
@@ -383,7 +391,16 @@ module.exports.updateRom = async (req, res, next) => {
           fetchedRom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
           await Rom.updateRom(id, updateRomData, {}, (err, rom) => {
-            checkMultipleErrs(err, req, res);
+            if (err) {
+              switch (err.name) {
+                case 'CastError':
+                  return res.status(404).json({ success: false, ...err });
+                case 'ValidationError':
+                  return res.status(406).json({ success: false, ...err });
+                default:
+                  return res.status(500).json({ success: false, ...err });
+              }
+            }
             if (!rom) {
               return res.status(404).json({
                 success: false,
@@ -412,10 +429,22 @@ module.exports.updateRom = async (req, res, next) => {
 
 module.exports.patchRom = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
+    }
     const data = req.body;
     if (req.body.date_released) {
-      setCorrectDate(req);
+      req.body.date_released = req.body.date_released.convertToDateFormat();
     }
     const {
       file_size,
@@ -435,7 +464,23 @@ module.exports.patchRom = async (req, res, next) => {
       logo_url,
       box_art_url
     } = data;
-    checkValidFields(req, res);
+    let isValid = true;
+    for (let field of Object.keys(req.body)) {
+      if (!fields.includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        if (typeof field === 'string') {
+          field = req.sanitize(field);
+        }
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     await getRomById(id, req, res, async fetchedRom => {
       try {
         const isOwnUser =
@@ -443,7 +488,16 @@ module.exports.patchRom = async (req, res, next) => {
         if (isOwnUser) {
           const query = { $set: data };
           await Rom.patchRom(id, query, async (err, status) => {
-            checkMultipleErrs(err, req, res);
+            if (err) {
+              switch (err.name) {
+                case 'CastError':
+                  return res.status(404).json({ success: false, ...err });
+                case 'ValidationError':
+                  return res.status(406).json({ success: false, ...err });
+                default:
+                  return res.status(500).json({ success: false, ...err });
+              }
+            }
             if (!status) {
               return await res.status(502).json({
                 success: false,
@@ -473,13 +527,30 @@ module.exports.patchRom = async (req, res, next) => {
 
 module.exports.deleteRom = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
+    }
     await getRomById(id, req, res, async rom => {
       try {
         const isOwnUser = rom.user_id.toString() === req.user['_id'].toString();
         if (isOwnUser) {
           await Rom.deleteRom(id, (err, status) => {
-            checkSingleErr(err, req, res);
+            if (err) {
+              if (err.name === 'CastError') {
+                return res.status(404).json({ success: false, ...err });
+              }
+              return res.status(500).json({ success: false, ...err });
+            }
             if (!status) {
               return res.status(502).json({
                 success: false,
@@ -576,7 +647,19 @@ module.exports.romsHeaders = (req, res) => {
 
 module.exports.romHeaders = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
+    }
     await getRomById(id, req, res, () => {
       return res.status(200);
     });
