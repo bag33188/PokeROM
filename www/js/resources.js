@@ -35,7 +35,11 @@ class Resources {
     ];
     resources.sort();
     resources.forEach(resource => {
-      list.innerHTML += `<li class="list-group-item">${resource}</li>`;
+      const liEl = document.createElement('li');
+      const liTxt = document.createTextNode(resource);
+      liEl.appendChild(liTxt);
+      liEl.setAttribute('class', 'list-group-item');
+      list.appendChild(liEl);
     });
   }
 
@@ -115,5 +119,9 @@ class Resources {
   }
 }
 
-ready(Resources.setNav);
-ready(Resources.setResourcesList);
+function init() {
+  const methods = [Resources.setNav, Resources.setResourcesList];
+  methods.forEach(method => ready(method));
+}
+
+init();

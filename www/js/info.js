@@ -121,12 +121,3 @@ function init() {
 }
 
 init();
-
-// if (location.href.includes('localhost')) {
-//   console.log(
-//     `\`${document.title.replace(
-//       /Pok\u00E9ROM\s-\s/,
-//       ''
-//     )}\` now being served @ port ${location.host.split(':')[1]}`
-//   );
-// }
