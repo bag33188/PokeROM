@@ -45,7 +45,9 @@
     "open-repos": "cd scripts && open_repos.bat",
     "print-keys": "cd scripts && node print-keys",
     "pokerom": "ssh pokerom@192.64.114.215 -p 22",
-    "root": "ssh root@192.64.114.215 -p 22"
+    "root": "ssh root@192.64.114.215 -p 22",
+    "add-env-dev": "cd scripts && php add_env_dev.php && cd ..",
+    "add-env-prod": "cd scripts && php add_env_prod && cd .."
   },
   "private": true,
   "author": "bag33188",
