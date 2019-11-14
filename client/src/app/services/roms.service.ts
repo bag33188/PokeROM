@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Rom } from '../models/Rom';
 import { environment } from '../../environments/environment';
-import { Opts } from '../interfaces/Opts';
 
 /*
  * headers.append(name: string, value: string | string[])
@@ -25,7 +24,7 @@ export class RomsService {
    * @param options Options for getting all ROMs.
    * @returns An observable (rom array).
    */
-  public getAllRoms(options: Opts): Observable<Rom[]> {
+  public getAllRoms(options: OptsGetRqst): Observable<Rom[]> {
     let httpParams: HttpParams = new HttpParams();
     if (options.limit) {
       httpParams = httpParams.append('_limit', options.limit.toString());
@@ -134,18 +133,23 @@ export class RomsService {
   /**
    * @summary Delete all ROMs.
    * @description Sends a delete request to /api/roms
-   * @param core Delete all core ROMs.
-   * @param hacks Delete all ROM hacks.
+   * @param options Options for deletion of ROMs.
    * @returns An observable (any).
    */
-  public deleteAllRoms(core?: boolean, hacks?: boolean): Observable<any> {
+  public deleteAllRoms(options: OptsDelRqst): Observable<any> {
     let httpParams: HttpParams = new HttpParams();
-    if (core) {
-      httpParams = httpParams.append('core', JSON.stringify(core));
+    if (
+      options &&
+      (options.hasOwnProperty('core') || options.hasOwnProperty('hacks'))
+    ) {
+      if (options.core === true) {
+        httpParams = httpParams.append('core', JSON.stringify(options.core));
+      }
+      if (options.hacks === true) {
+        httpParams = httpParams.append('hacks', JSON.stringify(options.hacks));
+      }
     }
-    if (hacks) {
-      httpParams = httpParams.append('hacks', JSON.stringify(hacks));
-    }
+
     return this.http.delete<any>(this.romsUrl, { params: httpParams });
   }
 
@@ -177,4 +181,21 @@ export class RomsService {
   public getOptionsInfo(): Observable<void> {
     return this.http.options<void>(this.romsUrl);
   }
+}
+
+interface OptsGetRqst {
+  limit?: number;
+  pagination?: {
+    page: number;
+    perPage: number;
+  };
+  types?: {
+    core?: boolean;
+    hacks?: boolean;
+  };
+}
+
+interface OptsDelRqst {
+  core?: boolean;
+  hacks?: boolean;
 }

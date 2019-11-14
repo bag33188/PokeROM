@@ -2,26 +2,12 @@
 
 @import 'functions';
 
-@mixin responsive-width($min-width, $max-width, $width) {
-  @media only all and (min-width: $min-width) and (max-width: $max-width) {
-    width: $width;
-  }
-}
-
-@mixin list-container(
-  $margin-bottom,
-  $margin-left,
-  $margin-top,
-  $max-width,
-  $margin
-) {
-  margin-bottom: $margin-bottom;
-  margin-left: $margin-left;
-  margin-top: $margin-top;
-  @media only all and (max-width: $max-width) {
-    margin: $margin;
-  }
-}
+/*
+ font data format:
+    font-name local-font-name font-style font-weight woff2-font-url woff1-font-url,
+    font-name local-font-name font-style font-weight woff2-font-url woff1-font-url,
+    // .........
+ */
 
 @mixin add-font-face($font-data, $font-url-prefix) {
   @each $font-name, $local1, $font-style, $font-weight, $font-woff2-url,
@@ -40,5 +26,26 @@
       src: local($local1), local($local2), url($font-woff2-url) format('woff2'),
         url($font-woff1-url) format('woff');
     }
+  }
+}
+
+@mixin responsive-width($min-width, $max-width, $width) {
+  @media only all and (min-width: $min-width) and (max-width: $max-width) {
+    width: $width;
+  }
+}
+
+@mixin list-container(
+  $margin-bottom,
+  $margin-left,
+  $margin-top,
+  $max-width,
+  $margin
+) {
+  margin-bottom: $margin-bottom;
+  margin-left: $margin-left;
+  margin-top: $margin-top;
+  @media only all and (max-width: $max-width) {
+    margin: $margin;
   }
 }

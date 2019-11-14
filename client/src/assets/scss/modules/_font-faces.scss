@@ -3,6 +3,13 @@
 @import '../mixins';
 @import '../variables';
 
+/*
+ font data format:
+    font-name local-font-name font-style font-weight woff2-font-url woff1-font-url,
+    font-name local-font-name font-style font-weight woff2-font-url woff1-font-url,
+    // .........
+ */
+
 $roboto-font-data: 'Roboto' 'Roboto Bold' normal bold $roboto-bold2 $roboto-bold,
   'Roboto' 'Roboto' normal normal $roboto-regular2 $roboto-regular,
   'Roboto Condensed' 'Roboto Condensed Light Italic' italic 300
