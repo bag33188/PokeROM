@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ScssLintProjectComponent">
-    <option name="scssLintConfigFile" value="C:\Users\Brock\Projects\PokeROM\client\.sass-lint.yml" />
-    <option name="scssLintExecutable" value="C:\Users\Brock\Projects\PokeROM\client\node_modules\.bin\sass-lint.cmd" />
-  </component>
-</project>
