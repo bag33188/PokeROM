@@ -5,41 +5,21 @@ const moment = require('moment');
 const Rating = require('../models/Rating');
 const [, clearCache] = require('../middleware/cache');
 
-function checkErr(err, req, res) {
-  if (err) {
-    if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
-    }
-    return res.status(500).json({ success: false, ...err });
-  }
-}
-
-function noRatingResponse(rating, req, res) {
-  if (!rating) {
-    return res
-      .status(404)
-      .json({ success: false, message: 'Rating not found.' });
-  }
-}
-
 function getRating(id, req, res, callback) {
   return Rating.getRating(id, (err, rating) => {
-    checkErr(err, req, res);
-    noRatingResponse(rating, req, res);
+    if (err) {
+      if (err.name === 'CastError') {
+        return res.status(404).json({ success: false, ...err });
+      }
+      return res.status(500).json({ success: false, ...err });
+    }
+    if (!rating) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
+    }
     return callback(rating);
   });
-}
-
-function checkValidId(req, res) {
-  let id = null;
-  try {
-    id = mongoose.Types.ObjectId(req.params.id);
-  } catch (e) {
-    return res
-      .status(404)
-      .json({ success: false, message: 'Rating not found.' });
-  }
-  return id;
 }
 
 module.exports.addRating = async (req, res, next) => {
@@ -63,7 +43,11 @@ module.exports.addRating = async (req, res, next) => {
         }
         return res.status(500).json({ success: false, ...err });
       }
-      noRatingResponse(rating, req, res);
+      if (!rating) {
+        return res
+          .status(404)
+          .json({ success: false, message: 'Rating not found.' });
+      }
       res.append(
         'Created-At-Route',
         `${url.format({
@@ -88,10 +72,26 @@ module.exports.addRating = async (req, res, next) => {
 
 module.exports.getRating = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
+    }
     await Rating.getRating(id, (err, rating) => {
-      checkErr(err, req, res);
-      noRatingResponse(rating, req, res);
+      if (err) {
+        if (err.name === 'CastError') {
+          return res.status(404).json({ success: false, ...err });
+        }
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!rating) {
+        return res
+          .status(404)
+          .json({ success: false, message: 'Rating not found.' });
+      }
       return res.status(200).json(rating);
     });
   } catch (err) {
@@ -123,12 +123,24 @@ module.exports.getRatings = async (req, res, next) => {
 
 module.exports.deleteRating = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
+    }
     await getRating(id, req, res, async () => {
       try {
         const query = { _id: id };
         await Rating.deleteRating(query, (err, status) => {
-          checkErr(err, req, res);
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
+          }
           if (!status) {
             return res
               .status(404)
@@ -171,7 +183,14 @@ module.exports.ratingsHeaders = (req, res) => {
 
 module.exports.ratingHeaders = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
+    }
     await getRating(id, req, res, () => {
       return res.status(200);
     });

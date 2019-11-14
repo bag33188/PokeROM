@@ -8,67 +8,15 @@ const [, clearCache] = require('../middleware/cache');
 
 const routesWithParams = ['all'];
 
-function checkSingleErr(err, req, res) {
-  if (err) {
-    if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
-    } else {
-      return res.status(500).json({ success: false, ...err });
-    }
-  }
-}
-
-function checkMultipleErrs(err, req, res) {
-  if (err) {
-    switch (err.name) {
-      case 'CastError':
-        return res.status(404).json({ success: false, ...err });
-      case 'ValidationError':
-        return res.status(406).json({ success: false, ...err });
-      default:
-        return res.status(500).json({ success: false, ...err });
-    }
-  }
-}
-
-function checkValidFields(req, res) {
-  let isValid = true;
-  for (const field of Object.keys(req.body)) {
-    if (!['_id', 'name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
-      isValid = false;
-      break;
-    } else {
-      isValid = true;
-      req.sanitize(field);
-    }
-  }
-  if (!isValid) {
-    return res
-      .status(406)
-      .json({ success: false, message: 'Body contains invalid fields.' });
-  }
-}
-
-function checkValidId(req, res) {
-  let id = null;
-  try {
-    if (routesWithParams.includes(req.params.id)) {
-      return res
-        .status(405)
-        .json({ success: false, message: 'Method not allowed.' });
-    }
-    id = mongoose.Types.ObjectId(req.params.id);
-  } catch (e) {
-    return res
-      .status(404)
-      .json({ success: false, message: 'Nature not found.' });
-  }
-  return id;
-}
-
 function getNature(id, req, res, callback) {
   return Nature.getNature(id, (err, nature) => {
-    checkSingleErr(err, req, res);
+    if (err) {
+      if (err.name === 'CastError') {
+        return res.status(404).json({ success: false, ...err });
+      } else {
+        return res.status(500).json({ success: false, ...err });
+      }
+    }
     if (!nature) {
       return res
         .status(404)
@@ -99,9 +47,27 @@ module.exports.getNatures = async (req, res, next) => {
 
 module.exports.getNature = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
+    }
     await Nature.getNature(id, (err, nature) => {
-      checkSingleErr(err, req, res);
+      if (err) {
+        if (err.name === 'CastError') {
+          return res.status(404).json({ success: false, ...err });
+        } else {
+          return res.status(500).json({ success: false, ...err });
+        }
+      }
       if (!nature) {
         return res
           .status(404)
@@ -128,7 +94,21 @@ module.exports.addNature = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
-    checkValidFields(req, res);
+    let isValid = true;
+    for (const field of Object.keys(req.body)) {
+      if (!['_id', 'name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        req.sanitize(field);
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     await Nature.addNature(nature, (err, nature) => {
       if (err) {
         if (err.name === 'ValidationError') {
@@ -166,7 +146,19 @@ module.exports.addNature = async (req, res, next) => {
 
 module.exports.updateNature = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
+    }
     const updateData = {
       name: req.sanitize(req.body.name),
       up: req.sanitize(req.body.up),
@@ -179,14 +171,37 @@ module.exports.updateNature = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
-    checkValidFields(req, res);
+    let isValid = true;
+    for (const field of Object.keys(req.body)) {
+      if (!['_id', 'name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        req.sanitize(field);
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     await Nature.updateNature(
       id,
       updateData,
       {},
       async (err, updatedNature) => {
         try {
-          checkMultipleErrs(err, req, res);
+          if (err) {
+            switch (err.name) {
+              case 'CastError':
+                return res.status(404).json({ success: false, ...err });
+              case 'ValidationError':
+                return res.status(406).json({ success: false, ...err });
+              default:
+                return res.status(500).json({ success: false, ...err });
+            }
+          }
           if (!updatedNature) {
             return res.status(404).json({
               success: false,
@@ -209,18 +224,53 @@ module.exports.updateNature = async (req, res, next) => {
 
 module.exports.patchNature = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
+    }
     const data = req.body;
     const { name, up, down, flavor, usage } = data;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(406).json({ success: false, errors: errors.array() });
     }
-    checkValidFields(req, res);
+    let isValid = true;
+    for (const field of Object.keys(req.body)) {
+      if (!['_id', 'name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
+        isValid = false;
+        break;
+      } else {
+        isValid = true;
+        req.sanitize(field);
+      }
+    }
+    if (!isValid) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const query = { $set: data };
     await Nature.patchNature(id, query, async (err, status) => {
       try {
-        checkMultipleErrs(err, req, res);
+        if (err) {
+          switch (err.name) {
+            case 'CastError':
+              return res.status(404).json({ success: false, ...err });
+            case 'ValidationError':
+              return res.status(406).json({ success: false, ...err });
+            default:
+              return res.status(500).json({ success: false, ...err });
+          }
+        }
         if (!status) {
           return res.status(502).json({
             success: false,
@@ -242,11 +292,29 @@ module.exports.patchNature = async (req, res, next) => {
 
 module.exports.deleteNature = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
+    }
     await getNature(id, req, res, async () => {
       try {
         await Nature.deleteNature(id, (err, status) => {
-          checkSingleErr(err, req, res);
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            } else {
+              return res.status(500).json({ success: false, ...err });
+            }
+          }
           if (!status) {
             return res.status(502).json({
               success: false,
@@ -295,7 +363,19 @@ module.exports.naturesHeaders = (req, res) => {
 
 module.exports.natureHeaders = async (req, res, next) => {
   try {
-    const id = checkValidId(req, res);
+    let id = null;
+    try {
+      if (routesWithParams.includes(req.params.id)) {
+        return res
+          .status(405)
+          .json({ success: false, message: 'Method not allowed.' });
+      }
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
+    }
     await getNature(id, req, res, () => {
       return res.status(200);
     });
