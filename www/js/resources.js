@@ -31,7 +31,9 @@ class Resources {
       'Google Chrome',
       'MongoDB Compass',
       'Adobe Photoshop',
-      'Adobe Illustrator'
+      'Adobe Illustrator',
+      'Visual Studio Code',
+      'XAMPP'
     ];
     resources.sort();
     resources.forEach(resource => {
