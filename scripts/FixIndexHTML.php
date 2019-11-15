@@ -31,10 +31,10 @@
             if (is_array($script_tags[0][$i]) === true) {
               $script_tags[0][$i] = implode("\n", $script_tags[0][$i]);
             }
-            if (strpos($script_tags[0][$i], 'type="module"') == false) {
+            if (strpos($script_tags[0][$i], 'type="module"') === false) {
               $script_tags[0][$i] = str_replace('src="', 'type="text/javascript" src="', $script_tags[0][$i]);
             }
-            if (strpos($script_tags[0][$i], 'defer') == false) {
+            if (strpos($script_tags[0][$i], 'defer') === false) {
               $script_tags[0][$i] = str_replace('></script>', ' defer></script>', $script_tags[0][$i]);
             }
           }
@@ -57,9 +57,9 @@
         foreach ($file_lines as $line) {
           if ((strpos($line, '.css">') !== false || strpos($line, '<link rel="stylesheet" href="styles.') !== false) && strpos($line, '</head>') !== false) {
             fwrite($file, str_replace('.css"></head>', '.css" />' . "\n\n<!--[if !IE]><!-->\n" . $this->new_script_tags . "\n<!--<![endif]-->\n</head>", str_replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"', $line)) . "\n");
-          } elseif (strpos($line, '</head>') !== false && (strpos($line, '.css">') == false || strpos($line, '<link rel="stylesheet" href="styles.') == false)) {
+          } elseif (strpos($line, '</head>') !== false && (strpos($line, '.css">') === false || strpos($line, '<link rel="stylesheet" href="styles.') === false)) {
             fwrite($file, str_replace('</head>', $this->new_script_tags . "\n</head>", $line) . "\n");
-          } elseif ((strpos($line, '.css">') !== false || strpos($line, '<link rel="stylesheet" href="styles.') == true) and strpos($line, '</head>') == false) {
+          } elseif ((strpos($line, '.css">') !== false || strpos($line, '<link rel="stylesheet" href="styles.') !== false) and strpos($line, '</head>') === false) {
             fwrite($file, str_replace('.css">', '.css" />' . "\n", str_replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"', $line)) . "\n");
           } elseif ($script_tags_exist === true) {
             for ($i = 0; $i < count($script_tags[0]); $i++) {
