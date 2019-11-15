@@ -61,6 +61,7 @@
     </style>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <link rel="stylesheet" type="text/css" href="css/credits.css" />
+    <script type="text/javascript" src="js/ready.js"></script>
     <script type="text/javascript" src="js/credits.js"></script>
   </head>
   <body class="p-3">

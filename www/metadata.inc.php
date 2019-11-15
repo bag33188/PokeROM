@@ -15,6 +15,16 @@
           <head>
             <meta charset='UTF-8' />
             <title>Page Not Found</title>
+            <style type='text/css'>
+              *,
+              *::before,
+              *::after {
+                box-sizing: border-box;
+              }
+            </style>
+            <script type='text/javascript'>
+              console.log('Error 404: Page not found.');
+            </script>
           </head>
           <body style='margin:0;font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,\"Noto Sans\",sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\",\"Noto Color Emoji\";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff;padding:1rem!important;'>
             <h1 style='margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2;font-size:2.5rem;text-align:center!important;'>
