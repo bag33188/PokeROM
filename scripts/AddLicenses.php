@@ -1,5 +1,7 @@
 <?php
   namespace scripts;
+
+  // reference Exception namespace
   use Exception;
 
   /**
@@ -8,12 +10,17 @@
    */
   class AddLicenses {
 
+    // create name constant (class property)
+    const NAME = 'Broccolini';
+
     /**
      * @param string $name Copyright owner's name.
      * @return string ISC License.
      */
     private static function get_isc_license($name) {
+      // store current year in var
       $current_year = date("Y");
+      // isc license data
       $isc_license = '' .
         'ISC LICENSE' .
         "\n" .
@@ -27,6 +34,7 @@
         'DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR ' .
         'PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION ' .
         'WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.';
+      // return isc license data
       return $isc_license;
     }
 
@@ -35,7 +43,9 @@
      * @return string MIT License.
      */
     private static function get_mit_license($name) {
+      // store current year in var
       $current_year = date("Y");
+      // mit license data
       $mit_license = '' .
         'MIT LICENSE' .
         "\n" .
@@ -54,6 +64,7 @@
         'IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, ' .
         'WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR ' .
         'THE USE OR OTHER DEALINGS IN THE SOFTWARE.';
+      // return mit license data
       return $mit_license;
     }
 
@@ -62,11 +73,10 @@
      * @return void Nothing.
      */
     public static function write_file($filepath) {
+      // encapsulate main logic in try catch (in case of errors)
       try {
         echo "Adding licenses ... \n";
-        if (!defined('NAME')) {
-          define('NAME', 'Broccolini');
-        }
+        // store license data in var
         $license_data = '' .
           'pokerom' .
           "\n" .
@@ -74,15 +84,21 @@
           "\n" .
           'MIT' .
           "\n\n" .
-          self::get_isc_license(NAME) .
+          // get isc license (pass in name const)
+          self::get_isc_license(self::NAME) .
           "\n\n" .
-          self::get_mit_license(NAME) .
+          // get mit license (pass in name const)
+          self::get_mit_license(self::NAME) .
           "\n";
+        // open new file for writing
         $file = fopen($filepath, 'w');
+        // write license data to new file
         fwrite($file, $license_data);
         echo "Done!\n\n";
       } catch (Exception $e) {
+        // catch any exceptions
         echo $e->getMessage();
+        // stop script
         die(1);
       }
     }
@@ -92,10 +108,13 @@
    * @return void Nothing.
    */
   function main() {
+    // define filepath const if not already defined
     if (!defined('FILEPATH')) {
       define('FILEPATH', '../public/LICENSE');
     }
+    // call `write_file` method from `AddLicenses` class (passing in `FILEPATH` constant)
     AddLicenses::write_file(FILEPATH);
   }
 
+  // invoke main method
   main();
