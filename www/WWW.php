@@ -132,8 +132,6 @@
         "JavaScript" => "JavaScript",
         "Markdown" => "Markdown",
         "Hypertext Preprocessor" => "PHP",
-        "Python 3" => "Python 3",
-        "Ruby" => "Ruby",
         "Syntactically Awesome Stylesheets" => "SCSS/Sass",
         "Scalar Vector Graphics" => "SVG",
         "TypeScript" => "TypeScript",

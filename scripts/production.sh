@@ -28,11 +28,7 @@ production() {
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
     echo -e "\r\n"
-    php ../scripts/fix_index_html.php
-    # shellcheck disable=SC2035
-    rm *bak1
-    # shellcheck disable=SC2035
-    # rm *bak2
+    php ../scripts/FixIndexHTML.php
     php ../scripts/AddLicenses.php
     cd ..
     rm -R client/dist
