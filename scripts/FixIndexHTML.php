@@ -3,7 +3,7 @@
 
   // reference Exception and Error namespaces
   use Exception;
-  # use Error;
+  use Error;
 
   /**
    * Class FixIndexHTML
