@@ -2,16 +2,6 @@
   "name": "pokerom",
   "version": "1.0.0",
   "description": "The back-end/server side for the PokeROM website.",
-  "licenses": [
-    {
-      "type": "ISC",
-      "url": "https://opensource.org/licenses/ISC"
-    },
-    {
-      "type": "MIT",
-      "url": "https://opensource.org/licenses/MIT"
-    }
-  ],
   "homepage": "https://github.com/bag33188/Pokemon-ROMs-Project#readme",
   "bugs": {
     "url": "https://github.com/bag33188/Pokemon-ROMs-Project/issues",
