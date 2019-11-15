@@ -64,7 +64,7 @@ Installing `Node.JS` and `MongoDB` require a little more work.
 Run the following commands to install `MongoDB`
 
 ```shell script
-# import public key used by package managment system
+# import public key used by package management system
 wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
 # create list file for mongodb
 echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
