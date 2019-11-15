@@ -20,11 +20,11 @@ $ chmod 755 ./db_dev.sh
 
 db_dev() {
   cd .. || return
-  command=`mongo pkmn-roms`
+  command="mongo pkmn-roms"
   case $OSTYPE in
-    darwin* )  ${command} ;;
-    linux* )   ${command} ;;
-    msys* )    winpty "${command}" ;;
+    darwin* )  eval "${command}" ;;
+    linux* )   eval "${command}";;
+    msys* )    eval "winpty \"${command}\"" ;;
     * )        echo "Unknown OS: $OSTYPE" ;;
   esac
 }
