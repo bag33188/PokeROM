@@ -22,7 +22,7 @@
     $lines = array('NODE_ENV=development', 'PORT=8080');
 
     foreach ($lines as $line) {
-      fwrite($file, $line . "\n");
+      fwrite($file, "$line\n");
     }
 
     fclose($file);
