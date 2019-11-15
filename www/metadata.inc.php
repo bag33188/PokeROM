@@ -16,9 +16,15 @@
             <meta charset='UTF-8' />
             <title>Page Not Found</title>
           </head>
-          <body style='font-family: Verdana, Geneva, Tahoma, sans-serif;'>
-            <h1 style='text-align: center;'>Error 404: Page Not Found.</h1>
-            <nav style='text-align: center;font-size: 1.3em;'><a href='" . $home_url . "' target='_self'>Home</a></nav>
+          <body style='margin:0;font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,\"Noto Sans\",sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\",\"Noto Color Emoji\";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff;padding:1rem!important;'>
+            <h1 style='margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2;font-size:2.5rem;text-align:center!important;'>
+              Error 404: Page Not Found.
+            </h1>
+            <nav style='display:block;text-align:center!important;'>
+              <a style='color:#007bff;text-decoration:none;background-color:transparent;transition:.15s ease-in-out;font-size:1.3em;' onmouseover='this.style.color=\"#0056b3\";this.style.textDecoration=\"underline\";' onmouseout='this.style.color=\"#007bff\";this.style.textDecoration=\"none\";' href='" . $home_url . "' target='_self'>
+                Home
+              </a>
+            </nav>
           </body>
         </html>
       ";
