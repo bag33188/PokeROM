@@ -2,23 +2,50 @@
   namespace scripts;
   use Exception;
 
+  /**
+   * Class FixIndexHTML
+   * @package scripts
+   */
   class FixIndexHTML
   {
-    protected $filepath;
-    protected $new_script_tags;
-    protected $contents;
+    /**
+     * @var null|string The file path of `index.html`.
+     */
+    protected $filepath = NULL;
+    /**
+     * @var null|string The new script tags (modified).
+     */
+    protected $new_script_tags = NULL;
+    /**
+     * @var null|string The current contents of the `index.html` file.
+     */
+    protected $contents = NULL;
+    // create constant regular expression for detecting the script tags.
     const SCRIPT_TAG_REGEXP = '/((?:\x{003C}script src=")(?:(?:runtime|polyfills(?:-es5)?|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js")(?:(?:\stype="module")?(?:\snomodule)?(?:\sdefer)?)(?:\x{003E}\x{003C}\/script\x{003E}))/';
 
+    /**
+     * FixIndexHTML constructor.
+     * @param string $filepath The path to `index.html`.
+     */
     public function __construct($filepath)
     {
+      // call method to set file path property.
       $this->set_filepath($filepath);
     }
 
+    /**
+     * @param string $filepath The file path to `index.html`.
+     * @return void Nothing.
+     */
     private function set_filepath($filepath)
     {
+      // set class prop to method param.
       $this->filepath = $filepath;
     }
 
+    /**
+     * @return void Nothing.
+     */
     public function read_script_tags()
     {
       try {
@@ -47,6 +74,9 @@
       }
     }
 
+    /**
+     * @return void Nothing.
+     */
     public function move_script_tags()
     {
       try {
@@ -77,6 +107,9 @@
       }
     }
 
+    /**
+     * @return void Nothing.
+     */
     private function set_content()
     {
       try {
@@ -88,6 +121,9 @@
       }
     }
 
+    /**
+     * @return void Nothing.
+     */
     public function insert_comment()
     {
       $this->set_content();
@@ -122,6 +158,9 @@
     }
   }
 
+  /**
+   * @return void Nothing.
+   */
   function init() {
     $fix_index_html = new FixIndexHTML('../public/index.html');
     echo "Moving around script tags in index.html ... \n";
