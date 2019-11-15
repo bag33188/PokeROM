@@ -1,13 +1,15 @@
 <?php
   namespace scripts;
+  use Exception;
 
   class AddLicenses {
 
     private static function get_isc_license($name) {
+      $current_year = date("Y");
       $isc_license = '' .
         'ISC LICENSE' .
         "\n" .
-        "Copyright " . date("Y") . " " .$name .
+        "Copyright " . $current_year . " " .$name .
         "\n" .
         'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby ' .
         'granted, provided that the above copyright notice and this permission notice appear in all copies.' .
@@ -21,10 +23,11 @@
     }
 
     private static function get_mit_license($name) {
+      $current_year = date("Y");
       $mit_license = '' .
         'MIT LICENSE' .
         "\n" .
-        "Copyright " . date("Y") . " " . $name .
+        "Copyright " . $current_year . " " . $name .
         "\n" .
         'Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated ' .
         'documentation files (the "Software"), to deal in the Software without restriction, including without limitation ' .
@@ -43,24 +46,29 @@
     }
 
     public static function write_file($filepath) {
-      echo "Adding licenses ... \n";
-      if (!defined('NAME')) {
-        define('NAME', 'Broccolini');
+      try {
+        echo "Adding licenses ... \n";
+        if (!defined('NAME')) {
+          define('NAME', 'Broccolini');
+        }
+        $license_data = '' .
+          'pokerom' .
+          "\n" .
+          'ISC' .
+          "\n" .
+          'MIT' .
+          "\n\n" .
+          self::get_isc_license(NAME) .
+          "\n\n" .
+          self::get_mit_license(NAME) .
+          "\n";
+        $file = fopen($filepath, 'w');
+        fwrite($file, $license_data);
+        echo "Done!\n\n";
+      } catch (Exception $e) {
+        echo $e->getMessage();
+        die(1);
       }
-      $license_data = '' .
-        'pokerom' .
-        "\n" .
-        'ISC' .
-        "\n" .
-        'MIT' .
-        "\n\n" .
-        self::get_isc_license(NAME) .
-        "\n\n" .
-        self::get_mit_license(NAME) .
-        "\n";
-      $file = fopen($filepath, 'w');
-      fwrite($file, $license_data);
-      echo "Done!\n\n";
     }
   }
 

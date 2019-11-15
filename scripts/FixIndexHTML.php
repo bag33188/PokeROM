@@ -1,6 +1,7 @@
 <?php
   namespace scripts;
   use Exception;
+
   class FixIndexHTML
   {
     protected $filepath;
