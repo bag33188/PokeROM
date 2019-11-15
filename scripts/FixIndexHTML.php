@@ -214,7 +214,7 @@
   /**
    * @return void Nothing.
    */
-  function init() {
+  function main() {
     // instantiate class and pass in path to `index.html` file
     $fix_index_html = new FixIndexHTML('../public/index.html');
     // begin fixing index.html file ...
@@ -229,4 +229,4 @@
   }
 
   // invoke main function
-  init();
+  main();
