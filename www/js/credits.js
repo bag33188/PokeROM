@@ -19,4 +19,5 @@ function insertIntro() {
   infoSpanEl.append(infoSpanElTxt);
   intro.appendChild(infoSpanEl);
 }
+
 ready(insertIntro);

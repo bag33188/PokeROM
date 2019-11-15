@@ -102,8 +102,8 @@ function init() {
   const methods = [
     Info.setCurrentYear,
     Info.setNav,
-    Info.setHrWidth,
-    addEventListener('resize', Info.setHrWidth)
+    Info.setHrWidth
+    // addEventListener('resize', Info.setHrWidth)
   ];
   methods.forEach(method => ready(method));
 }
