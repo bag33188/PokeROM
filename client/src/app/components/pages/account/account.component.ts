@@ -129,27 +129,30 @@ export class AccountComponent implements OnInit, AfterContentInit {
           delete this.user.password;
         }
         // finally, update the user using a PATCH request (partial update)
-        this.userService.patchUser(this.userId, this.user).subscribe(
-          (): void => {
-            this.ready = true;
-            this.userExists = false;
-            AuthService.logout();
-            this.router.navigate(['/', 'home']);
-          },
-          (err: JSONObject): never => {
-            this.ready = true;
-            this.firedOff = false;
-            this.updateFail = true;
-            // check for existing username
-            if (
-              err[keys[0]][keys[1]] ===
-              'A user with that username already exists.'
-            ) {
-              this.userExists = true;
+        this.userService
+          // tslint:disable-next-line:whitespace
+          .patchUser(this.userId, (<unknown>this.user) as JSONObject)
+          .subscribe(
+            (): void => {
+              this.ready = true;
+              this.userExists = false;
+              AuthService.logout();
+              this.router.navigate(['/', 'home']);
+            },
+            (err: JSONObject): never => {
+              this.ready = true;
+              this.firedOff = false;
+              this.updateFail = true;
+              // check for existing username
+              if (
+                err[keys[0]][keys[1]] ===
+                'A user with that username already exists.'
+              ) {
+                this.userExists = true;
+              }
+              throw err;
             }
-            throw err;
-          }
-        );
+          );
       }
     }
   }
