@@ -19,13 +19,11 @@ const version = swaggerDefinition.swaggerDefinition.info.version;
  * @returns {string} The API's version.
  */
 function parseVersion(apiVersion) {
+  const versionRegExp = /((?:<%(?:[=#]?))(?:\s?)(?:VERSION)(?:\s?)(?:%>))/i;
   const keys = ['swaggerDefinition', 'info', 'description'];
   swaggerDefinition[keys[0]][keys[1]][keys[2]] = swaggerDefinition[keys[0]][
     keys[1]
-  ][keys[2]].replace(
-    /((?:<%(?:[=#]?))(?:\s?)(?:VERSION)(?:\s?)(?:%>))/i,
-    apiVersion
-  );
+  ][keys[2]].replace(versionRegExp, apiVersion);
   return apiVersion;
 }
 
