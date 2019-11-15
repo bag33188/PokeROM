@@ -109,7 +109,7 @@
           // and do various checks that depend on the formatting of the file
           // if the link tag and the closing head tag on the same line
           if ((strpos($line, '.css">') !== false || strpos($line, '<link rel="stylesheet" href="styles.') !== false) && strpos($line, '</head>') !== false) {
-            fwrite($file, str_replace('.css"></head>', '.css" />' . "\n\n<!--[if !IE]><!-->\n" . $this->new_script_tags . "\n<!--<![endif]-->\n</head>", str_replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"', $line)) . "\n");
+            fwrite($file, str_replace('.css"></head>', '.css" />' . "\n \n<!--[if !IE]><!-->\n" . $this->new_script_tags . "\n<!--<![endif]-->\n</head>", str_replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"', $line)) . "\n");
             // if the link tag is not on the same line as the head tag
           } elseif (strpos($line, '</head>') !== false && (strpos($line, '.css">') === false || strpos($line, '<link rel="stylesheet" href="styles.') === false)) {
             fwrite($file, str_replace('</head>', $this->new_script_tags . "\n</head>", $line) . "\n");
