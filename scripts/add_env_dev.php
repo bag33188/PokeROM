@@ -2,16 +2,18 @@
   namespace scripts;
   use Error;
 
+  /**
+   * @return void Nothing.
+   */
   function add_env_dev() {
-    $filepath = "../";
-    $filename = ".env";
+    $filename = "../.env";
 
-    if (file_exists($filepath . $filename)) {
-      echo "Error: the file `" . $filename . "` already exists in the path `" . $filepath . "`.\n";
+    if (file_exists($filename)) {
+      echo "Error: the file `" . $filename . "` already exists in the path `/`.\n";
       die(1);
     }
 
-    $file = fopen($filepath . $filename, "a");
+    $file = fopen($filename, "a");
 
     if ($file == false) {
       throw new Error("Error opening new file.");

@@ -2,8 +2,16 @@
   namespace scripts;
   use Exception;
 
+  /**
+   * Class AddLicenses
+   * @package scripts
+   */
   class AddLicenses {
 
+    /**
+     * @param string $name Copyright owner's name.
+     * @return string ISC License.
+     */
     private static function get_isc_license($name) {
       $current_year = date("Y");
       $isc_license = '' .
@@ -22,6 +30,10 @@
       return $isc_license;
     }
 
+    /**
+     * @param string $name Copyright owner's name.
+     * @return string MIT License.
+     */
     private static function get_mit_license($name) {
       $current_year = date("Y");
       $mit_license = '' .
@@ -45,6 +57,10 @@
       return $mit_license;
     }
 
+    /**
+     * @param string $filepath File path to write LICENSE file.
+     * @return void Nothing.
+     */
     public static function write_file($filepath) {
       try {
         echo "Adding licenses ... \n";
@@ -72,6 +88,9 @@
     }
   }
 
+  /**
+   * @return void Nothing.
+   */
   function main() {
     if (!defined('FILEPATH')) {
       define('FILEPATH', '../public/LICENSE');
