@@ -105,7 +105,7 @@ For this step, we will be cloning the `PokeROM` git repository.
 Simply run the following command:
 
 ```shell script
-cd ~ && mkdir Projects && cd Projects && git clone https://9a2ed485d2f05445b47ea175754aab8922684635@github.com/bag33188/PokeROM.git
+cd ~ && mkdir Projects && cd Projects && git clone https://65b96aed55983e89366c8f4bb6f1647e60bc0688@github.com/bag33188/PokeROM.git
 ```
 
 That command will create new new folder called `Projects` in the home directory and clone the PokeROM
