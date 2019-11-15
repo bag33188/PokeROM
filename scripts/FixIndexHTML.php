@@ -151,7 +151,7 @@
       } catch (Exception $e) {
         // handle any exceptions
         echo $e->getMessage();
-        // stpo the script
+        // stop the script
         exit(1);
       }
     }
