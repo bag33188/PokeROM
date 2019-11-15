@@ -9,6 +9,11 @@
 
     public function __construct($filepath)
     {
+      $this->set_filepath($filepath);
+    }
+
+    private function set_filepath($filepath)
+    {
       $this->filepath = $filepath;
     }
 
