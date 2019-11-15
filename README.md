@@ -13,7 +13,6 @@ Pok&eacute;ROM
       - [Step 2 - Get the PokeROM Repository](#step-2---get-the-pokerom-repository)
       - [Step 3 - Building PokeROM](#step-3---building-pokerom)
         * [Optional Steps](#optional-steps)
-          + [Fixing an Angular AOT Bug](#fixing-an-angular-aot-bug)
           + [Packaging the App](#packaging-the-app)
       - [Step 4 - Running PokeROM](#step-4---running-pokerom)
         * [Terminal Window 1](#terminal-window-1)
