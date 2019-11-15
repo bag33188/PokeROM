@@ -7,7 +7,7 @@ $ npm run load-db
 
 To load this data in development:
 $ npm run import-db
- */
+*/
 
 try {
   conn = new Mongo('server1.pokerom.dev');
