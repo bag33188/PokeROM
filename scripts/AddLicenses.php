@@ -1,4 +1,5 @@
 <?php
+  namespace scripts;
 
   class AddLicenses {
 
@@ -42,8 +43,10 @@
     }
 
     public static function write_file($filepath) {
-      print "Adding licenses ... \n";
-      define('NAME', 'Broccolini');
+      echo "Adding licenses ... \n";
+      if (!defined('NAME')) {\
+        define('NAME', 'Broccolini');
+      }
       $license_data = '' .
         'pokerom' .
         "\n" .
@@ -57,7 +60,7 @@
         "\n";
       $file = fopen($filepath, 'w');
       fwrite($file, $license_data);
-      print "Done!\n\n";
+      echo "Done!\n\n";
     }
   }
 

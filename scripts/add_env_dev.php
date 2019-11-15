@@ -1,11 +1,12 @@
 <?php
+  namespace scripts;
 
   function add_env_dev() {
     $filepath = "../";
     $filename = ".env";
 
     if (file_exists($filepath . $filename)) {
-      print "Error: the file `" . $filename . "` already exists in the path `" . $filepath . "`.\n";
+      echo "Error: the file `" . $filename . "` already exists in the path `" . $filepath . "`.\n";
       die(1);
     }
 

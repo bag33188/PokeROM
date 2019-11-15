@@ -1,11 +1,12 @@
 <?php
+  namespace scripts;
 
   class FixIndexHTML
   {
     protected $filepath;
     protected $new_script_tags;
-    protected $content;
-    const SCRIPT_TAG_REGEXP = '/((?:<script src=\")(?:(?:runtime|polyfills(?:-es5)?|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js\")(?:(?:\stype="module")?(?:\snomodule)?(?:\sdefer)?)(?:><\/script>))/';
+    protected $contents;
+    const SCRIPT_TAG_REGEXP = '/((?:\x{003C}script src=")(?:(?:runtime|polyfills(?:-es5)?|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js")(?:(?:\stype="module")?(?:\snomodule)?(?:\sdefer)?)(?:\x{003E}\x{003C}\/script\x{003E}))/';
 
     public function __construct($filepath)
     {
@@ -22,8 +23,8 @@
       try {
         $file = fopen($this->filepath, "r");
         $file_size = filesize($this->filepath);
-        $this->content = fread($file, $file_size);
-        preg_match_all(self::SCRIPT_TAG_REGEXP, $this->content, $script_tags);
+        $this->contents = fread($file, $file_size);
+        preg_match_all(self::SCRIPT_TAG_REGEXP, $this->contents, $script_tags);
         if ($script_tags) {
           for ($i = 0; $i < count($script_tags[0]); $i++) {
             if (is_array($script_tags[0][$i]) === true) {
@@ -49,8 +50,8 @@
     {
       try {
         $file = fopen($this->filepath, "w");
-        $file_lines = explode("\n", $this->content);
-        preg_match_all(self::SCRIPT_TAG_REGEXP, $this->content, $script_tags);
+        $file_lines = explode("\n", $this->contents);
+        preg_match_all(self::SCRIPT_TAG_REGEXP, $this->contents, $script_tags);
         $script_tags_exist = ($script_tags) ? true : false;
         foreach ($file_lines as $line) {
           if ((strpos($line, '.css">') !== false || strpos($line, '<link rel="stylesheet" href="styles.') !== false) && strpos($line, '</head>') !== false) {
@@ -78,7 +79,8 @@
     private function set_content()
     {
       try {
-        $this->content = file_get_contents($this->filepath);
+        $this->contents = file_get_contents($this->filepath);
+        $this->contents = preg_replace('/\n+$/m', '', $this->contents);
       } catch (Exception $e) {
         echo $e->getMessage();
         exit(1);
@@ -93,7 +95,7 @@
           define('IMPORTANT_COMMENT', '<!-- May the source be with you! -->');
         }
         $file = fopen($this->filepath, 'w');
-        $file_lines = explode("\n", $this->content);
+        $file_lines = explode("\n", $this->contents);
         $text_to_search = "<!DOCTYPE html>";
         $replacement_text = $text_to_search . "\n" . IMPORTANT_COMMENT . "\n";
         foreach ($file_lines as $line) {
