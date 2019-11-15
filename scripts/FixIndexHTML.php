@@ -182,7 +182,7 @@
           // add comment logic
           if (strpos($line, $text_to_search) !== false) {
             // check if doctype declaration is on its own line
-            if (strlen(preg_replace('/^[\s\t]+]/', '', preg_replace('/[\s\t]+$/', '', $line))) == 15) {
+            if (strlen(preg_replace('/^[\s\t]+]/', '', preg_replace('/[\s\t]+$/', '', $line))) == strlen($text_to_search)) {
               // if so, strip the line of any trailing and/or leading whitespace/tabs
               $line = preg_replace('/^[\s\t]+]/', '', preg_replace('/[\s\t]+$/', '', $line));
               # then insert the comment
