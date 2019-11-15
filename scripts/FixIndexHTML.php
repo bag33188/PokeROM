@@ -14,14 +14,17 @@
      * @var null|string The file path of `index.html`.
      */
     protected $filepath = NULL;
+
     /**
      * @var null|string The new script tags (modified).
      */
     protected $new_script_tags = NULL;
+
     /**
      * @var null|string The current contents of the `index.html` file.
      */
     protected $contents = NULL;
+
     // create constant regular expression for detecting the script tags.
     const SCRIPT_TAG_REGEXP = '/((?:\x{003C}script src=")(?:(?:runtime|polyfills(?:-es5)?|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js")(?:(?:\stype="module")?(?:\snomodule)?(?:\sdefer)?)(?:\x{003E}\x{003C}\/script\x{003E}))/';
 
