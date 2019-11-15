@@ -25,7 +25,7 @@ REM.||(
   REM Github
   START "" https://github.com/bag33188/PokeROM
   REM Webdisk
-  START "" https://pokerom.dev:2078
+  :: START "" https://pokerom.dev:2078
   REM Private Email
   START "" "https://privateemail.com/appsuite/#!!&app=io.ox/mail&folder=default0/INBOX"
   REM Real-Time Metrics
