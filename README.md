@@ -182,6 +182,14 @@ npm run pack
 
 This will put a tarball containing the application in the `bin` folder.
 
+###### Adding PokeROM as Environment Variable
+
+If you're tired of `cd`-ing into `~/Projects/PokeROM` all the time, then this step is for you.
+
+Here, we will implement an **environment variable** in our Terminal/Shell for PokeROM.
+
+First, 
+
 #### Step 4 - Running PokeROM
 
 Now that we've built our application, we can now start to run it.
