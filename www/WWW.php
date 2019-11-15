@@ -131,6 +131,7 @@
         "JavaScript Object Notation" => "JSON",
         "JavaScript" => "JavaScript",
         "Markdown" => "Markdown",
+        "Python" => "Python 3",
         "Hypertext Preprocessor" => "PHP",
         "Syntactically Awesome Stylesheets" => "SCSS/Sass",
         "Scalar Vector Graphics" => "SVG",
