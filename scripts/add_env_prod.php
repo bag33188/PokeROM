@@ -1,6 +1,6 @@
 <?php
   namespace scripts;
-
+  use Error;
   function add_env_prod() {
     $filepath = "../";
     $filename = ".env";

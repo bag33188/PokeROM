@@ -44,7 +44,7 @@
 
     public static function write_file($filepath) {
       echo "Adding licenses ... \n";
-      if (!defined('NAME')) {\
+      if (!defined('NAME')) {
         define('NAME', 'Broccolini');
       }
       $license_data = '' .
