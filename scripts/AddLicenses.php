@@ -1,8 +1,9 @@
 <?php
   namespace scripts;
 
-  // reference Exception namespace
+  // reference Exception and Error namespaces
   use Exception;
+  use Error;
 
   /**
    * Class AddLicenses
@@ -12,6 +13,15 @@
 
     // create name constant (class property)
     const NAME = 'Broccolini';
+
+    /**
+     * AddLicenses constructor.
+     */
+    public function __construct()
+    {
+      // throw error if new instance of this class is created.
+      throw new Error('Error: AddLicenses class is not meant to be instantiated.');
+    }
 
     /**
      * @param string $name Copyright owner's name.

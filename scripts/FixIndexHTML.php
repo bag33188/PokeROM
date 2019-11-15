@@ -1,8 +1,9 @@
 <?php
   namespace scripts;
 
-  // reference Exception namespace
+  // reference Exception and Error namespaces
   use Exception;
+  # use Error;
 
   /**
    * Class FixIndexHTML
