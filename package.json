@@ -39,7 +39,7 @@
     "load-db": "mongo --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:44380 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt \"database/pkmn-roms.js\"",
     "pack": "cd scripts && bash ./package_app.sh",
     "gen-pw": "cd scripts && node pw-hash-gen && cd ..",
-    "count-files-git": "cd scripts && ruby count_files_git.rb",
+    "count-files-git": "echo \"Number of files: \" && git ls-files | wc -l",
     "fix-permissions": "cd scripts && bash ./fix_permissions.sh",
     "open-pages": "cd scripts && open_pages.bat",
     "open-repos": "cd scripts && open_repos.bat",

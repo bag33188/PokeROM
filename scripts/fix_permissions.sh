@@ -19,12 +19,15 @@ $ chmod 755 ./fix_permissions.sh
 --MULTILINE-COMMENT--
 
 fix_permissions() {
-  case $OSTYPE in
-    darwin* )  python3 fix_permissions.py ;;
-    linux* )   python3 fix_permissions.py ;;
-    msys* )    python fix_permissions.py ;;
-    * )        echo "Unknown OS: ${OSTYPE}" ;;
-  esac
+    cd ../.git || return,
+    echo "Changing permissions of .git folder ... ",
+    sudo chown -R pokerom:pokerom *,
+    cd .. || return,
+    echo "Changing permissions of bin folder ... ",
+    sudo chmod -R a+rwx bin,
+    echo -e "Done!\n",
+    read -p "Would you also like to fix mongod permissions (y/*)? (may not be necessary)" fmp
+    [[ $fmp = "y" ]] && sudo chown mongod:mongod /tmp/mongodb-44380.sock && sudo chown -R mongod:mongod /var/lib/mongo && echo "Done!" || echo "Okay!"
 }
 
 fix_permissions

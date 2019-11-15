@@ -41,6 +41,7 @@
         fclose($file);
       } catch (Exception $e) {
         echo $e->getMessage();
+        exit(1);
       }
     }
 
@@ -70,6 +71,7 @@
         fclose($file);
       } catch (Exception $e) {
        echo $e->getMessage();
+       exit(1);
       }
     }
 
@@ -79,6 +81,7 @@
         $this->content = file_get_contents($this->filepath);
       } catch (Exception $e) {
         echo $e->getMessage();
+        exit(1);
       }
     }
 
@@ -111,11 +114,21 @@
         fclose($file);
       } catch (Exception $e) {
         echo $e->getMessage();
+        exit(1);
       }
     }
   }
 
-  $fix_index_html = new FixIndexHTML('../public/index.html');
-  $fix_index_html->read_script_tags();
-  $fix_index_html->move_script_tags();
-  $fix_index_html->insert_comment();
+  function init() {
+    $fix_index_html = new FixIndexHTML('../public/index.html');
+    echo "Moving around script tags in index.html ... \n";
+    $fix_index_html->read_script_tags();
+    $fix_index_html->move_script_tags();
+    echo "Done!\n\n";
+    echo "Inserting comment into index.html ... \n";
+    $fix_index_html->insert_comment();
+    echo "Done!\n\n";
+  }
+
+  init();
+

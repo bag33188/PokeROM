@@ -28,16 +28,12 @@ production() {
     mv ../client/dist/pokerom/*.* ./
     mv ../client/dist/pokerom/assets ./
     echo -e "\r\n"
-    if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux"* ]]; then
-      python3 ../scripts/fix_index_html.py
-    else
-      python ../scripts/fix_index_html.py
-    fi
+    php ../scripts/fix_index_html.php
     # shellcheck disable=SC2035
     rm *bak1
     # shellcheck disable=SC2035
     # rm *bak2
-    ruby ../scripts/add_licenses.rb
+    php ../scripts/AddLicenses.php
     cd ..
     rm -R client/dist
     valid=0
