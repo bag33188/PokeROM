@@ -48,15 +48,13 @@ You will need to install the following:
 * MongoDB
 * Node.JS and NPM
 * Angular CLI
-* Python 3
-* Ruby
 * PHP
 * PHP CHI
 
-The following command will install `git`, `ruby`, `python 3.7`, `PHP`, and `PHP CGI`.
+The following command will install `git`, `PHP`, and `PHP CGI`.
 
 ```shell script
-sudo apt-get install git-all ruby-full python3.7 php php-cgi -y
+sudo apt-get install git-all php php-cgi -y
 ```
 
 Installing `Node.JS` and `MongoDB` require a little more work.
