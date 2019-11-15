@@ -61,7 +61,7 @@
         // output array var with all matching script tags (according to regexp)
         preg_match_all(self::SCRIPT_TAG_REGEXP, $this->contents, $script_tags);
         // if script tags exist
-        if ($script_tags) {
+        if ($script_tags != null && sizeof($script_tags) > 0) {
           // loop thru script tags (0th index)
           for ($i = 0; $i < count($script_tags[0]); $i++) {
             // if type=module is absent from script tag
