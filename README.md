@@ -53,7 +53,7 @@ You will need to install the following:
 
 The following command will install `git`, `PHP`, and `PHP CGI`.
 
-```shell script
+```bash
 sudo apt-get install git-all php php-cgi -y
 ```
 
@@ -61,7 +61,7 @@ Installing `Node.JS` and `MongoDB` require a little more work.
 
 Run the following commands to install `MongoDB`
 
-```shell script
+```bash
 # import public key used by package management system
 wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
 # create list file for mongodb
@@ -74,7 +74,7 @@ sudo apt-get install -y mongodb-org
 
 Now for `Node.JS` (and `NPM`), run the following commands
 
-```shell script
+```bash
 # install curl
 sudo apt-get install curl
 # download nodejs repo
@@ -84,7 +84,7 @@ sudo apt-get install -y nodejs
 ```
 
 Now that we've installed `Node.JS` and `NPM`, we can install the `Angular CLI` by running the following command:
-```shell script
+```bash
 npm install @angular/cli
 ```
 
@@ -92,7 +92,7 @@ npm install @angular/cli
 
 Finally, we will need to increase the maximum limit of file watchers. To do this, run the following command:
 
-```shell script
+```bash
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 ```
 
@@ -102,7 +102,7 @@ For this step, we will be cloning the `PokeROM` git repository.
 
 Simply run the following command:
 
-```shell script
+```bash
 cd ~ && mkdir Projects && cd Projects && git clone https://9a2ed485d2f05445b47ea175754aab8922684635@github.com/bag33188/PokeROM.git
 ```
 
@@ -111,13 +111,13 @@ repository inside of that folder.
 
 Now change to the directory created:
 
-```shell script
+```bash
 cd PokeROM
 ```
 
 Then run the following command once inside the `PokeROM` folder:
 
-```shell script
+```bash
 npm run add-dev-env
 ```
 
@@ -127,7 +127,7 @@ Now that we have the repository on our local machine, we need to do some buildin
 
 First, run this command: 
 
-```shell script
+```bash
 npm install && cd client && npm install && cd ..
 ```
 
@@ -135,7 +135,7 @@ That will install all the node dependencies for the backend and the frontend.
 
 Now we just need to make a directory for `MongoDB`. To do that, run this command:
 
-```shell script
+```bash
 sudo mkdir -p /data/db && sudo chown -R `id -un` /data/db
 ```
 
@@ -143,7 +143,7 @@ This will create the directory where `MongoDB` stores all its data in.
 
 Now we just need to compile Angular's components into `Ivy` components. To do this, simple run the following command:
 
-```shell script
+```bash
 cd client && npm run ivy && cd ..
 ```
 
@@ -151,13 +151,13 @@ Finally, we need to import the database for out app.
 
 To do this, we must first run our database with this command: 
 
-```shell script
+```bash
 mongod
 ```
 
 Then, in a separate terminal window, run this command:
 
-```shell script
+```bash
 cd ~/Projects/PokeROM && npm run import-db
 ```
 
@@ -174,7 +174,7 @@ Congratulations! You have now built the PokeROM app successfully.
 
 If you would like to package this app for portable-local deployment, run the following npm script:
 
-```shell script
+```bash
 npm run pack
 ```
 
@@ -188,13 +188,13 @@ Here, we will implement an **environment variable** in our Terminal/Shell for Po
 
 First, run the following command:
 
-```shell script
+```bash
 [ -e ~/.bashrc ] && echo 1 || echo 0
 ```
 
 If the output you get is `0`, then run this command:
 
-```shell script
+```bash
 echo "export pokerom=~/Projects/PokeROM" >> ~/.bashrc
 ```
 
@@ -206,7 +206,7 @@ If the output you get was `1`, then do the following:
 
 Now just restart the terminal and you should be able to do the following:
 
-```shell script
+```bash
 cd $pokerom
 ```
 
@@ -223,7 +223,7 @@ First, open 3 new Terminal windows/tabs.
 
 In the first terminal window, run this command:
 
-```shell script
+```bash
 cd ~/Projects/PokeROM && npm run db
 ```
 
@@ -233,7 +233,7 @@ This will get the database up and running.
 
 In the second terminal window, run this command:
 
-```shell script
+```bash
 cd ~/Projects/PokeROM && npm run api
 ```
 
@@ -241,7 +241,7 @@ cd ~/Projects/PokeROM && npm run api
 
 In the third terminal window, run this command:
 
-```shell script
+```bash
 cd ~/Projects/PokeROM && npm run client
 ```
 
@@ -258,13 +258,13 @@ If you get any **permission errors** with `npm`, simply add `sudo` before `npm` 
 
 If you get an error that says `port 8080 is already in use` when trying to run the _API_, then run the following command:
 
-```shell script
+```bash
 sudo pkill node
 ``` 
 
 If you get an error that says `mongod service already running` when trying to run the _DB_, then run this command:
 
-```shell script
+```bash
 sudo pkill mongod
 ```
 
