@@ -118,8 +118,8 @@
             fwrite($file, str_replace('.css">', '.css" />' . "\n", str_replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"', $line)) . "\n");
             // check if script tags are in current line
           } elseif ($script_tags_exist === true) {
-            for ($i = 0; $i < count($script_tags[0]); $i++) {
-              $line = str_replace($script_tags[0][$i], '', $line);
+            foreach ($script_tags[0] as $script_tag) {
+              $line = str_replace($script_tag, '', $line);
             }
             fwrite($file, $line . "\n");
           } else {
