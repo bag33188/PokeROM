@@ -48,28 +48,40 @@
      */
     public function read_script_tags()
     {
+      // encapsulate main logic in try-catch (in case of errors)
       try {
+        // create file variables
+        // open file for reading
         $file = fopen($this->filepath, "r");
         $file_size = filesize($this->filepath);
+        // set contents prop to text in file
         $this->contents = fread($file, $file_size);
+        // output array var with all matching script tags (according to regexp)
         preg_match_all(self::SCRIPT_TAG_REGEXP, $this->contents, $script_tags);
+        // if script tags exist
         if ($script_tags) {
+          // loop thru script tags (0th index)
           for ($i = 0; $i < count($script_tags[0]); $i++) {
-            if (is_array($script_tags[0][$i]) === true) {
-              $script_tags[0][$i] = implode("\n", $script_tags[0][$i]);
-            }
+            // if type=module is absent from script tag
             if (strpos($script_tags[0][$i], 'type="module"') === false) {
+              // add type=text/javascript
               $script_tags[0][$i] = str_replace('src="', 'type="text/javascript" src="', $script_tags[0][$i]);
             }
+            // if defer attribute is not present on script tag
             if (strpos($script_tags[0][$i], 'defer') === false) {
+              // add the defer attribute
               $script_tags[0][$i] = str_replace('></script>', ' defer></script>', $script_tags[0][$i]);
             }
           }
+          // move type=module to beginning of script tag and join script tags array (0th index) into string (glued by newline character)
           $this->new_script_tags = str_replace('type="module" ', '', str_replace('<script src="', '<script type="module" src="', implode("\n", $script_tags[0])));
         }
+        // close the file
         fclose($file);
       } catch (Exception $e) {
+        // handle any exceptions
         echo $e->getMessage();
+        // stop script
         exit(1);
       }
     }
@@ -80,10 +92,15 @@
     public function move_script_tags()
     {
       try {
+        // open file for writing
         $file = fopen($this->filepath, "w");
+        // create file lines var by splitting contents by newline char
         $file_lines = explode("\n", $this->contents);
+        // output array var with all matching script tags (according to regexp)
         preg_match_all(self::SCRIPT_TAG_REGEXP, $this->contents, $script_tags);
+        // create boolean var for checking if script tags exist or not
         $script_tags_exist = ($script_tags) ? true : false;
+        // loop thru each line in file
         foreach ($file_lines as $line) {
           if ((strpos($line, '.css">') !== false || strpos($line, '<link rel="stylesheet" href="styles.') !== false) && strpos($line, '</head>') !== false) {
             fwrite($file, str_replace('.css"></head>', '.css" />' . "\n\n<!--[if !IE]><!-->\n" . $this->new_script_tags . "\n<!--<![endif]-->\n</head>", str_replace('rel="stylesheet"', 'rel="stylesheet" type="text/css"', $line)) . "\n");
