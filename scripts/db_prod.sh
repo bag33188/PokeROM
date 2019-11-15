@@ -20,7 +20,7 @@ $ chmod 755 ./db_prod.sh
 
 db_prod() {
   cd .. || return
-  command="mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:44380" # --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt
+  command="mongo pkmn-roms --username admin --password 123456 --authenticationDatabase admin --host server1.pokerom.dev:44380 --tls --tlsCertificateKeyFile database/mongodb.pem --tlsCAFile database/mongodb.crt"
   case $OSTYPE in
     darwin* )  eval "${command}" ;;
     linux* )   eval "${command}" ;;
