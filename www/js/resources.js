@@ -36,11 +36,16 @@ class Resources {
       'XAMPP'
     ];
     resources.sort();
+    while (list.firstChild) {
+      list.removeChild(list.firstChild);
+    }
     resources.forEach(resource => {
       const liEl = document.createElement('li');
       const liTxt = document.createTextNode(resource);
+      const liAttr = document.createAttribute('class');
+      liAttr.value = 'list-group-item';
+      liEl.setAttributeNode(liAttr);
       liEl.appendChild(liTxt);
-      liEl.setAttribute('class', 'list-group-item');
       list.appendChild(liEl);
     });
   }
