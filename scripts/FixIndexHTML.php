@@ -102,7 +102,7 @@
         // output array var with all matching script tags (according to regexp)
         preg_match_all(self::SCRIPT_TAG_REGEXP, $this->contents, $script_tags);
         // create boolean var for checking if script tags exist or not
-        $script_tags_exist = ($script_tags) ? true : false;
+        $script_tags_exist = ($script_tags != null && sizeof($script_tags) > 0) ? true : false;
         // loop thru each line in file
         foreach ($file_lines as $line) {
           // add in the script tags depending on where the main stylesheet is linked,
