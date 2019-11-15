@@ -72,4 +72,11 @@
     }
   }
 
-  AddLicenses::write_file('../public/LICENSE');
+  function main() {
+    if (!defined('FILEPATH')) {
+      define('FILEPATH', '../public/LICENSE');
+    }
+    AddLicenses::write_file(FILEPATH);
+  }
+
+  main();
