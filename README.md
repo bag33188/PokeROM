@@ -188,7 +188,29 @@ If you're tired of `cd`-ing into `~/Projects/PokeROM` all the time, then this st
 
 Here, we will implement an **environment variable** in our Terminal/Shell for PokeROM.
 
-First, 
+First, run the following command:
+
+```shell script
+[ -e ~/.bashrc ] && echo 1 || echo 0
+```
+
+If the output you get is `0`, then run this command:
+
+```shell script
+echo "export pokerom=~/Projects/PokeROM" >> ~/.bashrc
+```
+
+If the output you get was `1`, then do the following:
+
+1. Open the `~/.bashrc` file in any text editor of your choice
+2. Add this line to the bottom of the file: `export pokerom=~/Projects/PokeROM`
+3. Save the file (<kbd>Ctrl</kbd> + <kbd>S</kbd>)
+
+Now just restart the terminal and you should be able to do the following:
+
+```shell script
+cd $pokerom
+```
 
 #### Step 4 - Running PokeROM
 
