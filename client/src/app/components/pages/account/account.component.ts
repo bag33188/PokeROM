@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStringChars from '../../../helpers/remove-string-chars';
+import { JSONObject } from '../../../models/JSON';
 
 @Component({
   selector: 'app-account',
@@ -59,7 +60,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
         this.user = res;
         this.ready = true;
       },
-      (err: any): never => {
+      (err: JSONObject): never => {
         this.errLoadingUsr = true;
         this.ready = true;
         throw err;
@@ -88,7 +89,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
             AuthService.logout();
             this.router.navigate(['/', 'home']);
           },
-          (err: any): never => {
+          (err: JSONObject): never => {
             this.ready = true;
             this.updateFail = true;
             // check for existing username
@@ -135,7 +136,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
             AuthService.logout();
             this.router.navigate(['/', 'home']);
           },
-          (err: any): never => {
+          (err: JSONObject): never => {
             this.ready = true;
             this.firedOff = false;
             this.updateFail = true;

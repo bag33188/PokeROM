@@ -4,6 +4,7 @@ import { Rating } from '../../../models/Rating';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStringChars from '../../../helpers/remove-string-chars';
 import { LoggerService as logger } from '../../../services/logger.service';
+import { JSONObject } from '../../../models/JSON';
 
 @Component({
   selector: 'app-ratings',
@@ -74,7 +75,7 @@ export class RatingsComponent implements OnInit {
           this.formSubmitted = true;
           this.isError = false;
         },
-        (err: any): void => {
+        (err: JSONObject): void => {
           this.loading = false;
           this.isError = true;
           this.firedOff = false;

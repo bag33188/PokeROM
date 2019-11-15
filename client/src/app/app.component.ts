@@ -3,6 +3,7 @@ import { LoggerService as logger } from './services/logger.service';
 import { ApiService } from './services/api.service';
 import { ApiVersion } from './models/ApiVersion';
 import { environment } from '../environments/environment';
+import { JSONObject } from './models/JSON';
 
 @Component({
   selector: 'app-root',
@@ -79,7 +80,7 @@ export class AppComponent {
         (res: ApiVersion): void => {
           logger.log(`API Version: ${res.api_version}`);
         },
-        (err: any): never => {
+        (err: JSONObject): never => {
           throw err;
         }
       );

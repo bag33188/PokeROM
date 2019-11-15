@@ -3,6 +3,7 @@ import { User } from '../models/User';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { JSONObject } from '../models/JSON';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,7 @@ export class UserService {
     return this.http.delete<any>(url);
   }
 
-  public patchUser(id: string, user: any): Observable<User> {
+  public patchUser(id: string, user: JSONObject): Observable<User> {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });

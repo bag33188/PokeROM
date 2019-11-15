@@ -11,6 +11,7 @@ import { LoggedUser } from '../../../models/LoggedUser';
 import { RegisteredUser } from '../../../models/RegisteredUser';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStringChars from '../../../helpers/remove-string-chars';
+import { JSONObject } from '../../../models/JSON';
 
 @Component({
   selector: 'app-login',
@@ -79,7 +80,7 @@ export class LoginComponent implements OnInit {
           this.loginFail = 'Incorrect Login';
         }
       },
-      (err: any): never => {
+      (err: JSONObject): never => {
         this.loading = false;
         this.firedOff = false;
         const key: string = 'status';

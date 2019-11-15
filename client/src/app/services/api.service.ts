@@ -32,7 +32,7 @@ export class ApiService {
           return cache.add(`${environment.apiUrl}/version`);
         }
       )
-      .catch((err: any): never => {
+      .catch((err: object): never => {
         throw err;
       });
   }

@@ -4,6 +4,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { LoggerService as logger } from '../../../../services/logger.service';
 import { UserService } from '../../../../services/user.service';
 import { Router } from '@angular/router';
+import { JSONObject } from '../../../../models/JSON';
 
 @Component({
   selector: 'app-account-modal',
@@ -46,7 +47,7 @@ export class ModalComponent implements OnInit {
           this.router.navigate(['/', 'home']);
           AuthService.logout();
         },
-        (err: any): void => {
+        (err: JSONObject): void => {
           this.btnDisabled = false;
           this.loading.emit(false);
           this.firedOff.emit(false);

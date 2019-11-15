@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Rom } from '../models/Rom';
 import { environment } from '../../environments/environment';
+import { JSONObject } from '../models/JSON';
 
 /*
  * headers.append(name: string, value: string | string[])
@@ -109,7 +110,7 @@ export class RomsService {
    * @param partialRom The ROM partial update data.
    * @returns An observable (rom).
    */
-  public patchRom(id: string, partialRom: any): Observable<Rom> {
+  public patchRom(id: string, partialRom: JSONObject): Observable<Rom> {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });

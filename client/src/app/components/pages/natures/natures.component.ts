@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Nature } from '../../../models/Nature';
 import { NaturesService } from '../../../services/natures.service';
+import { JSONObject } from '../../../models/JSON';
 
 @Component({
   selector: 'app-natures',
@@ -67,7 +68,7 @@ export class NaturesComponent implements OnInit, AfterContentInit {
         this.loading = false;
         this.isError = false;
       },
-      (err: any): never => {
+      (err: JSONObject): never => {
         this.loading = false;
         this.isError = true;
         throw err;

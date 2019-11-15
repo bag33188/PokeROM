@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Nature } from '../models/Nature';
 import { environment } from '../../environments/environment';
+import { JSONObject } from '../models/JSON';
 
 const headers: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json'
@@ -68,7 +69,7 @@ export class NaturesService {
    * @param id The id of the nature to partially update.
    * @param nature The nature data to partially update with.
    */
-  patchNature(id: string, nature: any): Observable<any> {
+  patchNature(id: string, nature: JSONObject): Observable<any> {
     const url: string = `${this.naturesUrl}/${id}`;
     return this.http.patch<any>(url, nature, {
       headers

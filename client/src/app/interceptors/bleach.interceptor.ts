@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 import he from 'he';
 import sanitizeXSS from '../helpers/sanitize-xss';
 import removeStringChars from '../helpers/remove-string-chars';
+import { JSONArray, JSONObject } from '../models/JSON';
 
 @Injectable()
 export class BleachInterceptor implements HttpInterceptor {
@@ -27,10 +28,10 @@ export class BleachInterceptor implements HttpInterceptor {
         (event: HttpEvent<any>): HttpEvent<any> => {
           if (event instanceof HttpResponse) {
             const sanitizeBody: () => void = (): void => {
-              const body: any = event.body;
+              const body: JSONArray | JSONObject = event.body;
               if (Array.isArray(body)) {
-                return body.forEach((obj: any): void => {
-                  obj = Object.keys(obj).forEach((key: string): void => {
+                return body.forEach((obj: JSONObject): void => {
+                  Object.keys(obj).forEach((key: string): void => {
                     if (typeof obj[key] === 'string') {
                       obj[key] = he
                         .decode(obj[key])
@@ -57,7 +58,7 @@ export class BleachInterceptor implements HttpInterceptor {
             return event;
           }
         },
-        (err: any): never => {
+        (err: object): never => {
           throw err;
         }
       )

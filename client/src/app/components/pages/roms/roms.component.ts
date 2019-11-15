@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { RomsService } from '../../../services/roms.service';
 import { Rom } from '../../../models/Rom';
 import he from 'he';
+import { JSONObject } from '../../../models/JSON';
 
 @Component({
   selector: 'app-roms',
@@ -47,7 +48,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
           this.noRomsMsg = 'No ROMs to Show';
         }
       },
-      (err: any): never => {
+      (err: JSONObject): never => {
         this.isError = true;
         this.loading = false;
         this.noRomsMsg = '';

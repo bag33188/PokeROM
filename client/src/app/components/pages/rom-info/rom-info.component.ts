@@ -9,6 +9,7 @@ import he from 'he';
 import { RomsService } from '../../../services/roms.service';
 import { AuthService } from '../../../services/auth.service';
 import { Rom } from '../../../models/Rom';
+import { JSONObject } from '../../../models/JSON';
 
 @Component({
   selector: 'app-rom-info',
@@ -57,7 +58,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
         this.loading = false;
         this.isError = false;
       },
-      (err: any): never => {
+      (err: JSONObject): never => {
         this.loading = false;
         this.isError = true;
         const statusKey: string = 'status';

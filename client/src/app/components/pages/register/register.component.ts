@@ -11,6 +11,7 @@ import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStringChars from '../../../helpers/remove-string-chars';
+import { JSONObject } from '../../../models/JSON';
 
 @Component({
   selector: 'app-register',
@@ -90,7 +91,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
             this.registerFail = 'Incorrect Registration';
           }
         },
-        (err: any): never => {
+        (err: JSONObject): never => {
           this.firedOff = false;
           this.loading = false;
           const keys: string[] = ['error', 'message', 'errors', 'msg'];
@@ -104,7 +105,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
             }
           }
           if (err[keys[0]][keys[2]]) {
-            err[keys[0]][keys[2]].forEach((error: any): void => {
+            err[keys[0]][keys[2]].forEach((error: JSONObject): void => {
               if (
                 error[keys[3]] ===
                 'Username can only contain letters, numbers, or underscores.'
