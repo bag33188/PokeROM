@@ -121,7 +121,7 @@ cd PokeROM
 Then run the following command once inside the `PokeROM` folder:
 
 ```shell script
-echo "NODE_ENV=production\nPORT=44300\n" >> .env
+npm run add-dev-env
 ```
 
 #### Step 3 - Building PokeROM
