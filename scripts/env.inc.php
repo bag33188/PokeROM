@@ -48,7 +48,7 @@
       // loop thru each env var in env array
       foreach ($env_arr as $env_var) {
         // write each env var to file
-        fwrite($file, "$env_var\n");
+        fwrite($file, $env_var . "\n");
       }
 
       // close file
