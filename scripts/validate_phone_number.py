@@ -6,7 +6,6 @@ Required: Python 3.6 +
 This program validates any given United States phone number.
 """
 
-
 # print(__doc__)
 
 import re
