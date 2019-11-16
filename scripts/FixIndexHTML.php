@@ -64,26 +64,28 @@
         $this->contents = fread($file, $file_size);
         // output array var with all matching script tags (according to regexp)
         preg_match_all(self::SCRIPT_TAG_REGEXP, $this->contents, $script_tags);
+        // override script tags var to first index of original regexp-match array
+        $script_tags = $script_tags[0];
         // if script tags exist
         if ($script_tags != null && sizeof($script_tags) > 0) {
           // loop thru script tags (0th index)
-          for ($i = 0; $i < count($script_tags[0]); $i++) {
+          for ($i = 0; $i < count($script_tags); $i++) {
             // if type=module is absent from script tag
-            if (strpos($script_tags[0][$i], 'type="module"') === false) {
+            if (strpos($script_tags[$i], 'type="module"') === false) {
               // add type=text/javascript
-              $script_tags[0][$i] = str_replace('src="', 'type="text/javascript" src="', $script_tags[0][$i]);
+              $script_tags[$i] = str_replace('src="', 'type="text/javascript" src="', $script_tags[$i]);
             }
             // if defer attribute is not present on script tag
-            if (strpos($script_tags[0][$i], 'defer') === false) {
+            if (strpos($script_tags[$i], 'defer') === false) {
               // add the defer attribute
-              $script_tags[0][$i] = str_replace('></script>', ' defer></script>', $script_tags[0][$i]);
+              $script_tags[$i] = str_replace('></script>', ' defer></script>', $script_tags[$i]);
             }
           }
 
-          // move type=module to beginning of script tag and join script tags array (0th index) into string (glued by newline character)
-          $glued_script_tags = implode("\n", $script_tags[0]);
-          $updated_script_tags_attrs = str_replace('<script src="', '<script type="module" src="', $glued_script_tags);
-          $this->new_script_tags = str_replace('type="module" ', '', $updated_script_tags_attrs);
+          // move type=module to beginning of script tag and join script tags array into string (glued by newline character)
+          $glued_script_tags = implode("\n", $script_tags);
+          // set new script tags var (if no type=module or type=text/javascript is detected, then add it)
+          $this->new_script_tags = str_replace('<script src="', '<script type="module" src="', $glued_script_tags); # str_replace('type="module" ', '', $updated_script_tags_attrs);
         }
         // close the file
         fclose($file);
