@@ -319,6 +319,32 @@ put this in /etc/php/7.2/cgi/php.ini below all the [PHP] settings:
 zend_extension=/usr/lib/php/20170718/xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_port=9000
+
+Languages & Frameworks > PHP > Debug
+
+Pre-configuration:
+3. Start Listeneing (click on the link)
+
+External connections
+check `Ignore external connections through unregistered server configurations
+uncheck `break at first line in php scripts
+
+Xdebug:
+debug port: 9000
+uncheck the rest in this section
+
+Edit Configurations > PHP Web Page > php-debug
+Server > ...
+name: localhost
+host: localhost
+port: 8080
+debugger: Xdebug
+uncheck `use path mappings`
+check `shared` (if necessary)
+
+debug pre-configuration
+click `validate` and validate to make sure everything works correctly
+
 -->
 
 > _**Enjoy!**_
