@@ -84,8 +84,9 @@
 
           // move type=module to beginning of script tag and join script tags array into string (glued by newline character)
           $glued_script_tags = implode("\n", $script_tags);
-          // set new script tags var (if no type=module or type=text/javascript is detected, then add it)
-          $this->new_script_tags = str_replace('<script src="', '<script type="module" src="', $glued_script_tags); # str_replace('type="module" ', '', $updated_script_tags_attrs);
+          // if no type=module or type=text/javascript is detected, then add it
+          $glued_script_tags = str_replace('<script src="', '<script type="module" src="', $glued_script_tags);
+          $this->new_script_tags = $glued_script_tags; # str_replace('type="module" ', '', $glued_script_tags);
         }
         // close the file
         fclose($file);
