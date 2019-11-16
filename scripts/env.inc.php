@@ -12,8 +12,8 @@
   function env($env_arr) {
     try {
       // define filename const if not already defined
-      if (!defined('FILENAME')) {
-        define('FILENAME', '../.env');
+      if (!defined("FILENAME")) {
+        define("FILENAME", "../.env");
       }
 
       // check for errors
@@ -29,7 +29,7 @@
         die(1);
       } else {
         foreach ($env_arr as $item) {
-          if (gettype($item) != 'string') {
+          if (gettype($item) != "string") {
             echo "Error: argument must be of type string array.";
             // stop script
             die(1);
