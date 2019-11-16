@@ -295,6 +295,11 @@ Listen 8080
     ProxyPass / http://localhost:8080/
     ProxyPassReverse / http://localhost:8080/
 </VirtualHost>
+
+debugging with php:
+https://www.jetbrains.com/help/phpstorm/debugging-with-phpstorm-ultimate-guide.html
+https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html
+edit xdebug in php-cgi php.ini file (and also php-cli php.ini file)
 -->
 
 > _**Enjoy!**_
