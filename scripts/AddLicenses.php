@@ -131,7 +131,7 @@
         echo "Done!\n\n";
       } catch (Exception $e) {
         // catch any exceptions
-        echo "Error:\nCode: " . $e->getCode() . "\nMessage: " . $e->getMessage();
+        echo "Error:\nCode: " . strval($e->getCode()) . "\nMessage: " . $e->getMessage();
         // stop script
         die(1);
       }
