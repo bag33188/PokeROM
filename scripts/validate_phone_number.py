@@ -29,7 +29,7 @@ def main():
       continue
     else:
       outcome = ' not ' if not validate_phone_number(phone_number) else ' '
-      print(f'"{phone_number}" is{outcome}a valid phone number.')
+      print(f'"{phone_number}" is{outcome}a valid US phone number.')
       break
 
 main()
