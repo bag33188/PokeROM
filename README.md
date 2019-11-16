@@ -315,6 +315,7 @@ put this in /etc/php/7.2/cgi/php.ini below all the [PHP] settings:
 
 ; /etc/php/7.2/cgi/php.ini
 [xdebug]
+; PUT NEXT LINE AS IT IS SHOWN FROM THE TERMINAL WHEN INSTALLING XDEBUG
 zend_extension=/usr/lib/php/20170718/xdebug.so
 xdebug.remote_enable=1
 xdebug.remote_port=9000
