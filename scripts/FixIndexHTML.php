@@ -86,6 +86,7 @@
           $glued_script_tags = implode("\n", $script_tags);
           // if no type=module or type=text/javascript is detected, then add it
           $glued_script_tags = str_replace('<script src="', '<script type="module" src="', $glued_script_tags);
+          // set new script tags prop to glued script tags var
           $this->new_script_tags = $glued_script_tags; # str_replace('type="module" ', '', $glued_script_tags);
         }
         // close the file
