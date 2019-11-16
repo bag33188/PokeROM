@@ -1,8 +1,13 @@
 #!/usr/bin/python3
 
 """
-This program requires `Python 3.6` or higher to be installed.
+Requirements
+------------
+* Python 3.6 or higher
+* Git Bash (if on Windows)
 
+Description
+-----------
 This program validates any given United States phone number.
 """
 
@@ -12,6 +17,8 @@ import re
 
 def validate_phone_number(phone_number):
   """
+  Description
+  -----------
   Validates a US phone number based on a complex regular expression.
   """
   # print(validate_phone_number.__doc__)
@@ -21,6 +28,8 @@ def validate_phone_number(phone_number):
 
 def main():
   """
+  Description
+  -----------
   Asks the user for a phone number, then tells them whether it is valid or not.
   """
   # print(main.__doc__)
