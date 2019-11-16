@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 """
+This program requires `Python 3.6` or higher to be installed.
+
 This program validates any given United States phone number.
 """
 
