@@ -238,7 +238,10 @@
         define("RIGHT_TRIM", "/[\s\t]+$/");
       }
       // replace left and right leading/trailing whitespace and tabs on string with nothing.
-      $stripped_string = preg_replace(LEFT_TRIM, "", preg_replace(RIGHT_TRIM, "", $string));
+      $strip_right = preg_replace(RIGHT_TRIM, "", $string);
+      $strip_left = preg_replace(LEFT_TRIM, "", $strip_right);
+      // convert to string just in case of hacking
+      $stripped_string = strval($strip_left);
       // return stripped value
       return $stripped_string;
     }
