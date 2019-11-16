@@ -299,7 +299,25 @@ Listen 8080
 debugging with php:
 https://www.jetbrains.com/help/phpstorm/debugging-with-phpstorm-ultimate-guide.html
 https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html
-edit xdebug in php-cgi php.ini file (and also php-cli php.ini file)
+edit xdebug in php-cgi php.ini file (and also php-cli php.ini file) [use sudo vim <php.ini_file>]
+
+
+install xdebug and all its dependencies: 
+
+# /etc/php/7.2/cli/php.ini
+sudo apt-get install php-pear
+sudo pecl channel-update pecl.php.net
+sudo apt-get install php-dev
+sudo pecl install xdebug
+
+
+put this in /etc/php/7.2/cgi/php.ini below all the [PHP] settings:
+
+; /etc/php/7.2/cgi/php.ini
+[xdebug]
+zend_extension=/usr/lib/php/20170718/xdebug.so
+xdebug.remote_enable=1
+xdebug.remote_port=9000
 -->
 
 > _**Enjoy!**_
