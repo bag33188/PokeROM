@@ -232,7 +232,7 @@
     private static function strip($string) {
       // define regexp constants if not already defined
       if (!defined("LEFT_TRIM")) {
-        define("LEFT_TRIM", "/^[\s\t]+]/");
+        define("LEFT_TRIM", "/^[\s\t]+/");
       }
       if (!defined("RIGHT_TRIM")) {
         define("RIGHT_TRIM", "/[\s\t]+$/");
