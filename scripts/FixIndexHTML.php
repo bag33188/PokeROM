@@ -93,7 +93,7 @@
         fclose($file);
       } catch (Exception $e) {
         // handle any exceptions
-        echo $e->getMessage();
+        echo "Error:\nCode: " . $e->getCode() . "\nMessage: " . $e->getMessage();
         // stop script
         exit(1);
       }
@@ -146,7 +146,7 @@
         fclose($file);
       } catch (Exception $e) {
         // handle any exceptions
-       echo $e->getMessage();
+       echo "Error:\nCode: " . $e->getCode() . "\nMessage: " . $e->getMessage();
        // kill the script
        exit(1);
       }
@@ -200,7 +200,7 @@
         fclose($file);
       } catch (Exception $e) {
         // handle any exceptions
-        echo $e->getMessage();
+        echo "Error:\nCode: " . $e->getCode() . "\nMessage: " . $e->getMessage();
         // kill the script
         exit(1);
       }
@@ -219,7 +219,7 @@
         $this->contents = preg_replace("/\n+$/m", "", $this->contents);
       } catch (Exception $e) {
         // handle any exceptions
-        echo $e->getMessage();
+        echo "Error:\nCode: " . $e->getCode() . "\nMessage: " . $e->getMessage();
         // stop the script
         exit(1);
       }

@@ -55,7 +55,7 @@
       fclose($file);
     } catch (Exception $e) {
       // catch any exceptions
-      echo $e->getMessage();
+      echo "Error:\nCode: " . $e->getCode() . "\nMessage: " . $e->getMessage();
       // kill script
       die(1);
     }
