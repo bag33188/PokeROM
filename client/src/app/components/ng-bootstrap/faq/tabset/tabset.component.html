@@ -28,8 +28,9 @@
             <span class="font-weight-bold"
               >from {{ browser.minYear.join(' ') }} to now</span
             >&nbsp;(minimum version requirement:
-            <span class="underline"
-              >{{ browser.browser }} {{ browser.minVersion }}</span
+            <span class="underline">{{
+              browser.browser + ' ' + browser.minVersion
+            }}</span
             >).
           </span>
         </p>
