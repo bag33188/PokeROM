@@ -24,8 +24,16 @@ export class ApiService {
     return this.http.get<ApiVersion>(this.apiVersionUrl, { headers });
   }
 
-  public async storeApiVersionInCache(): Promise<void> {
-    const cache: Cache = await caches.open('api_version');
-    await cache.add(`${environment.apiUrl}/version`);
+  public storeApiVersionInCache(): void {
+    caches
+      .open('api_version')
+      .then(
+        (cache: Cache): Promise<void> => {
+          return cache.add(`${environment.apiUrl}/version`);
+        }
+      )
+      .catch((err: object): never => {
+        throw err;
+      });
   }
 }
