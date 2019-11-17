@@ -1,11 +1,6 @@
 'use strict';
 
-const privateMethods = {
-  async getApiVersion() {
-    const apiVersion = await fetch('/api/version', { method: 'GET' });
-    return apiVersion.json();
-  }
-};
+const getApiVersion = Symbol('getApiVersion');
 
 class Resources {
   constructor() {
@@ -77,8 +72,7 @@ class Resources {
         text: 'Robots'
       }
     ];
-    privateMethods
-      .getApiVersion()
+    this[getApiVersion]()
       .then(res => {
         if (!productionMode) {
           const devNavItems = [
@@ -116,6 +110,10 @@ class Resources {
         });
       })
       .catch(err => console.error(err));
+  }
+  static async [getApiVersion]() {
+    const apiVersion = await fetch('/api/version', { method: 'GET' });
+    return apiVersion.json();
   }
 }
 
