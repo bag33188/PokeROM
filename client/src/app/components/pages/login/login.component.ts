@@ -86,6 +86,8 @@ export class LoginComponent implements OnInit {
         const key: string = 'status';
         if (err[key] === 404) {
           this.loginFail = 'User does not exist';
+        } else if (err[key] === 403) {
+          this.loginFail = 'Wrong password';
         } else {
           this.loginFail =
             'Oops, there was a problem while trying to log you in. Please try again later.';
