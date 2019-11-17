@@ -1,6 +1,8 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
 
+const readFile = Symbol('readFile');
+
 /**
  * @class
  * @name PrintKeys
@@ -14,7 +16,7 @@ class PrintKeys {
    * @description Read keys file.
    * @returns {string} Keys text.
    */
-  static readFile() {
+  static [readFile]() {
     let file = null;
     try {
       file = fs.readFileSync('../.keys.yml', 'utf8');
@@ -34,7 +36,7 @@ class PrintKeys {
    * @returns {string} Personal access token.
    */
   static personalAccessTokens(showHeader = true) {
-    const doc = PrintKeys.readFile();
+    const doc = PrintKeys[readFile]();
     const parts = ['Keys', 'Personal Access Tokens'];
     let personalAccessTokensStr = '';
     const { personalAccessTokens } = doc.keys;
@@ -60,7 +62,7 @@ class PrintKeys {
    * @returns {string} Deploy keys.
    */
   static deployKeys(showHeader = true) {
-    const doc = PrintKeys.readFile();
+    const doc = PrintKeys[readFile]();
     const parts = ['Keys', 'Deploy Keys'];
     let deployKeysStr = '';
     const { deployKeys } = doc.keys;

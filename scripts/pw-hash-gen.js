@@ -1,6 +1,9 @@
 const readline = require('readline');
 const bcrypt = require('bcryptjs');
 
+const createReadlineInterface = Symbol('createReadlineInterface');
+const genHash = Symbol('genHash');
+
 /**
  * @class
  * @name PwHashGen
@@ -11,7 +14,7 @@ class PwHashGen {
    */
   constructor() {
     // initiate readline interface
-    this.createReadlineInterface();
+    this[createReadlineInterface]();
   }
 
   /**
@@ -21,7 +24,7 @@ class PwHashGen {
    * @description Ask user for password.
    * @returns {void} Nothing.
    */
-  createReadlineInterface() {
+  [createReadlineInterface]() {
     // create readline interface
     this.rlInterface = readline.createInterface({
       input: process.stdin,
@@ -40,7 +43,7 @@ class PwHashGen {
     // ask user for password
     this.rlInterface.question('Enter password: ', pw => {
       // generate password hash
-      this.genHash(pw);
+      this[genHash](pw);
       // close readline interface
       this.rlInterface.close();
     });
@@ -54,7 +57,7 @@ class PwHashGen {
    * @param {string} pw Password to be entered.
    * @returns {void} Nothing.
    */
-  genHash(pw) {
+  [genHash](pw) {
     // generate salt using bcrypt
     bcrypt.genSalt(10, (err, salt) => {
       // check for errors
