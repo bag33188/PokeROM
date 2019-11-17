@@ -18,7 +18,7 @@ const versionSchema = new Schema(
 );
 
 // define version model
-const Version = (module.exports = mongoose.model('Version', versionSchema));
+const Version = (exports = mongoose.model('Version', versionSchema));
 
 module.exports.getApiVersion = apiVersion => {
   const query = { api_version: apiVersion };

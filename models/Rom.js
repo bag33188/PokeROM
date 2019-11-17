@@ -190,7 +190,7 @@ const romSchema = new Schema(
 module.exports = mongoose.model('Rom', romSchema);
 
 // define ROM model
-const Rom = module.exports;
+const Rom = exports;
 
 module.exports.getAllRoms = (query, callback, limit) => {
   // make sure to parse limit as integer
