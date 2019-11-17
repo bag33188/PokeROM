@@ -73,28 +73,6 @@ function getRomById(id, req, res, callback) {
   });
 }
 
-function romObjData(req) {
-  return {
-    user_id: req.user['_id'],
-    order_number: req.body.order_number,
-    rom_type: req.sanitize(req.body.rom_type),
-    file_name: req.sanitize(req.body.file_name),
-    file_size: req.body.file_size,
-    file_type: req.sanitize(req.body.file_type),
-    download_link: req.sanitize(req.body.download_link),
-    generation: req.body.generation,
-    box_art_url: req.sanitize(req.body.box_art_url),
-    game_name: req.sanitize(req.body.game_name),
-    region: req.sanitize(req.body.region),
-    platform: req.sanitize(req.body.platform),
-    description: req.sanitize(req.body.description),
-    genre: req.sanitize(req.body.genre) || null,
-    date_released: req.sanitize(req.body.date_released),
-    logo_url: req.sanitize(req.body.logo_url),
-    is_favorite: req.body.is_favorite
-  };
-}
-
 function getAllRoms(query, req, res, callback, limit) {
   if (!limit) {
     limit = 0;
@@ -250,7 +228,25 @@ module.exports.addRom = async (req, res, next) => {
     if (req.body.rom_type) {
       req.body.rom_type = req.body.rom_type.toLowerCase();
     }
-    const newRom = new Rom(romObjData(req));
+    const newRom = new Rom({
+      user_id: req.user['_id'],
+      order_number: req.body.order_number,
+      rom_type: req.sanitize(req.body.rom_type),
+      file_name: req.sanitize(req.body.file_name),
+      file_size: req.body.file_size,
+      file_type: req.sanitize(req.body.file_type),
+      download_link: req.sanitize(req.body.download_link),
+      generation: req.body.generation,
+      box_art_url: req.sanitize(req.body.box_art_url),
+      game_name: req.sanitize(req.body.game_name),
+      region: req.sanitize(req.body.region),
+      platform: req.sanitize(req.body.platform),
+      description: req.sanitize(req.body.description),
+      genre: req.sanitize(req.body.genre) || null,
+      date_released: req.sanitize(req.body.date_released),
+      logo_url: req.sanitize(req.body.logo_url),
+      is_favorite: req.body.is_favorite
+    });
     const {
       order_number,
       file_name,
@@ -342,7 +338,25 @@ module.exports.updateRom = async (req, res, next) => {
     if (req.body.rom_type) {
       req.body.rom_type = req.body.rom_type.toLowerCase();
     }
-    const updateRomData = romObjData(req);
+    const updateRomData = {
+      user_id: req.user['_id'],
+      order_number: req.body.order_number,
+      rom_type: req.sanitize(req.body.rom_type),
+      file_name: req.sanitize(req.body.file_name),
+      file_size: req.body.file_size,
+      file_type: req.sanitize(req.body.file_type),
+      download_link: req.sanitize(req.body.download_link),
+      generation: req.body.generation,
+      box_art_url: req.sanitize(req.body.box_art_url),
+      game_name: req.sanitize(req.body.game_name),
+      region: req.sanitize(req.body.region),
+      platform: req.sanitize(req.body.platform),
+      description: req.sanitize(req.body.description),
+      genre: req.sanitize(req.body.genre) || null,
+      date_released: req.sanitize(req.body.date_released),
+      logo_url: req.sanitize(req.body.logo_url),
+      is_favorite: req.body.is_favorite
+    };
     const {
       order_number,
       file_name,
@@ -440,7 +454,6 @@ module.exports.patchRom = async (req, res, next) => {
     }
     const data = req.body;
     if (req.body.date_released) {
-      req.body.date_released = req.body.date_released.convertToDateFormat();
     }
     const {
       file_size,
