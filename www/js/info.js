@@ -1,5 +1,12 @@
 'use strict';
 
+const privateMethods = {
+  async getApiVersion() {
+    const apiVersion = await fetch('/api/version', { method: 'GET' });
+    return apiVersion.json();
+  }
+};
+
 class Info {
   constructor() {
     throw new Error('Info class is not meant to be instantiated.');
@@ -52,7 +59,8 @@ class Info {
         text: 'Robots'
       }
     ];
-    Info.getApiVersion()
+    privateMethods
+      .getApiVersion()
       .then(res => {
         if (!productionMode) {
           const devNavItems = [
@@ -90,11 +98,6 @@ class Info {
         });
       })
       .catch(err => console.error(err));
-  }
-
-  static async getApiVersion() {
-    const apiVersion = await fetch('/api/version', { method: 'GET' });
-    return apiVersion.json();
   }
 }
 

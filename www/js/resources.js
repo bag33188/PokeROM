@@ -1,13 +1,17 @@
 'use strict';
 
+const privateMethods = {
+  async getApiVersion() {
+    const apiVersion = await fetch('/api/version', { method: 'GET' });
+    return apiVersion.json();
+  }
+};
+
 class Resources {
   constructor() {
     throw new Error('Resources class is not meant to be instantiated.');
   }
-  static async getApiVersion() {
-    const apiVersion = await fetch('/api/version', { method: 'GET' });
-    return apiVersion.json();
-  }
+
   static setResourcesList() {
     const list = document.getElementById('resources-list');
     const resources = [
@@ -73,7 +77,8 @@ class Resources {
         text: 'Robots'
       }
     ];
-    Resources.getApiVersion()
+    privateMethods
+      .getApiVersion()
       .then(res => {
         if (!productionMode) {
           const devNavItems = [
