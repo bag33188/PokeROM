@@ -281,7 +281,7 @@ For **any other problems**, open up a new issue in the [issues](https://github.c
 127.0.0.1 localhost:8080
 
 # C:/xampp/apache/conf/httpd.conf
-Listen 8080
+Listen 5000
 
 # C:/xampp/apache/conf/extra/httpd-vhosts.conf
 <VirtualHost *:5000>
