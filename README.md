@@ -301,6 +301,7 @@ https://www.jetbrains.com/help/phpstorm/debugging-with-phpstorm-ultimate-guide.h
 https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html
 edit xdebug in php-cgi php.ini file (and also php-cli php.ini file) [use sudo vim <php.ini_file>]
 
+https://paulshipley.id.au/blog/coding-tips/improve-php-performance-with-fastcgi-on-xampp-for-windows/
 
 install xdebug and all its dependencies: 
 
