@@ -62,7 +62,7 @@ const natureSchema = new Schema(
 module.exports = mongoose.model('Nature', natureSchema);
 
 // define ROM model
-const Nature = exports;
+const Nature = module.exports;
 
 module.exports.getNatures = callback => {
   Nature.find(callback).sort({

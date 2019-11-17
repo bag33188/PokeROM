@@ -33,7 +33,7 @@ const userSchema = new Schema(
 module.exports = mongoose.model('User', userSchema);
 
 // define User model
-const User = exports;
+const User = module.exports;
 
 module.exports.getUserById = (id, callback) => {
   User.findById(id, callback);

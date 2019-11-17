@@ -38,7 +38,7 @@ const ratingSchema = new Schema(
 module.exports = mongoose.model('Rating', ratingSchema);
 
 // define rating model
-const Rating = exports;
+const Rating = module.exports;
 
 module.exports.getRatings = (callback, limit) => {
   Rating.find(callback)
