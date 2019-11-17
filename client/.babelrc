@@ -1,3 +1,12 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-typescript", "minify"]
+  "presets": ["@babel/preset-env", "@babel/preset-typescript", "minify"],
+  "plugins": [
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/plugin-proposal-class-properties"
+  ]
 }
