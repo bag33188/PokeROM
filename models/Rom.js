@@ -187,7 +187,7 @@ const romSchema = new Schema(
   }
 );
 
-module.exports = module.mongoose.model('Rom', romSchema);
+module.exports = mongoose.model('Rom', romSchema);
 
 // define ROM model
 const Rom = module.exports;
