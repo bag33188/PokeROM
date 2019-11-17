@@ -13,6 +13,7 @@ Thumbs.db
 _MACOSX
 bash.exe.stackdump
 misc/~$*
+misc/.~*#
 
 # Project File(s)
 *.code-workspace
