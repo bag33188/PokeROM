@@ -23,7 +23,20 @@
      */
     public function __construct()
     {
-      $url = NULL;
+      $this->setUrlProp(NULL);
+    }
+
+    /**
+     * @param string|NULL $url The url to set/append.
+     * @param bool $append Whether to set or append to url.
+     * @return void Nothing.
+     */
+    private function setUrlProp($url, $append  = false) {
+      if ($append === true) {
+        $this->url .= $url;
+      } else {
+        $this->url = $url;
+      }
     }
 
     /**
@@ -55,13 +68,13 @@
     private function setCurrentUrl()
     {
       // set url var
-      $this->url = "";
+      $this->setUrlProp("", false);
       // check if https
-      $this->url .= (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") ? "https" : "http";
+      $this->setUrlProp((isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") ? "https" : "http", true);
       // build rest of url prop's value
-      $this->url .= "://";
-      $this->url .= $_SERVER["HTTP_HOST"];
-      $this->url .= $_SERVER["REQUEST_URI"];
+      $this->setUrlProp("://", true);
+      $this->setUrlProp($_SERVER["HTTP_HOST"], true);
+      $this->setUrlProp($_SERVER["REQUEST_URI"], true);
     }
 
     /**
