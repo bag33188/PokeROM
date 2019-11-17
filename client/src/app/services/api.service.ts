@@ -28,9 +28,8 @@ export class ApiService {
     const apiVersion: Promise<Cache> = caches.open('api_version');
     apiVersion
       .then(
-        (cache: Cache): Promise<void> => {
-          return cache.add(`${environment.apiUrl}/version`);
-        }
+        (cache: Cache): Promise<void> =>
+          cache.add(`${environment.apiUrl}/version`)
       )
       .catch((err: object): never => {
         throw err;
