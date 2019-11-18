@@ -27,18 +27,25 @@
      * @return string ISC License.
      */
     private static function get_isc_license() {
+      // create isc license var
       $isc_license = NULL;
+      // encapsulate main logic in try catch
       try {
+        // store file data in vars
         $filename = "../LICENSE";
         $file = fopen($filename, "r");
         $filesize = filesize($filename);
         $content = fread($file, $filesize);
         fclose($file);
+        // update isc license var
         $isc_license = "ISC LICENSE\n" . str_replace("\n\n", "\n", $content);
       } catch (Exception $e) {
+        // handle any exceptions
         echo "Error:\nCode: " . strval($e->getCode()) . "\nMessage: " . $e->getMessage();
+        // kill script
         die(1);
       }
+      // return isc license text
       return $isc_license;
     }
 
@@ -46,18 +53,25 @@
      * @return string MIT License.
      */
     private static function get_mit_license() {
+      // create mit license var
       $mit_license = NULL;
+      // encapsulate main logic in try catch
       try {
+        // store file data in vars
         $filename = "../client/LICENSE";
         $file = fopen($filename, "r");
         $filesize = filesize($filename);
         $content = fread($file, $filesize);
         fclose($file);
+        // update mit license var
         $mit_license = "MIT LICENSE\n" . str_replace("\n\n", "\n", $content);
       } catch (Exception $e) {
+        // handle any exceptions
         echo "Error:\nCode: " . strval($e->getCode()) . "\nMessage: " . $e->getMessage();
+        // kill script
         die(1);
       }
+      // return mit license
       return $mit_license;
     }
 
