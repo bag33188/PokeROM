@@ -5,6 +5,12 @@
   use Exception;
   use Error;
 
+  // check if file is being required by another file
+  if (basename(__FILE__) != basename($_SERVER["SCRIPT_FILENAME"])) {
+    // if so, throw an error
+    throw new Error("Error: `FixIndexHTML.php` file cannot be required or included by another file.");
+  }
+
   /**
    * Class FixIndexHTML
    * @package scripts
