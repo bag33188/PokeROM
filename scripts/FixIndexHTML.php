@@ -92,7 +92,7 @@
           $glued_script_tags = implode("\n", $script_tags);
           // if no type=module or type=text/javascript is detected, then add it
           $glued_script_tags = str_replace("<script src=\"", "<script type=\"module\" src=\"", $glued_script_tags);
-          // set new script tags prop to glued script tags var
+          // set new script tags prop to glued script tag's var
           $this->new_script_tags = $glued_script_tags; # str_replace("type=\"module\" ", "", $glued_script_tags);
         }
         // close the file
@@ -187,7 +187,7 @@
             if (strlen(self::strip($line)) == strlen($text_to_search)) {
               // if so, strip the line of any trailing and/or leading whitespace/tabs
               $line = self::strip($line);
-              # then insert the comment
+              // then insert the comment
               fwrite($file, str_replace($text_to_search, $replacement_text, $line));
             } else {
               // otherwise just insert the comment
