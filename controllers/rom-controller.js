@@ -39,7 +39,7 @@ String.prototype.convertToDateFormat = function() {
   return new Date(year, monthIndex, day);
 };
 
-function toBoolean(value) {
+function convertToBoolean(value) {
   switch (value) {
     case 'true':
       return true;
@@ -133,9 +133,9 @@ module.exports.getRoms = async (req, res, next) => {
     const getAllCore = req.query['core'];
     const getAllHacks = req.query['hacks'];
     let query;
-    if (toBoolean(getAllCore) && !toBoolean(getAllHacks)) {
+    if (convertToBoolean(getAllCore) && !convertToBoolean(getAllHacks)) {
       query = { user_id: req.user['_id'], rom_type: 'core' };
-    } else if (toBoolean(getAllHacks) && !toBoolean(getAllCore)) {
+    } else if (convertToBoolean(getAllHacks) && !convertToBoolean(getAllCore)) {
       query = { user_id: req.user['_id'], rom_type: 'hack' };
     } else {
       query = { user_id: req.user['_id'] };
@@ -605,10 +605,10 @@ module.exports.deleteRoms = async (req, res, next) => {
           if (isOwnUser) {
             let query = {};
             let message = '';
-            if (toBoolean(deleteCore) && !toBoolean(deleteHacks)) {
+            if (convertToBoolean(deleteCore) && !convertToBoolean(deleteHacks)) {
               query = { user_id: req.user['_id'], rom_type: 'core' };
               message = 'All core ROMs have been deleted.';
-            } else if (toBoolean(deleteHacks) && !toBoolean(deleteCore)) {
+            } else if (convertToBoolean(deleteHacks) && !convertToBoolean(deleteCore)) {
               query = { user_id: req.user['_id'], rom_type: 'hack' };
               message = 'All ROM hacks have been deleted.';
             } else {
