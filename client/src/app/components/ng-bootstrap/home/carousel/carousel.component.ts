@@ -40,6 +40,14 @@ export class CarouselComponent implements OnInit {
         caption: he.decode(
           'You can now play some of the coolest Pok&eacute;mon ROM hacks.'
         )
+      },
+      {
+        image: this.images.C_IMG4,
+        heading: he.decode('Grab all your core Pok&eacute;mon Game ROMs here!'),
+        caption: he.decode(
+          // tslint:disable-next-line:quotemark
+          "This website's database houses all the core Pok&eacute;mon game ROMs ever made."
+        )
       }
     ];
   }
