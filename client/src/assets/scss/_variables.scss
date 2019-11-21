@@ -1,5 +1,11 @@
 // _variables.scss
 
+/*
+Best colors
+-----------
+https://www.shutterstock.com/blog/2019-color-trends
+*/
+
 // colors
 $red: #f00;
 $yellow: #ff0;
@@ -28,18 +34,16 @@ $chile-yellow: #fed62b;
 $navbar-bg-color: #343a40;
 $svg-blue: #4691f6;
 $yellow-text-outline: #ffeeba;
+
+// opacity colors
+$scrollbar-thumb-shadow-gray-rgba: rgba(0, 0, 0, 0.5);
+$scrollbar-track-shadow-color-rgba: rgba(0, 0, 0, 0.4);
 $warning-yellow-rgba: rgba(255, 243, 205, 1);
 $clear: rgba(255, 255, 255, 0);
 $ocean-blue-rgba: rgba(82, 168, 236, 0.8);
 $deep-ocean-blue-rgba: rgba(82, 168, 236, 0.6);
 $ash-black-rgba: rgba(0, 0, 0, 0.075);
-$border-shadow: rgba(0, 0, 0, 0.8);
-
-// https://www.shutterstock.com/blog/2019-color-trends
-
-// opacity colors
-$scrollbar-thumb-shadow-gray: rgba(0, 0, 0, 0.5);
-$scrollbar-track-shadow-color: rgba(0, 0, 0, 0.4);
+$border-shadow-rba: rgba(0, 0, 0, 0.8);
 
 // urls\
 
