@@ -36,6 +36,10 @@ html {
   }
 }
 
+.border-shadow {
+  box-shadow: 0 0 0.8em $border-shadow;
+}
+
 // webkit browsers
 ::selection {
   background-color: $chile-yellow;
