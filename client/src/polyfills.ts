@@ -56,6 +56,8 @@ import '@angular/localize/init';
  *
  */
 
+import 'classlist.js';
+
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
