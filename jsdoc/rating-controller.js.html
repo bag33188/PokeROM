@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: rating-controller.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: rating-controller.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ *
+ * @type {Mongoose}
+ */
+
+/**
+ * @const
+ * @name mongoose
+ * @type {Mongoose}
+ * @description Mongoose import.
+ */
+const mongoose = require('mongoose');
+const { validationResult } = require('express-validator/check');
+const url = require('url');
+const moment = require('moment');
+const Rating = require('../models/Rating');
+const { clearCache } = require('../middleware/cache');
+
+function getRating(id, req, res, callback) {
+  return Rating.getRating(id, (err, rating) => {
+    if (err) {
+      if (err.name === 'CastError') {
+        return res.status(404).json({ success: false, ...err });
+      }
+      return res.status(500).json({ success: false, ...err });
+    }
+    if (!rating) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
+    }
+    return callback(rating);
+  });
+}
+
+module.exports.addRating = async (req, res, next) => {
+  try {
+    const newRating = new Rating({
+      rating: req.body.rating,
+      message: req.sanitize(req.body.message) || null
+    });
+    const { rating, message } = newRating;
+    if (req.body.date_time) {
+      req.body.date_time = req.sanitize(req.body.date_time.toString());
+    }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(406).json({ success: false, errors: errors.array() });
+    }
+    await Rating.addRating(newRating, (err, rating) => {
+      if (err) {
+        if (err.name === 'ValidationError') {
+          return res.status(406).json({ success: false, ...err });
+        }
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!rating) {
+        return res
+          .status(404)
+          .json({ success: false, message: 'Rating not found.' });
+      }
+      res.append(
+        'Created-At-Route',
+        `${url.format({
+          protocol: req.protocol,
+          host: req.get('host'),
+          pathname: req.originalUrl
+        })}/${rating._id}`
+      );
+      res.append(
+        'Created-At',
+        moment()
+          .subtract(7, 'hours')
+          .format()
+      );
+      clearCache(req);
+      return res.status(201).json(rating);
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getRating = async (req, res, next) => {
+  try {
+    let id = null;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
+    }
+    await Rating.getRating(id, (err, rating) => {
+      if (err) {
+        if (err.name === 'CastError') {
+          return res.status(404).json({ success: false, ...err });
+        }
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!rating) {
+        return res
+          .status(404)
+          .json({ success: false, message: 'Rating not found.' });
+      }
+      return res.status(200).json(rating);
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getRatings = async (req, res, next) => {
+  try {
+    let limit = req.query['_limit'];
+    if (!limit) {
+      limit = 0;
+    }
+    await Rating.getRatings((err, ratings) => {
+      if (err) {
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!ratings) {
+        return res
+          .status(502)
+          .json({ success: false, message: 'Bad gateway.' });
+      }
+      return res.status(200).json(ratings);
+    }, limit);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.deleteRating = async (req, res, next) => {
+  try {
+    let id = null;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
+    }
+    await getRating(id, req, res, async () => {
+      try {
+        const query = { _id: id };
+        await Rating.deleteRating(query, (err, status) => {
+          if (err) {
+            if (err.name === 'CastError') {
+              return res.status(404).json({ success: false, ...err });
+            }
+            return res.status(500).json({ success: false, ...err });
+          }
+          if (!status) {
+            return res
+              .status(404)
+              .json({ success: false, message: 'Rating not found.' });
+          }
+          clearCache(req);
+          return res.status(200).json({ success: true, ...status });
+        });
+      } catch (err) {
+        next(err);
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.deleteRatings = async (req, res, next) => {
+  try {
+    await Rating.deleteAllRatings((err, status) => {
+      if (err) {
+        return res.status(500).json({ success: false, ...err });
+      }
+      if (!status) {
+        return res
+          .status(502)
+          .json({ success: false, message: 'Bad gateway.' });
+      }
+      clearCache(req);
+      return res.status(200).json({ success: true, ...status });
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.ratingsHeaders = (req, res) => {
+  res.status(200);
+};
+
+module.exports.ratingHeaders = async (req, res, next) => {
+  try {
+    let id = null;
+    try {
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (e) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Rating not found.' });
+    }
+    await getRating(id, req, res, () => {
+      return res.status(200);
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.all = (req, res) => {
+  const methods = ['GET', 'POST', 'DELETE'];
+  if (methods.includes(req.method)) {
+    res.set('Allow', methods.join(', '));
+    return res
+      .status(405)
+      .json({ success: false, message: 'Method not allowed.' });
+  } else {
+    return res
+      .status(501)
+      .json({ success: false, message: 'Method not implemented.' });
+  }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addNature">addNature</a></li><li><a href="global.html#all">all</a></li><li><a href="global.html#allNatures">allNatures</a></li><li><a href="global.html#deleteNature">deleteNature</a></li><li><a href="global.html#deleteNatures">deleteNatures</a></li><li><a href="global.html#getNature">getNature</a></li><li><a href="global.html#getNatures">getNatures</a></li><li><a href="global.html#moment">moment</a></li><li><a href="global.html#mongoose">mongoose</a></li><li><a href="global.html#natureHeaders">natureHeaders</a></li><li><a href="global.html#naturesHeaders">naturesHeaders</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#patchNature">patchNature</a></li><li><a href="global.html#routesWithParams">routesWithParams</a></li><li><a href="global.html#updateNature">updateNature</a></li><li><a href="global.html#url">url</a></li><li><a href="global.html#validationResult">validationResult</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Nov 20 2019 18:02:25 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
