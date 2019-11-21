@@ -6,6 +6,11 @@ const Nature = require('../models/Nature');
 const [, , natureData] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');
 
+/**
+ * @const
+ * @description Routes with parameters.
+ * @type {string[]}
+ */
 const routesWithParams = ['all'];
 
 /**
