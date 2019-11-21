@@ -45,7 +45,7 @@ $deep-ocean-blue-rgba: rgba(82, 168, 236, 0.6);
 $ash-black-rgba: rgba(0, 0, 0, 0.075);
 $border-shadow-rba: rgba(0, 0, 0, 0.8);
 
-// urls\
+// urls
 
 // img urls
 $bg-img: '/assets/images/background.png';
@@ -113,10 +113,6 @@ $arial-narrow-italic2: '#{$arial-font-url-prefix}/ArialNarrow-Italic.woff2';
 $arial-narrow-bold2: '#{$arial-font-url-prefix}/ArialNarrow-Bold.woff2';
 $arial-italic2: '#{$arial-font-url-prefix}/Arial-ItalicMT.woff2';
 
-// sizes
-$footer-height: 2rem;
-$header-height: 56px;
-
 // calculations
-$calc-body-height: calc(100vh - (#{$header-height} + #{$footer-height}));
+$calc-body-height: calc(100vh - (56px + 2rem));
 $calc-img-size: calc(100vw - (70vw - 2.5rem));
