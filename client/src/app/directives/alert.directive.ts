@@ -5,10 +5,12 @@ import { Directive, ElementRef, OnInit, Input } from '@angular/core';
 })
 export class AlertDirective implements OnInit {
   @Input() public alertType: string;
+  private preClasses: string[];
 
   constructor(private el: ElementRef) {}
 
   ngOnInit(): void | never {
+    this.preClasses = ['alert'];
     if (!this.alertType) {
       throw new Error('No alert type specified.');
     } else {
@@ -20,21 +22,21 @@ export class AlertDirective implements OnInit {
     if (typeof this.alertType === 'string') {
       switch (this.alertType) {
         case 'primary':
-          return ['alert', 'alert-primary'];
+          return [...this.preClasses, 'alert-primary'];
         case 'secondary':
-          return ['alert', 'alert-secondary'];
+          return [...this.preClasses, 'alert-secondary'];
         case 'warning':
-          return ['alert', 'alert-warning'];
+          return [...this.preClasses, 'alert-warning'];
         case 'success':
-          return ['alert', 'alert-success'];
+          return [...this.preClasses, 'alert-success'];
         case 'danger':
-          return ['alert', 'alert-danger'];
+          return [...this.preClasses, 'alert-danger'];
         case 'info':
-          return ['alert', 'alert-info'];
+          return [...this.preClasses, 'alert-info'];
         case 'light':
-          return ['alert', 'alert-light'];
+          return [...this.preClasses, 'alert-light'];
         case 'dark':
-          return ['alert', 'alert-dark'];
+          return [...this.preClasses, 'alert-dark'];
         default:
           throw new Error('Invalid alert type.');
       }

@@ -5,10 +5,12 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 })
 export class BtnDirective implements OnInit {
   @Input() public btnType: string;
+  private preClasses: string[];
 
   constructor(private el: ElementRef) {}
 
   ngOnInit(): void | never {
+    this.preClasses = ['btn', 'btn-shadow'];
     if (!this.btnType) {
       throw new Error('No button type specified.');
     } else {
@@ -20,37 +22,37 @@ export class BtnDirective implements OnInit {
     if (typeof this.btnType === 'string') {
       switch (this.btnType) {
         case 'primary-outline':
-          return ['btn', 'btn-outline-primary'];
+          return [...this.preClasses, 'btn-outline-primary'];
         case 'secondary-outline':
-          return ['btn', 'btn-outline-secondary'];
+          return [...this.preClasses, 'btn-outline-secondary'];
         case 'warning-outline':
-          return ['btn', 'btn-outline-warning'];
+          return [...this.preClasses, 'btn-outline-warning'];
         case 'success-outline':
-          return ['btn', 'btn-outline-success'];
+          return [...this.preClasses, 'btn-outline-success'];
         case 'danger-outline':
-          return ['btn', 'btn-outline-danger'];
+          return [...this.preClasses, 'btn-outline-danger'];
         case 'info-outline':
-          return ['btn', 'btn-outline-info'];
+          return [...this.preClasses, 'btn-outline-info'];
         case 'light-outline':
-          return ['btn', 'btn-outline-light'];
+          return [...this.preClasses, 'btn-outline-light'];
         case 'dark-outline':
-          return ['btn', 'btn-outline-dark'];
+          return [...this.preClasses, 'btn-outline-dark'];
         case 'primary':
-          return ['btn', 'btn-primary'];
+          return [...this.preClasses, 'btn-primary'];
         case 'secondary':
-          return ['btn', 'btn-secondary'];
+          return [...this.preClasses, 'btn-secondary'];
         case 'warning':
-          return ['btn', 'btn-warning'];
+          return [...this.preClasses, 'btn-warning'];
         case 'success':
-          return ['btn', 'btn-success'];
+          return [...this.preClasses, 'btn-success'];
         case 'danger':
-          return ['btn', 'btn-danger'];
+          return [...this.preClasses, 'btn-danger'];
         case 'info':
-          return ['btn', 'btn-info'];
+          return [...this.preClasses, 'btn-info'];
         case 'light':
-          return ['btn', 'btn-light'];
+          return [...this.preClasses, 'btn-light'];
         case 'dark':
-          return ['btn', 'btn-dark'];
+          return [...this.preClasses, 'btn-dark'];
         default:
           throw new Error('Invalid button type.');
       }
