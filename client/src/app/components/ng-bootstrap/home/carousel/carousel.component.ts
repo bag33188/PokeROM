@@ -25,7 +25,7 @@ export class CarouselComponent implements OnInit {
         image: this.images.C_IMG1,
         heading: he.decode('Pok&eacute;mon Sword and Shield Coming Soon!'),
         caption: he.decode(
-          'The new Pok&eacute;mon games will be available on this site 1 week after their release in the US.'
+          'The new Pok&eacute;mon games will be available starting the 30th of November.'
         )
       },
       {
