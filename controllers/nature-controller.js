@@ -280,7 +280,8 @@ module.exports.allNatures = async (req, res) => {
 module.exports.all = (req, res) => {
   const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'];
   if (methods.includes(req.method)) {
-    res.set('Allow', methods.join(', '));
+    const glue = methods.length > 1 ? ', ' : '';
+    res.set('Allow', methods.join(glue));
     return res
       .status(405)
       .json({ success: false, message: 'Method not allowed.' });
