@@ -11,6 +11,7 @@ const [coreRoms, romHacks] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');
 
 const routesWithParams = ['authenticate', 'register'];
+const fields = ['_id', 'name', 'username', 'password'];
 
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
@@ -97,12 +98,12 @@ module.exports.registerUser = async (req, res) => {
     return res.status(406).json({ success: false, errors: errors.array() });
   }
   try {
-    const newUser = new User({
+    const userData = new User({
       name: req.sanitize(req.body.name) || null,
       username: req.sanitize(req.body.username),
       password: req.sanitize(req.body.password)
     });
-    const user = await User.getUserByUsername(newUser.username);
+    const user = await User.getUserByUsername(userData.username);
     if (user) {
       return res.status(500).json({
         success: false,
@@ -111,8 +112,8 @@ module.exports.registerUser = async (req, res) => {
     }
     // hash password
     const salt = await bcrypt.genSalt(10);
-    newUser.password = await bcrypt.hash(newUser.password, salt);
-    const addedUser = await User.addUser(newUser);
+    userData.password = await bcrypt.hash(userData.password, salt);
+    const addedUser = await User.addUser(userData);
     res.append(
       'Created-At-Route',
       `${url
@@ -160,11 +161,11 @@ module.exports.authorizeUser = async (req, res) => {
         message: 'User not found.'
       });
     }
-    const passwordCheck = await User.comparePassword(
+    const passwordsMatch = await User.comparePassword(
       req.body.password,
       user.password
     );
-    if (passwordCheck === true) {
+    if (passwordsMatch === true) {
       const payload = {
         data: user
       };
@@ -174,11 +175,7 @@ module.exports.authorizeUser = async (req, res) => {
       return res.status(202).json({
         success: true,
         token: `Bearer ${token}`,
-        user: {
-          id: user._id,
-          name: user.name,
-          username: user.username
-        }
+        user: user.select('-password')
       });
     } else {
       return res
@@ -271,7 +268,7 @@ module.exports.patchUser = async (req, res) => {
     }
     let isValid = true;
     for (const field of Object.keys(req.body)) {
-      if (!['_id', 'name', 'username', 'password'].includes(field)) {
+      if (!fields.includes(field)) {
         isValid = false;
         break;
       } else {
@@ -304,12 +301,12 @@ module.exports.patchUser = async (req, res) => {
       req.body.password = await bcrypt.hash(req.body.password, salt);
     }
 
-    const patchQuery = { $set: req.body };
-    await User.patchUser(id, patchQuery);
+    const query = { $set: req.body };
+    await User.patchUser(id, query);
 
-    const user = await User.getUserById(id);
+    const patchedUser = await User.getUserById(id);
     clearCache(req);
-    return res.status(200).json(user);
+    return res.status(200).json(patchedUser);
   } catch (err) {
     switch (err.name) {
       case 'CastError':

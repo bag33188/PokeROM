@@ -10,14 +10,14 @@ module.exports.addRating = async (req, res) => {
     return res.status(406).json({ success: false, errors: errors.array() });
   }
   try {
-    const newRating = new Rating({
+    const ratingData = new Rating({
       rating: req.body.rating,
       message: req.sanitize(req.body.message) || null
     });
     if (req.body.date_time) {
       req.body.date_time = req.sanitize(req.body.date_time.toString());
     }
-    const rating = await Rating.addRating(newRating);
+    const rating = await Rating.addRating(ratingData);
     if (!rating) {
       return res
         .status(404)

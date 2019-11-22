@@ -2,7 +2,7 @@ const url = require('url');
 const moment = require('moment');
 const { validationResult } = require('express-validator/check');
 const Nature = require('../models/Nature');
-const [, , natureData] = require('../database/data.json');
+const [, , allNaturesData] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');
 
 const routesWithParams = ['all'];
@@ -105,14 +105,14 @@ module.exports.updateNature = async (req, res) => {
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
-    const updateData = {
+    const natureData = {
       name: req.sanitize(req.body.name),
       up: req.sanitize(req.body.up),
       down: req.sanitize(req.body.down),
       flavor: req.sanitize(req.body.flavor) || null,
       usage: req.sanitize(req.body.usage)
     };
-    const nature = await Nature.updateNature(id, updateData, {});
+    const nature = await Nature.updateNature(id, natureData, {});
     if (!nature) {
       return res.status(404).json({
         success: false,
@@ -268,7 +268,7 @@ module.exports.natureHeaders = async (req, res) => {
 
 module.exports.allNatures = async (req, res) => {
   try {
-    await Nature.postAll(natureData);
+    await Nature.postAll(allNaturesData);
     const natures = await Nature.getNatures();
     return res.status(201).json(natures);
   } catch (err) {

@@ -89,8 +89,8 @@ module.exports.deleteAllNatures = callback => {
   return Nature.deleteMany(callback);
 };
 
-module.exports.addNature = (newNature, callback) => {
-  return Nature.create(newNature, callback);
+module.exports.addNature = (natureData, callback) => {
+  return Nature.create(natureData, callback);
 };
 
 module.exports.updateNature = (id, natureData, options, callback) => {
@@ -106,6 +106,6 @@ module.exports.updateNature = (id, natureData, options, callback) => {
   return Nature.findOneAndUpdate(searchQuery, updateQuery, options, callback);
 };
 
-module.exports.postAll = (allNatures, callback) => {
-  return Nature.insertMany(allNatures, callback);
+module.exports.postAll = (allNaturesData, callback) => {
+  return Nature.insertMany(allNaturesData, callback);
 };
