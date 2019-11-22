@@ -362,6 +362,7 @@ module.exports.deleteRoms = async (req, res) => {
       });
     }
     await Rom.deleteAllRoms(romQuery);
+    clearCache(req);
     return res.status(200).json({
       success: true,
       message
