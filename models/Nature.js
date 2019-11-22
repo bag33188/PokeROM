@@ -65,32 +65,32 @@ module.exports = mongoose.model('Nature', natureSchema);
 const Nature = module.exports;
 
 module.exports.getNatures = callback => {
-  Nature.find(callback).sort({
+  return Nature.find(callback).sort({
     up: 1,
     down: 1
   });
 };
 
 module.exports.getNature = (id, callback) => {
-  Nature.findById(id, callback);
+  return Nature.findById(id, callback);
 };
 
 module.exports.patchNature = (id, updateQuery, callback) => {
   const searchQuery = { _id: id };
-  Nature.updateOne(searchQuery, updateQuery, callback);
+  return Nature.updateOne(searchQuery, updateQuery, callback);
 };
 
 module.exports.deleteNature = (id, callback) => {
   const query = { _id: id };
-  Nature.findOneAndDelete(query, callback);
+  return Nature.findOneAndDelete(query, callback);
 };
 
 module.exports.deleteAllNatures = callback => {
-  Nature.deleteMany(callback);
+  return Nature.deleteMany(callback);
 };
 
 module.exports.addNature = (newNature, callback) => {
-  Nature.create(newNature, callback);
+  return Nature.create(newNature, callback);
 };
 
 module.exports.updateNature = (id, natureData, options, callback) => {
@@ -103,9 +103,9 @@ module.exports.updateNature = (id, natureData, options, callback) => {
     flavor,
     usage
   };
-  Nature.findOneAndUpdate(searchQuery, updateQuery, options, callback);
+  return Nature.findOneAndUpdate(searchQuery, updateQuery, options, callback);
 };
 
 module.exports.postAll = (allNatures, callback) => {
-  Nature.insertMany(allNatures, callback);
+  return Nature.insertMany(allNatures, callback);
 };
