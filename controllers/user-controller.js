@@ -276,19 +276,19 @@ module.exports.patchUser = async (req, res, next) => {
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
     if (req.user._id.toString() !== id.toString()) {
+      if (req.body.username) {
+        const user = User.getUserById(id);
+        if (user) {
+          return res.status(500).json({
+            success: false,
+            message: 'A user with that username already exists.'
+          });
+        }
+      }
       return res.status(403).json({
         success: false,
         message: 'You cannot patch this user.'
       });
-    }
-    if (req.body.username) {
-      const user = User.getUserById(id);
-      if (user && user.id.toString() === req.user._id.toString()) {
-        return res.status(500).json({
-          success: false,
-          message: 'A user with that username already exists.'
-        });
-      }
     }
     if (req.body.password) {
       bcrypt.genSalt(10, (err, salt) => {
