@@ -47,10 +47,6 @@ const romObject = req => {
   };
 };
 
-// ---------------------------------------------------------
-// UTILITY FUNCTIONS
-// ---------------------------------------------------------
-
 String.prototype.convertToDateFormat = function() {
   const dateArr = this.replace(/(&#[xX]2[Ff];)/g, '/').split('/');
   const monthIndex = parseInt(dateArr[0], 10) - 1;
@@ -74,14 +70,11 @@ function checkForInvalidRoute(id) {
   return routesWithParams.includes(id);
 }
 
-// ---------------------------------------------------------
-// API FUNCTIONS
-// ---------------------------------------------------------
-
 module.exports.getRoms = async (req, res) => {
   try {
     const getAllCore = req.query['core'];
     const getAllHacks = req.query['hacks'];
+
     let query = {};
     if (convertToBoolean(getAllCore) && !convertToBoolean(getAllHacks)) {
       query = { user_id: req.user['_id'], rom_type: 'core' };
@@ -90,10 +83,12 @@ module.exports.getRoms = async (req, res) => {
     } else {
       query = { user_id: req.user['_id'] };
     }
+
     let limit = req.query['_limit'];
     if (!limit) {
       limit = 0;
     }
+
     const roms = await Rom.getAllRoms(query, limit);
 
     // --------------------------
@@ -148,14 +143,13 @@ module.exports.getRom = async (req, res) => {
         .status(404)
         .json({ success: false, message: 'ROM not found.' });
     }
-    if (req.user['_id'].toString() === rom.user_id.toString()) {
-      return res.status(200).json(rom);
-    } else {
+    if (req.user._id.toString() !== rom.user_id.toString()) {
       return res.status(403).json({
         success: false,
         message: `You cannot retrieve this user's ROM.`
       });
     }
+    return res.status(200).json(rom);
   } catch (err) {
     if (err.name === 'CastError') {
       return res
@@ -174,12 +168,13 @@ module.exports.addRom = async (req, res) => {
     return res.status(406).json({ success: false, errors: errors.array() });
   }
   try {
-    req.body.date_released = req.body.date_released.convertToDateFormat();
-    if (req.body.rom_type) {
-      req.body.rom_type = req.body.rom_type.toLowerCase();
+    const { date_released, rom_type } = req.body;
+    req.body.date_released = date_released.convertToDateFormat();
+    if (rom_type) {
+      req.body.rom_type = rom_type.toLowerCase();
     }
-    const newRom = new Rom(romObject(req));
-    const rom = await Rom.addRom(newRom);
+    const romData = new Rom(romObject(req));
+    const rom = await Rom.addRom(romData);
     res.append(
       'Created-At-Route',
       `${url.format({
@@ -220,10 +215,9 @@ module.exports.updateRom = async (req, res) => {
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
-    req.body.date_released = req.body.date_released.convertToDateFormat();
-    if (req.body.rom_type) {
-      req.body.rom_type = req.body.rom_type.toLowerCase();
-    }
+    const { date_released, rom_type } = req.body;
+    req.body.date_released = date_released.convertToDateFormat();
+    req.body.rom_type = rom_type.toLowerCase();
     const updateRomData = romObject(req);
     const rom = await Rom.getRomById(id);
     if (!rom) {
@@ -233,7 +227,7 @@ module.exports.updateRom = async (req, res) => {
       });
     }
     if (rom.user_id.toString() !== req.user._id.toString()) {
-      return await res.status(401).json({
+      return res.status(401).json({
         success: false,
         message: `You cannot update this user's ROM.`
       });
@@ -273,11 +267,12 @@ module.exports.patchRom = async (req, res) => {
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
-    if (req.body.date_released) {
-      req.body.date_released = req.body.date_released.convertToDateFormat();
+    const { date_released, rom_type } = req.body;
+    if (date_released) {
+      req.body.date_released = date_released.convertToDateFormat();
     }
-    if (req.body.rom_type) {
-      req.body.rom_type = req.body.rom_type.toLowerCase();
+    if (rom_type) {
+      req.body.rom_type = rom_type.toLowerCase();
     }
     // check for invalid fields
     let isValid = true;
@@ -299,16 +294,16 @@ module.exports.patchRom = async (req, res) => {
     }
     const rom = Rom.getRomById(id);
     if (rom.user_id.toString() !== req.user._id.toString()) {
-      return await res.status(401).json({
+      return res.status(401).json({
         success: false,
         message: `You cannot patch this user's ROM.`
       });
     }
     const query = { $set: req.body };
     await Rom.patchRom(id, query);
-    const newRom = await Rom.getRomById(id);
+    const patchedRom = await Rom.getRomById(id);
     clearCache(req);
-    return res.status(200).json(newRom);
+    return res.status(200).json(patchedRom);
   } catch (err) {
     switch (err.name) {
       case 'CastError':
@@ -336,12 +331,19 @@ module.exports.deleteRom = async (req, res) => {
         .json({ success: false, message: 'Method not allowed.' });
     }
     const rom = await Rom.getRomById(id);
+    if (!rom) {
+      return res.status(404).json({
+        success: false,
+        message: 'ROM not found.'
+      });
+    }
     if (rom.user_id.toString() !== req.user._id.toString()) {
-      return await res.status(403).json({
+      return res.status(403).json({
         success: false,
         message: `You cannot delete this user's ROM.`
       });
     }
+    await Rom.deleteRom(id);
     clearCache(req);
     return res.status(200).json({
       success: true,
@@ -363,30 +365,19 @@ module.exports.deleteRoms = async (req, res) => {
   try {
     const deleteCore = req.query['core'];
     const deleteHacks = req.query['hacks'];
-    const userQuery = { user_id: req.user['_id'] };
-    const roms = await Rom.getAllRoms(userQuery);
-    if (roms.length === 0) {
-      return res.status(200).json([]);
-    }
-    let romQuery = {};
+    let query = {};
     let message = '';
     if (convertToBoolean(deleteCore) && !convertToBoolean(deleteHacks)) {
-      romQuery = { user_id: req.user['_id'], rom_type: 'core' };
+      query = { user_id: req.user['_id'], rom_type: 'core' };
       message = 'All core ROMs have been deleted.';
     } else if (convertToBoolean(deleteHacks) && !convertToBoolean(deleteCore)) {
-      romQuery = { user_id: req.user['_id'], rom_type: 'hack' };
+      query = { user_id: req.user['_id'], rom_type: 'hack' };
       message = 'All ROM hacks have been deleted.';
     } else {
-      romQuery = { user_id: req.user['_id'] };
+      query = { user_id: req.user['_id'] };
       message = 'All ROMs successfully deleted!';
     }
-    if (roms[0].user_id.toString() !== req.user['_id'].toString()) {
-      return await res.status(403).json({
-        success: false,
-        message: 'You cannot delete ROMs for this user.'
-      });
-    }
-    await Rom.deleteAllRoms(romQuery);
+    await Rom.deleteAllRoms(query);
     clearCache(req);
     return res.status(200).json({
       success: true,

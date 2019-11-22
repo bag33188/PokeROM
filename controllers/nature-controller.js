@@ -6,6 +6,7 @@ const [, , natureData] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');
 
 const routesWithParams = ['all'];
+const fields = ['_id', 'name', 'up', 'down', 'flavor', 'usage'];
 
 function checkForInvalidRoute(id) {
   return routesWithParams.includes(id);
@@ -55,21 +56,21 @@ module.exports.addNature = async (req, res) => {
     return res.status(406).json({ success: false, errors: errors.array() });
   }
   try {
-    const nature = new Nature({
+    const natureData = new Nature({
       name: req.sanitize(req.body.name),
       up: req.sanitize(req.body.up),
       down: req.sanitize(req.body.down),
       flavor: req.sanitize(req.body.flavor) || null,
       usage: req.sanitize(req.body.usage)
     });
-    const newNature = await Nature.addNature(nature);
+    const nature = await Nature.addNature(natureData);
     res.append(
       'Created-At-Route',
       `${url.format({
         protocol: req.protocol,
         host: req.get('host'),
         pathname: req.originalUrl
-      })}/${newNature._id}`
+      })}/${nature._id}`
     );
     res.append(
       'Created-At',
@@ -78,7 +79,7 @@ module.exports.addNature = async (req, res) => {
         .format()
     );
     clearCache(req);
-    return res.status(201).json(newNature);
+    return res.status(201).json(nature);
   } catch (err) {
     if (err.name === 'ValidationError') {
       return res
@@ -111,7 +112,6 @@ module.exports.updateNature = async (req, res) => {
       flavor: req.sanitize(req.body.flavor) || null,
       usage: req.sanitize(req.body.usage)
     };
-
     const nature = await Nature.updateNature(id, updateData, {});
     if (!nature) {
       return res.status(404).json({
@@ -152,9 +152,10 @@ module.exports.patchNature = async (req, res) => {
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
+    // detect invalid fields
     let isValid = true;
     for (const field of Object.keys(req.body)) {
-      if (!['_id', 'name', 'up', 'down', 'flavor', 'usage'].includes(field)) {
+      if (!fields.includes(field)) {
         isValid = false;
         break;
       } else {
@@ -207,7 +208,9 @@ module.exports.deleteNature = async (req, res) => {
     }
     await Nature.deleteNature(id);
     clearCache(req);
-    return res.status(200).json({ success: true });
+    return res
+      .status(200)
+      .json({ success: true, message: 'Nature successfully deleted.' });
   } catch (err) {
     if (err.name === 'CastError') {
       return res
