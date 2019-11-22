@@ -22,7 +22,7 @@ module.exports.getVersion = (req, res) => {
   }
 };
 
-module.exports.all = (req, res) => {
+module.exports.all = (req, res, next) => {
   const verbs = ['GET', 'HEAD'];
-  return universal(req, res, verbs);
+  return universal(req, res, next, verbs);
 };

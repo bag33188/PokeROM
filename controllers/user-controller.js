@@ -425,7 +425,7 @@ module.exports.userHeaders = async (req, res) => {
   }
 };
 
-module.exports.all = (req, res) => {
+module.exports.all = (req, res, next) => {
   const verbs = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'];
-  return universal(req, res, verbs);
+  return universal(req, res, next, verbs);
 };

@@ -1,4 +1,4 @@
-module.exports = (req, res, verbs) => {
+module.exports = (req, res, next, verbs) => {
   const httpVerbs = [
     'GET',
     'POST',
@@ -10,14 +10,14 @@ module.exports = (req, res, verbs) => {
   ];
   const typeErrMsg = 'The verbs argument must be an array of strings.';
   if (!Array.isArray(verbs)) {
-    throw new Error(typeErrMsg);
+    next(typeErrMsg);
   } else {
     verbs.forEach(verb => {
       if (typeof verb !== 'string') {
-        throw new Error(typeErrMsg);
+        next(typeErrMsg);
       }
       if (!httpVerbs.includes(verb)) {
-        throw new Error(`${verb} is not a valid HTTP verb.`);
+        next(`"${verb}" is not a valid HTTP verb.`);
       }
     });
   }

@@ -10,7 +10,7 @@ module.exports.options = (req, res) => {
   res.status(204);
 };
 
-module.exports.all = (req, res) => {
+module.exports.all = (req, res, next) => {
   const verbs = ['OPTIONS', 'HEAD'];
-  return universal(req, res, verbs);
+  return universal(req, res, next, verbs);
 };

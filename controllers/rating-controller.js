@@ -156,7 +156,7 @@ module.exports.ratingHeaders = async (req, res) => {
   }
 };
 
-module.exports.all = (req, res) => {
+module.exports.all = (req, res, next) => {
   const verbs = ['GET', 'POST', 'DELETE'];
-  return universal(req, res, verbs);
+  return universal(req, res, next, verbs);
 };
