@@ -40,7 +40,7 @@ module.exports = mongoose.model('Rating', ratingSchema);
 // define rating model
 const Rating = module.exports;
 
-module.exports.getRatings = (callback, limit) => {
+module.exports.getRatings = (limit, callback) => {
   return Rating.find(callback)
     .sort({
       rating: 1,
