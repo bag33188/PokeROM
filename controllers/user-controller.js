@@ -2,7 +2,6 @@ const moment = require('moment');
 const config = require('config');
 const url = require('url');
 const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator/check');
 const secret = config.get('secret');
