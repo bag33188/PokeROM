@@ -1,5 +1,4 @@
 module.exports = (req, res, verbs) => {
-  const typeErrMsg = 'The verbs argument must be an array of strings.';
   const httpVerbs = [
     'GET',
     'POST',
@@ -9,6 +8,7 @@ module.exports = (req, res, verbs) => {
     'HEAD',
     'OPTIONS'
   ];
+  const typeErrMsg = 'The verbs argument must be an array of strings.';
   if (!Array.isArray(verbs)) {
     throw new Error(typeErrMsg);
   } else {
