@@ -57,12 +57,12 @@ app.use(cors);
 
 // routing middleware
 app.use('/options', options);
-app.use('/api', index);
 app.use('/api/ratings', ratings);
 app.use('/api/roms', roms);
 app.use('/api/users', users);
 app.use('/api/natures', natures);
 app.use('/api/version', version);
+app.use('/api', index);
 
 if (process.env.NODE_ENV === 'production') {
   if (cluster.isMaster) {
