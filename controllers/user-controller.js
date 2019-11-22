@@ -19,6 +19,19 @@ function checkForInvalidRoute(id) {
   return routesWithParams.includes(id);
 }
 
+const genPassword = password => {
+  let passwordHash = undefined;
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) console.log(err);
+    bcrypt.hash(password, salt, (err, hash) => {
+      if (err) console.log(err);
+      // store password as hash
+      passwordHash = hash;
+    });
+  });
+  return passwordHash;
+};
+
 Number.prototype.convertUnitOfTimeToSeconds = function(unit) {
   const value = parseInt(this, 10);
   switch (unit) {
@@ -105,14 +118,7 @@ module.exports.registerUser = async (req, res) => {
       });
     }
     // hash password
-    bcrypt.genSalt(10, (err, salt) => {
-      if (err) console.log(err);
-      bcrypt.hash(req.body.password, salt, (err, hash) => {
-        if (err) console.log(err);
-        // store password as hash
-        newUser.password = hash;
-      });
-    });
+    req.body.password = genPassword(req.body.password);
     const addedUser = await User.addUser(newUser);
     res.append(
       'Created-At-Route',
@@ -211,14 +217,7 @@ module.exports.updateUser = async (req, res) => {
       username: req.sanitize(req.body.username),
       password: req.sanitize(req.body.password)
     };
-    bcrypt.genSalt(10, (err, salt) => {
-      if (err) console.log(err);
-      bcrypt.hash(req.body.password, salt, (err, hash) => {
-        if (err) console.log(err);
-        // update password as hash
-        req.body.password = hash;
-      });
-    });
+    req.body.password = genPassword(req.body.password);
     if (req.user['_id'].toString() !== id.toString()) {
       const user = await User.getUserById(id);
       if (user) {
@@ -291,14 +290,7 @@ module.exports.patchUser = async (req, res) => {
       });
     }
     if (req.body.password) {
-      bcrypt.genSalt(10, (err, salt) => {
-        if (err) console.log(err);
-        bcrypt.hash(req.body.password, salt, (err, hash) => {
-          if (err) console.log(err);
-          // update password as hash
-          req.body.password = hash;
-        });
-      });
+      req.body.password = genPassword(req.body.password);
     }
 
     const patchQuery = { $set: req.body };
