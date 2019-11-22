@@ -49,12 +49,7 @@ module.exports.addUser = (newUser, callback) => {
 };
 
 module.exports.comparePassword = (candidatePassword, hash, callback) => {
-  return bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
-    if (err) {
-      console.log(err);
-    }
-    callback(null, isMatch);
-  });
+  return bcrypt.compare(candidatePassword, hash, callback);
 };
 
 module.exports.deleteAllUsers = callback => {

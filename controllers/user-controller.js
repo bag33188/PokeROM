@@ -150,7 +150,7 @@ module.exports.authorizeUser = async (req, res, next) => {
     return res.status(406).json({ success: false, errors: errors.array() });
   }
   try {
-    const user = await User.getUserByUsername(username);
+    const user = await User.getUserByUsername(req.body.username);
     if (!user) {
       return res.status(404).json({
         success: false,
