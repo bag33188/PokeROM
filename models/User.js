@@ -40,7 +40,7 @@ module.exports.getUserById = (id, callback) => {
 };
 
 module.exports.getUserByUsername = (username, callback) => {
-  const query = { username: username };
+  const query = { username };
   return User.findOne(query, callback);
 };
 
@@ -66,7 +66,8 @@ module.exports.getAllUsers = callback => {
 };
 
 module.exports.updateUser = (id, userData, options, callback) => {
-  return User.findOneAndUpdate({ _id: id }, userData, options, callback);
+  const query = { _id: id };
+  return User.findOneAndUpdate(query, userData, options, callback);
 };
 
 module.exports.patchUser = (id, updateQuery, callback) => {
