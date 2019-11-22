@@ -5,7 +5,7 @@ function logger(req, res, next) {
   if (process.env.NODE_ENV === 'production') {
     console.log(
       `${req.method} ${url} ${moment()
-        .subtract(7, 'hours') // pacific standard time
+        .subtract(8, 'hours') // pacific standard time
         .format('LLLL')}`
     );
   } else {
