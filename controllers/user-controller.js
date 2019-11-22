@@ -110,7 +110,7 @@ module.exports.registerUser = async (req, res) => {
       username: req.sanitize(req.body.username),
       password: req.sanitize(req.body.password)
     });
-    const user = await User.getUserByUsername(username);
+    const user = await User.getUserByUsername(newUser.username);
     if (user) {
       return res.status(500).json({
         success: false,
@@ -118,7 +118,7 @@ module.exports.registerUser = async (req, res) => {
       });
     }
     // hash password
-    req.body.password = genPassword(req.body.password);
+    req.body.password = genPassword(newUser.password);
     const addedUser = await User.addUser(newUser);
     res.append(
       'Created-At-Route',
@@ -128,7 +128,7 @@ module.exports.registerUser = async (req, res) => {
           host: req.get('host'),
           pathname: req.originalUrl
         })
-        .replace('/register', '')}/${user._id}`
+        .replace('/register', '')}/${addedUser._id}`
     );
     res.append(
       'Created-At',
