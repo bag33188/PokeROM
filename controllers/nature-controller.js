@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const url = require('url');
 const moment = require('moment');
 const { validationResult } = require('express-validator/check');
@@ -12,23 +11,6 @@ function checkForInvalidRoute(id) {
   return routesWithParams.includes(id);
 }
 
-function getNature(id, req, res, callback) {
-  return Nature.getNature(id, (err, nature) => {
-    if (err) {
-      if (err.name === 'CastError') {
-        return res.status(404).json({ success: false, ...err });
-      } else {
-        return res.status(500).json({ success: false, ...err });
-      }
-    }
-    if (!nature) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Error 404: nature not found.' });
-    }
-    return callback(nature);
-  });
-}
 
 module.exports.getNatures = async (req, res, next) => {
   try {
@@ -249,22 +231,20 @@ module.exports.naturesHeaders = (req, res) => {
 
 module.exports.natureHeaders = async (req, res, next) => {
   try {
-    let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
+    const id = req.params.id;
+    if (checkForInvalidRoute(id)) {
       return res
-        .status(404)
-        .json({ success: false, message: 'Nature not found.' });
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
     }
-    await getNature(id, req, res, () => {
-      return res.status(200);
-    });
+    const nature = await Nature.getNature(id);
+    if (!nature) {
+      return res.status(404).json({
+        success: false,
+        message: 'Nature not found'
+      });
+    }
+    return res.status(200);
   } catch (err) {
     next(err);
   }
@@ -272,36 +252,11 @@ module.exports.natureHeaders = async (req, res, next) => {
 
 module.exports.allNatures = async (req, res, next) => {
   try {
-    await Nature.postAll(natureData, async (err, natures) => {
-      try {
-        if (err) {
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!natures) {
-          return res.status(502).json({
-            success: false,
-            message: 'Bad gateway.'
-          });
-        }
-        await Nature.getNatures((err, natures) => {
-          if (err) {
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!natures) {
-            return res.status(502).json({
-              success: false,
-              message: 'Bad gateway.'
-            });
-          }
-          clearCache(req);
-          return res.status(201).json(natures);
-        });
-      } catch (err) {
-        next(err);
-      }
-    });
+    await Nature.postAll(natureData);
+    const natures = await Nature.getNatures();
+    return res.status(201).json(natures);
   } catch (err) {
-    next(err);
+    return res.status(500).json({ success: false, ...err });
   }
 };
 
