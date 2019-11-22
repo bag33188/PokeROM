@@ -5,8 +5,9 @@ const mongoose = require('mongoose');
  * uuid.v1()
  * uuid.v4()
  */
+
 const Schema = mongoose.Schema;
-// create mongoose schema
+
 const versionSchema = new Schema(
   {
     api_version: String
@@ -17,7 +18,6 @@ const versionSchema = new Schema(
   }
 );
 
-// define version model
 const Version = (module.exports = mongoose.model('Version', versionSchema));
 
 module.exports.getApiVersion = apiVersion => {
