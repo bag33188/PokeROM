@@ -25,6 +25,27 @@ const fields = [
   'logo_url',
   'box_art_url'
 ];
+const romObject = req => {
+  return {
+    user_id: req.user['_id'],
+    order_number: req.body.order_number,
+    rom_type: req.sanitize(req.body.rom_type),
+    file_name: req.sanitize(req.body.file_name),
+    file_size: req.body.file_size,
+    file_type: req.sanitize(req.body.file_type),
+    download_link: req.sanitize(req.body.download_link),
+    generation: req.body.generation,
+    box_art_url: req.sanitize(req.body.box_art_url),
+    game_name: req.sanitize(req.body.game_name),
+    region: req.sanitize(req.body.region),
+    platform: req.sanitize(req.body.platform),
+    description: req.sanitize(req.body.description),
+    genre: req.sanitize(req.body.genre) || null,
+    date_released: req.sanitize(req.body.date_released),
+    logo_url: req.sanitize(req.body.logo_url),
+    is_favorite: req.body.is_favorite
+  };
+};
 
 // ---------------------------------------------------------
 // UTILITY FUNCTIONS
@@ -157,25 +178,7 @@ module.exports.addRom = async (req, res) => {
     if (req.body.rom_type) {
       req.body.rom_type = req.body.rom_type.toLowerCase();
     }
-    const newRom = new Rom({
-      user_id: req.user['_id'],
-      order_number: req.body.order_number,
-      rom_type: req.sanitize(req.body.rom_type),
-      file_name: req.sanitize(req.body.file_name),
-      file_size: req.body.file_size,
-      file_type: req.sanitize(req.body.file_type),
-      download_link: req.sanitize(req.body.download_link),
-      generation: req.body.generation,
-      box_art_url: req.sanitize(req.body.box_art_url),
-      game_name: req.sanitize(req.body.game_name),
-      region: req.sanitize(req.body.region),
-      platform: req.sanitize(req.body.platform),
-      description: req.sanitize(req.body.description),
-      genre: req.sanitize(req.body.genre) || null,
-      date_released: req.sanitize(req.body.date_released),
-      logo_url: req.sanitize(req.body.logo_url),
-      is_favorite: req.body.is_favorite
-    });
+    const newRom = new Rom(romObject(req));
     const rom = await Rom.addRom(newRom);
     res.append(
       'Created-At-Route',
@@ -221,25 +224,7 @@ module.exports.updateRom = async (req, res) => {
     if (req.body.rom_type) {
       req.body.rom_type = req.body.rom_type.toLowerCase();
     }
-    const updateRomData = {
-      user_id: req.user['_id'],
-      order_number: req.body.order_number,
-      rom_type: req.sanitize(req.body.rom_type),
-      file_name: req.sanitize(req.body.file_name),
-      file_size: req.body.file_size,
-      file_type: req.sanitize(req.body.file_type),
-      download_link: req.sanitize(req.body.download_link),
-      generation: req.body.generation,
-      box_art_url: req.sanitize(req.body.box_art_url),
-      game_name: req.sanitize(req.body.game_name),
-      region: req.sanitize(req.body.region),
-      platform: req.sanitize(req.body.platform),
-      description: req.sanitize(req.body.description),
-      genre: req.sanitize(req.body.genre) || null,
-      date_released: req.sanitize(req.body.date_released),
-      logo_url: req.sanitize(req.body.logo_url),
-      is_favorite: req.body.is_favorite
-    };
+    const updateRomData = romObject(req);
     const rom = await Rom.getRomById(id);
     if (!rom) {
       return res.status(404).json({
