@@ -22,7 +22,7 @@ async function auth(req, res, next) {
         } else if (!user) {
           return res.status(401).json({
             success: false,
-            message: 'Error 401: unauthorized.'
+            message: 'Unauthorized.'
           });
         } else {
           req.user = user;
