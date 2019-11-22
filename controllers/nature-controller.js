@@ -4,6 +4,7 @@ const { validationResult } = require('express-validator/check');
 const Nature = require('../models/Nature');
 const [, , allNaturesData] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');
+const universal = require('../routes/universal');
 
 const routesWithParams = ['all'];
 const fields = ['_id', 'name', 'up', 'down', 'flavor', 'usage'];
@@ -279,15 +280,5 @@ module.exports.allNatures = async (req, res) => {
 
 module.exports.all = (req, res) => {
   const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'];
-  if (methods.includes(req.method)) {
-    const glue = methods.length > 1 ? ', ' : '';
-    res.set('Allow', methods.join(glue));
-    return res
-      .status(405)
-      .json({ success: false, message: 'Method not allowed.' });
-  } else {
-    return res
-      .status(501)
-      .json({ success: false, message: 'Method not implemented.' });
-  }
+  return universal(req, res, methods);
 };

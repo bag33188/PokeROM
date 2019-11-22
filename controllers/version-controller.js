@@ -1,6 +1,7 @@
 const convert = require('xml-js');
 const swaggerDoc = require('../docs/swagger-doc');
 const Version = require('../models/Version');
+const universal = require('../routes/universal');
 
 module.exports.getVersion = (req, res) => {
   const [, version] = swaggerDoc;
@@ -23,15 +24,5 @@ module.exports.getVersion = (req, res) => {
 
 module.exports.all = (req, res) => {
   const methods = ['GET', 'HEAD'];
-  if (methods.includes(req.method)) {
-    const glue = methods.length > 1 ? ', ' : '';
-    res.set('Allow', methods.join(glue));
-    return res
-      .status(405)
-      .json({ success: false, message: 'Method not allowed.' });
-  } else {
-    return res
-      .status(501)
-      .json({ success: false, message: 'Method not implemented.' });
-  }
+  return universal(req, res, methods);
 };

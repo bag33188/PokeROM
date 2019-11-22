@@ -1,4 +1,5 @@
 const url = require('url');
+const universal = require('../routes/universal');
 
 module.exports.options = (req, res) => {
   const baseUrl =
@@ -11,15 +12,5 @@ module.exports.options = (req, res) => {
 
 module.exports.all = (req, res) => {
   const methods = ['OPTIONS', 'HEAD'];
-  if (methods.includes(req.method)) {
-    const glue = methods.length > 1 ? ', ' : '';
-    res.set('Allow', methods.join(glue));
-    return res
-      .status(405)
-      .json({ success: false, message: 'Method not allowed.' });
-  } else {
-    return res
-      .status(501)
-      .json({ success: false, message: 'Method not implemented.' });
-  }
+  return universal(req, res, methods);
 };
