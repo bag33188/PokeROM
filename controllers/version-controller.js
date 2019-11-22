@@ -23,6 +23,6 @@ module.exports.getVersion = (req, res) => {
 };
 
 module.exports.all = (req, res) => {
-  const methods = ['GET', 'HEAD'];
-  return universal(req, res, methods);
+  const verbs = ['GET', 'HEAD'];
+  return universal(req, res, verbs);
 };

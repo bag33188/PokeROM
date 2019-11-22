@@ -11,6 +11,6 @@ module.exports.options = (req, res) => {
 };
 
 module.exports.all = (req, res) => {
-  const methods = ['OPTIONS', 'HEAD'];
-  return universal(req, res, methods);
+  const verbs = ['OPTIONS', 'HEAD'];
+  return universal(req, res, verbs);
 };
