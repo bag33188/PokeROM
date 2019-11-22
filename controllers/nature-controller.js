@@ -11,23 +11,12 @@ function checkForInvalidRoute(id) {
   return routesWithParams.includes(id);
 }
 
-
 module.exports.getNatures = async (req, res, next) => {
   try {
-    await Nature.getNatures((err, natures) => {
-      if (err) {
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!natures) {
-        return res.status(502).json({
-          success: false,
-          message: 'Bad gateway.'
-        });
-      }
-      return res.status(200).json(natures);
-    });
+    const natures = await Nature.getNatures();
+    return res.status(200).json(natures);
   } catch (err) {
-    next(err);
+    return res.status(500).json({ success: false, ...err });
   }
 };
 
