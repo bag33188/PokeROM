@@ -24,17 +24,6 @@ httpRouter.get(
   UserController.getUser
 );
 
-httpRouter.get(
-  '/:username',
-  auth,
-  [
-    sanitizeParam('username')
-      .trim()
-      .escape()
-  ],
-  UserController.getUserByUsername
-);
-
 httpRouter.post(
   '/register',
   [

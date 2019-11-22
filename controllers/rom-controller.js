@@ -50,11 +50,7 @@ function convertToBoolean(value) {
 }
 
 function checkForInvalidRoute(id) {
-  if (routesWithParams.includes(id)) {
-    return true;
-  } else {
-    return false;
-  }
+  return routesWithParams.includes(id);
 }
 
 // ---------------------------------------------------------

@@ -11,7 +11,13 @@ const Rom = require('../models/Rom');
 const [coreRoms, romHacks] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');
 
+const routesWithParams = ['authenticate', 'register'];
+
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
+
+function checkForInvalidRoute(id) {
+  return routesWithParams.includes(id);
+}
 
 Number.prototype.convertUnitOfTimeToSeconds = function(unit) {
   const value = parseInt(this, 10);
@@ -42,25 +48,6 @@ Number.prototype.convertUnitOfTimeToSeconds = function(unit) {
   }
 };
 
-const routesWithParams = ['authenticate', 'register'];
-
-function getUserById(id, req, res, callback) {
-  return User.getUserById(id, (err, user) => {
-    if (err) {
-      if (err.name === 'CastError') {
-        return res.status(404).json({ success: false, ...err });
-      }
-      return res.status(500).json({ success: false, ...err });
-    }
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'Error 404: user not found.' });
-    }
-    return callback(user);
-  });
-}
-
 module.exports.getUsers = async (req, res) => {
   try {
     const users = await User.getAllUsers();
@@ -72,90 +59,30 @@ module.exports.getUsers = async (req, res) => {
 
 module.exports.getUser = async (req, res, next) => {
   try {
-    let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      req.params.username = req.params.id;
-      return await this.getUserByUsername(req, res, next);
-    }
-    if (req.user['_id'].toString() === id.toString()) {
-      await User.getUserById(id, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!user) {
-          return res
-            .status(404)
-            .json({ success: false, message: 'Error 404: user not found.' });
-        }
-        return res.status(200).json(user);
-      });
-    } else {
-      await getUserById(id, req, res, () => {
-        return res.status(403).json({
-          success: false,
-          message: `You cannot get this user's data.`
-        });
-      });
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
-module.exports.getUserByUsername = async (req, res, next) => {
-  try {
-    const username = req.params.username;
-    if (routesWithParams.includes(username)) {
+    const id = req.params.id;
+    if (checkForInvalidRoute(id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
-    if (req.user.username === username) {
-      await User.getUserByUsername(username, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!user) {
-          return res
-            .status(404)
-            .json({ success: false, message: 'Error 404: user not found.' });
-        }
-        return res.status(200).json(user);
-      });
-    } else {
-      await User.getUserByUsername(username, (err, user) => {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!user) {
-          return res
-            .status(404)
-            .json({ success: false, message: 'Error 404: user not found.' });
-        }
-        return res.status(403).json({
-          success: false,
-          message: `You cannot get this user's data.`
-        });
+    if (req.user._id.toString() !== id.toString()) {
+      return res.status(403).json({
+        success: false,
+        message: `You cannot get this user's data.`
       });
     }
+    const user = await User.getUserById(id);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'Error 404: user not found.' });
+    }
+    return res.status(200).json(user);
   } catch (err) {
-    next(err);
+    if (err.name === 'CastError') {
+      return res.status(404).json({ success: false, ...err });
+    }
+    return res.status(500).json({ success: false, ...err });
   }
 };
 
@@ -274,6 +201,11 @@ module.exports.updateUser = async (req, res, next) => {
   }
   try {
     const id = req.params.id;
+    if (checkForInvalidRoute(id)) {
+      return res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
+    }
     const userData = {
       name: req.sanitize(req.body.name) || null,
       username: req.sanitize(req.body.username),
@@ -323,6 +255,11 @@ module.exports.patchUser = async (req, res, next) => {
   }
   try {
     const id = req.params.id;
+    if (checkForInvalidRoute(id)) {
+      return res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
+    }
     let isValid = true;
     for (const field of Object.keys(req.body)) {
       if (!['_id', 'name', 'username', 'password'].includes(field)) {
@@ -365,7 +302,7 @@ module.exports.patchUser = async (req, res, next) => {
     }
 
     const patchQuery = { $set: req.body };
-    await User.patchUser(patchQuery);
+    await User.patchUser(id, patchQuery);
 
     const user = await User.getUserById(id);
     clearCache(req);
@@ -384,116 +321,54 @@ module.exports.patchUser = async (req, res, next) => {
 
 module.exports.deleteUsers = async (req, res, next) => {
   try {
-    await User.deleteAllUsers(async (err, status) => {
-      try {
-        if (err) {
-          if (err.name === 'CastError') {
-            return res.status(404).json({ success: false, ...err });
-          }
-          return res.status(500).json({ success: false, ...err });
-        }
-        if (!status) {
-          return res.status(502).json({
-            success: false,
-            message: 'Bad gateway.'
-          });
-        }
-        await Rom.deleteAllRoms({}, (err, romsStatus) => {
-          if (err) {
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!romsStatus) {
-            return res.status(500).json({
-              success: false
-            });
-          }
-          clearCache(req);
-          return res.status(200).json({
-            success: true,
-            message: 'All users successfully deleted!',
-            ...status
-          });
-        });
-      } catch (err) {
-        next(err);
-      }
+    await Rom.deleteAllRoms({});
+    await User.deleteAllUsers();
+    clearCache(req);
+    return res.status(200).json({
+      success: true,
+      message: 'All users successfully deleted!'
     });
   } catch (err) {
-    next(err);
+    if (err.name === 'CastError') {
+      return res.status(404).json({ success: false, ...err });
+    }
+    return res.status(500).json({ success: false, ...err });
   }
 };
 
 module.exports.deleteUser = async (req, res, next) => {
   try {
-    let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
+    const id = req.params.id;
+    if (checkForInvalidRoute(id)) {
       return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
     }
-    if (req.user['_id'].toString() === id.toString()) {
-      await getUserById(id, req, res, async () => {
-        try {
-          await User.deleteUser(id, async (err, status) => {
-            try {
-              if (err) {
-                if (err.name === 'CastError') {
-                  return res.status(404).json({ success: false, ...err });
-                }
-                return res.status(500).json({ success: false, ...err });
-              }
-              if (!status) {
-                return res.status(502).json({
-                  success: false,
-                  message: 'Bad gateway.'
-                });
-              }
-              const query = { user_id: id };
-              await Rom.deleteAllRoms(query, (err, romsStatus) => {
-                if (err) {
-                  if (err.name === 'CastError') {
-                    return res.status(404).json({ success: false, ...err });
-                  }
-                  return res.status(500).json({ success: false, ...err });
-                }
-                if (!romsStatus) {
-                  return res.status(404).json({
-                    success: false,
-                    message: 'Error 404: user not found.'
-                  });
-                }
-                clearCache(req);
-                return res.status(200).json({
-                  success: true,
-                  message: 'User successfully deleted!',
-                  ...status
-                });
-              });
-            } catch (err) {
-              next(err);
-            }
-          });
-        } catch (err) {
-          next(err);
-        }
-      });
-    } else {
-      await getUserById(id, req, res, () => {
-        return res.status(403).json({
-          success: false,
-          message: 'You cannot delete this user.'
-        });
+    if (req.user['_id'].toString() !== id.toString()) {
+      return res.status(403).json({
+        success: false,
+        message: 'You cannot delete this user.'
       });
     }
+    const user = await User.getUserById(id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Error 404: user not found.'
+      });
+    }
+    const query = { user_id: id };
+    await Rom.deleteAllRoms(query);
+    clearCache(req);
+    return res.status(200).json({
+      success: true,
+      message: 'User successfully deleted!'
+    });
   } catch (err) {
-    next(err);
+    if (err.name === 'CastError') {
+      return res.status(404).json({ success: false, ...err });
+    }
+    return res.status(500).json({ success: false, ...err });
   }
 };
 
@@ -503,22 +378,19 @@ module.exports.usersHeaders = (req, res) => {
 
 module.exports.userHeaders = async (req, res, next) => {
   try {
-    let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
+    const id = req.params.id;
+    if (checkForInvalidRoute(id)) {
+      return res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
+    }
+    const user = await User.getUserById(id);
+    if (!user) {
       return res
         .status(404)
-        .json({ success: false, message: 'ROM not found.' });
+        .json({ success: false, message: 'User not found.' });
     }
-    await getUserById(id, req, res, () => {
-      return res.status(200);
-    });
+    return res.status(200);
   } catch (err) {
     next(err);
   }

@@ -74,6 +74,7 @@ module.exports.updateUser = (id, userData, options, callback) => {
   return User.findOneAndUpdate({ _id: id }, userData, options, callback);
 };
 
-module.exports.patchUser = (query, updateQuery, callback) => {
-  return User.updateOne(query, updateQuery, callback);
+module.exports.patchUser = (id, updateQuery, callback) => {
+  const searchQuery = { _id: id };
+  return User.updateOne(searchQuery, updateQuery, callback);
 };
