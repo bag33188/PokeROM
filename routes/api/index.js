@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const html = `
+const htmlDoc = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -32,7 +32,7 @@ const html = `
 `;
 
 router.all('/*', (req, res) => {
-  res.status(300).send(html);
+  res.status(300).send(htmlDoc);
 });
 
 module.exports = router;
