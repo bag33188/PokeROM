@@ -15,6 +15,7 @@ const cors = require('./middleware/cors');
 const swaggerDoc = require('./docs/swagger-doc');
 const connectDB = require('./config/db');
 const passportConfig = require('./config/passport');
+const index = require('./routes/api');
 const roms = require('./routes/api/roms');
 const users = require('./routes/api/users');
 const version = require('./routes/api/version');
@@ -61,6 +62,7 @@ app.use('/api/roms', roms);
 app.use('/api/users', users);
 app.use('/api/natures', natures);
 app.use('/api/version', version);
+app.use('/api', index);
 
 if (process.env.NODE_ENV === 'production') {
   if (cluster.isMaster) {
