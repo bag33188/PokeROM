@@ -253,11 +253,11 @@ module.exports.updateRom = async (req, res) => {
         message: `You cannot update this user's ROM.`
       });
     }
-    let updatedRom = await Rom.updateRom(id, updateRomData, {});
-    updatedRom = { _id: rom._id, ...updatedRom };
+    await Rom.updateRom(id, updateRomData, {});
+    const updatedRom = await Rom.getRomById(id);
     updatedRom.date_released = new Date(updatedRom.date_released);
     clearCache(req);
-    return res.status(200).json(rom);
+    return res.status(200).json(updatedRom);
   } catch (err) {
     switch (err.name) {
       case 'CastError':

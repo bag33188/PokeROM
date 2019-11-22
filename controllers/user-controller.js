@@ -236,8 +236,8 @@ module.exports.updateUser = async (req, res) => {
       });
     }
     await User.updateUser(id, userData, {});
-    clearCache(req);
     const updatedUser = await User.getUserById(id);
+    clearCache(req);
     return res.status(200).json(updatedUser);
   } catch (err) {
     switch (err.name) {
