@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 function setDate(offset) {
+  if (typeof offset !== 'number') {
+    throw new Error('The offset argument must be a number.');
+  }
   const now = new Date();
   now.setHours(now.getHours() - offset);
   return now;
