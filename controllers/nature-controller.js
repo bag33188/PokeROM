@@ -16,7 +16,9 @@ module.exports.getNatures = async (req, res) => {
     const natures = await Nature.getNatures();
     return res.status(200).json(natures);
   } catch (err) {
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -32,14 +34,18 @@ module.exports.getNature = async (req, res) => {
     if (!nature) {
       return res
         .status(404)
-        .json({ success: false, message: 'Error 404: nature not found.' });
+        .json({ success: false, message: 'Nature not found.' });
     }
     return res.status(200).json(nature);
   } catch (err) {
     if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
     }
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -75,9 +81,13 @@ module.exports.addNature = async (req, res) => {
     return res.status(201).json(newNature);
   } catch (err) {
     if (err.name === 'ValidationError') {
-      return res.status(406).json({ success: false, ...err });
+      return res
+        .status(406)
+        .json({ success: false, message: 'Request body is invalid.' });
     } else {
-      return res.status(500).json({ success: false, ...err });
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal server error.' });
     }
   }
 };
@@ -106,7 +116,7 @@ module.exports.updateNature = async (req, res) => {
     if (!nature) {
       return res.status(404).json({
         success: false,
-        message: 'Error 404: nature not found.'
+        message: 'Nature not found.'
       });
     }
     const updatedNature = Nature.getNature(id);
@@ -115,11 +125,17 @@ module.exports.updateNature = async (req, res) => {
   } catch (err) {
     switch (err.name) {
       case 'CastError':
-        return res.status(404).json({ success: false, ...err });
+        return res
+          .status(404)
+          .json({ success: false, message: 'Nature not found.' });
       case 'ValidationError':
-        return res.status(406).json({ success: false, ...err });
+        return res
+          .status(406)
+          .json({ success: false, message: 'Request body is invalid.' });
       default:
-        return res.status(500).json({ success: false, ...err });
+        return res
+          .status(500)
+          .json({ success: false, message: 'Internal server error.' });
     }
   }
 };
@@ -165,11 +181,11 @@ module.exports.patchNature = async (req, res) => {
   } catch (err) {
     switch (err.name) {
       case 'CastError':
-        return res.status(404).json({ success: false, ...err });
+        return res.status(404).json({ success: false });
       case 'ValidationError':
-        return res.status(406).json({ success: false, ...err });
+        return res.status(406).json({ success: false });
       default:
-        return res.status(500).json({ success: false, ...err });
+        return res.status(500).json({ success: false });
     }
   }
 };
@@ -194,9 +210,13 @@ module.exports.deleteNature = async (req, res) => {
     return res.status(200).json({ success: true });
   } catch (err) {
     if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
+      return res
+        .status(404)
+        .json({ success: false, message: 'Nature not found.' });
     } else {
-      return res.status(500).json({ success: false, ...err });
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal server error.' });
     }
   }
 };
@@ -210,7 +230,9 @@ module.exports.deleteNatures = async (req, res) => {
       message: 'All Natures successfully deleted!'
     });
   } catch (err) {
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -235,7 +257,9 @@ module.exports.natureHeaders = async (req, res) => {
     }
     return res.status(200);
   } catch (err) {
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -245,7 +269,9 @@ module.exports.allNatures = async (req, res) => {
     const natures = await Nature.getNatures();
     return res.status(201).json(natures);
   } catch (err) {
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 

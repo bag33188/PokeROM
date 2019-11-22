@@ -61,7 +61,7 @@ module.exports.getRoms = async (req, res) => {
   try {
     const getAllCore = req.query['core'];
     const getAllHacks = req.query['hacks'];
-    let query;
+    let query = {};
     if (convertToBoolean(getAllCore) && !convertToBoolean(getAllHacks)) {
       query = { user_id: req.user['_id'], rom_type: 'core' };
     } else if (convertToBoolean(getAllHacks) && !convertToBoolean(getAllCore)) {
@@ -92,7 +92,9 @@ module.exports.getRoms = async (req, res) => {
     );
     return res.status(200).json(paginationFormulaResult);
   } catch (err) {
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -108,14 +110,14 @@ module.exports.getRom = async (req, res) => {
     if (!rom) {
       return res
         .status(404)
-        .json({ success: false, message: 'Error 404: ROM not found.' });
+        .json({ success: false, message: 'ROM not found.' });
     }
     if (req.user['_id'].toString() === rom.user_id.toString()) {
       return res.status(200).json(rom);
     } else {
       return res.status(403).json({
         success: false,
-        message: `You cannot get this user's ROM.`
+        message: `You cannot retrieve this user's ROM.`
       });
     }
   } catch (err) {
@@ -124,6 +126,9 @@ module.exports.getRom = async (req, res) => {
         .status(404)
         .json({ success: false, message: 'ROM not found.' });
     }
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -175,9 +180,13 @@ module.exports.addRom = async (req, res) => {
     return res.status(201).json(rom);
   } catch (err) {
     if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
     }
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -220,13 +229,13 @@ module.exports.updateRom = async (req, res) => {
     if (!rom) {
       return res.status(404).json({
         success: false,
-        message: 'Error 404: ROM not found.'
+        message: 'ROM not found.'
       });
     }
     if (rom.user_id.toString() !== req.user._id.toString()) {
       return await res.status(401).json({
         success: false,
-        message: `You can't update this user's ROM.`
+        message: `You cannot update this user's ROM.`
       });
     }
     let updatedRom = await Rom.updateRom(id, updateRomData, {});
@@ -237,11 +246,17 @@ module.exports.updateRom = async (req, res) => {
   } catch (err) {
     switch (err.name) {
       case 'CastError':
-        return res.status(404).json({ success: false, ...err });
+        return res
+          .status(404)
+          .json({ success: false, message: 'ROM not found.' });
       case 'ValidationError':
-        return res.status(406).json({ success: false, ...err });
+        return res
+          .status(406)
+          .json({ success: false, message: 'Request body is invalid.' });
       default:
-        return res.status(500).json({ success: false, ...err });
+        return res
+          .status(500)
+          .json({ success: false, message: 'Internal server error.' });
     }
   }
 };
@@ -286,7 +301,7 @@ module.exports.patchRom = async (req, res) => {
     if (rom.user_id.toString() !== req.user._id.toString()) {
       return await res.status(401).json({
         success: false,
-        message: `You can't patch this user's ROM.`
+        message: `You cannot patch this user's ROM.`
       });
     }
     const query = { $set: req.body };
@@ -297,11 +312,17 @@ module.exports.patchRom = async (req, res) => {
   } catch (err) {
     switch (err.name) {
       case 'CastError':
-        return res.status(404).json({ success: false, ...err });
+        return res
+          .status(404)
+          .json({ success: false, message: 'ROM not found.' });
       case 'ValidationError':
-        return res.status(406).json({ success: false, ...err });
+        return res
+          .status(406)
+          .json({ success: false, message: 'Request body is invalid.' });
       default:
-        return res.status(500).json({ success: false, ...err });
+        return res
+          .status(500)
+          .json({ success: false, message: 'Internal server error.' });
     }
   }
 };
@@ -328,9 +349,13 @@ module.exports.deleteRom = async (req, res) => {
     });
   } catch (err) {
     if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
     }
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -395,9 +420,13 @@ module.exports.romHeaders = async (req, res) => {
     }
   } catch (err) {
     if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
+      return res
+        .status(404)
+        .json({ success: false, message: 'ROM not found.' });
     }
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -412,7 +441,9 @@ module.exports.coreRoms = async (req, res) => {
     const roms = await Rom.getAllRoms(query);
     return res.status(200).json(roms);
   } catch (err) {
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -423,7 +454,9 @@ module.exports.romHacks = async (req, res) => {
     const roms = await Rom.getAllRoms(query);
     return res.status(200).json(roms);
   } catch (err) {
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 

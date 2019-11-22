@@ -52,7 +52,9 @@ module.exports.getUsers = async (req, res) => {
     const users = await User.getAllUsers();
     return res.status(200).json(users);
   } catch (err) {
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -74,14 +76,18 @@ module.exports.getUser = async (req, res) => {
     if (!user) {
       return res
         .status(404)
-        .json({ success: false, message: 'Error 404: user not found.' });
+        .json({ success: false, message: 'User not found.' });
     }
     return res.status(200).json(user);
   } catch (err) {
     if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found.' });
     }
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -132,9 +138,13 @@ module.exports.registerUser = async (req, res) => {
       .json({ success: true, message: 'User successfully registered!' });
   } catch (err) {
     if (err.name === 'ValidationError') {
-      return res.status(406).json({ success: false, ...err });
+      return res
+        .status(406)
+        .json({ success: false, message: 'Request body is invalid.' });
     }
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -148,7 +158,7 @@ module.exports.authorizeUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: 'Error: User not found.'
+        message: 'User not found.'
       });
     }
     const passwordCheck = await User.comparePassword(
@@ -179,11 +189,17 @@ module.exports.authorizeUser = async (req, res) => {
   } catch (err) {
     switch (err.name) {
       case 'CastError':
-        return res.status(404).json({ success: false, ...err });
+        return res
+          .status(404)
+          .json({ success: false, message: 'User not found.' });
       case 'ValidationError':
-        return res.status(406).json({ success: false, ...err });
+        return res
+          .status(406)
+          .json({ success: false, message: 'Request body is invalid.' });
       default:
-        return res.status(500).json({ success: false, ...err });
+        return res
+          .status(500)
+          .json({ success: false, message: 'Internal server error.' });
     }
   }
 };
@@ -227,11 +243,17 @@ module.exports.updateUser = async (req, res) => {
   } catch (err) {
     switch (err.name) {
       case 'CastError':
-        return res.status(404).json({ success: false, ...err });
+        return res
+          .status(404)
+          .json({ success: false, message: 'User not found.' });
       case 'ValidationError':
-        return res.status(406).json({ success: false, ...err });
+        return res
+          .status(406)
+          .json({ success: false, message: 'Request body is invalid.' });
       default:
-        return res.status(500).json({ success: false, ...err });
+        return res
+          .status(500)
+          .json({ success: false, message: 'Internal server error.' });
     }
   }
 };
@@ -292,11 +314,17 @@ module.exports.patchUser = async (req, res) => {
   } catch (err) {
     switch (err.name) {
       case 'CastError':
-        return res.status(404).json({ success: false, ...err });
+        return res
+          .status(404)
+          .json({ success: false, message: 'User not found.' });
       case 'ValidationError':
-        return res.status(406).json({ success: false, ...err });
+        return res
+          .status(406)
+          .json({ success: false, message: 'Request body is invalid.' });
       default:
-        return res.status(500).json({ success: false, ...err });
+        return res
+          .status(500)
+          .json({ success: false, message: 'Internal server error.' });
     }
   }
 };
@@ -312,9 +340,13 @@ module.exports.deleteUsers = async (req, res) => {
     });
   } catch (err) {
     if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found.' });
     }
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -336,7 +368,7 @@ module.exports.deleteUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: 'Error 404: user not found.'
+        message: 'User not found.'
       });
     }
     await User.deleteUser(id);
@@ -349,9 +381,13 @@ module.exports.deleteUser = async (req, res) => {
     });
   } catch (err) {
     if (err.name === 'CastError') {
-      return res.status(404).json({ success: false, ...err });
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found.' });
     }
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -375,7 +411,9 @@ module.exports.userHeaders = async (req, res) => {
     }
     return res.status(200);
   } catch (err) {
-    return res.status(500).json({ success: false, ...err });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
