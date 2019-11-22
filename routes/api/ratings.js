@@ -38,7 +38,6 @@ router.get(
   ],
   auth,
   cache(20),
-
   RatingController.getRating
 );
 
