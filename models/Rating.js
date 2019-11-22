@@ -41,7 +41,7 @@ module.exports = mongoose.model('Rating', ratingSchema);
 const Rating = module.exports;
 
 module.exports.getRatings = (callback, limit) => {
-  Rating.find(callback)
+  return Rating.find(callback)
     .sort({
       rating: 1,
       date_time: -1
@@ -50,17 +50,17 @@ module.exports.getRatings = (callback, limit) => {
 };
 
 module.exports.getRating = (id, callback) => {
-  Rating.findById(id, callback);
+  return Rating.findById(id, callback);
 };
 
 module.exports.deleteRating = (query, callback) => {
-  Rating.deleteOne(query, callback);
+  return Rating.deleteOne(query, callback);
 };
 
 module.exports.deleteAllRatings = callback => {
-  Rating.deleteMany(callback);
+  return Rating.deleteMany(callback);
 };
 
 module.exports.addRating = (newRating, callback) => {
-  Rating.create(newRating, callback);
+  return Rating.create(newRating, callback);
 };
