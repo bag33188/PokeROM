@@ -357,6 +357,7 @@ module.exports.deleteUser = async (req, res) => {
         message: 'Error 404: user not found.'
       });
     }
+    await User.deleteUser(id);
     const query = { user_id: id };
     await Rom.deleteAllRoms(query);
     clearCache(req);
