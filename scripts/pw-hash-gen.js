@@ -59,17 +59,18 @@ class PwHashGen {
    */
   [genHash](pw) {
     // generate salt using bcrypt
-    bcrypt.genSalt(10, (err, salt) => {
-      // check for errors
-      if (err) console.log(err);
-      // generate password hash using generated salt
-      bcrypt.hash(pw, salt, (err, hash) => {
-        // check for errors
-        if (err) console.log(err);
-        // output hashed password
-        console.log(`Hashed password: ${hash}`);
-      });
-    });
+    bcrypt
+      .genSalt(10)
+      .then(salt => {
+        // generate password hash using generated salt
+        bcrypt.hash(pw, salt, (err, hash) => {
+          // check for errors
+          if (err) console.log(err);
+          // output hashed password
+          console.log(`Hashed password: ${hash}`);
+        });
+      })
+      .catch(err => console.log(err));
   }
 }
 
