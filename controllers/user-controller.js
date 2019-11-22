@@ -1,6 +1,7 @@
 const moment = require('moment');
 const config = require('config');
 const url = require('url');
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator/check');
@@ -60,22 +61,12 @@ function getUserById(id, req, res, callback) {
   });
 }
 
-module.exports.getUsers = async (req, res, next) => {
+module.exports.getUsers = async (req, res) => {
   try {
-    await User.getAllUsers((err, users) => {
-      if (err) {
-        return res.status(500).json({ success: false, ...err });
-      }
-      if (!users) {
-        return res.status(502).json({
-          success: false,
-          message: 'Bad gateway.'
-        });
-      }
-      return res.status(200).json(users);
-    });
+    const users = await User.getAllUsers();
+    return res.status(200).json(users);
   } catch (err) {
-    next(err);
+    return res.status(500).json({ success: false, ...err });
   }
 };
 
@@ -169,274 +160,169 @@ module.exports.getUserByUsername = async (req, res, next) => {
 };
 
 module.exports.registerUser = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(406).json({ success: false, errors: errors.array() });
+  }
   try {
     const newUser = new User({
       name: req.sanitize(req.body.name) || null,
       username: req.sanitize(req.body.username),
       password: req.sanitize(req.body.password)
     });
-    const { name, username, password } = newUser;
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(406).json({ success: false, errors: errors.array() });
+    const user = await User.getUserByUsername(username);
+    if (user) {
+      return res.status(500).json({
+        success: false,
+        message: 'User with username already exists.'
+      });
     }
-    let isValid = true;
-    for (const field of Object.keys(req.body)) {
-      if (!['_id', 'name', 'username', 'password'].includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = !(field === 'password' && pwdRegex.test(field));
-        req.sanitize(field);
-      }
-    }
-    if (!isValid) {
-      return res
-        .status(406)
-        .json({ success: false, message: 'Body contains invalid fields.' });
-    }
-    await User.addUser(
-      newUser,
-      async (err, user) => {
-        try {
-          if (err) {
-            if (err.name === 'ValidationError') {
-              return res.status(406).json({ success: false, ...err });
-            }
-            return res.status(500).json({ success: false, ...err });
-          }
-          if (!user) {
-            return res.status(500).json({
-              success: false
-            });
-          }
-          await Rom.postCore(coreRoms, user, (err, roms) => {
-            if (err) {
-              return res.status(500).json({ success: false, ...err });
-            }
-            if (!roms) {
-              return res
-                .status(502)
-                .json({ success: false, message: 'Bad gateway.' });
-            }
-            return console.log(`Core ROMs added for user '${user.username}'.`);
-          });
-          await Rom.postHacks(romHacks, user, (err, roms) => {
-            if (err) {
-              return res.status(500).json({ success: false, ...err });
-            }
-            if (!roms) {
-              return res
-                .status(502)
-                .json({ success: false, message: 'Bad gateway.' });
-            }
-            return console.log(`ROM Hacks added for user '${user.username}'.`);
-          });
-          res.append(
-            'Created-At-Route',
-            `${url
-              .format({
-                protocol: req.protocol,
-                host: req.get('host'),
-                pathname: req.originalUrl
-              })
-              .replace('/register', '')}/${user._id}`
-          );
-          res.append(
-            'Created-At',
-            moment()
-              .subtract(7, 'hours')
-              .format()
-          );
-          clearCache(req);
-          return res
-            .status(201)
-            .json({ success: true, message: 'User successfully registered!' });
-        } catch (err) {
-          next(err);
-        }
-      },
-      () => {
-        return res.status(500).json({
-          success: false,
-          message: 'User with username already exists.'
-        });
-      }
+    // hash password
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) console.log(err);
+      bcrypt.hash(req.body.password, salt, (err, hash) => {
+        if (err) console.log(err);
+        // store password as hash
+        newUser.password = hash;
+      });
+    });
+    const addedUser = await User.addUser(newUser);
+    res.append(
+      'Created-At-Route',
+      `${url
+        .format({
+          protocol: req.protocol,
+          host: req.get('host'),
+          pathname: req.originalUrl
+        })
+        .replace('/register', '')}/${user._id}`
     );
+    res.append(
+      'Created-At',
+      moment()
+        .subtract(7, 'hours')
+        .format()
+    );
+    await Rom.postCore(coreRoms, addedUser);
+    await Rom.postHacks(romHacks, addedUser);
+    clearCache(req);
+    return res
+      .status(201)
+      .json({ success: true, message: 'User successfully registered!' });
   } catch (err) {
-    next(err);
+    if (err.name === 'ValidationError') {
+      return res.status(406).json({ success: false, ...err });
+    }
+    return res.status(500).json({ success: false, ...err });
   }
 };
 
 module.exports.authorizeUser = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(406).json({ success: false, errors: errors.array() });
+  }
   try {
-    const { username, password } = req.body;
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(406).json({ success: false, errors: errors.array() });
+    const user = await User.getUserByUsername(username);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Error: User not found.'
+      });
     }
-    let isValid;
-    for (const field of Object.keys(req.body)) {
-      if (!['username', 'password'].includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = true;
-        req.sanitize(field);
-      }
-    }
-    if (!isValid) {
-      return res
-        .status(406)
-        .json({ success: false, message: 'Body contains invalid fields.' });
-    }
-    await User.getUserByUsername(username, async (err, user) => {
-      try {
-        if (err) {
-          switch (err.name) {
-            case 'CastError':
-              return res.status(404).json({ success: false, ...err });
-            case 'ValidationError':
-              return res.status(406).json({ success: false, ...err });
-            default:
-              return res.status(500).json({ success: false, ...err });
-          }
+    const passwordCheck = await User.comparePassword(
+      req.body.password,
+      user.password
+    );
+    if (passwordCheck === true) {
+      const payload = {
+        data: user
+      };
+      const token = jwt.sign(payload, secret, {
+        expiresIn: (1).convertUnitOfTimeToSeconds('week')
+      });
+      return res.status(202).json({
+        success: true,
+        token: `Bearer ${token}`,
+        user: {
+          id: user._id,
+          name: user.name,
+          username: user.username
         }
-        if (!user)
-          return res.status(404).json({
-            success: false,
-            message: 'Error: User not found.'
-          });
-        // check entered if password matches username's password
-        await User.comparePassword(password, user.password, (err, isMatch) => {
-          if (err) {
-            return res.status(403).json({ success: false, ...err });
-          }
-          if (isMatch) {
-            const token = jwt.sign({ data: user }, secret, {
-              expiresIn: (1).convertUnitOfTimeToSeconds('week')
-            });
-            return res.status(202).json({
-              success: true,
-              token: `Bearer ${token}`,
-              user: {
-                id: user._id,
-                name: user.name,
-                username: user.username
-              }
-            });
-          }
-          return res
-            .status(403)
-            .json({ success: false, message: 'Error: wrong password.' });
-        });
-      } catch (err) {
-        next(err);
-      }
-    });
+      });
+    } else {
+      return res
+        .status(403)
+        .json({ success: false, message: 'Error: wrong password.' });
+    }
   } catch (err) {
-    next(err);
+    switch (err.name) {
+      case 'CastError':
+        return res.status(404).json({ success: false, ...err });
+      case 'ValidationError':
+        return res.status(406).json({ success: false, ...err });
+      default:
+        return res.status(500).json({ success: false, ...err });
+    }
   }
 };
 
 module.exports.updateUser = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(406).json({ success: false, errors: errors.array() });
+  }
   try {
-    let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
-    }
+    const id = req.params.id;
     const userData = {
       name: req.sanitize(req.body.name) || null,
       username: req.sanitize(req.body.username),
       password: req.sanitize(req.body.password)
     };
-    const { name, username, password } = userData;
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(406).json({ success: false, errors: errors.array() });
-    }
-
-    if (req.user['_id'].toString() === id.toString()) {
-      await User.updateUser(
-        id,
-        userData,
-        {},
-        async (err, user) => {
-          try {
-            if (err) {
-              switch (err.name) {
-                case 'CastError':
-                  return res.status(404).json({ success: false, ...err });
-                case 'ValidationError':
-                  return res.status(406).json({ success: false, ...err });
-                default:
-                  return res.status(500).json({ success: false, ...err });
-              }
-            }
-            if (!user) {
-              return res.status(404).json({
-                success: false,
-                message: 'Error 404: user not found.'
-              });
-            }
-            await getUserById(id, req, res, user => {
-              clearCache(req);
-              return res.status(200).json(user);
-            });
-          } catch (err) {
-            next(err);
-          }
-        },
-        () => {
-          return res.status(500).json({
-            success: false,
-            message: 'A user with that username already exists.'
-          });
-        }
-      );
-    } else {
-      await getUserById(id, req, res, () => {
-        return res.status(403).json({
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) console.log(err);
+      bcrypt.hash(req.body.password, salt, (err, hash) => {
+        if (err) console.log(err);
+        // update password as hash
+        req.body.password = hash;
+      });
+    });
+    if (req.user['_id'].toString() !== id.toString()) {
+      const user = await User.getUserById(id);
+      if (user) {
+        return res.status(500).json({
           success: false,
-          message: 'You cannot update this user.'
+          message: 'A user with that username already exists.'
         });
+      }
+      return res.status(403).json({
+        success: false,
+        message: 'You cannot update this user.'
       });
     }
+    await User.updateUser(id, userData, {});
+    clearCache(req);
+    const updatedUser = await User.getUserById(id);
+    return res.status(200).json(updatedUser);
   } catch (err) {
-    next(err);
+    switch (err.name) {
+      case 'CastError':
+        return res.status(404).json({ success: false, ...err });
+      case 'ValidationError':
+        return res.status(406).json({ success: false, ...err });
+      default:
+        return res.status(500).json({ success: false, ...err });
+    }
   }
 };
 
 module.exports.patchUser = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(406).json({ success: false, errors: errors.array() });
+  }
   try {
-    let id = null;
-    try {
-      if (routesWithParams.includes(req.params.id)) {
-        return res
-          .status(405)
-          .json({ success: false, message: 'Method not allowed.' });
-      }
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (e) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'ROM not found.' });
-    }
-    const data = req.body;
-    const { username, password, name } = data;
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(406).json({ success: false, errors: errors.array() });
-    }
+    const id = req.params.id;
     let isValid = true;
     for (const field of Object.keys(req.body)) {
       if (!['_id', 'name', 'username', 'password'].includes(field)) {
@@ -452,54 +338,47 @@ module.exports.patchUser = async (req, res, next) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    if (req.user['_id'].toString() === id.toString()) {
-      const query = { $set: data };
-      await User.patchUser(
-        id,
-        query,
-        async (err, status) => {
-          try {
-            if (err) {
-              switch (err.name) {
-                case 'CastError':
-                  return res.status(404).json({ success: false, ...err });
-                case 'ValidationError':
-                  return res.status(406).json({ success: false, ...err });
-                default:
-                  return res.status(500).json({ success: false, ...err });
-              }
-            }
-            if (!status) {
-              return res.status(502).json({
-                success: false,
-                message: 'Bad gateway.'
-              });
-            }
-            await getUserById(id, req, res, user => {
-              clearCache(req);
-              return res.status(200).json(user);
-            });
-          } catch (err) {
-            next(err);
-          }
-        },
-        () => {
-          return res.status(500).json({
-            success: false,
-            message: 'A user with that username already exists.'
-          });
-        }
-      );
-    } else {
-      await getUserById(id, req, res, () => {
-        return res.status(403).json({
+    if (req.user._id.toString() !== id.toString()) {
+      return res.status(403).json({
+        success: false,
+        message: 'You cannot patch this user.'
+      });
+    }
+    if (req.body.username) {
+      const user = User.getUserById(id);
+      if (user) {
+        return res.status(500).json({
           success: false,
-          message: 'You cannot patch this user.'
+          message: 'A user with that username already exists.'
+        });
+      }
+    }
+    if (req.body.password) {
+      bcrypt.genSalt(10, (err, salt) => {
+        if (err) console.log(err);
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+          if (err) console.log(err);
+          // update password as hash
+          req.body.password = hash;
         });
       });
     }
+
+    const patchQuery = { $set: req.body };
+    await User.patchUser(patchQuery);
+
+    const user = await User.getUserById(id);
+    clearCache(req);
+    return res.status(200).json(user);
   } catch (err) {
-    next(err);
+    switch (err.name) {
+      case 'CastError':
+        return res.status(404).json({ success: false, ...err });
+      case 'ValidationError':
+        return res.status(406).json({ success: false, ...err });
+      default:
+        return res.status(500).json({ success: false, ...err });
+    }
   }
 };
 

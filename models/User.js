@@ -36,41 +36,20 @@ module.exports = mongoose.model('User', userSchema);
 const User = module.exports;
 
 module.exports.getUserById = (id, callback) => {
-  User.findById(id, callback);
+  return User.findById(id, callback);
 };
 
 module.exports.getUserByUsername = (username, callback) => {
   const query = { username: username };
-  User.findOne(query, callback);
+  return User.findOne(query, callback);
 };
 
-module.exports.addUser = (newUser, callback, errCallback) => {
-  const query = { username: newUser.username };
-  // check if user already exists
-  User.findOne(query)
-    .then((user, err) => {
-      if (err) {
-        console.log(err);
-      } else if (user) {
-        errCallback();
-      } else {
-        // authenticate
-        bcrypt.genSalt(10, (err, salt) => {
-          if (err) console.log(err);
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) console.log(err);
-            // store password as hash
-            newUser.password = hash;
-            newUser.save(callback);
-          });
-        });
-      }
-    })
-    .catch(err => console.log(err));
+module.exports.addUser = (newUser, callback) => {
+  return newUser.save(callback);
 };
 
 module.exports.comparePassword = (candidatePassword, hash, callback) => {
-  bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
+  return bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
     if (err) {
       console.log(err);
     }
@@ -79,76 +58,22 @@ module.exports.comparePassword = (candidatePassword, hash, callback) => {
 };
 
 module.exports.deleteAllUsers = callback => {
-  User.deleteMany(callback);
+  return User.deleteMany(callback);
 };
 
 module.exports.deleteUser = (id, callback) => {
   const query = { _id: id };
-  User.findOneAndDelete(query, callback);
+  return User.findOneAndDelete(query, callback);
 };
 
 module.exports.getAllUsers = callback => {
-  User.find(callback);
+  return User.find(callback);
 };
 
-module.exports.updateUser = (id, userData, options, callback, errCallback) => {
-  const { name, username, password } = userData;
-  const searchQuery = { username };
-  const userQuery = {
-    name,
-    username,
-    password
-  };
-  User.findOne(searchQuery)
-    .then((user, err) => {
-      if (err) {
-        console.log(err);
-      } else if (user && id.toString() !== user._id.toString()) {
-        errCallback();
-      } else {
-        bcrypt.genSalt(10, (err, salt) => {
-          if (err) console.log(err);
-          bcrypt.hash(userQuery.password, salt, (err, hash) => {
-            if (err) console.log(err);
-            // update password as hash
-            userQuery.password = hash;
-            User.findOneAndUpdate({ _id: id }, userQuery, options, callback);
-          });
-        });
-      }
-    })
-    .catch(err => console.log(err));
+module.exports.updateUser = (id, userData, options, callback) => {
+  return User.findOneAndUpdate({ _id: id }, userData, options, callback);
 };
 
-module.exports.patchUser = (id, updateQuery, callback, errCallback) => {
-  if (updateQuery['$set'].username !== undefined) {
-    const searchQuery = { username: updateQuery['$set'].username };
-    User.findOne(searchQuery)
-      .then((user, err) => {
-        if (err) {
-          console.log(err);
-        } else if (user && id.toString() !== user._id.toString()) {
-          errCallback();
-        } else {
-          const query = { _id: id };
-          User.updateOne(query, updateQuery, callback);
-        }
-      })
-      .catch(err => console.log(err));
-  } else {
-    const query = { _id: id };
-    if (updateQuery['$set'].password === undefined) {
-      User.updateOne(query, updateQuery, callback);
-    } else {
-      bcrypt.genSalt(10, (err, salt) => {
-        if (err) console.log(err);
-        bcrypt.hash(updateQuery['$set'].password, salt, (err, hash) => {
-          if (err) console.log(err);
-          // update password as hash
-          updateQuery['$set'].password = hash;
-          User.updateOne(query, updateQuery, callback);
-        });
-      });
-    }
-  }
+module.exports.patchUser = (query, updateQuery, callback) => {
+  return User.updateOne(query, updateQuery, callback);
 };
