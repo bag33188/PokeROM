@@ -107,7 +107,8 @@ module.exports.registerUser = async (req, res) => {
     if (user) {
       return res.status(500).json({
         success: false,
-        message: 'User with username already exists.'
+        message: 'User with username already exists.',
+        user_exists: true
       });
     }
     // hash password
@@ -175,7 +176,11 @@ module.exports.authorizeUser = async (req, res) => {
       return res.status(202).json({
         success: true,
         token: `Bearer ${token}`,
-        user: user.select('-password')
+        user: {
+          id: user._id,
+          name: user.name,
+          username: user.username
+        }
       });
     } else {
       return res
@@ -220,17 +225,20 @@ module.exports.updateUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     userData.password = await bcrypt.hash(userData.password, salt);
     if (req.user._id.toString() !== id.toString()) {
-      const user = await User.getUserById(id);
-      if (user) {
-        return res.status(500).json({
-          success: false,
-          message: 'A user with that username already exists.'
-        });
-      }
       return res.status(403).json({
         success: false,
         message: 'You cannot update this user.'
       });
+    }
+    const user = await User.getUserByUsername(userData.username);
+    if (user) {
+      if (user.username !== req.user.username) {
+        return res.status(500).json({
+          success: false,
+          message: 'A user with that username already exists.',
+          user_exists: true
+        });
+      }
     }
     await User.updateUser(id, userData, {});
     const updatedUser = await User.getUserById(id);
@@ -282,19 +290,22 @@ module.exports.patchUser = async (req, res) => {
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
     if (req.user._id.toString() !== id.toString()) {
-      if (req.body.username) {
-        const user = User.getUserById(id);
-        if (user) {
-          return res.status(500).json({
-            success: false,
-            message: 'A user with that username already exists.'
-          });
-        }
-      }
       return res.status(403).json({
         success: false,
         message: 'You cannot patch this user.'
       });
+    }
+    if (req.body.username) {
+      const user = await User.getUserByUsername(req.body.username);
+      if (user) {
+        if (user.username !== req.user.username) {
+          return res.status(500).json({
+            success: false,
+            message: 'A user with that username already exists.',
+            user_exists: true
+          });
+        }
+      }
     }
     if (req.body.password) {
       const salt = await bcrypt.genSalt(10);

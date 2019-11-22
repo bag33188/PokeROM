@@ -9,6 +9,8 @@ const router = express.Router();
 
 const fieldsToSanitize = ['name', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
+const criticalMsg =
+  'Username can only contain letters, numbers, or underscores.';
 
 router.get('/', auth, cache(5), UserController.getUsers);
 
@@ -43,9 +45,7 @@ router.post(
       .isString()
       .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
-      .withMessage(
-        'Username can only contain letters, numbers, or underscores.'
-      )
+      .withMessage(criticalMsg)
       .isLength({ min: 3, max: 22 })
       .withMessage('Username must be between 3 and 22 characters.'),
     check('password')
@@ -76,9 +76,7 @@ router.post(
       .isString()
       .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
-      .withMessage(
-        'Username can only contain letters, numbers, or underscores.'
-      )
+      .withMessage(criticalMsg)
       .isLength({ min: 3, max: 22 })
       .withMessage('Username must be between 3 and 22 characters.'),
     check('password')
@@ -119,9 +117,7 @@ router.put(
       .isString()
       .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
-      .withMessage(
-        'Username can only contain letters, numbers, or underscores.'
-      )
+      .withMessage(criticalMsg)
       .isLength({ min: 3, max: 22 })
       .withMessage('Username must be between 3 and 22 characters.'),
     check('password')
@@ -159,9 +155,7 @@ router.patch(
       .isString()
       .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
-      .withMessage(
-        'Username can only contain letters, numbers, or underscores.'
-      )
+      .withMessage(criticalMsg)
       .isLength({ min: 3, max: 22 })
       .withMessage('Username must be between 3 and 22 characters.'),
     check('password')

@@ -94,11 +94,9 @@ export class RegisterComponent implements OnInit, AfterContentInit {
         (err: JSONObject): never => {
           this.firedOff = false;
           this.loading = false;
-          const keys: string[] = ['error', 'message', 'errors', 'msg'];
-          if (err[keys[0]][keys[1]]) {
-            if (
-              err[keys[0]][keys[1]] === 'User with username already exists.'
-            ) {
+          const keys: string[] = ['error', 'user_exists', 'errors', 'msg'];
+          if (err[keys[0]].hasOwnProperty(keys[1])) {
+            if (err[keys[0]][keys[1]] === true) {
               this.registerFail = 'User with username already exists';
             } else {
               this.registerFail = 'Registration Failure';

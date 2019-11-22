@@ -71,7 +71,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
   public save(): void {
     this.firedOff = true;
     this.ready = false;
-    const keys: string[] = ['error', 'message'];
+    const keys: string[] = ['error', 'user_exists'];
     // if no name is entered ...
     if (!this.user.name || this.user.name === '') {
       // delete the name property
@@ -92,11 +92,9 @@ export class AccountComponent implements OnInit, AfterContentInit {
           (err: JSONObject): never => {
             this.ready = true;
             this.updateFail = true;
+            this.firedOff = false;
             // check for existing username
-            if (
-              err[keys[0]][keys[1]] ===
-              'A user with that username already exists.'
-            ) {
+            if (err[keys[0]][keys[1]] === true) {
               this.userExists = true;
             }
             throw err;
@@ -144,10 +142,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
               this.firedOff = false;
               this.updateFail = true;
               // check for existing username
-              if (
-                err[keys[0]][keys[1]] ===
-                'A user with that username already exists.'
-              ) {
+              if (err[keys[0]][keys[1]] === true) {
                 this.userExists = true;
               }
               throw err;
