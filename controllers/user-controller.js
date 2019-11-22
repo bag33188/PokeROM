@@ -19,19 +19,6 @@ function checkForInvalidRoute(id) {
   return routesWithParams.includes(id);
 }
 
-const genPassword = password => {
-  let passwordHash = undefined;
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) console.log(err);
-    bcrypt.hash(password, salt, (err, hash) => {
-      if (err) console.log(err);
-      // store password as hash
-      passwordHash = hash;
-    });
-  });
-  return passwordHash;
-};
-
 Number.prototype.convertUnitOfTimeToSeconds = function(unit) {
   const value = parseInt(this, 10);
   switch (unit) {
@@ -118,8 +105,10 @@ module.exports.registerUser = async (req, res) => {
       });
     }
     // hash password
-    req.body.password = genPassword(newUser.password);
+    const salt = await bcrypt.genSalt(10);
+    newUser.password = await bcrypt.hash(newUser.password, salt);
     const addedUser = await User.addUser(newUser);
+    console.log(newUser.password);
     res.append(
       'Created-At-Route',
       `${url
@@ -217,7 +206,8 @@ module.exports.updateUser = async (req, res) => {
       username: req.sanitize(req.body.username),
       password: req.sanitize(req.body.password)
     };
-    req.body.password = genPassword(req.body.password);
+    const salt = await bcrypt.genSalt(10);
+    userData.password = await bcrypt.hash(userData.password, salt);
     if (req.user['_id'].toString() !== id.toString()) {
       const user = await User.getUserById(id);
       if (user) {
@@ -290,7 +280,8 @@ module.exports.patchUser = async (req, res) => {
       });
     }
     if (req.body.password) {
-      req.body.password = genPassword(req.body.password);
+      const salt = await bcrypt.genSalt(10);
+      req.body.password = await bcrypt.hash(req.body.password, salt);
     }
 
     const patchQuery = { $set: req.body };

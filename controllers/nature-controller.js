@@ -63,7 +63,7 @@ module.exports.addNature = async (req, res) => {
         protocol: req.protocol,
         host: req.get('host'),
         pathname: req.originalUrl
-      })}/${nature._id}`
+      })}/${newNature._id}`
     );
     res.append(
       'Created-At',
