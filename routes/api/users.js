@@ -5,14 +5,14 @@ const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const UserController = require('../../controllers/user-controller');
 
-const httpRouter = express.Router();
+const router = express.Router();
 
 const fieldsToSanitize = ['name', 'username', 'password'];
 const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
 
-httpRouter.get('/', auth, cache(5), UserController.getUsers);
+router.get('/', auth, cache(5), UserController.getUsers);
 
-httpRouter.get(
+router.get(
   '/:id',
   [
     sanitizeParam('id')
@@ -24,7 +24,7 @@ httpRouter.get(
   UserController.getUser
 );
 
-httpRouter.post(
+router.post(
   '/register',
   [
     sanitizeBody(fieldsToSanitize)
@@ -63,7 +63,7 @@ httpRouter.post(
   UserController.registerUser
 );
 
-httpRouter.post(
+router.post(
   '/authenticate',
   [
     sanitizeBody(fieldsToSanitize)
@@ -96,7 +96,7 @@ httpRouter.post(
   UserController.authorizeUser
 );
 
-httpRouter.put(
+router.put(
   '/:id',
   auth,
   [
@@ -139,7 +139,7 @@ httpRouter.put(
   UserController.updateUser
 );
 
-httpRouter.patch(
+router.patch(
   '/:id',
   [
     sanitizeBody(fieldsToSanitize)
@@ -178,9 +178,9 @@ httpRouter.patch(
   UserController.patchUser
 );
 
-httpRouter.delete('/', auth, UserController.deleteUsers);
+router.delete('/', auth, UserController.deleteUsers);
 
-httpRouter.delete(
+router.delete(
   '/:id',
   [
     sanitizeParam('id')
@@ -191,9 +191,9 @@ httpRouter.delete(
   UserController.deleteUser
 );
 
-httpRouter.head('/', auth, UserController.usersHeaders);
+router.head('/', auth, UserController.usersHeaders);
 
-httpRouter.head(
+router.head(
   '/:id',
   [
     sanitizeParam('id')
@@ -204,6 +204,6 @@ httpRouter.head(
   UserController.userHeaders
 );
 
-httpRouter.all('/*', UserController.all);
+router.all('/*', UserController.all);
 
-module.exports = httpRouter;
+module.exports = router;

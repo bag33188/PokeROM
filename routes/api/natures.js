@@ -4,13 +4,13 @@ const { check } = require('express-validator/check');
 const { cache } = require('../../middleware/cache');
 const NatureController = require('../../controllers/nature-controller');
 
-const httpRouter = express.Router();
+const router = express.Router();
 
 const fieldsToSanitize = ['name', 'up', 'down', 'flavor', 'usage'];
 
-httpRouter.get('/', cache(20), NatureController.getNatures);
+router.get('/', cache(20), NatureController.getNatures);
 
-httpRouter.get(
+router.get(
   '/:id',
   cache(20),
   [
@@ -21,7 +21,7 @@ httpRouter.get(
   NatureController.getNature
 );
 
-httpRouter.post(
+router.post(
   '/',
   [
     sanitizeBody(fieldsToSanitize)
@@ -79,7 +79,7 @@ httpRouter.post(
   NatureController.addNature
 );
 
-httpRouter.put(
+router.put(
   '/:id',
   [
     sanitizeBody(fieldsToSanitize)
@@ -140,7 +140,7 @@ httpRouter.put(
   NatureController.updateNature
 );
 
-httpRouter.patch(
+router.patch(
   '/:id',
   [
     sanitizeBody(fieldsToSanitize)
@@ -178,7 +178,7 @@ httpRouter.patch(
   NatureController.patchNature
 );
 
-httpRouter.delete(
+router.delete(
   '/:id',
   [
     sanitizeParam('id')
@@ -188,11 +188,11 @@ httpRouter.delete(
   NatureController.deleteNature
 );
 
-httpRouter.delete('/', NatureController.deleteNatures);
+router.delete('/', NatureController.deleteNatures);
 
-httpRouter.head('/', NatureController.naturesHeaders);
+router.head('/', NatureController.naturesHeaders);
 
-httpRouter.head(
+router.head(
   '/:id',
   [
     sanitizeParam('id')
@@ -202,8 +202,8 @@ httpRouter.head(
   NatureController.natureHeaders
 );
 
-httpRouter.post('/all', NatureController.allNatures);
+router.post('/all', NatureController.allNatures);
 
-httpRouter.all('/*', NatureController.all);
+router.all('/*', NatureController.all);
 
-module.exports = httpRouter;
+module.exports = router;

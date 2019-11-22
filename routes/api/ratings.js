@@ -5,9 +5,9 @@ const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const RatingController = require('../../controllers/rating-controller');
 
-const httpRouter = express.Router();
+const router = express.Router();
 
-httpRouter.post(
+router.post(
   '/',
   [
     sanitizeBody(['rating', 'message', 'date_time'])
@@ -29,7 +29,7 @@ httpRouter.post(
   RatingController.addRating
 );
 
-httpRouter.get(
+router.get(
   '/:id',
   [
     sanitizeParam('id')
@@ -42,9 +42,9 @@ httpRouter.get(
   RatingController.getRating
 );
 
-httpRouter.get('/', auth, cache(20), RatingController.getRatings);
+router.get('/', auth, cache(20), RatingController.getRatings);
 
-httpRouter.delete(
+router.delete(
   '/:id',
   [
     sanitizeParam('id')
@@ -55,11 +55,11 @@ httpRouter.delete(
   RatingController.deleteRating
 );
 
-httpRouter.delete('/', auth, RatingController.deleteRatings);
+router.delete('/', auth, RatingController.deleteRatings);
 
-httpRouter.head('/', auth, RatingController.ratingsHeaders);
+router.head('/', auth, RatingController.ratingsHeaders);
 
-httpRouter.head(
+router.head(
   '/:id',
   [
     sanitizeParam('id')
@@ -70,6 +70,6 @@ httpRouter.head(
   RatingController.ratingHeaders
 );
 
-httpRouter.all('/*', RatingController.all);
+router.all('/*', RatingController.all);
 
-module.exports = httpRouter;
+module.exports = router;
