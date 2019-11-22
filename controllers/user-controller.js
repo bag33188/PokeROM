@@ -113,7 +113,6 @@ module.exports.registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     newUser.password = await bcrypt.hash(newUser.password, salt);
     const addedUser = await User.addUser(newUser);
-    console.log(newUser.password);
     res.append(
       'Created-At-Route',
       `${url
