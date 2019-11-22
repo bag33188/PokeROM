@@ -283,7 +283,7 @@ module.exports.patchUser = async (req, res, next) => {
     }
     if (req.body.username) {
       const user = User.getUserById(id);
-      if (user) {
+      if (user && user.id.toString() === req.user._id.toString()) {
         return res.status(500).json({
           success: false,
           message: 'A user with that username already exists.'
