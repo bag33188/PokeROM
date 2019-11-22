@@ -27,7 +27,7 @@ const fields = [
 ];
 const romObject = req => {
   return {
-    user_id: req.user['_id'],
+    user_id: req.user._id,
     order_number: req.body.order_number,
     rom_type: req.sanitize(req.body.rom_type),
     file_name: req.sanitize(req.body.file_name),
@@ -77,11 +77,11 @@ module.exports.getRoms = async (req, res) => {
 
     let query = {};
     if (convertToBoolean(getAllCore) && !convertToBoolean(getAllHacks)) {
-      query = { user_id: req.user['_id'], rom_type: 'core' };
+      query = { user_id: req.user._id, rom_type: 'core' };
     } else if (convertToBoolean(getAllHacks) && !convertToBoolean(getAllCore)) {
-      query = { user_id: req.user['_id'], rom_type: 'hack' };
+      query = { user_id: req.user._id, rom_type: 'hack' };
     } else {
-      query = { user_id: req.user['_id'] };
+      query = { user_id: req.user._id };
     }
 
     let limit = req.query['_limit'];
@@ -368,13 +368,13 @@ module.exports.deleteRoms = async (req, res) => {
     let query = {};
     let message = '';
     if (convertToBoolean(deleteCore) && !convertToBoolean(deleteHacks)) {
-      query = { user_id: req.user['_id'], rom_type: 'core' };
+      query = { user_id: req.user._id, rom_type: 'core' };
       message = 'All core ROMs have been deleted.';
     } else if (convertToBoolean(deleteHacks) && !convertToBoolean(deleteCore)) {
-      query = { user_id: req.user['_id'], rom_type: 'hack' };
+      query = { user_id: req.user._id, rom_type: 'hack' };
       message = 'All ROM hacks have been deleted.';
     } else {
-      query = { user_id: req.user['_id'] };
+      query = { user_id: req.user._id };
       message = 'All ROMs successfully deleted!';
     }
     await Rom.deleteAllRoms(query);
@@ -428,7 +428,7 @@ module.exports.romsOptions = (req, res) => {
 module.exports.coreRoms = async (req, res) => {
   try {
     await Rom.postCore(coreRoms, req.user);
-    const query = { user_id: req.user['_id'] };
+    const query = { user_id: req.user._id };
     const roms = await Rom.getAllRoms(query);
     return res.status(200).json(roms);
   } catch (err) {
@@ -441,7 +441,7 @@ module.exports.coreRoms = async (req, res) => {
 module.exports.romHacks = async (req, res) => {
   try {
     await Rom.postHacks(romHacks, req.user);
-    const query = { user_id: req.user['_id'] };
+    const query = { user_id: req.user._id };
     const roms = await Rom.getAllRoms(query);
     return res.status(200).json(roms);
   } catch (err) {

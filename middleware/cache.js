@@ -4,7 +4,7 @@ const cacheControl = require('express-cache-controller');
 function cache(duration) {
   return (req, res, next) => {
     const key = `__express__${req.originalUrl}${
-      req.user ? ':' + req.user['_id'] : ''
+      req.user ? ':' + req.user._id : ''
     }`;
     const cachedBody = mcache.get(key);
     if (cachedBody) {
@@ -23,7 +23,7 @@ function cache(duration) {
 
 function clearCache(req) {
   const key = `__express__${req.originalUrl}${
-    req.user ? ':' + req.user['_id'] : ''
+    req.user ? ':' + req.user._id : ''
   }`;
   const cachedBody = mcache.get(key);
   if (cachedBody) {

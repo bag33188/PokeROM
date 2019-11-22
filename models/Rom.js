@@ -259,13 +259,13 @@ module.exports.patchRom = (id, updateQuery, callback) => {
 };
 
 module.exports.postCore = (coreRoms, user, callback) => {
-  coreRoms.forEach(rom => (rom.user_id = user['_id']));
+  coreRoms.forEach(rom => (rom.user_id = user._id));
   return Rom.insertMany(coreRoms, callback);
 };
 
 module.exports.postHacks = (romHacks, user, callback) => {
   romHacks.forEach(romHack => {
-    romHack.user_id = user['_id'];
+    romHack.user_id = user._id;
   });
   return Rom.insertMany(romHacks, callback);
 };

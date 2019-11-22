@@ -219,7 +219,7 @@ module.exports.updateUser = async (req, res) => {
     };
     const salt = await bcrypt.genSalt(10);
     userData.password = await bcrypt.hash(userData.password, salt);
-    if (req.user['_id'].toString() !== id.toString()) {
+    if (req.user._id.toString() !== id.toString()) {
       const user = await User.getUserById(id);
       if (user) {
         return res.status(500).json({
@@ -354,7 +354,7 @@ module.exports.deleteUser = async (req, res) => {
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
-    if (req.user['_id'].toString() !== id.toString()) {
+    if (req.user._id.toString() !== id.toString()) {
       return res.status(403).json({
         success: false,
         message: 'You cannot delete this user.'
