@@ -126,7 +126,7 @@ module.exports.registerUser = async (req, res) => {
     res.append(
       'Created-At',
       moment()
-        .subtract(7, 'hours')
+        .subtract(8, 'hours')
         .format()
     );
     await Rom.postCore(coreRoms, addedUser);

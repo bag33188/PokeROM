@@ -74,22 +74,37 @@ module.exports.getRoms = async (req, res) => {
       limit = 0;
     }
     const roms = await Rom.getAllRoms(query, limit);
+
+    // --------------------------
+    // PAGINATION LOGIC
+    // --------------------------
+
+    // grab query params
     let perPage = parseInt(req.query['per_page']);
     let page = parseInt(req.query['page']);
+    // if no page is specified or no page and no perPage are specified ...
     if (!page || (!page && !perPage)) {
+      // just return the roms as they usually are
       return res.status(200).json(roms);
     }
+    // if they specify a page but no per page
     if (page && !perPage) {
       perPage = 4;
     }
+    // grab the page count (perPage is 4 by default)
     const pageCount = Math.ceil(roms.length / perPage);
+    // the page number is greater than the page count ...
     if (page > pageCount) {
+      // set the page number equal to the page count
+      // (this is for error-proofing)
       page = pageCount;
     }
+    // now do the math ...
     const paginationFormulaResult = roms.slice(
       page * perPage - perPage,
       page * perPage
     );
+    // return the paginated roms
     return res.status(200).json(paginationFormulaResult);
   } catch (err) {
     return res
@@ -173,7 +188,7 @@ module.exports.addRom = async (req, res) => {
     res.append(
       'Created-At',
       moment()
-        .subtract(7, 'hours')
+        .subtract(8, 'hours')
         .format()
     );
     clearCache(req);
