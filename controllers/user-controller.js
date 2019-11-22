@@ -57,7 +57,7 @@ module.exports.getUsers = async (req, res) => {
   }
 };
 
-module.exports.getUser = async (req, res, next) => {
+module.exports.getUser = async (req, res) => {
   try {
     const id = req.params.id;
     if (checkForInvalidRoute(id)) {
@@ -86,7 +86,7 @@ module.exports.getUser = async (req, res, next) => {
   }
 };
 
-module.exports.registerUser = async (req, res, next) => {
+module.exports.registerUser = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(406).json({ success: false, errors: errors.array() });
@@ -144,7 +144,7 @@ module.exports.registerUser = async (req, res, next) => {
   }
 };
 
-module.exports.authorizeUser = async (req, res, next) => {
+module.exports.authorizeUser = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(406).json({ success: false, errors: errors.array() });
@@ -194,7 +194,7 @@ module.exports.authorizeUser = async (req, res, next) => {
   }
 };
 
-module.exports.updateUser = async (req, res, next) => {
+module.exports.updateUser = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(406).json({ success: false, errors: errors.array() });
@@ -248,7 +248,7 @@ module.exports.updateUser = async (req, res, next) => {
   }
 };
 
-module.exports.patchUser = async (req, res, next) => {
+module.exports.patchUser = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(406).json({ success: false, errors: errors.array() });
@@ -319,7 +319,7 @@ module.exports.patchUser = async (req, res, next) => {
   }
 };
 
-module.exports.deleteUsers = async (req, res, next) => {
+module.exports.deleteUsers = async (req, res) => {
   try {
     await Rom.deleteAllRoms({});
     await User.deleteAllUsers();
@@ -336,7 +336,7 @@ module.exports.deleteUsers = async (req, res, next) => {
   }
 };
 
-module.exports.deleteUser = async (req, res, next) => {
+module.exports.deleteUser = async (req, res) => {
   try {
     const id = req.params.id;
     if (checkForInvalidRoute(id)) {
@@ -376,7 +376,7 @@ module.exports.usersHeaders = (req, res) => {
   res.status(200);
 };
 
-module.exports.userHeaders = async (req, res, next) => {
+module.exports.userHeaders = async (req, res) => {
   try {
     const id = req.params.id;
     if (checkForInvalidRoute(id)) {
@@ -392,7 +392,7 @@ module.exports.userHeaders = async (req, res, next) => {
     }
     return res.status(200);
   } catch (err) {
-    next(err);
+    return res.status(500).json({ success: false, ...err });
   }
 };
 

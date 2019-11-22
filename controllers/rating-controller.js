@@ -4,7 +4,7 @@ const moment = require('moment');
 const Rating = require('../models/Rating');
 const { clearCache } = require('../middleware/cache');
 
-module.exports.addRating = async (req, res, next) => {
+module.exports.addRating = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(406).json({ success: false, errors: errors.array() });
@@ -47,7 +47,7 @@ module.exports.addRating = async (req, res, next) => {
   }
 };
 
-module.exports.getRating = async (req, res, next) => {
+module.exports.getRating = async (req, res) => {
   try {
     const id = req.params.id;
     const rating = await Rating.getRating(id);
@@ -65,7 +65,7 @@ module.exports.getRating = async (req, res, next) => {
   }
 };
 
-module.exports.getRatings = async (req, res, next) => {
+module.exports.getRatings = async (req, res) => {
   try {
     let limit = req.query['_limit'];
     if (!limit) {
@@ -81,7 +81,7 @@ module.exports.getRatings = async (req, res, next) => {
   }
 };
 
-module.exports.deleteRating = async (req, res, next) => {
+module.exports.deleteRating = async (req, res) => {
   try {
     const id = req.params.id;
     const rating = await Rating.getRating(id);
@@ -102,7 +102,7 @@ module.exports.deleteRating = async (req, res, next) => {
   }
 };
 
-module.exports.deleteRatings = async (req, res, next) => {
+module.exports.deleteRatings = async (req, res) => {
   try {
     await Rating.deleteAllRatings();
     clearCache(req);
@@ -116,7 +116,7 @@ module.exports.ratingsHeaders = (req, res) => {
   res.status(200);
 };
 
-module.exports.ratingHeaders = async (req, res, next) => {
+module.exports.ratingHeaders = async (req, res) => {
   try {
     const id = req.params.id;
     const rating = Rating.getRating(id);

@@ -11,7 +11,7 @@ function checkForInvalidRoute(id) {
   return routesWithParams.includes(id);
 }
 
-module.exports.getNatures = async (req, res, next) => {
+module.exports.getNatures = async (req, res) => {
   try {
     const natures = await Nature.getNatures();
     return res.status(200).json(natures);
@@ -20,7 +20,7 @@ module.exports.getNatures = async (req, res, next) => {
   }
 };
 
-module.exports.getNature = async (req, res, next) => {
+module.exports.getNature = async (req, res) => {
   try {
     const id = req.params.id;
     if (checkForInvalidRoute(id)) {
@@ -43,7 +43,7 @@ module.exports.getNature = async (req, res, next) => {
   }
 };
 
-module.exports.addNature = async (req, res, next) => {
+module.exports.addNature = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(406).json({ success: false, errors: errors.array() });
@@ -82,7 +82,7 @@ module.exports.addNature = async (req, res, next) => {
   }
 };
 
-module.exports.updateNature = async (req, res, next) => {
+module.exports.updateNature = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(406).json({ success: false, errors: errors.array() });
@@ -124,7 +124,7 @@ module.exports.updateNature = async (req, res, next) => {
   }
 };
 
-module.exports.patchNature = async (req, res, next) => {
+module.exports.patchNature = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(406).json({ success: false, errors: errors.array() });
@@ -174,7 +174,7 @@ module.exports.patchNature = async (req, res, next) => {
   }
 };
 
-module.exports.deleteNature = async (req, res, next) => {
+module.exports.deleteNature = async (req, res) => {
   try {
     const id = req.params.id;
     if (checkForInvalidRoute(id)) {
@@ -201,7 +201,7 @@ module.exports.deleteNature = async (req, res, next) => {
   }
 };
 
-module.exports.deleteNatures = async (req, res, next) => {
+module.exports.deleteNatures = async (req, res) => {
   try {
     await Nature.deleteAllNatures();
     clearCache(req);
@@ -218,7 +218,7 @@ module.exports.naturesHeaders = (req, res) => {
   res.status(200);
 };
 
-module.exports.natureHeaders = async (req, res, next) => {
+module.exports.natureHeaders = async (req, res) => {
   try {
     const id = req.params.id;
     if (checkForInvalidRoute(id)) {
@@ -235,11 +235,11 @@ module.exports.natureHeaders = async (req, res, next) => {
     }
     return res.status(200);
   } catch (err) {
-    next(err);
+    return res.status(500).json({ success: false, ...err });
   }
 };
 
-module.exports.allNatures = async (req, res, next) => {
+module.exports.allNatures = async (req, res) => {
   try {
     await Nature.postAll(natureData);
     const natures = await Nature.getNatures();
