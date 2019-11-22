@@ -5,16 +5,22 @@ import { Directive, ElementRef, OnInit, Input } from '@angular/core';
 })
 export class AlertDirective implements OnInit {
   @Input() public alertType: string;
+  @Input('shadow') public addShadow?: boolean;
   private preClasses: string[];
 
   constructor(private el: ElementRef) {}
 
   ngOnInit(): void | never {
-    this.preClasses = ['alert'];
+    this.preClasses = ['alert', this.addShadow ? 'shadow' : null];
     if (!this.alertType) {
       throw new Error('No alert type specified.');
     } else {
       this.setType();
+    }
+    if (this.addShadow !== undefined && this.addShadow !== null) {
+      if (typeof this.addShadow !== 'boolean') {
+        throw new Error('addShadow must be a boolean.');
+      }
     }
   }
 
