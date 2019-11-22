@@ -170,7 +170,11 @@
   }
 }
 
-// RESPONSIVE MEDIA QUERY
+/*
+ * |==========================|
+ * | RESPONSIVE MEDIA QUERIES |
+ * |==========================|
+ */
 @media only all and (max-width: 938px) {
   .rom-info-container {
     grid-template-areas:

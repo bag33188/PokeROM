@@ -194,17 +194,17 @@ const Rom = module.exports;
 
 module.exports.getAllRoms = (query, callback, limit) => {
   // make sure to parse limit as integer
-  Rom.find(query, callback)
+  return Rom.find(query, callback)
     .limit(parseInt(limit))
     .sort({ order_number: 1 });
 };
 
 module.exports.getRomById = (id, callback) => {
-  Rom.findById(id, callback);
+  return  Rom.findById(id, callback);
 };
 
 module.exports.addRom = (newRom, callback) => {
-  Rom.create(newRom, callback);
+  return Rom.create(newRom, callback);
 };
 
 module.exports.updateRom = (id, romData, options, callback) => {
@@ -241,31 +241,31 @@ module.exports.updateRom = (id, romData, options, callback) => {
     date_released,
     logo_url
   };
-  Rom.findOneAndUpdate(searchQuery, updateQuery, options, callback);
+  return  Rom.findOneAndUpdate(searchQuery, updateQuery, options, callback);
 };
 
 module.exports.deleteRom = (id, callback) => {
   const query = { _id: id };
-  Rom.findOneAndDelete(query, callback);
+  return  Rom.findOneAndDelete(query, callback);
 };
 
 module.exports.deleteAllRoms = (query, callback) => {
-  Rom.deleteMany(query, callback);
+  return  Rom.deleteMany(query, callback);
 };
 
 module.exports.patchRom = (id, updateQuery, callback) => {
   const searchQuery = { _id: id };
-  Rom.updateOne(searchQuery, updateQuery, callback);
+  return Rom.updateOne(searchQuery, updateQuery, callback);
 };
 
 module.exports.postCore = (coreRoms, user, callback) => {
   coreRoms.forEach(rom => (rom.user_id = user['_id']));
-  Rom.insertMany(coreRoms, callback);
+  return  Rom.insertMany(coreRoms, callback);
 };
 
 module.exports.postHacks = (romHacks, user, callback) => {
   romHacks.forEach(romHack => {
     romHack.user_id = user['_id'];
   });
-  Rom.insertMany(romHacks, callback);
+  return Rom.insertMany(romHacks, callback);
 };
