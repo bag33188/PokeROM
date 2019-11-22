@@ -4,7 +4,7 @@ const {
   certificate,
   certificateKey,
   certificateAuthority
-} = require('./cert.js');
+} = require('./certs.js');
 
 const db = config.get('mongoURI');
 
