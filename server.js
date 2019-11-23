@@ -81,6 +81,7 @@ if (process.env.NODE_ENV === 'production') {
       console.log(`worker ${worker.process.pid} died`);
     });
   }
+
   // Set static folder
   app.use(express.static(path.join(__dirname, 'public')));
 
