@@ -34,7 +34,9 @@ for (path of pathsArr) {
   listItems += `<li style="list-style-type: none;"><code>${path}</code></li>\n`;
 }
 
-const htmlDoc = `
+listItems = listItems.replace(/(\n)$/, '');
+
+let htmlDoc = `
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -59,12 +61,14 @@ const htmlDoc = `
     <div class="container-wrapper">
       <h1 id="heading-title">Please use a valid Pok&eacute;ROM API endpoint.</h1>
       <ul>
-        ${listItems.replace(/(\n)$/, '')}
+        ${listItems}
       </ul>
     </div>
   </body>
 </html>
-`.replace(/^(\n)/, '');
+`;
+
+htmlDoc = htmlDoc.replace(/^(\n)/, '');
 
 router.all('/*', (req, res) => {
   res.status(300).send(htmlDoc);
