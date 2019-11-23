@@ -7,7 +7,6 @@ const {
   checkForInvalidRoute,
   checkForInvalidFields
 } = require('../middleware/check-validity');
-const postHeaders = require('../middleware/post-headers');
 
 const routesWithParams = ['all'];
 const fields = ['_id', 'name', 'up', 'down', 'flavor', 'usage'];
