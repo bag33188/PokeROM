@@ -1,8 +1,8 @@
 export class Nature {
-  _id?: string;
-  name: string;
-  up: string;
-  down: string;
-  flavor: string;
-  usage: string;
+  public _id?: string;
+  public name: string;
+  public up: string;
+  public down: string;
+  public flavor: string;
+  public usage: string;
 }

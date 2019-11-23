@@ -1,6 +1,6 @@
 export class Rating {
-  _id?: string;
-  rating: number;
-  message?: string;
-  date_time: Date;
+  public _id?: string;
+  public rating: number;
+  public message?: string;
+  public date_time: Date;
 }

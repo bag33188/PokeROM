@@ -1,21 +1,21 @@
 export class Rom {
-  _id?: string;
-  user_id?: string;
-  order_number: number;
-  rom_type: string;
-  file_name: string;
-  file_size: number;
-  file_type: string;
-  download_link: string;
-  generation: number;
-  box_art_url: string;
-  game_name: string;
-  region: string;
-  platform: string;
-  description: string;
-  genre?: string;
-  date_released: Date;
-  logo_url: string;
-  is_favorite: boolean;
+  public _id?: string;
+  public user_id?: string;
+  public order_number: number;
+  public rom_type: string;
+  public file_name: string;
+  public file_size: number;
+  public file_type: string;
+  public download_link: string;
+  public generation: number;
+  public box_art_url: string;
+  public game_name: string;
+  public region: string;
+  public platform: string;
+  public description: string;
+  public genre?: string;
+  public date_released: Date;
+  public logo_url: string;
+  public is_favorite: boolean;
 }
 

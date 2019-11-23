@@ -16,6 +16,10 @@ export class AccordionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setRaphnetProps();
+  }
+
+  private setRaphnetProps(): void {
     this.raphnetWebsite = 'https://www.raphnet-tech.com';
     this.raphnetSoftware =
       'https://www.raphnet-tech.com/products/adapter_manager/index.php';

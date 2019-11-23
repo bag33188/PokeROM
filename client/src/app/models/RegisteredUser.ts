@@ -1,8 +1,8 @@
 import { User } from './User';
 
 export abstract class RegisteredUser {
-  abstract success: boolean;
-  abstract token: string;
-  abstract user: User;
+  public abstract success: boolean;
+  public abstract token: string;
+  public abstract user: User;
 }
 

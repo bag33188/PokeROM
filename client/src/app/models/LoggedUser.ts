@@ -1,4 +1,4 @@
 export abstract class LoggedUser {
-  abstract username: string;
-  abstract password: string;
+  public abstract username: string;
+  public abstract password: string;
 }
