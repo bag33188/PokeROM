@@ -86,6 +86,11 @@ module.exports.addNature = async (req, res) => {
       return res
         .status(406)
         .json({ success: false, message: 'Request body is invalid.' });
+    } else if (err.name === 'MongoError') {
+      return res.status(406).json({
+        success: false,
+        message: 'Document failed database validation.'
+      });
     } else {
       return res
         .status(500)
@@ -133,6 +138,11 @@ module.exports.updateNature = async (req, res) => {
         return res
           .status(406)
           .json({ success: false, message: 'Request body is invalid.' });
+      case 'MongoError':
+        return res.status(406).json({
+          success: false,
+          message: 'Document failed database validation.'
+        });
       default:
         return res
           .status(500)
@@ -161,7 +171,7 @@ module.exports.patchNature = async (req, res) => {
         break;
       } else {
         isValid = true;
-        req.sanitize(field);
+        req.body[field] = req.sanitize(req.body[field]);
       }
     }
     if (!isValid) {
@@ -183,11 +193,22 @@ module.exports.patchNature = async (req, res) => {
   } catch (err) {
     switch (err.name) {
       case 'CastError':
-        return res.status(404).json({ success: false });
+        return res
+          .status(404)
+          .json({ success: false, message: 'Nature not found.' });
       case 'ValidationError':
-        return res.status(406).json({ success: false });
+        return res
+          .status(406)
+          .json({ success: false, message: 'Body contains invalid fields.' });
+      case 'MongoError':
+        return res.status(406).json({
+          success: false,
+          message: 'Document failed database validation.'
+        });
       default:
-        return res.status(500).json({ success: false });
+        return res
+          .status(500)
+          .json({ success: false, message: 'Internal server error.' });
     }
   }
 };

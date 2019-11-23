@@ -143,10 +143,16 @@ module.exports.registerUser = async (req, res) => {
       return res
         .status(406)
         .json({ success: false, message: 'Request body is invalid.' });
+    } else if (err.name === 'MongoError') {
+      return res.status(406).json({
+        success: false,
+        message: 'Document failed database validation.'
+      });
+    } else {
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal server error.' });
     }
-    return res
-      .status(500)
-      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -255,6 +261,11 @@ module.exports.updateUser = async (req, res) => {
         return res
           .status(406)
           .json({ success: false, message: 'Request body is invalid.' });
+      case 'MongoError':
+        return res.status(406).json({
+          success: false,
+          message: 'Document failed database validation.'
+        });
       default:
         return res
           .status(500)
@@ -281,8 +292,8 @@ module.exports.patchUser = async (req, res) => {
         isValid = false;
         break;
       } else {
-        isValid = !(field === 'password' && pwdRegex.test(field));
-        req.sanitize(field);
+        isValid = !(field === 'password' && pwdRegex.test(req.body[field]));
+        req.body[field] = req.sanitize(req.body[field]);
       }
     }
     if (!isValid) {
@@ -329,6 +340,11 @@ module.exports.patchUser = async (req, res) => {
         return res
           .status(406)
           .json({ success: false, message: 'Request body is invalid.' });
+      case 'MongoError':
+        return res.status(406).json({
+          success: false,
+          message: 'Document failed database validation.'
+        });
       default:
         return res
           .status(500)

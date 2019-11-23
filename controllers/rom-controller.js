@@ -197,10 +197,16 @@ module.exports.addRom = async (req, res) => {
       return res
         .status(404)
         .json({ success: false, message: 'ROM not found.' });
+    } else if (err.name === 'MongoError') {
+      return res.status(406).json({
+        success: false,
+        message: 'Document failed database validation.'
+      });
+    } else {
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal server error.' });
     }
-    return res
-      .status(500)
-      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
@@ -248,6 +254,11 @@ module.exports.updateRom = async (req, res) => {
         return res
           .status(406)
           .json({ success: false, message: 'Request body is invalid.' });
+      case 'MongoError':
+        return res.status(406).json({
+          success: false,
+          message: 'Document failed database validation.'
+        });
       default:
         return res
           .status(500)
@@ -277,14 +288,14 @@ module.exports.patchRom = async (req, res) => {
     }
     // check for invalid fields
     let isValid = true;
-    for (let field of Object.keys(req.body)) {
+    for (const field of Object.keys(req.body)) {
       if (!fields.includes(field)) {
         isValid = false;
         break;
       } else {
         isValid = true;
-        if (typeof field === 'string') {
-          field = req.sanitize(field);
+        if (typeof req.body[field] === 'string') {
+          req.body[field] = req.sanitize(req.body[field]);
         }
       }
     }
@@ -315,6 +326,11 @@ module.exports.patchRom = async (req, res) => {
         return res
           .status(406)
           .json({ success: false, message: 'Request body is invalid.' });
+      case 'MongoError':
+        return res.status(406).json({
+          success: false,
+          message: 'Document failed database validation.'
+        });
       default:
         return res
           .status(500)
@@ -355,10 +371,11 @@ module.exports.deleteRom = async (req, res) => {
       return res
         .status(404)
         .json({ success: false, message: 'ROM not found.' });
+    } else {
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal server error.' });
     }
-    return res
-      .status(500)
-      .json({ success: false, message: 'Internal server error.' });
   }
 };
 
