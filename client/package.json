@@ -24,7 +24,7 @@
     "lint-all": "npm run lint-ts & npm run lint-scss",
     "ivy": "npx ngcc",
     "serve-app": "http-server -p 4200 -c-1 dist/pokerom",
-    "update-dependencies": "npm install --save @angular/animations@next @angular/common@next @angular/compiler@next @angular/core@next @angular/forms@next @angular/localize@next @angular/platform-browser@next @angular/platform-browser-dynamic@next @angular/pwa@next @angular/router @angular/service-worker@next && npm install --save-dev @angular-devkit/build-angular@next @angular/cli@next @angular/compiler-cli@next @angular/language-service@next && npm link @angular/cli",
+    "update-dependencies": "npm install --save @angular/animations@next @angular/common@next @angular/compiler@next @angular/core@next @angular/forms@next @angular/localize@next @angular/platform-browser@next @angular/platform-browser-dynamic@next @angular/pwa@next @angular/router @angular/service-worker@next && npm install --save-dev @angular-devkit/build-angular@next @angular/cli@next @angular/compiler-cli@next @angular/language-service@next && npm install -g @angular/cli@next && npm link @angular/cli",
     "compile-dependencies": "rm -rf node_modules && npm install && npm run ivy"
   },
   "private": true,
