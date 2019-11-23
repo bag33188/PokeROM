@@ -64,7 +64,7 @@ const htmlDoc = `
     </div>
   </body>
 </html>
-`;
+`.replace(/^(\n)/, '');
 
 router.all('/*', (req, res) => {
   res.status(300).send(htmlDoc);
