@@ -10,15 +10,14 @@ const Rom = require('../models/Rom');
 const [coreRoms, romHacks] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');
 const universal = require('../routes/universal');
+const {
+  checkForInvalidFields,
+  checkForInvalidRoute
+} = require('../middleware/check-validity');
+const postHeaders = require('../middleware/post-headers');
 
 const routesWithParams = ['authenticate', 'register'];
 const fields = ['_id', 'name', 'username', 'password'];
-
-const pwdRegex = /(?:(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>))|[\\/"'<>&])/gi;
-
-function checkForInvalidRoute(id) {
-  return routesWithParams.includes(id);
-}
 
 Number.prototype.convertUnitOfTimeToSeconds = function(unit) {
   const value = parseInt(this, 10);
@@ -63,7 +62,7 @@ module.exports.getUsers = async (req, res) => {
 module.exports.getUser = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -104,6 +103,11 @@ module.exports.registerUser = async (req, res) => {
       username: req.sanitize(req.body.username),
       password: req.sanitize(req.body.password)
     });
+    if (checkForInvalidFields(req, fields, true) === true) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const user = await User.getUserByUsername(userData.username);
     if (user) {
       return res.status(500).json({
@@ -116,22 +120,7 @@ module.exports.registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     userData.password = await bcrypt.hash(userData.password, salt);
     const addedUser = await User.addUser(userData);
-    res.append(
-      'Created-At-Route',
-      `${url
-        .format({
-          protocol: req.protocol,
-          host: req.get('host'),
-          pathname: req.originalUrl
-        })
-        .replace('/register', '')}/${addedUser._id}`
-    );
-    res.append(
-      'Created-At',
-      moment()
-        .subtract(8, 'hours')
-        .format()
-    );
+    postHeaders(req, res, addedUser, true);
     await Rom.postCore(coreRoms, addedUser);
     await Rom.postHacks(romHacks, addedUser);
     clearCache(req);
@@ -219,7 +208,7 @@ module.exports.updateUser = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -229,6 +218,11 @@ module.exports.updateUser = async (req, res) => {
       username: req.sanitize(req.body.username),
       password: req.sanitize(req.body.password)
     };
+    if (checkForInvalidFields(req, fields, true) === true) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const salt = await bcrypt.genSalt(10);
     userData.password = await bcrypt.hash(userData.password, salt);
     if (req.user._id.toString() !== id.toString()) {
@@ -281,22 +275,12 @@ module.exports.patchUser = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
-    let isValid = true;
-    for (const field of Object.keys(req.body)) {
-      if (!fields.includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = !(field === 'password' && pwdRegex.test(req.body[field]));
-        req.body[field] = req.sanitize(req.body[field]);
-      }
-    }
-    if (!isValid) {
+    if (checkForInvalidFields(req, fields, true) === true) {
       return res
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
@@ -377,7 +361,7 @@ module.exports.deleteUsers = async (req, res) => {
 module.exports.deleteUser = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -422,7 +406,7 @@ module.exports.usersHeaders = (req, res) => {
 module.exports.userHeaders = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });

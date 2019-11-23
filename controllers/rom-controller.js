@@ -5,6 +5,11 @@ const Rom = require('../models/Rom');
 const [coreRoms, romHacks] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');
 const universal = require('../routes/universal');
+const {
+  checkForInvalidRoute,
+  checkForInvalidFields
+} = require('../middleware/check-validity');
+const postHeaders = require('../middleware/post-headers');
 
 const routesWithParams = ['core', 'hacks'];
 const fields = [
@@ -65,10 +70,6 @@ function convertToBoolean(value) {
     default:
       break;
   }
-}
-
-function checkForInvalidRoute(id) {
-  return routesWithParams.includes(id);
 }
 
 module.exports.getRoms = async (req, res) => {
@@ -133,7 +134,7 @@ module.exports.getRoms = async (req, res) => {
 module.exports.getRom = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -175,22 +176,14 @@ module.exports.addRom = async (req, res) => {
       req.body.rom_type = rom_type.toLowerCase();
     }
     const romData = new Rom(romObject(req));
+    if (checkForInvalidFields(req, fields) === true) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const rom = await Rom.addRom(romData);
-    res.append(
-      'Created-At-Route',
-      `${url.format({
-        protocol: req.protocol,
-        host: req.get('host'),
-        pathname: req.originalUrl
-      })}/${rom._id}`
-    );
-    res.append(
-      'Created-At',
-      moment()
-        .subtract(8, 'hours')
-        .format()
-    );
     clearCache(req);
+    postHeaders(req, res, rom);
     return res.status(201).json(rom);
   } catch (err) {
     if (err.name === 'CastError') {
@@ -217,15 +210,21 @@ module.exports.updateRom = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
+
     const { date_released, rom_type } = req.body;
     req.body.date_released = date_released.convertToDateFormat();
     req.body.rom_type = rom_type.toLowerCase();
     const updateRomData = romObject(req);
+    if (checkForInvalidFields(req, fields) === true) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const rom = await Rom.getRomById(id);
     if (!rom) {
       return res.status(404).json({
@@ -274,7 +273,7 @@ module.exports.patchRom = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -286,20 +285,7 @@ module.exports.patchRom = async (req, res) => {
     if (rom_type) {
       req.body.rom_type = rom_type.toLowerCase();
     }
-    // check for invalid fields
-    let isValid = true;
-    for (const field of Object.keys(req.body)) {
-      if (!fields.includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = true;
-        if (typeof req.body[field] === 'string') {
-          req.body[field] = req.sanitize(req.body[field]);
-        }
-      }
-    }
-    if (!isValid) {
+    if (checkForInvalidFields(req, fields) === true) {
       return res
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
@@ -342,7 +328,7 @@ module.exports.patchRom = async (req, res) => {
 module.exports.deleteRom = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -415,7 +401,7 @@ module.exports.romsHeaders = (req, res) => {
 module.exports.romHeaders = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });

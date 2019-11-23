@@ -5,13 +5,14 @@ const Nature = require('../models/Nature');
 const [, , allNaturesData] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');
 const universal = require('../routes/universal');
+const {
+  checkForInvalidRoute,
+  checkForInvalidFields
+} = require('../middleware/check-validity');
+const postHeaders = require('../middleware/post-headers');
 
 const routesWithParams = ['all'];
 const fields = ['_id', 'name', 'up', 'down', 'flavor', 'usage'];
-
-function checkForInvalidRoute(id) {
-  return routesWithParams.includes(id);
-}
 
 module.exports.getNatures = async (req, res) => {
   try {
@@ -27,7 +28,7 @@ module.exports.getNatures = async (req, res) => {
 module.exports.getNature = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -64,21 +65,13 @@ module.exports.addNature = async (req, res) => {
       flavor: req.sanitize(req.body.flavor) || null,
       usage: req.sanitize(req.body.usage)
     });
+    if (checkForInvalidFields(req, fields) === true) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const nature = await Nature.addNature(natureData);
-    res.append(
-      'Created-At-Route',
-      `${url.format({
-        protocol: req.protocol,
-        host: req.get('host'),
-        pathname: req.originalUrl
-      })}/${nature._id}`
-    );
-    res.append(
-      'Created-At',
-      moment()
-        .subtract(8, 'hours')
-        .format()
-    );
+    postHeaders(req, res, nature);
     clearCache(req);
     return res.status(201).json(nature);
   } catch (err) {
@@ -106,7 +99,7 @@ module.exports.updateNature = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -118,6 +111,11 @@ module.exports.updateNature = async (req, res) => {
       flavor: req.sanitize(req.body.flavor) || null,
       usage: req.sanitize(req.body.usage)
     };
+    if (checkForInvalidFields(req, fields) === true) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const nature = await Nature.updateNature(id, natureData, {});
     if (!nature) {
       return res.status(404).json({
@@ -158,23 +156,12 @@ module.exports.patchNature = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
-    // detect invalid fields
-    let isValid = true;
-    for (const field of Object.keys(req.body)) {
-      if (!fields.includes(field)) {
-        isValid = false;
-        break;
-      } else {
-        isValid = true;
-        req.body[field] = req.sanitize(req.body[field]);
-      }
-    }
-    if (!isValid) {
+    if (checkForInvalidFields(req, fields) === true) {
       return res
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
@@ -216,7 +203,7 @@ module.exports.patchNature = async (req, res) => {
 module.exports.deleteNature = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -267,7 +254,7 @@ module.exports.naturesHeaders = (req, res) => {
 module.exports.natureHeaders = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(id)) {
+    if (checkForInvalidRoute(routesWithParams, id)) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });

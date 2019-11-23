@@ -4,6 +4,9 @@ const moment = require('moment');
 const Rating = require('../models/Rating');
 const { clearCache } = require('../middleware/cache');
 const universal = require('../routes/universal');
+const { checkForInvalidFields } = require('../middleware/check-validity');
+
+const fields = ['_id', 'rating', 'message', 'date_time'];
 
 module.exports.addRating = async (req, res) => {
   const errors = validationResult(req);
@@ -15,6 +18,11 @@ module.exports.addRating = async (req, res) => {
       rating: req.body.rating,
       message: req.sanitize(req.body.message) || null
     });
+    if (checkForInvalidFields(req, fields) === true) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     if (req.body.date_time) {
       req.body.date_time = req.sanitize(req.body.date_time.toString());
     }
