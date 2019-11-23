@@ -28,16 +28,16 @@ module.exports.getNatures = async (req, res) => {
 module.exports.getNature = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
-      return res
-        .status(405)
-        .json({ success: false, message: 'Method not allowed.' });
-    }
     const nature = await Nature.getNature(id);
     if (!nature) {
       return res
         .status(404)
         .json({ success: false, message: 'Nature not found.' });
+    }
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
+      return res
+        .status(405)
+        .json({ success: false, message: 'Method not allowed.' });
     }
     return res.status(200).json(nature);
   } catch (err) {
@@ -99,7 +99,7 @@ module.exports.updateNature = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -156,7 +156,7 @@ module.exports.patchNature = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -203,7 +203,7 @@ module.exports.patchNature = async (req, res) => {
 module.exports.deleteNature = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -254,7 +254,7 @@ module.exports.naturesHeaders = (req, res) => {
 module.exports.natureHeaders = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });

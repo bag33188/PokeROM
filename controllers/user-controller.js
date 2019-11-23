@@ -62,7 +62,7 @@ module.exports.getUsers = async (req, res) => {
 module.exports.getUser = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -208,7 +208,7 @@ module.exports.updateUser = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -275,7 +275,7 @@ module.exports.patchUser = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -361,7 +361,7 @@ module.exports.deleteUsers = async (req, res) => {
 module.exports.deleteUser = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -406,7 +406,7 @@ module.exports.usersHeaders = (req, res) => {
 module.exports.userHeaders = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });

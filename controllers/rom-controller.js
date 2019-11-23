@@ -134,7 +134,7 @@ module.exports.getRoms = async (req, res) => {
 module.exports.getRom = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -210,7 +210,7 @@ module.exports.updateRom = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -273,7 +273,7 @@ module.exports.patchRom = async (req, res) => {
   }
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -328,7 +328,7 @@ module.exports.patchRom = async (req, res) => {
 module.exports.deleteRom = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
@@ -401,7 +401,7 @@ module.exports.romsHeaders = (req, res) => {
 module.exports.romHeaders = async (req, res) => {
   try {
     const id = req.params.id;
-    if (checkForInvalidRoute(routesWithParams, id)) {
+    if (checkForInvalidRoute(routesWithParams, id) === true) {
       return res
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
