@@ -13,7 +13,7 @@ h3 {
 }
 
 .carousel-caption {
-  @media only all and (max-height: 537px) {
+  @media only screen and (max-height: 537px) {
     bottom: 0 !important;
     margin: 0 !important;
     padding: 0 !important;

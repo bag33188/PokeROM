@@ -165,7 +165,7 @@
 }
 
 #description-icon {
-  @media only all and (max-width: 388px) {
+  @media only screen and (max-width: 388px) {
     display: none !important;
   }
 }
@@ -175,7 +175,7 @@
  * | RESPONSIVE MEDIA QUERIES |
  * |==========================|
  */
-@media only all and (max-width: 938px) {
+@media only screen and (max-width: 938px) {
   .rom-info-container {
     grid-template-areas:
       'rom-info-header'

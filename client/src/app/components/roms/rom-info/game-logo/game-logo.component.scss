@@ -4,13 +4,13 @@
 #logo {
   background-color: $white;
   height: em(159px, 16px);
-  @media only all and (max-width: 938px) and (min-width: 489px) {
+  @media only screen and (max-width: 938px) and (min-width: 489px) {
     height: em(132px, 16px);
   }
-  @media only all and (max-width: 488px) and (min-width: 332px) {
+  @media only screen and (max-width: 488px) and (min-width: 332px) {
     height: em(100px, 16px);
   }
-  @media only all and (max-width: 331px) {
+  @media only screen and (max-width: 331px) {
     height: em(81px, 16px);
   }
 }

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /* You can add global styles to this file, and also import other style files */
 
 @import './assets/scss/variables';
@@ -49,20 +50,6 @@ html {
   &:hover {
     box-shadow: 0 5px 11px 0 $btn-box-shadow2-rgba,
       0 4px 15px 0 $btn-box-shadow1-rgba !important;
-  }
-}
-
-button {
-  &:focus {
-    box-shadow: none !important;
-    outline: none !important;
-  }
-}
-
-a {
-  .btn {
-    box-shadow: none !important;
-    outline: none !important;
   }
 }
 

@@ -69,7 +69,7 @@
   grid-template-rows: 1fr minmax(min-content, auto);
   padding-bottom: 0.6rem;
   width: 70vw;
-  @media only all and (max-width: 916px) {
+  @media only screen and (max-width: 916px) {
     grid-row-gap: 1.4rem;
     grid-template-areas:
       'rom-1'
@@ -118,7 +118,7 @@
   h1 {
     text-align: left;
   }
-  @media only all and (max-width: 916px) {
+  @media only screen and (max-width: 916px) {
     width: 90vw;
 
     h1 {
