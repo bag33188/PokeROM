@@ -346,6 +346,7 @@ check `shared` (if necessary)
 debug pre-configuration
 click `validate` and validate to make sure everything works correctly
 
+npm install --save @angular/animations@9.0.0-rc.2 @angular/common@9.0.0-rc.2 @angular/compiler@9.0.0-rc.2 @angular/core@9.0.0-rc.2 @angular/forms@9.0.0-rc.2 @angular/localize@9.0.0-rc.2 @angular/platform-browser@9.0.0-rc.2 @angular/platform-browser-dynamic@9.0.0-rc.2 @angular/pwa@9.0.0-rc.2 @angular/router @angular/service-worker@9.0.0-rc.2 && npm install --save-dev @angular-devkit/build-angular@9.0.0-rc.2 @angular/cli@9.0.0-rc.2 @angular/compiler-cli@9.0.0-rc.2 @angular/language-service@9.0.0-rc.2 && npm install -g @angular/cli@9.0.0-rc.2 && npm link @angular/cli
 -->
 
 > _**Enjoy!**_
