@@ -193,10 +193,11 @@ module.exports = mongoose.model('Rom', romSchema);
 const Rom = module.exports;
 
 module.exports.getAllRoms = (query, limit, callback) => {
+  const sortingQuery = { order_number: 1 };
   // make sure to parse limit as integer
   return Rom.find(query, callback)
     .limit(parseInt(limit))
-    .sort({ order_number: 1 });
+    .sort(sortingQuery);
 };
 
 module.exports.getRomById = (id, callback) => {
