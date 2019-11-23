@@ -2,8 +2,6 @@ const express = require('express');
 const yaml = require('js-yaml');
 const fs = require('fs');
 
-const router = express.Router();
-
 const naturesDoc = yaml.safeLoad(fs.readFileSync('./docs/paths/Natures.yml'));
 const ratingsDoc = yaml.safeLoad(fs.readFileSync('./docs/paths/Ratings.yml'));
 const usersDoc = yaml.safeLoad(fs.readFileSync('./docs/paths/Users.yml'));
@@ -69,6 +67,8 @@ let htmlDoc = `
 `;
 
 htmlDoc = htmlDoc.replace(/^(\n)/, '');
+
+const router = express.Router();
 
 router.all('/*', (req, res) => {
   res.status(300).send(htmlDoc);
