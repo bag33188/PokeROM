@@ -120,12 +120,8 @@ module.exports.registerUser = async (req, res) => {
     const addedUser = await User.addUser(userData);
     await Rom.postCore(coreRoms, addedUser);
     await Rom.postHacks(romHacks, addedUser);
-    try {
-      postHeaders(req, res, addedUser, true);
-    } catch (e) {
-      return res.status(500).json(e);
-    }
     clearCache(req);
+    postHeaders(req, res, addedUser, true);
     return res
       .status(201)
       .json({ success: true, message: 'User successfully registered!' });
