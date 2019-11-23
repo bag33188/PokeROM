@@ -154,16 +154,18 @@ export class AccountComponent implements OnInit, AfterContentInit {
 
   public sanitizeData(): void {
     if (this.user.name) {
-      this.user.name = this.user.name.sanitizeXSS(true).removeStringChars();
+      this.user.name = this.user.name
+        .sanitizeXSS({ replaceSpecialChars: true })
+        .removeStringChars();
     }
     if (this.user.username) {
       this.user.username = this.user.username
-        .sanitizeXSS(false)
+        .sanitizeXSS({ replaceSpecialChars: false })
         .removeStringChars();
     }
     if (this.user.password) {
       this.user.password = this.user.password
-        .sanitizeXSS(false)
+        .sanitizeXSS({ replaceSpecialChars: false })
         .removeStringChars();
     }
   }

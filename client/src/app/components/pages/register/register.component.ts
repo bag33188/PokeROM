@@ -126,10 +126,18 @@ export class RegisterComponent implements OnInit, AfterContentInit {
   }
 
   public sanitizeData(): void {
-    this.Name.setValue(this.Name.value.sanitizeXSS(true).removeStringChars());
-    this.Username.setValue(
-      this.Username.value.sanitizeXSS(false).removeStringChars()
+    this.Name.setValue(
+      this.Name.value
+        .sanitizeXSS({ replaceSpecialChars: true })
+        .removeStringChars()
     );
-    this.Password.setValue(this.Password.value.sanitizeXSS(false));
+    this.Username.setValue(
+      this.Username.value
+        .sanitizeXSS({ replaceSpecialChars: false })
+        .removeStringChars()
+    );
+    this.Password.setValue(
+      this.Password.value.sanitizeXSS({ replaceSpecialChars: false })
+    );
   }
 }

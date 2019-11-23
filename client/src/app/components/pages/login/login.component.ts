@@ -99,8 +99,12 @@ export class LoginComponent implements OnInit {
 
   public sanitizeData(): void {
     this.Username.setValue(
-      this.Username.value.sanitizeXSS(true).removeStringChars()
+      this.Username.value
+        .sanitizeXSS({ replaceSpecialChars: true })
+        .removeStringChars()
     );
-    this.Password.setValue(this.Password.value.sanitizeXSS(false));
+    this.Password.setValue(
+      this.Password.value.sanitizeXSS({ replaceSpecialChars: false })
+    );
   }
 }

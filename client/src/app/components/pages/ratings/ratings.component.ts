@@ -65,7 +65,9 @@ export class RatingsComponent implements OnInit {
     } else {
       const rating: Rating = {
         rating: this.currentRate,
-        message: this.message.sanitizeXSS(false, false).removeStringChars(),
+        message: this.message
+          .sanitizeXSS({ replaceSpecialChars: false, encode: false })
+          .removeStringChars(),
         date_time: new Date()
       };
       this.ratingService.addRating(rating).subscribe(
