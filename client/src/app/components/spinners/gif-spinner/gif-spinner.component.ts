@@ -17,6 +17,9 @@ export class GifSpinnerComponent implements OnInit {
     // this.checkInput();
   }
 
+  /**
+   * TODO fix the issue where app breaks when this method is called in lifecycle hook.
+   */
   private checkInput(): void | never {
     if (this.loading === undefined || this.loading === null) {
       throw new Error('Loading property is required.');

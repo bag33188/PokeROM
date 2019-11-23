@@ -7,47 +7,33 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BootstrapSpinnerComponent implements OnInit {
   @Input() public loading: boolean;
-  @Input() public type: string;
-  @Input() public color: string;
+  @Input('type') public spinnerType: string;
+  @Input('color') public spinnerColor: string;
+  @Input('size') public customSize?: number;
   @Input() public spaced?: boolean;
-  @Input() public customSize?: number;
-  public _type: string;
-  public _color: string;
+  public type: string;
+  public color: string;
 
   constructor() {}
 
   ngOnInit(): void | never {
-    if (!this.type) {
-      throw new Error('Type is required.');
-    } else if (!this.color) {
-      throw new Error('Color is required.');
-    } else if (this.loading === undefined || this.loading === null) {
-      throw new Error('Loading property is required.');
-    } else if (
-      this.spaced !== undefined &&
-      this.spaced !== null &&
-      typeof this.spaced !== 'boolean'
-    ) {
-      throw new Error('Spaced property must be a boolean.');
-    } else if (this.customSize && typeof this.customSize !== 'number') {
-      throw new Error('Custom size property must be a number data-type.');
-    } else {
+    if (this.checkForErrors() === false) {
       this.setType();
       this.setColor();
     }
   }
 
   private setType(): void {
-    this._type = this.getType();
+    this.type = this.getType();
   }
 
   private setColor(): void {
-    this._color = this.getColor();
+    this.color = this.getColor();
   }
 
   private getType(): string | never {
-    if (typeof this.type === 'string') {
-      switch (this.type) {
+    if (typeof this.spinnerType === 'string') {
+      switch (this.spinnerType) {
         case 'border':
           return 'spinner-border';
         case 'grow':
@@ -61,8 +47,8 @@ export class BootstrapSpinnerComponent implements OnInit {
   }
 
   private getColor(): string | never {
-    if (typeof this.color === 'string') {
-      switch (this.color) {
+    if (typeof this.spinnerColor === 'string') {
+      switch (this.spinnerColor) {
         case 'primary':
           return 'text-primary';
         case 'secondary':
@@ -85,5 +71,28 @@ export class BootstrapSpinnerComponent implements OnInit {
     } else {
       throw new Error('Color must be a string.');
     }
+  }
+
+  private checkForErrors(): never | boolean {
+    if (!this.spinnerType) {
+      throw new Error('Type is required.');
+    }
+    if (!this.spinnerColor) {
+      throw new Error('Color is required.');
+    }
+    if (this.loading === undefined || this.loading === null) {
+      throw new Error('Loading property is required.');
+    }
+    if (
+      this.spaced !== undefined &&
+      this.spaced !== null &&
+      typeof this.spaced !== 'boolean'
+    ) {
+      throw new Error('Spaced property must be a boolean.');
+    }
+    if (this.customSize && typeof this.customSize !== 'number') {
+      throw new Error('Custom size property must be a number data-type.');
+    }
+    return false;
   }
 }
