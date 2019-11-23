@@ -59,7 +59,7 @@ const htmlDoc = `
     <div class="container-wrapper">
       <h1 id="heading-title">Please use a valid Pok&eacute;ROM API endpoint.</h1>
       <ul>
-        ${listItems}
+        ${listItems.replace(/(\n)$/, '')}
       </ul>
     </div>
   </body>
