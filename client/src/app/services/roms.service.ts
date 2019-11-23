@@ -5,11 +5,22 @@ import { Rom } from '../models/Rom';
 import { environment } from '../../environments/environment';
 import { JSONObject } from '../models/JSONObject';
 
-/*
- * headers.append(name: string, value: string | string[])
- * headers.set(name: string, value: string | string[])
- * headers.delete(name: string)
- */
+interface GetRequestOptions {
+  limit?: number;
+  pagination?: {
+    page: number;
+    perPage: number;
+  };
+  types?: {
+    core?: boolean;
+    hacks?: boolean;
+  };
+}
+
+interface DeleteRequestOptions {
+  core?: boolean;
+  hacks?: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +36,7 @@ export class RomsService {
    * @param options Options for getting all ROMs.
    * @returns An observable (rom array).
    */
-  public getAllRoms(options: OptsGetRqst): Observable<Rom[]> {
+  public getAllRoms(options: GetRequestOptions): Observable<Rom[]> {
     let httpParams: HttpParams = new HttpParams();
     if (options.limit) {
       httpParams = httpParams.append('_limit', options.limit.toString());
@@ -137,7 +148,7 @@ export class RomsService {
    * @param options Options for deletion of ROMs.
    * @returns An observable (any).
    */
-  public deleteAllRoms(options?: OptsDelRqst): Observable<any> {
+  public deleteAllRoms(options?: DeleteRequestOptions): Observable<any> {
     let httpParams: HttpParams = new HttpParams();
     if (options) {
       if (options.core === true) {
@@ -179,21 +190,4 @@ export class RomsService {
   public getOptionsInfo(): Observable<void> {
     return this.http.options<void>(this.romsUrl);
   }
-}
-
-interface OptsGetRqst {
-  limit?: number;
-  pagination?: {
-    page: number;
-    perPage: number;
-  };
-  types?: {
-    core?: boolean;
-    hacks?: boolean;
-  };
-}
-
-interface OptsDelRqst {
-  core?: boolean;
-  hacks?: boolean;
 }
