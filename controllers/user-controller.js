@@ -1,6 +1,4 @@
-const moment = require('moment');
 const config = require('config');
-const url = require('url');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator/check');

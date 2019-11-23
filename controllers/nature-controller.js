@@ -1,5 +1,3 @@
-const url = require('url');
-const moment = require('moment');
 const { validationResult } = require('express-validator/check');
 const Nature = require('../models/Nature');
 const [, , allNaturesData] = require('../database/data.json');
