@@ -409,6 +409,7 @@ module.exports.romHeaders = async (req, res) => {
         message: 'ROM not found.'
       });
     }
+    return res.status(200);
   } catch (err) {
     if (err.name === 'CastError') {
       return res
