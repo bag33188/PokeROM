@@ -12,7 +12,6 @@ const {
   checkForInvalidFields,
   checkForInvalidRoute
 } = require('../middleware/check-validity');
-const postHeaders = require('../middleware/post-headers');
 
 const routesWithParams = ['authenticate', 'register'];
 const fields = ['_id', 'name', 'username', 'password'];
@@ -121,9 +120,6 @@ module.exports.registerUser = async (req, res) => {
     await Rom.postCore(coreRoms, addedUser);
     await Rom.postHacks(romHacks, addedUser);
     clearCache(req);
-    if (process.env.NODE_ENV !== 'production') {
-      postHeaders(req, res, addedUser, true);
-    }
     return res
       .status(201)
       .json({ success: true, message: 'User successfully registered!' });

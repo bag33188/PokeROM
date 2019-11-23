@@ -1,6 +1,4 @@
 const { validationResult } = require('express-validator/check');
-const url = require('url');
-const moment = require('moment');
 const Rating = require('../models/Rating');
 const { clearCache } = require('../middleware/cache');
 const universal = require('../routes/universal');
@@ -32,20 +30,6 @@ module.exports.addRating = async (req, res) => {
         .status(404)
         .json({ success: false, message: 'Rating not found.' });
     }
-    res.append(
-      'Created-At-Route',
-      `${url.format({
-        protocol: req.protocol,
-        host: req.get('host'),
-        pathname: req.originalUrl
-      })}/${rating._id}`
-    );
-    res.append(
-      'Created-At',
-      moment()
-        .subtract(8, 'hours')
-        .format()
-    );
     clearCache(req);
     return res.status(201).json(rating);
   } catch (err) {

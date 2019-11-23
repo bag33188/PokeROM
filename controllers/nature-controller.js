@@ -69,7 +69,7 @@ module.exports.addNature = async (req, res) => {
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
     const nature = await Nature.addNature(natureData);
-    postHeaders(req, res, nature);
+    // postHeaders(req, res, nature);
     clearCache(req);
     return res.status(201).json(nature);
   } catch (err) {

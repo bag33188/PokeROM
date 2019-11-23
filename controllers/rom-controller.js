@@ -7,7 +7,6 @@ const {
   checkForInvalidRoute,
   checkForInvalidFields
 } = require('../middleware/check-validity');
-const postHeaders = require('../middleware/post-headers');
 
 const routesWithParams = ['core', 'hacks'];
 const fields = [
@@ -181,7 +180,6 @@ module.exports.addRom = async (req, res) => {
     }
     const rom = await Rom.addRom(romData);
     clearCache(req);
-    postHeaders(req, res, rom);
     return res.status(201).json(rom);
   } catch (err) {
     if (err.name === 'CastError') {
