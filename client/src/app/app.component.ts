@@ -51,8 +51,8 @@ import { JSONObject } from './models/JSONObject';
   ]
 })
 export class AppComponent {
-  protected readonly _eacute: string = '\u00E9';
-  public _title: string = `Pok${this._eacute}ROM`;
+  protected static readonly _eacute: string = '\u00E9';
+  public _title: string = `Pok${AppComponent._eacute}ROM`;
   get title(): string {
     return this._title;
   }
