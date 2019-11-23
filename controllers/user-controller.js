@@ -138,7 +138,7 @@ module.exports.registerUser = async (req, res) => {
     } else {
       return res
         .status(500)
-        .json({ success: false, message: 'Internal server error.' });
+        .json({ success: false, message: 'Internal server error.', ...err });
     }
   }
 };
