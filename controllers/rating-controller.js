@@ -80,8 +80,8 @@ module.exports.getRatings = async (req, res) => {
     if (!limit) {
       limit = 0;
     }
-    const ratings = await Rating.getRatings();
-    return res.status(200).json(ratings, limit);
+    const ratings = await Rating.getRatings(limit);
+    return res.status(200).json(ratings);
   } catch (err) {
     return res
       .status(500)
