@@ -57,7 +57,7 @@ String.prototype.convertToDateFormat = function() {
 };
 
 function convertToBoolean(value) {
-  switch (value) {
+  switch (value.toLowerCase()) {
     case 'true':
       return true;
     case 'false':
