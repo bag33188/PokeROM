@@ -1,25 +1,29 @@
 import he from 'he';
 
+interface Options {
+  replaceSpecialChars?: boolean;
+  encode?: boolean;
+}
+
 declare global {
   interface String {
-    sanitizeXSS(replaceSpecialChars?: boolean, encode?: boolean): string;
+    sanitizeXSS(options?: Options): string;
   }
 }
 
 // tslint:disable-next-line:only-arrow-functions
-String.prototype.sanitizeXSS = function(
-  replaceSpecialChars?: boolean,
-  encode?: boolean
-): string {
+String.prototype.sanitizeXSS = function(options?: Options): string {
   let checkXSS: RegExp;
   checkXSS = /(?:(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)|(javascript:))/gim;
   const checkChars: RegExp = /(?:([&'"<>)(\\\/{}\[\]:;^*]))/gim;
   let sanitizedStr: string = this.replace(checkXSS, '');
-  if (replaceSpecialChars) {
-    sanitizedStr = sanitizedStr.replace(checkChars, '');
-  }
-  if (encode) {
-    sanitizedStr = he.encode(sanitizedStr);
+  if (options !== null && options !== undefined) {
+    if (options.replaceSpecialChars === true) {
+      sanitizedStr = sanitizedStr.replace(checkChars, '');
+    }
+    if (options.encode === true) {
+      sanitizedStr = he.encode(sanitizedStr);
+    }
   }
   return sanitizedStr;
 };
