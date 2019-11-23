@@ -16,7 +16,7 @@
             >{{ browser.status }}</span
           >.
           <br />
-          <span
+          <ng-container
             *ngIf="
               browser.status.toLowerCase() === 'compatible';
               else incompatible
@@ -32,11 +32,11 @@
               browser.browser + ' ' + browser.minVersion
             }}</span
             >).
-          </span>
+          </ng-container>
         </p>
         <ng-template #incompatible>
           {{ browser.browser }} is not compatible with this app.
-          <span *ngIf="browser.browser === 'Internet Explorer'">
+          <ng-container *ngIf="browser.browser === 'Internet Explorer'">
             <br />
             <button
               type="button"
@@ -47,7 +47,7 @@
             >
               Why is IE incompatible?
             </button>
-          </span>
+          </ng-container>
         </ng-template>
       </ng-template>
     </ngb-tab>
