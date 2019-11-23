@@ -4,7 +4,7 @@ import { Rating } from '../../../models/Rating';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStringChars from '../../../helpers/remove-string-chars';
 import { LoggerService as logger } from '../../../services/logger.service';
-import { JSONObject } from '../../../models/JSON';
+import { JSONObject } from '../../../models/JSONObject';
 
 @Component({
   selector: 'app-ratings',

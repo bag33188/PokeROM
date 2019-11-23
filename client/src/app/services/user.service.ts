@@ -3,7 +3,7 @@ import { User } from '../models/User';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { JSONObject } from '../models/JSON';
+import { JSONObject } from '../models/JSONObject';
 
 @Injectable({
   providedIn: 'root'

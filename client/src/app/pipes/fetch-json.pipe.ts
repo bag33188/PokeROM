@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { JSONArray, JSONObject } from '../models/JSON';
+import { JSONObject } from '../models/JSONObject';
+import { JSONArray } from '../interfaces/JSONArray';
 
 @Pipe({
   name: 'fetch',

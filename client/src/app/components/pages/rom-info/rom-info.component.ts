@@ -9,7 +9,7 @@ import he from 'he';
 import { RomsService } from '../../../services/roms.service';
 import { AuthService } from '../../../services/auth.service';
 import { Rom } from '../../../models/Rom';
-import { JSONObject } from '../../../models/JSON';
+import { JSONObject } from '../../../models/JSONObject';
 
 @Component({
   selector: 'app-rom-info',

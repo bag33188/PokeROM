@@ -3,7 +3,7 @@ import { LoggerService as logger } from './services/logger.service';
 import { ApiService } from './services/api.service';
 import { ApiVersion } from './models/ApiVersion';
 import { environment } from '../environments/environment';
-import { JSONObject } from './models/JSON';
+import { JSONObject } from './models/JSONObject';
 
 @Component({
   selector: 'app-root',

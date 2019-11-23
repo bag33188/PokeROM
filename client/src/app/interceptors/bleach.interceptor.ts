@@ -11,7 +11,8 @@ import { map } from 'rxjs/operators';
 import he from 'he';
 import sanitizeXSS from '../helpers/sanitize-xss';
 import removeStringChars from '../helpers/remove-string-chars';
-import { JSONArray, JSONObject } from '../models/JSON';
+import { JSONObject } from '../models/JSONObject';
+import { JSONArray } from '../interfaces/JSONArray';
 
 @Injectable()
 export class BleachInterceptor implements HttpInterceptor {

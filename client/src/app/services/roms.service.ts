@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Rom } from '../models/Rom';
 import { environment } from '../../environments/environment';
-import { JSONObject } from '../models/JSON';
+import { JSONObject } from '../models/JSONObject';
 
 /*
  * headers.append(name: string, value: string | string[])

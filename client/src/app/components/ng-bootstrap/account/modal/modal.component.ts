@@ -4,7 +4,7 @@ import { AuthService } from '../../../../services/auth.service';
 import { LoggerService as logger } from '../../../../services/logger.service';
 import { UserService } from '../../../../services/user.service';
 import { Router } from '@angular/router';
-import { JSONObject } from '../../../../models/JSON';
+import { JSONObject } from '../../../../models/JSONObject';
 
 @Component({
   selector: 'app-account-modal',

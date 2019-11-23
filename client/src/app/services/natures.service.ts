@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Nature } from '../models/Nature';
 import { environment } from '../../environments/environment';
-import { JSONObject } from '../models/JSON';
+import { JSONObject } from '../models/JSONObject';
 
 const headers: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json'

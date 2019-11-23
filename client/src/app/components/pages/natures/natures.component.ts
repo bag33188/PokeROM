@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Nature } from '../../../models/Nature';
 import { NaturesService } from '../../../services/natures.service';
-import { JSONObject } from '../../../models/JSON';
+import { JSONObject } from '../../../models/JSONObject';
 
 @Component({
   selector: 'app-natures',

@@ -9,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStringChars from '../../../helpers/remove-string-chars';
-import { JSONObject } from '../../../models/JSON';
+import { JSONObject } from '../../../models/JSONObject';
 
 @Component({
   selector: 'app-account',
