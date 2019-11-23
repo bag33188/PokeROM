@@ -147,6 +147,11 @@ module.exports.authorizeUser = async (req, res) => {
     return res.status(406).json({ success: false, errors: errors.array() });
   }
   try {
+    if (checkForInvalidFields(req, ['username', 'password'], true) === true) {
+      return res
+        .status(406)
+        .json({ success: false, message: 'Body contains invalid fields.' });
+    }
     const user = await User.getUserByUsername(req.body.username);
     if (!user) {
       return res.status(404).json({
