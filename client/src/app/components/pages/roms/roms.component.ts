@@ -44,7 +44,7 @@ export class RomsComponent implements OnInit, AfterContentInit {
         });
         this.romsData = roms;
         this.loading = false;
-        if (!this.loading && this.romsData.length === 0) {
+        if (!this.loading && this.romsData.length < 1) {
           this.noRomsMsg = 'No ROMs to Show';
         }
       },
