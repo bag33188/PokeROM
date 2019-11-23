@@ -118,9 +118,9 @@ module.exports.registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     userData.password = await bcrypt.hash(userData.password, salt);
     const addedUser = await User.addUser(userData);
-    postHeaders(req, res, addedUser, true);
     await Rom.postCore(coreRoms, addedUser);
     await Rom.postHacks(romHacks, addedUser);
+    postHeaders(req, res, addedUser, true);
     clearCache(req);
     return res
       .status(201)
