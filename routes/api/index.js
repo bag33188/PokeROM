@@ -1,6 +1,38 @@
 const express = require('express');
+const yaml = require('js-yaml');
+const fs = require('fs');
 
 const router = express.Router();
+
+const naturesDoc = yaml.safeLoad(fs.readFileSync('./docs/paths/Natures.yml'));
+const ratingsDoc = yaml.safeLoad(fs.readFileSync('./docs/paths/Ratings.yml'));
+const usersDoc = yaml.safeLoad(fs.readFileSync('./docs/paths/Users.yml'));
+const optionsDoc = yaml.safeLoad(fs.readFileSync('./docs/paths/Options.yml'));
+const romsDoc = yaml.safeLoad(fs.readFileSync('./docs/paths/Roms.yml'));
+const versionDoc = yaml.safeLoad(fs.readFileSync('./docs/paths/Version.yml'));
+
+const docs = [
+  naturesDoc,
+  ratingsDoc,
+  romsDoc,
+  optionsDoc,
+  usersDoc,
+  versionDoc
+];
+
+let pathsArr = [];
+
+docs.forEach(doc => {
+  pathsArr.push(Object.keys(doc.paths));
+});
+
+pathsArr = pathsArr.flat(1).sort();
+
+let listItems = '';
+
+for (path of pathsArr) {
+  listItems += `<li style="list-style-type: none;"><code>${path}</code></li>\n`;
+}
 
 const htmlDoc = `
 <!DOCTYPE html>
@@ -26,6 +58,9 @@ const htmlDoc = `
   <body>
     <div class="container-wrapper">
       <h1 id="heading-title">Please use a valid Pok&eacute;ROM API endpoint.</h1>
+      <ul>
+        ${listItems}
+      </ul>
     </div>
   </body>
 </html>
