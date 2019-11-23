@@ -120,7 +120,11 @@ module.exports.registerUser = async (req, res) => {
     const addedUser = await User.addUser(userData);
     await Rom.postCore(coreRoms, addedUser);
     await Rom.postHacks(romHacks, addedUser);
-    // postHeaders(req, res, addedUser, true);
+    try {
+      postHeaders(req, res, addedUser, true);
+    } catch (e) {
+      return res.status(500).json(e);
+    }
     clearCache(req);
     return res
       .status(201)
@@ -138,7 +142,7 @@ module.exports.registerUser = async (req, res) => {
     } else {
       return res
         .status(500)
-        .json({ success: false, message: 'Internal server error.', ...err });
+        .json({ success: false, message: 'Internal server error.' });
     }
   }
 };
