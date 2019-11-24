@@ -13,6 +13,7 @@ import { UserService } from '../../services/user.service';
 import { LoggerService } from '../../services/logger.service';
 import { UnitConversionService } from '../../services/unit-conversion.service';
 import { DirectivesModule } from '../../directives/directives.module';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DirectivesModule } from '../../directives/directives.module';
     NgbModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    DirectivesModule
+    DirectivesModule,
+    PipesModule
   ],
   providers: [AuthService, UserService, LoggerService, UnitConversionService],
   exports: [BodyComponent, FooterComponent, HeaderComponent]

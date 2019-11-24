@@ -31,6 +31,7 @@ import { RatingService } from '../../services/rating.service';
 import { AccountComponent } from './account/account.component';
 import { SpinnerModule } from '../spinners/spinner.module';
 import { DirectivesModule } from '../../directives/directives.module';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { DirectivesModule } from '../../directives/directives.module';
     NgBootstrapModule,
     FontAwesomeModule,
     SpinnerModule,
-    DirectivesModule
+    DirectivesModule,
+    PipesModule
   ],
   exports: [],
   providers: [

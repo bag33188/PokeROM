@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   private loggedInRoutes: Route[];
   public routes: HtmlRoute[];
   public images: typeof Images = Images;
+  public logoFallbackUrl: string;
 
   constructor(
     private authService: AuthService,
@@ -106,6 +107,8 @@ export class HeaderComponent implements OnInit {
         pathMatch: 'prefix'
       }
     ];
+    this.logoFallbackUrl =
+      'https://6emlfw.sn.files.1drv.com/y4mZ4gYGKIW3-1Gg6sNAK2N-NLlAhXfn2NyK2eNlaP-V_Bi1xZsV5B_C71QqVw6rF32zJCPv7TsRgrKq4NFWYRUyuLdlqPKv8q0UOfMbPu8k1bok6dcRIauEUpzNHbGLc0YXFHPocoPUaVNvUqY4Ln7xEVJ9RjY_1diLvvmkvmqDtfFV8iBybtSl9zBAiYRa7c3LZopc03P-nfedATk6qvwLg?width=444&height=139&cropmode=none';
   }
 
   public isUrl(url: string, pathMatch: string): boolean {

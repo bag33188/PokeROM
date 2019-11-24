@@ -177,5 +177,11 @@
         </span>
       </p>
     </ng-container>
+    <ng-container *ngIf="!environment.production">
+      <h2 class="mt-3">API Version</h2>
+      <p>
+        <code>{{ environment.apiUrl + '/version' | fetch | json }}</code>
+      </p>
+    </ng-container>
   </div>
 </div>

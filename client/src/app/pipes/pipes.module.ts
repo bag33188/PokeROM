@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FetchJsonPipe } from './fetch-json.pipe';
-import { ReverseStringPipe } from './reverse-string.pipe';
+import { DefaultPipe } from './default.pipe';
 
 @NgModule({
-  declarations: [FetchJsonPipe, ReverseStringPipe],
+  declarations: [FetchJsonPipe, DefaultPipe],
   imports: [CommonModule],
-  exports: [FetchJsonPipe, ReverseStringPipe]
+  exports: [FetchJsonPipe, DefaultPipe]
 })
 export class PipesModule {}
