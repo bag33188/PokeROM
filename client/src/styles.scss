@@ -57,13 +57,14 @@ a,
 button {
   &:not(.close) {
     &:not(.nav-link) {
-      &:focus,
-      &:active {
+      &:active,
+      &:focus {
         box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba;
         outline: none !important;
 
         &[class*='btn-outline-'] {
           box-shadow: none !important;
+          outline: none !important;
         }
       }
     }
