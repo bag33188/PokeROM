@@ -61,13 +61,9 @@ button {
       &:active {
         box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba;
         outline: none !important;
-      }
 
-      &:not([class*='-outline']) {
-        &:focus,
-        &:active {
+        &[class*='btn-outline-'] {
           box-shadow: none !important;
-          outline: none !important;
         }
       }
     }
