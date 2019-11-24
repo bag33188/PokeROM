@@ -14,7 +14,7 @@ export class DefaultPipe implements PipeTransform {
 
     if (forceHttps) {
       if (imageUrl.indexOf('https') < 0) {
-        imageUrl = imageUrl.replace('http', 'https');
+        imageUrl = imageUrl.replace('http://', 'https://');
       }
     }
 
