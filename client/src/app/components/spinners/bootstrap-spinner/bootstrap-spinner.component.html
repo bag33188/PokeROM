@@ -1,14 +1,9 @@
 <div
-  [ngClass]="ngClasses"
   role="status"
+  [ngClass]="ngClasses"
   [hidden]="!loading"
   [style.height.px]="customSize ? customSize : 32"
   [style.width.px]="customSize ? customSize : 32"
 >
   <span class="sr-only">Loading...</span>
 </div>
-<!--
-  class="{{ type }} {{ color }}{{
-    spaced !== undefined && spaced !== null && spaced === true ? ' spacing' : ''
-  }}"
--->
