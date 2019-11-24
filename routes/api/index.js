@@ -110,7 +110,10 @@ let htmlDoc = `
 </html>
 `;
 
-htmlDoc = htmlDoc.replace(/^(\n)/, '').replace(/(\n)$/, '');
+htmlDoc = htmlDoc
+  .replace(/^(\n)/, '')
+  .replace(/(\n)$/, '')
+  .replace(/(\n){2}/, '');
 
 const router = express.Router();
 
