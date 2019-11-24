@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit {
         pathMatch: 'full'
       },
       {
-        url: '/ratings',
+        url: '/rate',
         pathMatch: 'full'
       },
       {
