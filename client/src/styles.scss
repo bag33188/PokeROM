@@ -53,12 +53,14 @@ html {
   }
 }
 
-button,
-a {
-  &:focus,
-  &:active {
-    box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba !important;
-    outline: none !important;
+a,
+button {
+  &:not(.close) {
+    &:focus,
+    &:active {
+      box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba !important;
+      outline: none !important;
+    }
   }
 }
 
