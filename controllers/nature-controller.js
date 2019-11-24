@@ -119,7 +119,7 @@ module.exports.updateNature = async (req, res) => {
         message: 'Nature not found.'
       });
     }
-    const updatedNature = Nature.getNature(id);
+    const updatedNature = await Nature.getNature(id);
     clearCache(req);
     return res.status(200).json(updatedNature);
   } catch (err) {

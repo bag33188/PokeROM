@@ -129,7 +129,7 @@ module.exports.ratingsHeaders = (req, res) => {
 module.exports.ratingHeaders = async (req, res) => {
   try {
     const id = req.params.id;
-    const rating = Rating.getRating(id);
+    const rating = await Rating.getRating(id);
     if (!rating) {
       return res
         .status(404)

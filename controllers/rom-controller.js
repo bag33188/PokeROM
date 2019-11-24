@@ -286,7 +286,7 @@ module.exports.patchRom = async (req, res) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    const rom = Rom.getRomById(id);
+    const rom = await Rom.getRomById(id);
     if (rom.user_id.toString() !== req.user._id.toString()) {
       return res.status(401).json({
         success: false,
