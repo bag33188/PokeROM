@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgClasses } from '../../../interfaces/NgClasses';
 
 @Component({
   selector: 'app-bootstrap-spinner',
@@ -13,6 +14,7 @@ export class BootstrapSpinnerComponent implements OnInit {
   @Input() public spaced?: boolean;
   public type: string;
   public color: string;
+  public ngClasses: NgClasses;
 
   constructor() {}
 
@@ -20,6 +22,13 @@ export class BootstrapSpinnerComponent implements OnInit {
     if (this.checkForErrors() === false) {
       this.setType();
       this.setColor();
+      this.ngClasses = {
+        [`${this.type} ${this.color}`]: true,
+        spacing:
+          this.spaced !== undefined &&
+          this.spaced !== null &&
+          this.spaced === true
+      };
     }
   }
 

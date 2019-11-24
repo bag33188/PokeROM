@@ -53,6 +53,7 @@ html {
   }
 }
 
+// remove button outlines in browsers
 a,
 button {
   &:not(.close) {
@@ -70,6 +71,8 @@ button {
     }
   }
 }
+
+// alter highlight/text-select color
 
 // webkit browsers
 ::selection {
