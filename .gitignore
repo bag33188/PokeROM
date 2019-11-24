@@ -30,6 +30,7 @@ public/index.html.bak*
 
 # Other
 sandbox
+public/*.bak*
 
 # Created by https://www.gitignore.io/api/node,phpstorm
 # Edit at https://www.gitignore.io/?templates=node,phpstorm

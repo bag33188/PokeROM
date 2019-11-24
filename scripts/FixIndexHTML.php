@@ -39,7 +39,7 @@
      * FixIndexHTML constructor.
      * @param string $filepath The path to `index.html`.
      */
-    public function __construct($filepath)
+    function __construct($filepath)
     {
       // call method to set file path property.
       $this->set_filepath($filepath);
@@ -53,6 +53,28 @@
     {
       // set class prop to method param.
       $this->filepath = $filepath;
+    }
+
+    public function backup_file()
+    {
+      // encapsulate main logic in try-catch
+      try {
+        // create file vars
+        $backup_filepath = $this->filepath . ".bak";
+        // get original index.html file contents
+        $backup_file_contents = file_get_contents($this->filepath);
+        // open file
+        $file = fopen($backup_filepath, "w");
+        // write to file
+        fwrite($file, $backup_file_contents);
+        // close file
+        fclose($file);
+      } catch (Exception $e) {
+        // handle any exceptions
+        echo "Error:\nCode: " . strval($e->getCode()) . "\nMessage: " . $e->getMessage();
+        // stop script
+        exit(1);
+      }
     }
 
     /**
@@ -259,6 +281,10 @@
   function main() {
     // instantiate class and pass in path to `index.html` file
     $fix_index_html = new FixIndexHTML("../public/index.html");
+    // first backup the file
+    echo "Backup up index.html file ... \n";
+    $fix_index_html->backup_file();
+    echo "Done! (file saved as index.html.bak)\n\n";
     // begin fixing index.html file ...
     echo "Moving around script tags in index.html ... \n";
     $fix_index_html->read_script_tags();

@@ -17,7 +17,7 @@
     /**
      * AddLicenses constructor.
      */
-    public function __construct()
+    function __construct()
     {
       // throw error if new instance of this class is created.
       throw new Error("Error: The `AddLicenses` class is not meant to be instantiated.");
