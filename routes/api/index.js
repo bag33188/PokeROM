@@ -29,7 +29,7 @@ for (const i in pathsArr) {
 
 const apiDocsHtml =
   process.env.NODE_ENV !== 'production'
-    ? `<hr /><a href="/api/docs/${version}" target="_blank">API Docs</a>`
+    ? `<hr />\n<a href="/api/docs/${version}" target="_blank">API Docs</a>`
     : '';
 
 let htmlDoc = `
