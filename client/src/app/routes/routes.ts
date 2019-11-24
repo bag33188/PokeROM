@@ -19,8 +19,16 @@ export const routes: Routes = [
     pathMatch: 'full',
     canActivate: [IsSecureGuard]
   },
-  { path: 'home', component: HomeComponent, canActivate: [IsSecureGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [IsSecureGuard] },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [IsSecureGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [IsSecureGuard]
+  },
   {
     path: 'register',
     component: RegisterComponent,
@@ -52,8 +60,10 @@ export const routes: Routes = [
     component: AccountComponent,
     canActivate: [AuthGuard, IsSecureGuard]
   },
-  { path: '404', component: NotFoundComponent, canActivate: [IsSecureGuard] },
-  { path: '**', component: NotFoundComponent, canActivate: [IsSecureGuard] }
-  // { path: '**', redirectTo: '/404', canActivate: [IsSecureGuard] },
-  // { path: '404', component: NotFoundComponent, canActivate: [IsSecureGuard] }
+  { path: '**', redirectTo: '/404', canActivate: [IsSecureGuard] },
+  {
+    path: '404',
+    component: NotFoundComponent,
+    canActivate: [IsSecureGuard]
+  }
 ];
