@@ -60,9 +60,9 @@ export const routes: Routes = [
     component: AccountComponent,
     canActivate: [AuthGuard, IsSecureGuard]
   },
-  { path: '**', redirectTo: '/404', canActivate: [IsSecureGuard] },
+  { path: '**', redirectTo: '/not_found', canActivate: [IsSecureGuard] },
   {
-    path: '404',
+    path: 'not_found',
     component: NotFoundComponent,
     canActivate: [IsSecureGuard]
   }
