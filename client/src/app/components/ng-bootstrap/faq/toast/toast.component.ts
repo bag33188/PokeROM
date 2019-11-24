@@ -1,24 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
 import { Environment } from '../../../../interfaces/Environment';
 import { environment } from '../../../../../environments/environment';
+import { fadeOutAnimation } from '../../../../animations';
 
 @Component({
   selector: 'app-faq-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
-  animations: [
-    trigger('fadeOut', [
-      state('in', style({ opacity: 1 })),
-      transition(':leave', animate(555, style({ opacity: 0 })))
-    ])
-  ]
+  animations: [fadeOutAnimation]
 })
 export class ToastComponent implements OnInit {
   public show: boolean;

@@ -1,23 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Alert } from '../../../../interfaces/Alert';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import { fadeOutAnimation } from '../../../../animations';
 
 @Component({
   selector: 'app-ratings-alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
-  animations: [
-    trigger('fadeOut', [
-      state('in', style({ opacity: 1 })),
-      transition(':leave', animate(555, style({ opacity: 0 })))
-    ])
-  ]
+  animations: [fadeOutAnimation]
 })
 export class AlertComponent implements OnInit {
   public alerts: Alert[];

@@ -1,27 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
-import {
   faInfoCircle,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import { Alert } from '../../../interfaces/Alert';
+import { fadeOutAnimation } from '../../../animations';
 
 @Component({
   selector: 'app-cookies-alert',
   templateUrl: './cookies-alert.component.html',
   styleUrls: ['./cookies-alert.component.scss'],
-  animations: [
-    trigger('fadeOut', [
-      state('in', style({ opacity: 1 })),
-      transition(':leave', animate(555, style({ opacity: 0 })))
-    ])
-  ]
+  animations: [fadeOutAnimation]
 })
 export class CookiesAlertComponent implements OnInit {
   public alerts: Alert[];
