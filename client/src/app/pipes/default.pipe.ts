@@ -10,7 +10,7 @@ export class DefaultPipe implements PipeTransform {
     fallback: string,
     forceHttps: boolean = false
   ): string {
-    let imageUrl = value ? value : fallback;
+    let imageUrl: string = value ? value : fallback;
 
     if (forceHttps) {
       if (imageUrl.indexOf('https') < 0) {
