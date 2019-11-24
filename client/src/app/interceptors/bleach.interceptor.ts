@@ -21,15 +21,17 @@ export class BleachInterceptor implements HttpInterceptor {
     String.prototype.removeStringChars = removeStringChars;
   }
   intercept(
-    req: HttpRequest<any>,
+    req: HttpRequest<JSONObject>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<JSONObject | JSONArray | void>> {
     return next.handle(req).pipe(
       map(
-        (event: HttpEvent<any>): HttpEvent<any> => {
+        (
+          event: HttpEvent<JSONObject | JSONArray | void>
+        ): HttpEvent<JSONObject | JSONArray | void> => {
           if (event instanceof HttpResponse) {
             const sanitizeBody: () => void = (): void => {
-              const body: JSONArray | JSONObject = event.body;
+              const body: JSONArray | JSONObject | void = event.body;
               if (Array.isArray(body)) {
                 return body.forEach((obj: JSONObject): void => {
                   Object.keys(obj).forEach((key: string): void => {
@@ -42,14 +44,16 @@ export class BleachInterceptor implements HttpInterceptor {
                   });
                 });
               } else {
-                return Object.keys(body).forEach((key: string): void => {
-                  if (typeof body[key] === 'string') {
-                    body[key] = he
-                      .decode(body[key])
-                      .sanitizeXSS()
-                      .removeStringChars();
+                return Object.keys(body as object).forEach(
+                  (key: string): void => {
+                    if (typeof body[key] === 'string') {
+                      body[key] = he
+                        .decode(body[key])
+                        .sanitizeXSS()
+                        .removeStringChars();
+                    }
                   }
-                });
+                );
               }
             };
             return event.clone({

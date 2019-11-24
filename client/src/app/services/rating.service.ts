@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Rating } from '../models/Rating';
 import { environment } from '../../environments/environment';
+import { JSONObject } from '../models/JSONObject';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +30,12 @@ export class RatingService {
       return this.http.get<Rating[]>(this.ratingsUrl);
     }
   }
-  public deleteRating(id: string): Observable<any> {
+  public deleteRating(id: string): Observable<JSONObject> {
     const url: string = `${this.ratingsUrl}/${id}`;
-    return this.http.delete<any>(url);
+    return this.http.delete<JSONObject>(url);
   }
-  public deleteAllRatings(): Observable<any> {
-    return this.http.delete<any>(this.ratingsUrl);
+  public deleteAllRatings(): Observable<JSONObject> {
+    return this.http.delete<JSONObject>(this.ratingsUrl);
   }
   public ratingHeaders(id: string): Observable<void> {
     const url: string = `${this.ratingsUrl}/${id}`;

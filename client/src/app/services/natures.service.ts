@@ -69,9 +69,9 @@ export class NaturesService {
    * @param id The id of the nature to partially update.
    * @param nature The nature data to partially update with.
    */
-  patchNature(id: string, nature: JSONObject): Observable<any> {
+  patchNature(id: string, nature: JSONObject): Observable<JSONObject> {
     const url: string = `${this.naturesUrl}/${id}`;
-    return this.http.patch<any>(url, nature, {
+    return this.http.patch<JSONObject>(url, nature, {
       headers
     });
   }
@@ -82,9 +82,9 @@ export class NaturesService {
    * @param id The id of the nature to delete.
    * @returns An observable (any).
    */
-  deleteNature(id: string): Observable<any> {
+  deleteNature(id: string): Observable<JSONObject> {
     const url: string = `${this.naturesUrl}/${id}`;
-    return this.http.delete<any>(url);
+    return this.http.delete<JSONObject>(url);
   }
 
   /**
@@ -92,7 +92,7 @@ export class NaturesService {
    * @description Sends a delete request to /api/natures
    * @returns An observable (any).
    */
-  deleteAllNatures(): Observable<any> {
-    return this.http.delete<any>(this.naturesUrl);
+  deleteAllNatures(): Observable<JSONObject> {
+    return this.http.delete<JSONObject>(this.naturesUrl);
   }
 }

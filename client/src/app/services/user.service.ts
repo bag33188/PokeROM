@@ -40,9 +40,9 @@ export class UserService {
     return this.http.get<User>(url, { headers });
   }
 
-  public deleteUser(id: string): Observable<any> {
+  public deleteUser(id: string): Observable<JSONObject> {
     const url: string = `${this.userUrl}/${id}`;
-    return this.http.delete<any>(url);
+    return this.http.delete<JSONObject>(url);
   }
 
   public patchUser(id: string, user: JSONObject): Observable<User> {

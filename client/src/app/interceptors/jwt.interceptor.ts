@@ -12,6 +12,8 @@ import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../services/auth.service';
+import { JSONObject } from '../models/JSONObject';
+import { JSONArray } from '../interfaces/JSONArray';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -21,12 +23,12 @@ export class JwtInterceptor implements HttpInterceptor {
     private authService: AuthService
   ) {}
   intercept(
-    req: HttpRequest<any>,
+    req: HttpRequest<JSONObject>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<JSONObject | JSONArray | void>> {
     return next.handle(req).pipe(
       tap(
-        (event: HttpEvent<any>): void => {
+        (event: HttpEvent<JSONObject | JSONArray | void>): void => {
           if (event instanceof HttpResponse) {
             const romsApiRouteRegex: RegExp = /(?:(\/api\/roms(\/)?)([\da-fA-F]{24}?))$/;
             if (romsApiRouteRegex.test(event.url)) {

@@ -137,9 +137,9 @@ export class RomsService {
    * @param id The id of the ROM to delete.
    * @returns An observable (any).
    */
-  public deleteRom(id: string): Observable<any> {
+  public deleteRom(id: string): Observable<JSONObject> {
     const url: string = `$${this.romsUrl}/${id}`;
-    return this.http.delete<any>(url);
+    return this.http.delete<JSONObject>(url);
   }
 
   /**
@@ -148,7 +148,7 @@ export class RomsService {
    * @param options Options for deletion of ROMs.
    * @returns An observable (any).
    */
-  public deleteAllRoms(options?: DeleteRequestOptions): Observable<any> {
+  public deleteAllRoms(options?: DeleteRequestOptions): Observable<JSONObject> {
     let httpParams: HttpParams = new HttpParams();
     if (options) {
       if (options.core === true) {
@@ -159,7 +159,7 @@ export class RomsService {
       }
     }
 
-    return this.http.delete<any>(this.romsUrl, { params: httpParams });
+    return this.http.delete<JSONObject>(this.romsUrl, { params: httpParams });
   }
 
   /**
