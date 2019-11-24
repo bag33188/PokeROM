@@ -14,7 +14,6 @@ import {
   openCloseAnimation,
   shrinkOutAnimation
 } from './animations';
-import './animations.css';
 
 export {
   fadeOutAnimation,
