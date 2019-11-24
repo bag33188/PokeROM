@@ -59,7 +59,7 @@ button {
     &:not(.nav-link) {
       &:focus,
       &:active {
-        box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba !important;
+        box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba;
         outline: none !important;
       }
 
