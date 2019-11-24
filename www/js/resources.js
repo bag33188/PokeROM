@@ -72,7 +72,7 @@ class Resources {
         text: 'Robots'
       }
     ];
-    Info[getApiVersion]()
+    Resources[getApiVersion]()
       .then(res => {
         if (!productionMode) {
           const devNavItems = [
