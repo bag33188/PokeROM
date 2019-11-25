@@ -23,7 +23,8 @@ export class BootstrapSpinnerComponent implements OnInit {
       this.setType();
       this.setColor();
       this.ngClasses = {
-        [`${this.type} ${this.color}`]: true,
+        [this.type]: true,
+        [this.color]: true,
         spacing:
           this.spaced !== undefined &&
           this.spaced !== null &&
