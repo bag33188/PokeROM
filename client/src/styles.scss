@@ -56,9 +56,9 @@ html {
 // remove button outlines in browsers
 a,
 button {
-  &:not(.close) {
-    &:not(.nav-link) {
-      &:not(.navbar-toggler) {
+  &[class~='btn'] {
+    &:not(.navbar-toggler) {
+      &:not(.close) {
         &:not([class^='carousel-control-']) {
           &:active,
           &:focus {
