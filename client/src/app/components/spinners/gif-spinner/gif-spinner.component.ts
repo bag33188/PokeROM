@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Images } from '../../../enums/images.enum';
 
 @Component({
@@ -6,7 +6,7 @@ import { Images } from '../../../enums/images.enum';
   templateUrl: './gif-spinner.component.html',
   styleUrls: ['./gif-spinner.component.scss']
 })
-export class GifSpinnerComponent implements OnInit {
+export class GifSpinnerComponent implements OnInit, AfterViewInit {
   public images: typeof Images;
   @Input() public loading: boolean;
 
@@ -14,12 +14,12 @@ export class GifSpinnerComponent implements OnInit {
 
   ngOnInit(): void {
     this.images = Images;
-    // this.checkInput();
   }
 
-  /**
-   * TODO fix the issue where app breaks when this method is called in lifecycle hook.
-   */
+  ngAfterViewInit(): void | never {
+    this.checkInput();
+  }
+
   private checkInput(): void | never {
     if (this.loading === undefined || this.loading === null) {
       throw new Error('Loading property is required.');
