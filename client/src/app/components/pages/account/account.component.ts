@@ -1,10 +1,4 @@
-import {
-  AfterContentInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
@@ -34,7 +28,6 @@ export class AccountComponent implements OnInit, AfterContentInit {
   public userExists: boolean = false;
   public isErrorDeleting: boolean;
   public firedOff: boolean;
-  @ViewChild('notice', { static: true }) private notice: ElementRef;
   public closeNotice: boolean;
 
   constructor(private userService: UserService, private router: Router) {
