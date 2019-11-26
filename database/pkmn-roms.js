@@ -143,7 +143,7 @@ romsCollection = db.createCollection('roms', {
           minLength: 2,
           maxLength: 50,
           description:
-            'platform is required and must be a string between 2 and 50 characters.+'
+            'platform is required and must be a string between 2 and 50 characters.'
         },
         description: {
           bsonType: 'string',
