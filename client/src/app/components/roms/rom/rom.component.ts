@@ -23,7 +23,7 @@ export class RomComponent implements OnInit {
     return `${altValue
       .replace(/[\s:]/g, '-')
       .replace(/\xE9/g, 'e')
-      .replace(/('|[\(\)])/g, '')}-box-art`;
+      .replace(/('|[()])/g, '')}-box-art`;
   }
 
   public fileSizeData(romFileSize: number): [number, string] {
