@@ -1,7 +1,7 @@
 @import '../../../../../assets/scss/mixins';
 @import '../../../../../assets/scss/variables';
 
-#game-list-container {
+.game-list-container {
   @include list-container(0.88rem, 2.5rem, 0, 938px, 0 0 1.5rem !important);
 }
 

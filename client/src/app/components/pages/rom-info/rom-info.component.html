@@ -29,7 +29,7 @@
   <ng-container *ngIf="!loading && !isError">
     <div class="rom-info-container">
       <div class="rom-info-header-container" *ngIf="!loading && !isError">
-        <div id="back-btn-container">
+        <div class="back-btn-container">
           <button
             type="button"
             aria-label="back"
@@ -40,50 +40,49 @@
             <fa-icon [icon]="faLongArrowAltLeft"></fa-icon>
           </button>
         </div>
-        <div id="title-container">
+        <div class="title-container">
           <h1>ROM Info</h1>
         </div>
-        <div id="dummy-container"></div>
+        <div class="dummy-container"></div>
       </div>
       <ng-container>
         <app-game-name
-          id="game-title"
+          class="game-title"
           [gameName]="rom.game_name"
           [romType]="rom.rom_type"
         ></app-game-name>
         <app-game-logo
-          id="game-logo"
+          class="game-logo"
           [logoUrl]="rom.logo_url"
           [gameName]="rom.game_name"
         ></app-game-logo>
-        <div id="game-description-title">
+        <div class="game-description-title">
           <h4>
             <fa-icon
               [icon]="faFileAlt"
-              class="mr-3 ml-1"
-              id="description-icon"
+              class="description-icon mr-3 ml-1"
             ></fa-icon
             >{{ isRomHack(rom.rom_type) ? '' : 'Pokemon.com '
             }}<span class="mr-1">Description</span>
           </h4>
         </div>
         <app-game-description
-          id="game-description"
+          class="game-description"
           [description]="rom.description"
         ></app-game-description>
         <app-rom-download
-          id="rom-download"
+          class="rom-download"
           [downloadLink]="rom.download_link"
         ></app-rom-download>
         <app-game-specs
-          id="game-specs"
+          class="game-specs"
           [region]="rom.region"
           [dateReleased]="rom.date_released"
           [genre]="rom.genre"
           [generation]="rom.generation"
         ></app-game-specs>
         <app-rom-specs
-          id="rom-specs"
+          class="rom-specs"
           [platform]="rom.platform"
           [fileName]="rom.file_name"
           [fileSize]="rom.file_size"

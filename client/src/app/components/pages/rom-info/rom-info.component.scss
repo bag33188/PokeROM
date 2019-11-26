@@ -74,7 +74,7 @@
   margin-right: 30px;
 }
 
-#game-title {
+.game-title {
   align-self: start;
   grid-area: game-title;
   grid-column: 1 / -1;
@@ -82,26 +82,26 @@
   justify-self: start;
 }
 
-#game-logo {
+.game-logo {
   grid-area: game-logo;
   grid-column: 1 / 2;
   grid-row: 3 / 4;
 }
 
-#game-description-title {
+.game-description-title {
   grid-area: game-description-title;
   grid-column: 1 / 2;
   grid-row: 4 / 5;
   margin-top: 1rem;
 }
 
-#game-description {
+.game-description {
   grid-area: game-description;
   grid-column: 1 / 2;
   grid-row: 5 / 7;
 }
 
-#rom-download {
+.rom-download {
   grid-area: rom-download;
   grid-column: 1 / 2;
   grid-row: 7 / -1;
@@ -109,14 +109,14 @@
   margin-top: 1rem;
 }
 
-#game-specs {
+.game-specs {
   align-self: start;
   grid-area: game-specs;
   grid-column: 2 / 3;
   grid-row: 5 / 6;
 }
 
-#rom-specs {
+.rom-specs {
   align-self: end;
   grid-area: rom-specs;
   grid-column: 2 / 3;
@@ -139,12 +139,12 @@
   grid-row: 1 / 2;
 }
 
-#back-btn-container {
+.back-btn-container {
   flex: 2 0 auto;
   order: 1;
 }
 
-#title-container {
+.title-container {
   flex: 2 0 auto;
   justify-self: center;
   order: 2;
@@ -154,7 +154,7 @@
   }
 }
 
-#dummy-container {
+.dummy-container {
   flex: 2 0 auto;
   flex-basis: 40px;
   order: 3;
@@ -164,7 +164,7 @@
   margin-top: 1rem;
 }
 
-#description-icon {
+.description-icon {
   @media only screen and (max-width: 388px) {
     display: none !important;
   }
@@ -197,41 +197,41 @@
     margin: 0 auto;
   }
 
-  #game-title {
+  .game-title {
     align-self: center;
     justify-self: center;
   }
 
-  #game-logo {
+  .game-logo {
     text-align: center;
   }
 
-  #game-description-title {
+  .game-description-title {
     grid-column: 1 / -1;
     grid-row: 4 / 5;
     text-align: center;
   }
 
-  #game-description {
+  .game-description {
     grid-column: 1 / -1;
     grid-row: 5 / 6;
     text-align: center;
   }
 
-  #rom-download {
+  .rom-download {
     grid-column: 1 / -1;
     grid-row: 8 / -1;
     margin-bottom: 0;
     margin-top: 0;
   }
 
-  #game-specs {
+  .game-specs {
     grid-column: 1 / -1;
     grid-row: 6 / 7;
     margin-top: 0;
   }
 
-  #rom-specs {
+  .rom-specs {
     grid-column: 1 / -1;
     grid-row: 7 / 8;
   }

@@ -1,4 +1,4 @@
-<div id="download-link-wrapper" class="text-center">
+<div class="download-link-wrapper text-center">
   <a
     [class.disabled]="btnDisabled"
     [href]="downloadLink"
@@ -9,8 +9,7 @@
     ><fa-icon [icon]="faDownload" class="mr-2"></fa-icon>Download</a
   >
   <div
-    id="no-download-msg"
-    class="p-0 mt-2"
+    class="p-0 mt-2 no-download-msg"
     appAlert
     alertType="info"
     *ngIf="disableBtnIfMobileOrTablet()"
@@ -18,4 +17,3 @@
     <span>You cannot download this ROM since you are not on a computer</span>
   </div>
 </div>
-.

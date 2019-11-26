@@ -1,7 +1,7 @@
 @import '../../../../../assets/scss/mixins';
 @import '../../../../../assets/scss/variables';
 
-#rom-list-container {
+.rom-list-container {
   @include list-container(0, 2.5rem, 0.88rem, 938px, 0.75rem 0 0 !important);
 }
 

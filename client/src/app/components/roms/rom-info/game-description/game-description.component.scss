@@ -1,4 +1,4 @@
-#description-container {
+.description-container {
   height: 100%;
   margin-bottom: 0;
   overflow-y: auto;
@@ -12,7 +12,7 @@
     padding-bottom: 1em !important;
   }
 
-  #description {
+  .description {
     @media only screen and (min-width: 938px) {
       height: 16rem;
     }

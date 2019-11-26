@@ -1,18 +1,18 @@
-#download-link-wrapper > a {
+.download-link-wrapper > a {
   width: 100%;
 }
 
 @media only screen and (max-width: 938px) {
-  #download-link-wrapper {
+  .download-link-wrapper {
     margin-top: 0.95rem;
   }
 
-  #no-download-msg {
+  .no-download-msg {
     margin-bottom: 0;
   }
 }
 
-#no-download-msg {
+.no-download-msg {
   @media only screen and (min-width: 938px) {
     margin-bottom: 3rem;
   }
