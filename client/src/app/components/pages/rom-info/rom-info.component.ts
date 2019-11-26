@@ -20,7 +20,7 @@ import { Observable, Subscription } from 'rxjs';
 export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
   public rom: Rom;
   private id: string;
-  public loading: boolean = true;
+  public loading: boolean;
   public isError: boolean;
   public faLongArrowAltLeft: IconDefinition;
   public errStatus: number;
@@ -36,6 +36,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.faFileAlt = faFileAlt;
     this.faLongArrowAltLeft = faLongArrowAltLeft;
     this.id = this.route.snapshot.paramMap.get('id');
