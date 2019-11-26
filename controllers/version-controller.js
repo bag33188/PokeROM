@@ -6,7 +6,7 @@ const universal = require('../routes/universal');
 module.exports.getVersion = (req, res) => {
   const [, version] = swaggerDoc;
   const apiVersion = Version.getApiVersion(version);
-  if (req.headers['accept'] !== null && req.headers['accept'] !== undefined) {
+  if (req.headers['accept']) {
     if (req.headers['accept'].match(/^((?:application|text)\/xml)$/)) {
       res.set('Content-Type', req.headers['accept']);
       res.status(200).send(
