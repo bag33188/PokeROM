@@ -52,14 +52,17 @@ export class CookiesService {
    * @description Check's if a cookie exists.
    * @param cookieName The name of the cookie to check.
    * @param callback The callback function to execute when cookie is found or not found.
-   * @returns nothing (void).
+   * @returns The cookie (if exists).
    * Note: Generic typing is for return type on callback function.
    */
   public static checkCookie<T>(
     cookieName: string,
-    callback: (cookie: string | null) => T
-  ): void {
+    callback?: (cookie: string | null) => T
+  ): string | null {
     const cookie: string | undefined = CookiesService.getCookie(cookieName);
-    callback(cookie === undefined ? null : cookie);
+    if (callback) {
+      callback(cookie === undefined ? null : cookie);
+    }
+    return cookie || null;
   }
 }

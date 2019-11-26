@@ -7,6 +7,7 @@ import { User } from '../models/User';
 import { RegisteredUser } from '../models/RegisteredUser';
 import { CookiesService } from './cookies.service';
 import { environment } from '../../environments/environment';
+import { cookie } from 'express-validator/check';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +56,7 @@ export class AuthService {
   public loggedOut(): boolean {
     return (
       this.jwtHelper.isTokenExpired(CookiesService.getCookie('token_id')) ||
-      CookiesService.getCookie('token_id') === ''
+      !CookiesService.checkCookie<unknown>('token_id')
     );
   }
 }
