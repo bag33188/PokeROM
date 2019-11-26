@@ -59,9 +59,9 @@ export class CookiesService {
   public static checkCookie<T>(
     cookieName: string,
     expireDays: number,
-    callback: (cookie: string) => T
+    callback: (cookie: string | null) => T
   ): void {
-    const cookie: string = CookiesService.getCookie(cookieName);
+    const cookie: string | undefined = CookiesService.getCookie(cookieName);
     if (cookie === undefined) {
       callback(null);
     } else {
