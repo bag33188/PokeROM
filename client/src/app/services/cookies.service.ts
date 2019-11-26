@@ -42,7 +42,7 @@ export class CookiesService {
     expireDays: number
   ): void {
     const now: Date = new Date();
-    now.setTime(now.getTime() + expireDays * 24 * 60 * 60 * 1000);
+    now.setTime(now.getTime() + expireDays * 24 * 60 ** 2 * 1000);
     const expires: string = `expires=${now.toUTCString()}`;
     document.cookie = `${cookieName}=${cookieValue};${expires};path=/`;
   }

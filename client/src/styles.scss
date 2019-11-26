@@ -56,20 +56,20 @@ html {
 // remove button outlines in browsers
 a,
 button {
-  &[class~='btn'] {
-    &:not(.navbar-toggler) {
-      &:not(.close) {
-        &:not([class^='carousel-control-']) {
-          &:active,
-          &:focus {
-            box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba;
-            outline: none !important;
+  &[class~='btn'],
+  &[class~='page-link'] {
+    &:not(.navbar-toggler),
+    &:not(.close),
+    &:not([class^='carousel-control-']) {
+      &:active,
+      &:focus {
+        box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba;
+        outline: none !important;
 
-            &[class*='btn-outline-'] {
-              box-shadow: none !important;
-              outline: none !important;
-            }
-          }
+        &[class*='btn-outline-'],
+        &[class~='page-link'] {
+          box-shadow: none !important;
+          outline: none !important;
         }
       }
     }

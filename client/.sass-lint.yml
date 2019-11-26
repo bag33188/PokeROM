@@ -60,7 +60,7 @@ rules:
       convention: hyphenatedlowercase
   mixins-before-declarations: 1
   nesting-depth:
-    - 1
+    - 0
     - max-depth: 6
   no-color-keywords: 1
   no-color-literals: 1
