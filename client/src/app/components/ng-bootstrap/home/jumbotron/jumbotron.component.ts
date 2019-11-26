@@ -7,11 +7,14 @@ import { CookiesService } from '../../../../services/cookies.service';
   styleUrls: ['./jumbotron.component.scss']
 })
 export class JumbotronComponent implements OnInit {
+  private key: string;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.key = 'user';
+  }
 
   public loggedIn(): boolean {
-    return !!CookiesService.getCookie('user');
+    return !!CookiesService.getCookie(this.key);
   }
 }
