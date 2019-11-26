@@ -28,7 +28,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
   public userExists: boolean = false;
   public isErrorDeleting: boolean;
   public firedOff: boolean;
-  public closeNotice: boolean;
+  public noticeClosed: boolean;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -46,10 +46,10 @@ export class AccountComponent implements OnInit, AfterContentInit {
       this.userId = JSON.parse(CookiesService.getCookie('user'))[key];
       this.retrieveUserData();
     }
-    if (!localStorage.getItem('closeNotice')) {
-      localStorage.setItem('closeNotice', 'false');
+    if (!localStorage.getItem('noticeClosed')) {
+      localStorage.setItem('noticeClosed', 'false');
     }
-    this.closeNotice = JSON.parse(localStorage.getItem('closeNotice'));
+    this.noticeClosed = JSON.parse(localStorage.getItem('noticeClosed'));
   }
 
   ngAfterContentInit(): void {
@@ -185,6 +185,6 @@ export class AccountComponent implements OnInit, AfterContentInit {
   }
 
   public storeAlertState(): void {
-    localStorage.setItem('closeNotice', 'true');
+    localStorage.setItem('noticeClosed', 'true');
   }
 }
