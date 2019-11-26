@@ -15,6 +15,7 @@ export class DeleteUserBtnComponent implements OnInit {
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {
+    this.loading = false;
     this.btnText = 'Delete User!';
   }
 
