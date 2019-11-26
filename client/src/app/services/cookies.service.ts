@@ -10,9 +10,9 @@ export class CookiesService {
    * @summary Get cookie.
    * @description Gets a cookie based on its name.
    * @param cookieName The name of the cookie to get.
-   * @returns The cookie.
+   * @returns The cookie (or undefined if the cookie does not exist).
    */
-  public static getCookie(cookieName: string): string {
+  public static getCookie(cookieName: string): string | undefined {
     const name: string = `${cookieName}=`;
     const decodedCookie: string = decodeURIComponent(document.cookie);
     const cookieArray: string[] = decodedCookie.split(';');
@@ -25,7 +25,7 @@ export class CookiesService {
         return cookie.substring(name.length, cookie.length);
       }
     }
-    return '';
+    return undefined;
   }
 
   /**
@@ -49,25 +49,23 @@ export class CookiesService {
 
   /**
    * @summary Check a cookie.
-   * @description Validates a cookie's value.
+   * @description Check's if a cookie exists.
    * @param cookieName The name of the cookie to check.
    * @param expireDays The number of days until the cookie expires.
-   * @param callbacks The callback functions.
+   * @param callback The callback function to execute when cookie is found or not found.
    * @returns nothing (void).
+   * Note: Generic typing is for return type on callback function.
    */
-  public checkCookie<T, K>(
+  public static checkCookie<T>(
     cookieName: string,
     expireDays: number,
-    callbacks: [() => T, () => K]
+    callback: (cookie: string) => T
   ): void {
     const cookie: string = CookiesService.getCookie(cookieName);
-    if (cookie !== '') {
-      callbacks[0]();
+    if (cookie === undefined) {
+      callback(null);
     } else {
-      callbacks[1]();
-      if (cookie !== '' && cookie != null) {
-        CookiesService.setCookie(cookieName, cookie, expireDays);
-      }
+      callback(cookie);
     }
   }
 }
