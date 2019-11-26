@@ -4,6 +4,7 @@ import { ApiService } from './services/api.service';
 import { ApiVersion } from './models/ApiVersion';
 import { environment } from '../environments/environment';
 import { JSONObject } from './models/JSONObject';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -53,6 +54,7 @@ import { JSONObject } from './models/JSONObject';
 export class AppComponent {
   protected static readonly _eacute: string = '\u00E9';
   public _title: string = `Pok${AppComponent._eacute}ROM`;
+  private apiVersionObs$: Observable<ApiVersion>;
   get title(): string {
     return this._title;
   }
@@ -76,7 +78,8 @@ export class AppComponent {
 
   private getApiVersionIfDevEnv(): void {
     if (!environment.production) {
-      this.apiService.getApiVersion().subscribe(
+      this.apiVersionObs$ = this.apiService.getApiVersion();
+      const apiVersionSub: Subscription = this.apiVersionObs$.subscribe(
         (res: ApiVersion): void => {
           logger.log(`API Version: ${res.api_version}`);
         },
@@ -84,6 +87,7 @@ export class AppComponent {
           throw err;
         }
       );
+      apiVersionSub.unsubscribe();
     }
   }
 }

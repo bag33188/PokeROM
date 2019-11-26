@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, OnDestroy } from '@angular/core';
 import {
   faLeaf,
   faArrowUp,
@@ -10,13 +10,14 @@ import {
 import { Nature } from '../../../models/Nature';
 import { NaturesService } from '../../../services/natures.service';
 import { JSONObject } from '../../../models/JSONObject';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-natures',
   templateUrl: './natures.component.html',
   styleUrls: ['./natures.component.scss']
 })
-export class NaturesComponent implements OnInit, AfterContentInit {
+export class NaturesComponent implements OnInit, AfterContentInit, OnDestroy {
   public natures: Nature[] = new Array<Nature>();
   public headers: string[];
   public icons: IconDefinition[];
@@ -27,6 +28,8 @@ export class NaturesComponent implements OnInit, AfterContentInit {
   public faHeart: IconDefinition;
   public loading: boolean = true;
   public isError: boolean = false;
+  private naturesObs$: Observable<Nature[]>;
+  private naturesSub: Subscription;
 
   constructor(private naturesService: NaturesService) {}
 
@@ -36,12 +39,16 @@ export class NaturesComponent implements OnInit, AfterContentInit {
     this.faArrowUp = faArrowUp;
     this.faSignLanguage = faSignLanguage;
     this.faHeart = faHeart;
+    this.getNatures();
     this.setHeaders();
-    this.setNatures();
   }
 
   ngAfterContentInit(): void {
     window.scrollTo(0, 0);
+  }
+
+  ngOnDestroy(): void {
+    this.naturesSub.unsubscribe();
   }
 
   private setHeaders(): void {
@@ -61,8 +68,9 @@ export class NaturesComponent implements OnInit, AfterContentInit {
     ];
   }
 
-  private setNatures(): void {
-    this.naturesService.getAllNatures().subscribe(
+  private getNatures(): void {
+    this.naturesObs$ = this.naturesService.getAllNatures();
+    this.naturesSub = this.naturesObs$.subscribe(
       (res: Nature[]): void => {
         this.natures = res;
         this.loading = false;
