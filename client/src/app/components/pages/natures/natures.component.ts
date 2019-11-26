@@ -36,8 +36,8 @@ export class NaturesComponent implements OnInit, AfterContentInit {
     this.faArrowUp = faArrowUp;
     this.faSignLanguage = faSignLanguage;
     this.faHeart = faHeart;
-    this.setNatures();
     this.setHeaders();
+    this.setNatures();
   }
 
   ngAfterContentInit(): void {
