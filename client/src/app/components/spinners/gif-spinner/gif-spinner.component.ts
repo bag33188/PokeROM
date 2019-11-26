@@ -21,10 +21,8 @@ export class GifSpinnerComponent implements OnInit, AfterViewInit {
   }
 
   private checkInput(): void | never {
-    setTimeout(() => {
-      if (this.loading === undefined || this.loading === null) {
-        throw new Error('Loading property is required.');
-      }
-    }, 0);
+    if (this.loading === undefined || this.loading === null) {
+      throw new Error('Loading property is required.');
+    }
   }
 }
