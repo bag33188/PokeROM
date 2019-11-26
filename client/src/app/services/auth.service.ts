@@ -26,6 +26,7 @@ export class AuthService {
   public static logout(): void {
     localStorage.clear();
     CookiesService.setCookie('token_id', '', 0);
+    CookiesService.setCookie('user', '', 0);
   }
   /**
    * @summary Stores the user data in local storage and the JWT as a cookie.
