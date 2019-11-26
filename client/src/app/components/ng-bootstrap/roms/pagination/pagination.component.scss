@@ -1,5 +1,5 @@
 div {
-  .pt-4 {
+  &[class~='.pt-4'] {
     display: block;
     margin: auto;
   }
