@@ -10,10 +10,12 @@ $ npm run import-db
 */
 
 try {
+  // if using ssl
   conn = new Mongo('server1.pokerom.dev');
   printjson(conn);
 } catch (e) {
-  conn = new Mongo();
+  // if using ssh
+  conn = new Mongo('localhost');
   printjson(conn);
 }
 
@@ -21,6 +23,7 @@ db = db.getSiblingDB('pkmn-roms');
 printjson(db);
 
 try {
+  // if production
   adminUser = db.createUser({
     user: 'admin',
     pwd: '123456',
@@ -29,6 +32,7 @@ try {
   });
   printjson(adminUser);
 } catch (e) {
+  // if development
   users = db.getUsers();
   printjson(users);
 }
