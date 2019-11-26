@@ -25,7 +25,7 @@ export class CookiesAlertComponent implements OnInit {
       {
         type: 'warning',
         message:
-          'I hate to interrupt, but I am required to tell you that this site uses cookies to store your login token for authentication. Click the (x) icon on the top right corner of this alert to close this annoying piece of garbage.'
+          'I hate to interrupt, but I am required to tell you that this site uses cookies to store your login data for authentication. Click the (x) icon on the top right corner of this alert to close this annoying piece of garbage.'
       }
     ];
     if (

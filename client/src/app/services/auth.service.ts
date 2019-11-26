@@ -34,7 +34,7 @@ export class AuthService {
    * @returns nothing (void).
    */
   public static storeData(token: string, user: User): void {
-    localStorage.setItem('user', JSON.stringify(user));
+    CookiesService.setCookie('user', JSON.stringify(user), 7);
     CookiesService.setCookie('token_id', token.replace('Bearer ', ''), 7);
   }
 

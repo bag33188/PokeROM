@@ -1,4 +1,10 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
@@ -10,6 +16,7 @@ import {
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStringChars from '../../../helpers/remove-string-chars';
 import { JSONObject } from '../../../models/JSONObject';
+import { CookiesService } from '../../../services/cookies.service';
 
 @Component({
   selector: 'app-account',
@@ -27,6 +34,8 @@ export class AccountComponent implements OnInit, AfterContentInit {
   public userExists: boolean = false;
   public isErrorDeleting: boolean;
   public firedOff: boolean;
+  @ViewChild('notice', { static: true }) private notice: ElementRef;
+  public closeNotice: boolean;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -36,14 +45,18 @@ export class AccountComponent implements OnInit, AfterContentInit {
   ngOnInit(): void {
     this.firedOff = false;
     this.isErrorDeleting = false;
+    this.faExclamationTriangle = faExclamationTriangle;
     const key: string = 'id';
-    if (!localStorage.getItem('user')) {
+    if (!CookiesService.getCookie('user')) {
       this.errLoadingUsr = true;
     } else {
-      this.userId = JSON.parse(localStorage.getItem('user'))[key];
+      this.userId = JSON.parse(CookiesService.getCookie('user'))[key];
       this.retrieveUserData();
     }
-    this.faExclamationTriangle = faExclamationTriangle;
+    if (!localStorage.getItem('closeNotice')) {
+      localStorage.setItem('closeNotice', 'false');
+    }
+    this.closeNotice = JSON.parse(localStorage.getItem('closeNotice'));
   }
 
   ngAfterContentInit(): void {
@@ -176,5 +189,9 @@ export class AccountComponent implements OnInit, AfterContentInit {
 
   public deletionError(isError: boolean): void {
     this.isErrorDeleting = isError;
+  }
+
+  public storeAlertState(): void {
+    localStorage.setItem('closeNotice', 'true');
   }
 }

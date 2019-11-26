@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookiesService } from '../../../../services/cookies.service';
 
 @Component({
   selector: 'app-home-jumbotron',
@@ -11,6 +12,6 @@ export class JumbotronComponent implements OnInit {
   ngOnInit(): void {}
 
   public loggedIn(): boolean {
-    return !!localStorage.getItem('user');
+    return !!CookiesService.getCookie('user');
   }
 }

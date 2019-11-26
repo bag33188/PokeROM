@@ -5,6 +5,7 @@ import { LoggerService as logger } from '../../../../services/logger.service';
 import { UserService } from '../../../../services/user.service';
 import { Router } from '@angular/router';
 import { JSONObject } from '../../../../models/JSONObject';
+import { CookiesService } from '../../../../services/cookies.service';
 
 @Component({
   selector: 'app-account-modal',
@@ -39,7 +40,7 @@ export class ModalComponent implements OnInit {
     this.firedOff.emit(true);
     this.btnDisabled = true;
     this.userService
-      .deleteUser(JSON.parse(localStorage.getItem('user'))[key])
+      .deleteUser(JSON.parse(CookiesService.getCookie('user'))[key])
       .subscribe(
         (): void => {
           this.isErrorDeleting.emit(false);

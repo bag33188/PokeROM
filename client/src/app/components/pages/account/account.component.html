@@ -19,6 +19,7 @@
           appAlert
           alertType="info"
           role="alert"
+          *ngIf="!closeNotice"
         >
           You don't have to update everything.
           <br />
@@ -28,6 +29,7 @@
             class="close"
             data-dismiss="alert"
             aria-label="Close"
+            (click)="storeAlertState()"
           >
             <span aria-hidden="true">&times;</span>
           </button>
