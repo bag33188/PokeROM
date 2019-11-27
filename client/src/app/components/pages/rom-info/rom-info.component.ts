@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   faLongArrowAltLeft,
@@ -10,20 +10,23 @@ import { RomsService } from '../../../services/roms.service';
 import { AuthService } from '../../../services/auth.service';
 import { Rom } from '../../../models/Rom';
 import { JSONObject } from '../../../models/JSONObject';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-rom-info',
   templateUrl: './rom-info.component.html',
   styleUrls: ['./rom-info.component.scss']
 })
-export class RomInfoComponent implements OnInit, AfterContentInit {
+export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
   public rom: Rom;
   private id: string;
-  public loading: boolean = true;
+  public loading: boolean;
   public isError: boolean;
   public faLongArrowAltLeft: IconDefinition;
   public errStatus: number;
   public faFileAlt: IconDefinition;
+  private romInfoObs$: Observable<Rom>;
+  private romInfoSub: Subscription;
 
   constructor(
     private romService: RomsService,
@@ -33,6 +36,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.faFileAlt = faFileAlt;
     this.faLongArrowAltLeft = faLongArrowAltLeft;
     this.id = this.route.snapshot.paramMap.get('id');
@@ -45,8 +49,13 @@ export class RomInfoComponent implements OnInit, AfterContentInit {
     window.scrollTo(0, 0);
   }
 
+  ngOnDestroy(): void {
+    this.romInfoSub.unsubscribe();
+  }
+
   private getRom(id: string): void {
-    this.romService.getRom(id).subscribe(
+    this.romInfoObs$ = this.romService.getRom(id);
+    this.romInfoSub = this.romInfoObs$.subscribe(
       (rom: Rom): void => {
         const { game_name, description, genre }: Rom = rom;
         if (!genre) {

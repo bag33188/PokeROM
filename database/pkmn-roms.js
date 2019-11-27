@@ -10,10 +10,12 @@ $ npm run import-db
 */
 
 try {
+  // if using ssl
   conn = new Mongo('server1.pokerom.dev');
   printjson(conn);
 } catch (e) {
-  conn = new Mongo();
+  // if using ssh
+  conn = new Mongo('localhost');
   printjson(conn);
 }
 
@@ -21,6 +23,7 @@ db = db.getSiblingDB('pkmn-roms');
 printjson(db);
 
 try {
+  // if production
   adminUser = db.createUser({
     user: 'admin',
     pwd: '123456',
@@ -29,6 +32,7 @@ try {
   });
   printjson(adminUser);
 } catch (e) {
+  // if development
   users = db.getUsers();
   printjson(users);
 }
@@ -91,7 +95,7 @@ romsCollection = db.createCollection('roms', {
         },
         file_type: {
           bsonType: 'string',
-          pattern: '^(?:.?(gb[ca]?|[n3]ds|xci))$',
+          pattern: '^(?:\\.?(gb[ca]?|[n3]ds|xci))$',
           description:
             'file_type is required and must be a string that matches the following: .[gb, gbc, gba, nds, 3ds, xci]'
         },
@@ -139,7 +143,7 @@ romsCollection = db.createCollection('roms', {
           minLength: 2,
           maxLength: 50,
           description:
-            'platform is required and must be a string between 2 and 50 characters.+'
+            'platform is required and must be a string between 2 and 50 characters.'
         },
         description: {
           bsonType: 'string',

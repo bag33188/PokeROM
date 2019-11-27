@@ -36,7 +36,7 @@ export class RomsService {
    * @param options Options for getting all ROMs.
    * @returns An observable (rom array).
    */
-  public getAllRoms(options: GetRequestOptions): Observable<Rom[]> {
+  public getAllRoms(options?: GetRequestOptions): Observable<Rom[]> {
     let httpParams: HttpParams = new HttpParams();
     if (options.limit) {
       httpParams = httpParams.append('_limit', options.limit.toString());

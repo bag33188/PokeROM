@@ -7,6 +7,7 @@ import { User } from '../models/User';
 import { RegisteredUser } from '../models/RegisteredUser';
 import { CookiesService } from './cookies.service';
 import { environment } from '../../environments/environment';
+import { cookie } from 'express-validator/check';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class AuthService {
   public static logout(): void {
     localStorage.clear();
     CookiesService.setCookie('token_id', '', 0);
+    CookiesService.setCookie('user', '', 0);
   }
   /**
    * @summary Stores the user data in local storage and the JWT as a cookie.
@@ -54,7 +56,7 @@ export class AuthService {
   public loggedOut(): boolean {
     return (
       this.jwtHelper.isTokenExpired(CookiesService.getCookie('token_id')) ||
-      CookiesService.getCookie('token_id') === ''
+      !CookiesService.checkCookie<unknown>('token_id')
     );
   }
 }

@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
@@ -11,13 +11,14 @@ import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStringChars from '../../../helpers/remove-string-chars';
 import { JSONObject } from '../../../models/JSONObject';
 import { CookiesService } from '../../../services/cookies.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit, AfterContentInit {
+export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
   public user: User;
   private userId: string;
   public updateFail: boolean = false;
@@ -29,6 +30,8 @@ export class AccountComponent implements OnInit, AfterContentInit {
   public isErrorDeleting: boolean;
   public firedOff: boolean;
   public noticeClosed: boolean;
+  private userObs$: Observable<User>;
+  private userSub: Subscription;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -44,7 +47,7 @@ export class AccountComponent implements OnInit, AfterContentInit {
       this.errLoadingUsr = true;
     } else {
       this.userId = JSON.parse(CookiesService.getCookie('user'))[key];
-      this.retrieveUserData();
+      this.retrieveUserData(this.userId);
     }
     if (!localStorage.getItem('noticeClosed')) {
       localStorage.setItem('noticeClosed', 'false');
@@ -56,8 +59,13 @@ export class AccountComponent implements OnInit, AfterContentInit {
     window.scrollTo(0, 0);
   }
 
-  public retrieveUserData(): void {
-    this.userService.getUser(this.userId).subscribe(
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+  }
+
+  public retrieveUserData(id: string): void {
+    this.userObs$ = this.userService.getUser(id);
+    this.userSub = this.userObs$.subscribe(
       (res: User): void => {
         if (!res.name || res.name === '') {
           res.name = '';

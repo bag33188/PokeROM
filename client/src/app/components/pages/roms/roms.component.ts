@@ -1,15 +1,16 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, OnDestroy } from '@angular/core';
 import { RomsService } from '../../../services/roms.service';
 import { Rom } from '../../../models/Rom';
 import he from 'he';
 import { JSONObject } from '../../../models/JSONObject';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-roms',
   templateUrl: './roms.component.html',
   styleUrls: ['./roms.component.scss']
 })
-export class RomsComponent implements OnInit, AfterContentInit {
+export class RomsComponent implements OnInit, AfterContentInit, OnDestroy {
   public romsData: Rom[] = new Array<Rom>();
   public currentPage: number = 1;
   public itemsPerPage: number = 4;
@@ -18,6 +19,8 @@ export class RomsComponent implements OnInit, AfterContentInit {
   public noRomsMsg: string = '';
   private limit: number = 35;
   public isError: boolean = false;
+  private romsObs$: Observable<Rom[]>;
+  private romsSub: Subscription;
 
   private static jumpToTop(): void {
     window.scrollTo(0, 0);
@@ -33,8 +36,13 @@ export class RomsComponent implements OnInit, AfterContentInit {
     RomsComponent.jumpToTop();
   }
 
+  ngOnDestroy(): void {
+    this.romsSub.unsubscribe();
+  }
+
   private getRoms(): void {
-    this.romsService.getAllRoms({ limit: this.limit }).subscribe(
+    this.romsObs$ = this.romsService.getAllRoms({ limit: this.limit });
+    this.romsSub = this.romsObs$.subscribe(
       (roms: Rom[]): void => {
         this.isError = false;
         roms.forEach((rom: Rom): void => {
