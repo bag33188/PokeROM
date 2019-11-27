@@ -95,7 +95,7 @@ romsCollection = db.createCollection('roms', {
         },
         file_type: {
           bsonType: 'string',
-          pattern: '^(?:.?(gb[ca]?|[n3]ds|xci))$',
+          pattern: '^(?:\\.?(gb[ca]?|[n3]ds|xci))$',
           description:
             'file_type is required and must be a string that matches the following: .[gb, gbc, gba, nds, 3ds, xci]'
         },
