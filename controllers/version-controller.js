@@ -9,7 +9,7 @@ module.exports.getVersion = (req, res) => {
   if (req.headers['accept']) {
     if (req.headers['accept'].match(/^((?:application|text)\/xml)$/)) {
       res.set('Content-Type', req.headers['accept']);
-      res.status(200).send(
+      return res.status(200).send(
         convert.json2xml(
           JSON.stringify({
             _declaration: {
@@ -21,10 +21,10 @@ module.exports.getVersion = (req, res) => {
         )
       );
     } else {
-      res.status(200).json(apiVersion);
+      return res.status(200).json(apiVersion);
     }
   } else {
-    res.status(200).json(apiVersion);
+    return res.status(200).json(apiVersion);
   }
 };
 

@@ -27,6 +27,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
   public faFileAlt: IconDefinition;
   private romInfoObs$: Observable<Rom>;
   private romInfoSub: Subscription;
+  public finishedLoading: boolean;
 
   constructor(
     private romService: RomsService,
@@ -36,6 +37,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.finishedLoading = false;
     this.loading = true;
     this.faFileAlt = faFileAlt;
     this.faLongArrowAltLeft = faLongArrowAltLeft;
@@ -87,7 +89,8 @@ export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
           }
         }
         throw err;
-      }
+      },
+      (): true => (this.finishedLoading = true)
     );
   }
   public isRomHack(romType: string): boolean {

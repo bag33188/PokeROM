@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GameDescriptionComponent implements OnInit {
   @Input() public description: string;
+  @Input() private finishedLoading: boolean;
 
   constructor() {}
   static changeUrlToLink(description: string): string {
@@ -22,12 +23,12 @@ export class GameDescriptionComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    setTimeout((): void => {
+    if (this.finishedLoading) {
       if (this.description) {
         this.description = GameDescriptionComponent.changeUrlToLink(
           this.description
         );
       }
-    }, 555);
+    }
   }
 }

@@ -13,6 +13,9 @@ import { RomSpecsComponent } from './rom-info/rom-specs/rom-specs.component';
 import { RomDownloadComponent } from './rom-info/rom-download/rom-download.component';
 import { UnitConversionService } from '../../services/unit-conversion.service';
 import { DirectivesModule } from '../../directives/directives.module';
+import { UpdateRomsComponent } from './update-roms/update-roms.component';
+import { RomsService } from '../../services/roms.service';
+import {SpinnerModule} from "../spinners/spinner.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { DirectivesModule } from '../../directives/directives.module';
     GameLogoComponent,
     GameNameComponent,
     RomSpecsComponent,
-    RomDownloadComponent
+    RomDownloadComponent,
+    UpdateRomsComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,8 @@ import { DirectivesModule } from '../../directives/directives.module';
     NgbModule,
     NgBootstrapModule,
     FontAwesomeModule,
-    DirectivesModule
+    DirectivesModule,
+    SpinnerModule
   ],
   exports: [
     RomComponent,
@@ -40,8 +45,9 @@ import { DirectivesModule } from '../../directives/directives.module';
     GameLogoComponent,
     GameNameComponent,
     RomSpecsComponent,
-    RomDownloadComponent
+    RomDownloadComponent,
+    UpdateRomsComponent
   ],
-  providers: [UnitConversionService]
+  providers: [UnitConversionService, RomsService]
 })
 export class RomsModule {}

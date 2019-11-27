@@ -78,16 +78,23 @@ export class AppComponent {
 
   private getApiVersionIfDevEnv(): void {
     if (!environment.production) {
+      let success: boolean;
       this.apiVersionObs$ = this.apiService.getApiVersion();
       const apiVersionSub: Subscription = this.apiVersionObs$.subscribe(
         (res: ApiVersion): void => {
+          success = true;
           logger.log(`API Version: ${res.api_version}`);
         },
         (err: JSONObject): never => {
+          success = false;
           throw err;
+        },
+        (): void => {
+          if (success !== undefined && success !== null) {
+            apiVersionSub.unsubscribe();
+          }
         }
       );
-      apiVersionSub.unsubscribe();
     }
   }
 }

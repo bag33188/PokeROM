@@ -190,4 +190,19 @@ export class RomsService {
   public getOptionsInfo(): Observable<void> {
     return this.http.options<void>(this.romsUrl);
   }
+
+  public addCoreRoms(): Observable<Rom[]> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const url: string = `${this.romsUrl}/core`;
+    return this.http.post<Rom[]>(url, {}, { headers });
+  }
+  public addRomHacks(): Observable<Rom[]> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const url: string = `${this.romsUrl}/hacks`;
+    return this.http.post<Rom[]>(url, {}, { headers });
+  }
 }

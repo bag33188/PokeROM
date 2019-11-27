@@ -1,0 +1,36 @@
+<ng-container>
+  <div class="mt-4" *ngIf="loading">
+    <app-bootstrap-spinner
+      [loading]="loading"
+      type="border"
+      color="primary"
+    ></app-bootstrap-spinner>
+  </div>
+  <button
+    id="update-roms-btn"
+    type="button"
+    appBtn
+    btnType="warning"
+    (click)="updateRoms()"
+    *ngIf="showBtn"
+  >
+    Update ROMs
+  </button>
+  <div
+    id="roms-updated-alert-container"
+    class="p-2"
+    appAlert
+    [alertType]="this.romsUpdated ? 'success' : 'danger'"
+    *ngIf="this.romsUpdated"
+  >
+    <fa-icon
+      class="mr-1"
+      [icon]="this.romsUpdated ? faCheckCircle : faExclamationTriangle"
+    ></fa-icon>
+    {{
+      this.romsUpdated
+        ? 'ROMs successfully updated!'
+        : 'Error updating ROMs, please try again later.'
+    }}
+  </div>
+</ng-container>
