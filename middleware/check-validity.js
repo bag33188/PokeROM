@@ -8,12 +8,10 @@ module.exports = {
         invalidFields = true;
         break;
       } else {
-        if (checkUser === true) {
-          invalidFields =
-            field === 'password' && pwdRegex.test(req.body[field]);
-        } else {
-          invalidFields = false;
-        }
+        invalidFields =
+          checkUser === true
+            ? field === 'password' && pwdRegex.test(req.body[field])
+            : false;
         if (typeof req.body[field] === 'string') {
           req.body[field] = req.sanitize(req.body[field]);
         }
@@ -21,7 +19,5 @@ module.exports = {
     }
     return invalidFields;
   },
-  checkForInvalidRoute(routesWithParams, id) {
-    return routesWithParams.includes(id);
-  }
+  checkForInvalidRoute: (routesWithParams, id) => routesWithParams.includes(id)
 };
