@@ -1,14 +1,12 @@
 <ng-container>
   <app-gif-spinner [loading]="loading"></app-gif-spinner>
-  <div id="delete-usr-btn-container">
-    <button
-      type="button"
-      appBtn
-      btnType="danger"
-      (click)="confirmDeletion()"
-      [disabled]="firedOff"
-    >
-      {{ btnText }}
-    </button>
-  </div>
+  <button
+    type="button"
+    appBtn
+    btnType="danger"
+    (click)="confirmDeletion()"
+    [disabled]="firedOff"
+  >
+    {{ btnText }}
+  </button>
 </ng-container>
