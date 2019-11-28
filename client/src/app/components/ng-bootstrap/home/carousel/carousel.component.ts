@@ -23,7 +23,7 @@ export class CarouselComponent implements OnInit {
     this.carouselData = [
       {
         image: this.images.C_IMG1,
-        heading: `Pok${CarouselComponent.eacute}mon Sword and Shield Coming now available!`,
+        heading: `Pok${CarouselComponent.eacute}mon Sword and Shield now available!`,
         caption: `The new Pok${CarouselComponent.eacute}mon games are now available on this website.`
       },
       {
