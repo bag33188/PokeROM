@@ -42,28 +42,22 @@ export class RomComponent implements OnInit {
   public applyClassesForGameImgSize(altValue: string): NgClasses {
     const overSizedImgClasses: NgClasses = {
       'oversized-img': true,
-      'card-img-top': true,
-      'box-art-img': true
+      'card-img-top box-art-img': true
     };
     const regularSizedImgClasses: NgClasses = {
       'oversized-img': false,
-      'card-img-top': true,
-      'box-art-img': true
+      'card-img-top box-art-img': true
     };
-    switch (altValue.toLowerCase()) {
-      case 'pokemon-green-version-jp-box-art':
-        return overSizedImgClasses;
-      case 'pokemon-lets-go-pikachu-box-art':
-        return overSizedImgClasses;
-      case 'pokemon-lets-go-eevee-box-art':
-        return overSizedImgClasses;
-      case 'pokemon-sword-version-box-art':
-        return overSizedImgClasses;
-      case 'pokemon-shield-version-box-art':
-        return overSizedImgClasses;
-      default:
-        return regularSizedImgClasses;
-    }
+    const oversizedImages: string[] = [
+      'pokemon-green-version-jp-box-art',
+      'pokemon-lets-go-pikachu-box-art',
+      'pokemon-lets-go-eevee-box-art',
+      'pokemon-sword-version-box-art',
+      'pokemon-shield-version-box-art'
+    ];
+    return oversizedImages.includes(altValue.toLowerCase())
+      ? overSizedImgClasses
+      : regularSizedImgClasses;
   }
 
   public romanize(generation: number): string | number {
