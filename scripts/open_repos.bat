@@ -13,11 +13,17 @@ REM.||(
   This file can only be run on a Windows machine.
 )
 
+:: RUN THIS PROGRAM IN COMMAND PROMPT (cmd.exe) ONLY!
+
 :OPEN_REPOS
   REM Main PokeROM Github Repository
-  START "" https://github.com/bag33188/PokeROM
+  START "Main PokeROM Github Repository" chrome.exe "https://github.com/bag33188/PokeROM"
+  REM Sleep for 1 second
+  TIMEOUT /T 1
   REM Website Loading Bar NPM Package repository
-  START "" https://github.com/bag33188/progressive-loading-bar
+  START "Website Loading Bar NPM Package repository" chrome.exe "https://github.com/bag33188/progressive-loading-bar"
+  REM Sleep for 1 second
+  TIMEOUT /T 1
   REM Go up one directory
   CD ..
 EXIT /B 0
