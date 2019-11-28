@@ -24,7 +24,7 @@ export class CarouselComponent implements OnInit {
       {
         image: this.images.C_IMG1,
         heading: `Pok${CarouselComponent.eacute}mon Sword and Shield Coming Soon!`,
-        caption: `The new Pok${CarouselComponent.eacute}mon games will be available starting the 30th of November.`
+        caption: `The new Pok${CarouselComponent.eacute}mon games are now available on this website.`
       },
       {
         image: this.images.C_IMG2,
