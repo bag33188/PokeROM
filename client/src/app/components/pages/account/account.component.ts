@@ -33,7 +33,6 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
   public noticeClosed: boolean;
   private userObs$: Observable<User>;
   private userSub: Subscription;
-  public deleteName: boolean;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -41,7 +40,6 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.deleteName = false;
     this.firedOff = false;
     this.isErrorDeleting = false;
     this.faExclamationTriangle = faExclamationTriangle;
@@ -91,12 +89,7 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
     const keys: string[] = ['error', 'user_exists'];
     // if no name is entered ...
     if (!this.user.name || this.user.name === '') {
-      // delete the name property
-      delete this.user.name;
-    }
-    // if the user wants to delete their name
-    if (this.deleteName === true) {
-      // set name to null
+      // set the name property to null
       this.user.name = null;
     }
     // if username and password are not undefined
@@ -202,9 +195,5 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
 
   public storeAlertState(): void {
     localStorage.setItem('noticeClosed', 'true');
-  }
-
-  public deleteNameCheckboxHandler(): void {
-    this.deleteName = !this.deleteName;
   }
 }
