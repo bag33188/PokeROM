@@ -44,10 +44,10 @@ const romSchema = new Schema(
     file_size: {
       type: Number,
       required: [true, 'File size is required.'],
-      min: [64, 'File too small (must be between 64 and 12000000 Kilobytes).'],
+      min: [64, 'File too small (must be between 64 and 16000000 Kilobytes).'],
       max: [
-        12000000,
-        'File too large (must be between 64 and 12000000 Kilobytes).'
+        16000000,
+        'File too large (must be between 64 and 16000000 Kilobytes).'
       ]
     },
     file_type: {

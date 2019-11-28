@@ -89,9 +89,9 @@ romsCollection = db.createCollection('roms', {
         file_size: {
           bsonType: 'int',
           minimum: 64,
-          maximum: 12000000,
+          maximum: 16000000,
           description:
-            'file_size is required must be an integer between 64 and 12000000 kilobytes.'
+            'file_size is required must be an integer between 64 and 16000000 kilobytes.'
         },
         file_type: {
           bsonType: 'string',

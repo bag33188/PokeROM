@@ -24,7 +24,7 @@ db_prod() {
   case $OSTYPE in
     darwin* )  eval "${command}" ;;
     linux* )   eval "${command}" ;;
-    msys* )    eval "winpty \"${command}\"" ;;
+    msys* )    eval "winpty ${command}" ;;
     * )        echo "Unknown OS: $OSTYPE" ;;
   esac
 }

@@ -16,7 +16,7 @@ definitions:
         type: integer
         format: int32
         minimum: 64
-        maximum: 12000000
+        maximum: 16000000
       file_type:
         type: string
         pattern: '^(?:\.?(gb[ca]?|[n3]ds|xci))$'

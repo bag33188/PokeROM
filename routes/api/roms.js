@@ -88,9 +88,9 @@ router.post(
       .not()
       .isEmpty()
       .withMessage('File size is required.')
-      .isInt({ min: 64, max: 12000000 })
+      .isInt({ min: 64, max: 16000000 })
       .withMessage(
-        'File size must be a number (in kilobytes) between 64 and 12000000.'
+        'File size must be a number (in kilobytes) between 64 and 16000000.'
       ),
     check('file_type')
       .not()
@@ -218,9 +218,9 @@ router.put(
       .not()
       .isEmpty()
       .withMessage('File size is required.')
-      .isInt({ min: 64, max: 12000000 })
+      .isInt({ min: 64, max: 16000000 })
       .withMessage(
-        'File size must be a number (in kilobytes) between 64 and 12000000.'
+        'File size must be a number (in kilobytes) between 64 and 16000000.'
       ),
     check('file_type')
       .not()
@@ -340,9 +340,9 @@ router.patch(
       .withMessage('File name must be between 3 and 80 characters.'),
     check('file_size')
       .optional()
-      .isInt({ min: 64, max: 12000000 })
+      .isInt({ min: 64, max: 16000000 })
       .withMessage(
-        'File size must be a number (in kilobytes) between 64 and 12000000.'
+        'File size must be a number (in kilobytes) between 64 and 16000000.'
       ),
     check('file_type')
       .optional()
