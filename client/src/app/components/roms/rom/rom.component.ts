@@ -57,6 +57,10 @@ export class RomComponent implements OnInit {
         return overSizedImgClasses;
       case 'pokemon-lets-go-eevee-box-art':
         return overSizedImgClasses;
+      case 'pokemon-sword-version-box-art':
+        return overSizedImgClasses;
+      case 'pokemon-shield-version-box-art':
+        return overSizedImgClasses;
       default:
         return regularSizedImgClasses;
     }
