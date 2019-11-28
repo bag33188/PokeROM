@@ -87,82 +87,36 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
     this.firedOff = true;
     this.ready = false;
     const keys: string[] = ['error', 'user_exists'];
-    // if no name is entered ...
+    const expressions: { [index: string]: Array<string | boolean> } = {
+      usernameAndPassword: [
+        this.user.username && this.user.password,
+        this.user.username.length > 0 && this.user.password.length > 0
+      ],
+      partialUser: [
+        this.user.username || this.user.password || this.user.name,
+        this.user.username.length > 0 ||
+          this.user.password.length > 0 ||
+          this.user.name.length > 0
+      ]
+    };
     if (!this.user.name || this.user.name === '') {
-      // set the name property to null
       this.user.name = null;
     }
-    // if username and password are not undefined
-    if (this.user.username && this.user.password) {
-      // if they are both greater than 0 (in length)
-      if (this.user.username.length > 0 && this.user.password.length > 0) {
-        // update the user using a PUT request
-        this.userService.updateUser(this.userId, this.user).subscribe(
-          (): void => {
-            this.ready = true;
-            this.userExists = false;
-            AuthService.logout();
-            this.router.navigate(['/', 'home']);
-          },
-          (err: JSONObject): void => {
-            this.ready = true;
-            this.updateFail = true;
-            this.firedOff = false;
-            // check for existing username
-            if (err[keys[0]][keys[1]] === true) {
-              this.userExists = true;
-            }
-            logger.error(err);
-          }
-        );
-      }
-      // otherwise ...
+    if (
+      expressions.usernameAndPassword[0] &&
+      expressions.usernameAndPassword[1]
+    ) {
+      this.updateUser(this.userId, this.user, keys);
     } else {
-      // if on of the following is true
-      // 1. the username exists
-      // 2. the password exists
-      // 3. the name exists
-      // and one of the following are true:
-      // 1. the name's length is greater than 0
-      // 2. the password's length is greater than 0
-      // 3. the username's length is greater than 0
-      if (
-        (this.user.username || this.user.password || this.user.name) &&
-        (this.user.username.length > 0 ||
-          this.user.password.length > 0 ||
-          this.user.name.length > 0)
-        // then ...
-      ) {
-        // delete the username prop if it does not exist or if it's a blank string
+      if (expressions.partialUser[0] && expressions.partialUser[1]) {
         if (!this.user.username || this.user.username === '') {
           delete this.user.username;
         }
-        // delete the password prop if it does not exist or if it's a blank string
         if (!this.user.password || this.user.password === '') {
           delete this.user.password;
         }
-        // finally, update the user using a PATCH request (partial update)
-        this.userService
-          // tslint:disable-next-line:whitespace
-          .patchUser(this.userId, (<unknown>this.user) as JSONObject)
-          .subscribe(
-            (): void => {
-              this.ready = true;
-              this.userExists = false;
-              AuthService.logout();
-              this.router.navigate(['/', 'home']);
-            },
-            (err: JSONObject): void => {
-              this.ready = true;
-              this.firedOff = false;
-              this.updateFail = true;
-              // check for existing username
-              if (err[keys[0]][keys[1]] === true) {
-                this.userExists = true;
-              }
-              logger.error(err);
-            }
-          );
+        // tslint:disable-next-line:whitespace
+        this.patchUser(this.userId, (<unknown>this.user) as JSONObject, keys);
       }
     }
   }
@@ -195,5 +149,47 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
 
   public storeAlertState(): void {
     localStorage.setItem('noticeClosed', 'true');
+  }
+
+  private updateUser(userId: string, user: User, keys: string[]): void {
+    this.userService.updateUser(userId, user).subscribe(
+      (): void => {
+        this.ready = true;
+        this.userExists = false;
+        AuthService.logout();
+        this.router.navigate(['/', 'home']);
+      },
+      (err: JSONObject): void => {
+        this.ready = true;
+        this.updateFail = true;
+        this.firedOff = false;
+        // check for existing username
+        if (err[keys[0]][keys[1]] === true) {
+          this.userExists = true;
+        }
+        logger.error(err);
+      }
+    );
+  }
+
+  private patchUser(userId: string, user: JSONObject, keys: string[]): void {
+    this.userService.patchUser(userId, user).subscribe(
+      (): void => {
+        this.ready = true;
+        this.userExists = false;
+        AuthService.logout();
+        this.router.navigate(['/', 'home']);
+      },
+      (err: JSONObject): void => {
+        this.ready = true;
+        this.firedOff = false;
+        this.updateFail = true;
+        // check for existing username
+        if (err[keys[0]][keys[1]] === true) {
+          this.userExists = true;
+        }
+        logger.error(err);
+      }
+    );
   }
 }
