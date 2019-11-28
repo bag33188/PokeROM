@@ -23,7 +23,7 @@ export class CarouselComponent implements OnInit {
     this.carouselData = [
       {
         image: this.images.C_IMG1,
-        heading: `Pok${CarouselComponent.eacute}mon Sword and Shield Coming Soon!`,
+        heading: `Pok${CarouselComponent.eacute}mon Sword and Shield Coming now available!`,
         caption: `The new Pok${CarouselComponent.eacute}mon games are now available on this website.`
       },
       {
@@ -35,12 +35,12 @@ export class CarouselComponent implements OnInit {
         image: this.images.C_IMG3,
         heading: `Now with Pok${CarouselComponent.eacute}mon ROM Hacks`,
         caption: `You can now play some of the coolest Pok${CarouselComponent.eacute}mon ROM hacks.`
-      },
-      {
-        image: this.images.C_IMG4,
-        heading: `Grab all your core Pok${CarouselComponent.eacute}mon Game ROMs here!`,
-        caption: `This website's database houses all the core Pok${CarouselComponent.eacute}mon game ROMs ever made.`
       }
+      // {
+      //   image: this.images.C_IMG4,
+      //   heading: `Grab all your core Pok${CarouselComponent.eacute}mon Game ROMs here!`,
+      //   caption: `This website's database houses all the core Pok${CarouselComponent.eacute}mon game ROMs ever made.`
+      // }
     ];
   }
   public getInterval(): number {
