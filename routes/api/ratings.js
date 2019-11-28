@@ -14,7 +14,7 @@ router.post(
       .trim()
       .escape(),
     check('message')
-      .optional()
+      .optional({ nullable: true })
       .isLength({ max: 1000 })
       .withMessage('Rating message can only be 1000 characters at max.')
       .isString()

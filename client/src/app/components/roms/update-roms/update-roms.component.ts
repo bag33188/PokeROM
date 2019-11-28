@@ -21,7 +21,7 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   private addRomsObs$: Observable<[Rom[], Rom[]]>;
   private addRomsSub: Subscription;
   private deleteRomsSub: Subscription;
-  public romsUpdated: boolean | undefined;
+  public romsUpdated: boolean;
   public loading: boolean;
   public showBtn: boolean;
   public faCheckCircle: IconDefinition;
@@ -29,7 +29,6 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   constructor(private romsService: RomsService) {}
 
   ngOnInit(): void {
-    this.romsUpdated = undefined;
     this.faTimesCircle = faTimesCircle;
     this.faCheckCircle = faCheckCircle;
     this.showBtn = true;

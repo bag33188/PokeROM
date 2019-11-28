@@ -66,8 +66,20 @@
                 </div>
               </ng-container>
             </ng-container>
+            <div class="text-center">
+              <label for="delete-name" class=" mr-2">Delete Name</label>
+              <input
+                type="checkbox"
+                name="delete-name"
+                id="delete-name"
+                class="ml-2"
+                (change)="deleteNameCheckboxHandler()"
+              />
+            </div>
             <ng-container>
-              <label for="username" class="font-weight-bold">Username</label>
+              <label for="username" class="font-weight-bold pt-1"
+                >Username</label
+              >
               <input
                 placeholder="min: 3, max: 22"
                 type="text"

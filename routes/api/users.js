@@ -34,7 +34,7 @@ router.post(
       .trim()
       .escape(),
     check('name')
-      .optional()
+      .optional({ nullable: true })
       .isLength({ min: 1, max: 100 })
       .withMessage('Name can only be 100 characters at max.')
       .isString()
@@ -106,7 +106,7 @@ router.put(
       .trim()
       .escape(),
     check('name')
-      .optional()
+      .optional({ nullable: true })
       .isLength({ min: 1, max: 100 })
       .withMessage('Name can only be 100 characters at max.')
       .isString()
@@ -146,7 +146,7 @@ router.patch(
       .trim()
       .escape(),
     check('name')
-      .optional()
+      .optional({ nullable: true })
       .isLength({ min: 1, max: 100 })
       .withMessage('Name can only be 100 characters at max.')
       .isString()

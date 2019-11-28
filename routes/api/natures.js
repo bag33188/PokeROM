@@ -58,7 +58,7 @@ router.post(
         'The decreased stat of the nature must be between 4 and 20 characters.'
       ),
     check('flavor')
-      .optional()
+      .optional({ nullable: true })
       .isLength({ min: 4, max: 14 })
       .withMessage(
         'The flavor of the nature must be between 4 and 14 characters.'
@@ -119,7 +119,7 @@ router.put(
         'The decreased stat of the nature must be between 4 and 20 characters.'
       ),
     check('flavor')
-      .optional()
+      .optional({ nullable: true })
       .isLength({ min: 4, max: 14 })
       .withMessage(
         'The flavor of the nature must be between 4 and 14 characters.'
@@ -165,7 +165,7 @@ router.patch(
       .withMessage('Down must be between 4 and 20 characters.')
       .isString(),
     check('flavor')
-      .optional()
+      .optional({ nullable: true })
       .isLength({ min: 4, max: 14 })
       .withMessage('Flavor must be between 4 and 14 characters.')
       .isString(),
