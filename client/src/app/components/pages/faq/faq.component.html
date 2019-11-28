@@ -180,7 +180,9 @@
     <ng-container *ngIf="!environment.production">
       <h2 class="mt-3">API Version</h2>
       <p>
-        <code>{{ environment.apiUrl + '/version' | fetch | json }}</code>
+        <code>{{
+          (environment.apiUrl + '/version' | fetch | json) || 'error'
+        }}</code>
       </p>
     </ng-container>
   </div>
