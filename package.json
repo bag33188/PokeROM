@@ -2,14 +2,14 @@
   "name": "pokerom",
   "version": "1.0.0",
   "description": "The back-end/server side for the PokeROM website.",
-  "homepage": "https://github.com/bag33188/Pokemon-ROMs-Project#readme",
+  "homepage": "https://github.com/bag33188/PokeROM#readme",
   "bugs": {
-    "url": "https://github.com/bag33188/Pokemon-ROMs-Project/issues",
+    "url": "https://github.com/bag33188/PokeROM/issues",
     "email": "broccolini@pokerom.dev"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bag33188/Pokemon-ROMs-Project.git"
+    "url": "https://github.com/bag33188/PokeROM.git"
   },
   "main": "server.js",
   "scripts": {
@@ -31,8 +31,8 @@
     "gen-pw": "cd scripts && node pw-hash-gen && cd ..",
     "count-files-git": "echo \"Number of files: \" && git ls-files | wc -l",
     "fix-permissions": "cd scripts && bash ./fix_permissions.sh",
-    "open-pages": "cd scripts && open_pages.bat",
-    "open-repos": "cd scripts && open_repos.bat",
+    "open-pages": "CMD /C \"scripts\\open_pages.bat\"",
+    "open-repos": "CMD /C \"scripts\\open_repos.bat\"",
     "print-keys": "cd scripts && node print-keys",
     "pokerom": "ssh pokerom@192.64.114.215 -p 22",
     "root": "ssh root@192.64.114.215 -p 22",

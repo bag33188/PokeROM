@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "description": "The front-end/client side for the PokeROM website.",
   "license": "MIT",
-  "homepage": "https://github.com/bag33188/Pokemon-ROMs-Project/client#readme",
+  "homepage": "https://github.com/bag33188/PokeROM/client#readme",
   "bugs": {
-    "url": "https://github.com/bag33188/Pokemon-ROMs-Project/issues",
+    "url": "https://github.com/bag33188/PokeROM/issues",
     "email": "broccolini@pokerom.dev"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bag33188/Pokemon-ROMs-Project/client"
+    "url": "https://github.com/bag33188/PokeROM/client"
   },
   "scripts": {
     "ng": "ng",
