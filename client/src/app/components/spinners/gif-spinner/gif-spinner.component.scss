@@ -2,14 +2,14 @@
 
 .spinner {
   // animation: rotate 3s linear infinite;
-  height: 8rem; // auto
-  width: 8rem;
+  height: 6rem; // auto
+  width: 6rem;
 }
 
 .spinner-container {
   height: unquote('#{$calc-body-height}');
-  margin-right: -64px;
-  margin-top: -64px;
+  margin-right: -48px;
+  margin-top: -48px;
   position: fixed;
   right: 50%;
   top: 50%;
