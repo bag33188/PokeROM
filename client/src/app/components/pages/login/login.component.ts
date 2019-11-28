@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.firedOff = false;
     this.loading = false;
-    setTimeout((): void => AuthService.logout(), 88);
+    setTimeout((): void => AuthService.logout(), 100);
   }
 
   public login(): void {

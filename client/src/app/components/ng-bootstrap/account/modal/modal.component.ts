@@ -16,7 +16,7 @@ export class ModalComponent implements OnInit {
   @Output() public isErrorDeleting: EventEmitter<boolean> = new EventEmitter<
     boolean
   >();
-  @Output() private loading: EventEmitter<boolean> = new EventEmitter<
+  @Output() public loading: EventEmitter<boolean> = new EventEmitter<
     boolean
   >();
   @Input() public username: string;

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GameDescriptionComponent implements OnInit {
   @Input() public description: string;
-  @Input() private finishedLoading: boolean;
+  @Input() public finishedLoading: boolean;
 
   constructor() {}
   static changeUrlToLink(description: string): string {

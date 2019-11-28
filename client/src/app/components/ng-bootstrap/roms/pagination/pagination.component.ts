@@ -16,9 +16,9 @@ import { Rom } from '../../../../models/Rom';
 export class PaginationComponent implements OnInit {
   @Input() public romsData: Rom[];
   @Input() public currentPage: number;
-  @Input() private pageSize: number;
+  @Input() public pageSize: number;
   @Input() public itemsPerPage: number;
-  @Output() private paginate: EventEmitter<number> = new EventEmitter<number>();
+  @Output() public paginate: EventEmitter<number> = new EventEmitter<number>();
   public pageWidth: number;
 
   @HostListener('window:resize')

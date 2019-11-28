@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class GameNameComponent implements OnInit {
   @Input() public gameName: string;
   @Input() public romType: string;
+  @Input() public finishedLoading: boolean;
 
   constructor() {}
 

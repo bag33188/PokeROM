@@ -48,6 +48,7 @@
       <ng-container>
         <app-game-name
           class="game-title"
+          [finishedLoading]="finishedLoading"
           [gameName]="rom.game_name"
           [romType]="rom.rom_type"
         ></app-game-name>
