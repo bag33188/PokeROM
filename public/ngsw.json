@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1574983616473,
+  "timestamp": 1574983963562,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -193,7 +193,7 @@
     "/assets/images/carousel_img_04.jpg": "9c1547b69e9a7d07f1ce2e64a380b0b101f48fc7",
     "/assets/images/logo.png": "047d40dcbfb6e1390b4444c73a996e4a700b41ba",
     "/assets/images/spinner.gif": "b553020f053390eb361af942baba54fc81327518",
-    "/assets/images/spinner1.gif": "a06b3c444b8a1076702d992a0f9a14a18fb22134",
+    "/assets/images/spinner1.gif": "69cf0b6838ba3f1b97ad9f0b779d886a9e147f17",
     "/favicon.ico": "10e207f0a756d5c44c80bdc9de1e6bc9f16860f6",
     "/fontawesome-webfont.674f50d287a8c48dc19b.eot": "d980c2ce873dc43af460d4d572d441304499f400",
     "/fontawesome-webfont.912ec66d7572ff821749.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
