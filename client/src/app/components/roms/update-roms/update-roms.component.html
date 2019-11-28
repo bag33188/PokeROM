@@ -1,5 +1,5 @@
 <ng-container>
-  <div class="mt-4" *ngIf="loading">
+  <div class="mb-3" *ngIf="loading">
     <app-bootstrap-spinner
       [loading]="loading"
       type="border"
@@ -21,11 +21,11 @@
     class="p-2"
     appAlert
     [alertType]="this.romsUpdated ? 'success' : 'danger'"
-    *ngIf="this.romsUpdated"
+    *ngIf="this.romsUpdated !== undefined"
   >
     <fa-icon
       class="mr-1"
-      [icon]="this.romsUpdated ? faCheckCircle : faExclamationTriangle"
+      [icon]="this.romsUpdated ? faCheckCircle : faTimesCircle"
     ></fa-icon>
     {{
       this.romsUpdated
