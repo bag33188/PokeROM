@@ -118,9 +118,11 @@ export const fadeOutAnimation: AnimationTriggerMetadata[] = [
 ];
 
 export const fadeInAnimation: AnimationTriggerMetadata[] = [
-  trigger('fadeInt', [
-    state('out', style({ opacity: 0 })),
-    transition(':leave', animate(555, style({ opacity: 1 })))
+  trigger('fadeIn', [
+    transition(':enter', [
+      style({ opacity: 0 }),
+      animate('1s', style({ opacity: 1 }))
+    ])
   ])
 ];
 

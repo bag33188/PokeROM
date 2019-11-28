@@ -10,11 +10,13 @@ import {
   faCheckCircle,
   faTimesCircle
 } from '@fortawesome/free-regular-svg-icons';
+import { fadeInAnimation } from '../../../animations';
 
 @Component({
   selector: 'app-update-roms',
   templateUrl: './update-roms.component.html',
-  styleUrls: ['./update-roms.component.scss']
+  styleUrls: ['./update-roms.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class UpdateRomsComponent implements OnInit, OnDestroy {
   private deleteRomsObs$: Observable<JSONObject>;
@@ -26,6 +28,7 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   public showBtn: boolean;
   public faCheckCircle: IconDefinition;
   public faTimesCircle: IconDefinition;
+
   constructor(private romsService: RomsService) {}
 
   ngOnInit(): void {
@@ -33,10 +36,10 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
     this.faCheckCircle = faCheckCircle;
     this.showBtn = true;
     this.loading = false;
-    this.deleteRomsObs$ = this.romsService.deleteAllRoms();
+    this.deleteRomsObs$ = this.romsService.deleteAllRoms().pipe(delay(500));
     this.addRomsObs$ = zip(
-      this.romsService.addCoreRoms().pipe(delay(800)),
-      this.romsService.addRomHacks().pipe(delay(800))
+      this.romsService.addCoreRoms().pipe(delay(1000)),
+      this.romsService.addRomHacks().pipe(delay(1000))
     );
   }
 

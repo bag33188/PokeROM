@@ -2,7 +2,7 @@
 
 .spinner {
   // animation: rotate 3s linear infinite;
-  height: auto;
+  height: 8rem; // auto
   width: 8rem;
 }
 
@@ -14,6 +14,18 @@
   right: 50%;
   top: 50%;
   z-index: 18;
+}
+
+@media only screen and (max-width: 500px) {
+  .spinner {
+    height: 4rem !important; // auto
+    width: 4rem !important;
+  }
+
+  .spinner-container {
+    margin-right: -32px !important;
+    margin-top: -32px !important;
+  }
 }
 
 @keyframes rotate {
