@@ -11,6 +11,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Rom } from '../../../models/Rom';
 import { JSONObject } from '../../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
+import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-rom-info',
@@ -69,7 +70,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
         this.loading = false;
         this.isError = false;
       },
-      (err: JSONObject): never => {
+      (err: JSONObject): void => {
         this.loading = false;
         this.isError = true;
         const statusKey: string = 'status';
@@ -88,7 +89,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
               this.errStatus = 500;
           }
         }
-        throw err;
+        logger.error(err);
       },
       (): true => (this.finishedLoading = true)
     );

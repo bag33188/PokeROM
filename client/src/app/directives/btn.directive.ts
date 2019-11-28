@@ -1,4 +1,5 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { LoggerService as logger } from '../services/logger.service';
 
 @Directive({
   selector: '[appBtn]'
@@ -15,7 +16,7 @@ export class BtnDirective implements OnInit {
       !/(outline)/.test(this.btnType) ? 'btn-shadow' : null
     ];
     if (!this.btnType) {
-      throw new Error('No button type specified.');
+      logger.error('No button type specified.');
     } else {
       this.setType();
     }
@@ -57,10 +58,10 @@ export class BtnDirective implements OnInit {
         case 'dark':
           return [...this.preClasses, 'btn-dark'];
         default:
-          throw new Error('Invalid button type.');
+          logger.error('Invalid button type.');
       }
     } else {
-      throw new Error('Type must be a string.');
+      logger.error('Type must be a string.');
     }
   }
 

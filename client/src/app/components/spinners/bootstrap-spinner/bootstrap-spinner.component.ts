@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgClasses } from '../../../interfaces/NgClasses';
+import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-bootstrap-spinner',
@@ -49,10 +50,10 @@ export class BootstrapSpinnerComponent implements OnInit {
         case 'grow':
           return 'spinner-grow';
         default:
-          throw new Error('Invalid type.');
+          logger.error('Invalid type.');
       }
     } else {
-      throw new Error('Type must be a string.');
+      logger.error('Type must be a string.');
     }
   }
 
@@ -76,32 +77,32 @@ export class BootstrapSpinnerComponent implements OnInit {
         case 'dark':
           return 'text-dark';
         default:
-          throw new Error('Invalid color.');
+          logger.error('Invalid color.');
       }
     } else {
-      throw new Error('Color must be a string.');
+      logger.error('Color must be a string.');
     }
   }
 
   private checkForErrors(): never | boolean {
     if (!this.spinnerType) {
-      throw new Error('Type is required.');
+      logger.error('Type is required.');
     }
     if (!this.spinnerColor) {
-      throw new Error('Color is required.');
+      logger.error('Color is required.');
     }
     if (this.loading === undefined || this.loading === null) {
-      throw new Error('Loading property is required.');
+      logger.error('Loading property is required.');
     }
     if (
       this.spaced !== undefined &&
       this.spaced !== null &&
       typeof this.spaced !== 'boolean'
     ) {
-      throw new Error('Spaced property must be a boolean.');
+      logger.error('Spaced property must be a boolean.');
     }
     if (this.customSize && typeof this.customSize !== 'number') {
-      throw new Error('Custom size property must be a number data-type.');
+      logger.error('Custom size property must be a number data-type.');
     }
     return false;
   }

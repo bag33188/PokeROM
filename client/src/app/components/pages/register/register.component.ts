@@ -12,6 +12,7 @@ import { UserService } from '../../../services/user.service';
 import sanitizeXSS from '../../../helpers/sanitize-xss';
 import removeStringChars from '../../../helpers/remove-string-chars';
 import { JSONObject } from '../../../models/JSONObject';
+import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-register',
@@ -91,7 +92,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
             this.registerFail = 'Incorrect Registration';
           }
         },
-        (err: JSONObject): never => {
+        (err: JSONObject): void => {
           this.firedOff = false;
           this.loading = false;
           const keys: string[] = ['error', 'user_exists', 'errors', 'msg'];
@@ -119,7 +120,7 @@ export class RegisterComponent implements OnInit, AfterContentInit {
               }
             });
           }
-          throw err;
+          logger.error(err);
         }
       );
     }

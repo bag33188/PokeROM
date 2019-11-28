@@ -1,4 +1,5 @@
 import { Directive, ElementRef, OnInit, Input } from '@angular/core';
+import { LoggerService as logger } from '../services/logger.service';
 
 @Directive({
   selector: '[appAlert]'
@@ -13,13 +14,13 @@ export class AlertDirective implements OnInit {
   ngOnInit(): void | never {
     this.preClasses = ['alert', this.addShadow ? 'shadow' : null];
     if (!this.alertType) {
-      throw new Error('No alert type specified.');
+      logger.error('No alert type specified.');
     } else {
       this.setType();
     }
     if (this.addShadow !== undefined && this.addShadow !== null) {
       if (typeof this.addShadow !== 'boolean') {
-        throw new Error('addShadow must be a boolean.');
+        logger.error('addShadow must be a boolean.');
       }
     }
   }
@@ -44,10 +45,10 @@ export class AlertDirective implements OnInit {
         case 'dark':
           return [...this.preClasses, 'alert-dark'];
         default:
-          throw new Error('Invalid alert type.');
+          logger.error('Invalid alert type.');
       }
     } else {
-      throw new Error('Type must be a string.');
+      logger.error('Type must be a string.');
     }
   }
 

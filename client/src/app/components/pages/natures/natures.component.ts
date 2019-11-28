@@ -11,6 +11,7 @@ import { Nature } from '../../../models/Nature';
 import { NaturesService } from '../../../services/natures.service';
 import { JSONObject } from '../../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
+import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-natures',
@@ -76,10 +77,10 @@ export class NaturesComponent implements OnInit, AfterContentInit, OnDestroy {
         this.loading = false;
         this.isError = false;
       },
-      (err: JSONObject): never => {
+      (err: JSONObject): void => {
         this.loading = false;
         this.isError = true;
-        throw err;
+        logger.error(err);
       }
     );
   }

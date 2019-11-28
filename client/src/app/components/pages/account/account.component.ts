@@ -12,6 +12,7 @@ import removeStringChars from '../../../helpers/remove-string-chars';
 import { JSONObject } from '../../../models/JSONObject';
 import { CookiesService } from '../../../services/cookies.service';
 import { Observable, Subscription } from 'rxjs';
+import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-account',
@@ -76,10 +77,10 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
         this.user = res;
         this.ready = true;
       },
-      (err: JSONObject): never => {
+      (err: JSONObject): void => {
         this.errLoadingUsr = true;
         this.ready = true;
-        throw err;
+        logger.error(err);
       }
     );
   }
@@ -110,7 +111,7 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
             AuthService.logout();
             this.router.navigate(['/', 'home']);
           },
-          (err: JSONObject): never => {
+          (err: JSONObject): void => {
             this.ready = true;
             this.updateFail = true;
             this.firedOff = false;
@@ -118,7 +119,7 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
             if (err[keys[0]][keys[1]] === true) {
               this.userExists = true;
             }
-            throw err;
+            logger.error(err);
           }
         );
       }
@@ -158,7 +159,7 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
               AuthService.logout();
               this.router.navigate(['/', 'home']);
             },
-            (err: JSONObject): never => {
+            (err: JSONObject): void => {
               this.ready = true;
               this.firedOff = false;
               this.updateFail = true;
@@ -166,7 +167,7 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
               if (err[keys[0]][keys[1]] === true) {
                 this.userExists = true;
               }
-              throw err;
+              logger.error(err);
             }
           );
       }

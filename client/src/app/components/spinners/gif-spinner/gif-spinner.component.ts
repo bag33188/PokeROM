@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Images } from '../../../enums/images.enum';
+import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-gif-spinner',
@@ -22,7 +23,7 @@ export class GifSpinnerComponent implements OnInit, AfterViewInit {
 
   private checkInput(): void | never {
     if (this.loading === undefined || this.loading === null) {
-      throw new Error('Loading property is required.');
+      logger.error('Loading property is required.');
     }
   }
 }

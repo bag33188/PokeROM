@@ -4,6 +4,7 @@ import { Rom } from '../../../models/Rom';
 import he from 'he';
 import { JSONObject } from '../../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
+import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-roms',
@@ -56,11 +57,11 @@ export class RomsComponent implements OnInit, AfterContentInit, OnDestroy {
           this.noRomsMsg = 'No ROMs to Show';
         }
       },
-      (err: JSONObject): never => {
+      (err: JSONObject): void => {
         this.isError = true;
         this.loading = false;
         this.noRomsMsg = '';
-        throw err;
+        logger.error(err);
       }
     );
   }

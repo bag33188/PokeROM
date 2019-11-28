@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ApiVersion } from '../models/ApiVersion';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoggerService as logger } from './logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +32,6 @@ export class ApiService {
         (cache: Cache): Promise<void> =>
           cache.add(`${environment.apiUrl}/version`)
       )
-      .catch((err: object): never => {
-        throw err;
-      });
+      .catch((err: object): void => logger.log(err));
   }
 }

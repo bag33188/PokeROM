@@ -13,6 +13,7 @@ import sanitizeXSS from '../helpers/sanitize-xss';
 import removeStringChars from '../helpers/remove-string-chars';
 import { JSONObject } from '../models/JSONObject';
 import { JSONArray } from '../interfaces/JSONArray';
+import { LoggerService as logger } from '../services/logger.service';
 
 @Injectable()
 export class BleachInterceptor implements HttpInterceptor {
@@ -63,8 +64,8 @@ export class BleachInterceptor implements HttpInterceptor {
             return event;
           }
         },
-        (err: object): never => {
-          throw err;
+        (err: object): void => {
+          logger.error(err);
         }
       )
     );
