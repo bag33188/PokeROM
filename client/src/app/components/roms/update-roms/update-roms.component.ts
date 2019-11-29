@@ -5,8 +5,8 @@ import { delay } from 'rxjs/operators';
 import { JSONObject } from '../../../models/JSONObject';
 import { Rom } from '../../../models/Rom';
 import { LoggerService as logger } from '../../../services/logger.service';
-import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import {
+  IconDefinition,
   faCheckCircle,
   faTimesCircle
 } from '@fortawesome/free-regular-svg-icons';
