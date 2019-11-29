@@ -25,10 +25,10 @@ export class JwtInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<JSONObject>,
     next: HttpHandler
-  ): Observable<HttpEvent<JSONObject | JSONArray | void>> {
+  ): Observable<HttpEvent<JSONObject | JSONArray>> {
     return next.handle(req).pipe(
       tap(
-        (event: HttpEvent<JSONObject | JSONArray | void>): void => {
+        (event: HttpEvent<JSONObject | JSONArray>): void => {
           if (event instanceof HttpResponse) {
             const romsApiRouteRegex: RegExp = /(?:(\/api\/roms(\/)?)([\da-fA-F]{24}?))$/;
             if (romsApiRouteRegex.test(event.url)) {

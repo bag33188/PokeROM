@@ -12,18 +12,19 @@ const docs = [
   yaml.safeLoad(fs.readFileSync('./docs/paths/Version.yml'))
 ];
 
-let pathsArr = [];
+let paths = [];
 
-docs.forEach(doc => pathsArr.push(Object.keys(doc.paths)));
+docs.forEach(doc => paths.push(Object.keys(doc.paths)));
 
-pathsArr = pathsArr.flat(1).sort();
+// NODE: the flat method only works with ES2019+
+paths = paths.flat(1).sort();
 
 let listItems = '';
 
-for (const i in pathsArr) {
-  const path = pathsArr[+i];
+for (const i in paths) {
+  const path = paths[+i];
   listItems += `<li style="list-style-type: none;"><code>${path}</code></li>${
-    +i === pathsArr.length - 1 ? '' : '\n'
+    +i === paths.length - 1 ? '' : '\n'
   }`;
 }
 

@@ -17,7 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<JSONObject>,
     next: HttpHandler
-  ): Observable<HttpEvent<JSONObject | JSONArray | void>> {
+  ): Observable<HttpEvent<JSONObject | JSONArray>> {
     const routeParams: string[] = req.urlWithParams
       .replace(environment.apiUrl.replace('/api', '/'), '')
       .split('/');

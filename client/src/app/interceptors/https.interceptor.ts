@@ -16,7 +16,7 @@ export class HttpsInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<JSONObject>,
     next: HttpHandler
-  ): Observable<HttpEvent<JSONObject | JSONArray | void>> {
+  ): Observable<HttpEvent<JSONObject | JSONArray>> {
     let httpsReq: HttpRequest<JSONObject>;
     if (environment.production) {
       // clone request and replace 'http://' with 'https://' at the same time
