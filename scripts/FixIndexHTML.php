@@ -103,7 +103,9 @@
               // add type=text/javascript
               $script_tags[$i] = str_replace("src=\"", "type=\"text/javascript\" src=\"", $script_tags[$i]);
             } else {
-              // otherwise add type=module
+              // remove type="module" occurrence(s)
+              $script_tags[$i] = preg_replace("/((?:\s?)type=\"module\"(?:\s?))+/", "", $script_tags[$i]);
+              // add type=module right before src attr
               $script_tags[$i] = str_replace("src=\"", "type=\"module\" src=\"", $script_tags[$i]);
             }
             // if defer attribute is not present on script tag
