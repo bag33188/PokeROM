@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RomsService } from '../../../services/roms.service';
-import { Observable, Subscription, zip } from 'rxjs';
+import { Observable, PartialObserver, Subscription, zip } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { JSONObject } from '../../../models/JSONObject';
 import { Rom } from '../../../models/Rom';
@@ -57,18 +57,19 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   }
 
   private deleteRoms(addRomsCallback: () => void): void {
-    this.deleteRomsSub = this.deleteRomsObs$.subscribe({
+    const observer: PartialObserver<JSONObject> = {
       error: (err: JSONObject): void => {
         this.loading = false;
         this.romsUpdated = false;
         logger.error(err);
       },
       complete: (): void => addRomsCallback()
-    });
+    };
+    this.deleteRomsSub = this.deleteRomsObs$.subscribe(observer);
   }
 
   private addRoms(): void {
-    this.addRomsSub = this.addRomsObs$.subscribe({
+    const observer: PartialObserver<[Rom[], Rom[]]> = {
       error: (err: JSONObject): void => {
         this.loading = false;
         logger.error(err);
@@ -77,6 +78,7 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
         this.romsUpdated = true;
         this.loading = false;
       }
-    });
+    };
+    this.addRomsSub = this.addRomsObs$.subscribe(observer);
   }
 }
