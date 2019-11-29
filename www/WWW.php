@@ -21,7 +21,7 @@
     /**
      * WWW constructor.
      */
-    public function __construct()
+    function __construct()
     {
       $this->setUrlProp(NULL);
     }
@@ -48,12 +48,14 @@
       $file = fopen($filePath, "r");
       $fileSize = filesize($filePath);
       $fileText = fread($file, $fileSize);
-      define("VERSION_REGEX", "/((?:version:)(?:\s)(?:v\d))/i");
+      if (!defined('VERSION_REGEX')) {
+        define("VERSION_REGEX", "/((?:version:)(?:\s)(?:v\d))/i");
+      }
       $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
       if ($versionExists == true) {
-        $version[0] = str_replace("version: ", "", $version[0]);
+        $version = str_replace("version: ", "", $version[0]);
         return array(
-          (object) array("success" => true, "api_version" => $version[0])
+          (object) array("success" => true, "api_version" => $version)
         )[0];
       } else {
         return array(
