@@ -20,7 +20,7 @@ import { fadeInAnimation } from '../../../animations';
 })
 export class UpdateRomsComponent implements OnInit, OnDestroy {
   private deleteRomsObs$: Observable<JSONObject>;
-  private addRomsObs$: Observable<[Rom[], Rom[]]>;
+  private addRomsObs$: Observable<[Array<Rom>, Array<Rom>]>;
   private addRomsSub: Subscription;
   private deleteRomsSub: Subscription;
   public romsUpdated: boolean;
@@ -69,7 +69,7 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   }
 
   private addRoms(): void {
-    const observer: PartialObserver<[Rom[], Rom[]]> = {
+    const observer: PartialObserver<[Array<Rom>, Array<Rom>]> = {
       error: (err: JSONObject): void => {
         this.loading = false;
         logger.error(err);
