@@ -21,7 +21,7 @@ export class BleachInterceptor implements HttpInterceptor {
     String.prototype.sanitizeXSS = sanitizeXSS;
     String.prototype.removeStringChars = removeStringChars;
   }
-  intercept(
+  public intercept(
     req: HttpRequest<JSONObject>,
     next: HttpHandler
   ): Observable<HttpEvent<JSONObject | JSONArray>> {

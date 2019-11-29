@@ -22,7 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
     private jwtHelper: JwtHelperService,
     private authService: AuthService
   ) {}
-  intercept(
+  public intercept(
     req: HttpRequest<JSONObject>,
     next: HttpHandler
   ): Observable<HttpEvent<JSONObject | JSONArray>> {

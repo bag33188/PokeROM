@@ -13,7 +13,7 @@ import { JSONArray } from '../interfaces/JSONArray';
 @Injectable()
 export class HttpsInterceptor implements HttpInterceptor {
   constructor() {}
-  intercept(
+  public intercept(
     req: HttpRequest<JSONObject>,
     next: HttpHandler
   ): Observable<HttpEvent<JSONObject | JSONArray>> {
