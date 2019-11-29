@@ -24,38 +24,42 @@ export class BleachInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<JSONObject>,
     next: HttpHandler
-  ): Observable<HttpEvent<JSONObject | JSONArray | void>> {
+  ): Observable<HttpEvent<JSONObject | JSONArray>> {
     return next.handle(req).pipe(
       map(
         (
-          event: HttpEvent<JSONObject | JSONArray | void>
-        ): HttpEvent<JSONObject | JSONArray | void> => {
+          event: HttpEvent<JSONObject | JSONArray>
+        ): HttpEvent<JSONObject | JSONArray> => {
           if (event instanceof HttpResponse) {
-            const sanitizeBody: () => void = (): void => {
-              const body: JSONArray | JSONObject | void = event.body;
+            const sanitizeBody: () => JSONArray | JSONObject = ():
+              | JSONArray
+              | JSONObject => {
+              let body: JSONArray | JSONObject = event.body;
               if (Array.isArray(body)) {
-                return body.forEach((obj: JSONObject): void => {
-                  Object.keys(obj).forEach((key: string): void => {
-                    if (typeof obj[key] === 'string') {
-                      obj[key] = he
-                        .decode(obj[key])
-                        .sanitizeXSS()
-                        .removeStringChars();
-                    }
-                  });
-                });
-              } else {
-                return Object.keys(body as object).forEach(
-                  (key: string): void => {
-                    if (typeof body[key] === 'string') {
-                      body[key] = he
-                        .decode(body[key])
-                        .sanitizeXSS()
-                        .removeStringChars();
-                    }
+                body = body.map(
+                  (obj: JSONObject): JSONObject => {
+                    Object.keys(obj).forEach((key: string) => {
+                      if (typeof obj[key] === 'string') {
+                        obj[key] = he
+                          .decode(obj[key])
+                          .sanitizeXSS()
+                          .removeStringChars();
+                      }
+                    });
+                    return obj;
                   }
                 );
+              } else {
+                Object.keys(body as object).forEach((key: string): void => {
+                  if (typeof body[key] === 'string') {
+                    body[key] = he
+                      .decode(body[key])
+                      .sanitizeXSS()
+                      .removeStringChars();
+                  }
+                });
               }
+              return body;
             };
             return event.clone({
               body: sanitizeBody()
