@@ -127,7 +127,6 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
   }
 
   private updateUser(userId: string, user: User, keys: string[]): void {
-    logger.log('put');
     this.userService.updateUser(userId, user).subscribe(
       (): void => {
         this.ready = true;
@@ -149,7 +148,6 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
   }
 
   private patchUser(userId: string, user: JSONObject, keys: string[]): void {
-    logger.log('patch');
     this.userService.patchUser(userId, user).subscribe(
       (): void => {
         this.ready = true;
