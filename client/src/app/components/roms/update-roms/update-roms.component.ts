@@ -53,30 +53,30 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   public updateRoms(): void {
     this.showBtn = false;
     this.loading = true;
-    let deleteSuccess: boolean;
-    let addSuccess: boolean;
-    this.deleteRomsSub = this.deleteRomsObs$.subscribe(
-      (): true => (deleteSuccess = true),
-      (err: JSONObject): void => {
+    this.deleteRoms(this.addRoms.bind(this, UpdateRomsComponent));
+  }
+
+  private deleteRoms(addRomsCallback: () => void): void {
+    this.deleteRomsSub = this.deleteRomsObs$.subscribe({
+      error: (err: JSONObject): void => {
         this.loading = false;
-        deleteSuccess = false;
-        this.romsUpdated = deleteSuccess;
+        this.romsUpdated = false;
         logger.error(err);
       },
-      (): void => {
-        this.addRomsSub = this.addRomsObs$.subscribe(
-          (): true => (addSuccess = true),
-          (err: JSONObject): void => {
-            this.loading = false;
-            addSuccess = false;
-            logger.error(err);
-          },
-          (): void => {
-            this.romsUpdated = deleteSuccess && addSuccess;
-            this.loading = false;
-          }
-        );
+      complete: (): void => addRomsCallback()
+    });
+  }
+
+  private addRoms(): void {
+    this.addRomsSub = this.addRomsObs$.subscribe({
+      error: (err: JSONObject): void => {
+        this.loading = false;
+        logger.error(err);
+      },
+      complete: (): void => {
+        this.romsUpdated = true;
+        this.loading = false;
       }
-    );
+    });
   }
 }
