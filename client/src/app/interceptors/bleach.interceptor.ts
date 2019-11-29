@@ -38,7 +38,7 @@ export class BleachInterceptor implements HttpInterceptor {
               if (Array.isArray(body)) {
                 body = body.map(
                   (obj: JSONObject): JSONObject => {
-                    Object.keys(obj).forEach((key: string) => {
+                    Object.keys(obj).forEach((key: string): void => {
                       if (typeof obj[key] === 'string') {
                         obj[key] = he
                           .decode(obj[key])
