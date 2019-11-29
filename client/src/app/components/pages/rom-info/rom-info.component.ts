@@ -37,7 +37,7 @@ export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.finishedLoading = false;
     this.loading = true;
     this.faFileAlt = faFileAlt;
@@ -48,11 +48,11 @@ export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
     this.getRom(this.id);
   }
 
-  ngAfterContentInit(): void {
+  public ngAfterContentInit(): void {
     window.scrollTo(0, 0);
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.romInfoSub.unsubscribe();
   }
 

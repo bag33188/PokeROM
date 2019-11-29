@@ -10,7 +10,7 @@ export class BtnDirective implements OnInit {
 
   constructor(private el: ElementRef) {}
 
-  ngOnInit(): void | never {
+  public ngOnInit(): void | never {
     this.preClasses = [
       'btn',
       !/(outline)/.test(this.btnType) ? 'btn-shadow' : null

@@ -28,7 +28,7 @@ export class RatingsComponent implements OnInit {
     String.prototype.removeStringChars = removeStringChars;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.message = '';
     this.formValid = true;
     this.formSubmitted = false;

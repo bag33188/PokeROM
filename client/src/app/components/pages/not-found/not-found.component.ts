@@ -11,7 +11,7 @@ export class NotFoundComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.notFoundMsg = 'Error 404: Page Not Found.';
     logger.error(this.notFoundMsg);
   }

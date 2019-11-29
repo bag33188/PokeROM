@@ -15,7 +15,7 @@ export class BodyComponent implements OnInit {
       !/(Edge)/.test(navigator.userAgent)
     );
   }
-  ngOnInit(): void {
+  public ngOnInit(): void {
     // Log to console if current browser is incompatible with custom CSS scrollbar
     // using the navigator object.
     //

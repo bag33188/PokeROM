@@ -19,7 +19,7 @@ export class RomSpecsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.faCompactDisc = faCompactDisc;
   }
 

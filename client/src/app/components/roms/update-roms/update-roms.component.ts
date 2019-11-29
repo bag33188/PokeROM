@@ -31,7 +31,7 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
 
   constructor(private romsService: RomsService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.faTimesCircle = faTimesCircle;
     this.faCheckCircle = faCheckCircle;
     this.showBtn = true;
@@ -43,7 +43,7 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     if (this.romsUpdated) {
       this.deleteRomsSub.unsubscribe();
       this.addRomsSub.unsubscribe();

@@ -57,13 +57,13 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     String.prototype.removeStringChars = removeStringChars;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.loading = false;
     this.firedOff = false;
     setTimeout(AuthService.logout, 100);
   }
 
-  ngAfterContentInit(): void {
+  public ngAfterContentInit(): void {
     window.scrollTo(0, 0);
   }
 

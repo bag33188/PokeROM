@@ -15,7 +15,7 @@ export class RomComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.faInfo = faInfo;
   }
 

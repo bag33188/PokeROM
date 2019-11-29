@@ -29,15 +29,15 @@ export class RomsComponent implements OnInit, AfterContentInit, OnDestroy {
 
   constructor(private romsService: RomsService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getRoms();
   }
 
-  ngAfterContentInit(): void {
+  public ngAfterContentInit(): void {
     RomsComponent.jumpToTop();
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.romsSub.unsubscribe();
   }
 

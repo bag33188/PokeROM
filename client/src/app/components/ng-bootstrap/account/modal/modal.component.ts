@@ -31,7 +31,7 @@ export class ModalComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.btnDisabled = false;
   }
 

@@ -10,11 +10,11 @@ export class HomeComponent implements OnInit, AfterContentInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.accHeading = 'What would you like to know about?';
   }
 
-  ngAfterContentInit(): void {
+  public ngAfterContentInit(): void {
     window.scrollTo(0, 0);
   }
 }

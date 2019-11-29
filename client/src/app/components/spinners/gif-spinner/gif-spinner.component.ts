@@ -13,11 +13,11 @@ export class GifSpinnerComponent implements OnInit, AfterViewInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.images = Images;
   }
 
-  ngAfterViewInit(): void | never {
+  public ngAfterViewInit(): void | never {
     this.checkInput();
   }
 

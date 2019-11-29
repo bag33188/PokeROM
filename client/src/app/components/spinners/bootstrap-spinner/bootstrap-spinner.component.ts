@@ -19,7 +19,7 @@ export class BootstrapSpinnerComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void | never {
+  public ngOnInit(): void | never {
     if (this.checkForErrors() === false) {
       this.setType();
       this.setColor();

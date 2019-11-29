@@ -15,7 +15,7 @@ export class GameSpecsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.faGamepad = faGamepad;
   }
 }

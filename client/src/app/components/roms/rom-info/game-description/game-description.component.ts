@@ -22,7 +22,7 @@ export class GameDescriptionComponent implements OnInit {
       return description;
     }
   }
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.finishedLoading) {
       if (this.description) {
         this.description = GameDescriptionComponent.changeUrlToLink(

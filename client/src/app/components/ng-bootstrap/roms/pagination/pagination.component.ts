@@ -28,7 +28,7 @@ export class PaginationComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.pageWidth = window.innerWidth;
   }
 

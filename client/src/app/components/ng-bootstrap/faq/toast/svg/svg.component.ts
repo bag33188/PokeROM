@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SvgComponent implements OnInit {
   public svgMetadata: { [index: string]: string };
   constructor() {}
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.svgMetadata = {
       author: 'BaptisteBriel',
       website: 'http://svgicons.sparkk.fr/',

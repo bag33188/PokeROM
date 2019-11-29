@@ -34,7 +34,7 @@ export class NaturesComponent implements OnInit, AfterContentInit, OnDestroy {
 
   constructor(private naturesService: NaturesService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.faLeaf = faLeaf;
     this.faArrowDown = faArrowDown;
     this.faArrowUp = faArrowUp;
@@ -44,11 +44,11 @@ export class NaturesComponent implements OnInit, AfterContentInit, OnDestroy {
     this.setHeaders();
   }
 
-  ngAfterContentInit(): void {
+  public ngAfterContentInit(): void {
     window.scrollTo(0, 0);
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.naturesSub.unsubscribe();
   }
 

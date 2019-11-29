@@ -10,7 +10,7 @@ export class JumbotronComponent implements OnInit {
   private key: string;
   constructor() {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.key = 'user';
   }
 

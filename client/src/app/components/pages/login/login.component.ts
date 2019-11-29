@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     String.prototype.removeStringChars = removeStringChars;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.firedOff = false;
     this.loading = false;
     setTimeout(AuthService.logout, 100);

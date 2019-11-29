@@ -39,7 +39,7 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
     String.prototype.removeStringChars = removeStringChars;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.firedOff = false;
     this.isErrorDeleting = false;
     this.faExclamationTriangle = faExclamationTriangle;
@@ -56,11 +56,11 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
     this.noticeClosed = JSON.parse(localStorage.getItem('noticeClosed'));
   }
 
-  ngAfterContentInit(): void {
+  public ngAfterContentInit(): void {
     window.scrollTo(0, 0);
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.userSub.unsubscribe();
   }
 

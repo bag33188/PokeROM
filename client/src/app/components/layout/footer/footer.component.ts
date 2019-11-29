@@ -16,7 +16,7 @@ export class FooterComponent implements OnInit {
     this.environment = environment;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.author = 'Broccolini';
   }
 
