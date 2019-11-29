@@ -15,7 +15,9 @@ function ready(callback) {
     document.addEventListener('DOMContentLoaded', callback);
   } else {
     document.attachEvent('onreadystatechange', function() {
-      if (document.readyState === 'complete') callback();
+      if (document.readyState === 'complete') {
+        callback();
+      }
     });
   }
 }
