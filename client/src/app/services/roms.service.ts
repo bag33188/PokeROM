@@ -198,6 +198,7 @@ export class RomsService {
     const url: string = `${this.romsUrl}/core`;
     return this.http.post<Rom[]>(url, {}, { headers });
   }
+
   public addRomHacks(): Observable<Rom[]> {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'

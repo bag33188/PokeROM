@@ -1,5 +1,5 @@
 const express = require('express');
-const OptionsController = require('../controllers/options-controller');
+const OptionsController = require('../controllers/option-controller');
 
 const router = express.Router();
 
