@@ -1,8 +1,9 @@
 import {
-  HttpRequest,
-  HttpHandler,
   HttpEvent,
+  HttpEventType,
+  HttpHandler,
   HttpInterceptor,
+  HttpRequest,
   HttpResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -30,7 +31,10 @@ export class BleachInterceptor implements HttpInterceptor {
         (
           event: HttpEvent<JSONObject | JSONArray>
         ): HttpEvent<JSONObject | JSONArray> => {
-          if (event instanceof HttpResponse) {
+          if (
+            event instanceof HttpResponse &&
+            event.type === HttpEventType.Response
+          ) {
             const sanitizeBody: () => JSONObject | JSONArray = ():
               | JSONObject
               | JSONArray => {

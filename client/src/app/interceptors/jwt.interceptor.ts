@@ -1,9 +1,10 @@
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
   HttpErrorResponse,
+  HttpEvent,
+  HttpEventType,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
   HttpResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -29,7 +30,10 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap(
         (event: HttpEvent<JSONObject | JSONArray>): void => {
-          if (event instanceof HttpResponse) {
+          if (
+            event instanceof HttpResponse &&
+            event.type === HttpEventType.Response
+          ) {
             const romsApiRouteRegex: RegExp = /(?:(\/api\/roms(\/)?)([\da-fA-F]{24}?))$/;
             if (romsApiRouteRegex.test(event.url)) {
               if (this.authService.loggedOut()) {
