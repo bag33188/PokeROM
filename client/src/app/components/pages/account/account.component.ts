@@ -87,38 +87,13 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
     this.firedOff = true;
     this.ready = false;
     const keys: string[] = ['error', 'user_exists'];
-    const expressions: { [index: string]: Array<string | boolean> } = {
-      usernameAndPassword: [
-        this.user.username && this.user.password,
-        this.user.username.length > 0 && this.user.password.length > 0
-      ],
-      partialUser: [
-        this.user.username || this.user.password || this.user.name,
-        this.user.username.length > 0 ||
-          this.user.password.length > 0 ||
-          this.user.name.length > 0
-      ]
-    };
     if (!this.user.name || this.user.name === '') {
       this.user.name = null;
     }
-    if (
-      expressions.usernameAndPassword[0] &&
-      expressions.usernameAndPassword[1]
-    ) {
-      this.updateUser(this.userId, this.user, keys);
-    } else {
-      if (expressions.partialUser[0] && expressions.partialUser[1]) {
-        if (!this.user.username || this.user.username === '') {
-          delete this.user.username;
-        }
-        if (!this.user.password || this.user.password === '') {
-          delete this.user.password;
-        }
-        // tslint:disable-next-line:whitespace
-        this.patchUser(this.userId, (<unknown>this.user) as JSONObject, keys);
-      }
-    }
+    this.user.name === null
+      ? // tslint:disable-next-line:whitespace
+        this.patchUser(this.userId, (<unknown>this.user) as JSONObject, keys)
+      : this.updateUser(this.userId, this.user, keys);
   }
 
   public sanitizeData(): void {
@@ -152,6 +127,7 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
   }
 
   private updateUser(userId: string, user: User, keys: string[]): void {
+    logger.log('put');
     this.userService.updateUser(userId, user).subscribe(
       (): void => {
         this.ready = true;
@@ -173,6 +149,7 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
   }
 
   private patchUser(userId: string, user: JSONObject, keys: string[]): void {
+    logger.log('patch');
     this.userService.patchUser(userId, user).subscribe(
       (): void => {
         this.ready = true;
