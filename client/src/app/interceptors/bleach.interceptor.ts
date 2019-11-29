@@ -31,10 +31,10 @@ export class BleachInterceptor implements HttpInterceptor {
           event: HttpEvent<JSONObject | JSONArray>
         ): HttpEvent<JSONObject | JSONArray> => {
           if (event instanceof HttpResponse) {
-            const sanitizeBody: () => JSONArray | JSONObject = ():
-              | JSONArray
-              | JSONObject => {
-              let body: JSONArray | JSONObject = event.body;
+            const sanitizeBody: () => JSONObject | JSONArray = ():
+              | JSONObject
+              | JSONArray => {
+              let body: JSONObject | JSONArray = event.body;
               if (Array.isArray(body)) {
                 body = body.map(
                   (obj: JSONObject): JSONObject => {
@@ -50,7 +50,7 @@ export class BleachInterceptor implements HttpInterceptor {
                   }
                 );
               } else {
-                Object.keys(body as object).forEach((key: string): void => {
+                Object.keys(body).forEach((key: string): void => {
                   if (typeof body[key] === 'string') {
                     body[key] = he
                       .decode(body[key])
