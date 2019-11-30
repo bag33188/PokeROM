@@ -24,7 +24,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
   public environment: Environment = environment;
   public favorites: typeof Favorites;
   public isCollapsed: boolean;
-  public showDummy: boolean = false;
+  public showDummy: boolean;
   @HostListener('window:hashchange')
   private onHashChange(): void {
     switch (this.route.snapshot.fragment) {
@@ -43,9 +43,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    if (location.hash) {
-      this.showDummy = true;
-    }
+    this.showDummy = !!location.hash;
     this.isCollapsed = true;
     this.emulatorUrl = 'https://www.retroarch.com';
     this.favorites = Favorites;
