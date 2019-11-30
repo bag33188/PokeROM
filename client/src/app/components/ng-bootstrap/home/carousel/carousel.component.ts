@@ -26,16 +26,16 @@ export class CarouselComponent implements OnInit {
         heading: `Pok${CarouselComponent.eacute}mon Sword and Shield now available!`,
         caption: `The new Pok${CarouselComponent.eacute}mon games are now available on this website.`
       },
-      {
-        image: this.images.C_IMG2,
-        heading: `Includes Pok${CarouselComponent.eacute}mon Let's Go Games`,
-        caption: `This database includes ROMs for Pok${CarouselComponent.eacute}mon Let's Go Pikachu & Eevee`
-      },
-      {
-        image: this.images.C_IMG3,
-        heading: `Now with Pok${CarouselComponent.eacute}mon ROM Hacks`,
-        caption: `You can now play some of the coolest Pok${CarouselComponent.eacute}mon ROM hacks.`
-      },
+      // {
+      //   image: this.images.C_IMG2,
+      //   heading: `Includes Pok${CarouselComponent.eacute}mon Let's Go Games`,
+      //   caption: `This database includes ROMs for Pok${CarouselComponent.eacute}mon Let's Go Pikachu & Eevee`
+      // },
+      // {
+      //   image: this.images.C_IMG3,
+      //   heading: `Now with Pok${CarouselComponent.eacute}mon ROM Hacks`,
+      //   caption: `You can now play some of the coolest Pok${CarouselComponent.eacute}mon ROM hacks.`
+      // },
       {
         image: this.images.C_IMG4,
         heading: `Grab all your core Pok${CarouselComponent.eacute}mon Game ROMs here!`,
