@@ -6,9 +6,10 @@ import { ShowcaseJumbotronComponent } from './showcase-jumbotron/showcase-jumbot
 import { SplashCarouselComponent } from './splash-carousel/splash-carousel.component';
 import { InfoAccordionComponent } from './info-accordion/info-accordion.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
-  imports: [CommonModule, HomeRoutingModule, NgbModule],
+  imports: [CommonModule, HomeRoutingModule, NgbModule, DirectivesModule],
   declarations: [
     HomeComponent,
     ShowcaseJumbotronComponent,
