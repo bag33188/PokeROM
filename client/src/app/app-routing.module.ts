@@ -99,7 +99,7 @@ export const routes: Routes = [
     RouterModule.forRoot(routes, {
       anchorScrolling: 'enabled',
       scrollPositionRestoration: 'enabled',
-      useHash: true
+      useHash: false
       // preloadingStrategy: PreloadAllModules
     })
   ],
