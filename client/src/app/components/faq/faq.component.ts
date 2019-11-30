@@ -1,11 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  HostListener,
-  AfterViewInit
-} from '@angular/core';
+import { Component, OnInit, HostListener, AfterViewInit } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { Environment } from '../../interfaces/Environment';
@@ -18,9 +12,6 @@ import { Favorites } from '../../enums/favorites.enum';
 })
 export class FaqComponent implements OnInit, AfterViewInit {
   public emulatorUrl: string;
-  @ViewChild('cookies', { static: true }) private cookiesElement: ElementRef;
-  @ViewChild('browserCompatibility', { static: true })
-  private browserCompatibilityElement: ElementRef;
   public environment: Environment = environment;
   public favorites: typeof Favorites;
   public isCollapsed: boolean;
@@ -29,10 +20,10 @@ export class FaqComponent implements OnInit, AfterViewInit {
   private onHashChange(): void {
     switch (this.route.snapshot.fragment) {
       case 'browser-compatibility':
-        this.browserCompatibilityElement.nativeElement.scrollIntoView();
+        this.viewportScroller.scrollToAnchor('browser-compatibility');
         break;
       case 'cookies':
-        this.cookiesElement.nativeElement.scrollIntoView();
+        this.viewportScroller.scrollToAnchor('cookies');
         break;
       default:
         window.scrollTo(0, 0);
@@ -40,7 +31,10 @@ export class FaqComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private viewportScroller: ViewportScroller
+  ) {}
 
   public ngOnInit(): void {
     this.showDummy = !!location.hash;
