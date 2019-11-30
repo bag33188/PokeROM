@@ -5,9 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { JSONObject } from '../models/JSONObject';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserService {
   private userUrl: string = `${environment.apiUrl}/users`;
   constructor(private http: HttpClient) {}

@@ -9,9 +9,7 @@ const headers: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json'
 });
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class NaturesService {
   private naturesUrl: string = `${environment.apiUrl}/natures`;
 

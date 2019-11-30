@@ -7,11 +7,8 @@ import { User } from '../models/User';
 import { RegisteredUser } from '../models/RegisteredUser';
 import { CookiesService } from './cookies.service';
 import { environment } from '../../environments/environment';
-import { cookie } from 'express-validator/check';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
   private authUrl: string = `${environment.apiUrl}/users/authenticate`;
 

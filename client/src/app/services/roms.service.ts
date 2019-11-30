@@ -22,9 +22,7 @@ interface DeleteRequestOptions {
   hacks?: boolean;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RomsService {
   private romsUrl: string = `${environment.apiUrl}/roms`;
 

@@ -5,9 +5,7 @@ import { Rating } from '../models/Rating';
 import { environment } from '../../environments/environment';
 import { JSONObject } from '../models/JSONObject';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RatingService {
   private ratingsUrl: string = `${environment.apiUrl}/ratings`;
   constructor(private http: HttpClient) {}

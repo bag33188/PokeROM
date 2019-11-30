@@ -1,0 +1,22 @@
+@import '../../../../../assets/scss/variables';
+
+/* -----
+  SVG Icons - svgicons.sparkk.fr
+  ----- */
+
+.svg-icon {
+  height: 2em;
+  margin-right: 0.5rem;
+  width: 2em;
+
+  path,
+  polygon,
+  rect {
+    fill: $svg-blue;
+  }
+
+  circle {
+    stroke: $svg-blue;
+    stroke-width: 1;
+  }
+}

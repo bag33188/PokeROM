@@ -5,9 +5,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoggerService as logger } from './logger.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ApiService {
   private apiVersionUrl: string = `${environment.apiUrl}/version`;
 
