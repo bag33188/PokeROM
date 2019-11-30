@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   faLeaf,
   faArrowUp,
@@ -18,7 +18,7 @@ import { LoggerService as logger } from '../../services/logger.service';
   templateUrl: './natures.component.html',
   styleUrls: ['./natures.component.scss']
 })
-export class NaturesComponent implements OnInit, AfterContentInit, OnDestroy {
+export class NaturesComponent implements OnInit, OnDestroy {
   public natures: Nature[] = new Array<Nature>();
   public headers: string[];
   public icons: IconDefinition[];
@@ -42,10 +42,6 @@ export class NaturesComponent implements OnInit, AfterContentInit, OnDestroy {
     this.faHeart = faHeart;
     this.getNatures();
     this.setHeaders();
-  }
-
-  public ngAfterContentInit(): void {
-    window.scrollTo(0, 0);
   }
 
   public ngOnDestroy(): void {

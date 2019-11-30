@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, PreloadAllModules } from '@angular/router';
+import { RouterModule, PreloadAllModules, NoPreloading } from '@angular/router';
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { IsSecureGuard } from './guards/is-secure.guard';
@@ -99,8 +99,8 @@ export const routes: Routes = [
     RouterModule.forRoot(routes, {
       anchorScrolling: 'enabled',
       scrollPositionRestoration: 'enabled',
-      useHash: false
-      // preloadingStrategy: PreloadAllModules
+      useHash: false,
+      preloadingStrategy: NoPreloading
     })
   ],
   exports: [RouterModule]

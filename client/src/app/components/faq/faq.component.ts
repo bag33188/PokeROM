@@ -26,7 +26,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
         this.viewportScroller.scrollToAnchor('cookies');
         break;
       default:
-        window.scrollTo(0, 0);
+        this.viewportScroller.scrollToPosition([0, 0]);
         break;
     }
   }

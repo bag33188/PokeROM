@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   FormGroup,
@@ -19,7 +19,7 @@ import { LoggerService as logger } from '../../services/logger.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit, AfterContentInit {
+export class RegisterComponent implements OnInit  {
   public loading: boolean;
   public registerFail: string;
   public registerForm: FormGroup = this.fb.group({
@@ -60,10 +60,6 @@ export class RegisterComponent implements OnInit, AfterContentInit {
     this.loading = false;
     this.firedOff = false;
     setTimeout(AuthService.logout, 100);
-  }
-
-  public ngAfterContentInit(): void {
-    window.scrollTo(0, 0);
   }
 
   public register(): void {

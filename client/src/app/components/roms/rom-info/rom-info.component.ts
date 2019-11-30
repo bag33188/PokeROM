@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   faLongArrowAltLeft,
@@ -18,7 +18,7 @@ import { LoggerService as logger } from '../../../services/logger.service';
   templateUrl: './rom-info.component.html',
   styleUrls: ['./rom-info.component.scss']
 })
-export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
+export class RomInfoComponent implements OnInit, OnDestroy {
   public rom: Rom;
   private id: string;
   public loading: boolean;
@@ -46,10 +46,6 @@ export class RomInfoComponent implements OnInit, AfterContentInit, OnDestroy {
     this.isError = false;
     this.rom = new Rom();
     this.getRom(this.id);
-  }
-
-  public ngAfterContentInit(): void {
-    window.scrollTo(0, 0);
   }
 
   public ngOnDestroy(): void {

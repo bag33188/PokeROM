@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
@@ -19,7 +19,7 @@ import { LoggerService as logger } from '../../services/logger.service';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
+export class AccountComponent implements OnInit, OnDestroy {
   public user: User;
   private userId: string;
   public updateFail: boolean = false;
@@ -54,10 +54,6 @@ export class AccountComponent implements OnInit, AfterContentInit, OnDestroy {
       localStorage.setItem('noticeClosed', 'false');
     }
     this.noticeClosed = JSON.parse(localStorage.getItem('noticeClosed'));
-  }
-
-  public ngAfterContentInit(): void {
-    window.scrollTo(0, 0);
   }
 
   public ngOnDestroy(): void {

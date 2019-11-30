@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { Images } from '../../../enums/images.enum';
 import { LoggerService as logger } from '../../../services/logger.service';
 
@@ -7,7 +7,7 @@ import { LoggerService as logger } from '../../../services/logger.service';
   templateUrl: './gif-spinner.component.html',
   styleUrls: ['./gif-spinner.component.scss']
 })
-export class GifSpinnerComponent implements OnInit, AfterViewInit {
+export class GifSpinnerComponent implements OnInit, AfterContentInit {
   public images: typeof Images;
   @Input() public loading: boolean;
 
@@ -17,7 +17,7 @@ export class GifSpinnerComponent implements OnInit, AfterViewInit {
     this.images = Images;
   }
 
-  public ngAfterViewInit(): void | never {
+  public ngAfterContentInit(): void | never {
     this.checkInput();
   }
 

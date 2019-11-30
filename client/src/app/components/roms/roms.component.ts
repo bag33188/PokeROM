@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterContentInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { RomsService } from '../../services/roms.service';
 import { Rom } from '../../models/Rom';
 import he from 'he';
@@ -11,7 +12,7 @@ import { LoggerService as logger } from '../../services/logger.service';
   templateUrl: './roms.component.html',
   styleUrls: ['./roms.component.scss']
 })
-export class RomsComponent implements OnInit, AfterContentInit, OnDestroy {
+export class RomsComponent implements OnInit, OnDestroy {
   public romsData: Rom[] = new Array<Rom>();
   public currentPage: number = 1;
   public itemsPerPage: number = 4;
@@ -23,18 +24,13 @@ export class RomsComponent implements OnInit, AfterContentInit, OnDestroy {
   private romsObs$: Observable<Rom[]>;
   private romsSub: Subscription;
 
-  private static jumpToTop(): void {
-    window.scrollTo(0, 0);
-  }
-
-  constructor(private romsService: RomsService) {}
+  constructor(
+    private romsService: RomsService,
+    private viewportScroller: ViewportScroller
+  ) {}
 
   public ngOnInit(): void {
     this.getRoms();
-  }
-
-  public ngAfterContentInit(): void {
-    RomsComponent.jumpToTop();
   }
 
   public ngOnDestroy(): void {
@@ -68,6 +64,6 @@ export class RomsComponent implements OnInit, AfterContentInit, OnDestroy {
 
   public onPageChange(paginateNum: number): void {
     this.pageSize = paginateNum;
-    RomsComponent.jumpToTop();
+    this.viewportScroller.scrollToPosition([0, 0]);
   }
 }
