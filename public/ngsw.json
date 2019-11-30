@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1575143700430,
+  "timestamp": 1575144356201,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -35,7 +35,7 @@
         "/runtime-es2017.0d212936cfacb9fcd9f7.js",
         "/runtime-es5.0d212936cfacb9fcd9f7.js",
         "/scripts.ccb1b8327b72db7af87a.js",
-        "/styles.ea30170015d52caa10b5.css",
+        "/styles.db70f924102b451dcc7f.css",
         "/vendor-es2017.dd865d1f048dc92a876b.js",
         "/vendor-es5.dd865d1f048dc92a876b.js"
       ],
@@ -123,12 +123,7 @@
         "/assets/images/carousel_img_03.jpg",
         "/assets/images/carousel_img_04.jpg",
         "/assets/images/logo.png",
-        "/assets/images/spinner.gif",
-        "/fontawesome-webfont.674f50d287a8c48dc19b.eot",
-        "/fontawesome-webfont.912ec66d7572ff821749.svg",
-        "/fontawesome-webfont.af7ae505a9eed503f8b8.woff2",
-        "/fontawesome-webfont.b06871f281fee6b241d6.ttf",
-        "/fontawesome-webfont.fee66e712a8a08eef580.woff"
+        "/assets/images/spinner.gif"
       ],
       "patterns": []
     }
@@ -232,12 +227,7 @@
     "/common-es2017.614a8fbb47a449cb1444.js": "a400790fc2abfdcf60f3582af465f7bf0098afa8",
     "/common-es5.614a8fbb47a449cb1444.js": "fb01ab7e8be8da1736575bab9c2c54cd46311e8d",
     "/favicon.ico": "10e207f0a756d5c44c80bdc9de1e6bc9f16860f6",
-    "/fontawesome-webfont.674f50d287a8c48dc19b.eot": "d980c2ce873dc43af460d4d572d441304499f400",
-    "/fontawesome-webfont.912ec66d7572ff821749.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
-    "/fontawesome-webfont.af7ae505a9eed503f8b8.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
-    "/fontawesome-webfont.b06871f281fee6b241d6.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
-    "/fontawesome-webfont.fee66e712a8a08eef580.woff": "28b782240b3e76db824e12c02754a9731a167527",
-    "/index.html": "9dd1ba358217cab0581550b1560967828a55857f",
+    "/index.html": "f64b005a18709566c25605fadfd042cf68446c53",
     "/main-es2017.9e2588f4622d9c4a4bd5.js": "41412f702a1866428c5f37fcd5f5000d12fd682f",
     "/main-es5.9e2588f4622d9c4a4bd5.js": "1b51a847762599bb6e2f983926f5fd3f1dba2c04",
     "/polyfills-es2017.89f37daca0a150d7b30b.js": "4613bbe0969ec2de428e313e915d091b8be0d6d8",
@@ -245,7 +235,7 @@
     "/runtime-es2017.0d212936cfacb9fcd9f7.js": "105815c597f5979cc8f386ddade546651d1accd3",
     "/runtime-es5.0d212936cfacb9fcd9f7.js": "36ed3fb1350ec02d2aed039270649a456fbc3b09",
     "/scripts.ccb1b8327b72db7af87a.js": "3f62564206bd95766cb824e1ad1f816b79581e07",
-    "/styles.ea30170015d52caa10b5.css": "b437cc2586c0664c0dfd23014e1a452c8f46010d",
+    "/styles.db70f924102b451dcc7f.css": "ac4f6a890044af426af06ea9886858f87faed87d",
     "/vendor-es2017.dd865d1f048dc92a876b.js": "0145548517d5334aa37c6d86ebc6ff28016072d8",
     "/vendor-es5.dd865d1f048dc92a876b.js": "e91a144f92be2303d8ab64f2812613d1801ab17a"
   },

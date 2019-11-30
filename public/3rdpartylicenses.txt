@@ -327,9 +327,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-font-awesome
-(OFL-1.1 AND MIT)
-
 he
 MIT
 Copyright Mathias Bynens <https://mathiasbynens.be/>
