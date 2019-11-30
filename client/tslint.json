@@ -12,7 +12,7 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      ["app", "account", "faq", "home", "layout", "login", "natures", "ratings", "register", "roms", "spinners"],
       ["camelCase", "flatcase"]
     ],
     "component-selector": [
