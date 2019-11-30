@@ -2,6 +2,7 @@ const convert = require('xml-js');
 const swaggerDoc = require('../docs/swagger-doc');
 const Version = require('../models/Version');
 const universal = require('../routes/universal');
+const safeStringify = require('fast-safe-stringify');
 
 module.exports.getVersion = (req, res) => {
   const [, version] = swaggerDoc;
@@ -11,7 +12,7 @@ module.exports.getVersion = (req, res) => {
       res.set('Content-Type', req.headers['accept']);
       return res.status(200).send(
         convert.json2xml(
-          JSON.stringify({
+          safeStringify({
             _declaration: {
               _attributes: { version: '1.0', encoding: 'UTF-8' }
             },
