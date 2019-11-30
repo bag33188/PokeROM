@@ -6,13 +6,26 @@ import { DisclaimerToastComponent } from './disclaimer-toast/disclaimer-toast.co
 import { IeModalContentComponent } from './ie-modal-content/ie-modal-content.component';
 import { FaqComponent } from './faq.component';
 import { ApiService } from '../../services/api.service';
+import { FaqRoutingModule } from './faq-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DirectivesModule } from '../../directives/directives.module';
+import { PipesModule } from '../../pipes/pipes.module';
+import { MsgIconSvgComponent } from './disclaimer-toast/msg-icon-svg/msg-icon-svg.component';
 
 @NgModule({
-  imports: [CommonModule, NgbModule],
+  imports: [
+    CommonModule,
+    NgbModule,
+    FaqRoutingModule,
+    FontAwesomeModule,
+    DirectivesModule,
+    PipesModule
+  ],
   declarations: [
     BrowserTabsetComponent,
     DisclaimerToastComponent,
     IeModalContentComponent,
+    MsgIconSvgComponent,
     FaqComponent
   ],
   providers: [ApiService]

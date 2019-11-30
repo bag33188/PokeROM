@@ -1,10 +1,10 @@
 import { Component, OnInit, AfterContentInit, OnDestroy } from '@angular/core';
-import { RomsService } from '../../../services/roms.service';
-import { Rom } from '../../../models/Rom';
+import { RomsService } from '../../services/roms.service';
+import { Rom } from '../../models/Rom';
 import he from 'he';
-import { JSONObject } from '../../../models/JSONObject';
+import { JSONObject } from '../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
-import { LoggerService as logger } from '../../../services/logger.service';
+import { LoggerService as logger } from '../../services/logger.service';
 
 @Component({
   selector: 'app-roms',

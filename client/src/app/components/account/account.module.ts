@@ -8,9 +8,21 @@ import { UpdateRomsComponent } from './update-roms/update-roms.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { UserService } from '../../services/user.service';
 import { RomsService } from '../../services/roms.service';
+import { SpinnerModule } from '../spinners/spinner.module';
+import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
-  imports: [CommonModule, NgbModule, AccountRoutingModule],
+  imports: [
+    CommonModule,
+    NgbModule,
+    AccountRoutingModule,
+    SpinnerModule,
+    FormsModule,
+    FontAwesomeModule,
+    DirectivesModule
+  ],
   declarations: [
     DeleteUserBtnComponent,
     DeleteUserModalComponent,

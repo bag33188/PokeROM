@@ -1,10 +1,10 @@
-import { Route, Router, RouterModule } from '@angular/router';
+import { Route, Router, RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from './account.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { IsSecureGuard } from '../../guards/is-secure.guard';
 import { NgModule } from '@angular/core';
 
-const routes: Route[] = [
+const routes: Routes = [
   {
     path: '',
     component: AccountComponent,

@@ -23,8 +23,41 @@ export const routes: Routes = [
       )
   },
   {
-    path: ''
-  }
+    path: 'login',
+    loadChildren: () =>
+      import('./components/login/login.module').then(mod => mod.LoginModule)
+  },
+  {
+    path: 'roms',
+    loadChildren: () =>
+      import('./components/roms/roms.module').then(mod => mod.RomsModule)
+  },
+  {
+    path: 'natures',
+    loadChildren: () =>
+      import('./components/natures/natures.module').then(
+        mod => mod.NaturesModule
+      )
+  },
+  {
+    path: 'faq',
+    loadChildren: () =>
+      import('./components/faq/faq.module').then(mod => mod.FaqModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () =>
+      import('./components/account/account.module').then(
+        mod => mod.AccountModule
+      )
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./components/register/register.module').then(
+        mod => mod.RegisterModule
+      )
+  },
   { path: '**', redirectTo: '/not_found', canActivate: [IsSecureGuard] },
   {
     path: 'not_found',
@@ -36,7 +69,7 @@ export const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      anchorScrolling: 'enabled'
+      anchorScrolling: 'enabled',
       // preloadingStrategy: PreloadAllModules
     })
   ],

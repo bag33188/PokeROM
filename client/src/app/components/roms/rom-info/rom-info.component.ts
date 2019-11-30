@@ -6,12 +6,12 @@ import {
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import he from 'he';
-import { RomsService } from '../../../../services/roms.service';
-import { AuthService } from '../../../../services/auth.service';
-import { Rom } from '../../../../models/Rom';
-import { JSONObject } from '../../../../models/JSONObject';
+import { RomsService } from '../../../services/roms.service';
+import { AuthService } from '../../../services/auth.service';
+import { Rom } from '../../../models/Rom';
+import { JSONObject } from '../../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
-import { LoggerService as logger } from '../../../../services/logger.service';
+import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
   selector: 'app-rom-info',

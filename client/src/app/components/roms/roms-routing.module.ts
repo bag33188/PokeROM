@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
-import { RomsComponent } from './roms/roms.component';
+import { RomsComponent } from './roms.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { IsSecureGuard } from '../../guards/is-secure.guard';
-import { RomInfoComponent } from './rom-info/rom-info/rom-info.component';
+import { RomInfoComponent } from './rom-info/rom-info.component';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [

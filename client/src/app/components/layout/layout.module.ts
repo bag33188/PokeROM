@@ -15,7 +15,6 @@ import { UnitConversionService } from '../../services/unit-conversion.service';
 import { DirectivesModule } from '../../directives/directives.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { AppRoutingModule } from '../../app-routing.module';
-import { routes } from '../../routes/routes';
 
 @NgModule({
   declarations: [
@@ -31,8 +30,7 @@ import { routes } from '../../routes/routes';
     BrowserAnimationsModule,
     FontAwesomeModule,
     DirectivesModule,
-    PipesModule,
-    AppRoutingModule
+    PipesModule
   ],
   providers: [AuthService, UserService, LoggerService, UnitConversionService],
   exports: [BodyComponent, FooterComponent, HeaderComponent]

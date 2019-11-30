@@ -16,6 +16,10 @@ import { UpdateRomsComponent } from '../account/update-roms/update-roms.componen
 import { RomsService } from '../../services/roms.service';
 import { SpinnerModule } from '../spinners/spinner.module';
 import { RomsRoutingModule } from './roms-routing.module';
+import { RomInfoComponent } from './rom-info/rom-info.component';
+import { RomsPaginationComponent } from './roms-pagination/roms-pagination.component';
+import { RomsComponent } from './roms.component';
+import { RomHackPopupComponent } from './rom-info/rom-hack-popup/rom-hack-popup.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { RomsRoutingModule } from './roms-routing.module';
     GameNameComponent,
     RomSpecsComponent,
     RomDownloadComponent,
-    UpdateRomsComponent
+    UpdateRomsComponent,
+    RomInfoComponent,
+    RomsPaginationComponent,
+    RomsComponent,
+    RomHackPopupComponent
   ],
   imports: [
     CommonModule,
