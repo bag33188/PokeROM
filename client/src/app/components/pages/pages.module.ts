@@ -32,6 +32,7 @@ import { AccountComponent } from './account/account.component';
 import { SpinnerModule } from '../spinners/spinner.module';
 import { DirectivesModule } from '../../directives/directives.module';
 import { PipesModule } from '../../pipes/pipes.module';
+import { PagesRoutingModule } from './pages-routing.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { PipesModule } from '../../pipes/pipes.module';
     AccountComponent
   ],
   imports: [
+    PagesRoutingModule,
     CommonModule,
     BrowserModule,
     HttpClientModule,
