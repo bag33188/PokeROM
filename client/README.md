@@ -45,3 +45,10 @@ $('#your_element_id_here').css('font-size');
 # Best Regular Expression Website
 
 [regexr.com](https://regexr.com)
+
+<!--
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/bootstrap/scss"
+              ]
+            },-->
