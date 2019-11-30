@@ -25,6 +25,5 @@ export class ToastComponent implements OnInit {
   public closeModal(): void {
     localStorage.setItem('show-toast', 'false');
     this.show = JSON.parse(localStorage.getItem('show-toast'));
-    // setTimeout((): boolean => (this.show = true), 5000);
   }
 }

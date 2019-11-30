@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { routes } from './routes';
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      anchorScrolling: 'enabled'
+      anchorScrolling: 'enabled',
+      preloadingStrategy: PreloadAllModules
     })
   ],
   exports: [RouterModule]
