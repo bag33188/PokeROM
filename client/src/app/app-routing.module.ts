@@ -70,7 +70,7 @@ export const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       anchorScrolling: 'enabled',
-      // preloadingStrategy: PreloadAllModules
+      preloadingStrategy: PreloadAllModules
     })
   ],
   exports: [RouterModule]
