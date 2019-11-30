@@ -10,11 +10,9 @@ import { HeaderComponent } from './header/header.component';
 import { CookiesAlertComponent } from './cookies-alert/cookies-alert.component';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { LoggerService } from '../../services/logger.service';
 import { UnitConversionService } from '../../services/unit-conversion.service';
 import { DirectivesModule } from '../../directives/directives.module';
 import { PipesModule } from '../../pipes/pipes.module';
-import { AppRoutingModule } from '../../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +30,7 @@ import { AppRoutingModule } from '../../app-routing.module';
     DirectivesModule,
     PipesModule
   ],
-  providers: [AuthService, UserService, LoggerService, UnitConversionService],
+  providers: [AuthService, UserService, UnitConversionService],
   exports: [BodyComponent, FooterComponent, HeaderComponent]
 })
 export class LayoutModule {}

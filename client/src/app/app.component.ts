@@ -85,9 +85,9 @@ export class AppComponent {
           success = true;
           logger.log(`API Version: ${res.api_version}`);
         },
-        (err: JSONObject): void => {
+        (err: JSONObject): never => {
           success = false;
-          // throw err;
+          throw err;
         },
         (): void => {
           if (success !== undefined && success !== null) {
