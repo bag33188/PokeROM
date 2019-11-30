@@ -17,11 +17,11 @@ export class GifSpinnerComponent implements OnInit, AfterContentInit {
     this.images = Images;
   }
 
-  public ngAfterContentInit(): void | never {
+  public ngAfterContentInit(): void {
     this.checkInput();
   }
 
-  private checkInput(): void | never {
+  private checkInput(): void {
     if (this.loading === undefined || this.loading === null) {
       logger.error('Loading property is required.');
     }

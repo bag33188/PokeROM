@@ -19,7 +19,7 @@ export class BootstrapSpinnerComponent implements OnInit {
 
   constructor() {}
 
-  public ngOnInit(): void | never {
+  public ngOnInit(): void {
     if (this.checkForErrors() === false) {
       this.setType();
       this.setColor();
@@ -42,7 +42,7 @@ export class BootstrapSpinnerComponent implements OnInit {
     this.color = this.getColor();
   }
 
-  private getType(): string | never {
+  private getType(): string {
     if (typeof this.spinnerType === 'string') {
       switch (this.spinnerType) {
         case 'border':
@@ -57,7 +57,7 @@ export class BootstrapSpinnerComponent implements OnInit {
     }
   }
 
-  private getColor(): string | never {
+  private getColor(): string {
     if (typeof this.spinnerColor === 'string') {
       switch (this.spinnerColor) {
         case 'primary':
@@ -84,15 +84,18 @@ export class BootstrapSpinnerComponent implements OnInit {
     }
   }
 
-  private checkForErrors(): never | boolean {
+  private checkForErrors(): boolean {
     if (!this.spinnerType) {
       logger.error('Type is required.');
+      return true;
     }
     if (!this.spinnerColor) {
       logger.error('Color is required.');
+      return true;
     }
     if (this.loading === undefined || this.loading === null) {
       logger.error('Loading property is required.');
+      return true;
     }
     if (
       this.spaced !== undefined &&
@@ -100,9 +103,11 @@ export class BootstrapSpinnerComponent implements OnInit {
       typeof this.spaced !== 'boolean'
     ) {
       logger.error('Spaced property must be a boolean.');
+      return true;
     }
     if (this.customSize && typeof this.customSize !== 'number') {
       logger.error('Custom size property must be a number data-type.');
+      return true;
     }
     return false;
   }

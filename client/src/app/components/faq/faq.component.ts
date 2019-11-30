@@ -18,6 +18,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
   public showDummy: boolean;
   @HostListener('window:hashchange')
   private onHashChange(): void {
+    this.showDummy = !!location.hash;
     switch (this.route.snapshot.fragment) {
       case 'browser-compatibility':
         this.viewportScroller.scrollToAnchor('browser-compatibility');
