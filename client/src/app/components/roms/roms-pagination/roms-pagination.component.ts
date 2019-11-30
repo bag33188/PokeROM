@@ -9,7 +9,7 @@ import {
 import { Rom } from '../../../models/Rom';
 
 @Component({
-  selector: 'app-roms-pagination',
+  selector: 'roms-pagination',
   templateUrl: './roms-pagination.component.html',
   styleUrls: ['./roms-pagination.component.scss']
 })

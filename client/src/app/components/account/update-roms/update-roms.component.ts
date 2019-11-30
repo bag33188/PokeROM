@@ -13,7 +13,7 @@ import {
 import { fadeInAnimation } from '../../../animations';
 
 @Component({
-  selector: 'app-update-roms',
+  selector: 'account-update-roms',
   templateUrl: './update-roms.component.html',
   styleUrls: ['./update-roms.component.scss'],
   animations: [fadeInAnimation]

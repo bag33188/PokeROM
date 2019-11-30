@@ -15,7 +15,7 @@ import { JSONObject } from '../../models/JSONObject';
 import { LoggerService as logger } from '../../services/logger.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

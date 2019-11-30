@@ -3,7 +3,7 @@ import { NgClasses } from '../../../interfaces/NgClasses';
 import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
-  selector: 'app-bootstrap-spinner',
+  selector: 'spinners-bootstrap-spinner',
   templateUrl: './bootstrap-spinner.component.html',
   styleUrls: ['./bootstrap-spinner.component.scss']
 })

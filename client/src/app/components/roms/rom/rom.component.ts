@@ -5,7 +5,7 @@ import { NgClasses } from '../../../interfaces/NgClasses';
 import { UnitConversionService } from '../../../services/unit-conversion.service';
 
 @Component({
-  selector: 'app-rom',
+  selector: 'roms-rom',
   templateUrl: './rom.component.html',
   styleUrls: ['./rom.component.scss']
 })

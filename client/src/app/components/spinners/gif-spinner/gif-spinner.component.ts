@@ -3,7 +3,7 @@ import { Images } from '../../../enums/images.enum';
 import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
-  selector: 'app-gif-spinner',
+  selector: 'spinners-gif-spinner',
   templateUrl: './gif-spinner.component.html',
   styleUrls: ['./gif-spinner.component.scss']
 })

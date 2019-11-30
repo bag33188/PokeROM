@@ -1,5 +1,5 @@
 <div class="p-2">
-  <app-gif-spinner [loading]="loading"></app-gif-spinner>
+  <spinners-gif-spinner [loading]="loading"></spinners-gif-spinner>
   <div
     class="ml-4 mr-4 text-center rom-info-err-wrapper"
     appAlert
@@ -46,17 +46,17 @@
         <div class="dummy-container"></div>
       </div>
       <ng-container>
-        <app-game-name
+        <roms-info-game-name
           class="game-title"
           [finishedLoading]="finishedLoading"
           [gameName]="rom.game_name"
           [romType]="rom.rom_type"
-        ></app-game-name>
-        <app-game-logo
+        ></roms-info-game-name>
+        <roms-info-game-logo
           class="game-logo"
           [logoUrl]="rom.logo_url"
           [gameName]="rom.game_name"
-        ></app-game-logo>
+        ></roms-info-game-logo>
         <div class="game-description-title">
           <h4>
             <fa-icon
@@ -67,29 +67,29 @@
             }}<span class="mr-1">Description</span>
           </h4>
         </div>
-        <app-game-description
+        <roms-info-game-description
           class="game-description"
           [description]="rom.description"
           [finishedLoading]="finishedLoading"
-        ></app-game-description>
-        <app-rom-download
+        ></roms-info-game-description>
+        <roms-info-rom-download
           class="rom-download"
           [downloadLink]="rom.download_link"
-        ></app-rom-download>
-        <app-game-specs
+        ></roms-info-rom-download>
+        <roms-info-game-specs
           class="game-specs"
           [region]="rom.region"
           [dateReleased]="rom.date_released"
           [genre]="rom.genre"
           [generation]="rom.generation"
-        ></app-game-specs>
-        <app-rom-specs
+        ></roms-info-game-specs>
+        <roms-info-rom-specs
           class="rom-specs"
           [platform]="rom.platform"
           [fileName]="rom.file_name"
           [fileSize]="rom.file_size"
           [fileType]="rom.file_type"
-        ></app-rom-specs>
+        ></roms-info-rom-specs>
       </ng-container>
     </div>
   </ng-container>

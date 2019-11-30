@@ -8,7 +8,7 @@ import { JSONObject } from '../../../models/JSONObject';
 import { CookiesService } from '../../../services/cookies.service';
 
 @Component({
-  selector: 'app-account-modal',
+  selector: 'account-delete-user-modal',
   templateUrl: './delete-user-modal.component.html',
   styleUrls: ['./delete-user-modal.component.scss']
 })

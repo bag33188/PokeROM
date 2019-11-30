@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Router, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { IsSecureGuard } from '../../guards/is-secure.guard';
 import { HomeComponent } from './home.component';
 
-let routes: Routes;
-routes = [
+const routes: Routes = [
   {
     path: '',
     component: HomeComponent,

@@ -4,7 +4,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CookiesService } from '../../../services/cookies.service';
 
 @Component({
-  selector: 'app-account-delete-user-btn',
+  selector: 'account-delete-user-btn',
   templateUrl: './delete-user-btn.component.html',
   styleUrls: ['./delete-user-btn.component.scss']
 })

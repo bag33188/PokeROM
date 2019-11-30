@@ -11,7 +11,7 @@ import { Environment } from '../../interfaces/Environment';
 import { Favorites } from '../../enums/favorites.enum';
 
 @Component({
-  selector: 'app-faq',
+  selector: 'faq',
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss']
 })

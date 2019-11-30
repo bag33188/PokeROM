@@ -3,7 +3,7 @@ import { Alert } from '../../../interfaces/Alert';
 import { fadeOutAnimation } from '../../../animations';
 
 @Component({
-  selector: 'app-ratings-alert',
+  selector: 'ratings-privacy-alert',
   templateUrl: './privacy-alert.component.html',
   styleUrls: ['./privacy-alert.component.scss'],
   animations: [fadeOutAnimation]

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-faq-toast-svg',
+  selector: 'faq-msg-icon-svg',
   templateUrl: './msg-icon-svg.component.html',
   styleUrls: ['./msg-icon-svg.component.scss']
 })

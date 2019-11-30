@@ -3,7 +3,7 @@ import { LoggerService as logger } from '../../../services/logger.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-body',
+  selector: 'layout-body',
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.scss']
 })

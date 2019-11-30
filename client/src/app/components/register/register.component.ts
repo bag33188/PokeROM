@@ -15,7 +15,7 @@ import { JSONObject } from '../../models/JSONObject';
 import { LoggerService as logger } from '../../services/logger.service';
 
 @Component({
-  selector: 'app-register',
+  selector: 'register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit, AfterContentInit {
   }
 
   constructor(
-    private authService: AuthService,
     private router: Router,
     private userService: UserService,
     private fb: FormBuilder

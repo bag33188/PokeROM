@@ -2,7 +2,7 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-rom-download',
+  selector: 'roms-info-rom-download',
   templateUrl: './rom-download.component.html',
   styleUrls: ['./rom-download.component.scss']
 })

@@ -13,7 +13,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
-  selector: 'app-faq-tabset',
+  selector: 'faq-browser-tabset',
   templateUrl: './browser-tabset.component.html',
   styleUrls: ['./browser-tabset.component.scss']
 })

@@ -13,13 +13,13 @@ import { Observable, Subscription } from 'rxjs';
       <!-- begin page container/wrapper -->
       <div attr.data-name="{{ title }}" id="container-wrapper">
         <section class="header">
-          <app-header></app-header>
+          <layout-header></layout-header>
         </section>
         <section class="body">
-          <app-body></app-body>
+          <layout-body></layout-body>
         </section>
         <section class="footer">
-          <app-footer [appName]="title"></app-footer>
+          <layout-footer [appName]="title"></layout-footer>
         </section>
       </div>
       <!-- end page container/wrapper -->
@@ -43,9 +43,9 @@ import { Observable, Subscription } from 'rxjs';
       .footer {
         display: var(--comp-display);
       }
-      app-body,
-      app-header,
-      app-footer {
+      layout-body,
+      layout-header,
+      layout-footer {
         display: var(--part-display);
       }
     `

@@ -1,5 +1,5 @@
-import { AccountComponent } from './account.component';
 import { NgModule } from '@angular/core';
+import { AccountComponent } from './account.component';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteUserBtnComponent } from './delete-user-btn/delete-user-btn.component';

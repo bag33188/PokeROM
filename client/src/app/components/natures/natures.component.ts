@@ -14,7 +14,7 @@ import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
 
 @Component({
-  selector: 'app-natures',
+  selector: 'natures',
   templateUrl: './natures.component.html',
   styleUrls: ['./natures.component.scss']
 })

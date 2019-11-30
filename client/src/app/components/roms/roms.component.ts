@@ -7,7 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
 
 @Component({
-  selector: 'app-roms',
+  selector: 'roms',
   templateUrl: './roms.component.html',
   styleUrls: ['./roms.component.scss']
 })

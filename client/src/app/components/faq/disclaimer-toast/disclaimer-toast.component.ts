@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { fadeOutAnimation } from '../../../animations';
 
 @Component({
-  selector: 'app-faq-toast',
+  selector: 'faq-disclaimer-toast',
   templateUrl: './disclaimer-toast.component.html',
   styleUrls: ['./disclaimer-toast.component.scss'],
   animations: [fadeOutAnimation]

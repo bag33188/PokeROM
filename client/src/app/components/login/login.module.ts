@@ -4,8 +4,9 @@ import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { DirectivesModule } from '../../directives/directives.module';
 import { SpinnerModule } from '../spinners/spinner.module';
-import {  ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { UserService } from '../../services/user.service';
     ReactiveFormsModule
   ],
   declarations: [LoginComponent],
-  providers: [UserService]
+  providers: [UserService, AuthService]
 })
 export class LoginModule {}

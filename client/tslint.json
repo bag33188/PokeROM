@@ -13,13 +13,13 @@
       true,
       "attribute",
       "app",
-      "camelCase"
+      ["camelCase", "flatcase"]
     ],
     "component-selector": [
       true,
       "element",
-      "app",
-      "kebab-case"
+      ["app", "account", "faq", "home", "layout", "login", "natures", "ratings", "register", "roms", "spinners"],
+      ["kebab-case", "flatcase"]
     ],
     "import-blacklist": [
       true,

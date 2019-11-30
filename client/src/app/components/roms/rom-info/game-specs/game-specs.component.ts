@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { faGamepad, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-game-specs',
+  selector: 'roms-info-game-specs',
   templateUrl: './game-specs.component.html',
   styleUrls: ['./game-specs.component.scss']
 })

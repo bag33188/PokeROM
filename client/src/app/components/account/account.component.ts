@@ -15,7 +15,7 @@ import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
 
 @Component({
-  selector: 'app-account',
+  selector: 'account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })

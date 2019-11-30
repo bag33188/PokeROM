@@ -7,7 +7,7 @@ import { Alert } from '../../../interfaces/Alert';
 import { fadeOutAnimation } from '../../../animations';
 
 @Component({
-  selector: 'app-cookies-alert',
+  selector: 'layout-cookies-alert',
   templateUrl: './cookies-alert.component.html',
   styleUrls: ['./cookies-alert.component.scss'],
   animations: [fadeOutAnimation]

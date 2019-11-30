@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { NaturesComponent } from './natures.component';
 import { NaturesRoutingModule } from './natures-routing.module';
 import { NaturesService } from '../../services/natures.service';

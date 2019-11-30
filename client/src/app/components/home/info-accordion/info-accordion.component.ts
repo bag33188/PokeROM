@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-home-accordion',
+  selector: 'home-info-accordion',
   templateUrl: './info-accordion.component.html',
   styleUrls: ['./info-accordion.component.scss']
 })

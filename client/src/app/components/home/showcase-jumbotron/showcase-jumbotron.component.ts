@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookiesService } from '../../../services/cookies.service';
 
 @Component({
-  selector: 'app-home-jumbotron',
+  selector: 'home-showcase-jumbotron',
   templateUrl: './showcase-jumbotron.component.html',
   styleUrls: ['./showcase-jumbotron.component.scss']
 })

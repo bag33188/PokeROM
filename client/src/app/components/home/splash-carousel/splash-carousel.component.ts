@@ -4,7 +4,7 @@ import { Images } from '../../../enums/images.enum';
 import { UnitConversionService } from '../../../services/unit-conversion.service';
 
 @Component({
-  selector: 'app-home-carousel',
+  selector: 'home-splash-carousel',
   templateUrl: './splash-carousel.component.html',
   styleUrls: ['./splash-carousel.component.scss']
 })
@@ -30,12 +30,12 @@ export class SplashCarouselComponent implements OnInit {
         image: this.images.C_IMG2,
         heading: `Includes Pok${SplashCarouselComponent.eacute}mon Let's Go Games`,
         caption: `This database includes ROMs for Pok${SplashCarouselComponent.eacute}mon Let's Go Pikachu & Eevee`
+      },
+      {
+        image: this.images.C_IMG3,
+        heading: `Now with Pok${SplashCarouselComponent.eacute}mon ROM Hacks`,
+        caption: `You can now play some of the coolest Pok${SplashCarouselComponent.eacute}mon ROM hacks.`
       }
-      // {
-      //   image: this.images.C_IMG3,
-      //   heading: `Now with Pok${SplashCarouselComponent.eacute}mon ROM Hacks`,
-      //   caption: `You can now play some of the coolest Pok${SplashCarouselComponent.eacute}mon ROM hacks.`
-      // },
       // {
       //   image: this.images.C_IMG4,
       //   heading: `Grab all your core Pok${SplashCarouselComponent.eacute}mon Game ROMs here!`,

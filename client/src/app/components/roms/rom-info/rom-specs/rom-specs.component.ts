@@ -6,7 +6,7 @@ import {
 import { UnitConversionService } from '../../../../services/unit-conversion.service';
 
 @Component({
-  selector: 'app-rom-specs',
+  selector: 'roms-info-rom-specs',
   templateUrl: './rom-specs.component.html',
   styleUrls: ['./rom-specs.component.scss']
 })

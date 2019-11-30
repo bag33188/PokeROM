@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { Environment } from '../../../interfaces/Environment';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'layout-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-game-logo',
+  selector: 'roms-info-game-logo',
   templateUrl: './game-logo.component.html',
   styleUrls: ['./game-logo.component.scss']
 })

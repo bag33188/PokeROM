@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-game-description',
+  selector: 'roms-info-game-description',
   templateUrl: './game-description.component.html',
   styleUrls: ['./game-description.component.scss']
 })

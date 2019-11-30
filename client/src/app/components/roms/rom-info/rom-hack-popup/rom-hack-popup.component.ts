@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-rom-info-popup',
+  selector: 'roms-info-rom-hack-popup',
   templateUrl: './rom-hack-popup.component.html',
   styleUrls: ['./rom-hack-popup.component.scss']
 })
