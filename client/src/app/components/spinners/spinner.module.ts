@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [GifSpinnerComponent, BootstrapSpinnerComponent],
   imports: [CommonModule],
-  exports: [BootstrapSpinnerComponent, GifSpinnerComponent],
-  providers: []
+  exports: [BootstrapSpinnerComponent, GifSpinnerComponent]
 })
 export class SpinnerModule {}
