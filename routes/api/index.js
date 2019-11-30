@@ -95,7 +95,7 @@ let htmlDoc = `
       }
     </style>
     <script type="text/javascript">
-      const eacute = '\u00E9';
+      const eacute = '\\u00E9';
       console.error(\`Please use a valid Pok\$\{eacute\}ROM API endpoint.\`);
     </script>
   </head>
