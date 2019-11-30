@@ -33,7 +33,8 @@
       </div>
     </ng-container>
     <ng-container>
-      <h2 id="cookies" #cookies>Cookies</h2>
+      <div #cookies id="cookies" [style.height.px]="showDummy ? 56 : 0"></div>
+      <h2>Cookies</h2>
       <p>
         <span class="question">What are cookies?</span>
         <br />
@@ -93,9 +94,12 @@
       </p>
     </ng-container>
     <ng-container>
-      <h2 id="browser-compatibility" #browserCompatibility>
-        Browser Compatibility
-      </h2>
+      <div
+        #browserCompatibility
+        [style.height.px]="showDummy ? 56 : 0"
+        id="browser-compatibility"
+      ></div>
+      <h2>Browser Compatibility</h2>
       <faq-browser-tabset></faq-browser-tabset>
     </ng-container>
     <ng-container>

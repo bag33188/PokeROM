@@ -1,9 +1,10 @@
 import {
   Component,
   OnInit,
-  AfterContentInit,
   ViewChild,
-  ElementRef
+  ElementRef,
+  HostListener,
+  AfterViewInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
@@ -15,7 +16,7 @@ import { Favorites } from '../../enums/favorites.enum';
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss']
 })
-export class FaqComponent implements OnInit, AfterContentInit {
+export class FaqComponent implements OnInit, AfterViewInit {
   public emulatorUrl: string;
   @ViewChild('cookies', { static: true }) private cookiesElement: ElementRef;
   @ViewChild('browserCompatibility', { static: true })
@@ -23,16 +24,9 @@ export class FaqComponent implements OnInit, AfterContentInit {
   public environment: Environment = environment;
   public favorites: typeof Favorites;
   public isCollapsed: boolean;
-
-  constructor(private route: ActivatedRoute) {}
-
-  public ngOnInit(): void {
-    this.isCollapsed = true;
-    this.emulatorUrl = 'https://www.retroarch.com';
-    this.favorites = Favorites;
-  }
-
-  public ngAfterContentInit(): void {
+  public showDummy: boolean = false;
+  @HostListener('window:hashchange')
+  private onHashChange(): void {
     switch (this.route.snapshot.fragment) {
       case 'browser-compatibility':
         this.browserCompatibilityElement.nativeElement.scrollIntoView();
@@ -44,6 +38,21 @@ export class FaqComponent implements OnInit, AfterContentInit {
         window.scrollTo(0, 0);
         break;
     }
+  }
+
+  constructor(private route: ActivatedRoute) {}
+
+  public ngOnInit(): void {
+    if (location.hash) {
+      this.showDummy = true;
+    }
+    this.isCollapsed = true;
+    this.emulatorUrl = 'https://www.retroarch.com';
+    this.favorites = Favorites;
+  }
+
+  public ngAfterViewInit(): void {
+    this.onHashChange();
   }
 
   public parseFavorites(): { [index: string]: string[] } {
