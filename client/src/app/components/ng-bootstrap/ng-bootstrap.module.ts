@@ -4,43 +4,43 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AccordionComponent } from './home/accordion/accordion.component';
-import { CarouselComponent } from './home/carousel/carousel.component';
-import { PaginationComponent } from './roms/pagination/pagination.component';
-import { TabsetComponent } from './faq/tabset/tabset.component';
-import { JumbotronComponent } from './home/jumbotron/jumbotron.component';
-import { PopupComponent } from './rom-info/popup/popup.component';
-import { ToastComponent } from './faq/toast/toast.component';
-import { SvgComponent } from './faq/toast/svg/svg.component';
-import { RatingComponent } from './ratings/rating/rating.component';
-import { ModalContentComponent } from './faq/modal-content/modal-content.component';
-import { AlertComponent } from './ratings/alert/alert.component';
+import { InfoAccordionComponent } from './home/info-accordion/info-accordion.component';
+import { SplashCarouselComponent } from './home/splash-carousel/splash-carousel.component';
+import { RomsPaginationComponent } from './roms/roms-pagination/roms-pagination.component';
+import { BrowserTabsetComponent } from './faq/browser-tabset/browser-tabset.component';
+import { ShowcaseJumbotronComponent } from './home/showcase-jumbotron/showcase-jumbotron.component';
+import { RomHackPopupComponent } from './rom-info/rom-hack-popup/rom-hack-popup.component';
+import { DisclaimerToastComponent } from './faq/disclaimer-toast/disclaimer-toast.component';
+import { MsgIconSvgComponent } from './faq/disclaimer-toast/msg-icon-svg/msg-icon-svg.component';
+import { StarRatingComponent } from './ratings/star-rating/star-rating.component';
+import { IeModalContentComponent } from './faq/ie-modal-content/ie-modal-content.component';
+import { PrivacyAlertComponent } from './ratings/privacy-alert/privacy-alert.component';
 import { DeleteUserBtnComponent } from './account/delete-user-btn/delete-user-btn.component';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { LoggerService } from '../../services/logger.service';
 import { UnitConversionService } from '../../services/unit-conversion.service';
-import { ModalComponent } from './account/modal/modal.component';
+import { DeleteUserModalComponent } from './account/delete-user-modal/delete-user-modal.component';
 import { SpinnerModule } from '../spinners/spinner.module';
 import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
   declarations: [
-    AccordionComponent,
-    CarouselComponent,
-    PaginationComponent,
-    TabsetComponent,
-    ModalContentComponent,
-    PopupComponent,
-    ToastComponent,
-    SvgComponent,
-    JumbotronComponent,
-    RatingComponent,
-    AlertComponent,
+    InfoAccordionComponent,
+    SplashCarouselComponent,
+    RomsPaginationComponent,
+    BrowserTabsetComponent,
+    IeModalContentComponent,
+    RomHackPopupComponent,
+    DisclaimerToastComponent,
+    MsgIconSvgComponent,
+    ShowcaseJumbotronComponent,
+    StarRatingComponent,
+    PrivacyAlertComponent,
     DeleteUserBtnComponent,
-    ModalComponent
+    DeleteUserModalComponent
   ],
-  entryComponents: [ModalContentComponent],
+  entryComponents: [IeModalContentComponent],
   imports: [
     CommonModule,
     NgbModule,
@@ -51,17 +51,17 @@ import { DirectivesModule } from '../../directives/directives.module';
     DirectivesModule
   ],
   exports: [
-    AccordionComponent,
-    CarouselComponent,
-    PaginationComponent,
-    TabsetComponent,
-    PopupComponent,
-    ToastComponent,
-    JumbotronComponent,
-    RatingComponent,
-    AlertComponent,
+    InfoAccordionComponent,
+    SplashCarouselComponent,
+    RomsPaginationComponent,
+    BrowserTabsetComponent,
+    RomHackPopupComponent,
+    DisclaimerToastComponent,
+    ShowcaseJumbotronComponent,
+    StarRatingComponent,
+    PrivacyAlertComponent,
     DeleteUserBtnComponent,
-    ModalComponent
+    DeleteUserModalComponent
   ],
   providers: [AuthService, UserService, LoggerService, UnitConversionService]
 })

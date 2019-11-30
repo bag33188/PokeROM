@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { ModalComponent } from '../modal/modal.component';
+import { DeleteUserModalComponent } from '../delete-user-modal/delete-user-modal.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CookiesService } from '../../../../services/cookies.service';
 
@@ -21,7 +21,7 @@ export class DeleteUserBtnComponent implements OnInit {
   }
 
   public confirmDeletion(): void {
-    const modalRef: NgbModalRef = this.modalService.open(ModalComponent, {
+    const modalRef: NgbModalRef = this.modalService.open(DeleteUserModalComponent, {
       centered: true
     });
     modalRef.componentInstance.loading.subscribe((loading: boolean): void => {
