@@ -44,7 +44,7 @@ export class RomsComponent implements OnInit, OnDestroy {
       this.favoritesShown = !this.favoritesShown;
     }
     this.romsObs$ = this.romsService.getAllRoms({
-      limit: this.limit,
+      // limit: this.limit,
       favorites: getFavorites
     });
     this.romsSub = this.romsObs$.subscribe(
