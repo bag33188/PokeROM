@@ -8,6 +8,7 @@
   </div>
   <div class="card-body">
     <h5 class="card-title text-center mt-2">
+      <fa-icon class="mr-2" [icon]="faStar" *ngIf="rom.is_favorite"></fa-icon>
       {{ rom.game_name }}
     </h5>
     <ul class="list-group list-group-flush">

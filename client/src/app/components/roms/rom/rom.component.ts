@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { faInfo, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import {
+  faInfo,
+  faStar,
+  IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
 import { Rom } from '../../../models/Rom';
 import { NgClasses } from '../../../interfaces/NgClasses';
 import { UnitConversionService } from '../../../services/unit-conversion.service';
@@ -12,11 +16,13 @@ import { UnitConversionService } from '../../../services/unit-conversion.service
 export class RomComponent implements OnInit {
   @Input() public rom: Rom;
   public faInfo: IconDefinition;
+  public faStar: IconDefinition;
 
   constructor() {}
 
   public ngOnInit(): void {
     this.faInfo = faInfo;
+    this.faStar = faStar;
   }
 
   public imgAlt(altValue: string): string {
