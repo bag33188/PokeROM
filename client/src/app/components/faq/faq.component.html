@@ -184,7 +184,9 @@
       <h2 class="mt-3">API Version</h2>
       <p>
         <code>{{
-          (environment.apiUrl + '/version' | fetch | json) || 'error'
+          (environment.apiUrl + '/version' | fetch | json) !== 'null'
+            ? (apiVersion$ | async | json)
+            : 'error'
         }}</code>
       </p>
     </ng-container>

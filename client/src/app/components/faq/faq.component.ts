@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { Environment } from '../../interfaces/Environment';
 import { Favorites } from '../../enums/favorites.enum';
+import { ApiService } from '../../services/api.service';
+import { Observable } from 'rxjs';
+import { ApiVersion } from '../../models/ApiVersion';
 
 @Component({
   selector: 'faq',
@@ -16,6 +19,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
   public favorites: typeof Favorites;
   public isCollapsed: boolean;
   public showDummy: boolean;
+  public apiVersion$: Observable<ApiVersion>;
   @HostListener('window:hashchange')
   private onHashChange(): void {
     this.showDummy = !!location.hash;
@@ -34,7 +38,8 @@ export class FaqComponent implements OnInit, AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private apiService: ApiService
   ) {}
 
   public ngOnInit(): void {
@@ -42,6 +47,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
     this.isCollapsed = true;
     this.emulatorUrl = 'https://www.retroarch.com';
     this.favorites = Favorites;
+    this.apiVersion$ = this.apiService.getApiVersion();
   }
 
   public ngAfterViewInit(): void {
