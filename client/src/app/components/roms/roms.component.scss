@@ -155,14 +155,16 @@
   #roms-heading {
     font-size: 1.8rem;
   }
-
-  .rom,
-  .card {
-    width: calc((100vw - (70vw - 2.5rem)) + 2px);
-  }
 }
 
 #no-roms-heading,
 #roms-err {
   margin-top: 2rem;
+}
+
+.rom,
+.card {
+  @media only screen and (min-width: 916px) {
+    width: calc((100vw - (70vw - 2.5rem)) + 2px);
+  }
 }
