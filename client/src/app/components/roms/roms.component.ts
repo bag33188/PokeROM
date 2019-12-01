@@ -42,6 +42,10 @@ export class RomsComponent implements OnInit, OnDestroy {
   public getRoms(getFavorites?: boolean): void {
     if (getFavorites !== null && getFavorites !== undefined) {
       this.favoritesShown = !this.favoritesShown;
+      if (this.favoritesShown === true) {
+        this.romsData = [];
+        this.loading = true;
+      }
     }
     this.romsObs$ = this.romsService.getAllRoms({
       // limit: this.limit,
