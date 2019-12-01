@@ -64,7 +64,7 @@
     'game-description-title .'
     'game-description game-specs'
     'game-description rom-specs'
-    'rom-download .';
+    'rom-download mark-favorite';
   grid-template-columns: 2fr 1fr;
   grid-template-rows:
     repeat(3, 0.5fr) fit-content(1rem) fit-content(em(188px, 16px)) fit-content(
@@ -106,6 +106,15 @@
   grid-area: rom-download;
   grid-column: 1 / 2;
   grid-row: 7 / -1;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.mark-favorite {
+  grid-area: mark-favorite;
+  grid-column: 2 / 3;
+  grid-row: 7 / -1;
+  justify-self: end;
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
@@ -194,6 +203,7 @@
       fit-content(em(308px, 16px))
       15.5rem
       fit-content(17.5rem)
+      fit-content(5.5rem)
       fit-content(5.5rem);
     margin: 0 auto;
   }
@@ -219,9 +229,16 @@
     text-align: center;
   }
 
+  .mark-favorite {
+    grid-column: 1 / -1;
+    grid-row: 8 / 9;
+    justify-self: center;
+    margin-bottom: 0;
+  }
+
   .rom-download {
     grid-column: 1 / -1;
-    grid-row: 8 / -1;
+    grid-row: 9 / -1;
     margin-bottom: 0;
     margin-top: 0;
   }

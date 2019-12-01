@@ -19,6 +19,7 @@ import { RomsPaginationComponent } from './roms-pagination/roms-pagination.compo
 import { RomsComponent } from './roms.component';
 import { RomHackPopupComponent } from './rom-info/rom-hack-popup/rom-hack-popup.component';
 import { AuthService } from '../../services/auth.service';
+import { MarkFavoriteComponent } from './rom-info/mark-favorite/mark-favorite.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthService } from '../../services/auth.service';
     RomInfoComponent,
     RomsPaginationComponent,
     RomsComponent,
-    RomHackPopupComponent
+    RomHackPopupComponent,
+    MarkFavoriteComponent
   ],
   imports: [
     CommonModule,

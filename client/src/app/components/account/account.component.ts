@@ -86,10 +86,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     if (!this.user.name || this.user.name === '') {
       this.user.name = null;
     }
-    this.user.name === null
-      ? // tslint:disable-next-line:whitespace
-        this.patchUser(this.userId, (<unknown>this.user) as JSONObject, keys)
-      : this.updateUser(this.userId, this.user, keys);
+    this.updateUser(this.userId, this.user, keys);
   }
 
   public sanitizeData(): void {
@@ -134,27 +131,6 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.ready = true;
         this.updateFail = true;
         this.firedOff = false;
-        // check for existing username
-        if (err[keys[0]][keys[1]] === true) {
-          this.userExists = true;
-        }
-        logger.error(err);
-      }
-    );
-  }
-
-  private patchUser(userId: string, user: JSONObject, keys: string[]): void {
-    this.userService.patchUser(userId, user).subscribe(
-      (): void => {
-        this.ready = true;
-        this.userExists = false;
-        AuthService.logout();
-        this.router.navigate(['/', 'home']);
-      },
-      (err: JSONObject): void => {
-        this.ready = true;
-        this.firedOff = false;
-        this.updateFail = true;
         // check for existing username
         if (err[keys[0]][keys[1]] === true) {
           this.userExists = true;

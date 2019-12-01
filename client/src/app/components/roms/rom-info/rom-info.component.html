@@ -76,6 +76,11 @@
           class="rom-download"
           [downloadLink]="rom.download_link"
         ></roms-info-rom-download>
+        <roms-info-mark-favorite
+          class="mark-favorite"
+          [isFavorite]="rom.is_favorite"
+          [id]="rom._id"
+        ></roms-info-mark-favorite>
         <roms-info-game-specs
           class="game-specs"
           [region]="rom.region"

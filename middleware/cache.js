@@ -28,6 +28,7 @@ function clearCache(req, routesWithParams) {
     req.user ? ':' + req.user._id : ''
   }`;
   // remove all cached items on specified resource even if single item in resource is changed
+  mcache.del(key);
   if (req.params['id']) {
     key = key.replace(`/${req.params['id']}`, '');
   }
@@ -41,10 +42,8 @@ function clearCache(req, routesWithParams) {
   if (/\?/.test(req.originalUrl)) {
     key = key.replace(`?${req.originalUrl.split('?').pop()}`, '');
   }
-  const cachedBody = mcache.get(key);
-  if (cachedBody) {
-    mcache.del(key);
-  }
+
+  mcache.del(key);
 }
 
 module.exports = {
