@@ -24,13 +24,13 @@ module.exports.addRating = async (req, res) => {
     if (req.body.date_time) {
       req.body.date_time = req.sanitize(req.body.date_time.toString());
     }
+    clearCache(req);
     const rating = await Rating.addRating(ratingData);
     if (!rating) {
       return res
         .status(404)
         .json({ success: false, message: 'Rating not found.' });
     }
-    clearCache(req);
     return res.status(201).json(rating);
   } catch (err) {
     if (err.name === 'ValidationError') {
@@ -91,8 +91,8 @@ module.exports.deleteRating = async (req, res) => {
         .json({ success: false, message: 'Rating not found.' });
     }
     const query = { _id: id };
-    await Rating.deleteRating(query);
     clearCache(req);
+    await Rating.deleteRating(query);
     return res
       .status(200)
       .json({ success: true, message: 'Rating successfully deleted.' });
@@ -110,8 +110,8 @@ module.exports.deleteRating = async (req, res) => {
 
 module.exports.deleteRatings = async (req, res) => {
   try {
-    await Rating.deleteAllRatings();
     clearCache(req);
+    await Rating.deleteAllRatings();
     return res
       .status(200)
       .json({ success: true, message: 'All ratings successfully deleted.' });

@@ -13,5 +13,4 @@ export class HomeComponent implements OnInit {
   public ngOnInit(): void {
     this.accHeading = 'What would you like to know about?';
   }
-
 }

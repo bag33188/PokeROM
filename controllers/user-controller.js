@@ -117,9 +117,9 @@ module.exports.registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     userData.password = await bcrypt.hash(userData.password, salt);
     const addedUser = await User.addUser(userData);
+    clearCache(req);
     await Rom.postCore(coreRoms, addedUser);
     await Rom.postHacks(romHacks, addedUser);
-    clearCache(req);
     return res
       .status(201)
       .json({ success: true, message: 'User successfully registered!' });
@@ -243,8 +243,8 @@ module.exports.updateUser = async (req, res) => {
       }
     }
     await User.updateUser(id, userData, {});
-    const updatedUser = await User.getUserById(id);
     clearCache(req);
+    const updatedUser = await User.getUserById(id);
     return res.status(200).json(updatedUser);
   } catch (err) {
     switch (err.name) {
@@ -312,8 +312,8 @@ module.exports.patchUser = async (req, res) => {
     const query = { $set: req.body };
     await User.patchUser(id, query);
 
-    const patchedUser = await User.getUserById(id);
     clearCache(req);
+    const patchedUser = await User.getUserById(id);
     return res.status(200).json(patchedUser);
   } catch (err) {
     switch (err.name) {
@@ -340,9 +340,9 @@ module.exports.patchUser = async (req, res) => {
 
 module.exports.deleteUsers = async (req, res) => {
   try {
+    clearCache(req);
     await Rom.deleteAllRoms({});
     await User.deleteAllUsers();
-    clearCache(req);
     return res.status(200).json({
       success: true,
       message: 'All users successfully deleted!'
@@ -380,10 +380,10 @@ module.exports.deleteUser = async (req, res) => {
         message: 'User not found.'
       });
     }
+    clearCache(req);
     await User.deleteUser(id);
     const query = { user_id: id };
     await Rom.deleteAllRoms(query);
-    clearCache(req);
     return res.status(200).json({
       success: true,
       message: 'User successfully deleted!'

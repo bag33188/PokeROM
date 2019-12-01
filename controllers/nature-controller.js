@@ -67,8 +67,8 @@ module.exports.addNature = async (req, res) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    const nature = await Nature.addNature(natureData);
     clearCache(req);
+    const nature = await Nature.addNature(natureData);
     return res.status(201).json(nature);
   } catch (err) {
     if (err.name === 'ValidationError') {
@@ -119,8 +119,8 @@ module.exports.updateNature = async (req, res) => {
         message: 'Nature not found.'
       });
     }
-    const updatedNature = await Nature.getNature(id);
     clearCache(req);
+    const updatedNature = await Nature.getNature(id);
     return res.status(200).json(updatedNature);
   } catch (err) {
     switch (err.name) {
@@ -211,8 +211,8 @@ module.exports.deleteNature = async (req, res) => {
         message: 'Nature not found.'
       });
     }
-    await Nature.deleteNature(id);
     clearCache(req);
+    await Nature.deleteNature(id);
     return res
       .status(200)
       .json({ success: true, message: 'Nature successfully deleted.' });
@@ -230,8 +230,8 @@ module.exports.deleteNature = async (req, res) => {
 
 module.exports.deleteNatures = async (req, res) => {
   try {
-    await Nature.deleteAllNatures();
     clearCache(req);
+    await Nature.deleteAllNatures();
     return res.status(200).json({
       success: true,
       message: 'All Natures successfully deleted!'
