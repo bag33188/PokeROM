@@ -21,7 +21,7 @@ export class MarkFavoriteComponent implements OnInit {
     this.faStar = faStar;
   }
 
-  public patchRomFavorite(): void {
+  public patchFavoriteRom(): void {
     const partialRom: { is_favorite: boolean } = {
       is_favorite: !this.isFavorite
     };
