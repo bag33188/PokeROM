@@ -26,6 +26,11 @@ function clearCache(req) {
     req.user ? ':' + req.user._id : ''
   }`;
   const cachedBody = mcache.get(key);
+  try {
+    console.log(key.replace(`/${req.params['id']}`, ''));
+  } catch (e) {
+    console.log(key);
+  }
   if (cachedBody) {
     // remove all cached items on specified resource even if single item in resource is changed
     if (req.params['id']) {

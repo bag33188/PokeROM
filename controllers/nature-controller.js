@@ -272,6 +272,7 @@ module.exports.natureHeaders = async (req, res) => {
 
 module.exports.allNatures = async (req, res) => {
   try {
+    clearCache(req);
     await Nature.postAll(allNaturesData);
     const natures = await Nature.getNatures();
     return res.status(201).json(natures);
