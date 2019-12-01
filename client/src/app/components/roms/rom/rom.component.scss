@@ -12,8 +12,10 @@
   z-index: 20;
 }
 
-.box-art-img {
+.box-art-img,
+.img-container {
   height: unquote('#{$calc-img-size}');
+  width: unquote('#{$calc-img-size}');
 }
 
 .oversized-img {
