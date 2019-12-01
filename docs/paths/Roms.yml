@@ -36,6 +36,11 @@ paths:
           required: false
           description: '(Optional) Get only the ROM Hacks.'
           type: boolean
+        - in: query
+          name: favorites
+          required: false
+          description: '(Optional) Get only the user''s favorite ROMs.'
+          type: boolean
       responses:
         200:
           description: A ROMs array.
