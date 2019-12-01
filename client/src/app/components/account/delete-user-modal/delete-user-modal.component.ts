@@ -13,13 +13,11 @@ import { CookiesService } from '../../../services/cookies.service';
   styleUrls: ['./delete-user-modal.component.scss']
 })
 export class DeleteUserModalComponent implements OnInit {
+  @Input() public username: string;
   @Output() public isErrorDeleting: EventEmitter<boolean> = new EventEmitter<
     boolean
   >();
-  @Output() public loading: EventEmitter<boolean> = new EventEmitter<
-    boolean
-  >();
-  @Input() public username: string;
+  @Output() public loading: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() public firedOff: EventEmitter<boolean> = new EventEmitter<
     boolean
   >();
