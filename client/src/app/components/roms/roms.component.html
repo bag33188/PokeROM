@@ -41,11 +41,7 @@
     </div>
     <div class="roms-grid-container">
       <roms-rom
-        *ngFor="
-          let rom of romsData
-            | slice: (!favoritesShown ? pageSize : 0)
-            | slice: 0:(!favoritesShown ? itemsPerPage : romsData.length)
-        "
+        *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
         class="card card-container border rounded"
         [rom]="rom"
       ></roms-rom>
@@ -55,7 +51,6 @@
       [currentPage]="currentPage"
       [itemsPerPage]="itemsPerPage"
       (paginate)="onPageChange($event)"
-      [favoritesShown]="favoritesShown"
     ></roms-pagination>
   </div>
 </ng-container>

@@ -19,7 +19,6 @@ export class RomsPaginationComponent implements OnInit {
   @Input() private pageSize: number;
   @Input() public itemsPerPage: number;
   @Output() public paginate: EventEmitter<number> = new EventEmitter<number>();
-  @Input() public favoritesShown: boolean;
   public pageWidth: number;
 
   @HostListener('window:resize')
