@@ -178,7 +178,7 @@ module.exports.addRom = async (req, res) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    clearCache(req);
+    clearCache(req, routesWithParams);
     const rom = await Rom.addRom(romData);
     return res.status(201).json(rom);
   } catch (err) {
@@ -235,7 +235,7 @@ module.exports.updateRom = async (req, res) => {
       });
     }
     await Rom.updateRom(id, updateRomData, {});
-    clearCache(req);
+    clearCache(req, routesWithParams);
     const updatedRom = await Rom.getRomById(id);
     updatedRom.date_released = new Date(updatedRom.date_released);
     return res.status(200).json(updatedRom);
@@ -295,7 +295,7 @@ module.exports.patchRom = async (req, res) => {
     }
     const query = { $set: req.body };
     await Rom.patchRom(id, query);
-    clearCache(req);
+    clearCache(req, routesWithParams);
     const patchedRom = await Rom.getRomById(id);
     return res.status(200).json(patchedRom);
   } catch (err) {
@@ -342,7 +342,7 @@ module.exports.deleteRom = async (req, res) => {
         message: `You cannot delete this user's ROM.`
       });
     }
-    clearCache(req);
+    clearCache(req, routesWithParams);
     await Rom.deleteRom(id);
     return res.status(200).json({
       success: true,
@@ -377,7 +377,7 @@ module.exports.deleteRoms = async (req, res) => {
       query = { user_id: req.user._id };
       message = 'All ROMs successfully deleted!';
     }
-    clearCache(req);
+    clearCache(req, routesWithParams);
     await Rom.deleteAllRoms(query);
     return res.status(200).json({
       success: true,

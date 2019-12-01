@@ -67,7 +67,7 @@ module.exports.addNature = async (req, res) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    clearCache(req);
+    clearCache(req, routesWithParams);
     const nature = await Nature.addNature(natureData);
     return res.status(201).json(nature);
   } catch (err) {
@@ -119,7 +119,7 @@ module.exports.updateNature = async (req, res) => {
         message: 'Nature not found.'
       });
     }
-    clearCache(req);
+    clearCache(req, routesWithParams);
     const updatedNature = await Nature.getNature(id);
     return res.status(200).json(updatedNature);
   } catch (err) {
@@ -170,7 +170,7 @@ module.exports.patchNature = async (req, res) => {
         message: 'Nature not found.'
       });
     }
-    clearCache(req);
+    clearCache(req, routesWithParams);
     const patchedNature = await Nature.getNature(id);
     return res.status(200).json(patchedNature);
   } catch (err) {
@@ -211,7 +211,7 @@ module.exports.deleteNature = async (req, res) => {
         message: 'Nature not found.'
       });
     }
-    clearCache(req);
+    clearCache(req, routesWithParams);
     await Nature.deleteNature(id);
     return res
       .status(200)
@@ -230,7 +230,7 @@ module.exports.deleteNature = async (req, res) => {
 
 module.exports.deleteNatures = async (req, res) => {
   try {
-    clearCache(req);
+    clearCache(req, routesWithParams);
     await Nature.deleteAllNatures();
     return res.status(200).json({
       success: true,
@@ -272,7 +272,7 @@ module.exports.natureHeaders = async (req, res) => {
 
 module.exports.allNatures = async (req, res) => {
   try {
-    clearCache(req);
+    clearCache(req, routesWithParams);
     await Nature.postAll(allNaturesData);
     const natures = await Nature.getNatures();
     return res.status(201).json(natures);
