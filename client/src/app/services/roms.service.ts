@@ -15,6 +15,7 @@ interface GetRequestOptions {
     core?: boolean;
     hacks?: boolean;
   };
+  favorites?: boolean;
 }
 
 interface DeleteRequestOptions {
@@ -67,7 +68,12 @@ export class RomsService {
         );
       }
     }
-
+    if (options.favorites && options.favorites === true) {
+      httpParams = httpParams.append(
+        'favorites',
+        JSON.stringify(options.favorites)
+      );
+    }
     return this.http.get<Rom[]>(RomsService.romsUrl, {
       params: httpParams
     });

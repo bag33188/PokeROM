@@ -6,7 +6,7 @@
     alertType="danger"
     *ngIf="isError"
   >
-    <ng-container [ngSwitch]="errStatus">
+    <ng-container [ngSwitch]="errStatusCode">
       <ng-container *ngSwitchCase="401">
         You're not logged in and thus cannot access this ROM. Click
         <a [routerLink]="['/']">here</a> to go back to the home page.

@@ -73,6 +73,7 @@ module.exports.getRoms = async (req, res) => {
   try {
     const getAllCore = req.query['core'];
     const getAllHacks = req.query['hacks'];
+    const getFavorites = req.query['favorites'];
 
     let query = {};
     if (convertToBoolean(getAllCore) && !convertToBoolean(getAllHacks)) {
@@ -81,6 +82,10 @@ module.exports.getRoms = async (req, res) => {
       query = { user_id: req.user._id, rom_type: 'hack' };
     } else {
       query = { user_id: req.user._id };
+    }
+
+    if (convertToBoolean(getFavorites)) {
+      query = { ...query, is_favorite: true };
     }
 
     let limit = req.query['_limit'];

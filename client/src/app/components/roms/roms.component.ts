@@ -23,6 +23,7 @@ export class RomsComponent implements OnInit, OnDestroy {
   public isError: boolean = false;
   private romsObs$: Observable<Rom[]>;
   private romsSub: Subscription;
+  public favoritesShown: boolean;
 
   constructor(
     private romsService: RomsService,
@@ -31,14 +32,21 @@ export class RomsComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.getRoms();
+    this.favoritesShown = false;
   }
 
   public ngOnDestroy(): void {
     this.romsSub.unsubscribe();
   }
 
-  private getRoms(): void {
-    this.romsObs$ = this.romsService.getAllRoms({ limit: this.limit });
+  public getRoms(getFavorites?: boolean): void {
+    if (getFavorites !== null && getFavorites !== undefined) {
+      this.favoritesShown = !this.favoritesShown;
+    }
+    this.romsObs$ = this.romsService.getAllRoms({
+      limit: this.limit,
+      favorites: getFavorites
+    });
     this.romsSub = this.romsObs$.subscribe(
       (roms: Rom[]): void => {
         this.isError = false;

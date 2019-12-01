@@ -24,7 +24,7 @@ export class RomInfoComponent implements OnInit, OnDestroy {
   public loading: boolean;
   public isError: boolean;
   public faLongArrowAltLeft: IconDefinition;
-  public errStatus: number;
+  public errStatusCode: number;
   public faFileAlt: IconDefinition;
   private romInfoObs$: Observable<Rom>;
   private romInfoSub: Subscription;
@@ -73,16 +73,16 @@ export class RomInfoComponent implements OnInit, OnDestroy {
         if (err[statusKey] !== undefined) {
           switch (err[statusKey]) {
             case 404:
-              this.errStatus = 404;
+              this.errStatusCode = 404;
               break;
             case 401:
-              this.errStatus = 401;
+              this.errStatusCode = 401;
               break;
             case 403:
-              this.errStatus = 403;
+              this.errStatusCode = 403;
               break;
             default:
-              this.errStatus = 500;
+              this.errStatusCode = 500;
           }
         }
         logger.error(err);
