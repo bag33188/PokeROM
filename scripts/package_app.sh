@@ -21,7 +21,9 @@ $ chmod 755 ./package_app.sh
 package_app() {
     cd ..
     npm pack
-    rm -R bin
+    if [[ -d "bin" ]]; then
+      rm -R bin
+    fi
     mkdir bin
     mv pokerom*.tgz bin/
 }
