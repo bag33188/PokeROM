@@ -21,10 +21,10 @@ export class MarkFavoriteComponent implements OnInit {
   }
 
   public patchRomFavorite(): void {
-    const partialRom: JSONObject = {
+    const partialRom: { is_favorite: boolean } = {
       is_favorite: !this.isFavorite
     };
-    this.isFavorite = !this.isFavorite;
+    this.isFavorite = partialRom.is_favorite;
     this.romsService
       // tslint:disable-next-line:whitespace
       .patchRom(this.id, (<unknown>partialRom) as JSONObject)
