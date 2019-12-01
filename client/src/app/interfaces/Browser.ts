@@ -1,7 +1,7 @@
 import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
 
 export interface Browser {
-  browser: string;
+  browserName: string;
   status: string;
   minVersion: number;
   minYear: [string, number];

@@ -31,42 +31,42 @@ export class BrowserTabsetComponent implements OnInit {
   public ngOnInit(): void {
     this.browsers = [
       {
-        browser: 'Chrome',
+        browserName: 'Chrome',
         status: 'Compatible',
         minVersion: 58,
         minYear: ['early', 2017],
         icon: this.faChrome
       },
       {
-        browser: 'Opera',
+        browserName: 'Opera',
         status: 'Compatible',
         minVersion: 44,
         minYear: ['late', 2017],
         icon: this.faOpera
       },
       {
-        browser: 'Safari',
+        browserName: 'Safari',
         status: 'Compatible',
         minVersion: 10.1,
         minYear: ['mid', 2017],
         icon: this.faSafari
       },
       {
-        browser: 'Firefox',
+        browserName: 'Firefox',
         status: 'Compatible',
         minVersion: 54,
         minYear: ['early', 2017],
         icon: this.faFirefox
       },
       {
-        browser: 'Edge',
+        browserName: 'Edge',
         status: 'Compatible',
         minVersion: 16,
         minYear: ['late', 2017],
         icon: this.faEdge
       },
       {
-        browser: 'Internet Explorer',
+        browserName: 'Internet Explorer',
         status: 'Incompatible',
         minVersion: null,
         minYear: null,

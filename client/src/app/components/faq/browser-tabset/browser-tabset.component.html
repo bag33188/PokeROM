@@ -2,7 +2,7 @@
   <ngb-tabset>
     <ngb-tab *ngFor="let browser of browsers">
       <ng-template ngbTabTitle
-        ><span class="browser-title-text">{{ browser.browser }}</span
+        ><span class="browser-title-text">{{ browser.browserName }}</span
         ><fa-icon [icon]="browser.icon" class="browser-icon"></fa-icon
       ></ng-template>
       <ng-template ngbTabContent>
@@ -23,20 +23,20 @@
             "
           >
             Details: This app works on
-            <span class="font-italic">{{ browser.browser }}</span> browsers
+            <span class="font-italic">{{ browser.browserName }}</span> browsers
             released
             <span class="font-weight-bold"
               >from {{ browser.minYear.join(' ') }} to now</span
             >&nbsp;(minimum version requirement:
             <span class="underline">{{
-              browser.browser + ' ' + browser.minVersion
+              browser.browserName + ' ' + browser.minVersion
             }}</span
             >).
           </ng-container>
         </p>
         <ng-template #incompatible>
-          {{ browser.browser }} is not compatible with this app.
-          <ng-container *ngIf="browser.browser === 'Internet Explorer'">
+          {{ browser.browserName }} is not compatible with this app.
+          <ng-container *ngIf="browser.browserName === 'Internet Explorer'">
             <br />
             <button
               type="button"
