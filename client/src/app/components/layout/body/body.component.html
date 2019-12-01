@@ -2,7 +2,7 @@
   <div class="alert-container">
     <layout-cookies-alert></layout-cookies-alert>
   </div>
-  <div class="router-container" [ngClass]="{ 'bg-success': isHomePage() }">
+  <div class="router-container" [class.bg-success]="isHomePage()">
     <router-outlet></router-outlet>
   </div>
 </main>
