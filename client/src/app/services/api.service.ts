@@ -7,8 +7,16 @@ import { LoggerService as logger } from './logger.service';
 
 @Injectable()
 export class ApiService {
-  private apiVersionUrl: string = `${environment.apiUrl}/version`;
-
+  private static apiVersionUrl: string = `${environment.apiUrl}/version`;
+  public static storeApiVersionInCache(): void {
+    const apiVersion: Promise<Cache> = caches.open('api_version');
+    apiVersion
+      .then(
+        (cache: Cache): Promise<void> =>
+          cache.add(`${environment.apiUrl}/version`)
+      )
+      .catch((err: object): void => logger.log(err));
+  }
   constructor(private http: HttpClient) {}
 
   /**
@@ -20,16 +28,6 @@ export class ApiService {
     const headers: HttpHeaders = new HttpHeaders({
       Accept: 'application/json'
     });
-    return this.http.get<ApiVersion>(this.apiVersionUrl, { headers });
-  }
-
-  public storeApiVersionInCache(): void {
-    const apiVersion: Promise<Cache> = caches.open('api_version');
-    apiVersion
-      .then(
-        (cache: Cache): Promise<void> =>
-          cache.add(`${environment.apiUrl}/version`)
-      )
-      .catch((err: object): void => logger.log(err));
+    return this.http.get<ApiVersion>(ApiService.apiVersionUrl, { headers });
   }
 }

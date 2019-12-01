@@ -24,7 +24,7 @@ interface DeleteRequestOptions {
 
 @Injectable()
 export class RomsService {
-  private romsUrl: string = `${environment.apiUrl}/roms`;
+  private static romsUrl: string = `${environment.apiUrl}/roms`;
 
   constructor(private http: HttpClient) {}
 
@@ -68,7 +68,7 @@ export class RomsService {
       }
     }
 
-    return this.http.get<Rom[]>(this.romsUrl, {
+    return this.http.get<Rom[]>(RomsService.romsUrl, {
       params: httpParams
     });
   }
@@ -80,7 +80,7 @@ export class RomsService {
    * @returns An observable (rom).
    */
   public getRom(id: string): Observable<Rom> {
-    const url: string = `${this.romsUrl}/${id}`;
+    const url: string = `${RomsService.romsUrl}/${id}`;
     return this.http.get<Rom>(url);
   }
 
@@ -94,7 +94,7 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<Rom>(this.romsUrl, rom, { headers });
+    return this.http.post<Rom>(RomsService.romsUrl, rom, { headers });
   }
 
   /**
@@ -108,7 +108,7 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url: string = `${this.romsUrl}/${id}`;
+    const url: string = `${RomsService.romsUrl}/${id}`;
     return this.http.put<Rom>(url, rom, { headers });
   }
 
@@ -123,7 +123,7 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url: string = `${this.romsUrl}/${id}`;
+    const url: string = `${RomsService.romsUrl}/${id}`;
     return this.http.patch<Rom>(url, partialRom, {
       headers
     });
@@ -136,7 +136,7 @@ export class RomsService {
    * @returns An observable (any).
    */
   public deleteRom(id: string): Observable<JSONObject> {
-    const url: string = `$${this.romsUrl}/${id}`;
+    const url: string = `$${RomsService.romsUrl}/${id}`;
     return this.http.delete<JSONObject>(url);
   }
 
@@ -157,7 +157,9 @@ export class RomsService {
       }
     }
 
-    return this.http.delete<JSONObject>(this.romsUrl, { params: httpParams });
+    return this.http.delete<JSONObject>(RomsService.romsUrl, {
+      params: httpParams
+    });
   }
 
   /**
@@ -166,7 +168,7 @@ export class RomsService {
    * @returns An observable (void).
    */
   public getHeadersAll(): Observable<void> {
-    return this.http.head<void>(this.romsUrl);
+    return this.http.head<void>(RomsService.romsUrl);
   }
 
   /**
@@ -176,7 +178,7 @@ export class RomsService {
    * @returns An observable (void).
    */
   public getHeadersSingle(id: string): Observable<void> {
-    const url: string = `${this.romsUrl}/${id}`;
+    const url: string = `${RomsService.romsUrl}/${id}`;
     return this.http.head<void>(url);
   }
 
@@ -186,14 +188,14 @@ export class RomsService {
    * @returns An observable (void).
    */
   public getOptionsInfo(): Observable<void> {
-    return this.http.options<void>(this.romsUrl);
+    return this.http.options<void>(RomsService.romsUrl);
   }
 
   public addCoreRoms(): Observable<Rom[]> {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url: string = `${this.romsUrl}/core`;
+    const url: string = `${RomsService.romsUrl}/core`;
     return this.http.post<Rom[]>(url, {}, { headers });
   }
 
@@ -201,7 +203,7 @@ export class RomsService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url: string = `${this.romsUrl}/hacks`;
+    const url: string = `${RomsService.romsUrl}/hacks`;
     return this.http.post<Rom[]>(url, {}, { headers });
   }
 }

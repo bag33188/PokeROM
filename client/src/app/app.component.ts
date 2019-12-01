@@ -66,7 +66,7 @@ export class AppComponent {
     this.changeTitleIfDevEnv();
     this.getApiVersionIfDevEnv();
     if (location.protocol === 'https:') {
-      this.apiService.storeApiVersionInCache();
+      ApiService.storeApiVersionInCache();
     }
   }
 

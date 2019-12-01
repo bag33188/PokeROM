@@ -11,7 +11,7 @@ const headers: HttpHeaders = new HttpHeaders({
 
 @Injectable()
 export class NaturesService {
-  private naturesUrl: string = `${environment.apiUrl}/natures`;
+  private static naturesUrl: string = `${environment.apiUrl}/natures`;
 
   constructor(private http: HttpClient) {}
 
@@ -21,7 +21,7 @@ export class NaturesService {
    * @return An observable (nature array).
    */
   getAllNatures(): Observable<Nature[]> {
-    return this.http.get<Nature[]>(this.naturesUrl);
+    return this.http.get<Nature[]>(NaturesService.naturesUrl);
   }
 
   /**
@@ -31,7 +31,7 @@ export class NaturesService {
    * @returns An observable (nature).
    */
   getNature(id: string): Observable<Nature> {
-    const url: string = `${this.naturesUrl}/${id}`;
+    const url: string = `${NaturesService.naturesUrl}/${id}`;
     return this.http.get<Nature>(url);
   }
 
@@ -42,7 +42,7 @@ export class NaturesService {
    * @returns An observable (nature).
    */
   addNature(nature: Nature): Observable<Nature> {
-    return this.http.post<Nature>(this.naturesUrl, nature, {
+    return this.http.post<Nature>(NaturesService.naturesUrl, nature, {
       headers
     });
   }
@@ -55,7 +55,7 @@ export class NaturesService {
    * @returns An observable (nature).
    */
   updateNature(id: string, nature: Nature): Observable<Nature> {
-    const url: string = `${this.naturesUrl}/${id}`;
+    const url: string = `${NaturesService.naturesUrl}/${id}`;
     return this.http.put<Nature>(url, nature, {
       headers
     });
@@ -68,7 +68,7 @@ export class NaturesService {
    * @param nature The nature data to partially update with.
    */
   patchNature(id: string, nature: JSONObject): Observable<JSONObject> {
-    const url: string = `${this.naturesUrl}/${id}`;
+    const url: string = `${NaturesService.naturesUrl}/${id}`;
     return this.http.patch<JSONObject>(url, nature, {
       headers
     });
@@ -81,7 +81,7 @@ export class NaturesService {
    * @returns An observable (any).
    */
   deleteNature(id: string): Observable<JSONObject> {
-    const url: string = `${this.naturesUrl}/${id}`;
+    const url: string = `${NaturesService.naturesUrl}/${id}`;
     return this.http.delete<JSONObject>(url);
   }
 
@@ -91,6 +91,6 @@ export class NaturesService {
    * @returns An observable (any).
    */
   deleteAllNatures(): Observable<JSONObject> {
-    return this.http.delete<JSONObject>(this.naturesUrl);
+    return this.http.delete<JSONObject>(NaturesService.naturesUrl);
   }
 }

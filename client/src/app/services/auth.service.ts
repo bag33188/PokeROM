@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
-  private authUrl: string = `${environment.apiUrl}/users/authenticate`;
+  private static authUrl: string = `${environment.apiUrl}/users/authenticate`;
 
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {}
 
@@ -47,7 +47,9 @@ export class AuthService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<RegisteredUser>(this.authUrl, user, { headers });
+    return this.http.post<RegisteredUser>(AuthService.authUrl, user, {
+      headers
+    });
   }
 
   public loggedOut(): boolean {

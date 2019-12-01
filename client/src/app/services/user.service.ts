@@ -7,7 +7,7 @@ import { JSONObject } from '../models/JSONObject';
 
 @Injectable()
 export class UserService {
-  private userUrl: string = `${environment.apiUrl}/users`;
+  private static userUrl: string = `${environment.apiUrl}/users`;
   constructor(private http: HttpClient) {}
 
   public registerUser(
@@ -16,7 +16,7 @@ export class UserService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url: string = `${this.userUrl}/register`;
+    const url: string = `${UserService.userUrl}/register`;
     return this.http.post<{ success: boolean; message: string }>(url, user, {
       headers
     });
@@ -26,7 +26,7 @@ export class UserService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url: string = `${this.userUrl}/${id}`;
+    const url: string = `${UserService.userUrl}/${id}`;
     return this.http.put<User>(url, user, { headers });
   }
 
@@ -34,12 +34,12 @@ export class UserService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url: string = `${this.userUrl}/${id}`;
+    const url: string = `${UserService.userUrl}/${id}`;
     return this.http.get<User>(url, { headers });
   }
 
   public deleteUser(id: string): Observable<JSONObject> {
-    const url: string = `${this.userUrl}/${id}`;
+    const url: string = `${UserService.userUrl}/${id}`;
     return this.http.delete<JSONObject>(url);
   }
 
@@ -47,7 +47,7 @@ export class UserService {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url: string = `${this.userUrl}/${id}`;
+    const url: string = `${UserService.userUrl}/${id}`;
     return this.http.patch<User>(url, user, { headers });
   }
 }
