@@ -10,7 +10,7 @@ export class BtnDirective implements OnInit {
 
   constructor(private el: ElementRef) {}
 
-  public ngOnInit(): void | never {
+  public ngOnInit(): void {
     this.preClasses = [
       'btn',
       !/(outline)/.test(this.btnType) ? 'btn-shadow' : null
@@ -22,7 +22,7 @@ export class BtnDirective implements OnInit {
     }
   }
 
-  private getType(): string[] | never {
+  private getType(): string[] {
     if (typeof this.btnType === 'string') {
       switch (this.btnType) {
         case 'primary-outline':

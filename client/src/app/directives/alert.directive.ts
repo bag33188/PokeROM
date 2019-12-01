@@ -11,7 +11,7 @@ export class AlertDirective implements OnInit {
 
   constructor(private el: ElementRef) {}
 
-  public ngOnInit(): void | never {
+  public ngOnInit(): void {
     this.preClasses = ['alert', this.addShadow ? 'shadow' : null];
     if (!this.alertType) {
       logger.error('No alert type specified.');
@@ -25,7 +25,7 @@ export class AlertDirective implements OnInit {
     }
   }
 
-  private getType(): string[] | never {
+  private getType(): string[] {
     if (typeof this.alertType === 'string') {
       switch (this.alertType) {
         case 'primary':
