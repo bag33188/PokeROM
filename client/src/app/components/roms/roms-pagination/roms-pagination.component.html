@@ -8,6 +8,7 @@
     (pageChange)="onPageChange(currentPage)"
     [disabled]="romsData.length === 0"
     [size]="changeSizeOfPagination()"
+    *ngIf="!favoritesShown"
   >
     <!-- [boundaryLinks]="pageWidth > 600 && romsData.length > 0" -->
     <ng-template *ngIf="pageWidth > 600" ngbPaginationPrevious

@@ -42,11 +42,8 @@ export class RomsComponent implements OnInit, OnDestroy {
   public getRoms(getFavorites?: boolean): void {
     if (getFavorites !== null && getFavorites !== undefined) {
       this.favoritesShown = !this.favoritesShown;
-      if (typeof this.favoritesShown === 'boolean') {
-        this.currentPage = 1;
-        this.romsData = [];
-        this.loading = true;
-      }
+      this.romsData = [];
+      this.loading = true;
     }
     this.romsObs$ = this.romsService.getAllRoms({
       // limit: this.limit,
@@ -78,5 +75,9 @@ export class RomsComponent implements OnInit, OnDestroy {
   public onPageChange(paginateNum: number): void {
     this.pageSize = paginateNum;
     this.viewportScroller.scrollToPosition([0, 0]);
+  }
+
+  logPage(x) {
+    console.log(x);
   }
 }
