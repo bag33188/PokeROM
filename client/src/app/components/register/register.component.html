@@ -10,6 +10,9 @@
       <fieldset>
         <legend class="pt-2 pb-2 text-center">Register</legend>
         <div class="border rounded" id="border-container">
+          <p class="mb-0">
+            <span class="text-danger font-weight-bold">*</span> = required
+          </p>
           <div class="form-group">
             <ng-container>
               <label for="name" class="font-weight-bold">Name</label>
@@ -36,7 +39,9 @@
               </div>
             </ng-container>
             <ng-container>
-              <label for="username" class="font-weight-bold">Username</label>
+              <label for="username" class="font-weight-bold"
+                >Username&nbsp;<span class="text-danger">*</span></label
+              >
               <input
                 type="text"
                 class="form-control"
@@ -65,7 +70,9 @@
               </div>
             </ng-container>
             <ng-container>
-              <label for="password" class="font-weight-bold">Password</label>
+              <label for="password" class="font-weight-bold"
+                >Password&nbsp;<span class="text-danger">*</span></label
+              >
               <input
                 type="password"
                 class="form-control"
