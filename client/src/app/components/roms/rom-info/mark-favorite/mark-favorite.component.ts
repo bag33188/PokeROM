@@ -14,12 +14,10 @@ export class MarkFavoriteComponent implements OnInit {
   @Input() public isFavorite: boolean;
   @Input() private id: string;
   public faStar: IconDefinition;
-  public label: string;
 
   constructor(private romsService: RomsService) {}
 
   public ngOnInit(): void {
-    this.label = 'Mark as Favorite';
     this.faStar = faStar;
   }
 
