@@ -1,6 +1,4 @@
-div {
-  &[class~='.pt-4'] {
-    display: block;
-    margin: auto;
-  }
+#roms-pagination-container {
+  display: flex;
+  justify-content: center;
 }

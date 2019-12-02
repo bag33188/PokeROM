@@ -30,6 +30,6 @@ import { PipesModule } from '../../pipes/pipes.module';
     PipesModule
   ],
   providers: [AuthService, UserService],
-  exports: [BodyComponent, FooterComponent, HeaderComponent]
+  exports: [HeaderComponent, BodyComponent, FooterComponent]
 })
 export class LayoutModule {}

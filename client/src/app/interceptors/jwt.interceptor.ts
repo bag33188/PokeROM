@@ -10,8 +10,8 @@ import {
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { Injectable, InjectionToken } from '@angular/core';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../services/auth.service';
 import { JSONObject } from '../models/JSONObject';
 import { JSONArray } from '../interfaces/JSONArray';
@@ -54,3 +54,11 @@ export class JwtInterceptor implements HttpInterceptor {
     );
   }
 }
+
+export const jwtProvider: {
+  provide: InjectionToken<JSONObject>;
+  useValue: InjectionToken<JSONObject>;
+} = {
+  provide: JWT_OPTIONS,
+  useValue: JWT_OPTIONS
+};

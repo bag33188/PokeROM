@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center pt-4 pb-2">
+<div id="roms-pagination-container" class="pt-4 pb-2">
   <ngb-pagination
     aria-label="ROMs pagination"
     [directionLinks]="pageWidth > 600 && romsData.length > 0"
@@ -7,9 +7,9 @@
     [(page)]="currentPage"
     (pageChange)="onPageChange(currentPage)"
     [disabled]="romsData.length === 0"
-    [size]="changeSizeOfPagination()"
+    [boundaryLinks]="false"
+    size="-"
   >
-    <!-- [boundaryLinks]="pageWidth > 600 && romsData.length > 0" -->
     <ng-template *ngIf="pageWidth > 600" ngbPaginationPrevious
       >Prev</ng-template
     >

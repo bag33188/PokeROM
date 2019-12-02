@@ -36,13 +36,4 @@ export class RomsPaginationComponent implements OnInit {
     this.pageSize = this.itemsPerPage * (pageNum - 1);
     this.paginate.emit(this.pageSize);
   }
-
-  public changeSizeOfPagination(): 'sm' | 'lg' | '-' {
-    // if (this.pageWidth <= 339) {
-    //   return 'sm';
-    // } else {
-    //   return '-';
-    // }
-    return '-';
-  }
 }
