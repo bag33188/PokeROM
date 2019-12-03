@@ -107,7 +107,7 @@ function init() {
     Info.setHrWidth
     // addEventListener('resize', Info.setHrWidth)
   ];
-  methods.forEach(method => ready(method));
+  methods.forEach(method => $(document).ready(method));
 }
 
 init();

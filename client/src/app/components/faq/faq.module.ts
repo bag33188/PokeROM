@@ -10,7 +10,7 @@ import { FaqRoutingModule } from './faq-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DirectivesModule } from '../../directives/directives.module';
 import { PipesModule } from '../../pipes/pipes.module';
-import { MsgIconSvgComponent } from './disclaimer-toast/msg-icon-svg/msg-icon-svg.component';
+import { MsgIconSvgComponent } from './msg-icon-svg/msg-icon-svg.component';
 
 @NgModule({
   imports: [

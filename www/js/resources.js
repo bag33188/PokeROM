@@ -119,7 +119,7 @@ class Resources {
 
 function init() {
   const methods = [Resources.setNav, Resources.setResourcesList];
-  methods.forEach(method => ready(method));
+  methods.forEach(method => $(document).ready(method));
 }
 
 init();

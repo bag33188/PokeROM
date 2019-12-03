@@ -20,4 +20,4 @@ function insertIntro() {
   intro.appendChild(infoSpanEl);
 }
 
-ready(insertIntro);
+$(insertIntro);
