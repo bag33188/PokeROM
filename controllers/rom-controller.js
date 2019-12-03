@@ -433,6 +433,7 @@ module.exports.romsOptions = (req, res) => {
 
 module.exports.coreRoms = async (req, res) => {
   try {
+    clearCache(req);
     await Rom.postCore(coreRoms, req.user);
     const query = { user_id: req.user._id };
     const roms = await Rom.getAllRoms(query);
@@ -446,6 +447,7 @@ module.exports.coreRoms = async (req, res) => {
 
 module.exports.romHacks = async (req, res) => {
   try {
+    clearCache(req);
     await Rom.postHacks(romHacks, req.user);
     const query = { user_id: req.user._id };
     const roms = await Rom.getAllRoms(query);
