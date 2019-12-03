@@ -1,5 +1,3 @@
-'use strict';
-
 var $ = function(documentObject) {
   try {
     if (typeof documentObject === 'object') {
