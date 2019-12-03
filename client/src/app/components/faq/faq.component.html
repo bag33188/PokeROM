@@ -110,28 +110,29 @@
         </p>
       </div>
     </ng-container>
-    <ng-container>
-      <h2 class="mt-3">Personal Questions <sup>(About Pok&eacute;mon)</sup></h2>
+    <ng-container *ngIf="!environment.production">
+      <h2 class="mt-3" id="pq-heading">
+        Personal Questions <sup>(About Pok&eacute;mon)</sup>
+      </h2>
       <button
+        id="collapse-content-btn"
         type="button"
         class="mt-2 mb-2"
         appBtn
         btnType="primary"
         (click)="isCollapsed = !isCollapsed"
         [attr.aria-expanded]="!isCollapsed"
-        aria-controls="collapseContent"
+        aria-controls="collapse-content"
       >
         {{ isCollapsed ? 'Show' : 'Hide' }}&nbsp;PQ&#x27;s
       </button>
-      <div id="collapseContent" class="pt-2" [ngbCollapse]="isCollapsed">
+      <div id="collapse-content" class="pt-2" [ngbCollapse]="isCollapsed">
         <h3 class="question">What is your Favorite Pok&eacute;mon?</h3>
         <p class="answer">
           <b>{{ parseFavorites().pokemon[0] }}</b> and
           <b>{{ parseFavorites().pokemon[1] }}</b
-          >. But the whole
-          <b>{{ parseFavorites().pokemon[2].split('\u0020')[0] }}</b>
-          {{ parseFavorites().pokemon[2].split('\u0020')[1] }} is also really
-          cool.
+          >. But the whole <b>{{ parseFavorites().pokemon[2] }}</b> is also
+          really cool.
         </p>
         <h3 class="question">What are your favorite Pok&eacute;mon Games?</h3>
         <p class="answer">

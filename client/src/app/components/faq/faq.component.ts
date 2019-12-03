@@ -1,3 +1,4 @@
+/* tslint:disable:no-eval */
 import { Component, OnInit, HostListener, AfterViewInit } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -56,10 +57,10 @@ export class FaqComponent implements OnInit, AfterViewInit {
 
   public parseFavorites(): { [index: string]: string[] } {
     return {
-      pokemon: Favorites.POKEMON.split('\u002C\u0020'),
-      games: Favorites.GAMES.split('\u002C\u0020'),
-      regions: Favorites.REGIONS.split('\u002C\u0020'),
-      characters: Favorites.CHARACTERS.split('\u002C\u0020')
+      pokemon: eval(Favorites.POKEMON),
+      games: eval(Favorites.GAMES),
+      regions: eval(Favorites.REGIONS),
+      characters: eval(Favorites.CHARACTERS)
     };
   }
 }

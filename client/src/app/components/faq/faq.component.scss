@@ -34,3 +34,14 @@
     margin-bottom: 1rem;
   }
 }
+
+@media print {
+  faq-disclaimer-toast,
+  faq-browser-tabset,
+  #browser-compatibility + h2,
+  #collapse-content,
+  #collapse-content-btn,
+  #pq-heading {
+    display: none;
+  }
+}

@@ -1,8 +1,14 @@
 @import '../../../../assets/scss/variables';
 
-#cookies-alert {
+.cookies-alert {
   background-color: $warning-yellow-rgba !important;
   margin: 1rem 1rem 0;
   text-shadow: -1px -1px 0 $clear, 1px -1px 0 $clear, -1px 1px 0 $clear,
     1px 1px 0 $clear;
+}
+
+#cookies-alert-container {
+  @media print {
+    display: none;
+  }
 }
