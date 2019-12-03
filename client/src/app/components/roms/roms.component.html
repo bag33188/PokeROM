@@ -10,7 +10,6 @@
           ></div>
           <h1 id="roms-heading">ROMs</h1>
           <div
-            *ngIf="!isError"
             class="favorites-btn-container"
             [style.flexBasis.px]="!favoritesShown ? 132 : 89"
           >
@@ -20,6 +19,7 @@
               btnType="primary"
               (click)="getRoms(!favoritesShown)"
               id="favorites-btn"
+              [disabled]="isError"
             >
               {{ favoritesShown ? 'Show All' : 'Filter Favorites' }}
             </button>
