@@ -49,9 +49,9 @@ export const routes: Routes = [
   {
     path: 'natures',
     loadChildren: (): Promise<typeof NaturesModule | void> =>
-      import('./components/natures/natures.module').then(
-        (mod: naturesModule): typeof NaturesModule => mod.NaturesModule
-      )
+      import('./components/natures/natures.module')
+        .then((mod: naturesModule): typeof NaturesModule => mod.NaturesModule)
+        .catch((err: object): void => logger.error(err))
   },
   {
     path: 'faq',
