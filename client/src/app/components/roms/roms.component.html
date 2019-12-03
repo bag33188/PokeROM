@@ -1,64 +1,64 @@
 <ng-container>
   <spinners-gif-spinner [loading]="loading"></spinners-gif-spinner>
   <ng-container *ngIf="!loading">
-    <h2
-      *ngIf="romsData.length < 1 && !isError"
-      class="text-center"
-      id="no-roms-heading"
-    >
-      {{ noRomsMsg }}
-    </h2>
-    <div
-      class="mr-5 ml-5 text-center"
-      appAlert
-      alertType="danger"
-      id="roms-err"
-      *ngIf="isError"
-    >
-      Oops, there was an error while trying to load your ROMs. Please try again
-      later.
+    <div class="roms-flex-container">
+      <div class="mt-2 mb-0 roms-heading-container">
+        <div class="d-flex justify-content-between mt-2">
+          <div
+            class="dummy-container"
+            [style.flexBasis.px]="!favoritesShown ? 131.8 : 88.23"
+          ></div>
+          <h1 id="roms-heading">ROMs</h1>
+          <div
+            *ngIf="!isError"
+            class="favorites-btn-container"
+            [style.flexBasis.px]="!favoritesShown ? 132 : 89"
+          >
+            <button
+              type="button"
+              appBtn
+              btnType="primary"
+              (click)="getRoms(!favoritesShown)"
+              id="favorites-btn"
+            >
+              {{ favoritesShown ? 'Show All' : 'Filter Favorites' }}
+            </button>
+          </div>
+        </div>
+        <hr class="mt-0" />
+      </div>
+      <ng-container>
+        <h2
+          *ngIf="romsData.length < 1 && !isError"
+          class="text-center"
+          id="no-roms-heading"
+        >
+          {{ noRomsMsg }}
+        </h2>
+        <div
+          class="mr-5 ml-5 text-center"
+          appAlert
+          alertType="danger"
+          id="roms-err"
+          *ngIf="isError"
+        >
+          Oops, there was an error while trying to load your ROMs. Please try
+          again later.
+        </div>
+      </ng-container>
+      <div class="roms-grid-container" *ngIf="romsData.length > 0">
+        <roms-rom
+          *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
+          class="card card-container border rounded"
+          [rom]="rom"
+        ></roms-rom>
+      </div>
+      <roms-pagination
+        [romsData]="romsData"
+        [currentPage]="currentPage"
+        [itemsPerPage]="itemsPerPage"
+        (paginate)="onPageChange($event)"
+      ></roms-pagination>
     </div>
   </ng-container>
-  <div
-    class="roms-flex-container"
-    *ngIf="!loading && !isError && romsData.length > 0"
-  >
-    <div class="mt-2 mb-0 roms-heading-container">
-      <div class="d-flex justify-content-between mt-2">
-        <div
-          class="dummy-container"
-          [style.flexBasis.px]="!favoritesShown ? 131.8 : 88.23"
-        ></div>
-        <h1 id="roms-heading">ROMs</h1>
-        <div
-          class="favorites-btn-container"
-          [style.flexBasis.px]="!favoritesShown ? 132 : 89"
-        >
-          <button
-            type="button"
-            appBtn
-            btnType="primary"
-            (click)="getRoms(!favoritesShown)"
-            id="favorites-btn"
-          >
-            {{ favoritesShown ? 'Show All' : 'Filter Favorites' }}
-          </button>
-        </div>
-      </div>
-      <hr class="mt-0" />
-    </div>
-    <div class="roms-grid-container">
-      <roms-rom
-        *ngFor="let rom of romsData | slice: pageSize | slice: 0:itemsPerPage"
-        class="card card-container border rounded"
-        [rom]="rom"
-      ></roms-rom>
-    </div>
-    <roms-pagination
-      [romsData]="romsData"
-      [currentPage]="currentPage"
-      [itemsPerPage]="itemsPerPage"
-      (paginate)="onPageChange($event)"
-    ></roms-pagination>
-  </div>
 </ng-container>

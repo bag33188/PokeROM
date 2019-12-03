@@ -1,23 +1,28 @@
 var $ = function(documentObject) {
   try {
     if (typeof documentObject === 'object') {
-      var ready = function(callback) {
-        if (documentObject.readyState !== 'loading') {
-          callback();
-        } else if (
-          documentObject.addEventListener !== null &&
-          documentObject.addEventListener !== undefined
-        ) {
-          documentObject.addEventListener('DOMContentLoaded', callback, false);
-        } else {
-          documentObject.attachEvent('onreadystatechange', function() {
-            if (documentObject.readyState === 'complete') {
-              callback();
-            }
-          });
+      return {
+        ready: function(callback) {
+          if (documentObject.readyState !== 'loading') {
+            callback();
+          } else if (
+            documentObject.addEventListener !== null &&
+            documentObject.addEventListener !== undefined
+          ) {
+            documentObject.addEventListener(
+              'DOMContentLoaded',
+              callback,
+              false
+            );
+          } else {
+            documentObject.attachEvent('onreadystatechange', function() {
+              if (documentObject.readyState === 'complete') {
+                callback();
+              }
+            });
+          }
         }
       };
-      return { ready: ready };
     } else {
       (function ready(callback) {
         if (document.readyState !== 'loading') {
@@ -40,3 +45,18 @@ var $ = function(documentObject) {
     throw err;
   }
 };
+
+/*
+how to use
+----------
+
+method 1 (older browsers):
+$(document).ready(function() {
+  // code goes here
+});
+
+method 2 (modern browsers):
+$(function() {
+  // code goes here
+});
+*/
