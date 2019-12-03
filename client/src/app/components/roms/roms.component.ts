@@ -80,8 +80,4 @@ export class RomsComponent implements OnInit, OnDestroy {
     this.pageSize = paginateNum;
     this.viewportScroller.scrollToPosition([0, 0]);
   }
-
-  logPage(x) {
-    console.log(x);
-  }
 }
