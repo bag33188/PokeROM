@@ -1,7 +1,7 @@
 var $ = function(documentObject) {
   try {
     if (typeof documentObject === 'object') {
-      this.ready = function(callback) {
+      var ready = function(callback) {
         if (documentObject.readyState !== 'loading') {
           callback();
         } else if (
@@ -17,7 +17,7 @@ var $ = function(documentObject) {
           });
         }
       };
-      return this;
+      return { ready: ready };
     } else {
       (function ready(callback) {
         if (document.readyState !== 'loading') {
