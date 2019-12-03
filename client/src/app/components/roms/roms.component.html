@@ -19,7 +19,7 @@
               btnType="primary"
               (click)="getRoms(!favoritesShown)"
               id="favorites-btn"
-              [disabled]="isError || romsData.length < 1"
+              [disabled]="isError || (romsData.length < 1 && !favoritesShown)"
             >
               {{ favoritesShown ? 'Show All' : 'Filter Favorites' }}
             </button>
