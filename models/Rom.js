@@ -265,8 +265,6 @@ module.exports.postCore = (coreRoms, user, callback) => {
 };
 
 module.exports.postHacks = (romHacks, user, callback) => {
-  romHacks.forEach(romHack => {
-    romHack.user_id = user._id;
-  });
+  romHacks.forEach(romHack => (romHack.user_id = user._id));
   return Rom.insertMany(romHacks, callback);
 };
