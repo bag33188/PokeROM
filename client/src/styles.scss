@@ -62,12 +62,17 @@ button {
     &:not(.close),
     &:not([class^='carousel-control-']) {
       &:active,
-      &:focus {
-        box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba;
+      &:focus,
+      &:active:focus {
+        box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba !important;
         outline: none !important;
+      }
 
-        &[class*='btn-outline-'],
-        &[class~='page-link'] {
+      &[class*='btn-outline-'],
+      &[class~='page-link'] {
+        &:active,
+        &:focus,
+        &:active:focus {
           box-shadow: none !important;
           outline: none !important;
         }
