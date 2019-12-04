@@ -1,4 +1,4 @@
-import {  Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   FormGroup,
@@ -19,7 +19,7 @@ import { LoggerService as logger } from '../../services/logger.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit  {
+export class RegisterComponent implements OnInit {
   public loading: boolean;
   public registerFail: string;
   public registerForm: FormGroup = this.fb.group({
