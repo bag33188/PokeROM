@@ -196,8 +196,8 @@ module.exports.getAllRoms = (query, limit, callback) => {
   const sortingQuery = { order_number: 1 };
   // make sure to parse limit as integer
   return Rom.find(query, callback)
-    .limit(parseInt(limit))
-    .sort(sortingQuery);
+    .sort(sortingQuery)
+    .limit(parseInt(limit));
 };
 
 module.exports.getRomById = (id, callback) => {
