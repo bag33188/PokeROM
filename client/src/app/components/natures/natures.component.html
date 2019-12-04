@@ -3,34 +3,39 @@
   <div class="container mt-2" id="natures-container">
     <h1 class="mt-2">Natures</h1>
     <hr />
-    <div appAlert alertType="danger" [hidden]="!isError">
-      Oops, there was a problem while trying to load the natures.<br />Please
-      try again later.
-    </div>
-    <table
-      id="natures"
-      class="table table-striped border"
-      *ngIf="!loading && !isError"
-    >
-      <thead>
-        <tr>
-          <th *ngFor="let header of headers; let i = index">
-            <div class="header-icon-container">
-              <fa-icon [icon]="icons[i]"></fa-icon>
-            </div>
-            <span class="header-text">{{ header }}</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let nature of natures">
-          <td>{{ nature.name }}</td>
-          <td>{{ nature.up }}</td>
-          <td>{{ nature.down }}</td>
-          <td>{{ nature.flavor || 'N/A' }}</td>
-          <td>{{ nature.usage }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <ng-container *ngIf="!loading">
+      <div
+        appAlert
+        alertType="danger"
+        class="text-center"
+        *ngIf="isError; else naturesTable"
+      >
+        Oops, there was a problem while trying to load the natures.<br />Please
+        try again later.
+      </div>
+      <ng-template #naturesTable>
+        <table id="natures" class="table table-striped border">
+          <thead>
+            <tr>
+              <th *ngFor="let header of headers; let i = index">
+                <div class="header-icon-container">
+                  <fa-icon [icon]="icons[i]"></fa-icon>
+                </div>
+                <span class="header-text">{{ header }}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let nature of natures">
+              <td>{{ nature.name }}</td>
+              <td>{{ nature.up }}</td>
+              <td>{{ nature.down }}</td>
+              <td>{{ nature.flavor || 'N/A' }}</td>
+              <td>{{ nature.usage }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ng-container>
   </div>
 </ng-container>

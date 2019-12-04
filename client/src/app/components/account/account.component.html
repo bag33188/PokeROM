@@ -2,196 +2,202 @@
   <spinners-gif-spinner
     [loading]="!ready && !errLoadingUsr"
   ></spinners-gif-spinner>
-  <div class="container text-center mb-2" id="form-container">
-    <div appAlert alertType="danger" *ngIf="errLoadingUsr" class="mt-3">
-      There was an error while trying to load your user information. Please try
-      again later.
-    </div>
-    <form
-      *ngIf="ready && !errLoadingUsr"
-      (ngSubmit)="save()"
-      #accountForm="ngForm"
-      name="accountForm"
-      autocomplete="on"
-    >
-      <fieldset>
-        <legend class="pt-2 pb-2 text-center">Account</legend>
-        <div
-          class="alert-dismissible fade show text-left"
-          appAlert
-          alertType="info"
-          role="alert"
-          *ngIf="!noticeClosed"
-        >
-          If you do not enter a name, your name (<b>not</b>
-          your user) will be deleted from the database.
-          <button
-            type="button"
-            class="close"
-            data-dismiss="alert"
-            aria-label="Close"
-            (click)="storeAlertState()"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="border rounded" id="border-container">
-          <p class="mb-0">
-            <span class="text-danger font-weight-bold">*</span> = required
-          </p>
-          <div class="form-group">
-            <ng-container>
-              <label for="name" class="font-weight-bold">Name</label>
-              <input
-                placeholder="min: 1, max: 100 (optional)"
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                autocomplete="name"
-                minlength="1"
-                maxlength="100"
-                [(ngModel)]="user.name"
-                #name="ngModel"
-              />
-              <ng-container *ngIf="user.name !== null">
-                <div
-                  [hidden]="!(name.touched && name.invalid)"
-                  appAlert
-                  alertType="warning"
-                >
-                  <div [hidden]="!name.errors?.minlength">
-                    Name is too short (min: 1, current: {{ user.name.length }}).
-                  </div>
-                  <div [hidden]="!name.errors?.maxlength">
-                    Name is too long (max: 100, current:
-                    {{ user.name.length }}).
-                  </div>
-                </div>
-              </ng-container>
-            </ng-container>
-            <ng-container>
-              <label for="username" class="font-weight-bold pt-1"
-                >Username&nbsp;<span class="text-danger">*</span></label
-              >
-              <input
-                placeholder="min: 3, max: 22"
-                type="text"
-                class="form-control"
-                id="username"
-                name="username"
-                autocomplete="username"
-                minlength="3"
-                maxlength="22"
-                required
-                [(ngModel)]="user.username"
-                #username="ngModel"
-              />
-              <ng-container *ngIf="user.hasOwnProperty('username')">
-                <div
-                  [hidden]="!(username.touched && username.invalid)"
-                  appAlert
-                  alertType="warning"
-                >
-                  <div [hidden]="!username.errors?.minlength">
-                    Username is too short (min: 3, current:
-                    {{ user.username.length }}).
-                  </div>
-                  <div [hidden]="!username.errors?.maxlength">
-                    Username is too long (max: 22, current:
-                    {{ user.username.length }}).
-                  </div>
-                  <div [hidden]="!username.errors?.required">
-                    Username is required.
-                  </div>
-                </div>
-              </ng-container>
-            </ng-container>
-            <ng-container>
-              <label for="password" class="font-weight-bold"
-                >Password&nbsp;<span class="text-danger">*</span></label
-              >
-              <input
-                [type]="changePwInputType()"
-                placeholder="min: 6, max: 256"
-                class="form-control"
-                id="password"
-                name="password"
-                autocomplete="new-password"
-                minlength="6"
-                maxlength="256"
-                required
-                [(ngModel)]="user.password"
-                #password="ngModel"
-                (focus)="pwFocused = true"
-                (blur)="pwFocused = false"
-              />
-              <ng-container *ngIf="user.hasOwnProperty('password')">
-                <div
-                  [hidden]="!(password.touched && password.invalid)"
-                  appAlert
-                  alertType="warning"
-                >
-                  <div [hidden]="!password.errors?.minlength">
-                    Password is too short (min: 6, current:
-                    {{ user.password.length }}).
-                  </div>
-                  <div [hidden]="!password.errors?.maxlength">
-                    Password is too long (max: 256, current:
-                    {{ user.password.length }}).
-                  </div>
-                  <div [hidden]="!password.errors?.required">
-                    Password is required.
-                  </div>
-                </div>
-              </ng-container>
-            </ng-container>
-          </div>
-          <button
-            type="submit"
-            appBtn
-            btnType="success"
-            (click)="sanitizeData()"
-            [disabled]="
-              firedOff ||
-              !accountForm.valid ||
-              !(
-                this.user.username ||
-                this.user.username.length > 0 ||
-                this.user.password ||
-                this.user.password.length > 0 ||
-                this.user.name ||
-                this.user.name.length > 0
-              )
-            "
-          >
-            Save
-          </button>
-        </div>
-      </fieldset>
-      <div class="mt-2" *ngIf="updateFail" appAlert alertType="danger">
-        <ng-container *ngIf="userExists; else normalErrMsg">
-          The username you chose already belongs to another user.
-        </ng-container>
-        <ng-template #normalErrMsg>
-          There was an error while trying to update your account.<br />Please
-          try again later.
-        </ng-template>
-      </div>
-      <div class="mt-3 mb-3 font-weight-bold" appAlert alertType="warning">
-        <fa-icon [icon]="faExclamationTriangle" class="mr-1"></fa-icon>
-        Updating your user data will log you out.
-      </div>
-      <div class="mt-1" appAlert alertType="danger" *ngIf="isErrorDeleting">
-        Oops, looks like there was an error while trying to delete your user.<br />Please
+  <div class="container text-center mb-2" id="form-container" *ngIf="ready">
+    <ng-container *ngIf="errLoadingUsr; else account">
+      <h4 class="mt-1">Account</h4>
+      <div appAlert alertType="danger" class="mt-3">
+        There was an error while trying to load your user information. Please
         try again later.
       </div>
-      <div class="d-flex flex-column">
-        <account-update-roms></account-update-roms>
-        <account-delete-user-btn
-          (isError)="deletionError($event)"
-        ></account-delete-user-btn>
-      </div>
-    </form>
+    </ng-container>
+    <ng-template #account>
+      <form
+        *ngIf="!errLoadingUsr"
+        (ngSubmit)="save()"
+        #accountForm="ngForm"
+        name="accountForm"
+        autocomplete="on"
+      >
+        <fieldset>
+          <legend class="pt-2 pb-2 text-center">Account</legend>
+          <div
+            class="alert-dismissible fade show text-left"
+            appAlert
+            alertType="info"
+            role="alert"
+            *ngIf="!noticeClosed"
+          >
+            If you do not enter a name, your name (<b>not</b>
+            your user) will be deleted from the database.
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+              (click)="storeAlertState()"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="border rounded" id="border-container">
+            <p class="mb-0">
+              <span class="text-danger font-weight-bold">*</span> = required
+            </p>
+            <div class="form-group">
+              <ng-container>
+                <label for="name" class="font-weight-bold">Name</label>
+                <input
+                  placeholder="min: 1, max: 100 (optional)"
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  autocomplete="name"
+                  minlength="1"
+                  maxlength="100"
+                  [(ngModel)]="user.name"
+                  #name="ngModel"
+                />
+                <ng-container *ngIf="user.name !== null">
+                  <div
+                    [hidden]="!(name.touched && name.invalid)"
+                    appAlert
+                    alertType="warning"
+                  >
+                    <div [hidden]="!name.errors?.minlength">
+                      Name is too short (min: 1, current:
+                      {{ user.name.length }}).
+                    </div>
+                    <div [hidden]="!name.errors?.maxlength">
+                      Name is too long (max: 100, current:
+                      {{ user.name.length }}).
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <ng-container>
+                <label for="username" class="font-weight-bold pt-1"
+                  >Username&nbsp;<span class="text-danger">*</span></label
+                >
+                <input
+                  placeholder="min: 3, max: 22"
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  autocomplete="username"
+                  minlength="3"
+                  maxlength="22"
+                  required
+                  [(ngModel)]="user.username"
+                  #username="ngModel"
+                />
+                <ng-container *ngIf="user.hasOwnProperty('username')">
+                  <div
+                    [hidden]="!(username.touched && username.invalid)"
+                    appAlert
+                    alertType="warning"
+                  >
+                    <div [hidden]="!username.errors?.minlength">
+                      Username is too short (min: 3, current:
+                      {{ user.username.length }}).
+                    </div>
+                    <div [hidden]="!username.errors?.maxlength">
+                      Username is too long (max: 22, current:
+                      {{ user.username.length }}).
+                    </div>
+                    <div [hidden]="!username.errors?.required">
+                      Username is required.
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <ng-container>
+                <label for="password" class="font-weight-bold"
+                  >Password&nbsp;<span class="text-danger">*</span></label
+                >
+                <input
+                  [type]="changePwInputType()"
+                  placeholder="min: 6, max: 256"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  autocomplete="new-password"
+                  minlength="6"
+                  maxlength="256"
+                  required
+                  [(ngModel)]="user.password"
+                  #password="ngModel"
+                  (focus)="pwFocused = true"
+                  (blur)="pwFocused = false"
+                />
+                <ng-container *ngIf="user.hasOwnProperty('password')">
+                  <div
+                    [hidden]="!(password.touched && password.invalid)"
+                    appAlert
+                    alertType="warning"
+                  >
+                    <div [hidden]="!password.errors?.minlength">
+                      Password is too short (min: 6, current:
+                      {{ user.password.length }}).
+                    </div>
+                    <div [hidden]="!password.errors?.maxlength">
+                      Password is too long (max: 256, current:
+                      {{ user.password.length }}).
+                    </div>
+                    <div [hidden]="!password.errors?.required">
+                      Password is required.
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </div>
+            <button
+              type="submit"
+              appBtn
+              btnType="success"
+              (click)="sanitizeData()"
+              [disabled]="
+                firedOff ||
+                !accountForm.valid ||
+                !(
+                  this.user.username ||
+                  this.user.username.length > 0 ||
+                  this.user.password ||
+                  this.user.password.length > 0 ||
+                  this.user.name ||
+                  this.user.name.length > 0
+                )
+              "
+            >
+              Save
+            </button>
+          </div>
+        </fieldset>
+        <div class="mt-2" *ngIf="updateFail" appAlert alertType="danger">
+          <ng-container *ngIf="userExists; else normalErrMsg">
+            The username you chose already belongs to another user.
+          </ng-container>
+          <ng-template #normalErrMsg>
+            There was an error while trying to update your account.<br />Please
+            try again later.
+          </ng-template>
+        </div>
+        <div class="mt-3 mb-3 font-weight-bold" appAlert alertType="warning">
+          <fa-icon [icon]="faExclamationTriangle" class="mr-1"></fa-icon>
+          Updating your user data will log you out.
+        </div>
+        <div class="mt-1" appAlert alertType="danger" *ngIf="isErrorDeleting">
+          Oops, looks like there was an error while trying to delete your
+          user.<br />Please try again later.
+        </div>
+        <div class="d-flex flex-column">
+          <account-update-roms></account-update-roms>
+          <account-delete-user-btn
+            (isError)="deletionError($event)"
+          ></account-delete-user-btn>
+        </div>
+      </form>
+    </ng-template>
   </div>
 </ng-container>

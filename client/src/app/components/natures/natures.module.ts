@@ -5,13 +5,15 @@ import { NaturesRoutingModule } from './natures-routing.module';
 import { NaturesService } from '../../services/natures.service';
 import { SpinnerModule } from '../spinners/spinner.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
   imports: [
     CommonModule,
     NaturesRoutingModule,
     SpinnerModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DirectivesModule
   ],
   declarations: [NaturesComponent],
   providers: [NaturesService]
