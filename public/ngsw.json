@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1575483046358,
+  "timestamp": 1575483418501,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -218,8 +218,8 @@
     "/assets/icons/touch-icon-iphone-retina.png": "007f984e62944766c3a8b09e8491ae33c5cd388b",
     "/assets/images/background.png": "eae3c4ac133de0f0c381925494f41894847a2a0c",
     "/assets/images/carousel_bg.png": "f3b7e41e569f1d91136a607d9bbaabe194aea100",
-    "/assets/images/carousel_img_01.jpg": "2ee9e44682cfe9edcf2bc4165e535a3ea4e0346a",
-    "/assets/images/carousel_img_02.jpg": "39d5606bcd9d537c811a0fac89c5cccc53a9cf86",
+    "/assets/images/carousel_img_01.jpg": "d433636454ae2ffbac418d5a1ddd1729ea59bbb5",
+    "/assets/images/carousel_img_02.jpg": "a23f32c18e7d3d1bb81f5d00af7b0a7a09879b67",
     "/assets/images/carousel_img_03.jpg": "cf60c6738215eca5ddfe4d95885141e8b37a4c93",
     "/assets/images/carousel_img_04.jpg": "d2bf966ad6f7f31c20465efc59d5ed67fba9197d",
     "/assets/images/logo.png": "a950589cdc5106d3609ff5052144517325a4bced",
