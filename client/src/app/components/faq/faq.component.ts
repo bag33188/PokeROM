@@ -9,6 +9,13 @@ import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
 import { ApiVersion } from '../../models/ApiVersion';
 
+interface PkmnFavorites {
+  pokemon: string[];
+  games: string[];
+  regions: string[];
+  characters: string[];
+}
+
 @Component({
   selector: 'faq',
   templateUrl: './faq.component.html',
@@ -55,7 +62,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
     this.onHashChange();
   }
 
-  public parseFavorites(): { [index: string]: string[] } {
+  public parseFavorites(): PkmnFavorites {
     return {
       pokemon: eval(Favorites.POKEMON),
       games: eval(Favorites.GAMES),
