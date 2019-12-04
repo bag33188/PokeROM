@@ -4,7 +4,7 @@ const getApiVersion = Symbol('getApiVersion');
 
 class Info {
   constructor() {
-    throw new Error('Info class is not meant to be instantiated.');
+    console.error('Info class is not meant to be instantiated.');
   }
 
   static setCurrentYear() {

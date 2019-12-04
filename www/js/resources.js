@@ -4,7 +4,7 @@ const getApiVersion = Symbol('getApiVersion');
 
 class Resources {
   constructor() {
-    throw new Error('Resources class is not meant to be instantiated.');
+    console.error('Resources class is not meant to be instantiated.');
   }
 
   static setResourcesList() {

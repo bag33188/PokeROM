@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 
 function setDate(offset) {
   if (typeof offset !== 'number') {
-    throw new Error('The offset argument must be a number.');
+    console.error('The offset argument must be a number.');
+  } else {
+    const now = new Date();
+    now.setHours(now.getHours() - offset);
+    return now;
   }
-  const now = new Date();
-  now.setHours(now.getHours() - offset);
-  return now;
 }
 
 const Schema = mongoose.Schema;
