@@ -23,7 +23,7 @@
                 name="name"
                 formControlName="name"
                 autocomplete="name"
-                placeholder="Optional"
+                placeholder="min: 1, max: 100"
               />
               <div
                 [hidden]="!(Name.touched && Name.invalid)"
@@ -49,7 +49,7 @@
                 name="username"
                 formControlName="username"
                 autocomplete="username"
-                placeholder="Required"
+                placeholder="min: 3, max: 22"
               />
               <div
                 [hidden]="!(Username.touched && Username.invalid)"
@@ -80,7 +80,7 @@
                 name="password"
                 formControlName="password"
                 autocomplete="new-password"
-                placeholder="Required"
+                placeholder="min: 6, max: 256"
               />
               <div
                 [hidden]="!(Password.touched && Password.invalid)"
