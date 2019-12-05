@@ -148,6 +148,10 @@
         $async_script_tag = $async_script_tag[0];
         // get rid of async script tag
         $this->contents = str_replace($async_script_tag, "", $this->contents);
+        // fix html casing
+        $this->contents = preg_replace("/(<h1)/", "<H1", $this->contents, 1);
+        $this->contents = preg_replace("/(\/h1>)/", "/H1>", $this->contents, 1);
+        $this->contents = preg_replace("/(<br(?:\s?)\/>)/", "<BR />", $this->contents, 1);
         // create file lines var by splitting contents by newline char
         $file_lines = explode("\n", $this->contents);
         // output array var with all matching script tags (according to regexp)
