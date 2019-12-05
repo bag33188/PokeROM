@@ -84,14 +84,6 @@
       </div>
     </ng-container>
     <ng-container>
-      <div
-        [style.height.rem]="showDummy ? 3.8 : 0"
-        id="browser-compatibility"
-      ></div>
-      <h2>Browser Compatibility</h2>
-      <faq-browser-tabset></faq-browser-tabset>
-    </ng-container>
-    <ng-container>
       <h2 class="mt-3">Tooling</h2>
       <div>
         <h3 class="question">
@@ -109,6 +101,14 @@
           >.
         </p>
       </div>
+    </ng-container>
+    <ng-container>
+      <div
+        [style.height.rem]="showDummy ? 3.8 : 0"
+        id="browser-compatibility"
+      ></div>
+      <h2>Browser Compatibility</h2>
+      <faq-browser-tabset></faq-browser-tabset>
     </ng-container>
     <ng-container *ngIf="!environment.production">
       <h2 class="mt-3" id="pq-heading">
