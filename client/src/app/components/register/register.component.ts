@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
       username: this.Username.value,
       password: this.Password.value
     };
-    if (/(?:([<>/\\'"&]))/g.test(user.username)) {
+    if (/([<>/\\'"&])/g.test(user.username)) {
       this.registerFail =
         'Username can only contain letters, numbers, or underscores.';
     } else {
