@@ -34,7 +34,7 @@
               class="close"
               data-dismiss="alert"
               aria-label="Close"
-              (click)="storeAlertState()"
+              (click)="storeAlertState('notice')"
             >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -189,9 +189,24 @@
             try again later.
           </ng-template>
         </div>
-        <div class="mt-3 mb-3 font-weight-bold" appAlert alertType="warning">
-          <fa-icon [icon]="faExclamationTriangle" class="mr-1"></fa-icon>
-          Updating your user data will log you out.
+        <div class="mt-3 mb-3">
+          <div
+            class="font-weight-bold alert-dismissible show fade p-2"
+            appAlert
+            alertType="warning"
+            *ngIf="!warningClosed"
+          >
+            <fa-icon [icon]="faExclamationTriangle" class="mr-1"></fa-icon>
+            Updating your user data will log you out.
+            <button
+              type="button"
+              class="close p-2"
+              data-dismiss="alert"
+              (click)="storeAlertState('warning')"
+            >
+              &times;
+            </button>
+          </div>
         </div>
         <div class="mt-1" appAlert alertType="danger" *ngIf="isErrorDeleting">
           Oops, looks like there was an error while trying to delete your

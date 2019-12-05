@@ -31,6 +31,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   public isErrorDeleting: boolean;
   public firedOff: boolean;
   public noticeClosed: boolean;
+  public warningClosed: boolean;
   private userObs$: Observable<User>;
   private userSub: Subscription;
   public lengths: Lengths = lengths;
@@ -54,7 +55,11 @@ export class AccountComponent implements OnInit, OnDestroy {
     if (!localStorage.getItem('noticeClosed')) {
       localStorage.setItem('noticeClosed', 'false');
     }
+    if (!sessionStorage.getItem('warningClosed')) {
+      sessionStorage.setItem('warningClosed', 'false');
+    }
     this.noticeClosed = JSON.parse(localStorage.getItem('noticeClosed'));
+    this.warningClosed = JSON.parse(sessionStorage.getItem('warningClosed'));
   }
 
   public ngOnDestroy(): void {
@@ -116,8 +121,18 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.isErrorDeleting = isError;
   }
 
-  public storeAlertState(): void {
-    localStorage.setItem('noticeClosed', 'true');
+  public storeAlertState(alertName: string): void {
+    switch (alertName) {
+      case 'notice':
+        localStorage.setItem('noticeClosed', 'true');
+        break;
+      case 'warning':
+        sessionStorage.setItem('warningClosed', 'true');
+        break;
+      default:
+        logger.error('Unknown alert name.');
+        break;
+    }
   }
 
   private updateUser(userId: string, user: User, keys: string[]): void {
