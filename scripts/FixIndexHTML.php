@@ -34,6 +34,7 @@
 
     // create constant regular expression for detecting the script tags.
     const SCRIPT_TAG_REGEXP = "/((?:\x{003C}script src=\")(?:(?:runtime|polyfills(?:-es5)?|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js\")(?:(?:\stype=\"module\")?(?:\snomodule)?(?:\sdefer)?)(?:\x{003E}\x{003C}\/script\x{003E}))/";
+    const ASYNC_SCRIPT_TAG_REGEXP = "/((?:[\t\s]+)<script(?:[\t\s]+)type=[\"']text\/javascript[\"'](?:[\t\s]+)async(?:[\t\s]+)?>(?:\n+)?(?:[\t\s]+)?window\.Popper(?:[\t\s]+)?=(?:[\t\s]+)?\{(?:[\t\s]+)?\};?(?:\n+)?(?:[\t\s]+)?<\/script>)/";
 
     /**
      * FixIndexHTML constructor.
@@ -141,6 +142,12 @@
       try {
         // open file for writing
         $file = fopen($this->filepath, "w");
+        // cache async script tag
+        preg_match(self::ASYNC_SCRIPT_TAG_REGEXP, $this->contents, $async_script_tag);
+        // set var as first index in array
+        $async_script_tag = $async_script_tag[0];
+        // get rid of async script tag
+        $this->contents = str_replace($async_script_tag, "", $this->contents);
         // create file lines var by splitting contents by newline char
         $file_lines = explode("\n", $this->contents);
         // output array var with all matching script tags (according to regexp)
@@ -154,11 +161,11 @@
           // if the link tag and the closing head tag on the same line
           if ((strpos($line, ".css\">") !== false || strpos($line, "<link rel=\"stylesheet\" href=\"styles.") !== false) && strpos($line, "</head>") !== false) {
             $updated_link_el_attrs = str_replace("rel=\"stylesheet\"", "rel=\"stylesheet\" type=\"text/css\"", $line);
-            $updated_head_tags = str_replace(".css\"></head>", ".css\" />\n \n<!--[if !IE]><!-->\n" . $this->new_script_tags . "\n<!--<![endif]-->\n</head>", $updated_link_el_attrs);
+            $updated_head_tags = str_replace(".css\"></head>", ".css\" />\n \n<!--[if !IE]><!-->\n" . $async_script_tag . "\n" . $this->new_script_tags . "\n<!--<![endif]-->\n</head>", $updated_link_el_attrs);
             fwrite($file, $updated_head_tags . "\n");
             // if the link tag is not on the same line as the head tag
           } elseif (strpos($line, "</head>") !== false && (strpos($line, ".css\">") === false || strpos($line, "<link rel=\"stylesheet\" href=\"styles.") === false)) {
-            fwrite($file, str_replace("</head>", $this->new_script_tags . "\n</head>", $line) . "\n");
+            fwrite($file, str_replace("</head>", $async_script_tag . "\n" . $this->new_script_tags . "\n</head>", $line) . "\n");
             // if the head tag is not on the same line as the link tag (different condition)
           } elseif ((strpos($line, ".css\">") !== false || strpos($line, "<link rel=\"stylesheet\" href=\"styles.") !== false) and strpos($line, "</head>") === false) {
             $updated_link_el_attrs = str_replace("rel=\"stylesheet\"", "rel=\"stylesheet\" type=\"text/css\"", $line);
