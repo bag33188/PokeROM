@@ -46,6 +46,7 @@ export class RomsComponent implements OnInit, OnDestroy {
     RomsComponent.setPaginationState();
     if (document.readyState !== 'complete') {
       this.onPageChange([0, 1]);
+      RomsComponent.setPaginationState([0, 1, false]);
     }
     const favoritesState: boolean = RomsComponent.getPaginationState()[2];
     this.getRoms(favoritesState);
