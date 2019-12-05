@@ -17,7 +17,7 @@
               type="button"
               appBtn
               btnType="primary"
-              (click)="getRoms(!favoritesShown)"
+              (click)="getRoms(!favoritesShown); onPageChange([0, 1])"
               id="favorites-btn"
               [disabled]="isError || (romsData.length < 1 && !favoritesShown)"
             >

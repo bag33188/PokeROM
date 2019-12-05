@@ -18,7 +18,9 @@ export class RomsPaginationComponent implements OnInit {
   @Input() public currentPage: number;
   @Input() private pageSize: number;
   @Input() public itemsPerPage: number;
-  @Output() public paginate: EventEmitter<number> = new EventEmitter<number>();
+  @Output() public paginate: EventEmitter<[number, number]> = new EventEmitter<
+    [number, number]
+  >();
   public pageWidth: number;
 
   @HostListener('window:resize')
@@ -34,6 +36,6 @@ export class RomsPaginationComponent implements OnInit {
 
   public onPageChange(pageNum: number): void {
     this.pageSize = this.itemsPerPage * (pageNum - 1);
-    this.paginate.emit(this.pageSize);
+    this.paginate.emit([this.pageSize, this.currentPage]);
   }
 }

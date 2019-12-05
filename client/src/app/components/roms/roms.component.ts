@@ -24,15 +24,29 @@ export class RomsComponent implements OnInit, OnDestroy {
   private romsObs$: Observable<Rom[]>;
   private romsSub: Subscription;
   public favoritesShown: boolean;
-
+  private static setPaginationState(state?: [number, number, boolean]): void {
+    if (!localStorage.getItem('paginationState') && !state) {
+      localStorage.setItem('paginationState', JSON.stringify([0, 1, false]));
+    }
+    if (state) {
+      localStorage.setItem('paginationState', JSON.stringify(state));
+    }
+  }
+  private static getPaginationState(): [number, number, boolean] {
+    return JSON.parse(localStorage.getItem('paginationState'));
+  }
   constructor(
     private romsService: RomsService,
     private viewportScroller: ViewportScroller
   ) {}
 
   public ngOnInit(): void {
-    this.getRoms();
-    this.favoritesShown = false;
+    RomsComponent.setPaginationState();
+    if (document.readyState !== 'complete') {
+      this.onPageChange([0, 1]);
+    }
+    this.getRoms(RomsComponent.getPaginationState()[2]);
+    this.favoritesShown = RomsComponent.getPaginationState()[2] || false;
   }
 
   public ngOnDestroy(): void {
@@ -41,9 +55,7 @@ export class RomsComponent implements OnInit, OnDestroy {
 
   public getRoms(getFavorites?: boolean): void {
     if (getFavorites !== null && getFavorites !== undefined) {
-      this.currentPage = 1;
-      this.onPageChange(0);
-      this.favoritesShown = !this.favoritesShown;
+      this.favoritesShown = !RomsComponent.getPaginationState()[2];
       this.romsData = [];
       this.loading = true;
     }
@@ -72,12 +84,22 @@ export class RomsComponent implements OnInit, OnDestroy {
         this.loading = false;
         this.noRomsMsg = '';
         logger.error(err);
+      },
+      () => {
+        this.pageSize = RomsComponent.getPaginationState()[0];
+        this.currentPage = RomsComponent.getPaginationState()[1];
       }
     );
   }
 
-  public onPageChange(paginateNum: number): void {
-    this.pageSize = paginateNum;
+  public onPageChange(paginateNums: [number, number]): void {
+    this.pageSize = paginateNums[0];
+    this.currentPage = paginateNums[1];
+    RomsComponent.setPaginationState([
+      this.pageSize,
+      this.currentPage,
+      this.favoritesShown
+    ]);
     this.viewportScroller.scrollToPosition([0, 0]);
   }
 }
