@@ -2,10 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { RomsService } from '../../services/roms.service';
 import { Rom } from '../../models/Rom';
-import he from 'he';
 import { JSONObject } from '../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
+import he from 'he';
+
+type paginationState = [number, number, boolean];
 
 @Component({
   selector: 'roms',
@@ -24,15 +26,15 @@ export class RomsComponent implements OnInit, OnDestroy {
   private romsObs$: Observable<Rom[]>;
   private romsSub: Subscription;
   public favoritesShown: boolean;
-  private static setPaginationState(state?: [number, number, boolean]): void {
+  private static setPaginationState(state?: paginationState): void {
     if (!localStorage.getItem('paginationState') && !state) {
       localStorage.setItem('paginationState', JSON.stringify([0, 1, false]));
     }
-    if (state) {
+    if (state !== null && state !== undefined) {
       localStorage.setItem('paginationState', JSON.stringify(state));
     }
   }
-  private static getPaginationState(): [number, number, boolean] {
+  private static getPaginationState(): paginationState {
     return JSON.parse(localStorage.getItem('paginationState'));
   }
   constructor(
@@ -45,8 +47,9 @@ export class RomsComponent implements OnInit, OnDestroy {
     if (document.readyState !== 'complete') {
       this.onPageChange([0, 1]);
     }
-    this.getRoms(RomsComponent.getPaginationState()[2]);
-    this.favoritesShown = RomsComponent.getPaginationState()[2] || false;
+    const favoritesState: boolean = RomsComponent.getPaginationState()[2];
+    this.getRoms(favoritesState);
+    this.favoritesShown = favoritesState || false;
   }
 
   public ngOnDestroy(): void {
@@ -60,7 +63,7 @@ export class RomsComponent implements OnInit, OnDestroy {
       this.loading = true;
     }
     this.romsObs$ = this.romsService.getAllRoms({
-      // limit: this.limit,
+      limit: getFavorites === true ? null : this.limit,
       favorites: getFavorites
     });
     this.romsSub = this.romsObs$.subscribe(
