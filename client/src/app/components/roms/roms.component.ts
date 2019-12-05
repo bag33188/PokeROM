@@ -46,13 +46,6 @@ export class RomsComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    const actions: PartialObserver<RouterEvent> = {
-      complete: () => {
-        const favoritesState: boolean = RomsComponent.getPaginationState()[2];
-        this.getRoms(favoritesState);
-        this.favoritesShown = favoritesState || false;
-      }
-    };
     RomsComponent.setPaginationState();
     this.router.events
       .pipe(
@@ -66,7 +59,11 @@ export class RomsComponent implements OnInit, OnDestroy {
           }
         })
       )
-      .subscribe(actions);
+      .subscribe((): void => {
+        const favoritesState: boolean = RomsComponent.getPaginationState()[2];
+        this.getRoms(favoritesState);
+        this.favoritesShown = favoritesState || false;
+      });
   }
 
   public ngOnDestroy(): void {
