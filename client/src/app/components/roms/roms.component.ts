@@ -3,11 +3,9 @@ import { ViewportScroller } from '@angular/common';
 import { RomsService } from '../../services/roms.service';
 import { Rom } from '../../models/Rom';
 import { JSONObject } from '../../models/JSONObject';
-import { Observable, PartialObserver, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
 import he from 'he';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
-import { tap } from 'rxjs/operators';
 
 type paginationState = [number, number, boolean];
 
@@ -41,29 +39,18 @@ export class RomsComponent implements OnInit, OnDestroy {
   }
   constructor(
     private romsService: RomsService,
-    private viewportScroller: ViewportScroller,
-    private router: Router
+    private viewportScroller: ViewportScroller
   ) {}
 
   public ngOnInit(): void {
     RomsComponent.setPaginationState();
-    this.router.events
-      .pipe(
-        tap((event: RouterEvent): void => {
-          if (
-            event instanceof NavigationEnd ||
-            document.readyState !== 'complete'
-          ) {
-            this.onPageChange([0, 1]);
-            RomsComponent.setPaginationState([0, 1, false]);
-          }
-        })
-      )
-      .subscribe((): void => {
-        const favoritesState: boolean = RomsComponent.getPaginationState()[2];
-        this.getRoms(favoritesState);
-        this.favoritesShown = favoritesState || false;
-      });
+    if (document.readyState !== 'complete') {
+      this.onPageChange([0, 1]);
+      RomsComponent.setPaginationState([0, 1, false]);
+    }
+    const favoritesState: boolean = RomsComponent.getPaginationState()[2];
+    this.getRoms(favoritesState);
+    this.favoritesShown = favoritesState || false;
   }
 
   public ngOnDestroy(): void {
