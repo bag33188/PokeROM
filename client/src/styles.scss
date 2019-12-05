@@ -69,7 +69,8 @@ button {
       }
 
       &[class*='btn-outline-'],
-      &[class~='page-link'] {
+      &[class~='page-link'],
+      &[class~='btn-link'] {
         &:active,
         &:focus,
         &:active:focus { // sass-lint:disable-line force-pseudo-nesting
