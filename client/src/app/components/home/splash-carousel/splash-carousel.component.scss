@@ -30,3 +30,10 @@ img {
     height: unquote('#{$calc-body-height}');
   }
 }
+
+ngb-carousel,
+ngb-carousel * {
+  &:focus {
+    outline: none !important;
+  }
+}

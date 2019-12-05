@@ -82,6 +82,13 @@ button {
   }
 }
 
+.carousel-inner,
+.carousel-inner * {
+  &:focus {
+    outline: none !important;
+  }
+}
+
 // alter highlight/text-select color
 
 // webkit browsers
