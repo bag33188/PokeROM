@@ -6,6 +6,13 @@ import { JSONObject } from '../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
 import he from 'he';
+import {
+  NavigationEnd,
+  Router,
+  RouterEvent,
+  RoutesRecognized
+} from '@angular/router';
+import { filter, take } from 'rxjs/operators';
 
 type paginationState = [number, number, boolean];
 
@@ -38,9 +45,19 @@ export class RomsComponent implements OnInit, OnDestroy {
     return JSON.parse(localStorage.getItem('paginationState'));
   }
   constructor(
+    private router: Router,
     private romsService: RomsService,
     private viewportScroller: ViewportScroller
-  ) {}
+  ) {
+    this.router.events.subscribe((event: RouterEvent) => {
+      if (event instanceof RoutesRecognized || event instanceof NavigationEnd) {
+        if (event.url === '/roms') {
+          this.onPageChange([0, 1]);
+          RomsComponent.setPaginationState([0, 1, false]);
+        }
+      }
+    });
+  }
 
   public ngOnInit(): void {
     RomsComponent.setPaginationState();
