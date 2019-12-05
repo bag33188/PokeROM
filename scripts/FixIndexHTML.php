@@ -32,7 +32,7 @@
      */
     protected $contents = NULL;
 
-    // create constant regular expression for detecting the script tags.
+    // create regular expression constants for detecting the script tags.
     const SCRIPT_TAG_REGEXP = "/((?:\x{003C}script src=\")(?:(?:runtime|polyfills(?:-es5)?|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js\")(?:(?:\stype=\"module\")?(?:\snomodule)?(?:\sdefer)?)(?:\x{003E}\x{003C}\/script\x{003E}))/";
     const ASYNC_SCRIPT_TAG_REGEXP = "/((?:[\t\s]+)<script(?:[\t\s]+)type=[\"']text\/javascript[\"'](?:[\t\s]+)async(?:[\t\s]+)?>(?:\n+)?(?:[\t\s]+)?window\.Popper(?:[\t\s]+)?=(?:[\t\s]+)?\{(?:[\t\s]+)?\};?(?:\n+)?(?:[\t\s]+)?<\/script>)/";
 
