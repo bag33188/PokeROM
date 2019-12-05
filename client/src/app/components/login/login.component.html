@@ -30,11 +30,11 @@
                   Username is required.
                 </div>
                 <div [hidden]="!Username.errors?.minlength">
-                  Username is too short (min: 3, current:
-                  {{ Username.value.length }}).
+                  Username is too short (min: {{ lengths.username[0] }},
+                  current: {{ Username.value.length }}).
                 </div>
                 <div [hidden]="!Username.errors?.maxlength">
-                  Username is too long (max: 22, current:
+                  Username is too long (max: {{ lengths.username[1] }}, current:
                   {{ Username.value.length }}).
                 </div>
               </div>
@@ -58,11 +58,11 @@
                   Password is required.
                 </div>
                 <div [hidden]="!Password.errors?.minlength">
-                  Password is too short (min: 6, current:
-                  {{ Password.value.length }}).
+                  Password is too short (min: {{ lengths.password[0] }},
+                  current: {{ Password.value.length }}).
                 </div>
                 <div [hidden]="!Password.errors?.maxlength">
-                  Password is too long (max: 256, current:
+                  Password is too long (max: {{ lengths.password[1] }}, current:
                   {{ Password.value.length }}).
                 </div>
               </div>

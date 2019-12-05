@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../../models/User';
-import { UserService } from '../../services/user.service';
+import { UserService, lengths, Lengths } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import {
@@ -33,6 +33,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   public noticeClosed: boolean;
   private userObs$: Observable<User>;
   private userSub: Subscription;
+  public lengths: Lengths = lengths;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;

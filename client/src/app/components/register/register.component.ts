@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/User';
-import { UserService } from '../../services/user.service';
+import { Lengths, lengths, UserService } from '../../services/user.service';
 import sanitizeXSS from '../../helpers/sanitize-xss';
 import removeStringChars from '../../helpers/remove-string-chars';
 import { JSONObject } from '../../models/JSONObject';
@@ -20,17 +20,32 @@ import { LoggerService as logger } from '../../services/logger.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  public lengths: Lengths = lengths;
   public loading: boolean;
   public registerFail: string;
   public registerForm: FormGroup = this.fb.group({
-    name: ['', [Validators.minLength(1), Validators.maxLength(100)]],
+    name: [
+      '',
+      [
+        Validators.minLength(this.lengths.name[0]),
+        Validators.maxLength(this.lengths.name[1])
+      ]
+    ],
     username: [
       '',
-      [Validators.required, Validators.minLength(3), Validators.maxLength(22)]
+      [
+        Validators.required,
+        Validators.minLength(this.lengths.username[0]),
+        Validators.maxLength(this.lengths.username[1])
+      ]
     ],
     password: [
       '',
-      [Validators.required, Validators.minLength(6), Validators.maxLength(256)]
+      [
+        Validators.required,
+        Validators.minLength(this.lengths.password[0]),
+        Validators.maxLength(this.lengths.password[1])
+      ]
     ]
   });
   public firedOff: boolean;

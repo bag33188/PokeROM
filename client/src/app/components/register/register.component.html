@@ -23,7 +23,9 @@
                 name="name"
                 formControlName="name"
                 autocomplete="name"
-                placeholder="min: 1, max: 100"
+                placeholder="min: {{ lengths.name[0] }}, max: {{
+                  lengths.name[1]
+                }}"
               />
               <div
                 [hidden]="!(Name.touched && Name.invalid)"
@@ -31,10 +33,12 @@
                 alertType="warning"
               >
                 <div [hidden]="!Name.errors?.minlength">
-                  Name is too short (min: 1, current: {{ Name.value.length }}).
+                  Name is too short (min: {{ lengths.name[0] }}, current:
+                  {{ Name.value.length }}).
                 </div>
                 <div [hidden]="!Name.errors?.maxlength">
-                  Name is too long (max: 100, current: {{ Name.value.length }}).
+                  Name is too long (max: {{ lengths.name[1] }}, current:
+                  {{ Name.value.length }}).
                 </div>
               </div>
             </ng-container>
@@ -49,7 +53,9 @@
                 name="username"
                 formControlName="username"
                 autocomplete="username"
-                placeholder="min: 3, max: 22"
+                placeholder="min: {{ lengths.username[0] }}, max: {{
+                  lengths.username[1]
+                }}"
               />
               <div
                 [hidden]="!(Username.touched && Username.invalid)"
@@ -60,11 +66,11 @@
                   Username is required.
                 </div>
                 <div [hidden]="!Username.errors?.minlength">
-                  Username is too short (min: 3, current:
-                  {{ Username.value.length }}).
+                  Username is too short (min: {{ lengths.username[0] }},
+                  current: {{ Username.value.length }}).
                 </div>
                 <div [hidden]="!Username.errors?.maxlength">
-                  Username is too long (max: 22, current:
+                  Username is too long (max: {{ lengths.username[1] }}, current:
                   {{ Username.value.length }}).
                 </div>
               </div>
@@ -80,7 +86,9 @@
                 name="password"
                 formControlName="password"
                 autocomplete="new-password"
-                placeholder="min: 6, max: 256"
+                placeholder="min: {{ lengths.password[0] }}, max: {{
+                  lengths.password[1]
+                }}"
               />
               <div
                 [hidden]="!(Password.touched && Password.invalid)"
@@ -91,11 +99,11 @@
                   Password is required.
                 </div>
                 <div [hidden]="!Password.errors?.minlength">
-                  Password is too short (min: 8, current:
-                  {{ Password.value.length }}).
+                  Password is too short (min: {{ lengths.password[0] }},
+                  current: {{ Password.value.length }}).
                 </div>
                 <div [hidden]="!Password.errors?.maxlength">
-                  Password is too long (max: 256, current:
+                  Password is too long (max: {{ lengths.password[1] }}, current:
                   {{ Password.value.length }}).
                 </div>
               </div>

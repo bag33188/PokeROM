@@ -13,6 +13,7 @@ import sanitizeXSS from '../../helpers/sanitize-xss';
 import removeStringChars from '../../helpers/remove-string-chars';
 import { JSONObject } from '../../models/JSONObject';
 import { LoggerService as logger } from '../../services/logger.service';
+import { Lengths, lengths } from '../../services/user.service';
 
 @Component({
   selector: 'login',
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
     ])
   });
   public firedOff: boolean;
+  public lengths: Lengths = lengths;
 
   get Username(): AbstractControl {
     return this.loginForm.get('username');

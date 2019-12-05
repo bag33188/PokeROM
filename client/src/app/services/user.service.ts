@@ -51,3 +51,15 @@ export class UserService {
     return this.http.patch<User>(url, user, { headers });
   }
 }
+
+export interface Lengths {
+  name: number[];
+  username: number[];
+  password: number[];
+}
+
+export const lengths: Lengths = {
+  name: [1, 100],
+  username: [3, 22],
+  password: [6, 256]
+};

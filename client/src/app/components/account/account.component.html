@@ -47,7 +47,9 @@
               <ng-container>
                 <label for="name" class="font-weight-bold">Name</label>
                 <input
-                  placeholder="min: 1, max: 100 (optional)"
+                  placeholder="min: {{ lengths.name[0] }}, max: {{
+                    lengths.name[1]
+                  }} (optional)"
                   type="text"
                   class="form-control"
                   id="name"
@@ -65,11 +67,11 @@
                     alertType="warning"
                   >
                     <div [hidden]="!name.errors?.minlength">
-                      Name is too short (min: 1, current:
+                      Name is too short (min: {{ lengths.name[0] }}, current:
                       {{ user.name.length }}).
                     </div>
                     <div [hidden]="!name.errors?.maxlength">
-                      Name is too long (max: 100, current:
+                      Name is too long (max: {{ lengths.name[1] }}, current:
                       {{ user.name.length }}).
                     </div>
                   </div>
@@ -80,7 +82,9 @@
                   >Username&nbsp;<span class="text-danger">*</span></label
                 >
                 <input
-                  placeholder="min: 3, max: 22"
+                  placeholder="min: {{ lengths.username[0] }}, max: {{
+                    lengths.username[1]
+                  }}"
                   type="text"
                   class="form-control"
                   id="username"
@@ -99,12 +103,12 @@
                     alertType="warning"
                   >
                     <div [hidden]="!username.errors?.minlength">
-                      Username is too short (min: 3, current:
-                      {{ user.username.length }}).
+                      Username is too short (min: {{ lengths.username[0] }},
+                      current: {{ user.username.length }}).
                     </div>
                     <div [hidden]="!username.errors?.maxlength">
-                      Username is too long (max: 22, current:
-                      {{ user.username.length }}).
+                      Username is too long (max: {{ lengths.username[1] }},
+                      current: {{ user.username.length }}).
                     </div>
                     <div [hidden]="!username.errors?.required">
                       Username is required.
@@ -118,7 +122,9 @@
                 >
                 <input
                   [type]="changePwInputType()"
-                  placeholder="min: 6, max: 256"
+                  placeholder="min: {{ lengths.password[0] }}, max: {{
+                    lengths.password[1]
+                  }}"
                   class="form-control"
                   id="password"
                   name="password"
@@ -138,12 +144,12 @@
                     alertType="warning"
                   >
                     <div [hidden]="!password.errors?.minlength">
-                      Password is too short (min: 6, current:
-                      {{ user.password.length }}).
+                      Password is too short (min: {{ lengths.password[0] }},
+                      current: {{ user.password.length }}).
                     </div>
                     <div [hidden]="!password.errors?.maxlength">
-                      Password is too long (max: 256, current:
-                      {{ user.password.length }}).
+                      Password is too long (max: {{ lengths.password[1] }},
+                      current: {{ user.password.length }}).
                     </div>
                     <div [hidden]="!password.errors?.required">
                       Password is required.
