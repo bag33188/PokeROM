@@ -6,13 +6,9 @@ import { JSONObject } from '../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
 import he from 'he';
-import {
-  NavigationEnd,
-  Router,
-  RouterEvent,
-  RoutesRecognized
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { RouterExtService } from '../../services/router-ext.service';
 
 type paginationState = [number, number, boolean];
 
@@ -47,24 +43,22 @@ export class RomsComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private romsService: RomsService,
-    private viewportScroller: ViewportScroller
-  ) {
-    this.router.events.subscribe((event: RouterEvent): void => {
-      if (event instanceof RoutesRecognized || event instanceof NavigationEnd) {
-        if (event.url === '/roms') {
-          this.onPageChange([0, 1]);
-          RomsComponent.setPaginationState([0, 1, false]);
-        }
-      }
-    });
-  }
+    private viewportScroller: ViewportScroller,
+    private routerExtService: RouterExtService
+  ) {}
 
   public ngOnInit(): void {
-    RomsComponent.setPaginationState();
-    if (document.readyState !== 'complete') {
+    console.log(this.routerExtService.getPreviousUrl());
+    if (
+      (!this.routerExtService.getPreviousUrl().includes('/info') &&
+        this.router.url === '/roms') ||
+      document.readyState !== 'complete'
+    ) {
       this.onPageChange([0, 1]);
       RomsComponent.setPaginationState([0, 1, false]);
     }
+    RomsComponent.setPaginationState();
+
     const favoritesState: boolean = RomsComponent.getPaginationState()[2];
     this.getRoms(favoritesState);
     this.favoritesShown = favoritesState || false;

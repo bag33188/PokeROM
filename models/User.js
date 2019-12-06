@@ -61,7 +61,7 @@ module.exports.deleteUser = (id, callback) => {
   return User.findOneAndDelete(query, callback);
 };
 
-module.exports.getAllUsers = callback => {
+module.exports.getAllUsers = callback => {r
   return User.find(callback);
 };
 
