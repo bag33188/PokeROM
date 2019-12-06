@@ -13,6 +13,8 @@ import { JSONObject } from '../../models/JSONObject';
 import { CookiesService } from '../../services/cookies.service';
 import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { SessionStorageService } from '../../services/session-storage.service';
 
 @Component({
   selector: 'account',
@@ -52,14 +54,16 @@ export class AccountComponent implements OnInit, OnDestroy {
       this.userId = JSON.parse(CookiesService.getCookie('user'))[key];
       this.retrieveUserData(this.userId);
     }
-    if (!localStorage.getItem('noticeClosed')) {
-      localStorage.setItem('noticeClosed', 'false');
+    if (!LocalStorageService.getState('noticeClosed')) {
+      LocalStorageService.setState('noticeClosed', 'false');
     }
-    if (!sessionStorage.getItem('warningClosed')) {
-      sessionStorage.setItem('warningClosed', 'false');
+    if (!SessionStorageService.getState('warningClosed')) {
+      SessionStorageService.setState('warningClosed', 'false');
     }
-    this.noticeClosed = JSON.parse(localStorage.getItem('noticeClosed'));
-    this.warningClosed = JSON.parse(sessionStorage.getItem('warningClosed'));
+    this.noticeClosed = LocalStorageService.getState('noticeClosed') as boolean;
+    this.warningClosed = SessionStorageService.getState(
+      'warningClosed'
+    ) as boolean;
   }
 
   public ngOnDestroy(): void {
@@ -124,10 +128,10 @@ export class AccountComponent implements OnInit, OnDestroy {
   public storeAlertState(alertName: string): void {
     switch (alertName) {
       case 'notice':
-        localStorage.setItem('noticeClosed', 'true');
+        LocalStorageService.setState('noticeClosed', 'true');
         break;
       case 'warning':
-        sessionStorage.setItem('warningClosed', 'true');
+        SessionStorageService.setState('warningClosed', 'true');
         break;
       default:
         logger.error('Unknown alert name.');

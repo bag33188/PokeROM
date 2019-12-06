@@ -7,6 +7,7 @@ import { User } from '../models/User';
 import { RegisteredUser } from '../models/RegisteredUser';
 import { CookiesService } from './cookies.service';
 import { environment } from '../../environments/environment';
+import {LocalStorageService} from "./local-storage.service";
 
 @Injectable()
 export class AuthService {
@@ -22,7 +23,7 @@ export class AuthService {
    * @description Clears local storage, sets authToken and user to null, and clears the token_id cookie.
    */
   public static logout(): void {
-    localStorage.clear();
+    LocalStorageService.clearState();
     CookiesService.setCookie('token_id', '', 0);
     CookiesService.setCookie('user', '', 0);
   }

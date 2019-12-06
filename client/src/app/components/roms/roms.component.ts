@@ -12,6 +12,7 @@ import {
   RouterEvent,
   RoutesRecognized
 } from '@angular/router';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 type paginationState = [number, number, boolean];
 
@@ -33,15 +34,15 @@ export class RomsComponent implements OnInit, OnDestroy {
   private romsSub: Subscription;
   public favoritesShown: boolean;
   private static setPaginationState(state?: paginationState): void {
-    if (!localStorage.getItem('paginationState') && !state) {
-      localStorage.setItem('paginationState', JSON.stringify([0, 1, false]));
+    if (!LocalStorageService.getState('paginationState') && !state) {
+      LocalStorageService.setState('paginationState', [0, 1, false]);
     }
     if (state !== null && state !== undefined) {
-      localStorage.setItem('paginationState', JSON.stringify(state));
+      LocalStorageService.setState('paginationState', state);
     }
   }
   private static getPaginationState(): paginationState {
-    return JSON.parse(localStorage.getItem('paginationState'));
+    return LocalStorageService.getState('paginationState') as paginationState;
   }
   constructor(
     private router: Router,
