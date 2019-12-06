@@ -12,11 +12,10 @@ export class FooterComponent implements OnInit {
   public environment: Environment;
   public author: string;
 
-  constructor() {
-    this.environment = environment;
-  }
+  constructor() {}
 
   public ngOnInit(): void {
+    this.environment = environment;
     this.author = 'Broccolini';
   }
 
