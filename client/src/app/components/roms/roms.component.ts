@@ -12,7 +12,6 @@ import {
   RouterEvent,
   RoutesRecognized
 } from '@angular/router';
-import { filter, take } from 'rxjs/operators';
 
 type paginationState = [number, number, boolean];
 
