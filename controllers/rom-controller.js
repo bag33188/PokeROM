@@ -100,8 +100,8 @@ module.exports.getRoms = async (req, res) => {
     // --------------------------
 
     // grab query params
-    let perPage = parseInt(req.query['per_page']);
-    let page = parseInt(req.query['page']);
+    let perPage = parseInt(req.query['per_page'], 10);
+    let page = parseInt(req.query['page'], 10);
     // if no page is specified or no page and no perPage are specified ...
     if (!page || (!page && !perPage)) {
       // just return the roms as they usually are

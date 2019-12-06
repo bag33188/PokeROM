@@ -53,12 +53,12 @@ let htmlDoc = `
         box-sizing: border-box;
       }
       body {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-          font-weight: 400;
-          line-height: 1.5;
-          font-size: 1rem;
-          color: var(--almost-black);
-          background-color: var(--white);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-weight: 400;
+        line-height: 1.5;
+        font-size: 1rem;
+        color: var(--almost-black);
+        background-color: var(--white);
       }
       #heading-title {
         margin-top: 2rem;
