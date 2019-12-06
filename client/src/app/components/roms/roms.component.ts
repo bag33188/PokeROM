@@ -48,7 +48,7 @@ export class RomsComponent implements OnInit, OnDestroy {
     private romsService: RomsService,
     private viewportScroller: ViewportScroller
   ) {
-    this.router.events.subscribe((event: RouterEvent) => {
+    this.router.events.subscribe((event: RouterEvent): void => {
       if (event instanceof RoutesRecognized || event instanceof NavigationEnd) {
         if (event.url === '/roms') {
           this.onPageChange([0, 1]);
