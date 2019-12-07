@@ -8,7 +8,7 @@ const UserController = require('../../controllers/user-controller');
 const router = express.Router();
 
 const fieldsToSanitize = ['name', 'username', 'password'];
-const pwdRegex = /((?:(<script[\s\S]*?<\/script>)|(<style[\s\S]*?<\/style>)|(<!--[\s\S]*?-->)|(?:(<\/?[\s\S]*?>)|(javascript:[^:\s]+)))|[\\/"'<>&])/gi;
+const pwdRegex = /((?:(<\/?[\s\S]*?>)|(javascript:(?:[^:\s]?)+))|[\\/"'<>&])/gi;
 // the following string is a message that is used exactly untouched on the front end; thus giving purpose to a global variable
 const criticalMsg =
   'Username can only contain letters, numbers, or underscores.';
