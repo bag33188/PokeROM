@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1575678872933,
+  "timestamp": 1575679743200,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -35,7 +35,7 @@
         "/runtime-es2017.4413fa8b104342a85b3e.js",
         "/runtime-es5.4413fa8b104342a85b3e.js",
         "/scripts.6ee986b7cd7aefa6baef.js",
-        "/styles.524a6b0ce01082516c08.css",
+        "/styles.2f58182fc74de323ff25.css",
         "/vendor-es2017.1affe735a80ef4270f3a.js",
         "/vendor-es5.1affe735a80ef4270f3a.js"
       ],
@@ -227,7 +227,7 @@
     "/common-es2017.62c467f0f33efefb8506.js": "6a6d8375cac7a02cf57dab323fcc4141b0406067",
     "/common-es5.62c467f0f33efefb8506.js": "44c90d24f76698f267d58453e85c0f15860292ef",
     "/favicon.ico": "10e207f0a756d5c44c80bdc9de1e6bc9f16860f6",
-    "/index.html": "4a172b16006ea8406e2518465ce71fefec275a77",
+    "/index.html": "99703a37955096b800f852c80d60f75a64a13ca2",
     "/main-es2017.8bb4001f5af68cc005c8.js": "489ec63ced20e9a098d529a1b63ba5ae2c692023",
     "/main-es5.8bb4001f5af68cc005c8.js": "c4dc0628ebdb108c9ec3ad61cf90b125c79096cc",
     "/polyfills-es2017.89f37daca0a150d7b30b.js": "4613bbe0969ec2de428e313e915d091b8be0d6d8",
@@ -235,7 +235,7 @@
     "/runtime-es2017.4413fa8b104342a85b3e.js": "c75bcc5388b9f1926ed1b2a15c27f296f3c523b8",
     "/runtime-es5.4413fa8b104342a85b3e.js": "0c16ea36d821779e35784f6653ed98178ab659fb",
     "/scripts.6ee986b7cd7aefa6baef.js": "006b904e73faad089888e690bbe4ada40e15fee6",
-    "/styles.524a6b0ce01082516c08.css": "7de9b45ce9db4278e99db32d3e3642eb5dd2881a",
+    "/styles.2f58182fc74de323ff25.css": "bb94caf3b3da666f8780a6aa61d2cdc7112014d1",
     "/vendor-es2017.1affe735a80ef4270f3a.js": "212dc0286045ddbd371e511bb7905ee226bd169f",
     "/vendor-es5.1affe735a80ef4270f3a.js": "242d67568a9902959c670a256853ea588da011d7"
   },
