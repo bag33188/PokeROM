@@ -22,15 +22,10 @@ export class PrivacyAlertComponent implements OnInit {
       type: 'info'
     };
     if (!SessionStorageService.getState('rating-alert')) {
-      SessionStorageService.setState('rating-alert', [
-        // tslint:disable-next-line:whitespace
-        (<unknown>alert) as JSONArray
-      ]);
+      SessionStorageService.setState('rating-alert', [alert]);
     }
     // tslint:disable-next-line:whitespace
-    this.alerts = (<unknown>(
-      SessionStorageService.getState('rating-alert')
-    )) as Alert[];
+    this.alerts = SessionStorageService.getState('rating-alert');
   }
 
   public closeAlert(alert: Alert): void {

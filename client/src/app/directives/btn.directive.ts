@@ -70,9 +70,12 @@ export class BtnDirective implements OnInit {
     const classList: DOMTokenList = this.el.nativeElement.classList;
     typeArr.forEach((className: string): void => {
       if (Array.from(classList).includes(className)) {
-        this.el.nativeElement.classList.remove(className);
+        classList.remove(className);
       }
-      this.el.nativeElement.classList.add(className);
+      classList.add(className);
     });
+    if (Array.prototype.slice.call(classList).includes('null')) {
+      classList.remove('null');
+    }
   }
 }

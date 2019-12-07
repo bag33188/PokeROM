@@ -7,7 +7,7 @@ import { User } from '../models/User';
 import { RegisteredUser } from '../models/RegisteredUser';
 import { CookiesService } from './cookies.service';
 import { environment } from '../../environments/environment';
-import {LocalStorageService} from "./local-storage.service";
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class AuthService {

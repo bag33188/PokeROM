@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import { JSONObject } from '../models/JSONObject';
-import { JSONArray } from '../interfaces/JSONArray';
 import { LoggerService as logger } from './logger.service';
-
-type JSONValue = boolean | number | string | null | JSONObject | JSONArray;
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +9,7 @@ export class LocalStorageService {
 
   constructor() {}
 
-  public static getState(key: string, asString?: boolean): JSONValue | string {
+  public static getState(key: string, asString?: boolean): any {
     try {
       if (asString !== null && asString !== undefined && asString === true) {
         return localStorage.getItem(key);
@@ -25,9 +21,14 @@ export class LocalStorageService {
     }
   }
 
-  public static setState(key: string, value: JSONValue): void {
+  public static setState(key: string, value: any): void {
     try {
-      localStorage.setItem(key, JSON.stringify(value));
+      localStorage.setItem(
+        key,
+        value.constructor === Object || Array.isArray(value)
+          ? JSON.stringify(value)
+          : value
+      );
     } catch (e) {
       logger.error(e);
     }

@@ -3,8 +3,6 @@ import { LoggerService as logger } from './logger.service';
 import { JSONObject } from '../models/JSONObject';
 import { JSONArray } from '../interfaces/JSONArray';
 
-type JSONValue = boolean | number | string | null | JSONObject | JSONArray;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +11,7 @@ export class SessionStorageService {
 
   constructor() {}
 
-  public static getState(key: string, asString?: boolean): JSONValue | string {
+  public static getState(key: string, asString?: boolean): any {
     try {
       if (asString !== null && asString !== undefined && asString === true) {
         return sessionStorage.getItem(key);
@@ -25,9 +23,14 @@ export class SessionStorageService {
     }
   }
 
-  public static setState(key: string, value: JSONValue): void {
+  public static setState(key: string, value: any): void {
     try {
-      sessionStorage.setItem(key, JSON.stringify(value));
+      sessionStorage.setItem(
+        key,
+        value.constructor === Object || Array.isArray(value)
+          ? JSON.stringify(value)
+          : value
+      );
     } catch (e) {
       logger.error(e);
     }
