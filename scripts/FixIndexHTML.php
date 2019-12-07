@@ -20,7 +20,7 @@
     /**
      * @var null|string The file path of `index.html`.
      */
-    protected $filepath = NULL;
+    protected static $filepath = NULL;
 
     /**
      * @var null|string The new script tags (modified).
@@ -53,17 +53,17 @@
     private function set_filepath($filepath)
     {
       // set class prop to method param.
-      $this->filepath = $filepath;
+      self::$filepath = $filepath;
     }
 
-    public function backup_file()
+    public static function backup_file()
     {
       // encapsulate main logic in try-catch
       try {
         // create file vars
-        $backup_filepath = $this->filepath . ".bak";
+        $backup_filepath = self::$filepath . ".bak";
         // get original index.html file contents
-        $backup_file_contents = file_get_contents($this->filepath);
+        $backup_file_contents = file_get_contents(self::$filepath);
         // open file
         $file = fopen($backup_filepath, "w");
         // write to file
@@ -87,8 +87,8 @@
       try {
         // create file variables
         // open file for reading
-        $file = fopen($this->filepath, "r");
-        $file_size = filesize($this->filepath);
+        $file = fopen(self::$filepath, "r");
+        $file_size = filesize(self::$filepath);
         // set contents prop to text in file
         $this->contents = fread($file, $file_size);
         // output array var with all matching script tags (according to regexp)
@@ -141,18 +141,13 @@
       // encapsulate main logic in try-catch (in case of errors)
       try {
         // open file for writing
-        $file = fopen($this->filepath, "w");
+        $file = fopen(self::$filepath, "w");
         // cache async script tag
         preg_match(self::ASYNC_SCRIPT_TAG_REGEXP, $this->contents, $async_script_tag);
         // set var as first index in array
         $async_script_tag = $async_script_tag[0];
         // get rid of async script tag
         $this->contents = str_replace($async_script_tag, "", $this->contents);
-        // fix html casing for ie conditional comment in body
-        $this->contents = preg_replace("/(<h1)/", "<H1", $this->contents, 1);
-        $this->contents = preg_replace("/(\/h1>)/", "/H1>", $this->contents, 1);
-        $this->contents = preg_replace("/(<br(?:\s?)\/>)/", "<BR />", $this->contents, 1);
-        $this->contents = preg_replace("/(style=\"(?:font-family:Verdana,Geneva,Tahoma,sans-serif;font-style:italic;font-weight:bold;text-decoration:underline;text-align:center;color:#000000;background-color:#ffff00;)\")/", "style=\"FONT-FAMILY:Verdana,Geneva,Tahoma,sans-serif;FONT-STYLE:italic;FONT-WEIGHT:bold;TEXT-DECORATION:underline;TEXT-ALIGN:center;COLOR:#000000;BACKGROUND-COLOR:#FFFF00;\"", $this->contents, 1);
         // create file lines var by splitting contents by newline char
         $file_lines = explode("\n", $this->contents);
         // output array var with all matching script tags (according to regexp)
@@ -212,7 +207,7 @@
         }
         // create file vars
         // open file for writing
-        $file = fopen($this->filepath, "w");
+        $file = fopen(self::$filepath, "w");
         // create file lines var by splitting contents by newline char
         $file_lines = explode("\n", $this->contents);
         // define search and replace string vars
@@ -259,7 +254,7 @@
       // encapsulate main logic in try-catch (in case of errors)
       try {
         // set contents prop to text in file
-        $this->contents = file_get_contents($this->filepath);
+        $this->contents = file_get_contents(self::$filepath);
         // replace trailing newlines with blank string
         $this->contents = preg_replace("/\n+$/m", "", $this->contents);
       } catch (Exception $e) {
@@ -290,6 +285,23 @@
       // return stripped value
       return $stripped_string;
     }
+
+    public static function formatHTML()
+    {
+      // get formatted html and store in var
+      $output = shell_exec("../node_modules/.bin/prettier ../public/index.html");
+      // fix html casing for ie conditional comment in body
+      $output = preg_replace("/(<h1)/", "<H1", $output, 1);
+      $output = preg_replace("/(\/h1>)/", "/H1>", $output, 1);
+      $output = preg_replace("/(<br(?:\s?)\/>)/", "<BR />", $output, 1);
+      $output = preg_replace("/(style=\"(?:font-family:Verdana,Geneva,Tahoma,sans-serif;font-style:italic;font-weight:bold;text-decoration:underline;text-align:center;color:#000000;background-color:#ffff00;)\")/", "style=\"FONT-FAMILY:Verdana,Geneva,Tahoma,sans-serif;FONT-STYLE:italic;FONT-WEIGHT:bold;TEXT-DECORATION:underline;TEXT-ALIGN:center;COLOR:#000000;BACKGROUND-COLOR:#FFFF00;\"", $output, 1);
+      // open file for writing
+      $file = fopen(self::$filepath, "w");
+      // write to file
+      fwrite($file, $output);
+      // close file
+      fclose($file);
+    }
   }
 
   /**
@@ -300,7 +312,7 @@
     $fix_index_html = new FixIndexHTML("../public/index.html");
     // first backup the file
     echo "Backup up index.html file ... \n";
-    $fix_index_html->backup_file();
+    FixIndexHTML::backup_file();
     echo "Done! (file saved as index.html.bak)\n\n";
     // begin fixing index.html file ...
     echo "Moving around script tags in index.html ... \n";
@@ -309,6 +321,9 @@
     echo "Done!\n\n";
     echo "Inserting comment into index.html ... \n";
     $fix_index_html->insert_comment();
+    echo "Done!\n\n";
+    echo "Formatting HTML ... \n";
+    FixIndexHTML::formatHTML();
     echo "Done!\n\n";
     // done!
   }
