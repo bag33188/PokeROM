@@ -48,7 +48,6 @@ export class RomsComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    console.log(this.routerExtService.getPreviousUrl());
     if (
       (!this.routerExtService.getPreviousUrl().includes('/info') &&
         this.router.url === '/roms') ||
