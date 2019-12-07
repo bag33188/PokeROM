@@ -1,4 +1,4 @@
-const pwdRegex = /((?:(<script[\s\S]*?<\/script>)|(<style[\s\S]*?<\/style>)|(<!--[\s\S]*?-->)|(<\/?[\s\S]*?>)|(javascript:\S*))|[\\/"'<>&])/gi;
+const pwdRegex = /((?:(<script[\s\S]*?<\/script>)|(<style[\s\S]*?<\/style>)|(<!--[\s\S]*?-->)|(?:(<\/?[\s\S]*?>)|(javascript:[^:\s]+)))|[\\/"'<>&])/gi;
 
 module.exports = {
   checkForInvalidFields(req, fields, checkUser) {
