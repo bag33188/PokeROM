@@ -5,19 +5,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { JSONObject } from '../models/JSONObject';
 
+interface RegisteredUser {
+  success: boolean;
+  message: string;
+}
+
 @Injectable()
 export class UserService {
   private static userUrl: string = `${environment.apiUrl}/users`;
   constructor(private http: HttpClient) {}
 
-  public registerUser(
-    user: User
-  ): Observable<{ success: boolean; message: string }> {
+  public registerUser(user: User): Observable<RegisteredUser> {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     const url: string = `${UserService.userUrl}/register`;
-    return this.http.post<{ success: boolean; message: string }>(url, user, {
+    return this.http.post<RegisteredUser>(url, user, {
       headers
     });
   }
