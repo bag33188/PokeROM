@@ -73,7 +73,7 @@ export class RomsComponent implements OnInit, OnDestroy {
       this.loading = true;
     }
     this.romsObs$ = this.romsService.getAllRoms({
-      limit: getFavorites === true ? null : this.limit,
+      // limit: getFavorites === true ? null : this.limit,
       favorites: getFavorites
     });
     this.romsSub = this.romsObs$.subscribe(
