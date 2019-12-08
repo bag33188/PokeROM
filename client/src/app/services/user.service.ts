@@ -53,9 +53,9 @@ export class UserService {
 }
 
 export interface Lengths {
-  name: number[];
-  username: number[];
-  password: number[];
+  name: [number, number];
+  username: [number, number];
+  password: [number, number];
 }
 
 export const lengths: Lengths = {
