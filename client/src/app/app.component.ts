@@ -53,7 +53,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class AppComponent {
   protected static readonly _eacute: string = '\u00E9';
-  public _title: string = `Pok${AppComponent._eacute}ROM`;
+  public _title: string;
   private apiVersionObs$: Observable<ApiVersion>;
   get title(): string {
     return this._title;
@@ -63,6 +63,7 @@ export class AppComponent {
   }
 
   constructor(private apiService: ApiService) {
+    this.title = `Pok${AppComponent._eacute}ROM`;
     this.changeTitleIfDevEnv();
     this.getApiVersionIfDevEnv();
     if (location.protocol === 'https:') {
