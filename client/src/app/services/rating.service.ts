@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Rating } from '../models/Rating';
 import { environment } from '../../environments/environment';
@@ -24,8 +24,11 @@ export class RatingService {
   }
   public getRatings(limit?: number): Observable<Rating[]> {
     if (limit) {
-      const url: string = `${RatingService.ratingsUrl}?_limit=${limit}`;
-      return this.http.get<Rating[]>(url);
+      let httpParams: HttpParams = new HttpParams();
+      httpParams = httpParams.append('_limit', limit.toString());
+      return this.http.get<Rating[]>(RatingService.ratingsUrl, {
+        params: httpParams
+      });
     } else {
       return this.http.get<Rating[]>(RatingService.ratingsUrl);
     }
