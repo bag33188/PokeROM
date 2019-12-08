@@ -9,7 +9,6 @@ import {
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import he from 'he';
 import sanitizeXSS from '../helpers/sanitize-xss';
 import removeStringChars from '../helpers/remove-string-chars';
 import { JSONObject } from '../models/JSONObject';
@@ -44,8 +43,8 @@ export class BleachInterceptor implements HttpInterceptor {
                   (obj: JSONObject): JSONObject => {
                     Object.keys(obj).forEach((key: string): void => {
                       if (typeof obj[key] === 'string') {
-                        obj[key] = he
-                          .decode(obj[key])
+                        obj[key] = obj[key]
+                          .toString()
                           .sanitizeXSS()
                           .removeStringChars();
                       }
@@ -56,8 +55,8 @@ export class BleachInterceptor implements HttpInterceptor {
               } else {
                 Object.keys(body).forEach((key: string): void => {
                   if (typeof body[key] === 'string') {
-                    body[key] = he
-                      .decode(body[key])
+                    body[key] = body[key]
+                      .toString()
                       .sanitizeXSS()
                       .removeStringChars();
                   }

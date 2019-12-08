@@ -5,7 +5,6 @@ import { Rom } from '../../models/Rom';
 import { JSONObject } from '../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
-import he from 'he';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { RouterExtService } from '../../services/router-ext.service';
@@ -80,11 +79,6 @@ export class RomsComponent implements OnInit, OnDestroy {
     this.romsSub = this.romsObs$.subscribe(
       (roms: Rom[]): void => {
         this.isError = false;
-        roms.forEach((rom: Rom): void => {
-          const { game_name, description }: Rom = rom;
-          rom.game_name = he.decode(game_name);
-          rom.description = he.decode(description);
-        });
         this.romsData = roms;
         this.loading = false;
         if (!this.loading && this.romsData.length < 1) {

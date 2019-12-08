@@ -5,7 +5,6 @@ import {
   faFileAlt,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
-import he from 'he';
 import { RomsService } from '../../../services/roms.service';
 import { AuthService } from '../../../services/auth.service';
 import { Rom } from '../../../models/Rom';
@@ -56,12 +55,9 @@ export class RomInfoComponent implements OnInit, OnDestroy {
     this.romInfoObs$ = this.romService.getRom(id);
     this.romInfoSub = this.romInfoObs$.subscribe(
       (rom: Rom): void => {
-        const { game_name, description, genre }: Rom = rom;
-        if (!genre) {
+        if (!rom.genre) {
           rom.genre = 'N/A';
         }
-        rom.game_name = he.decode(game_name);
-        rom.description = he.decode(description);
         this.rom = rom;
         this.loading = false;
         this.isError = false;
