@@ -34,7 +34,7 @@
     (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
   ];
   if (!$productionMode) {
-    $apiVersion = $www->getApiVersionData()->api_version;
+    $apiVersion = WWW::getApiVersionData()->api_version;
     $navObj = new stdClass();
     $navObj->href = "/api/docs/" . $apiVersion . "/";
     $navObj->target = "_self";

@@ -17,6 +17,7 @@
      * @var string|null Current url.
      */
     protected $url;
+    const VERSION_REGEX = "/((?:version:)(?:\s)(?:v\d))/i";
 
     /**
      * WWW constructor.
@@ -42,16 +43,13 @@
     /**
      * @return mixed Object array of api version data.
      */
-    public function getApiVersionData()
+    public static function getApiVersionData()
     {
       $filePath = "../docs/swagger-definition.yml";
       $file = fopen($filePath, "r");
       $fileSize = filesize($filePath);
       $fileText = fread($file, $fileSize);
-      if (!defined('VERSION_REGEX')) {
-        define("VERSION_REGEX", "/((?:version:)(?:\s)(?:v\d))/i");
-      }
-      $versionExists = preg_match(VERSION_REGEX, $fileText, $version);
+      $versionExists = preg_match(self::VERSION_REGEX, $fileText, $version);
       if ($versionExists == true) {
         $version = str_replace("version: ", "", $version[0]);
         return array(
@@ -99,34 +97,6 @@
       $currentUrl = $this->url;
       // check if localhost is in current url
       return (strpos($currentUrl, "localhost") !== false) ? false : true;
-    }
-
-    /**
-     * @param array $languages List of languages.
-     * @param array $tooltips List of tooltips.
-     * @return mixed|null Longest language Name.
-     */
-    public static function findLongestLanguageName($languages, $tooltips) {
-      // create variable for longest language
-      $longestLang = NULL;
-      // find longest language in array
-      $largestLangStrLen = max(array_map("strlen", $languages));
-      // define char regular expression constant
-      define("CHAR_REGEXP", "/([^A-Za-z0-9\x20])/i");
-      // loop thru languages
-      foreach ($languages as $language) {
-        // create index var
-        $index = array_search($language, $languages);
-        // make sure language is longest and if matches regexp
-        if (strlen($language) == $largestLangStrLen && !preg_match(CHAR_REGEXP, $language)) {
-          // set longest lang var
-          $longestLang = $tooltips[$index];
-          // break to prevent multiple language settings
-          break;
-        }
-      }
-      // return longest language (in terms of length)
-      return $longestLang;
     }
 
     /**

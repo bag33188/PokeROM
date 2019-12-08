@@ -120,6 +120,7 @@ hr {
 }
 #languages-wrapper {
   display: inline-block;
+  width: fit-content;
 }
 #flex-wrapper {
   display: flex;

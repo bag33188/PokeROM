@@ -2,7 +2,7 @@
   require_once "WWW.php";
   use www\WWW as WWW;
   $www = new WWW();
-  $apiVersionData = $www->getApiVersionData();
+  $apiVersionData = WWW::getApiVersionData();
   $productionMode = $www->isProductionMode();
   $documentTitle = "API Docs (Redirect)";
   $cssColors = array(

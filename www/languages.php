@@ -6,7 +6,6 @@
   $languages = WWW::languageData()["languages"];
   $tooltips = WWW::languageData()["tooltips"];
   $currentUrl = $www->getCurrentUrl();
-  $longestLanguage = WWW::findLongestLanguageName($languages, $tooltips);
   $homeUrl = ($productionMode) ? "/" : "http://localhost:4200/";
   $documentTitle = "Pok&eacute;ROM - Languages Used";
   $cssColors = array(
@@ -27,7 +26,7 @@
     (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
   ];
   if (!$productionMode) {
-    $apiVersion = $www->getApiVersionData()->api_version;
+    $apiVersion = WWW::getApiVersionData()->api_version;
     $navObj = new stdClass();
     $navObj->href = "/api/docs/" . $apiVersion . "/";
     $navObj->target = "_self";
@@ -54,29 +53,6 @@
     </style>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <link rel="stylesheet" type="text/css" href="css/languages.css" />
-    <script type="text/javascript" src="js/ready.js"></script>
-    <script type="text/javascript">
-      "use strict";
-
-      /**
-       * @function
-       * @name setWidthOfLanguagesWrapper
-       * @summary Set Width of Languages Wrapper
-       * @description Sets the width of the languages wrapper.
-       * @returns {void} Nothing.
-       */
-      function setWidthOfLanguagesWrapper() {
-        // cache the element of the languages list with the largest width
-        const widestLanguageStr = document.querySelector("li[title='<?= $longestLanguage; ?>']");
-        // cache languages wrapper
-        const languagesWrapper = document.getElementById("languages-wrapper");
-        // set width of wrapper based on largest width of language item in list
-        languagesWrapper.style.width = widestLanguageStr.clientWidth.toString() + 'px';
-      }
-
-      // use JavaScript document ready function
-      ready(setWidthOfLanguagesWrapper);
-    </script>
   </head>
   <body class="p-3">
     <noscript>
@@ -86,7 +62,7 @@
       <h1 class="text-center m-3">Programming Languages Used</h1>
       <div id="flex-wrapper">
         <div class="text-center w-100">
-          <div  id="languages-wrapper">
+          <div id="languages-wrapper">
             <ul class="p-0" id="languages">
               <?php for ($i = 0; $i < count($languages); $i++): ?>
                 <li title="<?= $tooltips[$i]; ?>"><?= $languages[$i]; ?></li>
