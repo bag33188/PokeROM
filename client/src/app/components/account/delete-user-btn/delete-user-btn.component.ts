@@ -21,9 +21,12 @@ export class DeleteUserBtnComponent implements OnInit {
   }
 
   public confirmDeletion(): void {
-    const modalRef: NgbModalRef = this.modalService.open(DeleteUserModalComponent, {
-      centered: true
-    });
+    const modalRef: NgbModalRef = this.modalService.open(
+      DeleteUserModalComponent,
+      {
+        centered: true
+      }
+    );
     modalRef.componentInstance.loading.subscribe((loading: boolean): void => {
       this.loading = loading;
     });

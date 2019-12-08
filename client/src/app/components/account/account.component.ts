@@ -24,19 +24,19 @@ import { SessionStorageService } from '../../services/session-storage.service';
 export class AccountComponent implements OnInit, OnDestroy {
   public user: User;
   private userId: string;
-  public updateFail: boolean = false;
-  public ready: boolean = false;
-  public pwFocused: boolean = false;
-  public errLoadingUsr: boolean = false;
+  public updateFail: boolean;
+  public ready: boolean;
+  public pwFocused: boolean;
+  public errLoadingUsr: boolean;
   public faExclamationTriangle: IconDefinition;
-  public userExists: boolean = false;
+  public userExists: boolean;
   public isErrorDeleting: boolean;
   public firedOff: boolean;
   public noticeClosed: boolean;
   public warningClosed: boolean;
   private userObs$: Observable<User>;
   private userSub: Subscription;
-  public lengths: Lengths = lengths;
+  public lengths: Lengths;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -44,7 +44,13 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.lengths = lengths;
+    this.userExists = false;
+    this.updateFail = false;
+    this.pwFocused = false;
+    this.ready = false;
     this.firedOff = false;
+    this.errLoadingUsr = false;
     this.isErrorDeleting = false;
     this.faExclamationTriangle = faExclamationTriangle;
     const key: string = 'id';

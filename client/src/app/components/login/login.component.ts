@@ -23,20 +23,9 @@ import { Lengths, lengths } from '../../services/user.service';
 export class LoginComponent implements OnInit {
   public loading: boolean;
   public loginFail: string;
-  public loginForm: FormGroup = new FormGroup({
-    username: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(22)
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(256)
-    ])
-  });
+  public loginForm: FormGroup;
   public firedOff: boolean;
-  public lengths: Lengths = lengths;
+  public lengths: Lengths;
 
   get Username(): AbstractControl {
     return this.loginForm.get('username');
@@ -56,6 +45,19 @@ export class LoginComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.lengths = lengths;
+    this.loginForm = new FormGroup({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(this.lengths.username[0]),
+        Validators.maxLength(this.lengths.username[1])
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(this.lengths.password[0]),
+        Validators.maxLength(this.lengths.password[1])
+      ])
+    });
     this.firedOff = false;
     this.loading = false;
     setTimeout(AuthService.logout, 100);

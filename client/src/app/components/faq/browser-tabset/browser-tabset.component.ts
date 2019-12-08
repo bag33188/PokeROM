@@ -19,16 +19,22 @@ import {
 })
 export class BrowserTabsetComponent implements OnInit {
   public browsers: Browser[];
-  public faChrome: IconDefinition = faChrome;
-  public faFirefox: IconDefinition = faFirefox;
-  public faInternetExplorer: IconDefinition = faInternetExplorer;
-  public faOpera: IconDefinition = faOpera;
-  public faEdge: IconDefinition = faEdge;
-  public faSafari: IconDefinition = faSafari;
+  public faChrome: IconDefinition;
+  public faFirefox: IconDefinition;
+  public faInternetExplorer: IconDefinition;
+  public faOpera: IconDefinition;
+  public faEdge: IconDefinition;
+  public faSafari: IconDefinition;
 
   constructor(private modalService: NgbModal) {}
 
   public ngOnInit(): void {
+    this.faChrome = faChrome;
+    this.faFirefox = faFirefox;
+    this.faInternetExplorer = faInternetExplorer;
+    this.faOpera = faOpera;
+    this.faEdge = faEdge;
+    this.faSafari = faSafari;
     this.browsers = [
       {
         browserName: 'Chrome',

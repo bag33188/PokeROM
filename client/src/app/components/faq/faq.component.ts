@@ -1,20 +1,11 @@
-/* tslint:disable:no-eval */
 import { Component, OnInit, HostListener, AfterViewInit } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { Environment } from '../../interfaces/Environment';
-import { Favorites } from '../../enums/favorites.enum';
 import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
 import { ApiVersion } from '../../models/ApiVersion';
-
-interface PkmnFavorites {
-  pokemon: string[];
-  games: string[];
-  regions: string[];
-  characters: string[];
-}
 
 @Component({
   selector: 'faq',
@@ -23,8 +14,7 @@ interface PkmnFavorites {
 })
 export class FaqComponent implements OnInit, AfterViewInit {
   public emulatorUrl: string;
-  public environment: Environment = environment;
-  public favorites: typeof Favorites;
+  public environment: Environment;
   public isCollapsed: boolean;
   public showDummy: boolean;
   public apiVersion$: Observable<ApiVersion>;
@@ -51,23 +41,14 @@ export class FaqComponent implements OnInit, AfterViewInit {
   ) {}
 
   public ngOnInit(): void {
+    this.environment = environment;
     this.showDummy = !!location.hash;
     this.isCollapsed = true;
     this.emulatorUrl = 'https://www.retroarch.com';
-    this.favorites = Favorites;
     this.apiVersion$ = this.apiService.getApiVersion();
   }
 
   public ngAfterViewInit(): void {
     this.onHashChange();
-  }
-
-  public parseFavorites(): PkmnFavorites {
-    return {
-      pokemon: eval(Favorites.POKEMON),
-      games: eval(Favorites.GAMES),
-      regions: eval(Favorites.REGIONS),
-      characters: eval(Favorites.CHARACTERS)
-    };
   }
 }

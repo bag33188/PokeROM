@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   public loggedOutRoutes: Route[];
   private loggedInRoutes: Route[];
   public routes: HtmlRoute[];
-  public images: typeof Images = Images;
+  public images: typeof Images;
   public logoFallbackUrl: string;
 
   constructor(
@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.images = Images;
     this.routes = [
       {
         routerLink: ['/', 'home'],

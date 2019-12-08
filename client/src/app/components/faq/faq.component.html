@@ -111,56 +111,6 @@
       <faq-browser-tabset></faq-browser-tabset>
     </ng-container>
     <ng-container *ngIf="!environment.production">
-      <h2 class="mt-3" id="pq-heading">
-        Personal Questions <sup>(About Pok&eacute;mon)</sup>
-      </h2>
-      <button
-        id="collapse-content-btn"
-        type="button"
-        class="mt-2 mb-2"
-        appBtn
-        btnType="primary"
-        (click)="isCollapsed = !isCollapsed"
-        [attr.aria-expanded]="!isCollapsed"
-        aria-controls="collapse-content"
-      >
-        {{ isCollapsed ? 'Show' : 'Hide' }}&nbsp;PQ&#x27;s
-      </button>
-      <div id="collapse-content" class="pt-2" [ngbCollapse]="isCollapsed">
-        <h3 class="question">What is your Favorite Pok&eacute;mon?</h3>
-        <p class="answer">
-          <b>{{ parseFavorites().pokemon[0] }}</b> and
-          <b>{{ parseFavorites().pokemon[1] }}</b
-          >. But the whole <b>{{ parseFavorites().pokemon[2] }}</b> is also
-          really cool.
-        </p>
-        <h3 class="question">What are your favorite Pok&eacute;mon Games?</h3>
-        <p class="answer">
-          Easy: <b>{{ parseFavorites().games[0] }}</b
-          >, <b>{{ parseFavorites().games[1] }}</b
-          >, and <b>{{ parseFavorites().games[2] }}</b>
-        </p>
-        <h3 class="question">What are your favorite Pok&eacute;mon Regions?</h3>
-        <p class="answer">
-          Pretty obvious given the previous answer:
-          <b>{{ parseFavorites().regions[0] }}</b
-          >, <b>{{ parseFavorites().regions[1] }}</b
-          >, and <b>{{ parseFavorites().regions[2] }}</b
-          >.
-        </p>
-        <h3 class="question">
-          What is your Favorite Pok&eacute;mon Character (In Game and Anime)?
-        </h3>
-        <p class="answer">
-          In game:
-          <b>{{ parseFavorites().characters[0] }}</b> and
-          <b>{{ parseFavorites().characters[1] }}</b
-          >; Anime: <b>{{ parseFavorites().characters[2] }}</b
-          >.
-        </p>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="!environment.production">
       <h2 class="mt-2">API Version</h2>
       <p>
         <code>{{

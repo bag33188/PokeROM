@@ -20,34 +20,10 @@ import { LoggerService as logger } from '../../services/logger.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  public lengths: Lengths = lengths;
+  public lengths: Lengths;
   public loading: boolean;
   public registerFail: string;
-  public registerForm: FormGroup = this.fb.group({
-    name: [
-      '',
-      [
-        Validators.minLength(this.lengths.name[0]),
-        Validators.maxLength(this.lengths.name[1])
-      ]
-    ],
-    username: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(this.lengths.username[0]),
-        Validators.maxLength(this.lengths.username[1])
-      ]
-    ],
-    password: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(this.lengths.password[0]),
-        Validators.maxLength(this.lengths.password[1])
-      ]
-    ]
-  });
+  public registerForm: FormGroup;
   public firedOff: boolean;
 
   get Username(): AbstractControl {
@@ -72,6 +48,32 @@ export class RegisterComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.lengths = lengths;
+    this.registerForm = this.fb.group({
+      name: [
+        '',
+        [
+          Validators.minLength(this.lengths.name[0]),
+          Validators.maxLength(this.lengths.name[1])
+        ]
+      ],
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(this.lengths.username[0]),
+          Validators.maxLength(this.lengths.username[1])
+        ]
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(this.lengths.password[0]),
+          Validators.maxLength(this.lengths.password[1])
+        ]
+      ]
+    });
     this.loading = false;
     this.firedOff = false;
     setTimeout(AuthService.logout, 100);

@@ -12,11 +12,12 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 })
 export class DisclaimerToastComponent implements OnInit {
   public show: boolean;
-  public environment: Environment = environment;
+  public environment: Environment;
 
   constructor() {}
 
   public ngOnInit(): void {
+    this.environment = environment;
     if (!LocalStorageService.getState('show-toast')) {
       LocalStorageService.setState('show-toast', 'true');
     }

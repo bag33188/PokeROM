@@ -12,7 +12,7 @@ import { JSONObject } from '../../models/JSONObject';
   styleUrls: ['./ratings.component.scss']
 })
 export class RatingsComponent implements OnInit {
-  public currentRate: number = 0;
+  public currentRate: number;
   public message: string;
   public formValid: boolean;
   public formSubmitted: boolean;
@@ -29,6 +29,7 @@ export class RatingsComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.currentRate = 0;
     this.message = '';
     this.formValid = true;
     this.formSubmitted = false;

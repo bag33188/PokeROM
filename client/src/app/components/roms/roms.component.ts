@@ -17,14 +17,14 @@ type paginationState = [number, number, boolean];
   styleUrls: ['./roms.component.scss']
 })
 export class RomsComponent implements OnInit, OnDestroy {
-  public romsData: Rom[] = new Array<Rom>();
-  public currentPage: number = 1;
-  public itemsPerPage: number = 4;
+  public romsData: Rom[];
+  public currentPage: number;
+  public itemsPerPage: number;
   private pageSize: number;
-  public loading: boolean = true;
-  public noRomsMsg: string = '';
-  private limit: number = 35;
-  public isError: boolean = false;
+  public loading: boolean;
+  public noRomsMsg: string;
+  private limit: number;
+  public isError: boolean;
   private romsObs$: Observable<Rom[]>;
   private romsSub: Subscription;
   public favoritesShown: boolean;
@@ -47,6 +47,13 @@ export class RomsComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
+    this.currentPage = 1;
+    this.itemsPerPage = 4;
+    this.loading = true;
+    this.noRomsMsg = '';
+    this.limit = 35;
+    this.isError = false;
+    this.romsData = new Array<Rom>();
     if (
       (!this.routerExtService.getPreviousUrl().includes('/info') &&
         this.router.url === '/roms') ||

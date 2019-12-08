@@ -19,7 +19,7 @@ import { LoggerService as logger } from '../../services/logger.service';
   styleUrls: ['./natures.component.scss']
 })
 export class NaturesComponent implements OnInit, OnDestroy {
-  public natures: Nature[] = new Array<Nature>();
+  public natures: Nature[];
   public headers: string[];
   public icons: IconDefinition[];
   public faLeaf: IconDefinition;
@@ -27,14 +27,17 @@ export class NaturesComponent implements OnInit, OnDestroy {
   public faArrowDown: IconDefinition;
   public faSignLanguage: IconDefinition;
   public faHeart: IconDefinition;
-  public loading: boolean = true;
-  public isError: boolean = false;
+  public loading: boolean;
+  public isError: boolean;
   private naturesObs$: Observable<Nature[]>;
   private naturesSub: Subscription;
 
   constructor(private naturesService: NaturesService) {}
 
   public ngOnInit(): void {
+    this.natures = new Array<Nature>();
+    this.loading = true;
+    this.isError = false;
     this.faLeaf = faLeaf;
     this.faArrowDown = faArrowDown;
     this.faArrowUp = faArrowUp;

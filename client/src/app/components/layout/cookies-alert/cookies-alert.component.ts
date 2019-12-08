@@ -15,12 +15,13 @@ import { SessionStorageService } from '../../../services/session-storage.service
 })
 export class CookiesAlertComponent implements OnInit {
   public alerts: Alert[];
-  public cookiesOk: boolean = false;
+  public cookiesOk: boolean;
   public faInfoCircle: IconDefinition;
 
   constructor() {}
 
   public ngOnInit(): void {
+    this.cookiesOk = false;
     this.faInfoCircle = faInfoCircle;
     this.alerts = [
       {
