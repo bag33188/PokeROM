@@ -56,12 +56,12 @@ export class AlertDirective implements OnInit {
     const typeArr: string[] = this.getType();
     const classList: DOMTokenList = this.el.nativeElement.classList;
     typeArr.forEach((className: string): void => {
-      if (Array.from(classList).includes(className)) {
+      if (Array.prototype.slice.call(classList).includes(className)) {
         classList.remove(className);
       }
       classList.add(className);
     });
-    if (Array.prototype.slice.call(classList).includes('null')) {
+    if (Array.from(classList).includes('null')) {
       classList.remove('null');
     }
   }
