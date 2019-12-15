@@ -26,10 +26,9 @@ export class DefaultImagePipe implements PipeTransform {
               : fallback;
         },
         (err: object): void => {
-          // tslint:disable-next-line:no-string-literal
-          if (err['status'] === 404) {
-            this.cachedImageUrl = fallback;
-          }
+          this.cachedImageUrl =
+            // tslint:disable-next-line:no-string-literal
+            err['status'] === 404 ? fallback : this.cachedUrl;
         },
         (): void => {
           this.forceHttps(forceHttps);
