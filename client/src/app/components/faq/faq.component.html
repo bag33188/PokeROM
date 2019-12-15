@@ -116,7 +116,7 @@
         <code>{{
           (environment.apiUrl + '/version' | fetch | json) !== 'null'
             ? (apiVersion$ | async | json)
-            : 'error'
+            : 'error fetching API version'
         }}</code>
       </p>
     </ng-container>

@@ -1,8 +1,8 @@
-import { DefaultPipe } from './default.pipe';
+import { DefaultImagePipe } from './default-image.pipe';
 
 describe('DefaultPipe', () => {
   it('create an instance', () => {
-    const pipe = new DefaultPipe();
+    const pipe = new DefaultImagePipe();
     expect(pipe).toBeTruthy();
   });
 });

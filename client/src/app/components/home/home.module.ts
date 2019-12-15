@@ -7,9 +7,16 @@ import { SplashCarouselComponent } from './splash-carousel/splash-carousel.compo
 import { InfoAccordionComponent } from './info-accordion/info-accordion.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DirectivesModule } from '../../directives/directives.module';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
-  imports: [CommonModule, HomeRoutingModule, NgbModule, DirectivesModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    NgbModule,
+    DirectivesModule,
+    PipesModule
+  ],
   declarations: [
     HomeComponent,
     ShowcaseJumbotronComponent,

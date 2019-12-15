@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { HtmlRoute } from '../../../interfaces/HtmlRoute';
 import { Route } from '../../../interfaces/Route';
-import { Images } from '../../../enums/images.enum';
+import { ImagesEnum } from '../../../enums/images.enum';
+import { ImageUrlsEnum } from '../../../enums/image-urls.enum';
 
 @Component({
   selector: 'layout-header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   public loggedOutRoutes: Route[];
   private loggedInRoutes: Route[];
   public routes: HtmlRoute[];
-  public images: typeof Images;
+  public images: typeof ImagesEnum;
   public logoFallbackUrl: string;
 
   constructor(
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.images = Images;
+    this.images = ImagesEnum;
     this.routes = [
       {
         routerLink: ['/', 'home'],
@@ -108,8 +109,7 @@ export class HeaderComponent implements OnInit {
         pathMatch: 'prefix'
       }
     ];
-    this.logoFallbackUrl =
-      'https://6emlfw.sn.files.1drv.com/y4mZ4gYGKIW3-1Gg6sNAK2N-NLlAhXfn2NyK2eNlaP-V_Bi1xZsV5B_C71QqVw6rF32zJCPv7TsRgrKq4NFWYRUyuLdlqPKv8q0UOfMbPu8k1bok6dcRIauEUpzNHbGLc0YXFHPocoPUaVNvUqY4Ln7xEVJ9RjY_1diLvvmkvmqDtfFV8iBybtSl9zBAiYRa7c3LZopc03P-nfedATk6qvwLg?width=444&height=139&cropmode=none';
+    this.logoFallbackUrl = ImageUrlsEnum.LOGO;
   }
 
   public isUrl(url: string, pathMatch: string): boolean {

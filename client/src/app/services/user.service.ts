@@ -55,10 +55,12 @@ export class UserService {
   }
 }
 
+type minMax = [number, number];
+
 export interface Lengths {
-  name: [number, number];
-  username: [number, number];
-  password: [number, number];
+  name: minMax;
+  username: minMax;
+  password: minMax;
 }
 
 export const lengths: Lengths = {

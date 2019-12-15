@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
-import { Images } from '../../../enums/images.enum';
+import { ImagesEnum } from '../../../enums/images.enum';
+import { ImageUrlsEnum } from '../../../enums/image-urls.enum';
 import { LoggerService as logger } from '../../../services/logger.service';
 
 @Component({
@@ -8,13 +9,15 @@ import { LoggerService as logger } from '../../../services/logger.service';
   styleUrls: ['./gif-spinner.component.scss']
 })
 export class GifSpinnerComponent implements OnInit, AfterContentInit {
-  public images: typeof Images;
+  public images: typeof ImagesEnum;
+  public fallbackUrl: string;
   @Input() public loading: boolean;
 
   constructor() {}
 
   public ngOnInit(): void {
-    this.images = Images;
+    this.fallbackUrl = ImageUrlsEnum.SPINNER;
+    this.images = ImagesEnum;
   }
 
   public ngAfterContentInit(): void {
