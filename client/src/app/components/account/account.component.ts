@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import {
   faExclamationTriangle,
+  faInfoCircle,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import sanitizeXSS from '../../helpers/sanitize-xss';
@@ -37,6 +38,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   private userObs$: Observable<User>;
   private userSub: Subscription;
   public lengths: Lengths;
+  public faInfoCircle: IconDefinition;
 
   constructor(private userService: UserService, private router: Router) {
     String.prototype.sanitizeXSS = sanitizeXSS;
@@ -53,6 +55,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.errLoadingUsr = false;
     this.isErrorDeleting = false;
     this.faExclamationTriangle = faExclamationTriangle;
+    this.faInfoCircle = faInfoCircle;
     const key: string = 'id';
     if (!CookiesService.getCookie('user')) {
       this.errLoadingUsr = true;
