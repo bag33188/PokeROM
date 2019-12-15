@@ -10,10 +10,7 @@
       ngbSlide
       *ngFor="let carouselSlide of carouselData; index as i"
     >
-      <img
-        [src]="carouselSlide.image | defaultImage: carouselSlide.backup:true"
-        alt="slide-{{ i + 1 }}"
-      />
+      <img [src]="carouselSlide.image" alt="slide-{{ i + 1 }}" />
       <div class="carousel-caption">
         <h3 class="white">
           {{ carouselSlide.heading }}
