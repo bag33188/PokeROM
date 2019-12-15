@@ -16,6 +16,7 @@ export class DefaultImagePipe implements PipeTransform {
   ): string {
     if (value !== this.cachedUrl) {
       this.cachedUrl = value;
+      this.cachedImageUrl = this.cachedUrl;
       this.http.get(this.cachedUrl).subscribe(
         (): void => {
           this.cachedImageUrl =
