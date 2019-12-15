@@ -18,10 +18,18 @@ export class DefaultImagePipe implements PipeTransform {
       this.cachedUrl = value;
       this.http.get(this.cachedUrl).subscribe(
         (): void => {
-          this.cachedImageUrl = this.cachedUrl ? this.cachedUrl : fallback;
+          this.cachedImageUrl =
+            this.cachedUrl !== null &&
+            this.cachedUrl !== undefined &&
+            this.cachedUrl.length > 0
+              ? this.cachedUrl
+              : fallback;
         },
-        (): void => {
-          this.cachedImageUrl = fallback;
+        (err: object): void => {
+          // tslint:disable-next-line:no-string-literal
+          if (err['status'] === 404) {
+            this.cachedImageUrl = fallback;
+          }
         },
         (): void => {
           this.forceHttps(forceHttps);
