@@ -21,9 +21,13 @@ export class DefaultImagePipe implements PipeTransform {
             fallback = fallback.replace(/http:\/\//i, 'https://');
           }
         }
-        element.nativeElement.onError = element.nativeElement.src = fallback;
+        // tslint:disable-next-line:only-arrow-functions
+        element.nativeElement.onerror = function(): void {
+          this.onerror = null;
+          element.nativeElement.src = fallback;
+        };
       }
     }
-    return fallback;
+    return value;
   }
 }
