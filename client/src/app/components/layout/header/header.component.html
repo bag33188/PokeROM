@@ -2,7 +2,8 @@
   <span class="navbar-toggler-icon"></span>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="nav-header">
     <img
-      [src]="images.LOGO"
+      #logo
+      [src]="images.LOGO | defaultImage: logoFallbackUrl:logoElement:true"
       alt="app-logo"
       id="logo"
       class="navbar-brand d-inline-block align-top mr-2"

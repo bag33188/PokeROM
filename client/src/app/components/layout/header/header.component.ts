@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { HtmlRoute } from '../../../interfaces/HtmlRoute';
@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   public routes: HtmlRoute[];
   public images: typeof ImagesEnum;
   public logoFallbackUrl: string;
+  @ViewChild('logo') logoElement: ElementRef;
 
   constructor(
     private authService: AuthService,
