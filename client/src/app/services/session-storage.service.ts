@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { LoggerService as logger } from './logger.service';
-import { JSONObject } from '../models/JSONObject';
-import { JSONArray } from '../interfaces/JSONArray';
 
 @Injectable({
   providedIn: 'root'
