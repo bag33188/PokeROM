@@ -1,12 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {
-  faInfo,
-  faStar,
-  IconDefinition
-} from '@fortawesome/free-solid-svg-icons';
+import { faStar, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Rom } from '../../../models/Rom';
 import { NgClasses } from '../../../interfaces/NgClasses';
-import { UnitConversionService } from '../../../services/unit-conversion.service';
+import { UnitConversionService as unitConverter } from '../../../services/unit-conversion.service';
 
 @Component({
   selector: 'roms-rom',
@@ -15,16 +11,18 @@ import { UnitConversionService } from '../../../services/unit-conversion.service
 })
 export class RomComponent implements OnInit {
   @Input() public rom: Rom;
-  public faInfo: IconDefinition;
   public faStar: IconDefinition;
 
   constructor() {}
 
   public ngOnInit(): void {
-    this.faInfo = faInfo;
     this.faStar = faStar;
   }
 
+  /**
+   * @description remove dubious chars from image alt value
+   * @param altValue alt value of image
+   */
   public imgAlt(altValue: string): string {
     return `${altValue
       .replace(/[\s:]/g, '-')
@@ -33,10 +31,9 @@ export class RomComponent implements OnInit {
   }
 
   public fileSizeData(romFileSize: number): [number, string] {
-    const [fileSize, fileType]: [
-      number,
-      string
-    ] = UnitConversionService.convertRomSize(romFileSize);
+    const [fileSize, fileType]: [number, string] = unitConverter.convertRomSize(
+      romFileSize
+    );
     return [fileSize, fileType];
   }
 
@@ -46,14 +43,6 @@ export class RomComponent implements OnInit {
    * @param altValue The alt value of the image.
    */
   public applyClassesForGameImgSize(altValue: string): NgClasses {
-    const overSizedImgClasses: NgClasses = {
-      'oversized-img': true,
-      'card-img-top box-art-img': true
-    };
-    const regularSizedImgClasses: NgClasses = {
-      'oversized-img': false,
-      'card-img-top box-art-img': true
-    };
     const oversizedImages: string[] = [
       'pokemon-green-version-jp-box-art',
       'pokemon-lets-go-pikachu-box-art',
@@ -61,12 +50,13 @@ export class RomComponent implements OnInit {
       'pokemon-sword-version-box-art',
       'pokemon-shield-version-box-art'
     ];
-    return oversizedImages.includes(altValue.toLowerCase())
-      ? overSizedImgClasses
-      : regularSizedImgClasses;
+    return {
+      'oversized-img': oversizedImages.includes(altValue.toLowerCase()),
+      'card-img-top box-art-img': true
+    };
   }
 
   public romanize(generation: number): string | number {
-    return UnitConversionService.convertIntegerToRomanNumeral(generation);
+    return unitConverter.convertIntegerToRomanNumeral(generation);
   }
 }

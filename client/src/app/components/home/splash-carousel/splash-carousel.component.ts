@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselSlide } from '../../../interfaces/CarouselSlide';
 import { ImagesEnum } from '../../../enums/images.enum';
-import { UnitConversionService } from '../../../services/unit-conversion.service';
+import { UnitConversionService as unitConverter } from '../../../services/unit-conversion.service';
 
 @Component({
   selector: 'home-splash-carousel',
@@ -10,9 +10,6 @@ import { UnitConversionService } from '../../../services/unit-conversion.service
 })
 export class SplashCarouselComponent implements OnInit {
   private static readonly eacute: string = '\u00E9';
-  private static interval: number = UnitConversionService.convertSecondsToMilliseconds(
-    4.8
-  );
   public images: typeof ImagesEnum;
   public carouselData: CarouselSlide[];
 
@@ -44,6 +41,6 @@ export class SplashCarouselComponent implements OnInit {
     ];
   }
   public getInterval(): number {
-    return SplashCarouselComponent.interval;
+    return unitConverter.convertSecondsToMilliseconds(4.8);
   }
 }
