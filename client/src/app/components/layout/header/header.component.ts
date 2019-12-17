@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   public routes: HtmlRoute[];
   public images: typeof ImagesEnum;
   public logoFallbackUrl: string;
-  @ViewChild('logo') logoElement: ElementRef;
+  @ViewChild('logo') public logoElement: ElementRef;
 
   constructor(
     private authService: AuthService,

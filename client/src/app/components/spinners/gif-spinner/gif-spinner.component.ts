@@ -1,4 +1,11 @@
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { ImagesEnum } from '../../../enums/images.enum';
 import { ImageUrlsEnum } from '../../../enums/image-urls.enum';
 import { LoggerService as logger } from '../../../services/logger.service';
@@ -12,6 +19,7 @@ export class GifSpinnerComponent implements OnInit, AfterContentInit {
   public images: typeof ImagesEnum;
   public fallbackUrl: string;
   @Input() public loading: boolean;
+  @ViewChild('spinnerImg') public spinnerImage: ElementRef;
 
   constructor() {}
 

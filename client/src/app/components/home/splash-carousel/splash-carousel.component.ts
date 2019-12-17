@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CarouselSlide } from '../../../interfaces/CarouselSlide';
 import { ImagesEnum } from '../../../enums/images.enum';
 import { ImageUrlsEnum } from '../../../enums/image-urls.enum';
@@ -17,6 +17,7 @@ export class SplashCarouselComponent implements OnInit {
   public images: typeof ImagesEnum;
   public imageUrls: typeof ImageUrlsEnum;
   public carouselData: CarouselSlide[];
+  @ViewChild('carouselImg') public carouselImgElement: ElementRef;
 
   constructor() {}
 
