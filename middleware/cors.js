@@ -9,8 +9,8 @@ const acceptedOrigins = (origin, callback) => {
   whitelist.indexOf(origin) > -1
     ? callback(null, true)
     : !origin
-    ? callback(null, Array.isArray(whitelist) ? whitelist[0] : whitelist)
-    : callback(new Error('Not allowed by CORS'), false);
+      ? callback(null, Array.isArray(whitelist) ? whitelist[0] : whitelist)
+      : callback(new Error('Not allowed by CORS'), false);
 };
 
 module.exports = cors({
