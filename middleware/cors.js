@@ -6,13 +6,11 @@ const whitelist =
     : ['http://localhost:4200', 'http://localhost:8080'];
 
 const acceptedOrigins = (origin, callback) => {
-  if (whitelist.indexOf(origin) > -1) {
-    callback(null, true);
-  } else if (!origin) {
-    callback(null, Array.isArray(whitelist) ? whitelist[0] : whitelist);
-  } else {
-    callback(new Error('Not allowed by CORS'), false);
-  }
+  whitelist.indexOf(origin) > -1
+    ? callback(null, true)
+    : !origin
+    ? callback(null, Array.isArray(whitelist) ? whitelist[0] : whitelist)
+    : callback(new Error('Not allowed by CORS'), false);
 };
 
 module.exports = cors({

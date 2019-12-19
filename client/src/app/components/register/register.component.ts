@@ -109,11 +109,10 @@ export class RegisterComponent implements OnInit {
           this.loading = false;
           const keys: string[] = ['error', 'user_exists', 'errors', 'msg'];
           if (err[keys[0]].hasOwnProperty(keys[1])) {
-            if (err[keys[0]][keys[1]] === true) {
-              this.registerFail = 'User with username already exists';
-            } else {
-              this.registerFail = 'Registration Failure';
-            }
+            this.registerFail =
+              err[keys[0]][keys[1]] === true
+                ? 'User with username already exists'
+                : 'Registration Failure';
           }
           if (err[keys[0]][keys[2]]) {
             err[keys[0]][keys[2]].forEach((error: JSONObject): void => {
