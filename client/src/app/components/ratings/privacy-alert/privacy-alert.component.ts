@@ -21,15 +21,14 @@ export class PrivacyAlertComponent implements OnInit {
         'Your rating does not store any personal information, browser data, or cookies. Your rating will only show your rating number, optional feedback message, and the date and time it was submitted.',
       type: 'info'
     };
-    if (!SessionStorageService.getState('rating-alert')) {
-      SessionStorageService.setState('rating-alert', [alert]);
+    if (!SessionStorageService.getState('ratingAlert')) {
+      SessionStorageService.setState('ratingAlert', [alert]);
     }
-    // tslint:disable-next-line:whitespace
-    this.alerts = SessionStorageService.getState('rating-alert');
+    this.alerts = SessionStorageService.getState('ratingAlert');
   }
 
   public closeAlert(alert: Alert): void {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
-    SessionStorageService.setState('rating-alert', []);
+    SessionStorageService.setState('ratingAlert', []);
   }
 }
