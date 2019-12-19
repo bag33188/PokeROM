@@ -1,22 +1,17 @@
-<ng-container>
-  <ngb-carousel
-    *ngIf="images"
-    [interval]="splashCarouselComponent.interval"
-    [pauseOnHover]="false"
-    [showNavigationIndicators]="false"
-    [showNavigationArrows]="carouselData.length > 1"
-  >
-    <ng-template
-      ngbSlide
-      *ngFor="let carouselSlide of carouselData; index as i"
-    >
-      <img #carouselImg [src]="carouselSlide.image" alt="slide-{{ i + 1 }}" />
-      <div class="carousel-caption">
-        <h3 class="white">
-          {{ carouselSlide.heading }}
-        </h3>
-        <p class="white">{{ carouselSlide.caption }}</p>
-      </div>
-    </ng-template>
-  </ngb-carousel>
-</ng-container>
+<ngb-carousel
+  *ngIf="images"
+  [interval]="splashCarouselComponent.interval"
+  [pauseOnHover]="false"
+  [showNavigationIndicators]="false"
+  [showNavigationArrows]="carouselData.length > 1"
+>
+  <ng-template ngbSlide *ngFor="let carouselSlide of carouselData; index as i">
+    <img #carouselImg [src]="carouselSlide.image" alt="slide-{{ i + 1 }}" />
+    <div class="carousel-caption">
+      <h3 class="white">
+        {{ carouselSlide.heading }}
+      </h3>
+      <p class="white">{{ carouselSlide.caption }}</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
