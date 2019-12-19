@@ -9,26 +9,20 @@ export class LocalStorageService {
 
   constructor() {}
 
-  public static getState(key: string, asString?: boolean): any {
+  public static getState<T>(key: string): T {
     try {
-      if (asString !== null && asString !== undefined && asString === true) {
-        return localStorage.getItem(key);
-      } else {
-        return JSON.parse(localStorage.getItem(key));
-      }
+      return JSON.parse(localStorage.getItem(key)) as T;
     } catch (e) {
       logger.error(e);
     }
   }
 
-  public static setState(key: string, value: any): void {
+  public static setState<T>(key: string, value: T): void {
     try {
-      localStorage.setItem(
-        key,
-        value.constructor === Object || Array.isArray(value)
-          ? JSON.stringify(value)
-          : value
-      );
+      localStorage.setItem(key, (value.constructor === Object ||
+      Array.isArray(value)
+        ? JSON.stringify(value)
+        : value) as string);
     } catch (e) {
       logger.error(e);
     }

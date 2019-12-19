@@ -63,16 +63,16 @@ export class AccountComponent implements OnInit, OnDestroy {
       this.userId = JSON.parse(CookiesService.getCookie('user'))[key];
       this.retrieveUserData(this.userId);
     }
-    if (!LocalStorageService.getState('noticeClosed')) {
-      LocalStorageService.setState('noticeClosed', 'false');
+    if (!LocalStorageService.getState<boolean>('notice_closed')) {
+      LocalStorageService.setState<boolean>('notice_closed', false);
     }
-    if (!SessionStorageService.getState('warningClosed')) {
-      SessionStorageService.setState('warningClosed', 'false');
+    if (!SessionStorageService.getState<boolean>('warning_closed')) {
+      SessionStorageService.setState<boolean>('warning_closed', false);
     }
-    this.noticeClosed = LocalStorageService.getState('noticeClosed') as boolean;
-    this.warningClosed = SessionStorageService.getState(
-      'warningClosed'
-    ) as boolean;
+    this.noticeClosed = LocalStorageService.getState<boolean>('notice_closed');
+    this.warningClosed = SessionStorageService.getState<boolean>(
+      'warning_closed'
+    );
   }
 
   public ngOnDestroy(): void {
@@ -137,10 +137,10 @@ export class AccountComponent implements OnInit, OnDestroy {
   public storeAlertState(alertName: string): void {
     switch (alertName) {
       case 'notice':
-        LocalStorageService.setState('noticeClosed', 'true');
+        LocalStorageService.setState<boolean>('notice_closed', true);
         break;
       case 'warning':
-        SessionStorageService.setState('warningClosed', 'true');
+        SessionStorageService.setState<boolean>('warning_closed', true);
         break;
       default:
         logger.error('Unknown alert name.');

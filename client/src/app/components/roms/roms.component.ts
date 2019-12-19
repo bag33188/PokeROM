@@ -29,15 +29,22 @@ export class RomsComponent implements OnInit, OnDestroy {
   private romsSub: Subscription;
   public favoritesShown: boolean;
   private static setPaginationState(state?: paginationState): void {
-    if (!LocalStorageService.getState('paginationState') && !state) {
-      LocalStorageService.setState('paginationState', [0, 1, false]);
+    if (
+      !LocalStorageService.getState<paginationState>('pagination_state') &&
+      !state
+    ) {
+      LocalStorageService.setState<paginationState>('pagination_state', [
+        0,
+        1,
+        false
+      ]);
     }
     if (state !== null && state !== undefined) {
-      LocalStorageService.setState('paginationState', state);
+      LocalStorageService.setState<paginationState>('pagination_state', state);
     }
   }
   private static getPaginationState(): paginationState {
-    return LocalStorageService.getState('paginationState') as paginationState;
+    return LocalStorageService.getState<paginationState>('pagination_state');
   }
   constructor(
     private router: Router,

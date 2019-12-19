@@ -30,14 +30,14 @@ export class CookiesAlertComponent implements OnInit {
           'I hate to interrupt, but I am required to tell you that this site uses cookies to store your login data for authentication. Click the (x) icon on the top right corner of this alert to close this annoying piece of garbage.'
       }
     ];
-    if (!SessionStorageService.getState('cookiesOk')) {
-      SessionStorageService.setState('cookiesOk', 'false');
+    if (!SessionStorageService.getState<boolean>('cookies_ok')) {
+      SessionStorageService.setState<boolean>('cookies_ok', false);
     }
-    this.cookiesOk = SessionStorageService.getState('cookiesOk') as boolean;
+    this.cookiesOk = SessionStorageService.getState<boolean>('cookies_ok');
   }
 
   public closeAlert(alert: Alert): void {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
-    SessionStorageService.setState('cookiesOk', 'true');
+    SessionStorageService.setState<boolean>('cookies_ok', true);
   }
 }

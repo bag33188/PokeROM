@@ -18,14 +18,14 @@ export class DisclaimerToastComponent implements OnInit {
 
   public ngOnInit(): void {
     this.environment = environment;
-    if (!LocalStorageService.getState('showToast')) {
-      LocalStorageService.setState('showToast', 'true');
+    if (!LocalStorageService.getState<boolean>('show_toast')) {
+      LocalStorageService.setState<boolean>('show_toast', true);
     }
-    this.show = LocalStorageService.getState('showToast') as boolean;
+    this.show = LocalStorageService.getState<boolean>('show_toast');
   }
 
   public closeModal(): void {
-    LocalStorageService.setState('showToast', 'false');
-    this.show = LocalStorageService.getState('showToast') as boolean;
+    LocalStorageService.setState<boolean>('show_toast', false);
+    this.show = LocalStorageService.getState<boolean>('show_toast');
   }
 }
