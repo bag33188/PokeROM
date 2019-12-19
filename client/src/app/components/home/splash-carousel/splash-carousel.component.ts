@@ -10,12 +10,18 @@ import { UnitConversionService as unitConverter } from '../../../services/unit-c
 })
 export class SplashCarouselComponent implements OnInit {
   private static readonly eacute: string = '\u00E9';
+  public static interval: number;
   public images: typeof ImagesEnum;
+  public splashCarouselComponent: typeof SplashCarouselComponent;
   public carouselData: CarouselSlide[];
 
   constructor() {}
 
   public ngOnInit(): void {
+    this.splashCarouselComponent = SplashCarouselComponent;
+    SplashCarouselComponent.interval = unitConverter.convertSecondsToMilliseconds(
+      4.8
+    );
     this.images = ImagesEnum;
     this.carouselData = [
       {
@@ -39,8 +45,5 @@ export class SplashCarouselComponent implements OnInit {
       //   caption: `This website's database houses all the core Pok${SplashCarouselComponent.eacute}mon game ROMs ever made.`
       // }
     ];
-  }
-  public getInterval(): number {
-    return unitConverter.convertSecondsToMilliseconds(4.8);
   }
 }
