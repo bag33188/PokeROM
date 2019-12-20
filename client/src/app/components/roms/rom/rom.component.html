@@ -13,23 +13,24 @@
     </h5>
     <ul class="list-group list-group-flush">
       <li class="list-group-item font-weight-bold list-grid">
-        <span>File Size</span
+        <span class="text-left">File Size</span
         ><span class="text-right">{{
           fileSizeData(rom.file_size).join('')
         }}</span>
       </li>
       <li class="list-group-item font-weight-bold list-grid">
-        <span>File Type</span
+        <span class="text-left">File Type</span
         ><span class="text-right">{{ rom.file_type }}</span>
       </li>
       <li class="list-group-item font-weight-bold list-grid">
-        <span>Generation</span
+        <span class="text-left">Generation</span
         ><span class="text-right generation">{{
           romanize(rom.generation)
         }}</span>
       </li>
       <li class="list-group-item font-weight-bold list-grid">
-        <span>Platform</span><span class="text-right">{{ rom.platform }}</span>
+        <span class="text-left">Platform</span
+        ><span class="text-right">{{ rom.platform }}</span>
       </li>
     </ul>
     <div class="card-body card-body-container">
