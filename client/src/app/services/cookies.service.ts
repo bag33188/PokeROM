@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
 
+interface CookiesObj {
+  [index: string]: string;
+}
+
 @Injectable()
 export class CookiesService {
+  public static cookiesLength: number = Object.keys(
+    CookiesService.getAllCookies()
+  ).length;
+
   constructor() {}
 
   /**
@@ -62,5 +70,20 @@ export class CookiesService {
       callback(cookie === undefined ? null : cookie);
     }
     return cookie || null;
+  }
+
+  /**
+   * @summary Gets all cookies in the browser.
+   * @description Get all the cookies currently in the browser as an object literal.
+   * @returns A cookies object literal.
+   */
+  private static getAllCookies(): CookiesObj {
+    const pairs: string[] = document.cookie.split(';');
+    const cookies: CookiesObj = {};
+    pairs.forEach((undefined, i: number): void => {
+      const pair: string[] = pairs[i].split('=');
+      cookies[pair[0].toString().trim()] = unescape(pair.slice(1).join('='));
+    });
+    return cookies;
   }
 }
