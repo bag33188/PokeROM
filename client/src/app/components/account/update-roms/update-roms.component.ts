@@ -19,6 +19,8 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import { fadeInAnimation } from '../../../animations';
 
+type romsDuo = [Array<Rom>, Array<Rom>];
+
 @Component({
   selector: 'account-update-roms',
   templateUrl: './update-roms.component.html',
@@ -27,7 +29,7 @@ import { fadeInAnimation } from '../../../animations';
 })
 export class UpdateRomsComponent implements OnInit, OnDestroy {
   private deleteRomsObs$: Observable<JSONObject>;
-  private addRomsObs$: Observable<[Array<Rom>, Array<Rom>]>;
+  private addRomsObs$: Observable<romsDuo>;
   private addRomsSub: Subscription;
   private deleteRomsSub: Subscription;
   public romsUpdated: boolean;
@@ -69,7 +71,7 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   public updateRoms(): void {
     this.showBtn = false;
     this.loading = true;
-    this.deleteRoms(this.addRoms.bind(this, UpdateRomsComponent));
+    this.deleteRoms(this.addRoms.bind(this));
   }
 
   private deleteRoms(addRomsCallback: () => void): void {
@@ -89,9 +91,7 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   }
 
   private addRoms(): void {
-    const observer:
-      | ErrorObserver<[Array<Rom>, Array<Rom>]>
-      | CompletionObserver<[Array<Rom>, Array<Rom>]> = {
+    const observer: ErrorObserver<romsDuo> | CompletionObserver<romsDuo> = {
       error: (err: JSONObject): void => {
         this.loading = false;
         logger.error(err);
@@ -102,7 +102,7 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
       }
     };
     this.addRomsSub = this.addRomsObs$.subscribe(observer as PartialObserver<
-      [Array<Rom>, Array<Rom>]
+      romsDuo
     >);
   }
 }

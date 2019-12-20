@@ -12,7 +12,9 @@ export class LoggerService {
    * @param msg The message to log.
    * @returns Nothing (void).
    */
-  public static log = (...msg: any[]): void => console.log(...msg);
+  public static log = (...msg: any[]): void =>
+    // tslint:disable-next-line:semicolon
+    msg.forEach((m: any): void => console.log(m));
 
   /**
    * @summary Log err msg to console.
@@ -20,7 +22,9 @@ export class LoggerService {
    * @param msg The error message to log.
    * @returns Nothing (void).
    */
-  public static error = (...msg: any[]): void => console.error(...msg);
+  public static error = (...msg: any[]): void =>
+    // tslint:disable-next-line:semicolon
+    msg.forEach((m: any): void => console.error(m));
 
   /**
    * @summary Log warning to console.
@@ -28,7 +32,9 @@ export class LoggerService {
    * @param msg The warning to log.
    * @returns Nothing (void).
    */
-  public static warn = (...msg: any[]): void => console.warn(...msg);
+  public static warn = (...msg: any[]): void =>
+    // tslint:disable-next-line:semicolon
+    msg.forEach((m: any): void => console.warn(m));
 
   /**
    * @summary Log info to console.
@@ -36,7 +42,9 @@ export class LoggerService {
    * @param msg The info msg to log.
    * @returns Nothing (void).
    */
-  public static info = (...msg: any[]): void => console.info(...msg);
+  public static info = (...msg: any[]): void =>
+    // tslint:disable-next-line:semicolon
+    msg.forEach((m: any): void => console.info(m));
 
   /**
    * @summary Log table data to console.
@@ -44,7 +52,9 @@ export class LoggerService {
    * @param data The table data to log.
    * @returns Nothing (void).
    */
-  public static table = (...data: any): void => console.table(data);
+  public static table = (...data: any[]): void =>
+    // tslint:disable-next-line:semicolon
+    data.forEach((d: any): void => console.table(d));
 
   /**
    * @summary Trace a stack to the console.
