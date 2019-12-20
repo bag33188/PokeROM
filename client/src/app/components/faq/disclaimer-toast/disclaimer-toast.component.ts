@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Environment } from '../../../interfaces/Environment';
 import { environment } from '../../../../environments/environment';
 import { fadeOutAnimation } from '../../../animations';
-import { LocalStorageService } from '../../../services/local-storage.service';
+import { LocalStorageService as localState } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'faq-disclaimer-toast',
@@ -18,14 +18,14 @@ export class DisclaimerToastComponent implements OnInit {
 
   public ngOnInit(): void {
     this.environment = environment;
-    if (!LocalStorageService.getState<boolean>('show_toast')) {
-      LocalStorageService.setState<boolean>('show_toast', true);
+    if (!localState.getState<boolean>('show_toast')) {
+      localState.setState<boolean>('show_toast', true);
     }
-    this.show = LocalStorageService.getState<boolean>('show_toast');
+    this.show = localState.getState<boolean>('show_toast');
   }
 
   public closeModal(): void {
-    LocalStorageService.setState<boolean>('show_toast', false);
-    this.show = LocalStorageService.getState<boolean>('show_toast');
+    localState.setState<boolean>('show_toast', false);
+    this.show = localState.getState<boolean>('show_toast');
   }
 }

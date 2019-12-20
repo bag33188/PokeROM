@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { LoggedUser } from '../models/LoggedUser';
 import { User } from '../models/User';
 import { RegisteredUser } from '../models/RegisteredUser';
-import { CookiesService } from './cookies.service';
+import { CookiesService as cookies } from './cookies.service';
 import { environment } from '../../environments/environment';
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService as localState } from './local-storage.service';
 
 @Injectable()
 export class AuthService {
@@ -16,16 +16,16 @@ export class AuthService {
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {}
 
   public static loadToken(): string {
-    return CookiesService.getCookie('token_id');
+    return cookies.getCookie('token_id');
   }
   /**
    * @summary Logs out the user.
    * @description Clears local storage, sets authToken and user to null, and clears the token_id cookie.
    */
   public static logout(): void {
-    LocalStorageService.clearState();
-    CookiesService.setCookie('token_id', '', 0);
-    CookiesService.setCookie('user', '', 0);
+    localState.clearState();
+    cookies.setCookie('token_id', '', 0);
+    cookies.setCookie('user', '', 0);
   }
   /**
    * @summary Stores the user data in local storage and the JWT as a cookie.
@@ -34,8 +34,8 @@ export class AuthService {
    * @returns nothing (void).
    */
   public static storeData(token: string, user: User): void {
-    CookiesService.setCookie('user', JSON.stringify(user), 7);
-    CookiesService.setCookie('token_id', token.replace('Bearer ', ''), 7);
+    cookies.setCookie('user', JSON.stringify(user), 7);
+    cookies.setCookie('token_id', token.replace('Bearer ', ''), 7);
   }
 
   /**
@@ -55,8 +55,8 @@ export class AuthService {
 
   public loggedOut(): boolean {
     return (
-      this.jwtHelper.isTokenExpired(CookiesService.getCookie('token_id')) ||
-      !CookiesService.checkCookie<unknown>('token_id')
+      this.jwtHelper.isTokenExpired(cookies.getCookie('token_id')) ||
+      !cookies.checkCookie<unknown>('token_id')
     );
   }
 }

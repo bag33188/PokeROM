@@ -6,7 +6,7 @@ import { JSONObject } from '../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../../services/local-storage.service';
+import { LocalStorageService as localState } from '../../services/local-storage.service';
 import { RouterExtService } from '../../services/router-ext.service';
 
 type paginationState = [number, number, boolean];
@@ -29,22 +29,15 @@ export class RomsComponent implements OnInit, OnDestroy {
   private romsSub: Subscription;
   public favoritesShown: boolean;
   private static setPaginationState(state?: paginationState): void {
-    if (
-      !LocalStorageService.getState<paginationState>('pagination_state') &&
-      !state
-    ) {
-      LocalStorageService.setState<paginationState>('pagination_state', [
-        0,
-        1,
-        false
-      ]);
+    if (!localState.getState<paginationState>('pagination_state') && !state) {
+      localState.setState<paginationState>('pagination_state', [0, 1, false]);
     }
     if (state !== null && state !== undefined) {
-      LocalStorageService.setState<paginationState>('pagination_state', state);
+      localState.setState<paginationState>('pagination_state', state);
     }
   }
   private static getPaginationState(): paginationState {
-    return LocalStorageService.getState<paginationState>('pagination_state');
+    return localState.getState<paginationState>('pagination_state');
   }
   constructor(
     private router: Router,

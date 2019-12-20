@@ -5,7 +5,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Alert } from '../../../interfaces/Alert';
 import { fadeOutAnimation } from '../../../animations';
-import { SessionStorageService } from '../../../services/session-storage.service';
+import { SessionStorageService as sessionState } from '../../../services/session-storage.service';
 
 @Component({
   selector: 'layout-cookies-alert',
@@ -30,14 +30,14 @@ export class CookiesAlertComponent implements OnInit {
           'I hate to interrupt, but I am required to tell you that this site uses cookies to store your login data for authentication. Click the (x) icon on the top right corner of this alert to close this annoying piece of garbage.'
       }
     ];
-    if (!SessionStorageService.getState<boolean>('cookies_ok')) {
-      SessionStorageService.setState<boolean>('cookies_ok', false);
+    if (!sessionState.getState<boolean>('cookies_ok')) {
+      sessionState.setState<boolean>('cookies_ok', false);
     }
-    this.cookiesOk = SessionStorageService.getState<boolean>('cookies_ok');
+    this.cookiesOk = sessionState.getState<boolean>('cookies_ok');
   }
 
   public closeAlert(alert: Alert): void {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
-    SessionStorageService.setState<boolean>('cookies_ok', true);
+    sessionState.setState<boolean>('cookies_ok', true);
   }
 }

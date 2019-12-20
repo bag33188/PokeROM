@@ -11,11 +11,11 @@ import {
 import sanitizeXSS from '../../helpers/sanitize-xss';
 import removeStringChars from '../../helpers/remove-string-chars';
 import { JSONObject } from '../../models/JSONObject';
-import { CookiesService } from '../../services/cookies.service';
+import { CookiesService as cookies } from '../../services/cookies.service';
 import { Observable, Subscription } from 'rxjs';
 import { LoggerService as logger } from '../../services/logger.service';
-import { LocalStorageService } from '../../services/local-storage.service';
-import { SessionStorageService } from '../../services/session-storage.service';
+import { LocalStorageService as localState } from '../../services/local-storage.service';
+import { SessionStorageService as sessionState } from '../../services/session-storage.service';
 
 @Component({
   selector: 'account',
@@ -57,22 +57,20 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.faExclamationTriangle = faExclamationTriangle;
     this.faInfoCircle = faInfoCircle;
     const key: string = 'id';
-    if (!CookiesService.getCookie('user')) {
+    if (!cookies.getCookie('user')) {
       this.errLoadingUsr = true;
     } else {
-      this.userId = JSON.parse(CookiesService.getCookie('user'))[key];
+      this.userId = JSON.parse(cookies.getCookie('user'))[key];
       this.retrieveUserData(this.userId);
     }
-    if (!LocalStorageService.getState<boolean>('notice_closed')) {
-      LocalStorageService.setState<boolean>('notice_closed', false);
+    if (!localState.getState<boolean>('notice_closed')) {
+      localState.setState<boolean>('notice_closed', false);
     }
-    if (!SessionStorageService.getState<boolean>('warning_closed')) {
-      SessionStorageService.setState<boolean>('warning_closed', false);
+    if (!sessionState.getState<boolean>('warning_closed')) {
+      sessionState.setState<boolean>('warning_closed', false);
     }
-    this.noticeClosed = LocalStorageService.getState<boolean>('notice_closed');
-    this.warningClosed = SessionStorageService.getState<boolean>(
-      'warning_closed'
-    );
+    this.noticeClosed = localState.getState<boolean>('notice_closed');
+    this.warningClosed = sessionState.getState<boolean>('warning_closed');
   }
 
   public ngOnDestroy(): void {
@@ -137,10 +135,10 @@ export class AccountComponent implements OnInit, OnDestroy {
   public storeAlertState(alertName: string): void {
     switch (alertName) {
       case 'notice':
-        LocalStorageService.setState<boolean>('notice_closed', true);
+        localState.setState<boolean>('notice_closed', true);
         break;
       case 'warning':
-        SessionStorageService.setState<boolean>('warning_closed', true);
+        sessionState.setState<boolean>('warning_closed', true);
         break;
       default:
         logger.error('Unknown alert name.');

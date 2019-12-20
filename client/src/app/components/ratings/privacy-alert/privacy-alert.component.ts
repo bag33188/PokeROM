@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Alert } from '../../../interfaces/Alert';
 import { fadeOutAnimation } from '../../../animations';
-import { JSONArray } from '../../../interfaces/JSONArray';
-import { SessionStorageService } from '../../../services/session-storage.service';
+import { SessionStorageService as sessionState } from '../../../services/session-storage.service';
 
 @Component({
   selector: 'ratings-privacy-alert',
@@ -21,14 +20,14 @@ export class PrivacyAlertComponent implements OnInit {
         'Your rating does not store any personal information, browser data, or cookies. Your rating will only show your rating number, optional feedback message, and the date and time it was submitted.',
       type: 'info'
     };
-    if (!SessionStorageService.getState<Alert[]>('rating_alert')) {
-      SessionStorageService.setState<Alert[]>('rating_alert', [alert]);
+    if (!sessionState.getState<Alert[]>('rating_alert')) {
+      sessionState.setState<Alert[]>('rating_alert', [alert]);
     }
-    this.alerts = SessionStorageService.getState<Alert[]>('rating_alert');
+    this.alerts = sessionState.getState<Alert[]>('rating_alert');
   }
 
   public closeAlert(alert: Alert): void {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
-    SessionStorageService.setState<[]>('rating_alert', []);
+    sessionState.setState<[]>('rating_alert', []);
   }
 }

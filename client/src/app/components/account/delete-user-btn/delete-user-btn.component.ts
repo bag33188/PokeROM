@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { DeleteUserModalComponent } from '../delete-user-modal/delete-user-modal.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { CookiesService } from '../../../services/cookies.service';
+import { CookiesService as cookies } from '../../../services/cookies.service';
 
 @Component({
   selector: 'account-delete-user-btn',
@@ -39,8 +39,8 @@ export class DeleteUserBtnComponent implements OnInit {
       this.firedOff = firedOff;
     });
     const key: string = 'username';
-    modalRef.componentInstance.username = JSON.parse(
-      CookiesService.getCookie('user')
-    )[key];
+    modalRef.componentInstance.username = JSON.parse(cookies.getCookie('user'))[
+      key
+    ];
   }
 }

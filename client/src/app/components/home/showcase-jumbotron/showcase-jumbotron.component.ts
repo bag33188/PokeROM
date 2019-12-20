@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CookiesService } from '../../../services/cookies.service';
+import { CookiesService as cookies } from '../../../services/cookies.service';
 
 @Component({
   selector: 'home-showcase-jumbotron',
@@ -15,6 +15,6 @@ export class ShowcaseJumbotronComponent implements OnInit {
   }
 
   public loggedIn(): boolean {
-    return !!CookiesService.getCookie(this.key);
+    return !!cookies.getCookie(this.key);
   }
 }
