@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RomsService } from '../../../services/roms.service';
 import {
-  CompletionObserver,
-  ErrorObserver,
   Observable,
-  PartialObserver,
   Subscription,
+  PartialObserver,
+  ErrorObserver,
+  CompletionObserver,
   zip
 } from 'rxjs';
 import { delay } from 'rxjs/operators';
