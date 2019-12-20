@@ -88,7 +88,7 @@ export class RomsComponent implements OnInit, OnDestroy {
         this.isError = false;
         this.romsData = roms;
         this.loading = false;
-        if (!this.loading && this.romsData.length < 1) {
+        if (this.romsData.length < 1) {
           this.noRomsMsg = this.favoritesShown
             ? 'No Favorite ROMs Found'
             : 'No ROMs to Show';
