@@ -64,7 +64,9 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   }
 
   private deleteRoms(addRomsCallback: () => void): void {
-    const observer: PartialObserver<JSONObject> = {
+    const observer:
+      | ErrorObserver<JSONObject>
+      | CompletionObserver<JSONObject> = {
       error: (err: JSONObject): void => {
         this.loading = false;
         this.romsUpdated = false;
@@ -72,13 +74,15 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
       },
       complete: (): void => addRomsCallback()
     };
-    this.deleteRomsSub = this.deleteRomsObs$.subscribe(observer as
-      | ErrorObserver<JSONObject>
-      | CompletionObserver<JSONObject>);
+    this.deleteRomsSub = this.deleteRomsObs$.subscribe(
+      observer as PartialObserver<JSONObject>
+    );
   }
 
   private addRoms(): void {
-    const observer: PartialObserver<[Array<Rom>, Array<Rom>]> = {
+    const observer:
+      | ErrorObserver<[Array<Rom>, Array<Rom>]>
+      | CompletionObserver<[Array<Rom>, Array<Rom>]> = {
       error: (err: JSONObject): void => {
         this.loading = false;
         logger.error(err);
@@ -88,8 +92,8 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
         this.loading = false;
       }
     };
-    this.addRomsSub = this.addRomsObs$.subscribe(observer as
-      | ErrorObserver<[Array<Rom>, Array<Rom>]>
-      | CompletionObserver<[Array<Rom>, Array<Rom>]>);
+    this.addRomsSub = this.addRomsObs$.subscribe(observer as PartialObserver<
+      [Array<Rom>, Array<Rom>]
+    >);
   }
 }
