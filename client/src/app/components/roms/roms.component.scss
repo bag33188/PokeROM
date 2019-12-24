@@ -83,7 +83,6 @@
       fit-content(em(300px, 16px))
       fit-content(em(300px, 16px));
     margin: 0 auto;
-    width: 90vw;
   }
 }
 
@@ -110,6 +109,8 @@
   display: flex;
   flex-direction: column;
   justify-items: center;
+  margin: auto;
+  width: fit-content;
 }
 
 /**
@@ -119,8 +120,6 @@
  * |================================================|
  */
 .roms-heading-container {
-  width: 72.5vw;
-
   h1 {
     text-align: left;
   }
