@@ -68,7 +68,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr minmax(min-content, auto);
   padding-bottom: 0.6rem;
-  width: 70vw;
+  width: 72.5vw;
   @media only screen and (max-width: 916px) {
     grid-row-gap: 1.4rem;
     grid-template-areas:
@@ -119,7 +119,7 @@
  * |================================================|
  */
 .roms-heading-container {
-  width: 70vw;
+  width: 72.5vw;
 
   h1 {
     text-align: left;
