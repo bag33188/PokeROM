@@ -156,13 +156,17 @@
   display: inherit;
 }
 
-@media only screen and (max-width: 555px) {
+@media only screen and (max-width: 600px) {
   #toggle-favs-responsive {
     display: inherit;
   }
 
   #toggle-favs {
     display: none;
+  }
+
+  .favorites-btn-container {
+    text-align: right;
   }
 }
 
@@ -173,7 +177,7 @@
 
 .rom,
 .card {
-  @media only screen and (min-width: 916px) {
+  @media only screen and (min-width: 917px) {
     width: calc((100vw - (70vw - 2.5rem)) + 2px);
   }
 }
