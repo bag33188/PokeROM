@@ -8,6 +8,9 @@ import { LoggerService as logger } from '../../services/logger.service';
 import { Router } from '@angular/router';
 import { LocalStorageService as localState } from '../../services/local-storage.service';
 import { RouterExtService } from '../../services/router-ext.service';
+import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import { faStar as starSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar as startOutline } from '@fortawesome/free-regular-svg-icons';
 
 type paginationState = [number, number, boolean];
 
@@ -28,6 +31,8 @@ export class RomsComponent implements OnInit, OnDestroy {
   private romsObs$: Observable<Rom[]>;
   private romsSub: Subscription;
   public favoritesShown: boolean;
+  public starSolid: IconDefinition;
+  public starOutline: IconDefinition;
   private static setPaginationState(state?: paginationState): void {
     if (!localState.getState<paginationState>('pagination_state') && !state) {
       localState.setState<paginationState>('pagination_state', [0, 1, false]);
@@ -47,6 +52,8 @@ export class RomsComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
+    this.starSolid = starSolid;
+    this.starOutline = startOutline;
     this.currentPage = 1;
     this.itemsPerPage = 4;
     this.loading = true;

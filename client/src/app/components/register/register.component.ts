@@ -116,19 +116,13 @@ export class RegisterComponent implements OnInit {
           }
           if (err[keys[0]][keys[2]]) {
             err[keys[0]][keys[2]].forEach((error: JSONObject): void => {
-              if (
+              this.registerFail =
                 error[keys[3]] ===
                 'Username can only contain letters, numbers, or underscores.'
-              ) {
-                this.registerFail =
-                  'Username can only contain letters, numbers, or underscores.';
-              } else if (
-                error[keys[3]] === 'Password contains invalid characters.'
-              ) {
-                this.registerFail = 'Password contains invalid characters.';
-              } else {
-                this.registerFail = 'Registration Failure';
-              }
+                  ? 'Username can only contain letters, numbers, or underscores.'
+                  : error[keys[3]] === 'Password contains invalid characters.'
+                  ? 'Password contains invalid characters.'
+                  : 'Registration Failure';
             });
           }
           logger.error(err);

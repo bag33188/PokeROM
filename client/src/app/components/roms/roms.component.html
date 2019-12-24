@@ -21,7 +21,14 @@
               id="favorites-btn"
               [disabled]="isError || (romsData.length < 1 && !favoritesShown)"
             >
-              {{ favoritesShown ? 'Show All' : 'Filter Favorites' }}
+              <span id="toggle-favs-responsive"
+                ><fa-icon
+                  [icon]="favoritesShown ? starSolid : starOutline"
+                ></fa-icon
+              ></span>
+              <span id="toggle-favs">{{
+                favoritesShown ? 'Show All' : 'Filter Favorites'
+              }}</span>
             </button>
           </div>
         </div>

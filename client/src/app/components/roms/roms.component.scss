@@ -148,18 +148,21 @@
   }
 }
 
-@media only screen and (max-width: 418px) {
-  #favorites-btn {
-    font-size: 65%;
+#toggle-favs-responsive {
+  display: none;
+}
+
+#toggle-favs {
+  display: inherit;
+}
+
+@media only screen and (max-width: 555px) {
+  #toggle-favs-responsive {
+    display: inherit;
   }
 
-  .favorites-btn-container {
-    margin-top: 0;
-    text-align: right;
-  }
-
-  #roms-heading {
-    font-size: 1.8rem;
+  #toggle-favs {
+    display: none;
   }
 }
 
