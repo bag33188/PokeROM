@@ -13,8 +13,10 @@ export class LoggerService {
    * @returns Nothing (void).
    */
   public static log = (...msg: any[]): void =>
-    // tslint:disable-next-line:semicolon
-    msg.forEach((m: any): void => console.log(m));
+    Array.isArray(msg)
+      ? msg.forEach((m: any): void => console.log(m))
+      : // tslint:disable-next-line:semicolon
+        console.log(msg);
 
   /**
    * @summary Log err msg to console.
@@ -23,8 +25,10 @@ export class LoggerService {
    * @returns Nothing (void).
    */
   public static error = (...msg: any[]): void =>
-    // tslint:disable-next-line:semicolon
-    msg.forEach((m: any): void => console.error(m));
+    Array.isArray(msg)
+      ? msg.forEach((m: any): void => console.error(m))
+      : // tslint:disable-next-line:semicolon
+        console.error(msg);
 
   /**
    * @summary Log warning to console.
@@ -33,8 +37,10 @@ export class LoggerService {
    * @returns Nothing (void).
    */
   public static warn = (...msg: any[]): void =>
-    // tslint:disable-next-line:semicolon
-    msg.forEach((m: any): void => console.warn(m));
+    Array.isArray(msg)
+      ? msg.forEach((m: any): void => console.warn(m))
+      : // tslint:disable-next-line:semicolon
+        console.warn(msg);
 
   /**
    * @summary Log info to console.
@@ -43,8 +49,10 @@ export class LoggerService {
    * @returns Nothing (void).
    */
   public static info = (...msg: any[]): void =>
-    // tslint:disable-next-line:semicolon
-    msg.forEach((m: any): void => console.info(m));
+    Array.isArray(msg)
+      ? msg.forEach((m: any): void => console.info(m))
+      : // tslint:disable-next-line:semicolon
+        console.info(msg);
 
   /**
    * @summary Log table data to console.
@@ -53,8 +61,10 @@ export class LoggerService {
    * @returns Nothing (void).
    */
   public static table = (...data: any[]): void =>
-    // tslint:disable-next-line:semicolon
-    data.forEach((d: any): void => console.table(d));
+    Array.isArray(data)
+      ? data.forEach((d: any): void => console.table(d))
+      // tslint:disable-next-line:semicolon
+      : console.table(data);
 
   /**
    * @summary Trace a stack to the console.
