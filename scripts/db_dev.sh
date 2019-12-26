@@ -20,7 +20,7 @@ $ chmod 755 ./db_dev.sh
 
 db_dev() {
   cd .. || return
-  command="mongo pkmn-roms"
+  command="mongo pkmn_roms"
   case $OSTYPE in
     darwin* )  eval "${command}" ;;
     linux* )   eval "${command}";;

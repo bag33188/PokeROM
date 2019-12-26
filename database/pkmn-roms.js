@@ -1,5 +1,5 @@
 /*
-pkmn-roms MongoDB Database Script
+pkmn_roms MongoDB Database Script
 ---------------------------------
 
 To load this data in production:
@@ -19,7 +19,7 @@ try {
   printjson(conn);
 }
 
-db = db.getSiblingDB('pkmn-roms');
+db = db.getSiblingDB('pkmn_roms');
 printjson(db);
 
 try {
