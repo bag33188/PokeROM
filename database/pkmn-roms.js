@@ -11,7 +11,7 @@ $ npm run import-db
 
 try {
   // if using ssl
-  conn = new Mongo('server1.pokerom.dev');
+  conn = new Mongo('server1.pokerom.dev:44380');
   printjson(conn);
 } catch (e) {
   // if using ssh
