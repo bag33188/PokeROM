@@ -288,3 +288,12 @@ ratingsCollection = db.createCollection('ratings', {
   }
 });
 printjson(ratingsCollection);
+
+/*
+db.runCommand({
+  collMod: "column name",
+  validator: {
+    // schema validation logic goes here
+  }
+});
+ */
