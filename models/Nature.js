@@ -47,7 +47,7 @@ const natureSchema = new Schema(
     usage: {
       type: String,
       required: [true, 'The usage for the nature is required'],
-      minlength: [5, 'The usage for the nature must be at least 5 characters.'],
+      minlength: [4, 'The usage for the nature must be at least 4 characters.'],
       maxlength: [
         40,
         'The usage for the nature can only be 40 characters at max.'

@@ -71,9 +71,9 @@ router.post(
       .withMessage('he usage for the nature is required')
       .isString()
       .withMessage('Usage must be a string.')
-      .isLength({ min: 5, max: 40 })
+      .isLength({ min: 4, max: 40 })
       .withMessage(
-        'The usage for the nature must be in between 5 and 40 characters.'
+        'The usage for the nature must be in between 4 and 40 characters.'
       )
   ],
   NatureController.addNature
@@ -132,9 +132,9 @@ router.put(
       .withMessage('The usage for the nature is required.')
       .isString()
       .withMessage('Usage must be a string.')
-      .isLength({ min: 5, max: 40 })
+      .isLength({ min: 4, max: 40 })
       .withMessage(
-        'The usage for the nature must be in between 5 and 40 characters.'
+        'The usage for the nature must be in between 4 and 40 characters.'
       )
   ],
   NatureController.updateNature
@@ -171,8 +171,8 @@ router.patch(
       .isString(),
     check('usage')
       .optional()
-      .isLength({ min: 5, max: 50 })
-      .withMessage('Usage must be between 5 and 50 characters.')
+      .isLength({ min: 4, max: 40 })
+      .withMessage('Usage must be between 4 and 40 characters.')
       .isString()
   ],
   NatureController.patchNature
