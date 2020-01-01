@@ -14,7 +14,7 @@
 
 .box-art-img,
 .img-container {
-  height: auto;
+  height: calc(30vw + (2.1rem));
   width: 100%;
 }
 
@@ -25,13 +25,14 @@
 @media only screen and (max-width: 916px) {
   .img-container {
     margin: 0 auto;
-    //padding-top: 20px;
+    height: 100% !important;
+    padding-top: 20px;
     text-align: center;
   }
 
   .box-art-img {
-    height: 32vw;
-    width: 32vw;
+    height: 30vw;
+    width: 30vw;
   }
 }
 
