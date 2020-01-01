@@ -45,19 +45,12 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
     this.faCheckCircle = faCheckCircle;
     this.showBtn = true;
     this.loading = false;
-    this.deleteRomsObs$ = this.romsService.deleteAllRoms().pipe(
-      first(),
-      delay(500)
-    );
+    this.deleteRomsObs$ = this.romsService
+      .deleteAllRoms()
+      .pipe(first(), delay(500));
     this.addRomsObs$ = zip(
-      this.romsService.addCoreRoms().pipe(
-        take(1),
-        delay(1000)
-      ),
-      this.romsService.addRomHacks().pipe(
-        take(1),
-        delay(1000)
-      )
+      this.romsService.addCoreRoms().pipe(take(1), delay(1000)),
+      this.romsService.addRomHacks().pipe(take(1), delay(1000))
     );
   }
 
@@ -101,8 +94,8 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
         this.loading = false;
       }
     };
-    this.addRomsSub = this.addRomsObs$.subscribe(observer as PartialObserver<
-      romsDuo
-    >);
+    this.addRomsSub = this.addRomsObs$.subscribe(
+      observer as PartialObserver<romsDuo>
+    );
   }
 }
