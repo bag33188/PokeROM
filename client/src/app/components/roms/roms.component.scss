@@ -69,6 +69,7 @@
   grid-template-rows: 1fr minmax(min-content, auto);
   justify-items: center;
   padding-bottom: 0.6rem;
+  width: 100%;
   @media only screen and (max-width: 916px) {
     grid-row-gap: 1.4rem;
     grid-template-areas:
@@ -110,8 +111,7 @@
   flex-direction: column;
   justify-items: center;
   margin: auto;
-  width: fit-content;
-  max-width: 90vw;
+  width: 70vw;
 }
 
 /**
@@ -135,10 +135,6 @@
 }
 
 @media only screen and (max-width: 916px) {
-  .roms-heading-container {
-    width: 90vw;
-  }
-
   .dummy-container {
     display: block;
   }
@@ -173,11 +169,4 @@
 #no-roms-heading,
 #roms-err {
   margin-top: 2rem;
-}
-
-.rom,
-.card {
-  @media only screen and (min-width: 917px) {
-    width: calc((100vw - (70vw - 2.5rem)) + 2px);
-  }
 }
