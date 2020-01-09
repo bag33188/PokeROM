@@ -20,16 +20,16 @@
     id="roms-updated-alert-container"
     class="p-2"
     appAlert
-    [alertType]="this.romsUpdated ? 'success' : 'danger'"
-    *ngIf="this.romsUpdated !== undefined"
+    [alertType]="romsUpdated ? 'success' : 'danger'"
+    *ngIf="romsUpdated !== undefined"
     @fadeIn
   >
     <fa-icon
       class="mr-1"
-      [icon]="this.romsUpdated ? faCheckCircle : faTimesCircle"
+      [icon]="romsUpdated ? faCheckCircle : faTimesCircle"
     ></fa-icon>
     {{
-      this.romsUpdated
+      romsUpdated
         ? 'ROMs successfully updated!'
         : 'Error updating ROMs, please try again later.'
     }}
