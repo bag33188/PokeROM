@@ -41,6 +41,7 @@ a {
   color: var(--blue);
   text-decoration: none;
   background-color: transparent;
+  word-wrap: break-word;
 }
 a:hover {
   color: var(--dark-blue);
@@ -150,7 +151,4 @@ hr {
 }
 #heading {
   text-decoration: underline;
-}
-#nav {
-  white-space: nowrap;
 }
