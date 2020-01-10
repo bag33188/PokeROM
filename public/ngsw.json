@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1578550977547,
+  "timestamp": 1578622537094,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -226,7 +226,7 @@
     "/assets/images/carousel_img_02.jpg": "39d5606bcd9d537c811a0fac89c5cccc53a9cf86",
     "/assets/images/carousel_img_03.jpg": "cf60c6738215eca5ddfe4d95885141e8b37a4c93",
     "/assets/images/carousel_img_04.jpg": "d2bf966ad6f7f31c20465efc59d5ed67fba9197d",
-    "/assets/images/logo.png": "a950589cdc5106d3609ff5052144517325a4bced",
+    "/assets/images/logo.png": "c8320ba8b93af53218799c934f27af340557a032",
     "/assets/images/spinner.gif": "adae0fa067643c1acebbb1488f90f031749bee2a",
     "/common-es2017.ce5fe19e97de3ddc8810.js": "dcebafee2e04ab7f40abfe846d117917d4636c27",
     "/common-es5.ce5fe19e97de3ddc8810.js": "f5cce3428da8a36124050a21491039c8ca773b48",
