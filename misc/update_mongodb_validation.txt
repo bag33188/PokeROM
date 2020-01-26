@@ -1,3 +1,5 @@
+db.getCollectionInfos();
+db.getCollectionInfos({ "name":"natures" })[0].options;
 db.runCommand({
   collMod: "natures",
   validator: {
