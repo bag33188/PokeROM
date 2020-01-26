@@ -1,0 +1,49 @@
+db.runCommand({
+  collMod: "natures",
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: [
+        'name',
+        'up',
+        'down',
+        'usage'
+      ],
+      properties: {
+        name: {
+          bsonType: 'string',
+          minLength: 3,
+          maxLength: 10,
+          description: 'name is required and must be a string between 3 and 10 characters.'
+        },
+        up: {
+          bsonType: 'string',
+          minLength: 4,
+          maxLength: 20,
+          description: 'up is required and must be a string between 4 and 20 characters.'
+        },
+        down: {
+          bsonType: 'string',
+          minLength: 4,
+          maxLength: 20,
+          description: 'down is required and must be a string between 4 and 20 characters.'
+        },
+        usage: {
+          bsonType: 'string',
+          minLength: 4,
+          maxLength: 40,
+          description: 'usage is required and must be a string between 5 and 20 characters.'
+        },
+        flavor: {
+          bsonType: [
+            'string',
+            'null'
+          ],
+          minLength: 4,
+          maxLength: 14,
+          description: 'flavor can only be a string between 4 and 14 characters or null.'
+        }
+      }
+    }
+  }
+});
