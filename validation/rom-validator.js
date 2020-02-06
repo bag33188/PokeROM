@@ -4,7 +4,7 @@ module.exports = {
   rom_type: [4, 5],
   file_name: [3, 80],
   file_size: [64, 16000000],
-  file_type: [1, 3],
+  file_type: [2, 3],
   download_link: [8, 1000],
   generation: [1, 8],
   box_art_url: [8, 1000],
