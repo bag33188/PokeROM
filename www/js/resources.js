@@ -74,30 +74,30 @@ class Resources {
     ];
     Resources[getApiVersion]()
       .then(res => {
-        if (!productionMode) {
-          const devNavItems = [
-            {
-              href: `/api/docs/${res.api_version}/`,
-              target: '_self',
-              text: 'Docs'
+            if (!productionMode) {
+              const devNavItems = [
+                {
+                  href: `/api/docs/${res.api_version}/`,
+                  target: '_self',
+                  text: 'Docs'
+                }
+              ];
+              devNavItems.forEach(navItem => {
+                navData.push(navItem);
+              });
             }
-          ];
-          devNavItems.forEach(navItem => {
-            navData.push(navItem);
-          });
-        }
-        const nav = document.getElementById('nav');
-        while (nav.firstChild) {
-          nav.removeChild(nav.firstChild);
-        }
-        navData.forEach(navInfo => {
-          const link = document.createElement('a');
-          const linkUrl = document.createAttribute('href');
-          const linkTarget = document.createAttribute('target');
-          const linkText = document.createTextNode(navInfo.text);
-          linkUrl.value = navInfo.href;
-          linkTarget.value = navInfo.target;
-          link.setAttributeNode(linkUrl);
+            const nav = document.getElementById('nav');
+            while (nav.firstChild) {
+              nav.removeChild(nav.firstChild);
+            }
+            navData.forEach(navInfo => {
+              const link = document.createElement('a');
+              const linkUrl = document.createAttribute('href');
+              const linkTarget = document.createAttribute('target');
+              const linkText = document.createTextNode(navInfo.text);
+              linkUrl.value = navInfo.href;
+              linkTarget.value = navInfo.target;
+              link.setAttributeNode(linkUrl);
           link.setAttributeNode(linkTarget);
           link.appendChild(linkText);
           nav.appendChild(link);
