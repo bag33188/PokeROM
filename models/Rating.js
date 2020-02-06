@@ -31,9 +31,9 @@ const ratingSchema = new Schema(
       type: String,
       required: false,
       maxlength: [
-        ratingsValidator.rating[1],
+        ratingsValidator.message[1],
         `Rating message can only be ${
-          ratingsValidator.rating[1]
+          ratingsValidator.message[1]
         } characters at max.`
       ]
     },
