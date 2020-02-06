@@ -4,6 +4,7 @@ const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const UserController = require('../../controllers/user-controller');
+const usersValidator = require('../../validation/users-validator');
 
 const router = express.Router();
 
@@ -35,8 +36,10 @@ router.post(
       .escape(),
     check('name')
       .optional({ nullable: true })
-      .isLength({ min: 1, max: 100 })
-      .withMessage('Name can only be 100 characters at max.')
+      .isLength({ min: usersValidator.name[0], max: usersValidator.name[1] })
+      .withMessage(
+        `Name can only be ${usersValidator.name[1]} characters at max.`
+      )
       .isString()
       .withMessage('Name must be a string.'),
     check('username')
@@ -47,16 +50,30 @@ router.post(
       .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(criticalMsg)
-      .isLength({ min: 3, max: 22 })
-      .withMessage('Username must be between 3 and 22 characters.'),
+      .isLength({
+        min: usersValidator.username[0],
+        max: usersValidator.username[1]
+      })
+      .withMessage(
+        `Username must be between ${usersValidator.username[0]} and ${
+          usersValidator.username[1]
+        } characters.`
+      ),
     check('password')
       .not()
       .isEmpty()
       .withMessage('Password is required.')
       .isString()
       .withMessage('Password must be a string.')
-      .isLength({ min: 6, max: 256 })
-      .withMessage('Password must be between 6 and 256 characters.')
+      .isLength({
+        min: usersValidator.password[0],
+        max: usersValidator.password[1]
+      })
+      .withMessage(
+        `Password must be between ${usersValidator.password[0]} and ${
+          usersValidator.password[1]
+        } characters.`
+      )
       .not()
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
@@ -78,16 +95,30 @@ router.post(
       .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(criticalMsg)
-      .isLength({ min: 3, max: 22 })
-      .withMessage('Username must be between 3 and 22 characters.'),
+      .isLength({
+        min: usersValidator.username[0],
+        max: usersValidator.username[1]
+      })
+      .withMessage(
+        `Username must be between ${usersValidator.username[0]} and ${
+          usersValidator.username[1]
+        } characters.`
+      ),
     check('password')
       .not()
       .isEmpty()
       .withMessage('Password is required.')
       .isString()
       .withMessage('Password must be a string.')
-      .isLength({ min: 6, max: 256 })
-      .withMessage('Password must be between 6 and 256 characters.')
+      .isLength({
+        min: usersValidator.password[0],
+        max: usersValidator.password[1]
+      })
+      .withMessage(
+        `Password must be between ${usersValidator.password[0]} and ${
+          usersValidator.password[1]
+        } characters.`
+      )
       .not()
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
@@ -147,24 +178,42 @@ router.patch(
       .escape(),
     check('name')
       .optional({ nullable: true })
-      .isLength({ min: 1, max: 100 })
-      .withMessage('Name can only be 100 characters at max.')
+      .isLength({ min: usersValidator.name[0], max: usersValidator.name[1] })
+      .withMessage(
+        `Name can only be ${usersValidator.name[1]} characters at max.`
+      )
       .isString()
       .withMessage('Name must be a string.'),
     check('username')
       .optional()
+      .withMessage('Username is required.')
       .isString()
       .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(criticalMsg)
-      .isLength({ min: 3, max: 22 })
-      .withMessage('Username must be between 3 and 22 characters.'),
+      .isLength({
+        min: usersValidator.username[0],
+        max: usersValidator.username[1]
+      })
+      .withMessage(
+        `Username must be between ${usersValidator.username[0]} and ${
+          usersValidator.username[1]
+        } characters.`
+      ),
     check('password')
       .optional()
+      .withMessage('Password is required.')
       .isString()
       .withMessage('Password must be a string.')
-      .isLength({ min: 6, max: 256 })
-      .withMessage('Password must be between 6 and 256 characters.')
+      .isLength({
+        min: usersValidator.password[0],
+        max: usersValidator.password[1]
+      })
+      .withMessage(
+        `Password must be between ${usersValidator.password[0]} and ${
+          usersValidator.password[1]
+        } characters.`
+      )
       .not()
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
