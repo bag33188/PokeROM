@@ -38,7 +38,9 @@ router.post(
       .optional({ nullable: true })
       .isLength({ min: userValidator.name[0], max: userValidator.name[1] })
       .withMessage(
-        `Name can only be ${userValidator.name[1]} characters at max.`
+        `Name must be between ${userValidator.name[0]} and ${
+          userValidator.name[1]
+        } characters.`
       )
       .isString()
       .withMessage('Name must be a string.'),
@@ -138,28 +140,44 @@ router.put(
       .escape(),
     check('name')
       .optional({ nullable: true })
-      .isLength({ min: 1, max: 100 })
-      .withMessage('Name can only be 100 characters at max.')
+      .isLength({ min: userValidator.name[0], max: userValidator.name[1] })
+      .withMessage(
+        `Name must be between ${userValidator.name[0]} and ${
+          userValidator.name[1]
+        } characters.`
+      )
       .isString()
       .withMessage('Name must be a string.'),
     check('username')
-      .not()
-      .isEmpty()
+      .optional()
       .withMessage('Username is required.')
       .isString()
       .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(criticalMsg)
-      .isLength({ min: 3, max: 22 })
-      .withMessage('Username must be between 3 and 22 characters.'),
+      .isLength({
+        min: userValidator.username[0],
+        max: userValidator.username[1]
+      })
+      .withMessage(
+        `Username must be between ${userValidator.username[0]} and ${
+          userValidator.username[1]
+        } characters.`
+      ),
     check('password')
-      .not()
-      .isEmpty()
+      .optional()
       .withMessage('Password is required.')
       .isString()
       .withMessage('Password must be a string.')
-      .isLength({ min: 6, max: 256 })
-      .withMessage('Password must be between 6 and 256 characters.')
+      .isLength({
+        min: userValidator.password[0],
+        max: userValidator.password[1]
+      })
+      .withMessage(
+        `Password must be between ${userValidator.password[0]} and ${
+          userValidator.password[1]
+        } characters.`
+      )
       .not()
       .matches(pwdRegex)
       .withMessage('Password contains invalid characters.')
@@ -180,7 +198,9 @@ router.patch(
       .optional({ nullable: true })
       .isLength({ min: userValidator.name[0], max: userValidator.name[1] })
       .withMessage(
-        `Name can only be ${userValidator.name[1]} characters at max.`
+        `Name must be between ${userValidator.name[0]} and ${
+          userValidator.name[1]
+        } characters.`
       )
       .isString()
       .withMessage('Name must be a string.'),
