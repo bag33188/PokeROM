@@ -3,7 +3,7 @@ const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check } = require('express-validator/check');
 const { cache } = require('../../middleware/cache');
 const NatureController = require('../../controllers/nature-controller');
-const naturesValidator = require('../../validation/natures-validator');
+const naturesValidator = require('../../validation/nature-validator');
 
 const router = express.Router();
 

@@ -8,7 +8,7 @@ const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const RomController = require('../../controllers/rom-controller');
-const romsValidator = require('../../validation/roms-validator');
+const romsValidator = require('../../validation/rom-validator');
 // const all_routes = require('express-list-endpoints');
 
 const router = express.Router();

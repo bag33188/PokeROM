@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const naturesValidator = require('../validation/natures-validator');
+const naturesValidator = require('../validation/nature-validator');
 
 const Schema = mongoose.Schema;
 

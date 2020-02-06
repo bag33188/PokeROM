@@ -4,7 +4,7 @@ const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const RatingController = require('../../controllers/rating-controller');
-const ratingsValidator = require('../../validation/ratings-validator');
+const ratingsValidator = require('../../validation/rating-validator');
 
 const router = express.Router();
 
