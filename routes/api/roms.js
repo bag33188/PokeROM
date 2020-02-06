@@ -8,7 +8,7 @@ const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const RomController = require('../../controllers/rom-controller');
-const romsValidator = require('../../validation/rom-validator');
+const romValidator = require('../../validation/rom-validator');
 // const all_routes = require('express-list-endpoints');
 
 const router = express.Router();
@@ -68,13 +68,13 @@ router.post(
       .isEmpty()
       .withMessage('Order number is required.')
       .isInt({
-        min: romsValidator.order_number[0],
-        max: romsValidator.order_number[33]
+        min: romValidator.order_number[0],
+        max: romValidator.order_number[33]
       })
       .withMessage(
         `Order number must be an integer between ${
-          romsValidator.order_number[0]
-        } and ${romsValidator.order_number[1]}.`
+          romValidator.order_number[0]
+        } and ${romValidator.order_number[1]}.`
       ),
     check('rom_type')
       .not()
@@ -83,12 +83,12 @@ router.post(
       .matches(/^(core|hack)$/i)
       .withMessage('ROM type must either be a core or a hack.')
       .isLength({
-        min: romsValidator.rom_type[0],
-        max: romsValidator.rom_type[1]
+        min: romValidator.rom_type[0],
+        max: romValidator.rom_type[1]
       })
       .withMessage(
-        `ROM type must be either ${romsValidator.rom_type[0]} or ${
-          romsValidator.rom_type[1]
+        `ROM type must be either ${romValidator.rom_type[0]} or ${
+          romValidator.rom_type[1]
         } characters.`
       ),
     check('file_name')
@@ -98,12 +98,12 @@ router.post(
       .isString()
       .withMessage('File name must be a string.')
       .isLength({
-        min: romsValidator.file_name[0],
-        max: romsValidator.file_name[1]
+        min: romValidator.file_name[0],
+        max: romValidator.file_name[1]
       })
       .withMessage(
-        `File name must be between ${romsValidator.file_name[0]} and ${
-          romsValidator.file_name[1]
+        `File name must be between ${romValidator.file_name[0]} and ${
+          romValidator.file_name[1]
         } characters.`
       ),
     check('file_size')
@@ -111,13 +111,13 @@ router.post(
       .isEmpty()
       .withMessage('File size is required.')
       .isInt({
-        min: romsValidator.file_size[0],
-        max: romsValidator.file_size[1]
+        min: romValidator.file_size[0],
+        max: romValidator.file_size[1]
       })
       .withMessage(
         `File size must be a number (in kilobytes) between ${
-          romsValidator.file_size[0]
-        } and ${romsValidator.file_size[1]}.`
+          romValidator.file_size[0]
+        } and ${romValidator.file_size[1]}.`
       ),
     check('file_type')
       .not()
@@ -126,12 +126,12 @@ router.post(
       .isAlphanumeric()
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({
-        min: romsValidator.file_type[0],
-        max: romsValidator.file_type[1]
+        min: romValidator.file_type[0],
+        max: romValidator.file_type[1]
       })
       .withMessage(
-        `File type must be between ${romsValidator.file_type[0]} and ${
-          romsValidator.file_type[1]
+        `File type must be between ${romValidator.file_type[0]} and ${
+          romValidator.file_type[1]
         } characters.`
       )
       .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
@@ -147,13 +147,13 @@ router.post(
       .isEmpty()
       .withMessage('Generation is required.')
       .isInt({
-        min: romsValidator.generation[0],
-        max: romsValidator.generation[1]
+        min: romValidator.generation[0],
+        max: romValidator.generation[1]
       })
       .withMessage(
         `Generation must be a number between ${
-          romsValidator.generation[0]
-        } and ${romsValidator.generation[1]}.`
+          romValidator.generation[0]
+        } and ${romValidator.generation[1]}.`
       ),
     check('box_art_url')
       .not()
@@ -168,12 +168,12 @@ router.post(
       .isString()
       .withMessage('Game name must be a string.')
       .isLength({
-        min: romsValidator.game_name[0],
-        max: romsValidator.game_name[1]
+        min: romValidator.game_name[0],
+        max: romValidator.game_name[1]
       })
       .withMessage(
-        `Game name must be between ${romsValidator.game_name[0]} and ${
-          romsValidator.game_name[1]
+        `Game name must be between ${romValidator.game_name[0]} and ${
+          romValidator.game_name[1]
         } characters.`
       ),
     check('region')
@@ -184,10 +184,10 @@ router.post(
       .withMessage('Region must be a string.')
       .isAlpha()
       .withMessage('Region must only contain letters.')
-      .isLength({ min: romsValidator.region[0], max: romsValidator.region[1] })
+      .isLength({ min: romValidator.region[0], max: romValidator.region[1] })
       .withMessage(
-        `Region must be between ${romsValidator.region[0]} and ${
-          romsValidator.region[1]
+        `Region must be between ${romValidator.region[0]} and ${
+          romValidator.region[1]
         } characters.`
       ),
     check('platform')
@@ -197,20 +197,20 @@ router.post(
       .isString()
       .withMessage('Platform must be a string.')
       .isLength({
-        min: romsValidator.platform[0],
-        max: romsValidator.platform[1]
+        min: romValidator.platform[0],
+        max: romValidator.platform[1]
       })
       .withMessage(
-        `Platform must be between ${romsValidator.platform[0]} and ${
-          romsValidator.platform[1]
+        `Platform must be between ${romValidator.platform[0]} and ${
+          romValidator.platform[1]
         } characters.`
       ),
     check('genre')
       .optional({ nullable: true })
-      .isLength({ min: romsValidator.genre[0], max: romsValidator.genre[1] })
+      .isLength({ min: romValidator.genre[0], max: romValidator.genre[1] })
       .withMessage(
-        `Genre must be between ${romsValidator.genre[0]} and ${
-          romsValidator.genre[1]
+        `Genre must be between ${romValidator.genre[0]} and ${
+          romValidator.genre[1]
         } characters.`
       )
       .isString()
@@ -234,12 +234,12 @@ router.post(
       .isString()
       .withMessage('Description must be a string.')
       .isLength({
-        min: romsValidator.description[0],
-        max: romsValidator.description[1]
+        min: romValidator.description[0],
+        max: romValidator.description[1]
       })
       .withMessage(
-        `Description must be between ${romsValidator.description[0]} and ${
-          romsValidator.description[1]
+        `Description must be between ${romValidator.description[0]} and ${
+          romValidator.description[1]
         } characters.`
       ),
     check('is_favorite')
@@ -267,13 +267,13 @@ router.put(
       .isEmpty()
       .withMessage('Order number is required.')
       .isInt({
-        min: romsValidator.order_number[0],
-        max: romsValidator.order_number[33]
+        min: romValidator.order_number[0],
+        max: romValidator.order_number[33]
       })
       .withMessage(
         `Order number must be an integer between ${
-          romsValidator.order_number[0]
-        } and ${romsValidator.order_number[1]}.`
+          romValidator.order_number[0]
+        } and ${romValidator.order_number[1]}.`
       ),
     check('rom_type')
       .not()
@@ -282,12 +282,12 @@ router.put(
       .matches(/^(core|hack)$/i)
       .withMessage('ROM type must either be a core or a hack.')
       .isLength({
-        min: romsValidator.rom_type[0],
-        max: romsValidator.rom_type[1]
+        min: romValidator.rom_type[0],
+        max: romValidator.rom_type[1]
       })
       .withMessage(
-        `ROM type must be either ${romsValidator.rom_type[0]} or ${
-          romsValidator.rom_type[1]
+        `ROM type must be either ${romValidator.rom_type[0]} or ${
+          romValidator.rom_type[1]
         } characters.`
       ),
     check('file_name')
@@ -297,12 +297,12 @@ router.put(
       .isString()
       .withMessage('File name must be a string.')
       .isLength({
-        min: romsValidator.file_name[0],
-        max: romsValidator.file_name[1]
+        min: romValidator.file_name[0],
+        max: romValidator.file_name[1]
       })
       .withMessage(
-        `File name must be between ${romsValidator.file_name[0]} and ${
-          romsValidator.file_name[1]
+        `File name must be between ${romValidator.file_name[0]} and ${
+          romValidator.file_name[1]
         } characters.`
       ),
     check('file_size')
@@ -310,13 +310,13 @@ router.put(
       .isEmpty()
       .withMessage('File size is required.')
       .isInt({
-        min: romsValidator.file_size[0],
-        max: romsValidator.file_size[1]
+        min: romValidator.file_size[0],
+        max: romValidator.file_size[1]
       })
       .withMessage(
         `File size must be a number (in kilobytes) between ${
-          romsValidator.file_size[0]
-        } and ${romsValidator.file_size[1]}.`
+          romValidator.file_size[0]
+        } and ${romValidator.file_size[1]}.`
       ),
     check('file_type')
       .not()
@@ -325,12 +325,12 @@ router.put(
       .isAlphanumeric()
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({
-        min: romsValidator.file_type[0],
-        max: romsValidator.file_type[1]
+        min: romValidator.file_type[0],
+        max: romValidator.file_type[1]
       })
       .withMessage(
-        `File type must be between ${romsValidator.file_type[0]} and ${
-          romsValidator.file_type[1]
+        `File type must be between ${romValidator.file_type[0]} and ${
+          romValidator.file_type[1]
         } characters.`
       )
       .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
@@ -346,13 +346,13 @@ router.put(
       .isEmpty()
       .withMessage('Generation is required.')
       .isInt({
-        min: romsValidator.generation[0],
-        max: romsValidator.generation[1]
+        min: romValidator.generation[0],
+        max: romValidator.generation[1]
       })
       .withMessage(
         `Generation must be a number between ${
-          romsValidator.generation[0]
-        } and ${romsValidator.generation[1]}.`
+          romValidator.generation[0]
+        } and ${romValidator.generation[1]}.`
       ),
     check('box_art_url')
       .not()
@@ -367,12 +367,12 @@ router.put(
       .isString()
       .withMessage('Game name must be a string.')
       .isLength({
-        min: romsValidator.game_name[0],
-        max: romsValidator.game_name[1]
+        min: romValidator.game_name[0],
+        max: romValidator.game_name[1]
       })
       .withMessage(
-        `Game name must be between ${romsValidator.game_name[0]} and ${
-          romsValidator.game_name[1]
+        `Game name must be between ${romValidator.game_name[0]} and ${
+          romValidator.game_name[1]
         } characters.`
       ),
     check('region')
@@ -383,10 +383,10 @@ router.put(
       .withMessage('Region must be a string.')
       .isAlpha()
       .withMessage('Region must only contain letters.')
-      .isLength({ min: romsValidator.region[0], max: romsValidator.region[1] })
+      .isLength({ min: romValidator.region[0], max: romValidator.region[1] })
       .withMessage(
-        `Region must be between ${romsValidator.region[0]} and ${
-          romsValidator.region[1]
+        `Region must be between ${romValidator.region[0]} and ${
+          romValidator.region[1]
         } characters.`
       ),
     check('platform')
@@ -396,20 +396,20 @@ router.put(
       .isString()
       .withMessage('Platform must be a string.')
       .isLength({
-        min: romsValidator.platform[0],
-        max: romsValidator.platform[1]
+        min: romValidator.platform[0],
+        max: romValidator.platform[1]
       })
       .withMessage(
-        `Platform must be between ${romsValidator.platform[0]} and ${
-          romsValidator.platform[1]
+        `Platform must be between ${romValidator.platform[0]} and ${
+          romValidator.platform[1]
         } characters.`
       ),
     check('genre')
       .optional({ nullable: true })
-      .isLength({ min: romsValidator.genre[0], max: romsValidator.genre[1] })
+      .isLength({ min: romValidator.genre[0], max: romValidator.genre[1] })
       .withMessage(
-        `Genre must be between ${romsValidator.genre[0]} and ${
-          romsValidator.genre[1]
+        `Genre must be between ${romValidator.genre[0]} and ${
+          romValidator.genre[1]
         } characters.`
       )
       .isString()
@@ -433,12 +433,12 @@ router.put(
       .isString()
       .withMessage('Description must be a string.')
       .isLength({
-        min: romsValidator.description[0],
-        max: romsValidator.description[1]
+        min: romValidator.description[0],
+        max: romValidator.description[1]
       })
       .withMessage(
-        `Description must be between ${romsValidator.description[0]} and ${
-          romsValidator.description[1]
+        `Description must be between ${romValidator.description[0]} and ${
+          romValidator.description[1]
         } characters.`
       ),
     check('is_favorite')
@@ -465,13 +465,13 @@ router.patch(
       .optional()
       .withMessage('Order number is required.')
       .isInt({
-        min: romsValidator.order_number[0],
-        max: romsValidator.order_number[33]
+        min: romValidator.order_number[0],
+        max: romValidator.order_number[33]
       })
       .withMessage(
         `Order number must be an integer between ${
-          romsValidator.order_number[0]
-        } and ${romsValidator.order_number[1]}.`
+          romValidator.order_number[0]
+        } and ${romValidator.order_number[1]}.`
       ),
     check('rom_type')
       .optional()
@@ -479,12 +479,12 @@ router.patch(
       .matches(/^(core|hack)$/i)
       .withMessage('ROM type must either be a core or a hack.')
       .isLength({
-        min: romsValidator.rom_type[0],
-        max: romsValidator.rom_type[1]
+        min: romValidator.rom_type[0],
+        max: romValidator.rom_type[1]
       })
       .withMessage(
-        `ROM type must be either ${romsValidator.rom_type[0]} or ${
-          romsValidator.rom_type[1]
+        `ROM type must be either ${romValidator.rom_type[0]} or ${
+          romValidator.rom_type[1]
         } characters.`
       ),
     check('file_name')
@@ -493,25 +493,25 @@ router.patch(
       .isString()
       .withMessage('File name must be a string.')
       .isLength({
-        min: romsValidator.file_name[0],
-        max: romsValidator.file_name[1]
+        min: romValidator.file_name[0],
+        max: romValidator.file_name[1]
       })
       .withMessage(
-        `File name must be between ${romsValidator.file_name[0]} and ${
-          romsValidator.file_name[1]
+        `File name must be between ${romValidator.file_name[0]} and ${
+          romValidator.file_name[1]
         } characters.`
       ),
     check('file_size')
       .optional()
       .withMessage('File size is required.')
       .isInt({
-        min: romsValidator.file_size[0],
-        max: romsValidator.file_size[1]
+        min: romValidator.file_size[0],
+        max: romValidator.file_size[1]
       })
       .withMessage(
         `File size must be a number (in kilobytes) between ${
-          romsValidator.file_size[0]
-        } and ${romsValidator.file_size[1]}.`
+          romValidator.file_size[0]
+        } and ${romValidator.file_size[1]}.`
       ),
     check('file_type')
       .optional()
@@ -519,12 +519,12 @@ router.patch(
       .isAlphanumeric()
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({
-        min: romsValidator.file_type[0],
-        max: romsValidator.file_type[1]
+        min: romValidator.file_type[0],
+        max: romValidator.file_type[1]
       })
       .withMessage(
-        `File type must be between ${romsValidator.file_type[0]} and ${
-          romsValidator.file_type[1]
+        `File type must be between ${romValidator.file_type[0]} and ${
+          romValidator.file_type[1]
         } characters.`
       )
       .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
@@ -538,13 +538,13 @@ router.patch(
       .optional()
       .withMessage('Generation is required.')
       .isInt({
-        min: romsValidator.generation[0],
-        max: romsValidator.generation[1]
+        min: romValidator.generation[0],
+        max: romValidator.generation[1]
       })
       .withMessage(
         `Generation must be a number between ${
-          romsValidator.generation[0]
-        } and ${romsValidator.generation[1]}.`
+          romValidator.generation[0]
+        } and ${romValidator.generation[1]}.`
       ),
     check('box_art_url')
       .optional()
@@ -557,12 +557,12 @@ router.patch(
       .isString()
       .withMessage('Game name must be a string.')
       .isLength({
-        min: romsValidator.game_name[0],
-        max: romsValidator.game_name[1]
+        min: romValidator.game_name[0],
+        max: romValidator.game_name[1]
       })
       .withMessage(
-        `Game name must be between ${romsValidator.game_name[0]} and ${
-          romsValidator.game_name[1]
+        `Game name must be between ${romValidator.game_name[0]} and ${
+          romValidator.game_name[1]
         } characters.`
       ),
     check('region')
@@ -572,10 +572,10 @@ router.patch(
       .withMessage('Region must be a string.')
       .isAlpha()
       .withMessage('Region must only contain letters.')
-      .isLength({ min: romsValidator.region[0], max: romsValidator.region[1] })
+      .isLength({ min: romValidator.region[0], max: romValidator.region[1] })
       .withMessage(
-        `Region must be between ${romsValidator.region[0]} and ${
-          romsValidator.region[1]
+        `Region must be between ${romValidator.region[0]} and ${
+          romValidator.region[1]
         } characters.`
       ),
     check('platform')
@@ -584,20 +584,20 @@ router.patch(
       .isString()
       .withMessage('Platform must be a string.')
       .isLength({
-        min: romsValidator.platform[0],
-        max: romsValidator.platform[1]
+        min: romValidator.platform[0],
+        max: romValidator.platform[1]
       })
       .withMessage(
-        `Platform must be between ${romsValidator.platform[0]} and ${
-          romsValidator.platform[1]
+        `Platform must be between ${romValidator.platform[0]} and ${
+          romValidator.platform[1]
         } characters.`
       ),
     check('genre')
       .optional({ nullable: true })
-      .isLength({ min: romsValidator.genre[0], max: romsValidator.genre[1] })
+      .isLength({ min: romValidator.genre[0], max: romValidator.genre[1] })
       .withMessage(
-        `Genre must be between ${romsValidator.genre[0]} and ${
-          romsValidator.genre[1]
+        `Genre must be between ${romValidator.genre[0]} and ${
+          romValidator.genre[1]
         } characters.`
       )
       .isString()
@@ -618,12 +618,12 @@ router.patch(
       .isString()
       .withMessage('Description must be a string.')
       .isLength({
-        min: romsValidator.description[0],
-        max: romsValidator.description[1]
+        min: romValidator.description[0],
+        max: romValidator.description[1]
       })
       .withMessage(
-        `Description must be between ${romsValidator.description[0]} and ${
-          romsValidator.description[1]
+        `Description must be between ${romValidator.description[0]} and ${
+          romValidator.description[1]
         } characters.`
       ),
     check('is_favorite')

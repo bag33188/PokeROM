@@ -3,7 +3,7 @@ const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check } = require('express-validator/check');
 const { cache } = require('../../middleware/cache');
 const NatureController = require('../../controllers/nature-controller');
-const naturesValidator = require('../../validation/nature-validator');
+const natureValidator = require('../../validation/nature-validator');
 
 const router = express.Router();
 
@@ -35,13 +35,13 @@ router.post(
       .isString()
       .withMessage('Name must be a string.')
       .isLength({
-        min: naturesValidator.name[0],
-        max: naturesValidator.name[1]
+        min: natureValidator.name[0],
+        max: natureValidator.name[1]
       })
       .withMessage(
         `The name of the nature must be between ${
-          naturesValidator.name[0]
-        } and ${naturesValidator.name[1]} characters.`
+          natureValidator.name[0]
+        } and ${natureValidator.name[1]} characters.`
       ),
     check('up')
       .not()
@@ -49,11 +49,11 @@ router.post(
       .withMessage('The increased stat of the nature is required.')
       .isString()
       .withMessage('Up must be a string.')
-      .isLength({ min: naturesValidator.up[0], max: naturesValidator.up[1] })
+      .isLength({ min: natureValidator.up[0], max: natureValidator.up[1] })
       .withMessage(
         `The increased stat of the nature must be between ${
-          naturesValidator.up[0]
-        } and ${naturesValidator.up[1]} characters.`
+          natureValidator.up[0]
+        } and ${natureValidator.up[1]} characters.`
       ),
     check('down')
       .not()
@@ -62,24 +62,24 @@ router.post(
       .isString()
       .withMessage('Down must be a string.')
       .isLength({
-        min: naturesValidator.down[0],
-        max: naturesValidator.down[1]
+        min: natureValidator.down[0],
+        max: natureValidator.down[1]
       })
       .withMessage(
         `The decreased stat of the nature must be between ${
-          naturesValidator.down[0]
-        } and ${naturesValidator.down[1]} characters.`
+          natureValidator.down[0]
+        } and ${natureValidator.down[1]} characters.`
       ),
     check('flavor')
       .optional({ nullable: true })
       .isLength({
-        min: naturesValidator.flavor[0],
-        max: naturesValidator.flavor[1]
+        min: natureValidator.flavor[0],
+        max: natureValidator.flavor[1]
       })
       .withMessage(
         `The flavor of the nature must be between ${
-          naturesValidator.flavor[0]
-        } and ${naturesValidator.flavor[1]} characters.`
+          natureValidator.flavor[0]
+        } and ${natureValidator.flavor[1]} characters.`
       )
       .isString()
       .withMessage('Flavor must be a string.'),
@@ -90,13 +90,13 @@ router.post(
       .isString()
       .withMessage('Usage must be a string.')
       .isLength({
-        min: naturesValidator.usage[0],
-        max: naturesValidator.usage[1]
+        min: natureValidator.usage[0],
+        max: natureValidator.usage[1]
       })
       .withMessage(
         `The usage for the nature must be in between ${
-          naturesValidator.usage[0]
-        } and ${naturesValidator.usage[1]} characters.`
+          natureValidator.usage[0]
+        } and ${natureValidator.usage[1]} characters.`
       )
   ],
   NatureController.addNature
@@ -118,13 +118,13 @@ router.put(
       .isString()
       .withMessage('Name must be a string.')
       .isLength({
-        min: naturesValidator.name[0],
-        max: naturesValidator.name[1]
+        min: natureValidator.name[0],
+        max: natureValidator.name[1]
       })
       .withMessage(
         `The name of the nature must be between ${
-          naturesValidator.name[0]
-        } and ${naturesValidator.name[1]} characters.`
+          natureValidator.name[0]
+        } and ${natureValidator.name[1]} characters.`
       ),
     check('up')
       .not()
@@ -132,11 +132,11 @@ router.put(
       .withMessage('The increased stat of the nature is required.')
       .isString()
       .withMessage('Up must be a string.')
-      .isLength({ min: naturesValidator.up[0], max: naturesValidator.up[1] })
+      .isLength({ min: natureValidator.up[0], max: natureValidator.up[1] })
       .withMessage(
         `The increased stat of the nature must be between ${
-          naturesValidator.up[0]
-        } and ${naturesValidator.up[1]} characters.`
+          natureValidator.up[0]
+        } and ${natureValidator.up[1]} characters.`
       ),
     check('down')
       .not()
@@ -145,24 +145,24 @@ router.put(
       .isString()
       .withMessage('Down must be a string.')
       .isLength({
-        min: naturesValidator.down[0],
-        max: naturesValidator.down[1]
+        min: natureValidator.down[0],
+        max: natureValidator.down[1]
       })
       .withMessage(
         `The decreased stat of the nature must be between ${
-          naturesValidator.down[0]
-        } and ${naturesValidator.down[1]} characters.`
+          natureValidator.down[0]
+        } and ${natureValidator.down[1]} characters.`
       ),
     check('flavor')
       .optional({ nullable: true })
       .isLength({
-        min: naturesValidator.flavor[0],
-        max: naturesValidator.flavor[1]
+        min: natureValidator.flavor[0],
+        max: natureValidator.flavor[1]
       })
       .withMessage(
         `The flavor of the nature must be between ${
-          naturesValidator.flavor[0]
-        } and ${naturesValidator.flavor[1]} characters.`
+          natureValidator.flavor[0]
+        } and ${natureValidator.flavor[1]} characters.`
       )
       .isString()
       .withMessage('Flavor must be a string.'),
@@ -173,13 +173,13 @@ router.put(
       .isString()
       .withMessage('Usage must be a string.')
       .isLength({
-        min: naturesValidator.usage[0],
-        max: naturesValidator.usage[1]
+        min: natureValidator.usage[0],
+        max: natureValidator.usage[1]
       })
       .withMessage(
         `The usage for the nature must be in between ${
-          naturesValidator.usage[0]
-        } and ${naturesValidator.usage[1]} characters.`
+          natureValidator.usage[0]
+        } and ${natureValidator.usage[1]} characters.`
       )
   ],
   NatureController.updateNature
@@ -200,24 +200,24 @@ router.patch(
       .isString()
       .withMessage('Name must be a string.')
       .isLength({
-        min: naturesValidator.name[0],
-        max: naturesValidator.name[1]
+        min: natureValidator.name[0],
+        max: natureValidator.name[1]
       })
       .withMessage(
         `The name of the nature must be between ${
-          naturesValidator.name[0]
-        } and ${naturesValidator.name[1]} characters.`
+          natureValidator.name[0]
+        } and ${natureValidator.name[1]} characters.`
       ),
     check('up')
       .optional()
       .withMessage('The increased stat of the nature is required.')
       .isString()
       .withMessage('Up must be a string.')
-      .isLength({ min: naturesValidator.up[0], max: naturesValidator.up[1] })
+      .isLength({ min: natureValidator.up[0], max: natureValidator.up[1] })
       .withMessage(
         `The increased stat of the nature must be between ${
-          naturesValidator.up[0]
-        } and ${naturesValidator.up[1]} characters.`
+          natureValidator.up[0]
+        } and ${natureValidator.up[1]} characters.`
       ),
     check('down')
       .optional()
@@ -225,24 +225,24 @@ router.patch(
       .isString()
       .withMessage('Down must be a string.')
       .isLength({
-        min: naturesValidator.down[0],
-        max: naturesValidator.down[1]
+        min: natureValidator.down[0],
+        max: natureValidator.down[1]
       })
       .withMessage(
         `The decreased stat of the nature must be between ${
-          naturesValidator.down[0]
-        } and ${naturesValidator.down[1]} characters.`
+          natureValidator.down[0]
+        } and ${natureValidator.down[1]} characters.`
       ),
     check('flavor')
       .optional({ nullable: true })
       .isLength({
-        min: naturesValidator.flavor[0],
-        max: naturesValidator.flavor[1]
+        min: natureValidator.flavor[0],
+        max: natureValidator.flavor[1]
       })
       .withMessage(
         `The flavor of the nature must be between ${
-          naturesValidator.flavor[0]
-        } and ${naturesValidator.flavor[1]} characters.`
+          natureValidator.flavor[0]
+        } and ${natureValidator.flavor[1]} characters.`
       )
       .isString()
       .withMessage('Flavor must be a string.'),
@@ -252,13 +252,13 @@ router.patch(
       .isString()
       .withMessage('Usage must be a string.')
       .isLength({
-        min: naturesValidator.usage[0],
-        max: naturesValidator.usage[1]
+        min: natureValidator.usage[0],
+        max: natureValidator.usage[1]
       })
       .withMessage(
         `The usage for the nature must be in between ${
-          naturesValidator.usage[0]
-        } and ${naturesValidator.usage[1]} characters.`
+          natureValidator.usage[0]
+        } and ${natureValidator.usage[1]} characters.`
       )
   ],
   NatureController.patchNature

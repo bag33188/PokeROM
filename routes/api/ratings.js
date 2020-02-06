@@ -4,7 +4,7 @@ const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const RatingController = require('../../controllers/rating-controller');
-const ratingsValidator = require('../../validation/rating-validator');
+const ratingValidator = require('../../validation/rating-validator');
 
 const router = express.Router();
 
@@ -16,10 +16,10 @@ router.post(
       .escape(),
     check('message')
       .optional({ nullable: true })
-      .isLength({ max: ratingsValidator.message[1] })
+      .isLength({ max: ratingValidator.message[1] })
       .withMessage(
         `Rating message can only be ${
-          ratingsValidator.message[1]
+          ratingValidator.message[1]
         } characters at max.`
       )
       .isString()
@@ -29,12 +29,12 @@ router.post(
       .isEmpty()
       .withMessage('Rating is required.')
       .isInt({
-        min: ratingsValidator.rating[0],
-        max: ratingsValidator.rating[1]
+        min: ratingValidator.rating[0],
+        max: ratingValidator.rating[1]
       })
       .withMessage(
-        `Rating must be in between ${ratingsValidator.rating[0]} and ${
-          ratingsValidator.rating[1]
+        `Rating must be in between ${ratingValidator.rating[0]} and ${
+          ratingValidator.rating[1]
         }.`
       )
   ],

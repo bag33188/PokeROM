@@ -4,7 +4,7 @@ const { check } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const UserController = require('../../controllers/user-controller');
-const usersValidator = require('../../validation/user-validator');
+const userValidator = require('../../validation/user-validator');
 
 const router = express.Router();
 
@@ -36,9 +36,9 @@ router.post(
       .escape(),
     check('name')
       .optional({ nullable: true })
-      .isLength({ min: usersValidator.name[0], max: usersValidator.name[1] })
+      .isLength({ min: userValidator.name[0], max: userValidator.name[1] })
       .withMessage(
-        `Name can only be ${usersValidator.name[1]} characters at max.`
+        `Name can only be ${userValidator.name[1]} characters at max.`
       )
       .isString()
       .withMessage('Name must be a string.'),
@@ -51,12 +51,12 @@ router.post(
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(criticalMsg)
       .isLength({
-        min: usersValidator.username[0],
-        max: usersValidator.username[1]
+        min: userValidator.username[0],
+        max: userValidator.username[1]
       })
       .withMessage(
-        `Username must be between ${usersValidator.username[0]} and ${
-          usersValidator.username[1]
+        `Username must be between ${userValidator.username[0]} and ${
+          userValidator.username[1]
         } characters.`
       ),
     check('password')
@@ -66,12 +66,12 @@ router.post(
       .isString()
       .withMessage('Password must be a string.')
       .isLength({
-        min: usersValidator.password[0],
-        max: usersValidator.password[1]
+        min: userValidator.password[0],
+        max: userValidator.password[1]
       })
       .withMessage(
-        `Password must be between ${usersValidator.password[0]} and ${
-          usersValidator.password[1]
+        `Password must be between ${userValidator.password[0]} and ${
+          userValidator.password[1]
         } characters.`
       )
       .not()
@@ -96,12 +96,12 @@ router.post(
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(criticalMsg)
       .isLength({
-        min: usersValidator.username[0],
-        max: usersValidator.username[1]
+        min: userValidator.username[0],
+        max: userValidator.username[1]
       })
       .withMessage(
-        `Username must be between ${usersValidator.username[0]} and ${
-          usersValidator.username[1]
+        `Username must be between ${userValidator.username[0]} and ${
+          userValidator.username[1]
         } characters.`
       ),
     check('password')
@@ -111,12 +111,12 @@ router.post(
       .isString()
       .withMessage('Password must be a string.')
       .isLength({
-        min: usersValidator.password[0],
-        max: usersValidator.password[1]
+        min: userValidator.password[0],
+        max: userValidator.password[1]
       })
       .withMessage(
-        `Password must be between ${usersValidator.password[0]} and ${
-          usersValidator.password[1]
+        `Password must be between ${userValidator.password[0]} and ${
+          userValidator.password[1]
         } characters.`
       )
       .not()
@@ -178,9 +178,9 @@ router.patch(
       .escape(),
     check('name')
       .optional({ nullable: true })
-      .isLength({ min: usersValidator.name[0], max: usersValidator.name[1] })
+      .isLength({ min: userValidator.name[0], max: userValidator.name[1] })
       .withMessage(
-        `Name can only be ${usersValidator.name[1]} characters at max.`
+        `Name can only be ${userValidator.name[1]} characters at max.`
       )
       .isString()
       .withMessage('Name must be a string.'),
@@ -192,12 +192,12 @@ router.patch(
       .matches(/^(?:([A-Za-z0-9_])*)$/)
       .withMessage(criticalMsg)
       .isLength({
-        min: usersValidator.username[0],
-        max: usersValidator.username[1]
+        min: userValidator.username[0],
+        max: userValidator.username[1]
       })
       .withMessage(
-        `Username must be between ${usersValidator.username[0]} and ${
-          usersValidator.username[1]
+        `Username must be between ${userValidator.username[0]} and ${
+          userValidator.username[1]
         } characters.`
       ),
     check('password')
@@ -206,12 +206,12 @@ router.patch(
       .isString()
       .withMessage('Password must be a string.')
       .isLength({
-        min: usersValidator.password[0],
-        max: usersValidator.password[1]
+        min: userValidator.password[0],
+        max: userValidator.password[1]
       })
       .withMessage(
-        `Password must be between ${usersValidator.password[0]} and ${
-          usersValidator.password[1]
+        `Password must be between ${userValidator.password[0]} and ${
+          userValidator.password[1]
         } characters.`
       )
       .not()
