@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const usersValidator = require('../validation/users-validator');
 
 const Schema = mongoose.Schema;
 
@@ -9,20 +10,32 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: false,
-      minlength: [1, 'Name is too short.'],
-      maxlength: [100, 'Name is too long.']
+      minlength: [usersValidator.name[0], 'Name is too short.'],
+      maxlength: [usersValidator.name[1], 'Name is too long.']
     },
     username: {
       type: String,
       required: [true, 'A username is required.'],
-      minlength: [3, 'Username must be at least 3 characters.'],
-      maxlength: [22, 'Username must be less than 22 characters.']
+      minlength: [
+        usersValidator.username[0],
+        `Username must be at least ${usersValidator.username[0]} characters.`
+      ],
+      maxlength: [
+        usersValidator.username[1],
+        `Username must be less than ${usersValidator.username[1]} characters.`
+      ]
     },
     password: {
       type: String,
       required: [true, 'A password is required.'],
-      minlength: [6, 'Password must be at least 6 characters.'],
-      maxlength: [256, 'Password must be less than 256 characters.']
+      minlength: [
+        usersValidator.password[0],
+        `Password must be at least ${usersValidator.password[0]} characters.`
+      ],
+      maxlength: [
+        usersValidator.password[1],
+        `Password must be less than ${usersValidator.password[1]} characters.`
+      ]
     }
   },
   {

@@ -242,7 +242,7 @@ naturesCollection = db.createCollection('natures', {
         },
         usage: {
           bsonType: 'string',
-          minLength: 5,
+          minLength: 4,
           maxLength: 40,
           description:
             'usage is required and must be a string between 5 and 20 characters.'

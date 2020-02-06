@@ -3,6 +3,7 @@ const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
 const { check } = require('express-validator/check');
 const { cache } = require('../../middleware/cache');
 const NatureController = require('../../controllers/nature-controller');
+const naturesValidator = require('../../validation/natures-validator');
 
 const router = express.Router();
 
@@ -33,9 +34,14 @@ router.post(
       .withMessage('The name of the nature is required.')
       .isString()
       .withMessage('Name must be a string.')
-      .isLength({ min: 3, max: 20 })
+      .isLength({
+        min: naturesValidator.name[0],
+        max: naturesValidator.name[1]
+      })
       .withMessage(
-        'The name of the nature must be between 3 and 10 characters.'
+        `The name of the nature must be between ${
+          naturesValidator.name[0]
+        } and ${naturesValidator.name[1]} characters.`
       ),
     check('up')
       .not()
@@ -43,9 +49,11 @@ router.post(
       .withMessage('The increased stat of the nature is required.')
       .isString()
       .withMessage('Up must be a string.')
-      .isLength({ min: 4, max: 20 })
+      .isLength({ min: naturesValidator.up[0], max: naturesValidator.up[1] })
       .withMessage(
-        'The increased stat of the nature must be between 4 and 20 characters.'
+        `The increased stat of the nature must be between ${
+          naturesValidator.up[0]
+        } and ${naturesValidator.up[1]} characters.`
       ),
     check('down')
       .not()
@@ -53,15 +61,25 @@ router.post(
       .withMessage('The decreased stat of the nature is required.')
       .isString()
       .withMessage('Down must be a string.')
-      .isLength({ min: 4, max: 20 })
+      .isLength({
+        min: naturesValidator.down[0],
+        max: naturesValidator.down[1]
+      })
       .withMessage(
-        'The decreased stat of the nature must be between 4 and 20 characters.'
+        `The decreased stat of the nature must be between ${
+          naturesValidator.down[0]
+        } and ${naturesValidator.down[1]} characters.`
       ),
     check('flavor')
       .optional({ nullable: true })
-      .isLength({ min: 4, max: 14 })
+      .isLength({
+        min: naturesValidator.flavor[0],
+        max: naturesValidator.flavor[1]
+      })
       .withMessage(
-        'The flavor of the nature must be between 4 and 14 characters.'
+        `The flavor of the nature must be between ${
+          naturesValidator.flavor[0]
+        } and ${naturesValidator.flavor[1]} characters.`
       )
       .isString()
       .withMessage('Flavor must be a string.'),
@@ -71,9 +89,14 @@ router.post(
       .withMessage('he usage for the nature is required')
       .isString()
       .withMessage('Usage must be a string.')
-      .isLength({ min: 4, max: 40 })
+      .isLength({
+        min: naturesValidator.usage[0],
+        max: naturesValidator.usage[1]
+      })
       .withMessage(
-        'The usage for the nature must be in between 4 and 40 characters.'
+        `The usage for the nature must be in between ${
+          naturesValidator.usage[0]
+        } and ${naturesValidator.usage[1]} characters.`
       )
   ],
   NatureController.addNature

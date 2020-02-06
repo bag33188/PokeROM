@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const ratingsValidator = require('../validation/rating-validator');
 
 function setDate(offset) {
   if (typeof offset !== 'number') {
@@ -17,13 +18,24 @@ const ratingSchema = new Schema(
     rating: {
       type: Number,
       required: [true, 'A rating number is required.'],
-      min: [1, 'Rating must be at least 1.'],
-      max: [10, 'Rating can only be 10 at max.']
+      min: [
+        ratingsValidator.rating[0],
+        `Rating must be at least ${ratingsValidator.rating[0]}.`
+      ],
+      max: [
+        ratingsValidator.rating[1],
+        `Rating can only be ${ratingsValidator.rating[0]} at max.`
+      ]
     },
     message: {
       type: String,
       required: false,
-      maxlength: [1000, 'Rating message can only be 1000 characters at max.']
+      maxlength: [
+        ratingsValidator.rating[1],
+        `Rating message can only be ${
+          ratingsValidator.rating[1]
+        } characters at max.`
+      ]
     },
     date_time: {
       type: Date,

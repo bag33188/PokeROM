@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const naturesValidator = require('../validation/natures-validator');
 
 const Schema = mongoose.Schema;
 
@@ -8,49 +9,77 @@ const natureSchema = new Schema(
     name: {
       type: String,
       required: [true, 'The name of the nature is required.'],
-      minlength: [3, 'Nature must be at least 3 characters.'],
-      maxlength: [10, 'Nature can only be 10 characters at max.']
+      minlength: [
+        naturesValidator.name[0],
+        `Nature must be at least ${naturesValidator.name[0]} characters.`
+      ],
+      maxlength: [
+        naturesValidator.name[1],
+        `Nature can only be ${naturesValidator.name[1]} characters at max.`
+      ]
     },
     up: {
       type: String,
       required: [true, 'The increased stat of the nature is required.'],
       minlength: [
-        4,
-        'The increased stat of the nature must be at least 4 characters.'
+        naturesValidator.up[0],
+        `The increased stat of the nature must be at least ${
+          naturesValidator.up[0]
+        } characters.`
       ],
       maxlength: [
-        20,
-        'The increased stat of the nature can only be 20 characters at max.'
+        naturesValidator.up[1],
+        `The increased stat of the nature can only be ${
+          naturesValidator.up[1]
+        } characters at max.`
       ]
     },
     down: {
       type: String,
       required: [true, 'The decreased stat of the nature is required.'],
       minlength: [
-        4,
-        'The decreased stat of the nature must be at least 4 characters.'
+        naturesValidator.down[0],
+        `The decreased stat of the nature must be at least ${
+          naturesValidator.down[0]
+        } characters.`
       ],
       maxlength: [
-        20,
-        'The decreased stat of the nature can only be 20 characters at max.'
+        naturesValidator.down[1],
+        `The decreased stat of the nature can only be ${
+          naturesValidator.down[1]
+        } characters at max.`
       ]
     },
     flavor: {
       type: String,
       required: false,
-      minlength: [4, 'The flavor of the nature must be at least 4 characters.'],
+      minlength: [
+        naturesValidator.flavor[0],
+        `The flavor of the nature must be at least ${
+          naturesValidator.flavor[0]
+        } characters.`
+      ],
       maxlength: [
-        14,
-        'The flavor of the nature can only be 14 characters at max.'
+        naturesValidator.flavor[1],
+        `The flavor of the nature can only be ${
+          naturesValidator.flavor[1]
+        } characters at max.`
       ]
     },
     usage: {
       type: String,
       required: [true, 'The usage for the nature is required'],
-      minlength: [4, 'The usage for the nature must be at least 4 characters.'],
+      minlength: [
+        naturesValidator.usage[0],
+        `The usage for the nature must be at least ${
+          naturesValidator.usage[0]
+        } characters.`
+      ],
       maxlength: [
-        40,
-        'The usage for the nature can only be 40 characters at max.'
+        naturesValidator.usage[1],
+        `The usage for the nature can only be ${
+          naturesValidator.usage[1]
+        } characters at max.`
       ]
     }
   },

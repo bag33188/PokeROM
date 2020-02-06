@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const romsValidator = require('../validation/roms-validator');
 
 const urlRegex = /^(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i;
 const Schema = mongoose.Schema;
@@ -13,14 +14,30 @@ const romSchema = new Schema(
     order_number: {
       type: Number,
       required: [true, 'Order number is required.'],
-      min: [0, 'Order number must not be negative.'],
-      max: [88, 'Order number cannot exceed 88.']
+      min: [
+        romsValidator.order_number[0],
+        'Order number must not be negative.'
+      ],
+      max: [
+        romsValidator.order_number[1],
+        `Order number cannot exceed ${romsValidator.order_number[1]}.`
+      ]
     },
     rom_type: {
       type: String,
       required: [true, 'ROM type is required.'],
-      minlength: [4, 'ROM type is too short (must be at least 4 characters).'],
-      maxlength: [5, 'ROM type is too long (can only 5 characters at max).'],
+      minlength: [
+        romsValidator.rom_type[0],
+        `ROM type is too short (must be at least ${
+          romsValidator.rom_type[0]
+        } characters).`
+      ],
+      maxlength: [
+        romsValidator.rom_type[1],
+        `ROM type is too long (can only ${
+          romsValidator.rom_type[1]
+        } characters at max).`
+      ],
       validate: {
         validator: v => {
           return !(v.toLowerCase() !== 'core' && v.toLowerCase() !== 'hack');
@@ -33,21 +50,32 @@ const romSchema = new Schema(
       type: String,
       required: [true, 'File name is required.'],
       minlength: [
-        3,
-        'File name is too short (must be between 3 and 80 characters).'
+        romsValidator.file_name[0],
+        `File name is too short (must be between ${
+          romsValidator.file_name[0]
+        } and ${romsValidator.file_name[1]} characters).`
       ],
       maxlength: [
-        80,
-        'File name is too long (must be between 3 and 80 characters).'
+        romsValidator.file_name[1],
+        `File name is too long (must be between ${
+          romsValidator.file_name[0]
+        } and ${romsValidator.file_name[1]} characters).`
       ]
     },
     file_size: {
       type: Number,
       required: [true, 'File size is required.'],
-      min: [64, 'File too small (must be between 64 and 16000000 Kilobytes).'],
+      min: [
+        romsValidator.file_size[0],
+        `File too small (must be between ${romsValidator.file_size[0]} and ${
+          romsValidator.file_size[1]
+        } Kilobytes).`
+      ],
       max: [
-        16000000,
-        'File too large (must be between 64 and 16000000 Kilobytes).'
+        romsValidator.file_size[1],
+        `File too large (must be between ${romsValidator.file_size[0]} and ${
+          romsValidator.file_size[1]
+        } Kilobytes).`
       ]
     },
     file_type: {
@@ -64,12 +92,16 @@ const romSchema = new Schema(
       type: String,
       required: [true, 'Download link is required.'],
       minlength: [
-        8,
-        'URL is too short (must be between 8 and 1000 characters).'
+        romsValidator.download_link[0],
+        `URL is too short (must be between ${
+          romsValidator.download_link[0]
+        } and ${romsValidator.download_link[1]} characters).`
       ],
       maxlength: [
-        1000,
-        'URL is too long (must be between 8 and 1000 characters).'
+        romsValidator.download_link[1],
+        `URL is too long (must be between ${
+          romsValidator.download_link[0]
+        } and ${romsValidator.download_link[1]} characters).`
       ],
       validate: {
         validator: v => {
@@ -81,19 +113,33 @@ const romSchema = new Schema(
     generation: {
       type: Number,
       required: [true, 'Generation is required.'],
-      min: [1, 'Generation must be between 1 and 8 (must be between 1 and 8).'],
-      max: [8, 'Generation must be between 1 and 8 (must be between 1 and 8).']
+      min: [
+        romsValidator.generation[0],
+        `Generation must be between ${romsValidator.generation[0]} and ${
+          romsValidator.generation[1]
+        }.`
+      ],
+      max: [
+        romsValidator.generation[1],
+        `Generation must be between ${romsValidator.generation[0]} and ${
+          romsValidator.generation[1]
+        }.`
+      ]
     },
     box_art_url: {
       type: String,
       required: [true, 'Box art URL is required.'],
       minlength: [
-        8,
-        'URL is too short (must be between 8 and 1000 characters).'
+        romsValidator.box_art_url[0],
+        `URL is too short (must be between ${
+          romsValidator.box_art_url[0]
+        } and ${romsValidator.box_art_url[1]} characters).`
       ],
       maxlength: [
-        1000,
-        'URL is too long (must be between 8 and 1000 characters).'
+        romsValidator.box_art_url[1],
+        `URL is too long (must be between ${romsValidator.box_art_url[0]} and ${
+          romsValidator.box_art_url[1]
+        } characters).`
       ],
       validate: {
         validator: v => {
@@ -106,60 +152,80 @@ const romSchema = new Schema(
       type: String,
       required: [true, 'Game name is required.'],
       minlength: [
-        2,
-        'Game name is too short (must be between 2 and 42 characters).'
+        romsValidator.box_art_url[0],
+        `Game name is too short (must be between ${
+          romsValidator.box_art_url[0]
+        } and ${romsValidator.box_art_url[1]} characters).`
       ],
       maxlength: [
-        42,
-        'Game name is too long (must be between 2 and 42 characters).'
+        romsValidator.box_art_url[1],
+        `Game name is too long (must be between ${
+          romsValidator.box_art_url[0]
+        } and ${romsValidator.box_art_url[1]} characters).`
       ]
     },
     region: {
       type: String,
       required: [true, 'Region is required.'],
       minlength: [
-        3,
-        'Region name is too short (must be between 3 and 10 characters).'
+        romsValidator.region[0],
+        `Region name is too short (must be between ${
+          romsValidator.region[0]
+        } and ${romsValidator.region[1]} characters).`
       ],
       maxlength: [
-        10,
-        'Region name is too long (must be between 3 and 10 characters).'
+        romsValidator.region[1],
+        `Region name is too long (must be between ${
+          romsValidator.region[0]
+        } and ${romsValidator.region[1]} characters).`
       ]
     },
     platform: {
       type: String,
       required: [true, 'Platform is required.'],
       minlength: [
-        2,
-        'Platform name is too short (must be between 2 and 50 characters).'
+        romsValidator.platform[0],
+        `Platform name is too short (must be between ${
+          romsValidator.platform[0]
+        } and ${romsValidator.platform[1]} characters).`
       ],
       maxlength: [
-        50,
-        'Platform name is too long (must be between 2 and 50 characters).'
+        romsValidator.platform[1],
+        `Platform name is too long (must be between ${
+          romsValidator.platform[0]
+        } and ${romsValidator.platform[1]} characters).`
       ]
     },
     description: {
       type: String,
       required: [true, 'Description is required.'],
       minlength: [
-        5,
-        'Description is too short (must be between 5 and 8000 characters).'
+        romsValidator.description[0],
+        `Description is too short (must be between ${
+          romsValidator.description[0]
+        } and ${romsValidator.description[1]} characters).`
       ],
       maxlength: [
-        8000,
-        'Description is too long (must be between 5 and 8000 characters).'
+        romsValidator.description[1],
+        `Description is too long (must be between ${
+          romsValidator.description[0]
+        } and ${romsValidator.description[1]} characters).`
       ]
     },
     genre: {
       type: String,
       required: false,
       minlength: [
-        2,
-        'Genre is too short (must be between 2 and 20 characters).'
+        romsValidator.genre[0],
+        `Genre is too short (must be between ${romsValidator.genre[0]} and ${
+          romsValidator.genre[1]
+        } characters).`
       ],
       maxlength: [
-        20,
-        'Genre is too long (must be between 2 and 20 characters).'
+        romsValidator.genre[1],
+        `Genre is too long (must be between ${romsValidator.genre[0]} and ${
+          romsValidator.genre[1]
+        } characters).`
       ]
     },
     date_released: {
@@ -169,6 +235,18 @@ const romSchema = new Schema(
     logo_url: {
       type: String,
       required: [true, 'A logo URL is required.'],
+      minlength: [
+        romsValidator.logo_url[0],
+        `URL is too short (must be between ${romsValidator.logo_url[0]} and ${
+          romsValidator.logo_url[1]
+        } characters).`
+      ],
+      maxlength: [
+        romsValidator.logo_url[1],
+        `URL is too long (must be between ${romsValidator.logo_url[0]} and ${
+          romsValidator.logo_url[1]
+        } characters).`
+      ],
       validate: {
         validator: v => {
           return urlRegex.test(v);
