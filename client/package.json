@@ -26,7 +26,7 @@
     "serve-app": "http-server -p 4200 -c-1 dist/pokerom",
     "update-dependencies": "npm install --save @angular/animations@next @angular/common@next @angular/compiler@next @angular/core@next @angular/forms@next @angular/localize@next @angular/platform-browser@next @angular/platform-browser-dynamic@next @angular/pwa@next @angular/router @angular/service-worker@next && npm install --save-dev @angular-devkit/build-angular@next @angular/cli@next @angular/compiler-cli@next @angular/language-service@next && npm install -g @angular/cli@next",
     "compile-dependencies": "rm -rf node_modules && npm install && npm run ivy",
-    "x": "npm install --save @angular/animations@latest @angular/common@latest @angular/compiler@latest @angular/core@latest @angular/forms@latest @angular/localize@latest @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/pwa@latest @angular/router @angular/service-worker@latest && npm install --save-dev @angular-devkit/build-angular@latest @angular/cli@latest @angular/compiler-cli@latest @angular/language-service@latest && npm install -g @angular/cli@latest"
+    "ng9": "npm install --save @angular/animations@latest @angular/common@latest @angular/compiler@latest @angular/core@latest @angular/forms@latest @angular/localize@latest @angular/platform-browser@latest @angular/platform-browser-dynamic@latest @angular/pwa@latest @angular/router @angular/service-worker@latest && npm install --save-dev @angular-devkit/build-angular@latest @angular/cli@latest @angular/compiler-cli@latest @angular/language-service@latest && npm install -g @angular/cli@latest"
   },
   "private": true,
   "dependencies": {
