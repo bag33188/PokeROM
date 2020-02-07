@@ -23,7 +23,7 @@ export class RomsComponent implements OnInit, OnDestroy {
   public romsData: Rom[];
   public currentPage: number;
   public itemsPerPage: number;
-  private pageSize: number;
+  public pageSize: number;
   public loading: boolean;
   public noRomsMsg: string;
   private limit: number;
