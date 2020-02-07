@@ -1,4 +1,6 @@
-module.exports = {
+// properties with a value of null do not have a specified min and/or max length.
+
+const romLengths = {
   user_id: null,
   order_number: [0, 88],
   rom_type: [4, 5],
@@ -17,3 +19,5 @@ module.exports = {
   logo_url: [8, 1000],
   is_favorite: null
 };
+
+module.exports = romLengths;
