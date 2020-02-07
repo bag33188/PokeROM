@@ -65,6 +65,7 @@ function convertToBoolean(value) {
     case 'false':
       return false;
     default:
+      console.error('Error: value cannot be parsed into a boolean.');
       break;
   }
 }
