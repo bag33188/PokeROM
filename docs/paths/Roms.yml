@@ -27,20 +27,10 @@ paths:
           description: '(Optional) For pagination: the number of ROMs per page.'
           type: number
         - in: query
-          name: core
+          name: rom_type
           required: false
-          description: '(Optional) Get only the Core ROMs.'
-          type: boolean
-        - in: query
-          name: hacks
-          required: false
-          description: '(Optional) Get only the ROM Hacks.'
-          type: boolean
-        - in: query
-          name: favorites
-          required: false
-          description: '(Optional) Get only the user''s favorite ROMs.'
-          type: boolean
+          description: '(Optional) Choose to get either core or hack ROMs.'
+          type: string
       responses:
         200:
           description: A ROMs array.
@@ -112,15 +102,10 @@ paths:
         - application/json
       parameters:
         - in: query
-          name: core
+          name: rom_type
           required: false
-          description: 'Delete all core ROMs.'
-          type: boolean
-        - in: query
-          name: hacks
-          required: false
-          description: 'Delete all ROMs hacks.'
-          type: boolean
+          description: 'Choose to delete either core ROMs or ROM hacks.'
+          type: string
       responses:
         200:
           description: A success object.

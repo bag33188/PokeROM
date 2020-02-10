@@ -11,10 +11,7 @@ interface GetRequestOptions {
     page: number;
     perPage: number;
   };
-  types?: {
-    core?: boolean;
-    hacks?: boolean;
-  };
+  romType?: string;
   favorites?: boolean;
 }
 
@@ -54,18 +51,12 @@ export class RomsService {
         );
       }
     }
-    if (options.types) {
-      if (options.types.core === true) {
-        httpParams = httpParams.append(
-          'core',
-          JSON.stringify(options.types.core)
-        );
+    if (options.romType) {
+      if (options.romType === 'core') {
+        httpParams = httpParams.append('rom_type', JSON.stringify('core'));
       }
-      if (options.types.hacks === true) {
-        httpParams = httpParams.append(
-          'hacks',
-          JSON.stringify(options.types.hacks)
-        );
+      if (options.romType === 'hack') {
+        httpParams = httpParams.append('rom_type', JSON.stringify('hack'));
       }
     }
     if (options.favorites && options.favorites === true) {

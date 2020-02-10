@@ -71,14 +71,13 @@ function convertToBoolean(value) {
 
 module.exports.getRoms = async (req, res) => {
   try {
-    const getAllCore = req.query['core'];
-    const getAllHacks = req.query['hacks'];
+    const romType = req.query['rom_type'];
     const getFavorites = req.query['favorites'];
 
     let query = {};
-    if (convertToBoolean(getAllCore) && !convertToBoolean(getAllHacks)) {
+    if (romType === 'core') {
       query = { user_id: req.user._id, rom_type: 'core' };
-    } else if (convertToBoolean(getAllHacks) && !convertToBoolean(getAllCore)) {
+    } else if (romType === 'hack') {
       query = { user_id: req.user._id, rom_type: 'hack' };
     } else {
       query = { user_id: req.user._id };
@@ -368,14 +367,13 @@ module.exports.deleteRom = async (req, res) => {
 
 module.exports.deleteRoms = async (req, res) => {
   try {
-    const deleteCore = req.query['core'];
-    const deleteHacks = req.query['hacks'];
+    const romType = req.query['rom_type'];
     let query = {};
     let message = '';
-    if (convertToBoolean(deleteCore) && !convertToBoolean(deleteHacks)) {
+    if (romType === 'core') {
       query = { user_id: req.user._id, rom_type: 'core' };
       message = 'All core ROMs have been deleted.';
-    } else if (convertToBoolean(deleteHacks) && !convertToBoolean(deleteCore)) {
+    } else if (romType === 'hack') {
       query = { user_id: req.user._id, rom_type: 'hack' };
       message = 'All ROM hacks have been deleted.';
     } else {
