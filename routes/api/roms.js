@@ -69,7 +69,7 @@ router.post(
       .withMessage('Order number is required.')
       .isInt({
         min: romValidator.order_number[0],
-        max: romValidator.order_number[33]
+        max: romValidator.order_number[1]
       })
       .withMessage(
         `Order number must be an integer between ${
@@ -268,7 +268,7 @@ router.put(
       .withMessage('Order number is required.')
       .isInt({
         min: romValidator.order_number[0],
-        max: romValidator.order_number[33]
+        max: romValidator.order_number[1]
       })
       .withMessage(
         `Order number must be an integer between ${
@@ -466,7 +466,7 @@ router.patch(
       .withMessage('Order number is required.')
       .isInt({
         min: romValidator.order_number[0],
-        max: romValidator.order_number[33]
+        max: romValidator.order_number[1]
       })
       .withMessage(
         `Order number must be an integer between ${

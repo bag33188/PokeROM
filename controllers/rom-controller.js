@@ -242,7 +242,7 @@ module.exports.updateRom = async (req, res) => {
     await Rom.updateRom(id, updateRomData, {});
     clearCache(req, routesWithParams);
     const updatedRom = await Rom.getRomById(id);
-    updatedRom.date_released = new Date(updatedRom.date_released);
+    // updatedRom.date_released = new Date(updatedRom.date_released);
     return res.status(200).json(updatedRom);
   } catch (err) {
     switch (err.name) {
