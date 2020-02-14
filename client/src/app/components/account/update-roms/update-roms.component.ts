@@ -47,16 +47,16 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
     this.loading = false;
     this.deleteRomsObs$ = this.romsService.deleteAllRoms().pipe(
       first(),
-      delay(442)
+      delay(400)
     );
     this.addRomsObs$ = zip(
       this.romsService.addCoreRoms().pipe(
         take(1),
-        delay(442)
+        delay(400)
       ),
       this.romsService.addRomHacks().pipe(
         take(1),
-        delay(442)
+        delay(400)
       )
     );
   }

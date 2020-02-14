@@ -1,4 +1,7 @@
 <ng-container>
+  <ng-template #updateROMsWarning>
+    <b>Warning</b><br />Updating ROMs will remove all favorites.
+  </ng-template>
   <div id="update-roms-spinner-container" class="mb-3" *ngIf="loading">
     <spinners-bootstrap-spinner
       [loading]="loading"
@@ -11,6 +14,7 @@
     type="button"
     appBtn
     btnType="warning"
+    [ngbTooltip]="updateROMsWarning"
     (click)="updateRoms()"
     *ngIf="showBtn"
   >
