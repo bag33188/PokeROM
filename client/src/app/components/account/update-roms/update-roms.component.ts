@@ -74,6 +74,10 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
     this.deleteRoms(this.addRoms.bind(this, UpdateRomsComponent));
   }
 
+  /**
+   * @summary deletes all roms
+   * @param addRomsCallback the callback function to add all the roms
+   */
   private deleteRoms(addRomsCallback: () => void): void {
     const observer:
       | ErrorObserver<JSONObject>
@@ -90,6 +94,9 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * @summary Adds all roms
+   */
   private addRoms(): void {
     const observer: ErrorObserver<romsDuo> | CompletionObserver<romsDuo> = {
       error: (err: JSONObject): void => {
