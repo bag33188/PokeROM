@@ -19,15 +19,15 @@ export class RomDownloadComponent implements OnInit {
       /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
       /Android/i.test(navigator.userAgent)
     ) {
-      this.btnDisabled =
-        (JSON.parse(CookiesService.getCookie('user')) as { id: string }).id !==
-        '5e5c8af0ba33da08279219a0';
-      // this.btnDisabled = true;
-      // return true;
-      return (
-        (JSON.parse(CookiesService.getCookie('user')) as { id: string }).id !==
+      if (
+        (JSON.parse(CookiesService.getCookie('user')) as { id: string }).id ===
         '5e5c8af0ba33da08279219a0'
-      );
+      ) {
+        this.btnDisabled = false;
+        return false;
+      }
+      this.btnDisabled = true;
+      return true;
     } else {
       this.btnDisabled = false;
       return false;
