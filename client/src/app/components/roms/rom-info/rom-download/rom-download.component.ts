@@ -23,7 +23,11 @@ export class RomDownloadComponent implements OnInit {
         (JSON.parse(CookiesService.getCookie('user')) as { id: string }).id !==
         '5e5c8af0ba33da08279219a0';
       // this.btnDisabled = true;
-      return true;
+      // return true;
+      return (
+        (JSON.parse(CookiesService.getCookie('user')) as { id: string }).id !==
+        '5e5c8af0ba33da08279219a0'
+      );
     } else {
       this.btnDisabled = false;
       return false;
