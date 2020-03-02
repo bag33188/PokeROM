@@ -20,7 +20,7 @@ export class RomDownloadComponent implements OnInit {
       /Android/i.test(navigator.userAgent)
     ) {
       this.btnDisabled =
-        (JSON.parse(CookiesService.getCookie('user')) as User)._id !==
+        (JSON.parse(CookiesService.getCookie('user')) as { id: string }).id !==
         '5e5c8af0ba33da08279219a0';
       // this.btnDisabled = true;
       return true;
