@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   public ngOnInit(): void {
+    alert(navigator.userAgent);
     this.accHeading = 'What would you like to know about?';
   }
 }
