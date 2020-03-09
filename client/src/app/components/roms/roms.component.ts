@@ -12,6 +12,7 @@ import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import { faStar as starSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar as startOutline } from '@fortawesome/free-regular-svg-icons';
 
+// page size, current page, if favorites are shown
 type paginationState = [number, number, boolean];
 
 @Component({
