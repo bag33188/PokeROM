@@ -22,7 +22,7 @@ definitions:
         nullable: true
       usage:
         type: string
-        minlength: 5
+        minlength: 4
         maxlength: 40
     required:
       - name
