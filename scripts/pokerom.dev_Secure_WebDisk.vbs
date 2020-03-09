@@ -2,6 +2,8 @@
 '
 ' 11/17/2006 - Initial write.
 ' 05/17/2012 - Update for Vista/Win7/Win8
+' username: pokerom
+' password: 3931Sunflower!
 
 Option Explicit
 Dim errReturn, strURL, strDomainPort
