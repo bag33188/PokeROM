@@ -13,8 +13,7 @@ declare global {
 
 // tslint:disable-next-line:only-arrow-functions
 String.prototype.sanitizeXSS = function(options?: Options): string {
-  let checkXSS: RegExp;
-  checkXSS = /(?:(<\/?[\s\S]*?>)|(javascript:(?:[^:\s]?)+))/gim;
+  const checkXSS: RegExp = /(?:(<\/?[\s\S]*?>)|(javascript:(?:[^:]\s?)+))/gim;
   const checkChars: RegExp = /(?:([&'"<>)(\\\/{}\[\]:;^*]))/gim;
   let sanitizedStr: string = this.replace(checkXSS, '');
   if (options !== null && options !== undefined) {
