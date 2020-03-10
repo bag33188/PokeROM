@@ -43,7 +43,7 @@ const ratingSchema = new Schema(
         true,
         'A date and time is required for when the rating was made.'
       ],
-      default: setDate(8)
+      default: setDate(7)
     }
   },
   {
