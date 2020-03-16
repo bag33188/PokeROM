@@ -32,16 +32,16 @@ REM.||(
   START "Namecheap" chrome.exe "https://ap.www.namecheap.com/domains/domaincontrolpanel/pokerom.dev/domain"
   REM Sleep for 1 second
   TIMEOUT /T 1
-  REM Github
-  START "Github" chrome.exe "https://github.com/bag33188/PokeROM"
-  REM Sleep for 1 second
-  TIMEOUT /T 1
   REM Private Email
   START "Private Email" chrome.exe "https://privateemail.com/appsuite/#!!&app=io.ox/mail&folder=default0/INBOX"
   REM Sleep for 1 second
   TIMEOUT /T 1
   REM PM2
   START "PM2" chrome.exe "https://app.pm2.io/#/r/8udbwnn9hvtz59p"
+  REM Sleep for 1 second
+  TIMEOUT /T 1
+  REM Github
+  START "Github" chrome.exe "https://github.com/bag33188/PokeROM"
   REM Sleep for 1 second
   TIMEOUT /T 1
   REM Official PokeROM Website
