@@ -1,28 +1,4 @@
-@import '../../../assets/scss/variables';
-
 #natures-container {
   overflow-x: auto !important;
 }
 
-#natures {
-  background-color: $white;
-}
-
-.header-text {
-  display: initial;
-}
-
-.header-icon-container {
-  display: none;
-}
-
-@media only screen and (max-width: 991px) {
-  .header-icon-container {
-    display: block;
-    text-align: center;
-  }
-
-  .header-text {
-    display: none;
-  }
-}

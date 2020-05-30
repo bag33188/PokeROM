@@ -6,6 +6,7 @@ import { NaturesService } from '../../services/natures.service';
 import { SpinnerModule } from '../spinners/spinner.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DirectivesModule } from '../../directives/directives.module';
+import { NaturesTableComponent } from './natures-table/natures-table.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { DirectivesModule } from '../../directives/directives.module';
     FontAwesomeModule,
     DirectivesModule
   ],
-  declarations: [NaturesComponent],
+  declarations: [NaturesComponent, NaturesTableComponent],
   providers: [NaturesService]
 })
 export class NaturesModule {}
