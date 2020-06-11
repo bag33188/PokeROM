@@ -6,7 +6,6 @@ import {
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import { RomsService } from '../../../services/roms.service';
-import { AuthService } from '../../../services/auth.service';
 import { Rom } from '../../../models/Rom';
 import { JSONObject } from '../../../models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
@@ -31,7 +30,6 @@ export class RomInfoComponent implements OnInit, OnDestroy {
 
   constructor(
     private romService: RomsService,
-    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
   ) {}

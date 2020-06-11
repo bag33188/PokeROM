@@ -18,7 +18,6 @@ import { RomInfoComponent } from './rom-info/rom-info.component';
 import { RomsPaginationComponent } from './roms-pagination/roms-pagination.component';
 import { RomsComponent } from './roms.component';
 import { RomHackPopupComponent } from './rom-info/rom-hack-popup/rom-hack-popup.component';
-import { AuthService } from '../../services/auth.service';
 import { MarkFavoriteComponent } from './rom-info/mark-favorite/mark-favorite.component';
 
 @NgModule({
@@ -45,6 +44,6 @@ import { MarkFavoriteComponent } from './rom-info/mark-favorite/mark-favorite.co
     SpinnerModule,
     RomsRoutingModule
   ],
-  providers: [RomsService, AuthService]
+  providers: [RomsService]
 })
 export class RomsModule {}
