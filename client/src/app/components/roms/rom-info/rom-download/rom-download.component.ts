@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { CookiesService } from '../../../../services/cookies.service';
-import { User } from '../../../../models/User';
 
 @Component({
   selector: 'roms-info-rom-download',
@@ -19,13 +17,6 @@ export class RomDownloadComponent implements OnInit {
       /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
       /Android/i.test(navigator.userAgent)
     ) {
-      if (
-        (JSON.parse(CookiesService.getCookie('user')) as { id: string }).id ===
-        '5e5c8af0ba33da08279219a0'
-      ) {
-        this.btnDisabled = false;
-        return false;
-      }
       this.btnDisabled = true;
       return true;
     } else {
