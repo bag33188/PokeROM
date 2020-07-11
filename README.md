@@ -102,6 +102,6 @@ NODE_ENV=development
 
 -->
 
-> _**Enjoy!**_:
+> _**Enjoy!**_
 
 [comment]: # "End README.md"
