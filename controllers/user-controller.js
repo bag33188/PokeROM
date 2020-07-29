@@ -64,17 +64,17 @@ module.exports.getUser = async (req, res) => {
         .status(405)
         .json({ success: false, message: 'Method not allowed.' });
     }
-    if (req.user._id.toString() !== id.toString()) {
-      return res.status(403).json({
-        success: false,
-        message: `You cannot get this user's data.`
-      });
-    }
     const user = await User.getUserById(id);
     if (!user) {
       return res
         .status(404)
         .json({ success: false, message: 'User not found.' });
+    }
+    if (req.user._id.toString() !== id.toString()) {
+      return res.status(403).json({
+        success: false,
+        message: `You cannot get this user's data.`
+      });
     }
     return res.status(200).json(user);
   } catch (err) {
