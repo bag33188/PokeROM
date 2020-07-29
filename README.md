@@ -19,6 +19,8 @@ This is the official repository for [pokerom.dev](https://pokerom.dev).
 <!--
 [source-code-pro-fonts-download]: <https://onedrive.live.com/download?cid=093DC4D54812866B&resid=93DC4D54812866B%21106790&authkey=AGxEetnlDbFwcBA> 'Source Code Pro Fonts Download (Direct Download)'
 
+git push origin --delete tagname
+
 # For Windows, XAMPP
 
 # C:/Windows/System32/drivers/etc/hosts (as admin)
