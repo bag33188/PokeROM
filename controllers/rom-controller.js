@@ -298,8 +298,8 @@ module.exports.patchRom = async (req, res) => {
       });
     }
     const query = { $set: req.body };
-    await Rom.patchRom(id, query);
     clearCache(req, routesWithParams);
+    await Rom.patchRom(id, query);
     const patchedRom = await Rom.getRomById(id);
     return res.status(200).json(patchedRom);
   } catch (err) {
