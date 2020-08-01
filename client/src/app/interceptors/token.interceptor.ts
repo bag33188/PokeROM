@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { environment } from '../../environments/environment';
 import { JSONObject } from '../models/JSONObject';
-import { JSONArray } from '../interfaces/JSONArray';
+import { JSONArray } from '../models/JSONArray';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

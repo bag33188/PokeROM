@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JSONObject } from '../models/JSONObject';
-import { JSONArray } from '../interfaces/JSONArray';
+import { JSONArray } from '../models/JSONArray';
 
 type cachedJSON = JSONObject | JSONArray | null;
 

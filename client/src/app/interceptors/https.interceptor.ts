@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { JSONObject } from '../models/JSONObject';
-import { JSONArray } from '../interfaces/JSONArray';
+import { JSONArray } from '../models/JSONArray';
 
 @Injectable()
 export class HttpsInterceptor implements HttpInterceptor {

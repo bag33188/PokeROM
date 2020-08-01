@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 import sanitizeXSS from '../helpers/sanitize-xss';
 import removeStringChars from '../helpers/remove-string-chars';
 import { JSONObject } from '../models/JSONObject';
-import { JSONArray } from '../interfaces/JSONArray';
+import { JSONArray } from '../models/JSONArray';
 import { LoggerService as logger } from '../services/logger.service';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import { JSONObject } from '../models/JSONObject';
+import { JSONObject } from './JSONObject';
 
 type JSONValue = boolean | number | string | null | JSONObject | JSONArray;
 

@@ -1,4 +1,4 @@
-import { JSONArray } from '../interfaces/JSONArray';
+import { JSONArray } from './JSONArray';
 
 type JSONValue = boolean | number | string | null | JSONObject | JSONArray;
 
