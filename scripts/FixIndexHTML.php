@@ -34,7 +34,7 @@
 
     // create regular expression constants for detecting the script tags.
     const SCRIPT_TAG_REGEXP = "/((?:\x{003C}script src=\")(?:(?:runtime|polyfills(?:-es5)?|main|vendor|scripts)(?:(?:-)?(?:(?:es(?:(?:201)?[56789]))|(?:latest)))?)(?:\.)(?:[\da-fA-F]{20})(?:\.js\")(?:(?:\stype=\"module\")?(?:\snomodule)?(?:\sdefer)?)(?:\x{003E}\x{003C}\/script\x{003E}))/";
-    const ASYNC_SCRIPT_TAG_REGEXP = "/((?:[\t\s]+)<script(?:[\t\s]+)type=[\"']text\/javascript[\"'](?:[\t\s]+)async(?:[\t\s]+)?>(?:\n+)?(?:[\t\s]+)?window\.Popper(?:[\t\s]+)?=(?:[\t\s]+)?\{(?:[\t\s]+)?\};?(?:\n+)?(?:[\t\s]+)?<\/script>)/";
+/*    const ASYNC_SCRIPT_TAG_REGEXP = "/((?:[\t\s]+)<script(?:[\t\s]+)type=[\"']text\/javascript[\"'](?:[\t\s]+)async(?:[\t\s]+)?>(?:\n+)?(?:[\t\s]+)?window\.Popper(?:[\t\s]+)?=(?:[\t\s]+)?\{(?:[\t\s]+)?\};?(?:\n+)?(?:[\t\s]+)?<\/script>)/";*/
 
     /**
      * FixIndexHTML constructor.
@@ -142,8 +142,8 @@
       try {
         // open file for writing
         $file = fopen($this->filepath, "w");
-        // cache async script tag
-        preg_match(self::ASYNC_SCRIPT_TAG_REGEXP, $this->contents, $async_script_tag);
+//        // cache async script tag
+//        preg_match(self::ASYNC_SCRIPT_TAG_REGEXP, $this->contents, $async_script_tag);
         // set var as first index in array
         $async_script_tag = $async_script_tag[0];
         // get rid of async script tag
