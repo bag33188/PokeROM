@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
           this.loginFail =
             'Oops, there was a problem while trying to log you in. Please try again later.';
         }
-        throw logger.error(err);
+        logger.error(err);
       }
     );
   }
