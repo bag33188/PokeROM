@@ -4,7 +4,7 @@
 
 @import './assets/scss/variables';
 @import './assets/scss/modules/scrollbar';
- @import './assets/scss/modules/font-faces';
+@import './assets/scss/modules/font-faces';
 
 *,
 *::before,
@@ -16,7 +16,7 @@ html {
   overflow-x: hidden;
 
   body {
-    background: $white url($bg-img);
+    background: url($bg-img) fixed;
     font-family: Roboto, Arial, Verdana, sans-serif !important;
   }
 }
@@ -63,7 +63,8 @@ button {
     &:not([class^='carousel-control-']) {
       &:active,
       &:focus,
-      &:active:focus { // sass-lint:disable-line force-pseudo-nesting
+      &:active:focus {
+        // sass-lint:disable-line force-pseudo-nesting
         box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba !important;
         outline: none !important;
       }
@@ -73,7 +74,8 @@ button {
       &[class~='btn-link'] {
         &:active,
         &:focus,
-        &:active:focus { // sass-lint:disable-line force-pseudo-nesting
+        &:active:focus {
+          // sass-lint:disable-line force-pseudo-nesting
           box-shadow: none !important;
           outline: none !important;
         }
