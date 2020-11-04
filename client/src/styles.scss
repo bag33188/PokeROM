@@ -53,6 +53,10 @@ html {
   }
 }
 
+.pagination {
+  box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba !important;
+}
+
 // remove button outlines in browsers
 a,
 button {
