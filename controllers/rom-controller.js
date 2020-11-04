@@ -83,16 +83,10 @@ module.exports.getRoms = async (req, res) => {
       query = { user_id: req.user._id };
     }
 
-    query = {
-      ...query,
-      is_favorite: () => {
-        if (typeof convertToBoolean(getFavorites) === 'boolean') {
-          return convertToBoolean(getFavorites);
-        } else {
-          return null;
-        }
-      }
-    };
+    query =
+      typeof convertToBoolean(getFavorites) === 'boolean'
+        ? { ...query, is_favorite: convertToBoolean(getFavorites) }
+        : { ...query };
 
     let limit = req.query['_limit'];
     if (!limit) {
