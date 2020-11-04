@@ -9,7 +9,7 @@
     >
       <fieldset>
         <legend class="pt-2 pb-2 text-center">Register</legend>
-        <div class="border rounded" id="border-container">
+        <div class="border rounded shadow" id="border-container">
           <p class="mb-0">
             <span class="text-danger font-weight-bold">*</span> = required
           </p>
@@ -121,11 +121,17 @@
           </button>
         </div>
       </fieldset>
-      <div class="mt-2 mb-2" appAlert alertType="info">
+      <div class="mt-2 mb-2" appAlert alertType="info" [shadow]="true">
         Already have an account? Click
         <a [routerLink]="['/', 'login']">here</a> to login.
       </div>
-      <div class="mt-1" *ngIf="registerFail" appAlert alertType="danger">
+      <div
+        class="mt-1"
+        *ngIf="registerFail"
+        appAlert
+        alertType="danger"
+        [shadow]="true"
+      >
         {{ registerFail }}
       </div>
     </form>

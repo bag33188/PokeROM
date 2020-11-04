@@ -3,7 +3,7 @@
   <div class="container mt-2">
     <h1 class="mt-3">Rate this App</h1>
     <hr />
-    <div class="border p-4 bg-light rounded">
+    <div class="border p-4 bg-light rounded shadow">
       <form
         name="ratingForm"
         (ngSubmit)="submitRating()"
@@ -64,7 +64,13 @@
             >
           </div>
         </div>
-        <div class="mt-3 mb-0" appAlert alertType="danger" [hidden]="!isError">
+        <div
+          class="mt-3 mb-0"
+          appAlert
+          alertType="danger"
+          [hidden]="!isError"
+          [shadow]="true"
+        >
           Oops, there was an error while trying to submit your rating. Please
           try again later.
         </div>

@@ -8,6 +8,7 @@
         appAlert
         alertType="danger"
         class="text-center"
+        [shadow]="true"
         *ngIf="isError; else naturesTable"
       >
         Oops, there was a problem while trying to load the natures.<br />Please

@@ -9,7 +9,7 @@
     >
       <fieldset>
         <legend class="pt-2 pb-2 text-center">Login</legend>
-        <div class="border rounded" id="border-container">
+        <div class="border rounded shadow" id="border-container">
           <div class="form-group">
             <ng-container>
               <label for="username" class="font-weight-bold">Username</label>
@@ -81,11 +81,17 @@
         </div>
       </fieldset>
 
-      <div class="mt-2 mb-2" appAlert alertType="info">
+      <div class="mt-2 mb-2" appAlert alertType="info" [shadow]="true">
         Don't have an account? Register
         <a [routerLink]="['/', 'register']">here</a>!
       </div>
-      <div class="mt-1" *ngIf="loginFail" appAlert alertType="danger">
+      <div
+        class="mt-1"
+        *ngIf="loginFail"
+        appAlert
+        alertType="danger"
+        [shadow]="true"
+      >
         {{ loginFail }}
       </div>
     </form>

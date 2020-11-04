@@ -5,7 +5,7 @@
   <div class="container text-center mb-2" id="form-container" *ngIf="ready">
     <ng-container *ngIf="errLoadingUsr; else account">
       <h4 class="mt-1">Account</h4>
-      <div appAlert alertType="danger" class="mt-3">
+      <div appAlert alertType="danger" class="mt-3" [shadow]="true">
         There was an error while trying to load your user information. Please
         try again later.
       </div>
@@ -25,6 +25,7 @@
             appAlert
             alertType="info"
             role="alert"
+            [shadow]="true"
             *ngIf="!noticeClosed"
           >
             <fa-icon [icon]="faInfoCircle" class="mr-1"></fa-icon>&nbsp;If you
@@ -40,7 +41,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="border rounded" id="border-container">
+          <div class="border rounded shadow" id="border-container">
             <p class="mb-0">
               <span class="text-danger font-weight-bold">*</span> = required
             </p>
@@ -181,7 +182,7 @@
             </button>
           </div>
         </fieldset>
-        <div class="mt-2" *ngIf="updateFail" appAlert alertType="danger">
+        <div class="mt-2" *ngIf="updateFail" appAlert alertType="danger" [shadow]="true">
           <ng-container *ngIf="userExists; else normalErrMsg">
             The username you chose already belongs to another user.
           </ng-container>
@@ -196,6 +197,7 @@
             appAlert
             alertType="warning"
             *ngIf="!warningClosed"
+            [shadow]="true"
           >
             <fa-icon [icon]="faExclamationTriangle" class="mr-1"></fa-icon>
             Updating your user data will log you out.
