@@ -22,7 +22,7 @@
   </button>
   <div
     id="roms-updated-alert-container"
-    class="shadow"
+    [shadow]="true"
     appAlert
     [alertType]="romsUpdated ? 'success' : 'danger'"
     *ngIf="romsUpdated !== undefined"

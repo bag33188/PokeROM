@@ -182,7 +182,13 @@
             </button>
           </div>
         </fieldset>
-        <div class="mt-2" *ngIf="updateFail" appAlert alertType="danger" [shadow]="true">
+        <div
+          class="mt-2"
+          *ngIf="updateFail"
+          appAlert
+          alertType="danger"
+          [shadow]="true"
+        >
           <ng-container *ngIf="userExists; else normalErrMsg">
             The username you chose already belongs to another user.
           </ng-container>
@@ -211,7 +217,13 @@
             </button>
           </div>
         </div>
-        <div class="mt-1" appAlert alertType="danger" *ngIf="isErrorDeleting">
+        <div
+          class="mt-1"
+          appAlert
+          alertType="danger"
+          *ngIf="isErrorDeleting"
+          [shadow]="true"
+        >
           Oops, looks like there was an error while trying to delete your
           user.<br />Please try again later.
         </div>
