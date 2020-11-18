@@ -73,7 +73,7 @@ rom_tests() {
       printf "\r\n"
       read -p "Enter ROM Data (escape quotes): " data
       printf "\r\n"
-      curl -i -X PUT "http://localhost:8080/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt" -H  "$data"
+      curl -i -X PUT "http://localhost:8080/api/roms/$id" -H  "accept: application/json" -H  "Authorization: $jwt" -d "$data"
       printf "\r\n\r\n"
     }
     if [[ $rqst == '4' ]]; then
