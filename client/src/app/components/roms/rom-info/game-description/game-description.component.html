@@ -1,10 +1,10 @@
 <ul class=" list-group shadow h-100">
-  <li class="list-group-item active bg-red">
+  <li class="list-group-item active bg-red text-left">
     <fa-icon [icon]="faFileAlt" class="description-icon mr-3 ml-1"></fa-icon
     >{{ isRomHack(type) ? '' : 'Pokemon.com '
     }}<span class="mr-1">Description</span>
   </li>
-  <li class="list-group-item description-container text-left">
+  <li class="list-group-item description-container">
     <div class="bg-white">
       <p class="description" [innerHTML]="description"></p>
     </div>
