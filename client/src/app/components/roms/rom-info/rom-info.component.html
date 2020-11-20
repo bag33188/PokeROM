@@ -50,18 +50,10 @@
           [logoUrl]="rom.logo_url"
           [gameName]="rom.game_name"
         ></roms-info-game-logo>
-        <div class="game-description-title">
-          <h4>
-            <fa-icon
-              [icon]="faFileAlt"
-              class="description-icon mr-3 ml-1"
-            ></fa-icon
-            >{{ isRomHack(rom.rom_type) ? '' : 'Pokemon.com '
-            }}<span class="mr-1">Description</span>
-          </h4>
-        </div>
+
         <roms-info-game-description
           class="game-description"
+          [type]="rom.rom_type"
           [description]="rom.description"
           [finishedLoading]="finishedLoading"
         ></roms-info-game-description>

@@ -23,7 +23,6 @@ export class RomInfoComponent implements OnInit, OnDestroy {
   public isError: boolean;
   public faLongArrowAltLeft: IconDefinition;
   public errStatusCode: number;
-  public faFileAlt: IconDefinition;
   private romInfoObs$: Observable<Rom>;
   private romInfoSub: Subscription;
   public finishedLoading: boolean;
@@ -37,7 +36,6 @@ export class RomInfoComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.finishedLoading = false;
     this.loading = true;
-    this.faFileAlt = faFileAlt;
     this.faLongArrowAltLeft = faLongArrowAltLeft;
     this.id = this.route.snapshot.paramMap.get('id');
     this.isError = false;
@@ -83,8 +81,5 @@ export class RomInfoComponent implements OnInit, OnDestroy {
       },
       (): true => (this.finishedLoading = true)
     );
-  }
-  public isRomHack(romType: string): boolean {
-    return romType === 'hack';
   }
 }

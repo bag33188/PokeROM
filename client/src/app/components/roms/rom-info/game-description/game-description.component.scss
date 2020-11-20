@@ -1,3 +1,5 @@
+@import '../../../../../assets/scss/variables';
+
 .description-container {
   height: 100%;
   margin-bottom: 0;
@@ -17,4 +19,8 @@
       height: 16rem;
     }
   }
+}
+.bg-red {
+  background-color: $light-crimson;
+  border: $dark-red;
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {
+  faLongArrowAltLeft,
+  faFileAlt,
+  IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'roms-info-game-description',
@@ -7,7 +12,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GameDescriptionComponent implements OnInit {
   @Input() public description: string;
+  @Input() public type: string;
   @Input() private finishedLoading: boolean;
+  public faFileAlt: IconDefinition;
 
   constructor() {}
   static changeUrlToLink(description: string): string {
@@ -23,6 +30,8 @@ export class GameDescriptionComponent implements OnInit {
     }
   }
   public ngOnInit(): void {
+    this.faFileAlt = faFileAlt;
+
     if (this.finishedLoading) {
       if (this.description) {
         this.description = GameDescriptionComponent.changeUrlToLink(
@@ -30,5 +39,8 @@ export class GameDescriptionComponent implements OnInit {
         );
       }
     }
+  }
+  public isRomHack(romType: string): boolean {
+    return romType === 'hack';
   }
 }
