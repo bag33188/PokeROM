@@ -16,23 +16,12 @@
   .description {
     margin-bottom: 0;
     margin-top: 0;
+    @media only screen and (min-width: 938px) {
+      height: 16rem;
+    }
   }
 }
 .bg-red {
   background-color: $light-crimson;
   border: $dark-red;
-}
-
-#description-section-wrapper {
-  margin-bottom: 1rem;
-}
-
-@media only screen and (min-width: 938px) {
-  .description {
-    height: 16rem;
-  }
-
-  #description-section-wrapper {
-    height: 1rem;
-  }
 }
