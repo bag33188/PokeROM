@@ -23,6 +23,10 @@
   border: $dark-red;
 }
 
+#description-section-wrapper {
+  margin-bottom: 1rem;
+}
+
 @media only screen and (min-width: 938px) {
   .description {
     height: 16rem;
