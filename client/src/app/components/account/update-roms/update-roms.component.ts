@@ -37,28 +37,27 @@ export class UpdateRomsComponent implements OnInit, OnDestroy {
   public showBtn: boolean;
   public faCheckCircle: IconDefinition;
   public faTimesCircle: IconDefinition;
-  private delay: number;
 
   constructor(private romsService: RomsService) {}
 
   public ngOnInit(): void {
-    this.delay = 442;
     this.faTimesCircle = faTimesCircle;
     this.faCheckCircle = faCheckCircle;
     this.showBtn = true;
     this.loading = false;
+    const delayMS: number = 442;
     this.deleteRomsObs$ = this.romsService.deleteAllRoms().pipe(
       first(),
-      delay(this.delay)
+      delay(delayMS)
     );
     this.addRomsObs$ = zip(
       this.romsService.addCoreRoms().pipe(
         take(1),
-        delay(this.delay)
+        delay(delayMS)
       ),
       this.romsService.addRomHacks().pipe(
         take(1),
-        delay(this.delay)
+        delay(delayMS)
       )
     );
   }
