@@ -10,7 +10,7 @@
 
 ## About
 
-This is the official repository for [pokerom.dev](https://pokerom.dev).
+This is the official repository for [pokerom.dev](https://pokerom.dev "Pok&eacute;ROM").
 
 ### Story
 
