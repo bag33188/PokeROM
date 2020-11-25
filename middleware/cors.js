@@ -1,6 +1,6 @@
 const cors = require('cors');
 
-const devLst = ['http://localhost:4200', 'http://localhost:8080'];
+const devLst = ['http://localhost:4200', 'http://localhost:8080', 'http://localhost:8081'];
 
 const prodLst = ['https://pokerom.dev', 'https://www.pokerom.dev'];
 
