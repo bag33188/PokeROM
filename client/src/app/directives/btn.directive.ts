@@ -59,9 +59,11 @@ export class BtnDirective implements OnInit {
           return [...this.preClasses, 'btn-dark'];
         default:
           logger.error('Invalid button type.');
+          return new Array<string>();
       }
     } else {
       logger.error('Type must be a string.');
+      return new Array<string>();
     }
   }
 
@@ -74,7 +76,7 @@ export class BtnDirective implements OnInit {
       }
       classList.add(className);
     });
-    if (Array.prototype.slice.call(classList).includes('null')) {
+    if (Array.prototype.slice.call(classList).indexOf('null') > -1) {
       classList.remove('null');
     }
   }
