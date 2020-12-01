@@ -6,6 +6,7 @@ import { environment } from '../environments/environment';
 import { JSONObject } from './models/JSONObject';
 import { Observable, Subscription } from 'rxjs';
 
+// noinspection CssUnresolvedCustomProperty
 @Component({
   selector: 'app-root',
   template: `
