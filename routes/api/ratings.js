@@ -1,6 +1,5 @@
 const express = require('express');
-const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
-const { check } = require('express-validator/check');
+const { body, param, check } = require('express-validator');
 const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const RatingController = require('../../controllers/rating-controller');
@@ -11,7 +10,7 @@ const router = express.Router();
 router.post(
   '/',
   [
-    sanitizeBody(['rating', 'message', 'date_time'])
+    body(['rating', 'message', 'date_time'])
       .trim()
       .escape(),
     check('message')
@@ -44,7 +43,7 @@ router.post(
 router.get(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],
@@ -58,7 +57,7 @@ router.get('/', auth, cache(20), RatingController.getRatings);
 router.delete(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],
@@ -73,7 +72,7 @@ router.head('/', auth, RatingController.ratingsHeaders);
 router.head(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],

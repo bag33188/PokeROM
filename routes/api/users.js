@@ -1,6 +1,5 @@
 const express = require('express');
-const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
-const { check } = require('express-validator/check');
+const { body, param, check } = require('express-validator');
 const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const UserController = require('../../controllers/user-controller');
@@ -19,7 +18,7 @@ router.get('/', auth, cache(5), UserController.getUsers);
 router.get(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],
@@ -31,7 +30,7 @@ router.get(
 router.post(
   '/register',
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
     check('name')
@@ -86,7 +85,7 @@ router.post(
 router.post(
   '/authenticate',
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
     check('username')
@@ -132,10 +131,10 @@ router.put(
   '/:id',
   auth,
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape(),
     check('name')
@@ -149,7 +148,8 @@ router.put(
       .isString()
       .withMessage('Name must be a string.'),
     check('username')
-      .optional()
+      .not()
+      .isEmpty()
       .withMessage('Username is required.')
       .isString()
       .withMessage('Username must be a string.')
@@ -165,8 +165,8 @@ router.put(
         } characters.`
       ),
     check('password')
-      .optional()
-      .withMessage('Password is required.')
+      .not()
+      .isEmpty()
       .isString()
       .withMessage('Password must be a string.')
       .isLength({
@@ -188,10 +188,10 @@ router.put(
 router.patch(
   '/:id',
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape(),
     check('name')
@@ -205,8 +205,7 @@ router.patch(
       .isString()
       .withMessage('Name must be a string.'),
     check('username')
-      .optional()
-      .withMessage('Username is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Username must be a string.')
       .matches(/^(?:([A-Za-z0-9_])*)$/)
@@ -221,8 +220,7 @@ router.patch(
         } characters.`
       ),
     check('password')
-      .optional()
-      .withMessage('Password is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Password must be a string.')
       .isLength({
@@ -247,7 +245,7 @@ router.delete('/', auth, UserController.deleteUsers);
 router.delete(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],
@@ -260,7 +258,7 @@ router.head('/', auth, UserController.usersHeaders);
 router.head(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],

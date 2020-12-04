@@ -1,6 +1,5 @@
 const express = require('express');
-const { sanitizeBody, sanitizeParam } = require('express-validator/filter');
-const { check } = require('express-validator/check');
+const { body, param, check } = require('express-validator');
 const { cache } = require('../../middleware/cache');
 const NatureController = require('../../controllers/nature-controller');
 const natureValidator = require('../../validation/nature-validator');
@@ -15,7 +14,7 @@ router.get(
   '/:id',
   cache(20),
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],
@@ -25,7 +24,7 @@ router.get(
 router.post(
   '/',
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
     check('name')
@@ -105,10 +104,10 @@ router.post(
 router.put(
   '/:id',
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape(),
     check('name')
@@ -188,15 +187,14 @@ router.put(
 router.patch(
   '/:id',
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape(),
     check('name')
-      .optional()
-      .withMessage('The name of the nature is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Name must be a string.')
       .isLength({
@@ -209,8 +207,7 @@ router.patch(
         } and ${natureValidator.name[1]} characters.`
       ),
     check('up')
-      .optional()
-      .withMessage('The increased stat of the nature is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Up must be a string.')
       .isLength({ min: natureValidator.up[0], max: natureValidator.up[1] })
@@ -220,8 +217,7 @@ router.patch(
         } and ${natureValidator.up[1]} characters.`
       ),
     check('down')
-      .optional()
-      .withMessage('The decreased stat of the nature is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Down must be a string.')
       .isLength({
@@ -247,8 +243,7 @@ router.patch(
       .isString()
       .withMessage('Flavor must be a string.'),
     check('usage')
-      .optional()
-      .withMessage('he usage for the nature is required')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Usage must be a string.')
       .isLength({
@@ -267,7 +262,7 @@ router.patch(
 router.delete(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],
@@ -281,7 +276,7 @@ router.head('/', NatureController.naturesHeaders);
 router.head(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],

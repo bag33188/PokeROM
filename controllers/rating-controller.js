@@ -1,4 +1,4 @@
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 const Rating = require('../models/Rating');
 const { clearCache } = require('../middleware/cache');
 const universal = require('../routes/universal');

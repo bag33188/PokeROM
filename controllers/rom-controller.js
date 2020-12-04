@@ -1,4 +1,4 @@
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 const Rom = require('../models/Rom');
 const [coreRoms, romHacks] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');

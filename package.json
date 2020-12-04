@@ -55,7 +55,7 @@
     "express-cache-controller": "^1.1.0",
     "express-list-endpoints": "latest",
     "express-sanitizer": "^1.0.5",
-    "express-validator": "^5.3.1",
+    "express-validator": "^6.7.0",
     "fast-safe-stringify": "^2.0.7",
     "forever": "^1.0.0",
     "global-tunnel": "^1.2.0",

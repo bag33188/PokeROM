@@ -1,4 +1,4 @@
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 const Nature = require('../models/Nature');
 const [, , allNaturesData] = require('../database/data.json');
 const { clearCache } = require('../middleware/cache');

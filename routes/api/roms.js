@@ -1,10 +1,5 @@
 const express = require('express');
-const {
-  sanitizeBody,
-  sanitizeParam,
-  sanitizeQuery
-} = require('express-validator/filter');
-const { check } = require('express-validator/check');
+const { body, param, query, check } = require('express-validator');
 const auth = require('../../middleware/auth');
 const { cache } = require('../../middleware/cache');
 const RomController = require('../../controllers/rom-controller');
@@ -36,7 +31,7 @@ const dateRegex = /^(?:(0?[1-9]|1[012])(\/|(&#x2[Ff];))(0?[1-9]|[12][0-9]|3[01])
 router.get(
   '/',
   [
-    sanitizeQuery(['limit', 'per_page', 'page', 'getAllCore', 'getAllHacks'])
+    query(['limit', 'per_page', 'page', 'getAllCore', 'getAllHacks'])
       .trim()
       .escape()
   ],
@@ -48,7 +43,7 @@ router.get(
 router.get(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],
@@ -60,7 +55,7 @@ router.get(
 router.post(
   '/',
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
     check('order_number')
@@ -256,10 +251,10 @@ router.post(
 router.put(
   '/:id',
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape(),
     check('order_number')
@@ -455,15 +450,14 @@ router.put(
 router.patch(
   '/:id',
   [
-    sanitizeBody(fieldsToSanitize)
+    body(fieldsToSanitize)
       .trim()
       .escape(),
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape(),
     check('order_number')
-      .optional()
-      .withMessage('Order number is required.')
+      .optional({ nullable: false })
       .isInt({
         min: romValidator.order_number[0],
         max: romValidator.order_number[1]
@@ -474,8 +468,7 @@ router.patch(
         } and ${romValidator.order_number[1]}.`
       ),
     check('rom_type')
-      .optional()
-      .withMessage('ROM type is required.')
+      .optional({ nullable: false })
       .matches(/^(core|hack)$/i)
       .withMessage('ROM type must either be a core or a hack.')
       .isLength({
@@ -488,8 +481,7 @@ router.patch(
         } characters.`
       ),
     check('file_name')
-      .optional()
-      .withMessage('File name is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('File name must be a string.')
       .isLength({
@@ -502,8 +494,7 @@ router.patch(
         } characters.`
       ),
     check('file_size')
-      .optional()
-      .withMessage('File size is required.')
+      .optional({ nullable: false })
       .isInt({
         min: romValidator.file_size[0],
         max: romValidator.file_size[1]
@@ -514,8 +505,7 @@ router.patch(
         } and ${romValidator.file_size[1]}.`
       ),
     check('file_type')
-      .optional()
-      .withMessage('File type is required.')
+      .optional({ nullable: false })
       .isAlphanumeric()
       .withMessage('File type must only contain letters with optional numbers.')
       .isLength({
@@ -530,13 +520,11 @@ router.patch(
       .matches(/^(?:\.?(gb[ca]?|[n3]ds|xci))$/i)
       .withMessage('Invalid file extension.'),
     check('download_link')
-      .optional()
-      .withMessage('Download link is required.')
+      .optional({ nullable: false })
       .isURL()
       .withMessage('Download link must be a valid URL.'),
     check('generation')
-      .optional()
-      .withMessage('Generation is required.')
+      .optional({ nullable: false })
       .isInt({
         min: romValidator.generation[0],
         max: romValidator.generation[1]
@@ -547,13 +535,11 @@ router.patch(
         } and ${romValidator.generation[1]}.`
       ),
     check('box_art_url')
-      .optional()
-      .withMessage('Box art URL is required.')
+      .optional({ nullable: false })
       .isURL()
       .withMessage('Box art URL must be a valid URL.'),
     check('game_name')
-      .optional()
-      .withMessage('Game name is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Game name must be a string.')
       .isLength({
@@ -566,8 +552,7 @@ router.patch(
         } characters.`
       ),
     check('region')
-      .optional()
-      .withMessage('Region is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Region must be a string.')
       .isAlpha()
@@ -579,8 +564,7 @@ router.patch(
         } characters.`
       ),
     check('platform')
-      .optional()
-      .withMessage('Platform is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Platform must be a string.')
       .isLength({
@@ -603,18 +587,15 @@ router.patch(
       .isString()
       .withMessage('Genre must be a string.'),
     check('logo_url')
-      .optional()
-      .withMessage('A logo URL is required.')
+      .optional({ nullable: false })
       .isURL()
       .withMessage('Logo URL must be a valid URL.'),
     check('date_released')
-      .optional()
-      .withMessage('Date released is required.')
+      .optional({ nullable: false })
       .matches(dateRegex)
       .withMessage('Date released must be in the format MM/DD/YYYY.'),
     check('description')
-      .optional()
-      .withMessage('Description is required.')
+      .optional({ nullable: false })
       .isString()
       .withMessage('Description must be a string.')
       .isLength({
@@ -627,8 +608,7 @@ router.patch(
         } characters.`
       ),
     check('is_favorite')
-      .optional()
-      .withMessage('is_favorite is required.')
+      .optional({ nullable: false })
       .isBoolean()
       .withMessage('is_favorite must be a boolean (true or false)')
   ],
@@ -639,7 +619,7 @@ router.patch(
 router.delete(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],
@@ -650,7 +630,7 @@ router.delete(
 router.delete(
   '/',
   [
-    sanitizeQuery(['deleteCore', 'deleteHacks'])
+    query(['deleteCore', 'deleteHacks'])
       .trim()
       .escape()
   ],
@@ -663,7 +643,7 @@ router.head('/', auth, RomController.romsHeaders);
 router.head(
   '/:id',
   [
-    sanitizeParam('id')
+    param('id')
       .trim()
       .escape()
   ],

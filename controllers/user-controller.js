@@ -1,7 +1,7 @@
 const config = require('config');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 const secret = config.get('secret');
 const User = require('../models/User');
 const Rom = require('../models/Rom');
