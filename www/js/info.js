@@ -42,16 +42,6 @@ class Info {
         href: './resources.html',
         target: '_self',
         text: 'Resources'
-      },
-      {
-        href: `${homeUrl}sitemap.xml`,
-        target: '_blank',
-        text: 'Sitemap'
-      },
-      {
-        href: `${homeUrl}robots.txt`,
-        target: '_blank',
-        text: 'Robots'
       }
     ];
     Info[getApiVersion]()

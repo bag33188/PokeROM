@@ -60,44 +60,34 @@ class Resources {
         href: './languages.php',
         target: '_self',
         text: 'Languages'
-      },
-      {
-        href: `${homeUrl}sitemap.xml`,
-        target: '_blank',
-        text: 'Sitemap'
-      },
-      {
-        href: `${homeUrl}robots.txt`,
-        target: '_blank',
-        text: 'Robots'
       }
     ];
     Resources[getApiVersion]()
       .then(res => {
-            if (!productionMode) {
-              const devNavItems = [
-                {
-                  href: `/api/docs/${res.api_version}/`,
-                  target: '_self',
-                  text: 'Docs'
-                }
-              ];
-              devNavItems.forEach(navItem => {
-                navData.push(navItem);
-              });
+        if (!productionMode) {
+          const devNavItems = [
+            {
+              href: `/api/docs/${res.api_version}/`,
+              target: '_self',
+              text: 'Docs'
             }
-            const nav = document.getElementById('nav');
-            while (nav.firstChild) {
-              nav.removeChild(nav.firstChild);
-            }
-            navData.forEach(navInfo => {
-              const link = document.createElement('a');
-              const linkUrl = document.createAttribute('href');
-              const linkTarget = document.createAttribute('target');
-              const linkText = document.createTextNode(navInfo.text);
-              linkUrl.value = navInfo.href;
-              linkTarget.value = navInfo.target;
-              link.setAttributeNode(linkUrl);
+          ];
+          devNavItems.forEach(navItem => {
+            navData.push(navItem);
+          });
+        }
+        const nav = document.getElementById('nav');
+        while (nav.firstChild) {
+          nav.removeChild(nav.firstChild);
+        }
+        navData.forEach(navInfo => {
+          const link = document.createElement('a');
+          const linkUrl = document.createAttribute('href');
+          const linkTarget = document.createAttribute('target');
+          const linkText = document.createTextNode(navInfo.text);
+          linkUrl.value = navInfo.href;
+          linkTarget.value = navInfo.target;
+          link.setAttributeNode(linkUrl);
           link.setAttributeNode(linkTarget);
           link.appendChild(linkText);
           nav.appendChild(link);

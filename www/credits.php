@@ -29,9 +29,7 @@
     (object) array("href" => $homeUrl, "target" => "_self", "text" => "Home"),
     (object) array("href" => "./info.html", "target" => "_self", "text" => "Info"),
     (object) array("href" => "./languages.php", "target" => "_self", "text" => "Languages"),
-    (object) array("href" => "./resources.html", "target" => "_self", "text" => "Resources"),
-    (object) array("href" => $homeUrl . "sitemap.xml", "target" => "_blank", "text" => "Sitemap"),
-    (object) array("href" => $homeUrl . "robots.txt", "target" => "_blank", "text" => "Robots")
+    (object) array("href" => "./resources.html", "target" => "_self", "text" => "Resources")
   ];
   if (!$productionMode) {
     $apiVersion = WWW::getApiVersionData()->api_version;
