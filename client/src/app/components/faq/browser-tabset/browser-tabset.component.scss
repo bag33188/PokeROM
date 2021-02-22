@@ -15,14 +15,18 @@
 
 .browser-title-text {
   display: initial;
-  @media only screen and (max-width: 767px) {
-    display: none;
-  }
 }
 
 .browser-icon {
   display: none;
-  @media only screen and (max-width: 767px) {
+}
+
+@media only screen and (max-width: 767px) {
+  .browser-icon {
     display: initial;
+  }
+
+  .browser-title-text {
+    display: none;
   }
 }
