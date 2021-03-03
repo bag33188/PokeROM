@@ -188,9 +188,9 @@ router.put(
 router.patch(
   '/:id',
   [
-    body(fieldsToSanitize)
-      .trim()
-      .escape(),
+    // body(fieldsToSanitize)
+    //   .trim()
+    //   .escape(),
     param('id')
       .trim()
       .escape(),
