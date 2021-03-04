@@ -147,13 +147,13 @@ module.exports.authorizeUser = async (req, res) => {
     return res.status(406).json({ success: false, errors: errors.array() });
   }
   try {
-    if (req.body.hasOwnProperty('name')) {
-      delete req.body.name;
-    }
     if (checkForInvalidFields(req, fields.slice(2, 4), true) === true) {
       return res
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
+    }
+    if (req.body.hasOwnProperty('name')) {
+      delete req.body.name;
     }
     const user = await User.getUserByUsername(req.body.username);
     if (!user) {
