@@ -34,8 +34,8 @@
     "open-pages": "CMD /C \"scripts\\open_pages.bat\"",
     "open-repos": "CMD /C \"scripts\\open_repos.bat\"",
     "print-keys": "cd scripts && node print-keys",
-    "pokerom": "ssh pokerom@192.64.114.215 -p 22",
-    "root": "ssh root@192.64.114.215 -p 22",
+    "pokerom": "ssh pokerom@162.0.230.67 -p 22",
+    "root": "ssh root@162.0.230.67 -p 22",
     "add-env-dev": "cd scripts && php add_env_dev.php && cd ..",
     "add-env-prod": "cd scripts && php add_env_prod && cd ..",
     "doc": "jsdoc -c jsdoc.json"
