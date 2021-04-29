@@ -36,6 +36,8 @@ try {
   printjson(users);
 }
 
+// leggo
+
 romsCollection = db.createCollection('roms', {
   validator: {
     $jsonSchema: {
