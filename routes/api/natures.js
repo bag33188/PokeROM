@@ -70,7 +70,7 @@ router.post(
         } and ${natureValidator.down[1]} characters.`
       ),
     check('flavor')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({
         min: natureValidator.flavor[0],
         max: natureValidator.flavor[1]
@@ -153,7 +153,7 @@ router.put(
         } and ${natureValidator.down[1]} characters.`
       ),
     check('flavor')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({
         min: natureValidator.flavor[0],
         max: natureValidator.flavor[1]
@@ -230,7 +230,7 @@ router.patch(
         } and ${natureValidator.down[1]} characters.`
       ),
     check('flavor')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({
         min: natureValidator.flavor[0],
         max: natureValidator.flavor[1]

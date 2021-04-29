@@ -201,7 +201,7 @@ router.post(
         } characters.`
       ),
     check('genre')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({ min: romValidator.genre[0], max: romValidator.genre[1] })
       .withMessage(
         `Genre must be between ${romValidator.genre[0]} and ${
@@ -400,7 +400,7 @@ router.put(
         } characters.`
       ),
     check('genre')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({ min: romValidator.genre[0], max: romValidator.genre[1] })
       .withMessage(
         `Genre must be between ${romValidator.genre[0]} and ${
@@ -577,7 +577,7 @@ router.patch(
         } characters.`
       ),
     check('genre')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({ min: romValidator.genre[0], max: romValidator.genre[1] })
       .withMessage(
         `Genre must be between ${romValidator.genre[0]} and ${

@@ -34,7 +34,7 @@ router.post(
       .trim()
       .escape(),
     check('name')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({ min: userValidator.name[0], max: userValidator.name[1] })
       .withMessage(
         `Name must be between ${userValidator.name[0]} and ${
@@ -138,7 +138,7 @@ router.put(
       .trim()
       .escape(),
     check('name')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({ min: userValidator.name[0], max: userValidator.name[1] })
       .withMessage(
         `Name must be between ${userValidator.name[0]} and ${
@@ -195,7 +195,7 @@ router.patch(
       .trim()
       .escape(),
     check('name')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({ min: userValidator.name[0], max: userValidator.name[1] })
       .withMessage(
         `Name must be between ${userValidator.name[0]} and ${

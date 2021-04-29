@@ -14,7 +14,7 @@ router.post(
       .trim()
       .escape(),
     check('message')
-      .optional({ nullable: true })
+      .optional({ nullable: true, checkFalsy: true })
       .isLength({ max: ratingValidator.message[1] })
       .withMessage(
         `Rating message can only be ${
