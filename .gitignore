@@ -15,6 +15,9 @@ bash.exe.stackdump
 misc/~$*
 misc/.~*#
 
+# Binaries
+ROMs/*
+
 # Project File(s)
 *.code-workspace
 *.sublime-project
