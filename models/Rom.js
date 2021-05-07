@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const romsValidator = require('../validation/rom-validator');
 
-const urlRegex = /^(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))$/i;
+const urlRegex = /^(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))|(?:\/bin_files\/(roms|box_arts|logos)\/[a-zA-Z0-9]+\.[a-zA-Z0-9]+)$/i;
 const Schema = mongoose.Schema;
 
 // create schema
