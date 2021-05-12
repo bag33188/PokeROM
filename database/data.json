@@ -3,7 +3,7 @@
     {
       "order_number": 0,
       "rom_type": "core",
-      "file_name": "Pokemon Red.gb",
+      "file_name": "POKEMON_RED01.gb",
       "file_size": 1024,
       "file_type": "gb",
       "download_link": "/bin_files/roms/POKEMON_RED01.gb",
@@ -21,7 +21,7 @@
     {
       "order_number": 1,
       "rom_type": "core",
-      "file_name": "Pokemon Blue.gb",
+      "file_name": "POKEMON_BLUE01.gb",
       "file_size": 1024,
       "file_type": "gb",
       "download_link": "/bin_files/roms/POKEMON_BLUE01.gb",
@@ -39,7 +39,7 @@
     {
       "order_number": 2,
       "rom_type": "core",
-      "file_name": "Pokemon Yellow (Special Pikachu Edition).gb",
+      "file_name": "POKEMON_YELLOW01.gbc",
       "file_size": 1024,
       "file_type": "gb",
       "download_link": "/bin_files/roms/POKEMON_YELLOW01.gbc",
@@ -57,7 +57,7 @@
     {
       "order_number": 3,
       "rom_type": "core",
-      "file_name": "Pokemon Green (JP).gb",
+      "file_name": "POKEMON_GREEN01.gb",
       "file_size": 1024,
       "file_type": "gb",
       "download_link": "/bin_files/roms/POKEMON_GREEN01.gb",
@@ -75,7 +75,7 @@
     {
       "order_number": 4,
       "rom_type": "core",
-      "file_name": "Pokemon Gold.gbc",
+      "file_name": "POKEMON_GLDAAUE01.gbc",
       "file_size": 2048,
       "file_type": "gbc",
       "download_link": "/bin_files/roms/POKEMON_GLDAAUE01.gbc",
@@ -93,7 +93,7 @@
     {
       "order_number": 5,
       "rom_type": "core",
-      "file_name": "Pokemon Silver.gbc",
+      "file_name": "POKEMON_SLVAAXE01.gbc",
       "file_size": 2048,
       "file_type": "gbc",
       "download_link": "/bin_files/roms/POKEMON_SLVAAXE01.gbc",
@@ -111,7 +111,7 @@
     {
       "order_number": 6,
       "rom_type": "core",
-      "file_name": "Pokemon Crystal.gbc",
+      "file_name": "PM_CRYSTAL_BYTE01.gbc",
       "file_size": 2048,
       "file_type": "gbc",
       "download_link": "/bin_files/roms/PM_CRYSTAL_BYTE01.gbc",
@@ -129,7 +129,7 @@
     {
       "order_number": 7,
       "rom_type": "core",
-      "file_name": "Pokemon Ruby.gba",
+      "file_name": "POKEMON_RUBYAXVE01.gba",
       "file_size": 16384,
       "file_type": "gba",
       "download_link": "/bin_files/roms/POKEMON_RUBYAXVE01.gba",
@@ -147,7 +147,7 @@
     {
       "order_number": 8,
       "rom_type": "core",
-      "file_name": "Pokemon Sapphire.gba",
+      "file_name": "POKEMON_SAPPAXPE01.gba",
       "file_size": 16384,
       "file_type": "gba",
       "download_link": "/bin_files/roms/POKEMON_SAPPAXPE01.gba",
@@ -165,7 +165,7 @@
     {
       "order_number": 9,
       "rom_type": "core",
-      "file_name": "Pokemon Emerald.gba",
+      "file_name": "POKEMON_EMERBPEE01.gba",
       "file_size": 16384,
       "file_type": "gba",
       "download_link": "/bin_files/roms/POKEMON_EMERBPEE01.gba",
@@ -183,7 +183,7 @@
     {
       "order_number": 10,
       "rom_type": "core",
-      "file_name": "Pokemon FireRed.gba",
+      "file_name": "POKEMON_FIREBPRE01.gba",
       "file_size": 16384,
       "file_type": "gba",
       "download_link": "/bin_files/roms/POKEMON_FIREBPRE01.gba",
@@ -201,7 +201,7 @@
     {
       "order_number": 11,
       "rom_type": "core",
-      "file_name": "Pokemon LeafGreen.gba",
+      "file_name": "POKEMON_LEAFBPGE01.gba",
       "file_size": 16384,
       "file_type": "gba",
       "download_link": "/bin_files/roms/POKEMON_LEAFBPGE01.gba",
@@ -219,7 +219,7 @@
     {
       "order_number": 12,
       "rom_type": "core",
-      "file_name": "Pokemon Diamond.nds",
+      "file_name": "POKEMON_D_ADAE01.nds",
       "file_size": 65536,
       "file_type": "nds",
       "download_link": "/bin_files/roms/POKEMON_D_ADAE01.nds",
@@ -237,7 +237,7 @@
     {
       "order_number": 13,
       "rom_type": "core",
-      "file_name": "Pokemon Pearl.nds",
+      "file_name": "POKEMON_P_APAE.nds",
       "file_size": 65536,
       "file_type": "nds",
       "download_link": "/bin_files/roms/POKEMON_P_APAE.nds",
@@ -255,7 +255,7 @@
     {
       "order_number": 14,
       "rom_type": "core",
-      "file_name": "Pokemon Platinum.nds",
+      "file_name": "POKEMON_PL_CPUE01.nds",
       "file_size": 131072,
       "file_type": "nds",
       "download_link": "/bin_files/roms/POKEMON_PL_CPUE01.nds",
@@ -273,7 +273,7 @@
     {
       "order_number": 15,
       "rom_type": "core",
-      "file_name": "Pokemon HeartGold.nds",
+      "file_name": "POKEMON_HG_IPKE01.nds",
       "file_size": 131072,
       "file_type": "nds",
       "download_link": "/bin_files/roms/POKEMON_HG_IPKE01.nds",
@@ -291,7 +291,7 @@
     {
       "order_number": 16,
       "rom_type": "core",
-      "file_name": "Pokemon SoulSilver.nds",
+      "file_name": "POKEMON_SS_IPGE01.nds",
       "file_size": 131072,
       "file_type": "nds",
       "download_link": "/bin_files/roms/POKEMON_SS_IPGE01.nds",
@@ -309,7 +309,7 @@
     {
       "order_number": 17,
       "rom_type": "core",
-      "file_name": "Pokemon Black.nds",
+      "file_name": "POKEMON_B_IRBO01.nds",
       "file_size": 262144,
       "file_type": "nds",
       "download_link": "/bin_files/roms/POKEMON_B_IRBO01.nds",
@@ -327,7 +327,7 @@
     {
       "order_number": 18,
       "rom_type": "core",
-      "file_name": "Pokemon White.nds",
+      "file_name": "POKEMON_W_IRAO01.nds",
       "file_size": 262144,
       "file_type": "nds",
       "download_link": "/bin_files/roms/POKEMON_W_IRAO01.nds",
@@ -345,7 +345,7 @@
     {
       "order_number": 19,
       "rom_type": "core",
-      "file_name": "Pokemon Black 2.nds",
+      "file_name": "POKEMON_B2_IREO01.nds",
       "file_size": 524288,
       "file_type": "nds",
       "download_link": "/bin_files/roms/POKEMON_B2_IREO01.nds",
@@ -363,7 +363,7 @@
     {
       "order_number": 20,
       "rom_type": "core",
-      "file_name": "Pokemon White 2.nds",
+      "file_name": "POKEMON_W2_IRDO01.nds",
       "file_size": 524288,
       "file_type": "nds",
       "download_link": "/bin_files/roms/POKEMON_W2_IRDO01.nds",
@@ -381,7 +381,7 @@
     {
       "order_number": 21,
       "rom_type": "core",
-      "file_name": "Pokemon X.3ds",
+      "file_name": "0004000000055D00.3ds",
       "file_size": 2097152,
       "file_type": "3ds",
       "download_link": "/bin_files/roms/0004000000055D00.3ds",
@@ -399,7 +399,7 @@
     {
       "order_number": 22,
       "rom_type": "core",
-      "file_name": "Pokemon Y.3ds",
+      "file_name": "0004000000055E00.3ds",
       "file_size": 2097152,
       "file_type": "3ds",
       "download_link": "/bin_files/roms/0004000000055E00.3ds",
@@ -417,7 +417,7 @@
     {
       "order_number": 23,
       "rom_type": "core",
-      "file_name": "Pokemon Omega Ruby.3ds",
+      "file_name": "000400000011C400.3ds",
       "file_size": 2097152,
       "file_type": "3ds",
       "download_link": "/bin_files/roms/000400000011C400.3ds",
@@ -435,7 +435,7 @@
     {
       "order_number": 24,
       "rom_type": "core",
-      "file_name": "Pokemon Alpha Sapphire.3ds",
+      "file_name": "000400000011C500.3ds",
       "file_size": 2097152,
       "file_type": "3ds",
       "download_link": "/bin_files/roms/000400000011C500.3ds",
@@ -452,7 +452,7 @@
     {
       "order_number": 25,
       "rom_type": "core",
-      "file_name": "Pokemon Sun.3ds",
+      "file_name": "0004000000164800.3ds",
       "file_size": 4194304,
       "file_type": "3ds",
       "download_link": "/bin_files/roms/0004000000164800.3ds",
@@ -470,7 +470,7 @@
     {
       "order_number": 26,
       "rom_type": "core",
-      "file_name": "Pokemon Moon.3ds",
+      "file_name": "0004000000175E00.3ds",
       "file_size": 4194304,
       "file_type": "3ds",
       "download_link": "/bin_files/roms/0004000000175E00.3ds",
@@ -488,7 +488,7 @@
     {
       "order_number": 27,
       "rom_type": "core",
-      "file_name": "Pokemon Ultra Sun.3ds",
+      "file_name": "00040000001B5000.3ds",
       "file_size": 4194304,
       "file_type": "3ds",
       "download_link": "/bin_files/roms/00040000001B5000.3ds",
@@ -506,7 +506,7 @@
     {
       "order_number": 28,
       "rom_type": "core",
-      "file_name": "Pokemon Ultra Moon.3ds",
+      "file_name": "00040000001B5100.3ds",
       "file_size": 4194304,
       "file_type": "3ds",
       "download_link": "/bin_files/roms/00040000001B5100.3ds",
@@ -524,7 +524,7 @@
     {
       "order_number": 29,
       "rom_type": "core",
-      "file_name": "Pokemon Let's Go Pikachu.xci",
+      "file_name": "0100187003A34000.xci",
       "file_size": 4737727,
       "file_type": "xci",
       "download_link": "/bin_files/roms/0100187003A34000.xci",
@@ -542,7 +542,7 @@
     {
       "order_number": 30,
       "rom_type": "core",
-      "file_name": "Pokemon Let's Go Eevee.xci",
+      "file_name": "010003F003A36000.xci",
       "file_size": 4737727,
       "file_type": "xci",
       "download_link": "/bin_files/roms/010003F003A36000.xci",
@@ -560,7 +560,7 @@
     {
       "order_number": 31,
       "rom_type": "core",
-      "file_name": "Pokemon Sword.xci",
+      "file_name": "0100ABF008968000.xci",
       "file_size": 15597568,
       "file_type": "xci",
       "download_link": "/bin_files/roms/0100ABF008968000.xci",
@@ -578,7 +578,7 @@
     {
       "order_number": 32,
       "rom_type": "core",
-      "file_name": "Pokemon Shield.xci",
+      "file_name": "01008DB008C2C000.xci",
       "file_size": 15597568,
       "file_type": "xci",
       "download_link": "/bin_files/roms/01008DB008C2C000.xci",
@@ -598,7 +598,7 @@
     {
       "order_number": 33,
       "rom_type": "hack",
-      "file_name": "Pokemon Prism.gbc",
+      "file_name": "PKMN_PRISM.gbc",
       "file_size": 2048,
       "file_type": "gbc",
       "download_link": "/bin_files/roms/PKMN_PRISM.gbc",
@@ -616,7 +616,7 @@
     {
       "order_number": 34,
       "rom_type": "hack",
-      "file_name": "Pokemon Ash Gray.gba",
+      "file_name": "PKMN_ASH_GRAY.gba",
       "file_size": 16384,
       "file_type": "gba",
       "download_link": "/bin_files/roms/PKMN_ASH_GRAY.gba",
