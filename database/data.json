@@ -39,10 +39,10 @@
     {
       "order_number": 2,
       "rom_type": "core",
-      "file_name": "POKEMON_YELLOW01.gbc",
+      "file_name": "POKEMON_YELLOW01.gb",
       "file_size": 1024,
       "file_type": "gb",
-      "download_link": "/bin_files/roms/POKEMON_YELLOW01.gbc",
+      "download_link": "/bin_files/roms/POKEMON_YELLOW01.gb",
       "generation": 1,
       "box_art_url": "/bin_files/box_arts/yellow.jpg",
       "game_name": "Pok\u00E9mon Yellow: Special Pikachu Edition",
