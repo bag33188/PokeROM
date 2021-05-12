@@ -27,6 +27,19 @@ function parseVersion(apiVersion) {
   return apiVersion;
 }
 
+function parseTermsOfService(env) {
+  const tosPath =
+    env !== 'production'
+      ? 'https://1drv.ms/t/s!AmuGEkjVxD0JhslDktOegP93OxrK_g?e=55mFBA'
+      : '/Terms_of_Service.txt';
+  const tosRegExp = /((?:<%(?:[=#]?))(?:\s?)(?:TOS)(?:\s?)(?:%>))/i;
+  const keys = ['swaggerDefinition', 'info', 'termsOfService'];
+  swaggerDefinition[keys[0]][keys[1]][keys[2]] = swaggerDefinition[keys[0]][
+    keys[1]
+  ][keys[2]].replace(tosRegExp, tosPath);
+  return tosPath;
+}
+
 // parse api docs version in description
 parseVersion(version);
 
