@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { faDownload, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { environment } from '../../../../../environments/environment';
+import { Environment } from '../../../../interfaces/Environment';
 
 @Component({
   selector: 'roms-info-rom-download',
@@ -10,6 +12,7 @@ export class RomDownloadComponent implements OnInit {
   @Input() public downloadLink: string;
   public btnDisabled: boolean;
   public faDownload: IconDefinition;
+  public environment: Environment;
 
   @HostListener('window:resize')
   public disableBtnIfMobileOrTablet(): boolean {
@@ -28,6 +31,7 @@ export class RomDownloadComponent implements OnInit {
   constructor() {}
 
   public ngOnInit(): void {
+    this.environment = environment;
     this.faDownload = faDownload;
     this.disableBtnIfMobileOrTablet();
   }

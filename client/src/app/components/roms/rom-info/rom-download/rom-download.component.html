@@ -3,7 +3,7 @@
     [class.disabled]="btnDisabled"
     [href]="downloadLink"
     rel="noreferrer"
-    target="_blank"
+    [target]="environment.production ? '_self' : '_blank'"
     appBtn
     btnType="success"
     ><fa-icon [icon]="faDownload" class="mr-2"></fa-icon>Download</a
