@@ -440,7 +440,6 @@ module.exports.coreRoms = async (req, res) => {
     const roms = await Rom.getAllRoms(query);
     return res.status(200).json(roms);
   } catch (err) {
-    console.log(err);
     return res
       .status(500)
       .json({ success: false, message: 'Internal server error.' });
