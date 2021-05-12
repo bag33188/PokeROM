@@ -103,7 +103,7 @@ romsCollection = db.createCollection('roms', {
           minLength: 8,
           maxLength: 1000,
           pattern:
-            '^(?:(http(s)?)://(www.)?[a-zA-Z0-9@:%._+~#;=]{2,256}.[a-zA-Z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&//=;]*))$',
+            '^(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))|(?:\/bin_files\/(roms|box_arts|logos)\/[a-zA-Z0-9_]+\.[a-zA-Z0-9]+)$',
           description:
             'download_link is required and needs to be a valid URL string between 8 and 1000 characters.'
         },
@@ -119,7 +119,7 @@ romsCollection = db.createCollection('roms', {
           minLength: 8,
           maxLength: 1000,
           pattern:
-            '^(?:(http(s)?)://(www.)?[a-zA-Z0-9@:%._+~#;=]{2,256}.[a-zA-Z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&//=;]*))$',
+            '^(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))|(?:\/bin_files\/(roms|box_arts|logos)\/[a-zA-Z0-9_]+\.[a-zA-Z0-9]+)$',
           description:
             'box_art_url is required and needs to be a valid URL string between 8 and 1000 characters.'
         },
@@ -165,7 +165,7 @@ romsCollection = db.createCollection('roms', {
         logo_url: {
           bsonType: 'string',
           pattern:
-            '^(?:(http(s)?)://(www.)?[a-zA-Z0-9@:%._+~#;=]{2,256}.[a-zA-Z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&//=;]*))$',
+            '^(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#;=]{2,256}\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\+.~#?&//=;]*))|(?:\/bin_files\/(roms|box_arts|logos)\/[a-zA-Z0-9_]+\.[a-zA-Z0-9]+)$',
           description:
             'logo_url is required and needs to be a valid URL string between 8 and 1000 characters.'
         },
