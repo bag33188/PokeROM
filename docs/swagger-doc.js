@@ -43,6 +43,8 @@ function parseTermsOfService(env) {
 // parse api docs version in description
 parseVersion(version);
 
+parseTermsOfService(process.env.NODE_ENV);
+
 // define swagger entity
 const specs = swaggerJsDoc(swaggerDefinition);
 
