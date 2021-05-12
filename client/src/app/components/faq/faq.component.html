@@ -69,17 +69,8 @@
       <div>
         <h3 class="question">Is this project open source?</h3>
         <p class="answer">
-          No; however, it does use <code>source control</code>. <br />You can
-          view a list of programming languages used for this app
-          <a
-            [href]="
-              environment.production
-                ? '/languages.php'
-                : environment.apiUrl.replace('/api', '') + '/languages.php'
-            "
-            target="_self"
-            >here</a
-          >.
+          No; however, it does use <code>source control</code> (specifically
+          <a href="https://github.com" target="_blank">github</a>).
         </p>
         <h3 class="question">
           What resources did you use to build this website?
@@ -92,6 +83,16 @@
                 ? '/resources.html'
                 : environment.apiUrl.replace('/api', '') + '/resources.html'
             "
+            >here</a
+          >. <br />You can also view a list of programming languages used for
+          this app
+          <a
+            [href]="
+              environment.production
+                ? '/languages.php'
+                : environment.apiUrl.replace('/api', '') + '/languages.php'
+            "
+            target="_self"
             >here</a
           >.
         </p>
