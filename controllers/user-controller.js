@@ -5,7 +5,9 @@ const { validationResult } = require('express-validator');
 const secret = config.get('secret');
 const User = require('../models/User');
 const Rom = require('../models/Rom');
-const [coreRoms, romHacks] = require('../database/data.json');
+const [coreRoms, romHacks] = require(process.env.NODE_ENV === 'production'
+  ? '../database/data.json'
+  : '../database/data-dev.json');
 const { clearCache } = require('../middleware/cache');
 const universal = require('../routes/universal');
 const {

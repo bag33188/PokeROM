@@ -1,6 +1,8 @@
 const { validationResult } = require('express-validator');
 const Nature = require('../models/Nature');
-const [, , allNaturesData] = require('../database/data.json');
+const [, , allNaturesData] = require(process.env.NODE_ENV === 'production'
+  ? '../database/data.json'
+  : '../database/data-dev.json');
 const { clearCache } = require('../middleware/cache');
 const universal = require('../routes/universal');
 const {
