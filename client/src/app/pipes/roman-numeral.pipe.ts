@@ -6,49 +6,34 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class RomanNumeralPipe implements PipeTransform {
   constructor() {}
   public transform(value: number): string | number {
-    const num: number = value;
+    let num: number = value;
     if (isNaN(num)) {
       return NaN;
     } else {
-      const digits: string[] = String(+num).split('');
-      const key: string[] = [
-        '',
-        'C',
-        'CC',
-        'CCC',
-        'CD',
-        'D',
-        'DC',
-        'DCC',
-        'DCCC',
-        'CM',
-        '',
-        'X',
-        'XX',
-        'XXX',
-        'XL',
-        'L',
-        'LX',
-        'LXX',
-        'LXXX',
-        'XC',
-        '',
-        'I',
-        'II',
-        'III',
-        'IV',
-        'V',
-        'VI',
-        'VII',
-        'VIII',
-        'IX'
-      ];
+      const key: { [index: string]: number } = {
+        M: 1000,
+        CM: 900,
+        D: 500,
+        CD: 400,
+        C: 100,
+        XC: 90,
+        L: 50,
+        XL: 40,
+        X: 10,
+        IX: 9,
+        V: 5,
+        IV: 4,
+        I: 1
+      };
       let roman: string = '';
-      let i: number = 3;
-      while (i--) {
-        roman = (key[parseInt(digits.pop(), 10) + i * 10] || '') + roman;
+
+      for (const i of Object.keys(key)) {
+        const q: number = Math.floor(num / key[i]);
+        num -= q * key[i];
+        roman += i.repeat(q);
       }
-      return Array(+digits.join('') + 1).join('M') + roman;
+
+      return roman;
     }
   }
 }
