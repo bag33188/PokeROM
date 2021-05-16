@@ -55,8 +55,4 @@ export class RomComponent implements OnInit {
       'card-img-top box-art-img': true
     };
   }
-
-  public romanize(generation: number): string | number {
-    return unitConverter.convertIntegerToRomanNumeral(generation);
-  }
 }

@@ -19,6 +19,7 @@ import { RomsPaginationComponent } from './roms-pagination/roms-pagination.compo
 import { RomsComponent } from './roms.component';
 import { RomHackPopupComponent } from './rom-info/rom-hack-popup/rom-hack-popup.component';
 import { MarkFavoriteComponent } from './rom-info/mark-favorite/mark-favorite.component';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MarkFavoriteComponent } from './rom-info/mark-favorite/mark-favorite.co
     FontAwesomeModule,
     DirectivesModule,
     SpinnerModule,
-    RomsRoutingModule
+    RomsRoutingModule,
+    PipesModule
   ],
   providers: [RomsService]
 })
