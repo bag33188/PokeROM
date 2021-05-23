@@ -56,10 +56,10 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.isErrorDeleting = false;
     this.faExclamationTriangle = faExclamationTriangle;
     this.faInfoCircle = faInfoCircle;
-    const key: string = 'id';
     if (!cookies.getCookie('user')) {
       this.errLoadingUsr = true;
     } else {
+      const key: string = 'id';
       this.userId = JSON.parse(cookies.getCookie('user'))[key];
       this.retrieveUserData(this.userId);
     }
