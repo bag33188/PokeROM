@@ -17,7 +17,7 @@ export class GameDescriptionComponent implements OnInit {
   public faFileAlt: IconDefinition;
 
   constructor() {}
-  static changeUrlToLink(description: string): string {
+  private static changeUrlToLink(description: string): string {
     const urlRegex: RegExp = /(?:(http(s)?):\/\/(www\.)?[a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))/gim;
     if (urlRegex.test(description)) {
       const url: string = description.match(urlRegex)[0];
