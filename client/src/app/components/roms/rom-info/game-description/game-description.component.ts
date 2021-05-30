@@ -1,9 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {
-  faLongArrowAltLeft,
-  faFileAlt,
-  IconDefinition
-} from '@fortawesome/free-solid-svg-icons';
+import { faFileAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'roms-info-game-description',
