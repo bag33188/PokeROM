@@ -18,11 +18,14 @@ export class DisclaimerToastComponent implements OnInit {
 
   public ngOnInit(): void {
     this.environment = environment;
-    const showToast: boolean = localState.getState<boolean>('show_toast');
-    if (showToast === null || showToast === undefined) {
+    // const showToast: boolean = localState.getState<boolean>('show_toast');
+    if (
+      localState.getState<boolean>('show_toast') === null ||
+      localState.getState<boolean>('show_toast') === undefined
+    ) {
       localState.setState<boolean>('show_toast', true);
     }
-    this.show = showToast;
+    this.show = localState.getState<boolean>('show_toast');
   }
 
   public closeModal(): void {
