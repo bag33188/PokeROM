@@ -314,7 +314,13 @@ module.exports.patchUser = async (req, res) => {
       const salt = await bcrypt.genSalt(10);
       req.body.password = await bcrypt.hash(req.body.password, salt);
     }
-
+    const exists = User.getUserById(id);
+    if (!exists) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found.'
+      });
+    }
     const query = { $set: req.body };
     await User.patchUser(id, query);
 

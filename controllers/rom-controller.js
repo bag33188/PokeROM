@@ -300,6 +300,13 @@ module.exports.patchRom = async (req, res) => {
         message: `You cannot patch this user's ROM.`
       });
     }
+
+    if (!rom) {
+      return res.status(404).json({
+        success: false,
+        message: 'ROM not found.'
+      });
+    }
     const query = { $set: req.body };
     clearCache(req, routesWithParams);
     await Rom.patchRom(id, query);
