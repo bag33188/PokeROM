@@ -164,7 +164,7 @@ module.exports.patchNature = async (req, res) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    const exists = await Nature.getNature(id);
+    const exists = (await Nature.getNature(id)) ? true : false;
     if (!exists) {
       return res.status(404).json({
         success: false,

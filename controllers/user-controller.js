@@ -292,6 +292,13 @@ module.exports.patchUser = async (req, res) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
+    const exists = (await User.getUserById(id)) ? true : false;
+    if (!exists) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found.'
+      });
+    }
     if (req.user._id.toString() !== id.toString()) {
       return res.status(403).json({
         success: false,
@@ -314,13 +321,7 @@ module.exports.patchUser = async (req, res) => {
       const salt = await bcrypt.genSalt(10);
       req.body.password = await bcrypt.hash(req.body.password, salt);
     }
-    const exists = User.getUserById(id);
-    if (!exists) {
-      return res.status(404).json({
-        success: false,
-        message: 'User not found.'
-      });
-    }
+
     const query = { $set: req.body };
     await User.patchUser(id, query);
 

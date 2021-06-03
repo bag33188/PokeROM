@@ -293,6 +293,13 @@ module.exports.patchRom = async (req, res) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
+    const exists = (await Rom.getRomById(id)) ? true : false;
+    if (!exists) {
+      return res.status(404).json({
+        success: false,
+        message: 'ROM not found.'
+      });
+    }
     const rom = await Rom.getRomById(id);
     if (rom.user_id.toString() !== req.user._id.toString()) {
       return res.status(401).json({
@@ -301,12 +308,6 @@ module.exports.patchRom = async (req, res) => {
       });
     }
 
-    if (!rom) {
-      return res.status(404).json({
-        success: false,
-        message: 'ROM not found.'
-      });
-    }
     const query = { $set: req.body };
     clearCache(req, routesWithParams);
     await Rom.patchRom(id, query);
