@@ -35,6 +35,6 @@ export class DisclaimerToastComponent implements OnInit {
 
   public closeModal(): void {
     localState.setState<boolean>('show_toast', false);
-    this.show = localState.getState<boolean>('show_toast');
+    this.show = DisclaimerToastComponent.getToastState();
   }
 }
