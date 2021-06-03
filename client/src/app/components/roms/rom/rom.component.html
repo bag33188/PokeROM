@@ -12,23 +12,23 @@
       {{ rom.game_name }}
     </h5>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item font-weight-bold list-grid">
+      <li class="list-group-item font-weight-bold list-flex">
         <span class="text-left">File Size</span
         ><span class="text-right">{{
           fileSizeData(rom.file_size).join('')
         }}</span>
       </li>
-      <li class="list-group-item font-weight-bold list-grid">
+      <li class="list-group-item font-weight-bold list-flex">
         <span class="text-left">File Type</span
         ><span class="text-right">{{ rom.file_type }}</span>
       </li>
-      <li class="list-group-item font-weight-bold list-grid">
+      <li class="list-group-item font-weight-bold list-flex">
         <span class="text-left">Generation</span
         ><span class="text-right generation">{{
           rom.generation | romanNumeral
         }}</span>
       </li>
-      <li class="list-group-item font-weight-bold list-grid">
+      <li class="list-group-item font-weight-bold list-flex">
         <span class="text-left">Platform</span
         ><span class="text-right">{{ rom.platform }}</span>
       </li>

@@ -1,8 +1,13 @@
 @import '../../../../assets/scss/variables';
 
-.list-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.list-flex {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: stretch;
+
+  & > span {
+    width: 100%;
+  }
 }
 
 .card-body-container {
