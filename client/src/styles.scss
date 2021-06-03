@@ -67,10 +67,16 @@ button {
     &:not([class^='carousel-control-']) {
       &:active,
       &:focus,
-      &:active:focus {
+      &:active {
         // sass-lint:disable-line force-pseudo-nesting
         box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba !important;
         outline: none !important;
+
+        &:focus {
+          // sass-lint:disable-line force-pseudo-nesting
+          box-shadow: 0 0.5rem 1rem $btn-box-shadow1-rgba !important;
+          outline: none !important;
+        }
       }
 
       &[class*='btn-outline-'],
@@ -78,10 +84,15 @@ button {
       &[class~='btn-link'] {
         &:active,
         &:focus,
-        &:active:focus {
+        &:active {
           // sass-lint:disable-line force-pseudo-nesting
           box-shadow: none !important;
           outline: none !important;
+
+          &:focus {
+            box-shadow: none !important;
+            outline: none !important;
+          }
         }
       }
     }
