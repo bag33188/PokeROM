@@ -1,6 +1,6 @@
 <ng-container>
   <span
-    *ngIf="isRomHack; else notRomHack"
+    *ngIf="isRomHack"
     [ngbPopover]="popContent"
     [popoverTitle]="popTitle"
     popoverClass="shadow"
@@ -9,7 +9,6 @@
   >
     {{ gameName }}
   </span>
-  <ng-template #notRomHack>{{ gameName }}</ng-template>
   <ng-template #popContent
     >This ROM (<span class="underline">{{ removeRomHackText(gameName) }}</span
     >) is not part of the core series of Pok<span id="eacute"></span>mon games,
