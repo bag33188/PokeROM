@@ -10,7 +10,7 @@ import { LocalStorageService as localState } from '../../services/local-storage.
 import { RouterExtService } from '../../services/router-ext.service';
 import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import { faStar as starSolid } from '@fortawesome/free-solid-svg-icons';
-import { faStar as startOutline } from '@fortawesome/free-regular-svg-icons';
+import { faStar as starOutline } from '@fortawesome/free-regular-svg-icons';
 
 // page size, current page, if favorites are shown
 type paginationState = [number, number, boolean];
@@ -54,7 +54,7 @@ export class RomsComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.starSolid = starSolid;
-    this.starOutline = startOutline;
+    this.starOutline = starOutline;
     this.currentPage = 1;
     this.itemsPerPage = 4;
     this.loading = true;
