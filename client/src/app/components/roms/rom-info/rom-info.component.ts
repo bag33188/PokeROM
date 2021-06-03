@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   faLongArrowAltLeft,
-  faFileAlt,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import { RomsService } from '../../../services/roms.service';
