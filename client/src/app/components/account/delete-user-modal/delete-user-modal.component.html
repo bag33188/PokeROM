@@ -14,7 +14,7 @@
     <p>
       <strong
         >Are you sure you want to delete your own account ({{
-          username || 'username_not_found'
+          username || ('username_not_found' | uppercase)
         }})?</strong
       >
     </p>
