@@ -3,6 +3,7 @@ import { Environment } from '../../../interfaces/Environment';
 import { environment } from '../../../../environments/environment';
 import { fadeOutAnimation } from '../../../animations';
 import { LocalStorageService as localState } from '../../../services/local-storage.service';
+import { disconnect } from 'pm2';
 
 @Component({
   selector: 'faq-disclaimer-toast',
@@ -16,16 +17,20 @@ export class DisclaimerToastComponent implements OnInit {
 
   constructor() {}
 
+  private static getToastState(): boolean {
+    return localState.getState<boolean>('show_toast');
+  }
+
   public ngOnInit(): void {
     this.environment = environment;
     // const showToast: boolean = localState.getState<boolean>('show_toast');
     if (
-      localState.getState<boolean>('show_toast') === null ||
-      localState.getState<boolean>('show_toast') === undefined
+      DisclaimerToastComponent.getToastState() === null ||
+      DisclaimerToastComponent.getToastState() === undefined
     ) {
       localState.setState<boolean>('show_toast', true);
     }
-    this.show = localState.getState<boolean>('show_toast');
+    this.show = DisclaimerToastComponent.getToastState();
   }
 
   public closeModal(): void {
