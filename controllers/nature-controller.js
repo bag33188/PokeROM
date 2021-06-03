@@ -164,14 +164,15 @@ module.exports.patchNature = async (req, res) => {
         .status(406)
         .json({ success: false, message: 'Body contains invalid fields.' });
     }
-    const query = { $set: req.body };
-    const nature = await Nature.patchNature(id, query);
     if (!nature) {
       return res.status(404).json({
         success: false,
         message: 'Nature not found.'
       });
     }
+    const query = { $set: req.body };
+    const nature = await Nature.patchNature(id, query);
+
     clearCache(req, routesWithParams);
     const patchedNature = await Nature.getNature(id);
     return res.status(200).json(patchedNature);
