@@ -107,7 +107,7 @@
       <faq-browser-tabset></faq-browser-tabset>
     </ng-container>
     <ng-container *ngIf="!environment.production">
-      <h2 class="mt-2">API Version</h2>
+      <h2 class="mt-4">API Version</h2>
       <p>
         <code>{{
           (environment.apiUrl + '/version' | fetch | json) !== 'null'
