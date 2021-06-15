@@ -30,7 +30,7 @@ export class RomComponent implements OnInit {
       .replace(/('|[()])/g, '')}-box-art`;
   }
 
-  public fileSizeData(romFileSize: number): [number, string] {
+  public createFileSizeData(romFileSize: number): [number, string] {
     const [fileSize, fileType]: [number, string] = unitConverter.convertRomSize(
       romFileSize
     );
