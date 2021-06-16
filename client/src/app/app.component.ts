@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { LoggerService as logger } from './services/logger.service';
 import { ApiService } from './services/api.service';
 import { ApiVersion } from './models/ApiVersion';
@@ -50,7 +50,8 @@ import { Observable, Subscription } from 'rxjs';
         display: var(--part-display);
       }
     `
-  ]
+  ],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class AppComponent {
   protected static readonly _eacute: string = '\u00E9';
